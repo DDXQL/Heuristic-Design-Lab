@@ -1,0 +1,791 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "name": "Tier1 Single-Rule Baseline",
+    "version": "1",
+    "identifier": "Tier1-Fixed-H-v1",
+    "research_object": "one reusable constructive FJSP operation-machine priority rule",
+    "fixed_usage": "U_fixed(state) = Tier1-Fixed-H-v1",
+    "selection_rationale": "seed 2026092002 was the first formal rule and was fixed before the 2026092003/2026092004 stability results were observed; no post-hoc best-seed selection",
+    "created_at": "2026-09-20T14:33:17+08:00"
+  },
+  "source": {
+    "repository_path": "/Users/DDXQL/Documents/大学/硕士/代码/EoH-S",
+    "commit": "b3b67d6522466e66baba5eb57990d3fb2bfeca23",
+    "annotated_tag": "fjsp-tier1-single-rule-v1",
+    "original_manifest_path": "provenance/original_baseline_manifest.json",
+    "original_manifest_sha256": "0869517771bbac44db814655e1f20f55ea7291b9b4c80b5949aff92047cbc3af",
+    "file_mapping_path": "provenance/file_mapping.json",
+    "working_tree_files_exported": false
+  },
+  "contract": {
+    "function_signature": "priority(processing_time: float, remaining_work: float, remaining_operations: int, job_ready_time: float, machine_ready_time: float, earliest_start: float, earliest_finish: float) -> float",
+    "features": {
+      "processing_time": "positive duration of the operation on this candidate machine",
+      "remaining_work": "sum of shortest eligible durations for current and later operations; positive",
+      "remaining_operations": "count including current operation; positive integer",
+      "job_ready_time": "completion time of the previously scheduled operation of this job; nonnegative",
+      "machine_ready_time": "completion time of the last scheduled operation on this machine; nonnegative",
+      "earliest_start": "max(job_ready_time, machine_ready_time); nonnegative",
+      "earliest_finish": "earliest_start + processing_time; positive"
+    },
+    "return_constraint": "one finite real scalar; bool, strings, vectors, NaN and infinity are invalid",
+    "score_direction": "higher priority wins; higher normalized score is better",
+    "tie_break": "stable enumeration: lower job index, then lower machine index",
+    "scheduler": "append-only constructor chooses the highest priority currently eligible operation-machine pair",
+    "feasibility": "all operations once, eligible machine and exact duration, job precedence, no machine overlap, exact makespan",
+    "lower_bound": "max(maximum per-job sum of minimum operation durations, ceil(total minimum operation workload / machine_count))",
+    "instance_score": "-makespan/lower_bound",
+    "training_fitness": "arithmetic mean of all 21 train instance scores"
+  },
+  "rules": {
+    "canonical": {
+      "role": "canonical_rule",
+      "seed": 2026092002,
+      "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092002.py",
+      "sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a",
+      "evaluation_record": "baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "generation_record": "baselines/tier1_single_rule_v1/records/2026092002/generation_result.json",
+      "selection_record": "baselines/tier1_single_rule_v1/records/2026092002/selection.json",
+      "run_config": "baselines/tier1_single_rule_v1/records/2026092002/run_config.json"
+    },
+    "stability_review": [
+      {
+        "role": "stability_review_rule",
+        "seed": 2026092003,
+        "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092003.py",
+        "sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f",
+        "evaluation_record": "baselines/tier1_single_rule_v1/records/2026092003/evaluation_result.json",
+        "generation_record": "baselines/tier1_single_rule_v1/records/2026092003/generation_result.json",
+        "selection_record": "baselines/tier1_single_rule_v1/records/2026092003/selection.json",
+        "run_config": "baselines/tier1_single_rule_v1/records/2026092003/run_config.json"
+      },
+      {
+        "role": "stability_review_rule",
+        "seed": 2026092004,
+        "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092004.py",
+        "sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e",
+        "evaluation_record": "baselines/tier1_single_rule_v1/records/2026092004/evaluation_result.json",
+        "generation_record": "baselines/tier1_single_rule_v1/records/2026092004/generation_result.json",
+        "selection_record": "baselines/tier1_single_rule_v1/records/2026092004/selection.json",
+        "run_config": "baselines/tier1_single_rule_v1/records/2026092004/run_config.json"
+      }
+    ]
+  },
+  "components": {
+    "instance_loader": {
+      "role": "instance_loader",
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849"
+    },
+    "scheduler": {
+      "role": "scheduler",
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057"
+    },
+    "evaluation": {
+      "role": "evaluation",
+      "path": "code/llm4ad/task/optimization/fjsp_set/evaluation.py",
+      "sha256": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61"
+    },
+    "prompt_template": {
+      "role": "prompt_template",
+      "path": "code/llm4ad/task/optimization/fjsp_set/template.py",
+      "sha256": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77"
+    },
+    "preflight_and_baselines": {
+      "role": "preflight_and_baselines",
+      "path": "experiments/tier1/preflight.py",
+      "sha256": "4be3b2d214130a4d8e5a43d475a0046fb917f78a62cab5aa1125cf4e502ffc44"
+    },
+    "training_entry": {
+      "role": "training_entry",
+      "path": "experiments/tier1/run_eoh_single.py",
+      "sha256": "c1409502a5ff8273c46d23ccb25e2e3fd8f45a12948423ca65ad0cac441a6f37"
+    },
+    "selection_export": {
+      "role": "selection_export",
+      "path": "experiments/tier1/evaluate_single_rule.py",
+      "sha256": "698f6fd2ff6009d6c1c151d8ad01c7c43eac0adaa66fd2f4ea18561c86683588"
+    },
+    "eoh_entry": {
+      "role": "eoh_entry",
+      "path": "code/llm4ad/method/eoh/eoh.py",
+      "sha256": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245"
+    },
+    "eoh_population": {
+      "role": "eoh_population",
+      "path": "code/llm4ad/method/eoh/population.py",
+      "sha256": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa"
+    },
+    "https_llm_adapter": {
+      "role": "https_llm_adapter",
+      "path": "code/llm4ad/tools/llm/llm_api_https.py",
+      "sha256": "9eaf774c0fa4854dcbe2f6fc1e1a382da9cb1a595140b5e0086b55ddebd27cf1"
+    },
+    "profile_logging": {
+      "role": "profile_logging",
+      "path": "code/llm4ad/tools/profiler/profile.py",
+      "sha256": "565847bde0ee0253d4feadb3325091365f4f420978b470f151783fe123312ee5"
+    }
+  },
+  "configs": {
+    "portable_formal_metadata": {
+      "role": "portable_formal_metadata",
+      "path": "experiments/tier1/configs/portable_formal_config.json",
+      "sha256": "182210b510b6e3108223c63ddc8d27dc4da7ed57c5408415a37a7f1830a5986b"
+    },
+    "formal_runs": [
+      {
+        "role": "portable_formal_run_config",
+        "path": "experiments/tier1/configs/portable_single_rule_config.json",
+        "sha256": "a05b660df8c0533fe97f528d7433a321f79f2a08a01984a5bf8f8525b69f04eb",
+        "seed": 2026092002
+      },
+      {
+        "role": "portable_formal_run_config",
+        "path": "experiments/tier1/configs/portable_single_rule_seed_2026092003.json",
+        "sha256": "0ce3425801a9a8d2e7e908f4846114641fd6a8b0c3a5e40cbd191347f9b183d6",
+        "seed": 2026092003
+      },
+      {
+        "role": "portable_formal_run_config",
+        "path": "experiments/tier1/configs/portable_single_rule_seed_2026092004.json",
+        "sha256": "b480c1aef0f741bd6a6bed3a59b9a7d53bf49aab2b3409369047cb3ff2f8a49d",
+        "seed": 2026092004
+      }
+    ],
+    "split": {
+      "role": "fixed_split",
+      "path": "experiments/tier1/configs/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    "original_configs_directory": "provenance/original_configs"
+  },
+  "dataset": {
+    "source_root": "/Users/DDXQL/Documents/大学/硕士/代码/2.4.4/_pdata/fjsp",
+    "portable_root": "data/fjsp",
+    "manifest_path": "data/fjsp_manifest.json",
+    "manifest_sha256": "45ccd4ff820b387f89fd1b4bbf4e714e8517d1f68578d7d65ac8ea720e6a42f2",
+    "counts": {
+      "train": 21,
+      "validation": 11,
+      "test": 28,
+      "sanity": 1
+    },
+    "git_tracked": false,
+    "redistribution_status": "not confirmed",
+    "test_copied": true,
+    "test_loaded_during_portable_verification": false,
+    "test_evaluated_during_portable_verification": false
+  },
+  "experiment": {
+    "seeds": [
+      2026092002,
+      2026092003,
+      2026092004
+    ],
+    "formal_configs": [
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_config.json",
+        "sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b",
+        "seed": 2026092002
+      },
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_seed_2026092003.json",
+        "sha256": "2a7e26b912e9678a43ad71c8ab7295ac8b02ec1e1ca49de1b33958570694d0e3",
+        "seed": 2026092003
+      },
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_seed_2026092004.json",
+        "sha256": "fb61acb85b631d033dd621c902f24b061dee9802341e0b8bc813f2111902c563",
+        "seed": 2026092004
+      }
+    ],
+    "budget_per_seed": {
+      "max_sample_nums": 40,
+      "max_generations": 10,
+      "pop_size": 5,
+      "num_samplers": 1,
+      "num_evaluators": 1,
+      "timeout_seconds": 180,
+      "debug_mode": false
+    },
+    "llm": {
+      "name": "deepseek-flash",
+      "client": "HttpsApi",
+      "max_tokens": 4096,
+      "top_p": null,
+      "temperature": 1.0,
+      "thinking": {
+        "type": "disabled"
+      },
+      "request_timeout_seconds": 60,
+      "confirmed_server_side_seed": false
+    },
+    "selection": {
+      "pool": "each run final EoH population only",
+      "partition": "validation",
+      "criterion": "highest arithmetic mean normalized score on 11 validation instances",
+      "tie_break": "lower final-population index",
+      "test_used": false
+    },
+    "runs": [
+      {
+        "seed": 2026092002,
+        "selected_population_index": 0,
+        "selected_rule_sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a",
+        "valid_candidates": 40,
+        "invalid_candidates": 0,
+        "generation_runtime_seconds": 144.2014350419995,
+        "train_mean_score": -2.0090094779382675,
+        "validation_mean_score": -2.194223469014416,
+        "validation_score_gap_vs_EFT": 0.03232786232576883,
+        "validation_relative_makespan_improvement_vs_EFT": 0.013092442009999948,
+        "validation_wins_ties_losses_vs_EFT": [
+          8,
+          0,
+          3
+        ]
+      },
+      {
+        "seed": 2026092003,
+        "selected_population_index": 0,
+        "selected_rule_sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f",
+        "valid_candidates": 40,
+        "invalid_candidates": 0,
+        "generation_runtime_seconds": 165.68087254099737,
+        "train_mean_score": -2.049008062054239,
+        "validation_mean_score": -2.2219499822680704,
+        "validation_score_gap_vs_EFT": 0.00460134907211412,
+        "validation_relative_makespan_improvement_vs_EFT": -0.009674702271849937,
+        "validation_wins_ties_losses_vs_EFT": [
+          7,
+          0,
+          4
+        ]
+      },
+      {
+        "seed": 2026092004,
+        "selected_population_index": 3,
+        "selected_rule_sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e",
+        "valid_candidates": 39,
+        "invalid_candidates": 1,
+        "generation_runtime_seconds": 199.4829409160011,
+        "train_mean_score": -2.0426503095947517,
+        "validation_mean_score": -2.18218386462855,
+        "validation_score_gap_vs_EFT": 0.04436746671163441,
+        "validation_relative_makespan_improvement_vs_EFT": 0.018189856385325345,
+        "validation_wins_ties_losses_vs_EFT": [
+          8,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "stability": {
+    "validation_runs_above_EFT": 3,
+    "run_count": 3,
+    "validation_mean_score_distribution": {
+      "values": [
+        -2.194223469014416,
+        -2.2219499822680704,
+        -2.18218386462855
+      ],
+      "mean": -2.199452438637012,
+      "sample_standard_deviation": 0.02039221960737899,
+      "median": -2.194223469014416,
+      "minimum": -2.2219499822680704,
+      "maximum": -2.18218386462855,
+      "range_width": 0.03976611763952054
+    },
+    "validation_score_gap_vs_EFT_distribution": {
+      "values": [
+        0.03232786232576883,
+        0.00460134907211412,
+        0.04436746671163441
+      ],
+      "mean": 0.027098892703172454,
+      "sample_standard_deviation": 0.0203922196073789,
+      "median": 0.03232786232576883,
+      "minimum": 0.00460134907211412,
+      "maximum": 0.04436746671163441,
+      "range_width": 0.039766117639520294
+    },
+    "validation_relative_makespan_improvement_vs_EFT_distribution": {
+      "values": [
+        0.013092442009999948,
+        -0.009674702271849937,
+        0.018189856385325345
+      ],
+      "mean": 0.007202532041158452,
+      "sample_standard_deviation": 0.0148366669730969,
+      "median": 0.013092442009999948,
+      "minimum": -0.009674702271849937,
+      "maximum": 0.018189856385325345,
+      "range_width": 0.027864558657175284
+    },
+    "candidate_counts": {
+      "evaluated": 120,
+      "valid": 119,
+      "invalid": 1,
+      "invalid_rate": 0.008333333333333333
+    },
+    "invalid_candidates": [
+      {
+        "seed": 2026092004,
+        "sample_order": 23,
+        "error_type": "ZeroDivisionError",
+        "score": null,
+        "entered_final_population": false
+      }
+    ],
+    "runtime": {
+      "generation_seconds": 509.36524849899797,
+      "recorded_evaluation_seconds": 67.42543182110603,
+      "recorded_total_seconds": 576.790680320104
+    },
+    "llm_calls": {
+      "framework_recorded_evaluated_candidate_calls": 120,
+      "observed_failed_transport_retry_requests": 1,
+      "minimum_http_request_attempts": 121,
+      "limitation": "raw HTTP attempts and parse failures were not instrumented; the exact transport-level call count cannot be recovered"
+    },
+    "summary_file": {
+      "role": "stability_summary",
+      "path": "logs/fjsp_tier1_single_rule/stability_3seeds/stability_summary.json",
+      "sha256": "8eac4648ddbdedc1f7bc3f61d66294261af9484717ad5c0069475c044c1c4a5d"
+    }
+  },
+  "migration": {
+    "algorithm_changed": false,
+    "scheduler_changed": false,
+    "fitness_changed": false,
+    "split_changed": false,
+    "rule_selection_changed": false,
+    "portable_changes": [
+      "project-relative data/config paths",
+      "EoH-only method package initializer"
+    ],
+    "llm_called": false,
+    "evolution_run": false,
+    "test_evaluated": false
+  },
+  "verification": {
+    "entry": "verify_portable_baseline.py",
+    "calls_llm": false,
+    "runs_evolution": false,
+    "replays_partitions": [
+      "train",
+      "validation"
+    ],
+    "loads_test": false,
+    "evaluates_test": false
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "e96ec0c7c9d40ff50c39200caefb01d240d3aad65daf2127244a1a21743e3841"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+    },
+    {
+      "path": "LICENSES/LLM4AD-BSD-2-Clause.txt",
+      "sha256": "66d37674abb627f800e3a034cf0353785e9ef2e5dc1d6736bbe31ae0a3e96857"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e29c4f274cf137a5135bea75b54dd807a32fd120f9bebd35321afd8d135f1f51"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "9c93a0fd74f062a3d7a4322cd74e41f09c2cbe9fa76a41f474a4e7261294ce64"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092002/generation_result.json",
+      "sha256": "66c3b2c80521c3bdebfbd7d8f6fd0dec5f0d9e0d9af42a633507ea74928a316c"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092002/run_config.json",
+      "sha256": "4c4a2631ba2ee45a608c300814fcb64b14ffac484f4acc7dc249b854c8bac11d"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092002/selection.json",
+      "sha256": "222c35a642b952abb617e6a26d535040377ba885092ec0fe9a483e4b07d72c63"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092002/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092003/evaluation_result.json",
+      "sha256": "3fb8d981ae3e26c9a6161b16f29d8e10625209cef0dd0e2e19917e5a6cfd9021"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092003/generation_result.json",
+      "sha256": "c03ca7c16396a8aed7c7a8b92b8edb2ff8a6e9a6fa927be2146e974f866fb66b"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092003/run_config.json",
+      "sha256": "e47f068ac60a3cb5e1ddc494fa39c829760844df34428f0e2cce7f96a93e9499"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092003/selection.json",
+      "sha256": "38d646fa3c0c7dc6dd19073eecd83575e9d10832279bf53730577b10127e3650"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092003/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092004/evaluation_result.json",
+      "sha256": "0f4878c6a62b40f00180af4249b2c948ae8aae2e0520b1aa06bb35169150f981"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092004/generation_result.json",
+      "sha256": "7660183dea56976a4f6bce6bc51affdb35101357fa83dce43ed4e47476f82e6c"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092004/run_config.json",
+      "sha256": "0054151451de79851db99cc67c2754e7dda1d9c8281aa75befe56d2c04529cc0"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092004/selection.json",
+      "sha256": "42267806e90557b2400c272a28009c4681cedaed6289fb79f53b01b6715d657e"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/records/2026092004/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/rules/eohs_heuristic_0_reference.py",
+      "sha256": "3c7b2813a54b30385784c5d99f2eccf79ac85effb76ec41d62a0737aae5adb9e"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092002.py",
+      "sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092003.py",
+      "sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092004.py",
+      "sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e"
+    },
+    {
+      "path": "baselines/tier1_single_rule_v1/stability_summary.json",
+      "sha256": "8eac4648ddbdedc1f7bc3f61d66294261af9484717ad5c0069475c044c1c4a5d"
+    },
+    {
+      "path": "code/fjsp_usage/README.md",
+      "sha256": "5a3c4ac0dcfe5650425bf239a2dd39f84a4e36cad9e01d6aebbf58e3e9a23192"
+    },
+    {
+      "path": "code/llm4ad/__init__.py",
+      "sha256": "42804da958aa9637c4c86d9a0aea49a22f26dfcef9dd1270418f409d2d95ec8d"
+    },
+    {
+      "path": "code/llm4ad/base/__init__.py",
+      "sha256": "17c95b5cd4a3ec3629e713d3b0442ba8b8cb2910a41144b4aefef8531e8a6c1e"
+    },
+    {
+      "path": "code/llm4ad/base/code.py",
+      "sha256": "7d1d15f0d52ac4139b8dca532d1f74917d2eee51e7abce229d31cf83b8982b1e"
+    },
+    {
+      "path": "code/llm4ad/base/evaluate.py",
+      "sha256": "4baba1eb3d4e7442a2f6f26b0c877ebba65510fadaea6eb18140aa5053c40393"
+    },
+    {
+      "path": "code/llm4ad/base/modify_code.py",
+      "sha256": "f594c3d4cde44f0b951c1187294f0452484d36b6b945a4f4a08061bea58332af"
+    },
+    {
+      "path": "code/llm4ad/base/sample.py",
+      "sha256": "3211ac99cd09b4feec4ac169f4b4a247ca868732beeb0eb7902d0fd2bb47ed80"
+    },
+    {
+      "path": "code/llm4ad/method/__init__.py",
+      "sha256": "5cb63b527c508a18836d9b5184a9c6bb28e12fb6f42f0bc5969163c7b63cb69b"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/__init__.py",
+      "sha256": "0ba3378334836234196dac4b1d9b9601b445d4cf60a9674e671bf79f78fa9884"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/eoh.py",
+      "sha256": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/paras.yaml",
+      "sha256": "a52e197ffbb62ed3a66c9fb4d23333003127fd98d8075fa90fc84e2f1880f06b"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/population.py",
+      "sha256": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/profiler.py",
+      "sha256": "d1daaf28869bea66ebfd1caa8497381e31db9bb1aaff244688924728785b7066"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/prompt.py",
+      "sha256": "8e136b4f9a011ce489abf4857837e2eb08e045a87e5f0fd417df58bf8652b91f"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/resume.py",
+      "sha256": "ef8b125ca29d4b5630dbc30d07819f6c3a8c150bc5130996309e9b77e4755dfc"
+    },
+    {
+      "path": "code/llm4ad/method/eoh/sampler.py",
+      "sha256": "508881ff7f5e5affd3179c012a0271ed077522d01a307ed57832c9b26a9edc15"
+    },
+    {
+      "path": "code/llm4ad/task/__init__.py",
+      "sha256": "72bfd4ca8025554d9d4772bdc1d7b30e45c37a2e77a4fb64d139096e2791f0e8"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/__init__.py",
+      "sha256": "f06b51231fc1b4628aa94ae8087362d5545d06c9dc77680e308b33a88f38c4a9"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/__init__.py",
+      "sha256": "e200b13ec7f9527d6c742963be0a6a22359ba75a026ee3114711ac3470b47fff"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/evaluation.py",
+      "sha256": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057"
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/template.py",
+      "sha256": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77"
+    },
+    {
+      "path": "code/llm4ad/tools/__init__.py",
+      "sha256": "c7e4492280486583fda7aa8027039794938b1bbe39452cc55d4035835f8b7eca"
+    },
+    {
+      "path": "code/llm4ad/tools/llm/__init__.py",
+      "sha256": "18b596b0b80ce98d955793f4b563e7a2cdf0889ba1b4a78476d9bca81a172c22"
+    },
+    {
+      "path": "code/llm4ad/tools/llm/llm_api_https.py",
+      "sha256": "9eaf774c0fa4854dcbe2f6fc1e1a382da9cb1a595140b5e0086b55ddebd27cf1"
+    },
+    {
+      "path": "code/llm4ad/tools/profiler/__init__.py",
+      "sha256": "5fd4bed717bcadf6f27bec343b8617a841feb1af9e8560266f2098d3e6caa2a5"
+    },
+    {
+      "path": "code/llm4ad/tools/profiler/profile.py",
+      "sha256": "565847bde0ee0253d4feadb3325091365f4f420978b470f151783fe123312ee5"
+    },
+    {
+      "path": "code/llm4ad/tools/profiler/tensorboard_profiler.py",
+      "sha256": "09476e02ba3c793848ec02a2b9c3180f555d48042ded85304439eed4f7eb1f71"
+    },
+    {
+      "path": "code/llm4ad/tools/profiler/wandb_profiler.py",
+      "sha256": "05ef0f29eb475a1b636bce0b1dcf2823f0f64b9b18e9632aa689dfb94344372b"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "69b980bb283d0c7c5d2aa8da230f8e73b648da63d81b2ef9c4ac3ebfb0fbf224"
+    },
+    {
+      "path": "data/fjsp/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/fjsp_manifest.json",
+      "sha256": "45ccd4ff820b387f89fd1b4bbf4e714e8517d1f68578d7d65ac8ea720e6a42f2"
+    },
+    {
+      "path": "docs/fjsp_tier1_contract.md",
+      "sha256": "4e48dc6e7215200b4f4cae4a7164f9059149ba03cd9104896052b9525f3e6504"
+    },
+    {
+      "path": "docs/fjsp_tier1_single_rule_baseline_v1.md",
+      "sha256": "7fc216f9a4dfb10fdc4cefaa194c32b3454b75c3cf1890fa76a9b313c7d10117"
+    },
+    {
+      "path": "docs/fjsp_tier1_single_rule_experiment.md",
+      "sha256": "46fdaaa4214077c3d690bc4d38ba221fabc674076b3228478db2a35dc0458c4d"
+    },
+    {
+      "path": "docs/fjsp_tier1_single_rule_plan.md",
+      "sha256": "47acc0133dc9bf2a904c7aabac6494e65fe1e9aac734a0914b3beb5cefe083cf"
+    },
+    {
+      "path": "docs/fjsp_tier1_single_rule_stability.md",
+      "sha256": "1177a502c95a0332718c9820bd3bb32779f315f4301f0c8bba13ca6b8f60c0eb"
+    },
+    {
+      "path": "docs/portable_migration.md",
+      "sha256": "511a54ac477fe3ef13d209691c97f34ed7d91c398f8d35848ab907b9f9866eda"
+    },
+    {
+      "path": "experiments/tier1/README.md",
+      "sha256": "b9c684c4f049be326ec126febc54813e8869840fa0e0debc673eef221c29e129"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_formal_config.json",
+      "sha256": "182210b510b6e3108223c63ddc8d27dc4da7ed57c5408415a37a7f1830a5986b"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_formal_config.sha256",
+      "sha256": "2b243cf7fa476021242f2754627548d5802104a917794f08a15beae342c8d7b3"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_config.json",
+      "sha256": "a05b660df8c0533fe97f528d7433a321f79f2a08a01984a5bf8f8525b69f04eb"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_config.sha256",
+      "sha256": "9de42340771206a95cd4acf4cf83367bdf0cb684e5a0fbe26f48f305d3bb97e7"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_seed_2026092003.json",
+      "sha256": "0ce3425801a9a8d2e7e908f4846114641fd6a8b0c3a5e40cbd191347f9b183d6"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_seed_2026092003.sha256",
+      "sha256": "02749c8a7631a00164e1dcf438ea53fc50482dc48cdf72e24eab3ecdd018d55d"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_seed_2026092004.json",
+      "sha256": "b480c1aef0f741bd6a6bed3a59b9a7d53bf49aab2b3409369047cb3ff2f8a49d"
+    },
+    {
+      "path": "experiments/tier1/configs/portable_single_rule_seed_2026092004.sha256",
+      "sha256": "fa78a880a340b032e6917f5216fc9398ee042311aa2aa4aab8afa1d1c1243a96"
+    },
+    {
+      "path": "experiments/tier1/configs/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "path": "experiments/tier1/evaluate_single_rule.py",
+      "sha256": "698f6fd2ff6009d6c1c151d8ad01c7c43eac0adaa66fd2f4ea18561c86683588"
+    },
+    {
+      "path": "experiments/tier1/preflight.py",
+      "sha256": "4be3b2d214130a4d8e5a43d475a0046fb917f78a62cab5aa1125cf4e502ffc44"
+    },
+    {
+      "path": "experiments/tier1/prepare_single_rule.py",
+      "sha256": "d2dd7295d36e01b3fc02b075922bbb1e167986df7fa29f95278f279f8ed43ef3"
+    },
+    {
+      "path": "experiments/tier1/run_eoh_single.py",
+      "sha256": "c1409502a5ff8273c46d23ccb25e2e3fd8f45a12948423ca65ad0cac441a6f37"
+    },
+    {
+      "path": "experiments/tier2/README.md",
+      "sha256": "3e8afc116390e2cf3416e5791a60a6dbb5802969b8fd113d7f89873a23ce263d"
+    },
+    {
+      "path": "provenance/SOURCE.md",
+      "sha256": "1ada22dc175e0aa900f3d0b3c5f094e0f98647054b8be1cb1a8ea0aefb0ed7b3"
+    },
+    {
+      "path": "provenance/file_mapping.json",
+      "sha256": "f71da0b98abf17410236aa58a7ff3bbb05acd30494d752910afefc3b99f78ac4"
+    },
+    {
+      "path": "provenance/original_baseline_manifest.json",
+      "sha256": "0869517771bbac44db814655e1f20f55ea7291b9b4c80b5949aff92047cbc3af"
+    },
+    {
+      "path": "provenance/original_configs/formal_config.json",
+      "sha256": "7a18a573f2454ba1bd1463fb9d1e60938288bfe47c910a5cf2aeaae64f968af8"
+    },
+    {
+      "path": "provenance/original_configs/formal_config.sha256",
+      "sha256": "783502ef9eb557e7265ca68907954dde9eb7190c02c8469edd4a71f42104cc93"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_config.json",
+      "sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_config.sha256",
+      "sha256": "9f919e06267a046e4718e12f1cac8e91f0c356c8480a934f2ce6206078f87bcf"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_seed_2026092003.json",
+      "sha256": "2a7e26b912e9678a43ad71c8ab7295ac8b02ec1e1ca49de1b33958570694d0e3"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_seed_2026092003.sha256",
+      "sha256": "15d8661ed887bd38649c0d8d9f252e6053e3e6e6edac2c3a306fa419eda98862"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_seed_2026092004.json",
+      "sha256": "fb61acb85b631d033dd621c902f24b061dee9802341e0b8bc813f2111902c563"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_seed_2026092004.sha256",
+      "sha256": "6febd7552dd19a312e38d770b27d3b6ff25e50fb8eda3b1963e01631d72cae30"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_stability_config.json",
+      "sha256": "5c34a5518261dff401a999c13421d831baeadb4227a6c2218a531664e955ae48"
+    },
+    {
+      "path": "provenance/original_configs/single_rule_stability_config.sha256",
+      "sha256": "51a775862c85e6c0e31e88db26fbccfa97da2099cff8f8465d6c336513f93c54"
+    },
+    {
+      "path": "provenance/original_entrypoints/evaluate_single_rule.py",
+      "sha256": "9ea2a3940b1b66a28c293761789b291277f7a1a2c4aaafda3acaf8992f8d99aa"
+    },
+    {
+      "path": "provenance/original_entrypoints/preflight.py",
+      "sha256": "d97a10ca5c14f0528264e335b2cef2bbf828bb63458c6dc6baf34e32b3669dab"
+    },
+    {
+      "path": "provenance/original_entrypoints/prepare_single_rule.py",
+      "sha256": "0b141c3a08dc99016ff0a5021ae37460428009dbe7642f0e1bf8959e4ae874c4"
+    },
+    {
+      "path": "provenance/original_entrypoints/run_eoh_single.py",
+      "sha256": "d769d39ce40000a7ac7dfc44fe34633b7927d659ec7c4471fa2b296da4dda042"
+    },
+    {
+      "path": "provenance/original_entrypoints/summarize_single_rule_stability.py",
+      "sha256": "9f2e271bf56bdcc9c5f78667e4ac874c70ae08834bad27d3c6df9253fc0a576c"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "ac3f387cbc2a43844f462f33416cc082c7c8d16775d8835ac90ee331b116dc62"
+    },
+    {
+      "path": "tests/test_fjsp_set.py",
+      "sha256": "2709002839f4b0dfe828ce38b54c2665b84c14936d844fcd8d68f96b065fe1fc"
+    },
+    {
+      "path": "verify_portable_baseline.py",
+      "sha256": "914675522e9be7ad25de01c83ae58a6c3ec23a4c6f73c08b82490c058d82b6e9"
+    }
+  ]
+}

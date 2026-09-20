@@ -1,0 +1,63 @@
+{
+  "protocol_version": 1,
+  "base_run": {
+    "seed": 2026092002,
+    "run_dir": "logs/fjsp_tier1_single_rule/formal01",
+    "config_sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b"
+  },
+  "additional_runs": [
+    {
+      "seed": 2026092003,
+      "config": "examples/training/fjsp_set/single_rule_seed_2026092003.json",
+      "sha256": "2a7e26b912e9678a43ad71c8ab7295ac8b02ec1e1ca49de1b33958570694d0e3",
+      "run_dir": "logs/fjsp_tier1_single_rule/formal_seed_2026092003"
+    },
+    {
+      "seed": 2026092004,
+      "config": "examples/training/fjsp_set/single_rule_seed_2026092004.json",
+      "sha256": "fb61acb85b631d033dd621c902f24b061dee9802341e0b8bc813f2111902c563",
+      "run_dir": "logs/fjsp_tier1_single_rule/formal_seed_2026092004"
+    }
+  ],
+  "frozen_budget": {
+    "seed": 2026092002,
+    "max_sample_nums": 40,
+    "max_generations": 10,
+    "pop_size": 5,
+    "num_samplers": 1,
+    "num_evaluators": 1,
+    "timeout_seconds": 180,
+    "debug_mode": false
+  },
+  "only_field_changed_in_run_configs": "stages.formal.seed",
+  "selection": {
+    "candidate_pool": "final EoH population only",
+    "criterion": "highest arithmetic mean normalized score on all 11 validation instances",
+    "tie_break": "lower final-population index",
+    "test_used": false
+  },
+  "comparison": {
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "methods": [
+      "selected_EoH",
+      "EFT",
+      "SPT",
+      "MWKR",
+      "EoHS_heuristic_0"
+    ],
+    "eohs_rule": "logs/fjsp_tier1_formal/run03/final_set/heuristic_0.py",
+    "eohs_rule_sha256": "3c7b2813a54b30385784c5d99f2eccf79ac85effb76ec41d62a0737aae5adb9e",
+    "groupings": [
+      "exact jobs x machines",
+      "jobs",
+      "machines"
+    ],
+    "worst_group": "minimum selected-rule mean normalized score; also report minimum mean gap versus EFT"
+  },
+  "test_policy": "The 28-instance test split is excluded from generation, selection, comparison and tuning.",
+  "expected_evaluated_llm_candidates_per_run": 40,
+  "expected_total_across_three_runs": 120
+}

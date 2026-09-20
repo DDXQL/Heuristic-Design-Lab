@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "name": "Tier1 Single-Rule Baseline",
+    "version": "1",
+    "identifier": "Tier1-Fixed-H-v1",
+    "research_object": "one reusable constructive FJSP operation-machine priority rule",
+    "fixed_usage": "U_fixed(state) = Tier1-Fixed-H-v1",
+    "selection_rationale": "seed 2026092002 was the first formal rule and was fixed before the 2026092003/2026092004 stability results were observed; no post-hoc best-seed selection",
+    "created_at": "2026-09-20T13:58:52+08:00"
+  },
+  "git": {
+    "source_commit": "8310b056ab0d4ea83d194f1d9e8c7873c0a3b892",
+    "source_branch": "main",
+    "working_tree_was_dirty_at_creation": true,
+    "freeze_commit_message": "chore(fjsp): freeze tier1 single-rule baseline v1",
+    "annotated_tag": "fjsp-tier1-single-rule-v1",
+    "freeze_commit_resolution": "the annotated tag identifies the immutable freeze commit; a manifest cannot embed the hash of the commit that contains itself"
+  },
+  "contract": {
+    "function_signature": "priority(processing_time: float, remaining_work: float, remaining_operations: int, job_ready_time: float, machine_ready_time: float, earliest_start: float, earliest_finish: float) -> float",
+    "features": {
+      "processing_time": "positive duration of the operation on this candidate machine",
+      "remaining_work": "sum of shortest eligible durations for current and later operations; positive",
+      "remaining_operations": "count including current operation; positive integer",
+      "job_ready_time": "completion time of the previously scheduled operation of this job; nonnegative",
+      "machine_ready_time": "completion time of the last scheduled operation on this machine; nonnegative",
+      "earliest_start": "max(job_ready_time, machine_ready_time); nonnegative",
+      "earliest_finish": "earliest_start + processing_time; positive"
+    },
+    "return_constraint": "one finite real scalar; bool, strings, vectors, NaN and infinity are invalid",
+    "score_direction": "higher priority wins; higher normalized score is better",
+    "tie_break": "stable enumeration: lower job index, then lower machine index",
+    "scheduler": "append-only constructor chooses the highest priority currently eligible operation-machine pair",
+    "feasibility": "all operations once, eligible machine and exact duration, job precedence, no machine overlap, exact makespan",
+    "lower_bound": "max(maximum per-job sum of minimum operation durations, ceil(total minimum operation workload / machine_count))",
+    "instance_score": "-makespan/lower_bound",
+    "training_fitness": "arithmetic mean of all 21 train instance scores"
+  },
+  "rules": {
+    "canonical": {
+      "role": "canonical_rule",
+      "path": "logs/fjsp_tier1_single_rule/formal01/selected_rule.py",
+      "sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a",
+      "seed": 2026092002,
+      "evaluation_record": "logs/fjsp_tier1_single_rule/formal01/evaluation_result.json",
+      "generation_record": "logs/fjsp_tier1_single_rule/formal01/generation_result.json",
+      "selection_record": "logs/fjsp_tier1_single_rule/formal01/selection.json"
+    },
+    "stability_review": [
+      {
+        "role": "stability_review_rule",
+        "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/selected_rule.py",
+        "sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f",
+        "seed": 2026092003,
+        "evaluation_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/evaluation_result.json",
+        "generation_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/generation_result.json",
+        "selection_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/selection.json"
+      },
+      {
+        "role": "stability_review_rule",
+        "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/selected_rule.py",
+        "sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e",
+        "seed": 2026092004,
+        "evaluation_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/evaluation_result.json",
+        "generation_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/generation_result.json",
+        "selection_record": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/selection.json"
+      }
+    ]
+  },
+  "components": {
+    "instance_loader": {
+      "role": "instance_loader",
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849"
+    },
+    "scheduler": {
+      "role": "scheduler",
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057"
+    },
+    "evaluation": {
+      "role": "evaluation",
+      "path": "code/llm4ad/task/optimization/fjsp_set/evaluation.py",
+      "sha256": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61"
+    },
+    "prompt_template": {
+      "role": "prompt_template",
+      "path": "code/llm4ad/task/optimization/fjsp_set/template.py",
+      "sha256": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77"
+    },
+    "task_package": {
+      "role": "task_package",
+      "path": "code/llm4ad/task/optimization/fjsp_set/__init__.py",
+      "sha256": "e200b13ec7f9527d6c742963be0a6a22359ba75a026ee3114711ac3470b47fff"
+    },
+    "preflight_and_baselines": {
+      "role": "preflight_and_baselines",
+      "path": "examples/training/fjsp_set/preflight.py",
+      "sha256": "d97a10ca5c14f0528264e335b2cef2bbf828bb63458c6dc6baf34e32b3669dab"
+    },
+    "training_entry": {
+      "role": "training_entry",
+      "path": "examples/training/fjsp_set/run_eoh_single.py",
+      "sha256": "d769d39ce40000a7ac7dfc44fe34633b7927d659ec7c4471fa2b296da4dda042"
+    },
+    "selection_export": {
+      "role": "selection_export",
+      "path": "examples/training/fjsp_set/evaluate_single_rule.py",
+      "sha256": "9ea2a3940b1b66a28c293761789b291277f7a1a2c4aaafda3acaf8992f8d99aa"
+    },
+    "config_builder": {
+      "role": "config_builder",
+      "path": "examples/training/fjsp_set/prepare_single_rule.py",
+      "sha256": "0b141c3a08dc99016ff0a5021ae37460428009dbe7642f0e1bf8959e4ae874c4"
+    },
+    "stability_summarizer": {
+      "role": "stability_summarizer",
+      "path": "examples/training/fjsp_set/summarize_single_rule_stability.py",
+      "sha256": "9f2e271bf56bdcc9c5f78667e4ac874c70ae08834bad27d3c6df9253fc0a576c"
+    },
+    "eoh_entry": {
+      "role": "eoh_entry",
+      "path": "code/llm4ad/method/eoh/eoh.py",
+      "sha256": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245"
+    },
+    "eoh_population": {
+      "role": "eoh_population",
+      "path": "code/llm4ad/method/eoh/population.py",
+      "sha256": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa"
+    },
+    "eoh_prompt": {
+      "role": "eoh_prompt",
+      "path": "code/llm4ad/method/eoh/prompt.py",
+      "sha256": "8e136b4f9a011ce489abf4857837e2eb08e045a87e5f0fd417df58bf8652b91f"
+    },
+    "eoh_sampler": {
+      "role": "eoh_sampler",
+      "path": "code/llm4ad/method/eoh/sampler.py",
+      "sha256": "508881ff7f5e5affd3179c012a0271ed077522d01a307ed57832c9b26a9edc15"
+    },
+    "eoh_profiler": {
+      "role": "eoh_profiler",
+      "path": "code/llm4ad/method/eoh/profiler.py",
+      "sha256": "d1daaf28869bea66ebfd1caa8497381e31db9bb1aaff244688924728785b7066"
+    },
+    "base_evaluation": {
+      "role": "base_evaluation",
+      "path": "code/llm4ad/base/evaluate.py",
+      "sha256": "4baba1eb3d4e7442a2f6f26b0c877ebba65510fadaea6eb18140aa5053c40393"
+    },
+    "base_sampling": {
+      "role": "base_sampling",
+      "path": "code/llm4ad/base/sample.py",
+      "sha256": "3211ac99cd09b4feec4ac169f4b4a247ca868732beeb0eb7902d0fd2bb47ed80"
+    },
+    "base_program": {
+      "role": "base_program",
+      "path": "code/llm4ad/base/code.py",
+      "sha256": "7d1d15f0d52ac4139b8dca532d1f74917d2eee51e7abce229d31cf83b8982b1e"
+    },
+    "https_llm_adapter": {
+      "role": "https_llm_adapter",
+      "path": "code/llm4ad/tools/llm/llm_api_https.py",
+      "sha256": "9eaf774c0fa4854dcbe2f6fc1e1a382da9cb1a595140b5e0086b55ddebd27cf1"
+    },
+    "profile_logging": {
+      "role": "profile_logging",
+      "path": "code/llm4ad/tools/profiler/profile.py",
+      "sha256": "565847bde0ee0253d4feadb3325091365f4f420978b470f151783fe123312ee5"
+    }
+  },
+  "dataset": {
+    "source": "Behnke and Geiger 2012, locally reformatted; operation records previously matched SchedulingLab",
+    "data_root_recorded_in_config": "/Users/DDXQL/Documents/大学/硕士/代码/2.4.4/_pdata/fjsp",
+    "split_file": {
+      "role": "split",
+      "path": "logs/fjsp_tier1_single_rule/formal01/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78",
+      "seed": 2026092002
+    },
+    "all_run_split_files": [
+      {
+        "role": "split",
+        "path": "logs/fjsp_tier1_single_rule/formal01/split.json",
+        "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78",
+        "seed": 2026092002
+      },
+      {
+        "role": "split",
+        "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/split.json",
+        "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78",
+        "seed": 2026092003
+      },
+      {
+        "role": "split",
+        "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/split.json",
+        "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78",
+        "seed": 2026092004
+      }
+    ],
+    "counts": {
+      "train": 21,
+      "validation": 11,
+      "test": 28
+    },
+    "test_evaluated": false,
+    "test_policy": "names are retained in split metadata; verification and freeze do not open or evaluate test instances"
+  },
+  "experiment": {
+    "seeds": [
+      2026092002,
+      2026092003,
+      2026092004
+    ],
+    "formal_configs": [
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_config.json",
+        "sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b",
+        "seed": 2026092002
+      },
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_seed_2026092003.json",
+        "sha256": "2a7e26b912e9678a43ad71c8ab7295ac8b02ec1e1ca49de1b33958570694d0e3",
+        "seed": 2026092003
+      },
+      {
+        "role": "formal_config",
+        "path": "examples/training/fjsp_set/single_rule_seed_2026092004.json",
+        "sha256": "fb61acb85b631d033dd621c902f24b061dee9802341e0b8bc813f2111902c563",
+        "seed": 2026092004
+      }
+    ],
+    "budget_per_seed": {
+      "max_sample_nums": 40,
+      "max_generations": 10,
+      "pop_size": 5,
+      "num_samplers": 1,
+      "num_evaluators": 1,
+      "timeout_seconds": 180,
+      "debug_mode": false
+    },
+    "llm": {
+      "name": "deepseek-flash",
+      "client": "HttpsApi",
+      "max_tokens": 4096,
+      "top_p": null,
+      "temperature": 1.0,
+      "thinking": {
+        "type": "disabled"
+      },
+      "request_timeout_seconds": 60,
+      "confirmed_server_side_seed": false
+    },
+    "selection": {
+      "pool": "each run final EoH population only",
+      "partition": "validation",
+      "criterion": "highest arithmetic mean normalized score on 11 validation instances",
+      "tie_break": "lower final-population index",
+      "test_used": false
+    },
+    "runs": [
+      {
+        "seed": 2026092002,
+        "selected_population_index": 0,
+        "selected_rule_sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a",
+        "valid_candidates": 40,
+        "invalid_candidates": 0,
+        "generation_runtime_seconds": 144.2014350419995,
+        "train_mean_score": -2.0090094779382675,
+        "validation_mean_score": -2.194223469014416,
+        "validation_score_gap_vs_EFT": 0.03232786232576883,
+        "validation_relative_makespan_improvement_vs_EFT": 0.013092442009999948,
+        "validation_wins_ties_losses_vs_EFT": [
+          8,
+          0,
+          3
+        ]
+      },
+      {
+        "seed": 2026092003,
+        "selected_population_index": 0,
+        "selected_rule_sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f",
+        "valid_candidates": 40,
+        "invalid_candidates": 0,
+        "generation_runtime_seconds": 165.68087254099737,
+        "train_mean_score": -2.049008062054239,
+        "validation_mean_score": -2.2219499822680704,
+        "validation_score_gap_vs_EFT": 0.00460134907211412,
+        "validation_relative_makespan_improvement_vs_EFT": -0.009674702271849937,
+        "validation_wins_ties_losses_vs_EFT": [
+          7,
+          0,
+          4
+        ]
+      },
+      {
+        "seed": 2026092004,
+        "selected_population_index": 3,
+        "selected_rule_sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e",
+        "valid_candidates": 39,
+        "invalid_candidates": 1,
+        "generation_runtime_seconds": 199.4829409160011,
+        "train_mean_score": -2.0426503095947517,
+        "validation_mean_score": -2.18218386462855,
+        "validation_score_gap_vs_EFT": 0.04436746671163441,
+        "validation_relative_makespan_improvement_vs_EFT": 0.018189856385325345,
+        "validation_wins_ties_losses_vs_EFT": [
+          8,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "stability": {
+    "validation_runs_above_EFT": 3,
+    "run_count": 3,
+    "validation_mean_score_distribution": {
+      "values": [
+        -2.194223469014416,
+        -2.2219499822680704,
+        -2.18218386462855
+      ],
+      "mean": -2.199452438637012,
+      "sample_standard_deviation": 0.02039221960737899,
+      "median": -2.194223469014416,
+      "minimum": -2.2219499822680704,
+      "maximum": -2.18218386462855,
+      "range_width": 0.03976611763952054
+    },
+    "validation_score_gap_vs_EFT_distribution": {
+      "values": [
+        0.03232786232576883,
+        0.00460134907211412,
+        0.04436746671163441
+      ],
+      "mean": 0.027098892703172454,
+      "sample_standard_deviation": 0.0203922196073789,
+      "median": 0.03232786232576883,
+      "minimum": 0.00460134907211412,
+      "maximum": 0.04436746671163441,
+      "range_width": 0.039766117639520294
+    },
+    "validation_relative_makespan_improvement_vs_EFT_distribution": {
+      "values": [
+        0.013092442009999948,
+        -0.009674702271849937,
+        0.018189856385325345
+      ],
+      "mean": 0.007202532041158452,
+      "sample_standard_deviation": 0.0148366669730969,
+      "median": 0.013092442009999948,
+      "minimum": -0.009674702271849937,
+      "maximum": 0.018189856385325345,
+      "range_width": 0.027864558657175284
+    },
+    "candidate_counts": {
+      "evaluated": 120,
+      "valid": 119,
+      "invalid": 1,
+      "invalid_rate": 0.008333333333333333
+    },
+    "invalid_candidates": [
+      {
+        "seed": 2026092004,
+        "sample_order": 23,
+        "error_type": "ZeroDivisionError",
+        "score": null,
+        "entered_final_population": false
+      }
+    ],
+    "runtime": {
+      "generation_seconds": 509.36524849899797,
+      "recorded_evaluation_seconds": 67.42543182110603,
+      "recorded_total_seconds": 576.790680320104
+    },
+    "llm_calls": {
+      "framework_recorded_evaluated_candidate_calls": 120,
+      "observed_failed_transport_retry_requests": 1,
+      "minimum_http_request_attempts": 121,
+      "limitation": "raw HTTP attempts and parse failures were not instrumented; the exact transport-level call count cannot be recovered"
+    },
+    "summary_file": {
+      "role": "stability_summary",
+      "path": "logs/fjsp_tier1_single_rule/stability_3seeds/stability_summary.json",
+      "sha256": "8eac4648ddbdedc1f7bc3f61d66294261af9484717ad5c0069475c044c1c4a5d"
+    }
+  },
+  "verification": {
+    "entry": "verify_tier1_baseline_v1.py",
+    "calls_llm": false,
+    "runs_evolution": false,
+    "reads_partitions": [
+      "train",
+      "validation"
+    ],
+    "evaluates_test": false
+  },
+  "files": [
+    {
+      "role": "base_program",
+      "path": "code/llm4ad/base/code.py",
+      "sha256": "7d1d15f0d52ac4139b8dca532d1f74917d2eee51e7abce229d31cf83b8982b1e"
+    },
+    {
+      "role": "base_evaluation",
+      "path": "code/llm4ad/base/evaluate.py",
+      "sha256": "4baba1eb3d4e7442a2f6f26b0c877ebba65510fadaea6eb18140aa5053c40393"
+    },
+    {
+      "role": "base_sampling",
+      "path": "code/llm4ad/base/sample.py",
+      "sha256": "3211ac99cd09b4feec4ac169f4b4a247ca868732beeb0eb7902d0fd2bb47ed80"
+    },
+    {
+      "role": "eoh_entry",
+      "path": "code/llm4ad/method/eoh/eoh.py",
+      "sha256": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245"
+    },
+    {
+      "role": "eoh_population",
+      "path": "code/llm4ad/method/eoh/population.py",
+      "sha256": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa"
+    },
+    {
+      "role": "eoh_profiler",
+      "path": "code/llm4ad/method/eoh/profiler.py",
+      "sha256": "d1daaf28869bea66ebfd1caa8497381e31db9bb1aaff244688924728785b7066"
+    },
+    {
+      "role": "eoh_prompt",
+      "path": "code/llm4ad/method/eoh/prompt.py",
+      "sha256": "8e136b4f9a011ce489abf4857837e2eb08e045a87e5f0fd417df58bf8652b91f"
+    },
+    {
+      "role": "eoh_sampler",
+      "path": "code/llm4ad/method/eoh/sampler.py",
+      "sha256": "508881ff7f5e5affd3179c012a0271ed077522d01a307ed57832c9b26a9edc15"
+    },
+    {
+      "role": "task_package",
+      "path": "code/llm4ad/task/optimization/fjsp_set/__init__.py",
+      "sha256": "e200b13ec7f9527d6c742963be0a6a22359ba75a026ee3114711ac3470b47fff"
+    },
+    {
+      "role": "evaluation",
+      "path": "code/llm4ad/task/optimization/fjsp_set/evaluation.py",
+      "sha256": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61"
+    },
+    {
+      "role": "instance_loader",
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849"
+    },
+    {
+      "role": "scheduler",
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057"
+    },
+    {
+      "role": "prompt_template",
+      "path": "code/llm4ad/task/optimization/fjsp_set/template.py",
+      "sha256": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77"
+    },
+    {
+      "role": "https_llm_adapter",
+      "path": "code/llm4ad/tools/llm/llm_api_https.py",
+      "sha256": "9eaf774c0fa4854dcbe2f6fc1e1a382da9cb1a595140b5e0086b55ddebd27cf1"
+    },
+    {
+      "role": "profile_logging",
+      "path": "code/llm4ad/tools/profiler/profile.py",
+      "sha256": "565847bde0ee0253d4feadb3325091365f4f420978b470f151783fe123312ee5"
+    },
+    {
+      "role": "contract_document",
+      "path": "docs/fjsp_tier1_contract.md",
+      "sha256": "4e48dc6e7215200b4f4cae4a7164f9059149ba03cd9104896052b9525f3e6504"
+    },
+    {
+      "role": "alignment_document",
+      "path": "docs/fjsp_tier1_single_rule_baseline_v1.md",
+      "sha256": "7fc216f9a4dfb10fdc4cefaa194c32b3454b75c3cf1890fa76a9b313c7d10117"
+    },
+    {
+      "role": "experiment_document",
+      "path": "docs/fjsp_tier1_single_rule_experiment.md",
+      "sha256": "46fdaaa4214077c3d690bc4d38ba221fabc674076b3228478db2a35dc0458c4d"
+    },
+    {
+      "role": "plan_document",
+      "path": "docs/fjsp_tier1_single_rule_plan.md",
+      "sha256": "47acc0133dc9bf2a904c7aabac6494e65fe1e9aac734a0914b3beb5cefe083cf"
+    },
+    {
+      "role": "stability_document",
+      "path": "docs/fjsp_tier1_single_rule_stability.md",
+      "sha256": "1177a502c95a0332718c9820bd3bb32779f315f4301f0c8bba13ca6b8f60c0eb"
+    },
+    {
+      "role": "selection_export",
+      "path": "examples/training/fjsp_set/evaluate_single_rule.py",
+      "sha256": "9ea2a3940b1b66a28c293761789b291277f7a1a2c4aaafda3acaf8992f8d99aa"
+    },
+    {
+      "role": "base_fjsp_config",
+      "path": "examples/training/fjsp_set/formal_config.json",
+      "sha256": "7a18a573f2454ba1bd1463fb9d1e60938288bfe47c910a5cf2aeaae64f968af8"
+    },
+    {
+      "role": "base_fjsp_config_sha256_sidecar",
+      "path": "examples/training/fjsp_set/formal_config.sha256",
+      "sha256": "783502ef9eb557e7265ca68907954dde9eb7190c02c8469edd4a71f42104cc93"
+    },
+    {
+      "role": "preflight_and_baselines",
+      "path": "examples/training/fjsp_set/preflight.py",
+      "sha256": "d97a10ca5c14f0528264e335b2cef2bbf828bb63458c6dc6baf34e32b3669dab"
+    },
+    {
+      "role": "config_builder",
+      "path": "examples/training/fjsp_set/prepare_single_rule.py",
+      "sha256": "0b141c3a08dc99016ff0a5021ae37460428009dbe7642f0e1bf8959e4ae874c4"
+    },
+    {
+      "role": "training_entry",
+      "path": "examples/training/fjsp_set/run_eoh_single.py",
+      "sha256": "d769d39ce40000a7ac7dfc44fe34633b7927d659ec7c4471fa2b296da4dda042"
+    },
+    {
+      "role": "formal_config",
+      "path": "examples/training/fjsp_set/single_rule_config.json",
+      "sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b"
+    },
+    {
+      "role": "config_sha256_sidecar",
+      "path": "examples/training/fjsp_set/single_rule_config.sha256",
+      "sha256": "9f919e06267a046e4718e12f1cac8e91f0c356c8480a934f2ce6206078f87bcf"
+    },
+    {
+      "role": "formal_config",
+      "path": "examples/training/fjsp_set/single_rule_seed_2026092003.json",
+      "sha256": "2a7e26b912e9678a43ad71c8ab7295ac8b02ec1e1ca49de1b33958570694d0e3"
+    },
+    {
+      "role": "config_sha256_sidecar",
+      "path": "examples/training/fjsp_set/single_rule_seed_2026092003.sha256",
+      "sha256": "15d8661ed887bd38649c0d8d9f252e6053e3e6e6edac2c3a306fa419eda98862"
+    },
+    {
+      "role": "formal_config",
+      "path": "examples/training/fjsp_set/single_rule_seed_2026092004.json",
+      "sha256": "fb61acb85b631d033dd621c902f24b061dee9802341e0b8bc813f2111902c563"
+    },
+    {
+      "role": "config_sha256_sidecar",
+      "path": "examples/training/fjsp_set/single_rule_seed_2026092004.sha256",
+      "sha256": "6febd7552dd19a312e38d770b27d3b6ff25e50fb8eda3b1963e01631d72cae30"
+    },
+    {
+      "role": "stability_protocol",
+      "path": "examples/training/fjsp_set/single_rule_stability_config.json",
+      "sha256": "5c34a5518261dff401a999c13421d831baeadb4227a6c2218a531664e955ae48"
+    },
+    {
+      "role": "stability_protocol_sha256_sidecar",
+      "path": "examples/training/fjsp_set/single_rule_stability_config.sha256",
+      "sha256": "51a775862c85e6c0e31e88db26fbccfa97da2099cff8f8465d6c336513f93c54"
+    },
+    {
+      "role": "stability_summarizer",
+      "path": "examples/training/fjsp_set/summarize_single_rule_stability.py",
+      "sha256": "9f2e271bf56bdcc9c5f78667e4ac874c70ae08834bad27d3c6df9253fc0a576c"
+    },
+    {
+      "role": "eohs_comparison_rule",
+      "path": "logs/fjsp_tier1_formal/run03/final_set/heuristic_0.py",
+      "sha256": "3c7b2813a54b30385784c5d99f2eccf79ac85effb76ec41d62a0737aae5adb9e"
+    },
+    {
+      "role": "evaluation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal01/evaluation_result.json",
+      "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750"
+    },
+    {
+      "role": "generation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal01/generation_result.json",
+      "sha256": "66c3b2c80521c3bdebfbd7d8f6fd0dec5f0d9e0d9af42a633507ea74928a316c"
+    },
+    {
+      "role": "run_metadata",
+      "path": "logs/fjsp_tier1_single_rule/formal01/run_config.json",
+      "sha256": "4c4a2631ba2ee45a608c300814fcb64b14ffac484f4acc7dc249b854c8bac11d"
+    },
+    {
+      "role": "canonical_rule",
+      "path": "logs/fjsp_tier1_single_rule/formal01/selected_rule.py",
+      "sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a"
+    },
+    {
+      "role": "selection_record",
+      "path": "logs/fjsp_tier1_single_rule/formal01/selection.json",
+      "sha256": "222c35a642b952abb617e6a26d535040377ba885092ec0fe9a483e4b07d72c63"
+    },
+    {
+      "role": "split",
+      "path": "logs/fjsp_tier1_single_rule/formal01/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "role": "evaluation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/evaluation_result.json",
+      "sha256": "3fb8d981ae3e26c9a6161b16f29d8e10625209cef0dd0e2e19917e5a6cfd9021"
+    },
+    {
+      "role": "generation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/generation_result.json",
+      "sha256": "c03ca7c16396a8aed7c7a8b92b8edb2ff8a6e9a6fa927be2146e974f866fb66b"
+    },
+    {
+      "role": "run_metadata",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/run_config.json",
+      "sha256": "e47f068ac60a3cb5e1ddc494fa39c829760844df34428f0e2cce7f96a93e9499"
+    },
+    {
+      "role": "stability_review_rule",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/selected_rule.py",
+      "sha256": "bcb91bcdd6ba6a8e915ecce8de40feee027807129724b076dc7fcd6c8fb1013f"
+    },
+    {
+      "role": "selection_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/selection.json",
+      "sha256": "38d646fa3c0c7dc6dd19073eecd83575e9d10832279bf53730577b10127e3650"
+    },
+    {
+      "role": "split",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092003/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "role": "evaluation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/evaluation_result.json",
+      "sha256": "0f4878c6a62b40f00180af4249b2c948ae8aae2e0520b1aa06bb35169150f981"
+    },
+    {
+      "role": "generation_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/generation_result.json",
+      "sha256": "7660183dea56976a4f6bce6bc51affdb35101357fa83dce43ed4e47476f82e6c"
+    },
+    {
+      "role": "run_metadata",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/run_config.json",
+      "sha256": "0054151451de79851db99cc67c2754e7dda1d9c8281aa75befe56d2c04529cc0"
+    },
+    {
+      "role": "stability_review_rule",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/selected_rule.py",
+      "sha256": "955e16c766fcae15254a00c5b48e2b05ac2d28847c9815c7a70f61040296c14e"
+    },
+    {
+      "role": "selection_record",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/selection.json",
+      "sha256": "42267806e90557b2400c272a28009c4681cedaed6289fb79f53b01b6715d657e"
+    },
+    {
+      "role": "split",
+      "path": "logs/fjsp_tier1_single_rule/formal_seed_2026092004/split.json",
+      "sha256": "7408b9cab273875e111d5ea8d795625e6a7380ffeab512ed067803aed99aed78"
+    },
+    {
+      "role": "stability_summary",
+      "path": "logs/fjsp_tier1_single_rule/stability_3seeds/stability_summary.json",
+      "sha256": "8eac4648ddbdedc1f7bc3f61d66294261af9484717ad5c0069475c044c1c4a5d"
+    },
+    {
+      "role": "unit_tests",
+      "path": "tests/test_fjsp_set.py",
+      "sha256": "2709002839f4b0dfe828ce38b54c2665b84c14936d844fcd8d68f96b065fe1fc"
+    },
+    {
+      "role": "offline_verifier",
+      "path": "verify_tier1_baseline_v1.py",
+      "sha256": "5ac985da233f875955af79c109032e8836fab275cb9b76a35d91c6130d65ec38"
+    }
+  ]
+}

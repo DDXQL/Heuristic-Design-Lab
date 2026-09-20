@@ -1,0 +1,11 @@
+{
+  "single_rule_config_sha256": "2ab917b041f848f5517746e3415cffaa0bf43ccec4c6b2eb782546c24186d48b",
+  "candidate_pool": "final EoH population only",
+  "criterion": "highest arithmetic mean normalized score on all 11 validation instances",
+  "tie_break": "lower final-population index",
+  "population_index": 0,
+  "source_file": "candidate_0.py",
+  "source_sha256": "0991e17f833e7ab773b0ff13ea2396a0cb3ccb9d94715984fb1ef421ea89496a",
+  "validation_mean_score": -2.194223469014416,
+  "test_evaluated": false
+}
