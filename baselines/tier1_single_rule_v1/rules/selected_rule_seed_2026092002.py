@@ -2,10 +2,10 @@
 import math
 
 def priority(processing_time: float, remaining_work: float, remaining_operations: int, job_ready_time: float, machine_ready_time: float, earliest_start: float, earliest_finish: float) -> float:
-    """Return a finite priority for one currently eligible operation-machine pair.
+    """返回当前可行的一个操作-机器对的有限优先级。
 
-    Higher means this pair is chosen earlier. The fixed scheduler handles
-    precedence, machine assignment and schedule construction.
+    数值越高表示该对越早被选择。固定调度器负责处理
+    先后顺序、机器分配和时间表构建。
     """
     eps = 1e-9
 
