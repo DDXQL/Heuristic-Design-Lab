@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-05",
+  "status": "offline mock infrastructure verification, not research results",
+  "tests": {
+    "existing": 26,
+    "new": 16,
+    "total_passed": 42,
+    "command": "PYTHONPATH=code .venv/bin/python -m unittest discover -s tests -v"
+  },
+  "preservation": {
+    "original_tracked_files": 115,
+    "changed_original_files": 0
+  },
+  "suite": "train",
+  "training_instances": 21,
+  "mock_request_slots": 107,
+  "groups": {
+    "B0": {
+      "phase": "completed",
+      "generation": 2,
+      "evolution_requests": 20,
+      "valid_attempts": 20,
+      "evaluations_reserved": 20
+    },
+    "B1": {
+      "phase": "completed",
+      "generation": 2,
+      "evolution_requests": 20,
+      "valid_attempts": 20,
+      "evaluations_reserved": 20
+    },
+    "B2": {
+      "phase": "completed",
+      "generation": 2,
+      "evolution_requests": 20,
+      "valid_attempts": 20,
+      "evaluations_reserved": 20
+    },
+    "P": {
+      "phase": "completed",
+      "generation": 2,
+      "evolution_requests": 20,
+      "valid_attempts": 20,
+      "evaluations_reserved": 20
+    }
+  },
+  "H_adapter": {
+    "phase": "completed",
+    "initialization_requests": 2,
+    "evolution_requests": 20,
+    "valid_attempts": 22
+  },
+  "first_invocation_elapsed_seconds": 241.65708425000776,
+  "completed_resume_invocation_elapsed_seconds": 0.06084037499385886,
+  "request_replayed_on_completed_resume": false,
+  "evaluation_replayed_on_completed_resume": false,
+  "protocol_sha256": "29e94f7f12ceeddc72471ab6467d7dbcf4d16e75d4a9147cf5bacaffba7a034d",
+  "real_llm_calls": 0,
+  "actual_tokens": null,
+  "validation_evaluated": false,
+  "test_evaluated": false,
+  "replay": {
+    "step_count": 3,
+    "action_counts": [
+      4,
+      4,
+      2
+    ],
+    "state_scalars": 7,
+    "makespan": 4,
+    "score": -1.0,
+    "html_bytes": 4994,
+    "node_interaction_check_passed": true
+  },
+  "all_stage_event_bytes_before_resume": 35829,
+  "total_run_bytes_before_resume": 1014363,
+  "source_audit": "experiments/tier2/research_v1/source_audit.json",
+  "raw_results": "runs/research_v1_train_verified_20261005 (ignored, local only)",
+  "limitations": [
+    "handwritten mock responses, no model-generated crossover/mutation",
+    "demo H for U; separate mock H artifact is not formal EoH-S H",
+    "closed numeric AST is not a general Python OS sandbox",
+    "H description behavior_reviewed=false; formal behavior review pending",
+    "no real-provider integration or approved paid budget",
+    "no validation/test selection, independent repeats or research conclusion"
+  ],
+  "source_matches_current_code": true,
+  "source_fingerprints_checked": 19,
+  "request_slots_unchanged_on_resume": true
+}
