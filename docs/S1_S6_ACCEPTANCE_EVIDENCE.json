@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-05",
+  "completion_level": "S1-S6 development acceptance only",
+  "mode": "synthetic",
+  "existing_tracked_files_unchanged": 137,
+  "regression_tests": 42,
+  "new_tests": 19,
+  "all_tests_passed": 61,
+  "test_log_sha256": "f87446bed7acf38fbba46980962724d5b5f3272414b68d64c6da9681f94fcade",
+  "run_log_sha256": "094a25ddace1e4fc15d6dd99ee11cdc055676ce5231ee305d975cd174d430379",
+  "parameters": {
+    "K": 3,
+    "N": 10,
+    "cross_parents": 5,
+    "mutation_parents": 1,
+    "seeds": [
+      101,
+      102
+    ],
+    "G": 1,
+    "A": 10
+  },
+  "request_slots": 113,
+  "confirmed_local_http_sends": 113,
+  "completed_resume_new_http_posts": 0,
+  "planned_group_repeats": 8,
+  "valid_group_repeats": 8,
+  "unique_stage_evaluations": 92,
+  "protocol_hash": "37eb00a626fde6a82d051ff7b081bb5102773f87628c3c7ebb46d18e9c35b70d",
+  "freeze_hash": "29d6ef87aa2ec4d9d7aa4995ca74f4bf53c2c5a90afd742dfc974b8ee492cbc9",
+  "real_llm_calls": 0,
+  "real_benchmark_holdout_files_opened": 0,
+  "remaining": "S7 provider/config/budget approval; S8-S11 real pilot/search/validation/test",
+  "synthetic_tokens_are_real_model_usage": false,
+  "money_cap_is_verified_billing_hard_cap": false
+}
