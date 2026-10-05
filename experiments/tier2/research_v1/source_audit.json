@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-05",
+  "source_repository": "https://github.com/FeiLiu36/EoH-S",
+  "source_commit": "b3b67d6522466e66baba5eb57990d3fb2bfeca23",
+  "source_worktree_preserved": true,
+  "files": {
+    "code/llm4ad/method/eohs/population.py": {
+      "working_sha256": "242a2b4813d529ff75214dd6a0d2e8a348bf9cfae14e15e277815b1887c3063b",
+      "commit_sha256": "242a2b4813d529ff75214dd6a0d2e8a348bf9cfae14e15e277815b1887c3063b",
+      "dirty": false,
+      "migrated_verbatim": false
+    },
+    "code/llm4ad/method/eohs/prompt.py": {
+      "working_sha256": "cb728ecb5746f709ad0db73dc0c2cdc014fbf6a4883c53ad654b7b1fbb8685ec",
+      "commit_sha256": "cb728ecb5746f709ad0db73dc0c2cdc014fbf6a4883c53ad654b7b1fbb8685ec",
+      "dirty": false,
+      "migrated_verbatim": false
+    },
+    "code/llm4ad/method/eohs/eohs.py": {
+      "working_sha256": "9418f5010d54858c78c35a3f9f848602a8f708876f3e984d495bb62a76ad7fd9",
+      "commit_sha256": "96ca5020c831ed0f4a87fba67f1c8346f62d56fe18d9cb4faee03580fda81b2f",
+      "dirty": true,
+      "migrated_verbatim": false
+    },
+    "code/llm4ad/method/eohs/profiler.py": {
+      "working_sha256": "f35639dfcb8efb2bad0f59c4301ed12d0e7ba22db39d32af5382919ab6924353",
+      "commit_sha256": "63417966e7d0a8f7265d37a3f5597d944852b6d3dea020004639284a1abba823",
+      "dirty": true,
+      "migrated_verbatim": false
+    },
+    "examples/training/fjsp_set/run_eohs.py": {
+      "working_sha256": "22d8d249a829b0514e07981b36cb0d2b1d99158a813396024b8f60fc95436404",
+      "commit_sha256": null,
+      "dirty": true,
+      "migrated_verbatim": false
+    }
+  },
+  "adapted_mechanisms": [
+    "population.py: survival_set best-mean first then greedy max score envelope improvement",
+    "population.py: select_complementary_pair top-5 Manhattan distance rank-weighted",
+    "population.py: rank weight 1/(N+r)"
+  ],
+  "differences": [
+    "closed numeric AST instead of arbitrary Python",
+    "finite attempt budgets, frozen generational parents, persistent journals",
+    "AST-only dedup instead of same score",
+    "deterministic ID ties, no threaded automatic population update"
+  ],
+  "not_a_full_upstream_reproduction": true,
+  "eoh_five_operator_source": {
+    "url": "https://arxiv.org/html/2401.02051v3",
+    "section": "3.4",
+    "operators": [
+      "E1",
+      "E2",
+      "M1",
+      "M2",
+      "M3"
+    ],
+    "M3": "simplify by removing redundant components",
+    "I1": "initialization, not counted as evolution"
+  }
+}
