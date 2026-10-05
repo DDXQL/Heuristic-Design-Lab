@@ -1,0 +1,15 @@
+{
+  "version": "Tier2-Staged-Research-v1",
+  "status": "S1-S6 software implementation; synthetic/local HTTP acceptance",
+  "entrypoint": "run.py",
+  "package": "fjsp_usage.research_real",
+  "frozen_predecessors": ["Tier1-Fixed-H-v1", "offline_v1", "offline_v2", "research_v1"],
+  "wire_protocol": "json-candidate-v1 (generic gateway; provider-native adaptation pending S7)",
+  "synthetic_is_formal_research": false,
+  "real_requests_authorized_by_example": false,
+  "real_holdout_files_opened_for_acceptance": false,
+  "H_adapter": "minimal complementary survival/parents; not a complete upstream EoH-S reproduction",
+  "source_audit": "experiments/tier2/research_v1/source_audit.json",
+  "real_dataset_manifest": "data/fjsp_manifest.json",
+  "synthetic_dataset": "created independently under ignored runs directory"
+}
