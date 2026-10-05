@@ -1,0 +1,19 @@
+{
+  "experiment_version": "Tier2-Offline-Prototype-v1",
+  "status": "offline interface demonstration",
+  "frozen_baseline": "Tier1-Fixed-H-v1",
+  "protocol_change": "U receives a state summary once before each action enumeration; this is a new scheduler entry point, not the frozen seven-feature wrapper",
+  "H": {"0": "EFT from experiments/tier1/preflight.py", "1": "SPT from experiments/tier1/preflight.py"},
+  "H_status": "fixed hand-written demo; not an EoH-S-generated set",
+  "U": ["constant_u", "state_u"],
+  "U_status": "hand-written deterministic examples",
+  "reused": ["instance loader", "EFT/SPT implementations", "schedule dataclasses", "feasibility validator", "lower bound", "normalized score"],
+  "mirrored_in_new_scheduler": ["append-only construction", "seven action features", "highest-score selection", "stable tie order", "finite real score validation"],
+  "default_instance": "tiny.fjsp",
+  "default_scope": "synthetic micro instance only; no benchmark split evaluation",
+  "llm_generation": false,
+  "crossover": false,
+  "mutation": false,
+  "evolution": false,
+  "formal_EoH_S_set_generation": false
+}
