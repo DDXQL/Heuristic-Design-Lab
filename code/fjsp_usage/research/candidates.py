@@ -157,9 +157,11 @@ def compile_candidate(candidate: Candidate):
 
     tree = ast.fix_missing_locations(Limits().visit(ast.parse(checked.code)))
 
-    def safe_round(value, ndigits=0):
+    def safe_round(value, ndigits=None):
         # Python integer round may construct 10**abs(ndigits) internally before
         # the post-operation numeric guard. Bound it BEFORE that allocation.
+        if ndigits is None:
+            return round(value)
         if type(ndigits) is not int or abs(ndigits) > 100:
             raise ValueError('round ndigits must be a built-in int in [-100,100]')
         return round(value, ndigits)

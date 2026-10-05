@@ -128,6 +128,10 @@ class ResearchExecutionTests(unittest.TestCase):
                           (self.instance,), ('tiny',))
         self.assertFalse(result['valid'])
         self.assertEqual(result['error_type'], 'InvalidSelectionError')
+        # Omitted ndigits must retain Python's built-in int return semantics.
+        normal = evaluate(u('    return round(progress)'), self.members,
+                          (self.instance,), ('tiny',))
+        self.assertTrue(normal['valid'], normal)
 
 
 if __name__ == '__main__':
