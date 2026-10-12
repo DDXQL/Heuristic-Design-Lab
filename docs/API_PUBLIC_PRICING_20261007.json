@@ -1,0 +1,347 @@
+{
+  "date": "2026-10-07 Asia/Manila",
+  "scope": "unauthenticated public GET only; no model requests",
+  "platforms": {
+    "https://leafapi.cc": {
+      "https://leafapi.cc/api/status": {
+        "success": true,
+        "data": {
+          "price": 7.3,
+          "quota_display_type": "USD",
+          "quota_per_unit": 500000,
+          "stripe_unit_price": 8,
+          "version": "v0.13.2"
+        }
+      },
+      "https://leafapi.cc/api/pricing": {
+        "group_ratio": {
+          "cc-aws": 1.8,
+          "cc-default": 1,
+          "cc-normal": 0.25,
+          "cc-ultra": 0.6,
+          "codex-GPT-image2": 1,
+          "codex-deafult": 0.5,
+          "zaid-4.0": 5.5,
+          "zaid-5": 5.5,
+          "zaid-7.5": 7.5,
+          "zaim-test-4.0": 5.5,
+          "国产Kimi K3": 0.7
+        },
+        "pricing_version": "a42d372ccf0b5dd13ecf71203521f9d2",
+        "success": true,
+        "supported_endpoint": {
+          "anthropic": {
+            "path": "/v1/messages",
+            "method": "POST"
+          },
+          "openai": {
+            "path": "/v1/chat/completions",
+            "method": "POST"
+          }
+        },
+        "usable_group": {
+          "cc-aws": "Max200刀订阅号池，满血版本随意过检测100分，支持Fable5，稳定",
+          "cc-default": "高智商claude渠道，支持思考、1M模型使用，缓存95%，不支持fable5",
+          "cc-normal": "略低缓存、高性价比claude 渠道，支持全模型使用，缓存90%",
+          "cc-ultra": "Claude-kiro-更稳定 90%缓存",
+          "codex-GPT-image2": "只有image2",
+          "codex-deafult": "使用GPT，GPT pro号",
+          "zaid-4.0": "测试用 勿选c",
+          "zaid-5": "测试用 勿选 龙虾",
+          "zaid-7.5": "测试用 勿选c",
+          "zaim-test-4.0": "测试用 勿选",
+          "国产Kimi K3": "Kimi K3支持"
+        },
+        "data": [
+          {
+            "model_name": "gpt-5.4",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 1.25,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "cache_ratio": 0.1,
+            "enable_groups": [
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "pricing_version": "5a90f2b86c08bd983a9a2e6d66c255f4eaef9c4bc934386d2b6ae84ef0ff1f1f"
+          },
+          {
+            "model_name": "gpt-5.5",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 2.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "cache_ratio": 0.1,
+            "enable_groups": [
+              "codex-deafult",
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.6-terra",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "enable_groups": [
+              "zaim-test-4.0",
+              "codex-deafult"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "billing_mode": "tiered_expr",
+            "billing_expr": "len < 272000 ? tier(\"base\", p * 2.5 + c * 15 + cr * 0.25 + cc * 3.125) : tier(\"第2档\", p * 5 + c * 22.5 + cr * 0.5 + cc * 6.25)"
+          },
+          {
+            "model_name": "gpt-5.6-luna",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "enable_groups": [
+              "codex-deafult",
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "billing_mode": "tiered_expr",
+            "billing_expr": "len < 272000 ? tier(\"base\", p * 1 + c * 6 + cr * 0.1 + cc * 1.25) : tier(\"第2档\", p * 2 + c * 9 + cr * 0.2 + cc * 2.5)"
+          },
+          {
+            "model_name": "gpt-5.4-mini",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 0.375,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "cache_ratio": 0.1,
+            "enable_groups": [
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.6-sol",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "enable_groups": [
+              "codex-deafult",
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "billing_mode": "tiered_expr",
+            "billing_expr": "len < 272000 ? tier(\"base\", p * 5 + c * 30 + cr * 0.5 + cc * 6.25) : tier(\"第2档\", p * 10 + c * 45 + cr * 1 + cc * 12.5)"
+          },
+          {
+            "model_name": "gpt-5.6",
+            "vendor_id": 3,
+            "quota_type": 0,
+            "model_ratio": 2.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "cache_ratio": 0.1,
+            "enable_groups": [
+              "zaim-test-4.0"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          }
+        ]
+      }
+    },
+    "https://cc.zhihuiapi.top": {
+      "https://cc.zhihuiapi.top/api/status": {
+        "success": true,
+        "data": {
+          "price": 1,
+          "quota_display_type": "USD",
+          "quota_per_unit": 500000,
+          "stripe_unit_price": 8,
+          "version": "v2026-04-28"
+        }
+      },
+      "https://cc.zhihuiapi.top/api/pricing": {
+        "group_ratio": {
+          "Claude优质稳定": 9,
+          "claude-官": 1.5,
+          "claude融合资源": 5,
+          "deepseek": 1.6,
+          "default": 1.5,
+          "glm": 1.8,
+          "gpt-codex": 1.5,
+          "kimi": 1.6,
+          "qwen": 1.6
+        },
+        "pricing_version": "a42d372ccf0b5dd13ecf71203521f9d2",
+        "success": true,
+        "supported_endpoint": {
+          "anthropic": {
+            "path": "/v1/messages",
+            "method": "POST"
+          },
+          "openai": {
+            "path": "/v1/chat/completions",
+            "method": "POST"
+          }
+        },
+        "usable_group": {
+          "Claude优质稳定": "claude原厂资源，优先claude官，其次aws，claude-enterprice资源",
+          "claude-官": "kiro、anti/Claude max混合资源",
+          "claude融合资源": "cc max优质混合资源，稳定专用，智力超高",
+          "deepseek": "deepseek官方原厂资源",
+          "default": "默认分组/同claude-官资源",
+          "glm": "glm官方原厂资源",
+          "gpt-codex": "gpt-codex",
+          "kimi": "kimi官方原厂资源",
+          "qwen": "qwen官方原厂资源"
+        },
+        "data": [
+          {
+            "model_name": "gpt-5.5",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 3,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 5,
+            "cache_ratio": 0.1,
+            "enable_groups": [
+              "default",
+              "gpt-codex"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.6-sol",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "enable_groups": [
+              "default",
+              "gpt-codex"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "billing_mode": "tiered_expr",
+            "billing_expr": "len < 270000 ? tier(\"base\", p * 4 + c * 20 + cr * 0.4 + cc * 5) : tier(\"第2档\", p * 8 + c * 30 + cr * 0.8 + cc * 10)"
+          },
+          {
+            "model_name": "gpt-5.5-high",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "enable_groups": [
+              "default",
+              "gpt-codex"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.5-low",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "enable_groups": [
+              "default",
+              "gpt-codex"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.5-xhigh",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "enable_groups": [
+              "gpt-codex",
+              "default"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          },
+          {
+            "model_name": "gpt-5.6-terra",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 8,
+            "enable_groups": [
+              "default",
+              "gpt-codex"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ],
+            "billing_mode": "tiered_expr",
+            "billing_expr": "len < 270000 ? tier(\"short content\", p * 2 + c * 12 + cr * 0.2 + cc * 2.5) : tier(\"long content\", p * 4 + c * 18 + cr * 0.4 + cc * 5)"
+          },
+          {
+            "model_name": "gpt-5.5-medium",
+            "vendor_id": 2,
+            "quota_type": 0,
+            "model_ratio": 37.5,
+            "model_price": 0,
+            "owner_by": "",
+            "completion_ratio": 6,
+            "enable_groups": [
+              "gpt-codex",
+              "default"
+            ],
+            "supported_endpoint_types": [
+              "openai"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ from statistics import fmean, pstdev
 from fjsp_usage.research.events import atomic_json
 from .assets import check_result
 from .workflow import ARMS
+from .diagnostics import fixed_h_comparisons, h_complementarity, training_curve
 
 
 def statistics(entries, seeds):
@@ -56,6 +57,7 @@ def write_report(workflow):
     ledger = workflow.ledger.summary()
     stats = statistics(result['entries'], workflow.config.seeds)
     search_costs = {}
+    search_diagnostics = {}
     for path in sorted(workflow.directory.rglob('checkpoint.json')):
         state = json.loads(path.read_text())
         statuses = Counter(row['status'] for row in state['attempts'])
@@ -65,6 +67,9 @@ def write_report(workflow):
             'valid_rate': statuses['valid']/count if count else None,
             'evaluation_reservations': len(state['evaluations']), 'phase': state['phase'],
             'evaluation_seconds': sum(r.get('result', {}).get('elapsed_seconds', 0) for r in state['evaluations'].values())}
+        if path.parent.name in ARMS:
+            shared = workflow.read(str(path.parent.parent.relative_to(workflow.directory))+'/Shared_initial.json', 'Shared_initial')
+            search_diagnostics[str(path.parent.relative_to(workflow.directory))] = training_curve(state, shared['population'])
     stage_costs = {}
     for split in ('validation', 'test'):
         # Cache keys are opaque, so expose the counts from saved split results.
@@ -83,13 +88,21 @@ def write_report(workflow):
     test_rows = [r for e in result['entries'] if e['test_result'] for r in e['test_result']['instances']]
     if result['fixed_h_result']:
         test_rows += result['fixed_h_result']['instances']
-    report = {'mode': workflow.config.mode, 'research_claim': 'synthetic interface acceptance only'
-        if workflow.config.mode == 'synthetic' else 'staged real experiment; assess failures before conclusions',
+    report = {'mode': workflow.config.mode, 'purpose':workflow.config.purpose,
+        'research_claim': ('synthetic interface acceptance only' if workflow.config.mode == 'synthetic'
+            else 'framework development acceptance only; not formal research' if workflow.config.purpose == 'framework_development'
+            else 'staged real experiment; assess failures before conclusions'),
         'freeze_hash': frozen['artifact_sha256'], 'analysis': workflow.config.analysis,
         'entries': result['entries'], 'statistics': stats, 'budget': ledger,
         'search_costs': search_costs, 'stage_costs': stage_costs,
         'local_unique_stage_evaluations': len(workflow.cache.data['records']),
         'fixed_h_result': result['fixed_h_result'],
+        'fixed_h_comparisons': fixed_h_comparisons(result['entries'], workflow.config.seeds, result['fixed_h_result'], ARMS),
+        'training_diagnostics': search_diagnostics,
+        'H_train_diagnostics': h_complementarity(workflow.h_asset()[0]['members'], workflow.dataset.names['train']),
+        'member_usage': [{'seed': e['seed'], 'arm': e['arm'],
+            'instances': [{'file': r['file'], 'usage': r.get('member_usage')} for r in e['test_result']['instances']]
+            if e['test_result'] and e['test_result']['valid'] else None} for e in result['entries']],
         'all_planned_succeeded': bool(result['fixed_h_result'] and result['fixed_h_result']['valid']
             and all(e['test_result'] and e['test_result']['valid'] for e in result['entries'])),
         'timing': {'generation_http_seconds': sum(p['elapsed_seconds'] for p in ledger['phases'].values()),
@@ -98,17 +111,34 @@ def write_report(workflow):
             'test_single_solve_seconds_sum': sum(r['single_solve_seconds'] for r in test_rows),
             'test_deterministic_recheck_seconds_sum': sum(r['deterministic_recheck_seconds'] for r in test_rows),
             'note': 'single solve measured inside worker, including feasibility check; excludes process startup, recheck and traces; synthetic timings are not deployment benchmarks'},
-        'limitations': ['JSON gateway adapter only; provider-native adapter must be configured/verified separately',
+        'provider_protocol': workflow.config.provider.protocol,
+        'prompt_pack': workflow.protocol['prompt_pack'],
+        'limitations': ['native/gateway protocol recorded; model alias does not prove an immutable backend or verified billing',
                          'token/currency limits depend on unverified reservation/prices; requests have hard caps',
                          'AST restriction and killable workers are not a general OS sandbox']}
+    from .training_report import write_training_report
+    training = write_training_report(workflow)
+    report['all_training_outcomes_hash'] = training['artifact_sha256']
+    report['all_training_outcomes_file'] = 'Training_report.json'
+    report['timing']['test_diagnostic_replay_seconds_sum'] = sum(r.get('diagnostic_replay_seconds',0) for r in test_rows)
+    provider_times=[]
+    for path in workflow.directory.rglob('budgeted_*_requests.json'):
+        for r in json.loads(path.read_text())['requests'].values():
+            value=r.get('response_metadata',{}).get('provider_roundtrip_seconds')
+            if value is not None: provider_times.append(value)
+    report['timing']['recorded_provider_roundtrip_seconds_sum'] = sum(provider_times)
+    report['timing']['requests_with_provider_roundtrip_timing'] = len(provider_times)
+    report['timing']['generation_http_seconds_note'] = 'Ledger wall times include local dispatch and post-quota checks; provider roundtrip timing is separate when recorded.'
     atomic_json(workflow.directory/'report.json', report)
     lines = ['# ' + ('合成接口验收报告' if workflow.config.mode == 'synthetic' else '分阶段实验报告'), '',
-             '本报告保留所有预先声明的种子与失败记录。合成验收不构成正式研究结果。', '',
+             '本报告保留所有预先声明的种子与失败记录。合成验收及框架开发均不构成正式研究结果。',
+             '运行目的：'+workflow.config.purpose, '',
              '| 组 | 计划重复 | 成功重复 | 均值 | 总体标准差 | 失败种子 |',
              '|---|---:|---:|---:|---:|---|']
     for arm, value in stats['groups'].items():
         lines.append(f'| {arm} | {value["planned_repeats"]} | {value["valid_repeats"]} | {value["mean"]} | {value["population_std"]} | {value["failed_seeds"]} |')
     lines += ['', '配对差值与实际配对数见 report.json；不以单个最好种子代替全部重复。', '',
+              '固定 h 差值、训练曲线、H 整实例互补性和成员使用诊断见 report.json；诊断不进入模型提示或选择规则。', '',
               f'已预留请求：{ledger["request_slots"]}；确认发送：{ledger["confirmed_sends"]}；usage 未知：{ledger["unknown_usage_requests"]}。',
               '未提供价格时费用为 null；合成服务的 token 数为固定测试值。',
               '单次排程与确定性复核分别计时；单次含可行性检查，不含进程启动和复核，合成计时不代表部署性能。']

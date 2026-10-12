@@ -78,11 +78,11 @@ class StagedDataset:
         return tuple(instances)
 
     def evaluate(self, candidate, members, split, *, timeout, context=None, gate=None,
-                 population_hash=None, instances=None):
+                 population_hash=None, instances=None, diagnostics=False):
         self.authorize(split, context=context, gate=gate, population_hash=population_hash)
         if instances is None:
             instances = self.load(split, context=context, gate=gate, population_hash=population_hash)
-        result = evaluate(candidate, members, instances, self.names[split], timeout=timeout)
+        result = evaluate(candidate, members, instances, self.names[split], timeout=timeout, diagnostics=diagnostics)
         return check_result(result, self.names[split])
 
 

@@ -19,18 +19,29 @@ from fjsp_usage.research_real.locking import RunLock
 from fjsp_usage.research_real.staged_evaluation import StagedDataset, create_synthetic_dataset
 from fjsp_usage.research_real.workflow import Workflow
 from fjsp_usage.research_real.report import write_report
+from fjsp_usage.research_real.budget import BudgetStop
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('stage', choices=('all-synthetic', 'preflight', 'generate-h', 'freeze-h',
-                                         'search', 'select', 'freeze', 'test', 'report'))
+    parser.add_argument('stage', choices=('all-synthetic', 'preflight', 'prepare-research', 'freeze-conditional-h', 'training-report', 'prepare-continuation', 'generate-h', 'review-h', 'freeze-h',
+                                         'initialize-u', 'search-arm', 'search', 'select', 'freeze', 'test', 'report',
+                                         'development-select','development-freeze','development-test','development-report'))
     parser.add_argument('--run-dir', type=Path, required=True)
     parser.add_argument('--config', type=Path)
     parser.add_argument('--manifest', type=Path)
     parser.add_argument('--reviews', type=Path)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--seed', type=int)
+    parser.add_argument('--arm', choices=('B0','B1','B2','P'))
+    parser.add_argument('--max-new-requests', type=int)
     args = parser.parse_args()
+    if args.stage in ('initialize-u','search-arm') and args.seed is None:
+        parser.error('this stage requires an explicitly declared --seed')
+    if args.stage == 'search-arm' and args.arm is None:
+        parser.error('search-arm requires --arm; it never dispatches other arms')
+    if args.max_new_requests is not None and (args.stage != 'initialize-u' or args.max_new_requests < 1):
+        parser.error('--max-new-requests requires initialize-u and a positive count')
     directory = args.run_dir.resolve()
     if not directory.is_relative_to(ROOT/'runs') or directory == ROOT/'runs':
         parser.error('run directory must be a child of project runs/')
@@ -66,9 +77,23 @@ def main():
                 dataset_root = ROOT if config.mode == 'real' else manifest.parent
             dataset = StagedDataset(manifest, project_root=dataset_root, mode=config.mode)
             workflow = Workflow(directory, config=config, dataset=dataset, project_root=ROOT)
+            from fjsp_usage.research_real import development_acceptance
+            from fjsp_usage.research_real import conditional_research
+            from fjsp_usage.research_real.training_report import write_training_report
             actions = {'generate-h': workflow.generate_h, 'search': workflow.search_all,
+                'prepare-research': lambda: conditional_research.prepare(workflow),
+                'freeze-conditional-h': lambda: conditional_research.freeze_h(workflow),
+                'training-report': lambda: write_training_report(workflow),
+                'prepare-continuation': workflow.prepare_continuation,
+                'review-h': workflow.review_h,
+                'initialize-u': lambda: workflow.initialize_u(args.seed, max_new_requests=args.max_new_requests),
+                'search-arm': lambda: workflow.search_arm(args.seed, args.arm),
                 'select': workflow.select, 'freeze': workflow.freeze, 'test': workflow.test,
                 'report': lambda: write_report(workflow),
+                'development-select': lambda: development_acceptance.selection(workflow),
+                'development-freeze': lambda: development_acceptance.freeze(workflow),
+                'development-test': lambda: development_acceptance.test(workflow),
+                'development-report': lambda: development_acceptance.report(workflow),
                 'freeze-h': lambda: workflow.freeze_h(json.loads(args.reviews.read_text()) if args.reviews else None)}
             try:
                 if args.stage == 'all-synthetic':
@@ -79,7 +104,17 @@ def main():
                     workflow.progress('PREFLIGHT_COMPLETE', split_files_opened=0)
                     print('配置与数据清单已校验；未打开任何实例，未创建模型客户端。', flush=True)
                 else:
-                    actions[args.stage]()
+                    result = actions[args.stage]()
+                    if args.stage in ('initialize-u','search-arm') and result['status'] not in ('initialized','completed','initialization_paused'):
+                        raise BudgetStop('stage returned terminal failure: '+result['status'])
+            except (BudgetStop, ValueError, FileNotFoundError) as exc:
+                workflow.progress('STAGE_STOPPED', requested_stage=args.stage,
+                    error_type=type(exc).__name__, reason=str(exc)[:500])
+                print('阶段停止：'+str(exc),file=sys.stderr,flush=True)
+                raise SystemExit(2)
+            except KeyboardInterrupt:
+                workflow.progress('STAGE_INTERRUPTED', requested_stage=args.stage)
+                raise SystemExit(130)
             finally:
                 if traffic is not None:
                     atomic_json(directory/'fixture_traffic_latest.json', {'synthetic': True,

@@ -1,0 +1,53 @@
+{
+  "kind": "local_initialization_repair_checks",
+  "prompt_pack": {
+    "version": "V5-FJSP-selector-prompts-v4-20261010",
+    "framework": "https://app.notion.com/p/3e904e0510d781eba9b5f8b9114e2e70",
+    "template_sha256": "59ad92d4209067e339249dd2dc8ddd1d39ba9f3196afbbb940ca09322baeedb6",
+    "sections": {
+      "U_task": "ab85e734260283e39a53707d016789f0f0b98d43c28487c406687579bad08eec",
+      "H_context": "ef7c9af6954a2323af61e928c1152548230d07a42de39206f90b2dcf146dbeac",
+      "H_generation": "0d9d8172513b02276e216affa3c2d449a1b5a4c2b07da49c71e0f8c224477e99",
+      "initial": "8a6636d00e7da32dc45bb67515f3ed38d8aeeab15e6dfc64e541f7fd2f7996dc",
+      "P_cross": "67b5e318289ebbe669ce11070445393786e95b559a10639b8ac769355cc79058",
+      "P_mutate": "b7cbaa6c0b3a8b409c4f1bf4fdf71b8c4332dcdd4931d446343dad4af7d0bc73",
+      "generic_operators": "3fdccda919812fbcf9876fc395182595e52df6efafeb5957c067ff7758e20d28",
+      "output": "36c7fa3b2410286addff96b808656925f87325f0b8289a78a6a0a5e272357855",
+      "shared_initial_novelty": "ad8f15aadef024590049fbcea1e9ed067b27055c149ef7934f499ce806f53924"
+    },
+    "B2_P_difference": "operator section only",
+    "initial_H_details": false,
+    "B0_H_details": false,
+    "model_calls_per_candidate": 1,
+    "shared_initial_novelty": {
+      "version": "shared-U-novelty-v1-20261010",
+      "archive_max_bytes": 131072,
+      "content": "accepted U code only",
+      "fitness_or_H_details": false,
+      "deduplication": "validated AST plus pure integer return/int(integer)"
+    }
+  },
+  "tests": {
+    "count": 133,
+    "result": "passed",
+    "elapsed_seconds": 79.237,
+    "log": "/Users/DDXQL/Documents/Codex/2026-10-09/referenced-chatgpt-conversation-this-is-an/outputs/FJSP-framework-30pct-20261009/Tier2-training-20261010/local-tests-initialization-v4.log"
+  },
+  "new_model_requests_after_pause": 0,
+  "new_real_training_evaluations_after_pause": 0,
+  "formal_validation_test_loaded_after_pause": 0,
+  "old_frozen_H_unchanged": true,
+  "old_run_snapshot_hash_file": "/Users/DDXQL/Documents/Codex/2026-10-09/referenced-chatgpt-conversation-this-is-an/outputs/FJSP-framework-30pct-20261009/Tier2-training-20261010/U-initialization-v4-offline/paused_run_file_hashes.json",
+  "raw_pending_budget_correction": "The record is reserved, not settled; the earlier pending_budget_keys=[] summary checked only literal pending statuses. Preserve the confirmed-send reservation and unknown usage.",
+  "v4_provider_diversity_verified": false,
+  "continuation_dispatch_ready": false,
+  "offline_continuation_plan": "/Users/DDXQL/Documents/Codex/2026-10-09/referenced-chatgpt-conversation-this-is-an/outputs/FJSP-framework-30pct-20261009/Tier2-training-20261010/U-initialization-v4-offline/continuation_plan.json",
+  "offline_reuse_review": "/Users/DDXQL/Documents/Codex/2026-10-09/referenced-chatgpt-conversation-this-is-an/outputs/FJSP-framework-30pct-20261009/Tier2-training-20261010/U-initialization-v4-offline/U_reuse_review.json",
+  "offline_prompt_preview": "/Users/DDXQL/Documents/Codex/2026-10-09/referenced-chatgpt-conversation-this-is-an/outputs/FJSP-framework-30pct-20261009/Tier2-training-20261010/U-initialization-v4-offline/shared_initial_prompt_preview.txt",
+  "paid_resume_gates": [
+    "explicit user resume",
+    "verify already-sent interrupted request without resending",
+    "implement/test explicit cross-version frozen-H/U provenance binding",
+    "seal carried-forward request and quota limits"
+  ]
+}

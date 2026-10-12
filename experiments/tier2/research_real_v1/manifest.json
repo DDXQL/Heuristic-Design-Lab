@@ -1,10 +1,22 @@
 {
   "version": "Tier2-Staged-Research-v1",
-  "status": "S1-S6 software implementation; synthetic/local HTTP acceptance",
+  "status": "v5 normalized-state contract; new conditional fixed-H research pending authorization; completed single-P run remains historical development evidence",
+  "prompt_pack_version": "V5-FJSP-selector-prompts-v5-state-bounds-20261011",
+  "offline_preparation_entrypoint": "prepare_offline.py",
   "entrypoint": "run.py",
   "package": "fjsp_usage.research_real",
-  "frozen_predecessors": ["Tier1-Fixed-H-v1", "offline_v1", "offline_v2", "research_v1"],
-  "wire_protocol": "json-candidate-v1 (generic gateway; provider-native adaptation pending S7)",
+  "frozen_predecessors": [
+    "Tier1-Fixed-H-v1",
+    "offline_v1",
+    "offline_v2",
+    "research_v1"
+  ],
+  "wire_protocol": [
+    "json-candidate-v1",
+    "openai-chat-v1",
+    "deepseek-chat-v1"
+  ],
+  "real_provider_evidence": "DeepSeek demo pilot 2026-10-08; Leaf imported real h, human-reviewed integration H and one real U completing all 21 train 2026-10-09; not formal four-arm experiments or verified billing",
   "synthetic_is_formal_research": false,
   "real_requests_authorized_by_example": false,
   "real_holdout_files_opened_for_acceptance": false,

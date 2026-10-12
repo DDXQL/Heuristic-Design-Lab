@@ -8,8 +8,9 @@ from dataclasses import asdict
 import math
 from statistics import fmean
 
-from fjsp_usage.research.candidates import Candidate, parse_response, validate_code, compile_candidate
+from fjsp_usage.research.candidates import Candidate, parse_response, validate_code
 from fjsp_usage.research.protocol import digest
+from .review_execution import ACTION_SAMPLES, score_samples
 
 
 def seal(payload):
@@ -93,22 +94,12 @@ def check_receipt(receipt, candidate, mode):
         raise ValueError('receipt code does not match asset code')
 
 
-ACTION_SAMPLES = ((2., 5., 2, 0., 3., 3., 5.), (4., 4., 1, 5., 1., 5., 9.),
-                  (1., 12., 4, 0., 0., 0., 1.))
-
-
-def review_member(candidate, *, description, reviewer, method, note):
+def review_member(candidate, *, description, reviewer, method, note, timeout=3):
     if not all(isinstance(x, str) and x.strip() for x in (description, reviewer, method, note)):
         raise ValueError('explicit behavior description/reviewer/method/note required')
     if len(description) > 1000:
         raise ValueError('review description too long')
-    function = compile_candidate(candidate)
-    samples = []
-    for values in ACTION_SAMPLES:
-        score = function(*values)
-        if type(score) not in (float, int) or not math.isfinite(score):
-            raise ValueError('review sample must return a finite real, not bool')
-        samples.append({'inputs': list(values), 'score': float(score)})
+    samples = score_samples(candidate, timeout=timeout)
     return {'reviewed_code_key': candidate.key, 'description': description, 'reviewer': reviewer,
             'method': method, 'note': note, 'samples': samples, 'sample_sha256': digest(samples)}
 
@@ -124,7 +115,7 @@ def validate_row(row, names, mode, kind):
     return candidate
 
 
-def load_h(asset, *, mode, context, size, names):
+def load_h(asset, *, mode, context, size, names, review_timeout=3):
     check_seal(asset, kind='H_frozen', mode=mode, context=context)
     members = asset.get('members', [])
     if asset.get('member_count') != size or len(members) != size or size < 2:
@@ -139,12 +130,12 @@ def load_h(asset, *, mode, context, size, names):
         review = row.get('review')
         if not isinstance(review, dict) or review.get('reviewed_code_key') != candidate.key:
             raise ValueError('H behavior review absent or bound to another code')
-        if not all(review.get(k) for k in ('description', 'reviewer', 'method', 'note')):
+        if not all(isinstance(review.get(k), str) and review[k].strip() for k in ('description', 'reviewer', 'method', 'note')):
             raise ValueError('incomplete behavior review')
         if mode == 'real' and review['method'].startswith('synthetic'):
             raise ValueError('synthetic review is not a formal review')
         expected = review_member(candidate, description=review['description'], reviewer=review['reviewer'],
-                                 method=review['method'], note=review['note'])
+                                 method=review['method'], note=review['note'], timeout=review_timeout)
         if review != expected:
             raise ValueError('review samples/hash inconsistent with h code')
         candidates.append(Candidate(review['description'], candidate.code, candidate.key, 'h'))

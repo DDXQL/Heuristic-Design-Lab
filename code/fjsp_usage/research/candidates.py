@@ -124,7 +124,7 @@ def validate_code(code: str, *, description='', kind='U') -> Candidate:
     return Candidate(description, canonical, key, kind)
 
 
-def compile_candidate(candidate: Candidate):
+def compile_candidate(candidate: Candidate, *, observer=None):
     # No import, attributes, containers, recursion, global/nonlocal or dynamic eval
     # can pass the validator. Builtins are explicitly closed, not inherited.
     import builtins
@@ -155,7 +155,14 @@ def compile_candidate(candidate: Candidate):
                 ast.Name(node.target.id, ast.Load()), node.op, node.value))
             return self.visit(replacement)
 
-    tree = ast.fix_missing_locations(Limits().visit(ast.parse(checked.code)))
+    tree = ast.parse(checked.code)
+    if observer is not None:
+        # Trusted host instrumentation AFTER validation. Generated code cannot
+        # name/access the observer. Each original predicate is evaluated once;
+        # short circuiting, numeric guards and candidate keys are unchanged.
+        from fjsp_usage.research_real.state_diagnostics import instrument
+        tree = instrument(tree)
+    tree = ast.fix_missing_locations(Limits().visit(tree))
 
     def safe_round(value, ndigits=None):
         # Python integer round may construct 10**abs(ndigits) internally before
@@ -170,5 +177,7 @@ def compile_candidate(candidate: Candidate):
     numerical_builtins['round'] = safe_round
     namespace = {'__builtins__': numerical_builtins,
                  '_bounded': bounded}
+    if observer is not None:
+        namespace['_observe'] = observer
     exec(compile(tree, '<restricted-candidate>', 'exec'), namespace)
     return namespace['select_heuristic' if candidate.kind == 'U' else 'priority']

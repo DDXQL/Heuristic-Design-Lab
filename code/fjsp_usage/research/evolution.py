@@ -47,6 +47,10 @@ def operator_at(arm, index, attempts):
 
 
 class Search:
+    # The legacy default remains unchanged; explicit experiment subclasses can
+    # install a versioned prompt pack without changing research_v1 semantics.
+    _build_prompt = staticmethod(build_prompt)
+
     def __init__(self, directory, *, arm, config, members, evaluator,
                  transport, context, kind='U', initial=None):
         if arm not in ('B0', 'B1', 'B2', 'P', 'H', 'INIT'):
@@ -125,9 +129,10 @@ class Search:
         if record['status'] == 'completed':
             try:
                 candidate = parse_response(record['text'], kind=self.kind)
-                previous = self.state['seen'].get(candidate.key)
+                previous = self._duplicate_of(candidate)
                 if previous and previous != identifier:
-                    outcome.update(status='duplicate', code_key=candidate.key)
+                    outcome.update(status='duplicate', code_key=candidate.key,
+                                   duplicate_of=previous)
                 else:
                     self.state['seen'][candidate.key] = identifier
                     self._save()
@@ -154,6 +159,14 @@ class Search:
         self._save()
         self.events.emit('candidate', arm=self.arm, **outcome)
 
+    def _duplicate_of(self, candidate):
+        """Default source-key policy; specialised initialisers may tighten it."""
+        return self.state['seen'].get(candidate.key)
+
+    def _initial_prompt(self, prompt, index):
+        """Legacy and H initialisation retain their original prompt."""
+        return prompt
+
     def _prepare(self, *, initial):
         if self.state['inflight'] is not None:
             return
@@ -168,13 +181,18 @@ class Search:
             parents = select_parents(self.state['population'], count, self.rng)
         prefix = 'init' if initial else f'g{self.state["generation"]:04d}'
         identifier = f'{self.arm}/{prefix}/{index:06d}'
-        prompt = build_prompt('B0' if self.arm == 'INIT' else self.arm,
+        prompt = self._build_prompt('B0' if self.arm == 'INIT' else self.arm,
                               operator, parents, self.members, kind=self.kind)
+        if initial:
+            prompt = self._initial_prompt(prompt, index)
         self.state['inflight'] = {'id': identifier, 'operator': operator, 'prompt': prompt,
                                   'parents': [p['id'] for p in parents], 'initial': initial}
         self._save()
 
-    def initialize(self):
+    def initialize(self, *, stop_after_attempts=None):
+        if stop_after_attempts is not None and (type(stop_after_attempts) is not int or stop_after_attempts < 1):
+            raise ValueError('initialization request window must be a positive integer')
+        steps = 0
         while self.state['phase'] == 'initialization':
             if len(self.state['population']) == self.config.population_size:
                 self.state['population'] = ranked(self.state['population'])
@@ -188,8 +206,13 @@ class Search:
                 self.events.emit('initialization_failed', arm=self.arm,
                                  valid=len(self.state['population']), required=self.config.population_size)
                 break
+            if stop_after_attempts is not None and steps >= stop_after_attempts:
+                self.events.emit('initialization_paused', arm=self.arm,
+                                 requests_this_window=steps, cursor=self.state['init_cursor'])
+                return None
             self._prepare(initial=True)
             self._attempt()
+            steps += 1
         return self.state['phase'] != 'initialization_failed'
 
     def run(self, *, stop_after_attempts=None):

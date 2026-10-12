@@ -67,7 +67,7 @@ class BudgetLedger:
             if phase['cost_estimate'] is not None:
                 phase['cost_estimate'] += self.cost(charge)
             phase['elapsed_seconds'] += record.get('elapsed_seconds', 0.0)
-        return {'mode': self.config.mode, 'request_hard_cap': self.config.total_request_cap,
+        result = {'mode': self.config.mode, 'request_hard_cap': self.config.total_request_cap,
                 'request_slots': len(records), 'confirmed_sends': sum(r.get('send_confirmed', False) for r in records),
                 'remaining_request_slots': self.config.total_request_cap-len(records),
                 'settlement_statuses': dict(Counter(r['status'] for r in records)),
@@ -75,7 +75,27 @@ class BudgetLedger:
                 'unknown_usage_requests': sum(r.get('usage') is None for r in records),
                 'token_limit_basis': 'configured reservation; provider upper bound not certified',
                 'money_limit_basis': 'price-based estimate, not verified provider billing/hard cap',
-                'price_source': self.config.price_source, 'phases': phases, 'halted': self.data['halted']}
+                'price_source': self.config.price_source,
+                'cost_currency': getattr(self.config, 'price_currency', None),
+                'estimated_cost_stop': self.config.cost_cap_estimate,
+                'known_input_tokens': sum(r['usage']['input_tokens'] for r in records if r.get('usage') is not None),
+                'known_output_tokens': sum(r['usage']['output_tokens'] for r in records if r.get('usage') is not None),
+                'known_usage_cost_estimate': (sum(self.cost(r['usage']) for r in records if r.get('usage') is not None)
+                    if self.config.input_price_per_million is not None else None),
+                'reserved_or_settled_cost_estimate': (sum(self.cost(r.get('usage') if r.get('usage') is not None else r['reservation']) for r in records)
+                    if self.config.input_price_per_million is not None else None),
+                'stop_reason': self.data.get('smoke_stop_reason'),
+                'phases': phases, 'halted': self.data['halted']}
+        if getattr(self.config,'conditional_research',None):
+            from .conditional_research import history_summary
+            historical = history_summary(self.path.parent.parent.parent,self.config)
+            result.update(budget_scope='local new batch plus separately pinned immutable history',
+                historical_request_slots=historical['historical_request_slots'],
+                lifetime_request_slots=historical['historical_request_slots']+len(records),
+                lifetime_confirmed_sends=historical['historical_confirmed_sends']+result['confirmed_sends'],
+                lifetime_request_cap=historical['lifetime_request_cap'],
+                retained_historical_account_hold=historical['retained_account_hold'])
+        return result
 
     def reserve(self, key, phase, prompt_key):
         if digest(self.config.payload()) != self.config_key:
@@ -85,6 +105,26 @@ class BudgetLedger:
             if records[key]['prompt_key'] != prompt_key or records[key]['phase'] != phase:
                 raise ValueError('request key reused with changed prompt/phase')
             return records[key]
+        if getattr(self.config, 'development_continuation_source', None) is not None:
+            import hashlib
+            declaration = self.config.development_continuation_source
+            source = (self.path.parent.parent/declaration['run']/'budget.json').resolve()
+            raw = source.read_bytes()
+            if hashlib.sha256(raw).hexdigest() != declaration['files_sha256']['budget.json']:
+                raise BudgetStop('original continuation ledger changed; no dispatch')
+            original = json.loads(raw)['records']
+            if (not self.data.get('continuation_binding_hash') or any(records.get(k)!=v for k,v in original.items())):
+                raise BudgetStop('historical request counters/reservations missing or modified; no dispatch')
+        acceptance = getattr(self.config,'development_acceptance',None)
+        research_history = None
+        if getattr(self.config,'conditional_research',None):
+            from .conditional_research import budget_check
+            research_history = budget_check(self,key,phase)
+        if acceptance:
+            from .development_acceptance import check_budget_scope
+            check_budget_scope(self,key,phase)
+        if self.data.get('continuation_unresolved_requests') and not acceptance:
+            raise BudgetStop('inherited sent request settlement remains unknown; no new reservation')
         if self.data['halted']:
             raise BudgetStop('ledger halted after an observed reservation overrun')
         caps = self.config.phase_caps()
@@ -93,8 +133,14 @@ class BudgetLedger:
         if len(records) >= self.config.total_request_cap or sum(r['phase'] == phase for r in records.values()) >= caps[phase]:
             raise BudgetStop('hard global/phase request cap exhausted before dispatch')
         reservation = {'input_tokens': self.config.provider.input_token_reservation,
-                       'output_tokens': self.config.provider.max_output_tokens}
+                       'output_tokens': (getattr(self.config.provider, 'output_token_reservation', None)
+                                         or self.config.provider.max_output_tokens)}
         charges = [r.get('usage') if r.get('usage') is not None else r['reservation'] for r in records.values()]
+        if research_history:
+            charges += research_history['historical_token_charges']
+        if acceptance:
+            from .development_acceptance import previous_charges
+            charges += previous_charges(self.path.parent.parent,acceptance)
         if self.config.total_token_cap is not None and sum(sum(u.values()) for u in charges) + sum(reservation.values()) > self.config.total_token_cap:
             raise BudgetStop('configured token reservation cap insufficient')
         if self.config.cost_cap_estimate is not None and sum(self.cost(u) for u in charges) + self.cost(reservation) > self.config.cost_cap_estimate:
@@ -175,10 +221,12 @@ class BudgetJournal:
         try:
             reply = self.transport.dispatch(global_key, prompt, kind=kind,
                                             on_sent=lambda: self.ledger.confirm_send(global_key))
-            record.update(status='completed', text=reply['text'], usage=validate_usage(reply.get('usage')))
+            record.update(status='completed', text=reply['text'], usage=validate_usage(reply.get('usage')),
+                          response_metadata=reply.get('metadata', {}))
         except Exception as exc:
             record.update(status='failed', error=self.transport.redact(str(exc))[:500],
-                          error_type=type(exc).__name__, usage=validate_usage(getattr(exc, 'usage', None)))
+                          error_type=type(exc).__name__, usage=validate_usage(getattr(exc, 'usage', None)),
+                          response_metadata=getattr(exc, 'metadata', {}))
         elapsed = time.monotonic() - started
         self.ledger.settle(global_key, status=record['status'], usage=record['usage'], elapsed_seconds=elapsed)
         record['elapsed_seconds'] = elapsed

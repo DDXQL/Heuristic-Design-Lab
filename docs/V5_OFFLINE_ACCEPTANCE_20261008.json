@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-08",
+  "status": "offline acceptance only; no formal research claim",
+  "tests": {
+    "passed": 82,
+    "new_tests": 13,
+    "elapsed_seconds": 48.596,
+    "log_sha256": "0457554e8bae08b7f72293ddf48b0fe6c168cf849d6e02d6375ccb95e4dfdd89"
+  },
+  "prompt_pack": {
+    "version": "V5-FJSP-selector-prompts-v2-20261008",
+    "framework": "https://app.notion.com/p/3e904e0510d781eba9b5f8b9114e2e70",
+    "template_sha256": "912251e313bc8c1604ec3b0878d664fc7bda2d2e5a8d613d007d8052cf339ae3",
+    "sections": {
+      "U_task": "ab85e734260283e39a53707d016789f0f0b98d43c28487c406687579bad08eec",
+      "H_context": "ef7c9af6954a2323af61e928c1152548230d07a42de39206f90b2dcf146dbeac",
+      "H_generation": "0d9d8172513b02276e216affa3c2d449a1b5a4c2b07da49c71e0f8c224477e99",
+      "initial": "8a6636d00e7da32dc45bb67515f3ed38d8aeeab15e6dfc64e541f7fd2f7996dc",
+      "P_cross": "67b5e318289ebbe669ce11070445393786e95b559a10639b8ac769355cc79058",
+      "P_mutate": "b7cbaa6c0b3a8b409c4f1bf4fdf71b8c4332dcdd4931d446343dad4af7d0bc73",
+      "generic_operators": "3fdccda919812fbcf9876fc395182595e52df6efafeb5957c067ff7758e20d28",
+      "output": "70a76d33a91e7ff952eeb0e6998b9f5ab7fceb0710bc334bae1c2616170c688f"
+    },
+    "B2_P_difference": "operator section only",
+    "initial_H_details": false,
+    "B0_H_details": false,
+    "model_calls_per_candidate": 1
+  },
+  "source_fingerprint_sha256": "65e3a215d6b67eabba9a2e377f8d98297c7ce24d629dfea1113bfeaf3c4763e4",
+  "model_requests_this_task": 0,
+  "real_validation_test_opened_this_task": false,
+  "calibration": {
+    "train_count": 21,
+    "all_batches_valid": true,
+    "constant_equivalence": [
+      {
+        "member_id": 0,
+        "constant_U_matches_single_h": true
+      },
+      {
+        "member_id": 1,
+        "constant_U_matches_single_h": true
+      }
+    ],
+    "suggested_instance_timeout_seconds": 3,
+    "max_single_solve_seconds": 0.25086083298083395,
+    "max_solve_plus_recheck_seconds": 0.4998887499968987,
+    "max_batch_overhead_seconds": 0.18532467298791744,
+    "selector_fitness": {
+      "constant-0": -2.020555942170849,
+      "constant-1": -3.289689477503054,
+      "state-demo": -2.7145169874660398
+    },
+    "demo_H_envelope_gain": 0.0
+  },
+  "preparation": {
+    "preview_count": 18,
+    "largest_preview_utf8_bytes": 10145,
+    "request_caps": {
+      "paired-pilot": {
+        "phases": {
+          "H/init": 50,
+          "H/search": 10,
+          "r101/init": 50,
+          "r101/B0": 10,
+          "r101/B1": 10,
+          "r101/B2": 10,
+          "r101/P": 10
+        },
+        "total": 150,
+        "estimated_cost": null,
+        "real_requests_authorized": false
+      },
+      "formal": {
+        "phases": {
+          "H/init": 50,
+          "H/search": 10,
+          "r101/init": 50,
+          "r101/B0": 1000,
+          "r101/B1": 1000,
+          "r101/B2": 1000,
+          "r101/P": 1000,
+          "r102/init": 50,
+          "r102/B0": 1000,
+          "r102/B1": 1000,
+          "r102/B2": 1000,
+          "r102/P": 1000,
+          "r103/init": 50,
+          "r103/B0": 1000,
+          "r103/B1": 1000,
+          "r103/B2": 1000,
+          "r103/P": 1000
+        },
+        "total": 12210,
+        "estimated_cost": null,
+        "real_requests_authorized": false
+      }
+    },
+    "preflights": {
+      "paired": {
+        "stage": "PREFLIGHT_COMPLETE",
+        "split_files_opened": 0,
+        "confirmed_sends": 0
+      },
+      "formal": {
+        "stage": "PREFLIGHT_COMPLETE",
+        "split_files_opened": 0,
+        "confirmed_sends": 0
+      }
+    }
+  },
+  "synthetic": {
+    "all_planned_succeeded": true,
+    "planned_repeats_per_group": 2,
+    "groups": [
+      "B0",
+      "B1",
+      "B2",
+      "P"
+    ],
+    "local_posts": 113,
+    "phases": {
+      "H/init": 3,
+      "H/search": 10,
+      "r101/init": 10,
+      "r101/B0": 10,
+      "r101/B1": 10,
+      "r101/B2": 10,
+      "r101/P": 10,
+      "r102/init": 10,
+      "r102/B0": 10,
+      "r102/B1": 10,
+      "r102/B2": 10,
+      "r102/P": 10
+    },
+    "resume_local_posts": 0,
+    "training_curve_count": 8,
+    "selected_U_count": 8,
+    "H_count": 3,
+    "group_fitness": {
+      "B0": -1.0,
+      "B1": -1.0,
+      "B2": -1.0,
+      "P": -1.0
+    }
+  },
+  "previous_real_pilot_request_slots_unchanged": 20,
+  "canonical_rule_file_sha256": "35012b69a4ff6946e93ad51bbf5872e7fae8831735fb260e6071579c8bc0560c",
+  "canonical_rule_file_equals_HEAD": true,
+  "raw_artifacts": [
+    "runs/v5-offline-preparation-20261008/artifacts",
+    "runs/v5-four-arm-offline-20261008",
+    "runs/v5-paired-preflight-20261008",
+    "runs/v5-formal-preflight-20261008"
+  ],
+  "pending_API_tasks": [
+    "provider/model and usage/billing calibration, including real long H+5-parent prompts",
+    "generate a real EoH-S-adapter H; no handwritten/sample promotion",
+    "generate shared initialization and real paired four-arm pilot candidates",
+    "generate R repeats of formal B0/B1/B2/P candidates"
+  ],
+  "limitations": [
+    "handwritten calibration H and preview parents are not formal assets",
+    "synthetic four-arm results are interface acceptance only",
+    "model/K/R/H budget/cost still need final registration",
+    "cross-protocol H import/reuse not implemented"
+  ]
+}

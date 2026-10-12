@@ -102,6 +102,23 @@ class RealWorkflowTests(unittest.TestCase):
         self.assertEqual(len(self.traffic['requests']), before)
         self.assertIsNone(flow._client)
 
+    def test_v5_prompts_and_report_diagnostics_are_connected_to_workflow(self):
+        self.assertIn('V5-FJSP-selector-prompts-v5-state-bounds', self.flow.protocol['prompt_pack']['version'])
+        common = {}
+        for arm in ('B1','B2','P'):
+            journal = json.loads((self.flow.directory/f'r1/{arm}/budgeted_evolution_requests.json').read_text())
+            prompt = next(iter(journal['requests'].values()))['prompt']
+            self.assertIn('processing_time: duration',prompt)
+            common[arm] = prompt.split('\nPARENT 0')[0]
+        self.assertEqual(len(set(common.values())),1)
+        p = json.loads((self.flow.directory/'r1/P/budgeted_evolution_requests.json').read_text())
+        self.assertTrue(any('AT LEAST TWO' in r['prompt'] for r in p['requests'].values()))
+        self.assertEqual(len(self.report['training_diagnostics']),8)
+        self.assertEqual(self.report['fixed_h_comparisons']['P']['actual_comparisons'],2)
+        self.assertEqual(len(self.report['H_train_diagnostics']['members']),2)
+        usage = self.report['member_usage'][0]['instances'][0]['usage']
+        self.assertEqual(sum(usage['counts']),usage['steps'])
+
     def test_h_rejects_mock_missing_member_bool_id_wrong_key_unreviewed(self):
         H, _ = self.flow.h_asset()
         def check(asset, mode='synthetic'):
@@ -240,6 +257,52 @@ class RealWorkflowTests(unittest.TestCase):
 
 
 class FailureWorkflowTests(unittest.TestCase):
+    def test_explicit_initialize_and_one_arm_entries_do_not_run_other_arms_or_holdouts(self):
+        with fixture_server() as (endpoint,traffic),tempfile.TemporaryDirectory() as tmp:
+            flow=setup(tmp,endpoint,seeds=(1,))
+            flow.generate_h(); flow.freeze_h()
+            before=len(traffic['requests'])
+            initialized=flow.initialize_u(1)
+            self.assertEqual(initialized['status'],'initialized')
+            self.assertEqual(len(traffic['requests']),before+3)
+            self.assertFalse((flow.directory/'r1/P').exists())
+            result=flow.search_arm(1,'P')
+            self.assertEqual(result['status'],'completed')
+            self.assertEqual(len(traffic['requests']),before+13)
+            self.assertTrue(all(not (flow.directory/f'r1/{a}').exists() for a in ('B0','B1','B2')))
+            self.assertFalse((flow.directory/'Search_complete.json').exists())
+            self.assertEqual({s for s,n in flow.dataset.opened},{'train'})
+            with self.assertRaises(FileNotFoundError): flow.select()
+            with self.assertRaises(ValueError): flow.initialize_u(True)
+            with self.assertRaises(ValueError): flow.search_arm(99,'P')
+            with self.assertRaises(ValueError): flow.search_arm(1,'UNKNOWN')
+            with patch.object(flow,'client',side_effect=AssertionError('no client on completed resume')):
+                flow.initialize_u(1); flow.search_arm(1,'P')
+            self.assertEqual(len(traffic['requests']),before+13)
+
+    def test_h_review_packet_is_pending_and_template_not_overwritten(self):
+        with fixture_server() as (endpoint,traffic),tempfile.TemporaryDirectory() as tmp:
+            flow=setup(tmp,endpoint,seeds=(1,))
+            source=flow.generate_h()
+            packet=flow.read('H_review_packet.json','H_review_packet')
+            self.assertEqual(packet['source_hash'],source['artifact_sha256'])
+            self.assertTrue(all(r['human_review_status']=='pending' for r in packet['rows']))
+            template=flow.directory/'H_review_template.json'
+            reviews=json.loads(template.read_text())
+            self.assertTrue(all(not any(row.values()) for row in reviews.values()))
+            with self.assertRaises(ValueError): flow.freeze_h(reviews)
+            self.assertFalse((flow.directory/'H_frozen.json').exists())
+            next(iter(reviews.values()))['note']='user work in progress'
+            atomic_json(template,reviews)
+            before=template.read_bytes()
+            flow.review_h(); flow.generate_h()
+            self.assertEqual(template.read_bytes(),before)
+            self.assertEqual(len(traffic['requests']),12)
+            path=flow.dataset.paths['train'][0]
+            path.write_bytes(path.read_bytes()+b'\n# changed after generation\n')
+            with self.assertRaisesRegex(ValueError,'hash mismatch'): flow.review_h()
+            with self.assertRaisesRegex(ValueError,'hash mismatch'): flow.freeze_h()
+
     def test_initialization_failure_retains_all_repeats_no_arm_requests_or_refill(self):
         def duplicate_u(payload, index):
             result = fixture_response(payload, index)

@@ -1,0 +1,62 @@
+{
+  "captured_at_utc": "2026-10-08T08:13:11.260166+00:00",
+  "source": "https://leafapi.cc",
+  "inference_requests": 0,
+  "CNY_billing_verified": false,
+  "token_group_verified": false,
+  "note": "Public fields only; display/recharge/group/tier rules do not establish this token account CNY billing.",
+  "/api/status": {
+    "price": 7.3,
+    "quota_display_type": "USD",
+    "quota_per_unit": 500000,
+    "stripe_unit_price": 8,
+    "version": "v0.13.2"
+  },
+  "/api/pricing": {
+    "success": true,
+    "group_ratio": {
+      "cc-aws": 1.8,
+      "cc-default": 1,
+      "cc-normal": 0.25,
+      "cc-ultra": 0.6,
+      "codex-GPT-image2": 1,
+      "codex-deafult": 0.5,
+      "zaid-4.0": 5.5,
+      "zaid-5": 5.5,
+      "zaid-7.5": 7.5,
+      "zaim-test-4.0": 5.5,
+      "国产Kimi K3": 0.7
+    },
+    "pricing_version": "a42d372ccf0b5dd13ecf71203521f9d2",
+    "supported_endpoint": {
+      "anthropic": {
+        "path": "/v1/messages",
+        "method": "POST"
+      },
+      "openai": {
+        "path": "/v1/chat/completions",
+        "method": "POST"
+      }
+    },
+    "model": [
+      {
+        "model_name": "gpt-5.6-sol",
+        "vendor_id": 3,
+        "quota_type": 0,
+        "model_ratio": 37.5,
+        "model_price": 0,
+        "owner_by": "",
+        "completion_ratio": 8,
+        "enable_groups": [
+          "codex-deafult",
+          "zaim-test-4.0"
+        ],
+        "supported_endpoint_types": [
+          "openai"
+        ],
+        "billing_mode": "tiered_expr",
+        "billing_expr": "len < 272000 ? tier(\"base\", p * 5 + c * 30 + cr * 0.5 + cc * 6.25) : tier(\"第2档\", p * 10 + c * 45 + cr * 1 + cc * 12.5)"
+      }
+    ]
+  }
+}

@@ -19,7 +19,8 @@ from .budget import BudgetLedger, BudgetStop
 from .config import fingerprint, protocol
 from .evaluation_cache import EvaluationCache
 from .real_transport import JsonCandidateTransport
-from .search import BudgetedSearch
+from .search import V5BudgetedSearch
+from .review_packet import write_review_packet
 
 ARMS = ('B0', 'B1', 'B2', 'P')
 
@@ -49,7 +50,29 @@ class Workflow:
 
     def client(self):
         if self._client is None:
+            evidence = None
+            research_history = None
+            if self.config.conditional_research:
+                from .conditional_research import dispatch_check
+                research_history = dispatch_check(self)
+            if self.config.development_continuation_source is not None:
+                from .continuation import check_dispatch_gate
+                evidence = check_dispatch_gate(self)
             self._client = JsonCandidateTransport(self.config)
+            if self.config.platform_quota_ceiling is not None:
+                from .quota_guard import QuotaGuardedTransport
+                kwargs = {}
+                if research_history:
+                    kwargs = dict(retained_extra=research_history['retained_account_hold'],
+                        settlement_min_used=research_history['latest_saved_account_used'])
+                if self.config.development_acceptance:
+                    from .development_acceptance import check_plan
+                    plan = check_plan(self,evidence)
+                    kwargs = dict(retained_records={k:evidence['quota']['records'][k]
+                        for k in evidence['unresolved']}, retained_extra=plan['previous_unknown_account_hold'],
+                        allowed_phase=f'r{self.config.seeds[0]}/P/',settlement_min_used=plan.get('settlement_min_used',0))
+                self._client = QuotaGuardedTransport(self._client,
+                    self.directory / 'platform_quota.json', self.context, **kwargs)
         return self._client
 
     def read(self, name, kind):
@@ -72,20 +95,26 @@ class Workflow:
         if self._train is None:
             self._train = self.dataset.load('train')
         return self.dataset.evaluate(candidate, members, 'train', timeout=self.config.instance_timeout,
-                                     instances=self._train)
+                                     instances=self._train, diagnostics=self.config.training_diagnostics)
 
     def search_engine(self, folder, arm, members, search_config, init_phase, search_phase, initial=None):
-        return BudgetedSearch(self.directory / folder, arm=arm, config=search_config,
+        return V5BudgetedSearch(self.directory / folder, arm=arm, config=search_config,
             members=members, evaluator=lambda c: self.train_eval(c, members), transport=self.client(),
             context=self.context, kind='h' if arm == 'H' else 'U', initial=initial,
             init_phase=init_phase, search_phase=search_phase, ledger=self.ledger,
             experiment=self.config, training_names=self.dataset.names['train'])
 
     def generate_h(self):
+        if self.config.conditional_research:
+            raise ValueError('conditional fixed-H research does not generate a new H')
         self.assert_current()
         if (self.directory / 'H_candidates.json').exists():
-            return self.read('H_candidates.json', 'H_candidates')
+            asset = self.read('H_candidates.json', 'H_candidates')
+            self.review_h()
+            return asset
         engine = self.search_engine('H', 'H', (), self.config.h_search(), 'H/init', 'H/search')
+        if self.config.development_h_source is not None:
+            self.seed_development_h(engine)
         try:
             report = engine.run()
         except BudgetStop:
@@ -98,10 +127,54 @@ class Workflow:
             training_files=list(self.dataset.names['train']), member_count=self.config.H_size,
             search_report={k: v for k, v in report.items() if k != 'population'})
         self.progress('H_REVIEW_REQUIRED')
+        self.review_h()
         return asset
+
+    def seed_development_h(self, engine):
+        from .development_reuse import source_rows, check_imported_rows
+        path = self.directory/'H_development_source.json'
+        originals, audit = source_rows(self.project_root, self.config, self.dataset.metadata,
+                                       self.protocol['implementation'])
+        if path.exists():
+            asset = self.read('H_development_source.json', 'H_development_source')
+            check_imported_rows(asset, originals, audit)
+        else:
+            rows = []
+            for row in originals:
+                check_result(row['training_result'], self.dataset.names['train'])
+                result = self.train_eval(checked_candidate(row['candidate'], 'h'), ())
+                check_result(result, self.dataset.names['train'])
+                if not result['valid'] or result['fitness'] != row['fitness'] or [r['score'] for r in result['instances']] != row['scores']:
+                    raise ValueError('imported h did not reproduce complete training results')
+                rows.append({**row, 'training_result':result})
+            asset = self.write('H_development_source.json', 'H_development_source',
+                population=rows, audit=audit, notice='Development reuse only; original receipts are foreign, not new sends.')
+        if engine.state.get('source_import_hash') is None:
+            if engine.state['population'] or engine.state['attempts'] or engine.state['inflight']:
+                raise ValueError('development sources must be declared before new generation')
+            rows = [{**r, 'source_import_hash':asset['artifact_sha256']} for r in asset['population']]
+            engine.state.update(population=ranked(rows), seen={r['candidate']['key']:r['id'] for r in rows},
+                                source_import_hash=asset['artifact_sha256'])
+            engine._save()
+            self.progress('H_DEVELOPMENT_SOURCE_REUSED', members=len(rows), new_model_requests=0)
+        elif engine.state['source_import_hash'] != asset['artifact_sha256']:
+            raise ValueError('development import checkpoint changed')
+
+    def review_h(self):
+        self.assert_current()
+        self.dataset.verify('train')
+        source = self.read('H_candidates.json', 'H_candidates')
+        self.check_receipts(source['population'])
+        packet = write_review_packet(self.directory, ranked(source['population']),
+            self.dataset.names['train'], mode=self.config.mode, context=self.context,
+            source_hash=source['artifact_sha256'], timeout=self.config.review_timeout)
+        self.progress('H_REVIEW_REQUIRED', review_packet='H_review_packet.md',
+            automatic_sample_failures=sum(not r['automatic_samples']['valid'] for r in packet['rows']))
+        return packet
 
     def freeze_h(self, reviews=None):
         self.assert_current()
+        self.dataset.verify('train')
         if (self.directory / 'H_frozen.json').exists():
             return self.h_asset()[0]
         source = self.read('H_candidates.json', 'H_candidates')
@@ -110,7 +183,7 @@ class Workflow:
             raise ValueError('exact K generated members required')
         if reviews is None and self.config.mode != 'synthetic':
             raise ValueError('real H requires an explicit code-key-bound human review file')
-        if reviews is not None and set(reviews) != {r['candidate']['key'] for r in rows}:
+        if reviews is not None and (not isinstance(reviews, dict) or set(reviews) != {r['candidate']['key'] for r in rows}):
             raise ValueError('review keys must cover the exact generated H')
         members = []
         for index, row in enumerate(rows):
@@ -122,22 +195,42 @@ class Workflow:
                     raise ValueError('synthetic auto-review supports single return fixtures only')
                 review = review_member(candidate, description='Return ' + ast.unparse(body[0].value)
                     + '; highest finite score wins.', reviewer='local-fixture-expression-review',
-                    method='synthetic-expression-review', note='Synthetic acceptance only; no research quality claim.')
+                    method='synthetic-expression-review', note='Synthetic acceptance only; no research quality claim.',
+                    timeout=self.config.review_timeout)
             else:
-                review = review_member(candidate, **reviews[candidate.key])
+                fields = reviews[candidate.key]
+                if not isinstance(fields, dict) or set(fields) != {'description','reviewer','method','note'}:
+                    raise ValueError('review fields must be exactly description/reviewer/method/note')
+                review = review_member(candidate, **fields, timeout=self.config.review_timeout)
             members.append({**row, 'member_id': index, 'review': review})
         asset = seal({'kind': 'H_frozen', 'mode': self.config.mode, 'context': self.context,
             'member_count': self.config.H_size, 'training_files': list(self.dataset.names['train']),
             'members': members, 'source_hash': source['artifact_sha256'],
             'source_mechanism': 'minimal complementary survival/parents adapter; not full upstream runner'})
         load_h(asset, mode=self.config.mode, context=self.context, size=self.config.H_size,
-               names=self.dataset.names['train'])
+               names=self.dataset.names['train'], review_timeout=self.config.review_timeout)
         atomic_json(self.directory / 'H_frozen.json', asset)
         self.progress('H_FROZEN')
         return asset
 
     def check_receipts(self, rows):
         for row in rows:
+            if self.config.development_continuation_source is not None:
+                from .continuation import check_foreign_row
+                if check_foreign_row(self, row):
+                    continue
+            if row.get('source_import_hash'):
+                if self.config.purpose != 'framework_development' or not self.config.development_h_source:
+                    raise ValueError('foreign receipt forbidden in research protocol')
+                asset = self.read('H_development_source.json', 'H_development_source')
+                imported = [r for r in asset['population'] if r['id']==row['id']]
+                if (row['source_import_hash'] != asset['artifact_sha256'] or len(imported)!=1
+                        or any(row[k] != v for k,v in imported[0].items())):
+                    raise ValueError('development source receipt/result binding mismatch')
+                from .development_reuse import source_rows, check_imported_rows
+                originals, audit = source_rows(self.project_root,self.config,self.dataset.metadata,self.protocol['implementation'])
+                check_imported_rows(asset, originals, audit)
+                continue
             receipt = row['receipt']
             expected_transport = digest({'provider': self.config.payload()['provider'], 'mode': self.config.mode})
             if (receipt['model'] != self.config.provider.model or receipt['protocol'] != self.config.provider.protocol
@@ -166,9 +259,12 @@ class Workflow:
 
     def h_asset(self):
         self.dataset.verify('train')
+        if self.config.conditional_research:
+            from .conditional_research import h_asset
+            return h_asset(self)
         asset = self.read('H_frozen.json', 'H_frozen')
         members = load_h(asset, mode=self.config.mode, context=self.context, size=self.config.H_size,
-                         names=self.dataset.names['train'])
+                         names=self.dataset.names['train'], review_timeout=self.config.review_timeout)
         self.check_receipts(asset['members'])
         source = self.read('H_candidates.json', 'H_candidates')
         if source['artifact_sha256'] != asset['source_hash']:
@@ -197,61 +293,97 @@ class Workflow:
                 raise ValueError('population train result differs from evaluation checkpoint')
         return asset, rows
 
-    def search_all(self):
+    def prepare_continuation(self):
+        """Bind existing development assets offline; never construct a client."""
+        from .continuation import prepare
+        return prepare(self)
+
+    def initialize_u(self, seed, *, max_new_requests=None):
+        """One declared repeat, no evolutionary requests; shared by all arms."""
         self.assert_current()
+        if type(seed) is not int or seed not in self.config.seeds:
+            raise ValueError('seed must be one of the predeclared built-in integers')
         H, members = self.h_asset()
+        repeat = f'r{seed}'
+        name = repeat + '/Shared_initial.json'
+        if (self.directory/name).exists():
+            asset, _ = self.population(name, 'Shared_initial', H['artifact_sha256'])
+            return {'status': 'initialized', 'asset': asset}
+        status_name = repeat + '/Initialization_status.json'
+        if (self.directory/status_name).exists():
+            status = self.read(status_name, 'Initialization_status')
+            if status['H_hash'] != H['artifact_sha256'] or status['seed'] != seed:
+                raise ValueError('initialization status binding changed')
+            return {'status': status['status'], 'asset': None}
+        engine = self.search_engine(repeat+'/INIT', 'INIT', members, self.config.u_search(seed),
+                                    repeat+'/init', repeat+'/B0')
+        try:
+            valid = engine.initialize(stop_after_attempts=max_new_requests)
+            failure = 'initialization_failed'
+        except BudgetStop:
+            valid, failure = False, 'initialization_budget_stopped'
+        if valid is None:
+            self.progress('U_INITIALIZATION_WINDOW_PAUSED', seed=seed,
+                          total_initial_attempts=engine.state['init_cursor'])
+            return {'status': 'initialization_paused', 'asset': None}
+        if not valid:
+            self.write(status_name, 'Initialization_status', seed=seed, status=failure,
+                       H_hash=H['artifact_sha256'], search_report=engine.report())
+            self.progress('REPEAT_INITIALIZATION_FAILED', seed=seed, reason=failure)
+            return {'status': failure, 'asset': None}
+        asset = self.write(name, 'Shared_initial', seed=seed, H_hash=H['artifact_sha256'],
+            training_files=list(self.dataset.names['train']), population=engine.export_rows())
+        self.progress('U_INITIALIZED', seed=seed)
+        return {'status': 'initialized', 'asset': asset}
+
+    def search_arm(self, seed, arm):
+        """Explicit one-arm entry; cannot itself open validation or test."""
+        self.assert_current()
+        if arm not in ARMS:
+            raise ValueError('unknown search arm')
+        if self.config.development_acceptance and arm != 'P':
+            raise ValueError('single-P acceptance authorizes P only')
+        change = (self.config.development_continuation_source or {}).get('search_change')
+        if change and arm != 'P' and not (self.directory/f'r{seed}/P/Final_population.json').exists():
+            raise ValueError('reduced development must inspect P first; use explicit search-arm')
+        initialized = self.initialize_u(seed)
+        if initialized['status'] != 'initialized':
+            return {'seed': seed, 'arm': arm, 'status': initialized['status'], 'population_hash': None}
+        H, members = self.h_asset()
+        initial = initialized['asset']
+        folder = f'r{seed}/{arm}'
+        name = folder + '/Final_population.json'
+        if (self.directory/name).exists():
+            asset, _ = self.population(name, 'Final_population', H['artifact_sha256'])
+            if asset['shared_initial_hash'] != initial['artifact_sha256']:
+                raise ValueError('arm shared initialization changed')
+        else:
+            engine = self.search_engine(folder, arm, members, self.config.u_search(seed),
+                f'r{seed}/init', f'r{seed}/{arm}', initial=initial['population'])
+            try:
+                report = engine.run()
+            except BudgetStop:
+                self.progress('ARM_BUDGET_STOPPED', seed=seed, arm=arm)
+                return {'seed': seed, 'arm': arm, 'status': 'budget_stopped', 'population_hash': None}
+            if report['phase'] != 'completed':
+                raise ValueError('unfinished search cannot export final population')
+            asset = self.write(name, 'Final_population', seed=seed, arm=arm,
+                H_hash=H['artifact_sha256'], shared_initial_hash=initial['artifact_sha256'],
+                training_files=list(self.dataset.names['train']), population=engine.export_rows(),
+                search_report={k: v for k, v in report.items() if k != 'population'})
+        self.progress('ARM_COMPLETED', seed=seed, arm=arm)
+        return {'seed': seed, 'arm': arm, 'status': 'completed', 'population_hash': asset['artifact_sha256']}
+
+    def search_all(self):
+        self.assert_development_stage('search')
+        self.assert_current()
+        H, _ = self.h_asset()
         if (self.directory / 'Search_complete.json').exists():
             gate = self.read('Search_complete.json', 'Search_complete')
             self.check_search(gate, H)
             return gate
-        entries, hashes = [], []
-        for seed in self.config.seeds:
-            repeat = f'r{seed}'
-            initial_name = repeat + '/Shared_initial.json'
-            if (self.directory / initial_name).exists():
-                initial, rows = self.population(initial_name, 'Shared_initial', H['artifact_sha256'])
-            else:
-                engine = self.search_engine(repeat+'/INIT', 'INIT', members, self.config.u_search(seed),
-                                            repeat+'/init', repeat+'/B0')
-                try:
-                    valid = engine.initialize()
-                    failure_status = 'initialization_failed'
-                except BudgetStop:
-                    valid = False
-                    failure_status = 'initialization_budget_stopped'
-                if not valid:
-                    entries.extend({'seed': seed, 'arm': arm, 'status': failure_status,
-                                    'population_hash': None} for arm in ARMS)
-                    self.progress('REPEAT_INITIALIZATION_FAILED', seed=seed)
-                    continue
-                rows = engine.export_rows()
-                initial = self.write(initial_name, 'Shared_initial', seed=seed, H_hash=H['artifact_sha256'],
-                    training_files=list(self.dataset.names['train']), population=rows)
-            for arm in ARMS:
-                name = repeat + '/' + arm + '/Final_population.json'
-                if (self.directory / name).exists():
-                    asset, _ = self.population(name, 'Final_population', H['artifact_sha256'])
-                    if asset['shared_initial_hash'] != initial['artifact_sha256']:
-                        raise ValueError('arm shared initialization changed')
-                else:
-                    engine = self.search_engine(repeat+'/'+arm, arm, members, self.config.u_search(seed),
-                        repeat+'/init', repeat+'/'+arm, initial=rows)
-                    try:
-                        report = engine.run()
-                    except BudgetStop:
-                        entries.append({'seed': seed, 'arm': arm, 'status': 'budget_stopped',
-                                        'population_hash': None})
-                        self.progress('ARM_BUDGET_STOPPED', seed=seed, arm=arm)
-                        continue
-                    if report['phase'] != 'completed':
-                        raise ValueError('unfinished search cannot export final population')
-                    asset = self.write(name, 'Final_population', seed=seed, arm=arm,
-                        H_hash=H['artifact_sha256'], shared_initial_hash=initial['artifact_sha256'],
-                        training_files=list(self.dataset.names['train']), population=engine.export_rows(),
-                        search_report={k: v for k, v in report.items() if k != 'population'})
-                hashes.append(asset['artifact_sha256'])
-                entries.append({'seed': seed, 'arm': arm, 'status': 'completed', 'population_hash': asset['artifact_sha256']})
-                self.progress('ARM_COMPLETED', seed=seed, arm=arm)
+        entries = [self.search_arm(seed, arm) for seed in self.config.seeds for arm in ARMS]
+        hashes = [e['population_hash'] for e in entries if e['status'] == 'completed']
         gate = self.write('Search_complete.json', 'Search_complete', dataset_hash=self.dataset.key,
             H_hash=H['artifact_sha256'], reference_H_hash=H['artifact_sha256'],
             seeds=list(self.config.seeds), entries=entries, population_hashes=hashes)
@@ -291,7 +423,12 @@ class Workflow:
         return self.cache.get(key, self.dataset.names[split], lambda: self.dataset.evaluate(candidate, members,
             split, timeout=self.config.instance_timeout, context=self.context, gate=gate, population_hash=population_hash))
 
+    def assert_development_stage(self, stage):
+        if (self.config.development_continuation_source or {}).get('search_change'):
+            raise ValueError('reduced development is train-only; explicit arms only, no '+stage)
+
     def select(self):
+        self.assert_development_stage('select')
         self.assert_current()
         H, members = self.h_asset()
         gate = self.read('Search_complete.json', 'Search_complete')
@@ -388,6 +525,7 @@ class Workflow:
             raise ValueError('fixed h selection changed')
 
     def freeze(self):
+        self.assert_development_stage('freeze')
         self.assert_current()
         H, _ = self.h_asset()
         gate = self.read('Search_complete.json', 'Search_complete')
@@ -410,6 +548,7 @@ class Workflow:
         return expected
 
     def test(self):
+        self.assert_development_stage('test')
         # No client()/secret/environment/provider construction in this phase.
         frozen = self.read('Experiment_frozen.json', 'Experiment_frozen')
         if self.freeze() != frozen:
