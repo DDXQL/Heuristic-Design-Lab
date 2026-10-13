@@ -8,6 +8,7 @@ import argparse
 from dataclasses import asdict
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -19,6 +20,8 @@ sys.path.insert(0, str(ROOT / 'code'))
 from fjsp_usage.research.events import atomic_json
 from fjsp_usage.research.protocol import digest
 from fjsp_usage.research.evolution import operator_at
+from fjsp_usage.research_real.single_billing import InvoiceTransport
+from fjsp_usage.research_real.leafapi import load_local_key, KEY_ENV
 from fjsp_usage.research_real.budget import BudgetStop
 from fjsp_usage.research_real.config import ExperimentConfig, fingerprint
 from fjsp_usage.research_real.conditional_research import prepare, check_origin, freeze_h
@@ -39,7 +42,7 @@ class SingleWorkflow(Workflow):
             guard = Guard(self, self.read('Worktree_binding.json', 'Worktree_binding'))
             guard.check()
             inner = super().client()
-            self._client = GuardedTransport(inner, guard)
+            self._client = GuardedTransport(InvoiceTransport(inner,self.directory/'billing'), guard)
         return self._client
 
 
@@ -101,7 +104,8 @@ def offline_prepare(directory, origin, config_path):
     dataset = StagedDataset(ROOT / 'data/fjsp_manifest.json', project_root=ROOT, mode='real')
     with RunLock(directory), patch('fjsp_usage.research_real.workflow.JsonCandidateTransport',
                                   side_effect=AssertionError('offline preparation cannot create a provider')):
-        atomic_json(directory / 'config.single.pending.json', config.payload())
+        config_name='config.single.authorized.json' if config.real_requests_authorized else 'config.single.pending.json'
+        atomic_json(directory / config_name, config.payload())
         flow = SingleWorkflow(directory, config=config, dataset=dataset, project_root=ROOT)
         binding = flow.write('Worktree_binding.json','Worktree_binding',version=VERSION,
             origin_root=str(origin), source_files_sha256=source, real_budget_inventory=inventory,
@@ -121,13 +125,15 @@ def offline_prepare(directory, origin, config_path):
         files.update(['README.md','data/fjsp_manifest.json'])
         with tarfile.open(directory / 'code-prompts-config-snapshot.tar.gz', 'w:gz') as archive:
             for name in sorted(files): archive.add(ROOT/name, arcname=name)
-            for p in [directory/'protocol.json',directory/'config.single.pending.json',
+            for p in [directory/'protocol.json',directory/config_name,
                       directory/'Worktree_binding.json',*sorted((directory/'prompts').glob('*'))]:
                 archive.add(p, arcname='registration/'+str(p.relative_to(directory)))
         guard = Guard(flow, binding); guard.check()
         history = h['history']
         summary = flow.write('Single_readiness.json','Single_readiness',version=VERSION,
-            status='OFFLINE_PREPARED_PENDING_H_SCOPE_AND_PAID_AUTHORIZATION',
+            status=('OFFLINE_PREPARED_AUTHORIZED_TRAIN_BATCH_NOT_STARTED'
+                    if config.real_requests_authorized and config.conditional_research['scope_approval']
+                    else 'OFFLINE_PREPARED_PENDING_H_SCOPE_AND_PAID_AUTHORIZATION'),
             h_valid=sum(r['result']['valid'] for r in h['rows']),
             h_reproduced=sum(r['same_training_makespans_as_source'] for r in h['rows']),
             arms=list(ARMS), seed=201, N=5, initial_new_cap=20, generations=1, slots_per_arm=10,
@@ -145,10 +151,11 @@ def offline_prepare(directory, origin, config_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('stage',choices=('prepare','preflight','freeze-h','initialize','search','training-report'))
+    parser.add_argument('stage',choices=('prepare','preflight','freeze-h','initialize','search','training-report','results'))
     parser.add_argument('--run-dir',type=Path,required=True)
     parser.add_argument('--origin-root',type=Path)
     parser.add_argument('--config',type=Path)
+    parser.add_argument('--env-file',type=Path,help='explicit existing credential; loaded only for paid stages')
     args = parser.parse_args(); directory = args.run_dir.resolve()
     if directory.parent != ROOT/'runs': parser.error('requires own worktree runs direct child')
     if args.stage == 'prepare':
@@ -157,6 +164,8 @@ def main():
         return
     if not args.config:parser.error('explicit same registered --config required')
     config = ExperimentConfig.from_dict(json.loads(args.config.read_text())); check_scale(config)
+    if args.stage in ('initialize','search') and args.env_file:
+        os.environ[KEY_ENV]=load_local_key(args.env_file)
     dataset = StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode='real')
     with RunLock(directory):
         flow = SingleWorkflow(directory,config=config,dataset=dataset,project_root=ROOT)
@@ -175,7 +184,10 @@ def main():
             result = flow.search_all()
             if any(row['status'] != 'completed' for row in result['entries']):
                 raise BudgetStop('not all four arms completed; retain partial/failed outcomes')
-        else: write_training_report(flow)
+        elif args.stage == 'training-report': write_training_report(flow)
+        else:
+            from fjsp_usage.research_real.single_report import write_results
+            write_results(flow)
 
 
 if __name__ == '__main__': main()
