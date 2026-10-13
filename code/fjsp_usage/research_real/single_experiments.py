@@ -20,6 +20,11 @@ def file_hashes(root):
             for p in sorted(runs.rglob('*')) if p.is_file()}
 
 
+def declaration_pins(hashes):
+    """Asset declarations name runs children; keep root notes in outer snapshot."""
+    return {name: sha for name, sha in hashes.items() if len(Path(name).parts) >= 2}
+
+
 def worktree_roots(root):
     text = subprocess.check_output(['git', '-C', str(root), 'worktree', 'list', '--porcelain'], text=True)
     return [Path(line.removeprefix('worktree ')) for line in text.splitlines()

@@ -9,7 +9,7 @@ from unittest.mock import patch
 from fjsp_usage.research.candidates import U_ARGS, CandidateError, validate_code, compile_candidate
 from fjsp_usage.research_real.budget import BudgetStop
 from fjsp_usage.research_real.single_experiments import (
-    VERSION, file_hashes, verify_sources, budget_inventory, Guard, GuardedTransport)
+    VERSION, file_hashes, verify_sources, budget_inventory, Guard, GuardedTransport, declaration_pins)
 
 
 class SingleSourceTests(unittest.TestCase):
@@ -23,6 +23,13 @@ class SingleSourceTests(unittest.TestCase):
                 'records':{'sent':{'usage':None,'reservation':{'input_tokens':65536,'output_tokens':32768},
                                   'send_confirmed':True}}}))
         self.pins = file_hashes(self.origin)
+
+    def test_root_notes_stay_in_snapshot_but_not_asset_declaration(self):
+        note=self.origin/'runs/root-note.log';note.write_text('historical evidence')
+        pins=file_hashes(self.origin)
+        self.assertIn('root-note.log',pins)
+        self.assertNotIn('root-note.log',declaration_pins(pins))
+        self.assertIn('old/budget.json',declaration_pins(pins))
 
     def test_read_only_source_and_copy_match(self):
         verify_sources(self.root,self.origin,self.pins)

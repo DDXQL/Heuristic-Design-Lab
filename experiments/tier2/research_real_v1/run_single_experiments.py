@@ -27,7 +27,7 @@ from fjsp_usage.research_real.locking import RunLock
 from fjsp_usage.research_real.preparation import preview_parents
 from fjsp_usage.research_real.prompts import build_prompt, prompt_sections, prompt_manifest
 from fjsp_usage.research_real.single_experiments import (VERSION, Guard, GuardedTransport,
-    file_hashes, verify_sources, budget_inventory, worktree_roots)
+    file_hashes, verify_sources, budget_inventory, worktree_roots, declaration_pins)
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from fjsp_usage.research_real.training_report import write_training_report
 from fjsp_usage.research_real.workflow import Workflow, ARMS
@@ -47,7 +47,7 @@ def default_config(source_hashes):
     # Use the original four-arm proposal, never the SELECT/MIX 40-call proposal.
     path = ROOT / 'runs/conditional-paired-research-20261011-v4/config.research.pending.json'
     data = json.loads(path.read_text())
-    data['conditional_research']['source_files_sha256'] = source_hashes
+    data['conditional_research']['source_files_sha256'] = declaration_pins(source_hashes)
     assert data['real_requests_authorized'] is False
     assert data['conditional_research']['scope_approval'] is None
     return ExperimentConfig.from_dict(data)
@@ -96,7 +96,7 @@ def offline_prepare(directory, origin, config_path):
     inventory = budget_inventory(worktree_roots(ROOT))
     config = ExperimentConfig.from_dict(json.loads(config_path.read_text())) if config_path else default_config(source)
     check_scale(config)
-    if config.conditional_research['source_files_sha256'] != source:
+    if config.conditional_research['source_files_sha256'] != declaration_pins(source):
         raise ValueError('new registration must pin every current read-only source file')
     dataset = StagedDataset(ROOT / 'data/fjsp_manifest.json', project_root=ROOT, mode='real')
     with RunLock(directory), patch('fjsp_usage.research_real.workflow.JsonCandidateTransport',
