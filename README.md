@@ -92,3 +92,7 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 [待执行配置](runs/leaf-usage-v2-AB-preparation-20261012-v2/config.pending.json)：固定原H、seed301、N5、共享新初始化≤20、A/B各1代×10（5交叉/5变异），最多40新请求；沿用Leaf gpt-5.6-sol、原生成参数和共同15秒实例期限。真实新生成0、两组真实进度未开始、没有读取正式validation/test；新H研究范围及请求均未批准。原300槽位预算池79已占用，加本批最多119/300；账户累计30%边界、INIT/000034的1200万点预留及全部未知token保留。保存用量1,557,783点只能说明保存时下一份保守预留可容纳，不能保证40次均可执行或换算费用。
 
 此前2.0版离线准备与toy目录保留为本轮过程证据，不能用2.1源码resume；当前以v2准备/v3toy凭证为准。没有当前两组真实研究效果或独立泛化结论。
+
+## 本分支：原单成员研究任务（2026-10-13）
+
+`codex/u-single-experiments` 从 checkpoint `243ad401bfd5ff64da338277112933323621de1f` 建立独立worktree，仅推进原单编号四组研究。新 [单成员入口](experiments/tier2/research_real_v1/run_single_experiments.py) 保持原运行/提示语义并增加只读来源与跨worktree账本检查；[具体配置与执行指南](experiments/tier2/research_real_v1/README.md#原单成员研究-worktree2026-10-13)提出 seed201/N5/共享新初始化≤20/四组各1代10槽位，最多60新请求。usage_v2的40次SELECT/MIX提案不适用于本任务。旧P组开发验收及旧候选重评仍为历史/工程证据；本次真实四组未开始，付费与旧H研究范围批准仍待用户明确确认。

@@ -237,3 +237,27 @@ prepare内的配置固定seed301、N5、初始化≤20、两组各1代×10，最
 prompts/A.I1.txt、B.I1.txt为相同首条完整初始化提示；CROSS/MUTATE示例使用相同明确手写预览父代，差异仅allowed_modes，不能声称未来真实父代已确定。真实每条发送提示在budgeted_*_requests.json及inflight保存，初始化追加实际已接受源码归档。成本报告区分第一次求解、确定性复检和独立诊断的h调用、处理成本及时间；相同请求数不是相同计算成本。
 
 付费阶段仍使用原 provider.api_key_env=LEAFAPI_API_KEY；调用者需通过既有凭证方式向该进程提供环境变量。本轮prepare/examples/compatibility不加载密钥或创建真实客户端。模型、渠道、stream、输出限制、温度/推理参数均从原已授权供应商配置逐项继承，新授权只批准新批次，不隐式换模型。
+
+## 原单成员研究 worktree（2026-10-13）
+
+本节适用于 `codex/u-single-experiments`。入口为 [run_single_experiments.py](run_single_experiments.py)，使用原 `select_heuristic(七输入) -> int`、单个 h 的原始动作分数和七项状态；不进入 usage_v2，不允许元组/MIX。计算形式可含合法算术、条件、循环，未规定程序骨架。
+
+本次训练提案继承原四组协议：seed201、N=5、全新共享SELECT-ID初始化最多20请求；B0/B1各按 E1/E2/M1/M2/M3 各2槽位，B2/P各5交叉+5变异；交叉5父代、变异1父代、各1代10槽位，最多60新请求。B0无H代码/行为；B1有H信息；B2同B1但通用交叉/变异；P同B2信息但特化算子。各组共用完整21train、H、初始池、评价器和供应商配置。不导入旧U为本次P0，不生成新H。
+
+```bash
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_experiments.py prepare \
+  --origin-root '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research' \
+  --run-dir runs/single-ID-paired-training-NEW
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_experiments.py preflight \
+  --run-dir runs/single-ID-paired-training-NEW \
+  --config runs/single-ID-paired-training-NEW/config.single.pending.json
+PYTHONPATH=code .venv/bin/python -B -m unittest discover -s tests -v
+```
+
+prepare 离线完整重评10条H，保存代码/提示/配置快照、数据哈希、原H身份、只读来源和跨worktree账本身份。15份全文提示中的演化父代明确是手写预览，未来每条实际提示随真实请求归档。原H人工行为审查仍保留开发范围；新研究范围批准模板不自动填写。
+
+准备配置禁用真实请求。用户明确批准原H用于固定H条件研究和本批付费范围后，在工作tree内另存批准配置（逐键原H批准、real_requests_authorized=true），使用新的 runs 目录、相同 prepare 命令加 `--config` 注册；不修改已有 protocol 或准备证据。批准配置必须保留所有来源哈希、原供应商字段、规模和累计预算。批准后在同一注册目录按 `freeze-h`、`initialize`、`search`、`training-report` 执行，每步显式使用同一 `--config`；入口不提供 validation/test。
+
+此任务只写本worktree。原仓库runs及本地复制的987份来源文件保持只读；实际配置绑定准备时的全部来源。每次发送前再检查源码、原来源以及其他worktree实际账本，原始账本按identity去重核对。新外部消耗或writer锁会停止，不自动重新绑定/结清/放宽预算；需要联合核对两任务额度后注册新批次。付费调用须串行，其他聊天页不能同时使用同一账户进行研究生成。检查仅覆盖本Git仓库列出的worktree；供应商账户保护还会核验实际累计用量，不能认证其他外部程序完全没有请求。
+
+失败、重复占槽位；初始化20次耗尽仍不足5则停止全部演化，不降N/补员；即使一组无有效子代仍按原规则完成该代。未结算新请求、账户边界、源码/数据/来源变更均停止。完成条件为共享池成功、四组各10槽位与生存选择实际完成、所有有效候选完整21train及确定性复检、全部失败/重复和分阶段成本保留；一个seed仅是初步条件训练实验。validation11历史已暴露，test28本批不解析/求解；后续验证/测试和扩展种子需另行预登记。
