@@ -26,11 +26,12 @@ ARMS = ('B0', 'B1', 'B2', 'P')
 
 
 class Workflow:
+    _protocol = staticmethod(protocol)
     def __init__(self, directory, *, config, dataset, project_root):
         self.directory, self.config, self.dataset = Path(directory), config, dataset
         self.project_root = Path(project_root)
         self.directory.mkdir(parents=True, exist_ok=True)
-        self.protocol = protocol(config, dataset.metadata, fingerprint(self.project_root))
+        self.protocol = self._protocol(config, dataset.metadata, fingerprint(self.project_root))
         self.context = digest(self.protocol)
         path = self.directory / 'protocol.json'
         if path.exists() and digest(json.loads(path.read_text())) != self.context:
@@ -45,7 +46,7 @@ class Workflow:
     def assert_current(self):
         if hashlib.sha256(self.dataset.path.read_bytes()).hexdigest() != self.dataset.metadata['manifest_sha256']:
             raise ValueError('dataset manifest changed during run')
-        if digest(protocol(self.config, self.dataset.metadata, fingerprint(self.project_root))) != self.context:
+        if digest(self._protocol(self.config, self.dataset.metadata, fingerprint(self.project_root))) != self.context:
             raise ValueError('implementation changed during run; new run required')
 
     def client(self):

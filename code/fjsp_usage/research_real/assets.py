@@ -38,7 +38,8 @@ def check_seal(asset, *, kind=None, mode=None, context=None):
 def checked_candidate(value, kind):
     if value.get('kind') != kind:
         raise ValueError('candidate kind mismatch')
-    candidate = validate_code(value['code'], description=value['description'], kind=kind)
+    candidate = validate_code(value['code'], description=value['description'], kind=kind,
+        interface_version=value.get('interface_version'), member_count=value.get('member_count'))
     if candidate.key != value['key']:
         raise ValueError('candidate code key mismatch')
     return candidate
@@ -72,7 +73,9 @@ def check_result(result, names):
 
 def make_receipt(candidate, record, ledger, config, transport_identity):
     charged = ledger.data['records'][record['global_key']]
-    response = parse_response(record['text'], kind=candidate.kind)
+    response = parse_response(record['text'], kind=candidate.kind,
+        interface_version=getattr(candidate, 'interface_version', None),
+        member_count=getattr(candidate, 'member_count', None))
     if record['status'] != 'completed' or response.key != candidate.key or not charged['send_confirmed']:
         raise ValueError('candidate requires completed matching confirmed HTTP receipt')
     return {'mode': config.mode, 'model': config.provider.model, 'protocol': config.provider.protocol,
@@ -90,7 +93,9 @@ def check_receipt(receipt, candidate, mode):
         raise ValueError('completed same-mode generation provenance required')
     if receipt.get('response_sha256') != digest(receipt['response_text']):
         raise ValueError('receipt response hash mismatch')
-    if parse_response(receipt['response_text'], kind=candidate.kind).key != candidate.key:
+    if parse_response(receipt['response_text'], kind=candidate.kind,
+        interface_version=getattr(candidate, 'interface_version', None),
+        member_count=getattr(candidate, 'member_count', None)).key != candidate.key:
         raise ValueError('receipt code does not match asset code')
 
 

@@ -79,3 +79,16 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 [待批准配置](runs/conditional-paired-research-20261011-v4/config.research.pending.json)提出固定既有H条件实验：seed201、N5，新共享初始化最多20次，B0/B1/B2/P各1代10槽位，最多60次新增请求；历史79加本批最多60为139/300。原H的开发行为审查不等于研究范围批准，新批准必须绑定原H哈希及按编号的10个代码键；配置当前real_requests_authorized=false、scope_approval=null，未冻结研究H。所有未知token、INIT/000034账户12,000,000点预留继续保留；最新保存用量1,557,783点，发送前必须刷新，不能据此保证60次均有余额或换算人民币。
 
 [数据使用核对](runs/conditional-paired-research-20261011-v4/Dataset_usage_audit.json)确认train21/validation11/test28名单、顺序和实际字节哈希一致；validation11已由历史单规则和相邻EoH-S真实评价使用，应披露为项目已暴露数据。扫描未发现正式test28数值结果，不能认证未知外部使用。本次holdout只哈希字节、未解析求解。首批仅做训练配对小试；规模与分析协议固定后再用validation选择U*/固定h参照，冻结后执行test，不能提前用test调试。
+
+
+## U使用方式扩展：当前状态（2026-10-13完成，版本按2026-10-12启动日命名）
+
+旧单编号入口保留；新 [usage_v2入口](experiments/tier2/usage_v2/run.py) 实现 `use_heuristics(七输入) -> (mode, vector)`。A仅SELECT，B允许SELECT/MIX；混合最多两个正权重，单成员用原始h分数、双成员在当前全部合法动作上逐成员min–max后加权，历史记录最大实际权重成员。语法只新增终端返回元组，未开放任意Python。接口和落实依据见[扩展契约](docs/U_USAGE_CONTRACT_V2_DRAFT.md)，命令见[指南](experiments/tier2/research_real_v1/README.md)。
+
+188项全套本地测试通过；[最终手写两组toy验收](runs/usage-v2-toy-acceptance-20261012-v3/Synthetic_acceptance.json)完成共享5个初始SELECT、A/B各一代10槽位。26次均为本地手写fixture HTTP，不是真实模型：初始5有效/1重复，A有8有效/1接口失败/1运行失败，B有9有效/1解析失败；不补发，所有有效候选完整评价独立toy训练集。h调用按求解/复检/诊断分别报告，不将相同请求数解释成相同计算成本。[可读例子与轨迹](runs/usage-v2-examples-20261012-v1/Examples_summary.json)首动作依次C/A/B；完整toy排程Cmax为11/11/12，不能作为组合有收益的证据。
+
+[最新离线准备](runs/leaf-usage-v2-AB-preparation-20261012-v2/Preparation.json)的10条原H均完整通过21train且makespan复现；[旧U兼容审计](runs/leaf-usage-v2-AB-preparation-20261012-v2/Legacy_compatibility_audit.json)的5条原U均在21train逐动作/状态/历史及排程一致，原训练makespan也复现。它们仅审计，不导入新P0；旧代码、冻结资产、历史账本未改。提示2.1补齐输出类型与元组语法的准确说明，初始A/B提示相同，交叉/变异仅allowed_modes不同；完整[提示差异凭证](runs/leaf-usage-v2-AB-preparation-20261012-v2/prompts/Prompt_comparison.json)使用明确手写预览父代，真实发送时必须换成实际共享初始化的父代。
+
+[待执行配置](runs/leaf-usage-v2-AB-preparation-20261012-v2/config.pending.json)：固定原H、seed301、N5、共享新初始化≤20、A/B各1代×10（5交叉/5变异），最多40新请求；沿用Leaf gpt-5.6-sol、原生成参数和共同15秒实例期限。真实新生成0、两组真实进度未开始、没有读取正式validation/test；新H研究范围及请求均未批准。原300槽位预算池79已占用，加本批最多119/300；账户累计30%边界、INIT/000034的1200万点预留及全部未知token保留。保存用量1,557,783点只能说明保存时下一份保守预留可容纳，不能保证40次均可执行或换算费用。
+
+此前2.0版离线准备与toy目录保留为本轮过程证据，不能用2.1源码resume；当前以v2准备/v3toy凭证为准。没有当前两组真实研究效果或独立泛化结论。

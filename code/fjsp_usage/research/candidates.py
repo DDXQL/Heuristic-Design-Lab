@@ -29,7 +29,7 @@ class Candidate:
     kind: str
 
 
-def parse_response(response: str, *, kind='U') -> Candidate:
+def parse_response(response: str, *, kind='U', interface_version=None, member_count=None) -> Candidate:
     if not isinstance(response, str) or len(response.encode('utf-8')) > 32768:
         raise CandidateError('response must be text of at most 32 KiB')
     match = re.fullmatch(r'\s*\{([^{}]+)\}\s*```python\s*\n(.*?)\n```\s*',
@@ -40,10 +40,15 @@ def parse_response(response: str, *, kind='U') -> Candidate:
     description = description.strip()
     if len(description) > 1000 or len(re.findall(r'[!?。！？]+|(?<!\d)\.(?!\d)', description)) > 3:
         raise CandidateError('description must contain at most three sentences')
-    return validate_code(code, description=description, kind=kind)
+    return validate_code(code, description=description, kind=kind,
+                         interface_version=interface_version, member_count=member_count)
 
 
-def validate_code(code: str, *, description='', kind='U') -> Candidate:
+def validate_code(code: str, *, description='', kind='U', interface_version=None, member_count=None) -> Candidate:
+    if interface_version is not None:
+        from fjsp_usage.usage_v2.candidates import validate_usage_code
+        return validate_usage_code(code, description=description, kind=kind,
+                                   interface_version=interface_version, member_count=member_count)
     if kind not in ('U', 'h'):
         raise CandidateError('unknown candidate kind')
     if len(code.encode('utf-8')) > 24576:
@@ -125,10 +130,13 @@ def validate_code(code: str, *, description='', kind='U') -> Candidate:
 
 
 def compile_candidate(candidate: Candidate, *, observer=None):
-    # No import, attributes, containers, recursion, global/nonlocal or dynamic eval
-    # can pass the validator. Builtins are explicitly closed, not inherited.
+    # Legacy code permits no containers; usage-v2 permits only terminal output
+    # tuples. Imports, attributes, recursion and dynamic eval remain forbidden.
+    # Builtins are explicitly closed, not inherited.
     import builtins
-    checked = validate_code(candidate.code, description=candidate.description, kind=candidate.kind)
+    checked = validate_code(candidate.code, description=candidate.description, kind=candidate.kind,
+        interface_version=getattr(candidate, 'interface_version', None),
+        member_count=getattr(candidate, 'member_count', None))
     if checked.key != candidate.key:
         raise CandidateError('candidate key mismatch')
     import math
@@ -180,4 +188,6 @@ def compile_candidate(candidate: Candidate, *, observer=None):
     if observer is not None:
         namespace['_observe'] = observer
     exec(compile(tree, '<restricted-candidate>', 'exec'), namespace)
-    return namespace['select_heuristic' if candidate.kind == 'U' else 'priority']
+    name = 'use_heuristics' if getattr(candidate, 'interface_version', None) else (
+        'select_heuristic' if candidate.kind == 'U' else 'priority')
+    return namespace[name]

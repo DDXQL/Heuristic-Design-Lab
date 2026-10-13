@@ -67,7 +67,7 @@ class V5BudgetedSearch(BudgetedSearch):
         if record['status'] == 'completed':
             from fjsp_usage.research.candidates import parse_response, CandidateError
             try:
-                candidate = parse_response(record['text'], kind=self.kind)
+                candidate = self._parse_candidate(record['text'], kind=self.kind)
             except CandidateError as exc:
                 # Envelope errors and validated-code/interface errors are kept
                 # separate; neither is charged as a runtime/evaluation failure.
@@ -83,7 +83,8 @@ class V5BudgetedSearch(BudgetedSearch):
                 if status == 'duplicate':
                     category = 'code_duplicate' if candidate.key in self.state['seen'] else 'narrow_equivalence_duplicate'
                 if self.kind == 'U':
-                    outcome['selector_diagnostics'] = static_diagnostics(candidate.code, len(self.members))
+                    outcome['selector_diagnostics'] = static_diagnostics(candidate.code, len(self.members),
+                        interface_version=getattr(candidate, 'interface_version', None))
         outcome['category'] = category
         self._save()
 

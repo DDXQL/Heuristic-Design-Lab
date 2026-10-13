@@ -175,7 +175,7 @@ class ExperimentConfig:
                 raise ValueError('phase budgets must explicitly cover every predeclared phase')
             for value in self.phase_request_caps.values():
                 positive_int(value, 'phase_request_cap')
-            if len({self.phase_request_caps[f'r{s}/{a}'] for s in self.seeds for a in ('B0','B1','B2','P')}) != 1:
+            if len({self.phase_request_caps[f'r{s}/{a}'] for s in self.seeds for a in self.search_arms()}) != 1:
                 raise ValueError('all paired groups/repeats require identical evolution request caps')
         prices = (self.input_price_per_million, self.output_price_per_million)
         if any(p is not None for p in prices):
@@ -277,9 +277,12 @@ class ExperimentConfig:
                   'H/search': self.H_generations * self.H_attempts}
         for seed in self.seeds:
             result[f'r{seed}/init'] = self.initialization_cap
-            for arm in ('B0', 'B1', 'B2', 'P'):
+            for arm in self.search_arms():
                 result[f'r{seed}/{arm}'] = self.generations * self.attempts_per_generation
         return result
+
+    def search_arms(self):
+        return ('B0', 'B1', 'B2', 'P')
 
     def phase_caps(self):
         return dict(self.phase_request_caps or self.default_phase_caps())

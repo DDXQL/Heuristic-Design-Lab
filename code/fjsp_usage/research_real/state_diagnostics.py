@@ -184,8 +184,9 @@ def truth(node, env):
     return None
 
 
-def static_diagnostics(code, size):
-    checked = validate_code(code, kind='U'); tree = ast.parse(checked.code)
+def static_diagnostics(code, size, *, interface_version=None):
+    checked = validate_code(code, kind='U', interface_version=interface_version,
+                            member_count=size if interface_version else None); tree = ast.parse(checked.code)
     rows = {}; ids = {id(n): key for key, n in predicates(tree)}
     env = {k: Bounds(*v,origin=k) for k,v in state_contract()['intervals'].items()}
     env['previous_heuristic'] = (-1., float(size-1))
@@ -239,7 +240,8 @@ def static_diagnostics(code, size):
 
 class Coverage:
     def __init__(self, candidate, size):
-        self.static = static_diagnostics(candidate.code, size)
+        self.static = static_diagnostics(candidate.code, size,
+            interface_version=getattr(candidate, 'interface_version', None))
         self.counts = {k: Counter() for k in self.static['predicates']}
     def observe(self, key, value):
         self.counts[str(key)]['true' if bool(value) else 'false'] += 1

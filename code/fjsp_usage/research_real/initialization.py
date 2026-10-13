@@ -43,7 +43,8 @@ def selector_signature(code):
     return 'validated-ast:' + checked.key
 
 
-def initialization_prompt(base, population, index, *, max_archive_bytes=ARCHIVE_MAX_BYTES):
+def initialization_prompt(base, population, index, *, max_archive_bytes=ARCHIVE_MAX_BYTES,
+                          instruction=NOVELTY_INSTRUCTION, interface_version=None):
     """Stable source-key order, complete entries only, no row metadata."""
     if type(index) is not int or index < 0:
         raise ValueError('initialization index must be a nonnegative integer')
@@ -51,7 +52,8 @@ def initialization_prompt(base, population, index, *, max_archive_bytes=ARCHIVE_
         raise ValueError('archive byte limit must be a nonnegative integer')
     codes = {}
     for row in population:
-        candidate = validate_code(row['candidate']['code'], kind='U')
+        candidate = validate_code(row['candidate']['code'], kind='U', interface_version=interface_version,
+                                  member_count=row['candidate'].get('member_count'))
         codes[candidate.key] = candidate.code
     entries, used, omitted = [], 0, 0
     for key, code in sorted(codes.items()):
@@ -62,7 +64,7 @@ def initialization_prompt(base, population, index, *, max_archive_bytes=ARCHIVE_
             continue
         entries.append(entry)
         used += size
-    header = (f'\n{NOVELTY_INSTRUCTION}\nIndependent request index: {index}. '
+    header = (f'\n{instruction}\nIndependent request index: {index}. '
               'The index is a trace identifier, not a quality rank or member mapping.\n'
               f'Archive entries included: {len(entries)}; omitted by byte limit: {omitted}.\n')
     return base + header + ''.join(entries)

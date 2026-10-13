@@ -50,10 +50,11 @@ class Search:
     # The legacy default remains unchanged; explicit experiment subclasses can
     # install a versioned prompt pack without changing research_v1 semantics.
     _build_prompt = staticmethod(build_prompt)
+    _parse_candidate = staticmethod(parse_response)
 
     def __init__(self, directory, *, arm, config, members, evaluator,
                  transport, context, kind='U', initial=None):
-        if arm not in ('B0', 'B1', 'B2', 'P', 'H', 'INIT'):
+        if arm not in ('B0', 'B1', 'B2', 'P', 'H', 'INIT', 'A', 'B'):
             raise ValueError('unknown search arm')
         if (kind == 'h') != (arm == 'H'):
             raise ValueError('H search must use h candidates')
@@ -128,7 +129,7 @@ class Search:
         child = None
         if record['status'] == 'completed':
             try:
-                candidate = parse_response(record['text'], kind=self.kind)
+                candidate = self._parse_candidate(record['text'], kind=self.kind)
                 previous = self._duplicate_of(candidate)
                 if previous and previous != identifier:
                     outcome.update(status='duplicate', code_key=candidate.key,

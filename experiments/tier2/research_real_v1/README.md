@@ -203,3 +203,37 @@ v4只在V5BudgetedSearch的共享INIT阶段增加已接受U代码的去重上下
 新训练诊断由training_diagnostics=true启用，第三次观察排程在独立进程单独计时、另用相同长度的实例期限；诊断失败不能改变原两次排程的有效性与适应度；static proof、自然分支覆盖和完整状态轨迹不反馈模型、不影响去重或选择。解析、代码/接口约束、API、运行失败、AST重复和窄等价重复分别计数。预算记录继承为哈希绑定历史快照，累计请求/未知token与账户预留和本批成本分别报告；不把新的局部账本0次误报为账户历史0次。
 
 本机已完成的离线准备见[最终核对](../../../runs/conditional-paired-research-20261011-v4/Final_offline_audit.json)；它不是批准后可直接续写的真实运行目录。批准范围/配置改变时建立新目录与新协议，重新绑定来源、预留及重评结果。首批训练小试不调用select/test；扩大规模和最终验证/测试须先固定后续协议，不能用小试测试结果调参。
+
+
+## U使用方式两组扩展：usage_v2（2026-10-12）
+
+此入口与旧单编号/四组研究入口分开。新语义及已完成/未执行状态见 [U使用契约](../../../docs/U_USAGE_CONTRACT_V2_DRAFT.md)。A仅SELECT，B允许SELECT/MIX；初始P0共享SELECT，禁止把手写fixture导入真实初始池。旧目录不能用新源码resume，新研究H需新范围确认；请求与未知额度继承。
+
+在项目根目录复现独立toy例子和手写两组接入（目录必须不存在，无真实模型请求）：
+
+```bash
+.venv/bin/python -B experiments/tier2/usage_v2/run.py examples \
+  --run-dir runs/usage-v2-examples-NEW
+.venv/bin/python -B experiments/tier2/usage_v2/run.py synthetic-acceptance \
+  --run-dir runs/usage-v2-toy-acceptance-NEW
+PYTHONPATH=code .venv/bin/python -B -m unittest discover -s tests -v
+```
+
+离线准备固定H训练重评、完整提示、预算与人工门禁；只读取train，配置默认禁用真实请求，目录须为新的runs直接子目录：
+
+```bash
+.venv/bin/python -B experiments/tier2/usage_v2/run.py prepare \
+  --run-dir runs/leaf-usage-v2-AB-preparation-NEW
+.venv/bin/python -B experiments/tier2/usage_v2/run.py compatibility \
+  --run-dir runs/leaf-usage-v2-AB-preparation-NEW \
+  --config runs/leaf-usage-v2-AB-preparation-NEW/config.pending.json
+.venv/bin/python -B experiments/tier2/usage_v2/run.py report \
+  --run-dir runs/leaf-usage-v2-AB-preparation-NEW \
+  --config runs/leaf-usage-v2-AB-preparation-NEW/config.pending.json
+```
+
+prepare内的配置固定seed301、N5、初始化≤20、两组各1代×10，最多40新增请求；15秒共同期限，交叉5父代/变异1父代。初始化失败或重复占槽位，不补发。新H范围批准与新付费授权改变配置后必须用新目录prepare，不能改原protocol继续；人工scope须绑定原H哈希与按编号代码键。批准后依次freeze-h、initialize、search-arm --arm A/B或search、report，始终显式指定同一绑定配置。现行入口不提供validation/test。
+
+prompts/A.I1.txt、B.I1.txt为相同首条完整初始化提示；CROSS/MUTATE示例使用相同明确手写预览父代，差异仅allowed_modes，不能声称未来真实父代已确定。真实每条发送提示在budgeted_*_requests.json及inflight保存，初始化追加实际已接受源码归档。成本报告区分第一次求解、确定性复检和独立诊断的h调用、处理成本及时间；相同请求数不是相同计算成本。
+
+付费阶段仍使用原 provider.api_key_env=LEAFAPI_API_KEY；调用者需通过既有凭证方式向该进程提供环境变量。本轮prepare/examples/compatibility不加载密钥或创建真实客户端。模型、渠道、stream、输出限制、温度/推理参数均从原已授权供应商配置逐项继承，新授权只批准新批次，不隐式换模型。
