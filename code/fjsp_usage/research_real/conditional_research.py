@@ -161,6 +161,14 @@ def history_summary(root, config):
                             or not q.get('started_at',float('inf'))<=match[0].get('created_at',0)<=q.get('finished_at',-30)+30):
                         raise ValueError('failed-request invoice does not match model/window/id')
                     final=True; proof=match[0]
+                if not final and quota.get('invoice_reconciliations'):
+                    # New prior batches may have certified failed-send invoices
+                    # while their response token usage remains unknown. Require
+                    # immutable, model/window/debit-matched proof; never rewrite
+                    # the raw ledger or discard its token reservation.
+                    from fjsp_usage.usage_v2.billing import certified_reconciliation
+                    invoice=certified_reconciliation(key,q,quota['invoice_reconciliations'],docs,run,config.provider.model)
+                    if invoice is not None: final=True; proof=invoice
             if not final: hold+=reserved
             unknown.append({'run':run,'key':key,'raw_record':r,'raw_quota':q,
                 'account_hold':0 if final else reserved,'account_final_proof':proof,

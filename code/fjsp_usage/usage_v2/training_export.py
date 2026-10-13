@@ -37,13 +37,14 @@ def export_results(flow):
     raw = flow.training_report()
     directory = flow.directory / 'results'; directory.mkdir(exist_ok=True)
     code_dir = directory / 'Generated_U'; code_dir.mkdir(exist_ok=True)
-    tables = []; codes = []; groups = []; cost_rows = []
+    tables = []; codes = []; groups = []; cost_rows = []; request_metadata = {}
     records = flow.ledger.data['records']
     for entry in [*raw['initialization'], *raw['entries']]:
         evaluations = {r['id']: r.get('result', {}) for r in entry.get('all_evaluations', [])}
         attempts = {r['id']: r for r in entry.get('attempts', [])}
         parsed = 0; returned = 0
         for identifier, request in entry.get('all_requests', {}).items():
+            request_metadata[request['global_key']] = request.get('response_metadata', {})
             result = evaluations.get(identifier, {})
             if request.get('text') is not None:
                 returned += 1
@@ -65,6 +66,10 @@ def export_results(flow):
                     'feasible': row.get('feasible'), 'single_solve_seconds': row.get('single_solve_seconds'),
                     'deterministic_recheck_seconds': row.get('deterministic_recheck_seconds'),
                     'diagnostic_replay_seconds': row.get('diagnostic_replay_seconds'),
+                    'combination_processing_seconds': row.get('combination_processing_seconds'),
+                    'recheck_combination_processing_seconds': row.get('recheck_combination_processing_seconds'),
+                    'selected_h_scoring_seconds': row.get('selected_h_scoring_seconds'),
+                    'recheck_selected_h_scoring_seconds': row.get('recheck_selected_h_scoring_seconds'),
                     'single_h_calls': sum(row.get('single_h_calls', [])),
                     'recheck_h_calls': sum(row.get('deterministic_recheck_h_calls', [])),
                     'diagnostic_h_calls': sum(row['diagnostic_h_calls']) if 'diagnostic_h_calls' in row else None})
@@ -95,21 +100,27 @@ def export_results(flow):
     quota = json.loads(quota_path.read_text()) if quota_path.exists() else {'records': {}}
     for key, record in records.items():
         q = quota['records'].get(key, {})
+        metadata = request_metadata.get(key, {})
         cost_rows.append({'request_key': key, 'phase': record['phase'], 'status': record['status'],
             'send_confirmed': record.get('send_confirmed'), 'usage': record.get('usage'),
             'unknown_token_reservation': record['reservation'] if record.get('usage') is None else None,
             'request_elapsed_seconds': record.get('elapsed_seconds'),
             'observed_account_debit_raw_quota': q.get('observed_account_delta'),
+            'actual_supplier_charge_platform_units': metadata.get('actual_platform_units') if metadata.get('billing_certified') else None,
+            'supplier_charge_certified': metadata.get('billing_certified', False),
             'settlement_status': q.get('status'), 'currency_charge': None,
             'currency_note': 'No verified quota-to-currency conversion; account debit is in provider raw quota units.'})
     entries = {r['arm']: r for r in raw['entries']}
     paired = []
+    best_profiles = {}
     if all(entries.get(a, {}).get('population') for a in ('A', 'B')):
         left, right = entries['A']['population'][0], entries['B']['population'][0]
         all_results = {r['id']: r.get('result', {}) for entry in [*raw['initialization'], *raw['entries']]
             for r in entry.get('all_evaluations', [])}
         left_result = left.get('training_result') or all_results[left['id']]
         right_result = right.get('training_result') or all_results[right['id']]
+        best_profiles = {'A': {'id': left['id'], 'profile': observed_profile(left_result)},
+            'B': {'id': right['id'], 'profile': observed_profile(right_result)}}
         for a, b in zip(left_result['instances'], right_result['instances']):
             if a['file'] != b['file']:
                 raise ValueError('paired instance order mismatch')
@@ -124,14 +135,24 @@ def export_results(flow):
     from .prompts import PROMPT_VERSION
     missing_debits = sum('observed_account_delta' not in quota['records'].get(key, {}) for key, r in records.items() if r.get('send_confirmed'))
     certified_debit = sum(q['observed_account_delta'] for q in quota['records'].values() if 'observed_account_delta' in q)
+    supplier_missing = sum(r.get('send_confirmed') and not request_metadata.get(key, {}).get('billing_certified') for key, r in records.items())
+    supplier_debit = sum(m.get('actual_platform_units', 0) for m in request_metadata.values() if m.get('billing_certified'))
     report = {'status': 'COMPLETED_TRAINING_ONLY' if complete else 'INITIALIZATION_FAILED_NO_ARMS' if initialized_failed else 'PARTIAL_OR_GATE_STOPPED',
         'prompt_version': PROMPT_VERSION, 'groups': groups, 'actual_generated_code': codes,
         'paired_best_train_results': paired, 'request_slots': len(records),
+        'paired_train_summary': {'B_better_instances': sum(r['B_minus_A_makespan'] < 0 for r in paired),
+            'A_better_instances': sum(r['B_minus_A_makespan'] > 0 for r in paired),
+            'equal_instances': sum(r['B_minus_A_makespan'] == 0 for r in paired),
+            'mean_B_minus_A_score': sum(r['B_minus_A_score'] for r in paired) / len(paired) if paired else None},
+        'best_final_candidate_profiles': best_profiles,
         'known_input_tokens': summary_budget['known_input_tokens'], 'known_output_tokens': summary_budget['known_output_tokens'],
         'budget': summary_budget, 'request_cost_records': cost_rows,
         'observed_total_account_debit_raw_quota': certified_debit if missing_debits == 0 else None,
         'observed_account_debit_certified_partial_sum': certified_debit,
         'unsettled_debit_records': missing_debits,
+        'actual_supplier_charge_platform_units': supplier_debit if supplier_missing == 0 else None,
+        'uncertified_supplier_charge_requests': supplier_missing,
+        'account_quota_gate': {k: quota.get(k) for k in ('halted', 'stop_reason', 'observed_used', 'ceiling')},
         'actual_currency_charge': None, 'currency_conversion_verified': False,
         'holdouts_evaluated': False, 'handwritten_candidates_imported': 0,
         'notice': 'Single-seed train-only pilot. Generated mixture code is not evidence of mixture benefit. Missing failed solve/call costs remain unknown.'}

@@ -17,6 +17,7 @@ from fjsp_usage.research_real.conditional_research import history_summary, dispa
 from fjsp_usage.research_real.quota_guard import QuotaGuardedTransport
 from fjsp_usage.research_real.real_transport import JsonCandidateTransport
 from .workflow import UsageWorkflow
+from .billing import InvoiceTransport, certified_reconciliation
 
 VERSION = 'registered-v22-serial-train-20261013'
 
@@ -77,9 +78,9 @@ def peer_terminal_audit(peer_root):
         terminal = {r['arm']: r['status'] for r in entries}
     elif init_path.exists():
         status = check_seal(json.loads(init_path.read_text()), kind='Initialization_status', mode='real', context=context)
-        if status.get('status') != 'initialization_failed':
+        if status.get('status') not in ('initialization_failed', 'initialization_budget_stopped'):
             raise BudgetStop('WAIT_PEER_TERMINAL_OR_EXPLICIT_STOP')
-        terminal = {'INIT': 'initialization_failed'}
+        terminal = {'INIT': status['status']}
     else:
         raise BudgetStop('WAIT_PEER_TERMINAL_OR_EXPLICIT_STOP')
     budget_path = directory / 'budget.json'; budget = json.loads(budget_path.read_text())
@@ -91,11 +92,17 @@ def peer_terminal_audit(peer_root):
     quota_path = directory / 'platform_quota.json'
     quota = json.loads(quota_path.read_text()) if quota_path.exists() else {'records': {}}
     if budget['records'] and (quota.get('identity') != identity or quota.get('halted')):
-        raise BudgetStop('peer account settlement halt unresolved')
+        raise BudgetStop('peer account settlement halt unresolved: ' + str(quota.get('stop_reason', 'identity mismatch')))
     for key, record in budget['records'].items():
         q = quota['records'].get(key)
-        if record.get('send_confirmed') and (record.get('usage') is None or not q or q.get('status') != 'settled'):
+        if record.get('send_confirmed') and (not q or q.get('status') != 'settled'):
             raise BudgetStop('peer sent request has unresolved usage/account settlement')
+        if record.get('send_confirmed') and record.get('usage') is None:
+            proofs = {directory.name + '/billing/' + p.name: json.loads(p.read_text())
+                for p in (directory / 'billing').glob('*.json')}
+            if not certified_reconciliation(key, q, quota.get('invoice_reconciliations', []), proofs,
+                    directory.name, protocol['config']['provider']['model']):
+                raise BudgetStop('peer sent request has unresolved usage/account settlement')
     pins = {str(p.relative_to(peer_root / 'runs')): file_hash(p)
         for p in directory.rglob('*') if p.is_file()}
     return {'run_name': directory.name, 'root': str(peer_root.resolve()), 'context': context,
@@ -162,5 +169,5 @@ class RegisteredUsageWorkflow(UsageWorkflow):
             quota = QuotaGuardedTransport(inner, self.directory / 'platform_quota.json', self.context,
                 retained_extra=history['retained_account_hold'],
                 settlement_min_used=max(history['latest_saved_account_used'], binding['peer']['observed_used']))
-            self._client = SerialTransport(quota, guard)
+            self._client = SerialTransport(InvoiceTransport(quota, self.directory / 'billing'), guard)
         return self._client

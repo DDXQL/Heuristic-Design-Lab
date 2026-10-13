@@ -10,7 +10,7 @@
 
 离线准备存放在 `preparations/`，不使用runs中的writer锁，因此不会因本页离线重评H而阻止单成员页执行。保存真实来源副本、训练文件、用途授权、H重新评价、六份完整提示和组间差异。准备配置关闭dispatch，代表串行条件尚未满足，不代表用户授权被撤销。
 
-最终登记必须等单成员页的授权60次批次终止并解决结算。仅“聊天中断”或“没有锁”不算结束；检查封存的Search_complete/初始化失败凭证、ledger及platform_quota。存在对方writer锁、pending reservation、未知发送用量、未解决account halt时不发送。对方已完成的批次文件和实际新槽位随后绑定进本页history，保持祖先79槽位、未知token预留和原1,200万账户点预留，不因worktree重置。
+最终登记必须等单成员页的授权60次批次终止并解决结算。仅“聊天中断”或“没有锁”不算结束；检查封存的Search_complete/初始化失败或预算停止凭证、ledger及platform_quota。存在对方writer锁、pending reservation、未解决account halt时不发送。发送用量未知时仅接受已绑定且独立核对的唯一model/window/debit供应商失败凭证，保留未知token预留，不伪造响应usage。对方已完成的批次文件和实际新槽位随后绑定进本页history，保持祖先79槽位和原1,200万账户点预留，不因worktree重置。
 
 历史ledger inventory用于查变更和相同identity副本一致性，不能把全部历史恢复快照简单求和：不同恢复上下文中保留了相同祖先请求。已登记的三份不重叠祖先history为79槽位；最终加入单成员页本批新ledger及本页新ledger。两个批次上限为179/300，实际按封存账本算。实时账户30%边界与单请求保守预留仍由原QuotaGuard执行。
 
@@ -40,6 +40,6 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usa
 
 语法合法率与完整21train有效率分别报告。MIX单正项不是双成员；成员分数变化与赢家变化分开，成员对变化与权重变化分开。双成员恒定列记录为观察到的组合退化，其他“与单选效果相同”需要对照，不能从MIX字样推断收益。缺失的失败求解时间/h调用数保持unknown，不写0。
 
-账户扣费报告实际观测raw quota delta；未核实的点数到货币换算保持空值，不冒充人民币账单。外部账户请求可能影响账户差值，worktree串行检查不能认证所有外部程序；同时保存逐请求用量、配额窗口和结算证据。
+账户扣费同时报告实际观测raw quota delta与唯一供应商扣费凭证的platform units；未核实的点数到货币换算保持空值，不冒充人民币账单。使用本worktree独立的供应商发前/发后记录与模型/窗口/扣费匹配；无法匹配或实际门禁触发即停止。外部账户请求可能影响账户差值，worktree串行检查不能认证所有外部程序；同时保存逐请求用量、配额窗口和结算证据。
 
 本批只有一个训练种子，B出现组合代码不是收益证据；训练最优候选配对也不是独立泛化证据。当前授权不含validation/test、更多种子、更多代或新组合运算。

@@ -22,7 +22,7 @@ def save(path, value):
 def settled_peer(root):
     directory = root / 'runs/peer-authorized'
     protocol = {'config': {'real_requests_authorized': True, 'seeds': [201],
-        'total_request_cap': 60, 'purpose': 'research'}}
+        'total_request_cap': 60, 'purpose': 'research', 'provider': {'model': 'TEST-MODEL'}}}
     context = digest(protocol)
     save(directory / 'protocol.json', protocol)
     identity = digest({'config': protocol['config'], 'context': context})
@@ -50,6 +50,19 @@ class SerialRegistrationTests(unittest.TestCase):
     def test_no_writer_lock_does_not_imply_terminal(self):
         (self.directory / 'Search_complete.json').unlink()
         with self.assertRaisesRegex(BudgetStop, 'TERMINAL'):
+            peer_terminal_audit(self.peer)
+
+    def test_initialization_budget_stop_is_terminal_but_settlement_must_be_clear(self):
+        protocol = json.loads((self.directory / 'protocol.json').read_text())
+        (self.directory / 'Search_complete.json').unlink()
+        save(self.directory / 'r201/Initialization_status.json', seal({
+            'kind': 'Initialization_status', 'mode': 'real', 'context': digest(protocol),
+            'status': 'initialization_budget_stopped'}))
+        self.assertEqual(peer_terminal_audit(self.peer)['terminal'], {'INIT': 'initialization_budget_stopped'})
+        quota = json.loads((self.directory / 'platform_quota.json').read_text())
+        quota.update(halted=True, stop_reason='missing supplier invoice')
+        save(self.directory / 'platform_quota.json', quota)
+        with self.assertRaisesRegex(BudgetStop, 'missing supplier invoice'):
             peer_terminal_audit(self.peer)
 
     def test_pending_scope_or_multiple_authorized_batches_do_not_pass(self):
