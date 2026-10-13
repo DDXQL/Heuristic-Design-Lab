@@ -95,6 +95,8 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 ## 本分支：原单成员研究任务（2026-10-13）
 
-`codex/u-single-experiments` 从 checkpoint `243ad401bfd5ff64da338277112933323621de1f` 建立独立worktree，仅推进原单编号四组研究。新 [单成员入口](experiments/tier2/research_real_v1/run_single_experiments.py) 保持原运行/提示语义并增加只读来源与跨worktree账本检查；[具体配置与执行指南](experiments/tier2/research_real_v1/README.md#原单成员研究-worktree2026-10-13)提出 seed201/N5/共享新初始化≤20/四组各1代10槽位，最多60新请求。usage_v2的40次SELECT/MIX提案不适用于本任务。旧P组开发验收及旧候选重评仍为历史/工程证据；本次真实四组未开始，付费与旧H研究范围批准仍待用户明确确认。
+`codex/u-single-experiments` 从 checkpoint `243ad401bfd5ff64da338277112933323621de1f` 建立独立worktree，仅推进原单编号四组研究。新 [单成员入口](experiments/tier2/research_real_v1/run_single_experiments.py) 保持原运行/提示语义并增加只读来源与跨worktree账本检查；[具体配置与执行指南](experiments/tier2/research_real_v1/README.md#原单成员研究-worktree2026-10-13)提出 seed201/N5/共享新初始化≤20/四组各1代10槽位，最多60新请求。usage_v2的40次SELECT/MIX提案不适用于本任务。旧P组开发验收及旧候选重评仍为历史/工程证据；本次第一阶段付费与旧H研究范围已由用户明确批准；实际执行状态见下方2026-10-13记录。
 
 本页第一阶段已于2026-10-13由用户批准：原H研究用途确认人DDXQL、本页独占单成员真实调用、最多60新请求、仅训练；旧40次MIX批次挂起。新增账单核对不改变实验语义，原12,000,000点未知预留保留。实际进度与全量结果写本worktree新授权目录，未完成阶段不标成功。
+
+本任务当前真实结果：[阶段汇总](runs/single-ID-paired-training-20261013-authorized-v1/Stage_summary.md)、[全量结果](runs/single-ID-paired-training-20261013-authorized-v1/Single_results.json)。10条H研究范围确认/冻结及新协议10×21train重评已完成，makespan全部复现；新增1次INIT请求返回HTTP503，wire token/实际费用未知，供应商账单无匹配记录，额度前后均1557783点。0有效U/0重复，四组未开始；没有重发、MIX或validation/test。累计80/300占用槽位、79次确认发送；原1200万点和本次1200万点预留保留，下一次保守预留总额37557783>30000000而停止。该数是预留计算，不是已花费。授权剩59槽位，需可核实本次结算后继承计数恢复，不重新申请或重置批次。
