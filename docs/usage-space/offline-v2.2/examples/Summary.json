@@ -1,0 +1,270 @@
+{
+  "notice": "Handwritten engineering examples; no LLM generation, real population or benchmark performance evidence.",
+  "interface": "U-usage-v2-select-or-mix-20261012",
+  "schedule_member_count": 3,
+  "extra_K10_sources": "syntax/interface examples only; not evaluated on research H",
+  "complete_feasible_schedules": 5,
+  "deterministic_rechecks": 5,
+  "model_requests": 0,
+  "benchmark_files_opened": [],
+  "examples": [
+    {
+      "name": "constant-select",
+      "makespan": 11,
+      "first_action": {
+        "job": 1,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 4
+      },
+      "supports": [
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "weights": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "modes": [
+        0,
+        0,
+        0
+      ],
+      "h_calls": [
+        0,
+        0,
+        7
+      ],
+      "semantic_sha256": "a06caeb0b679f7da67654a8e7148ab33999f1eec1d68128713dd58dadb41298d"
+    },
+    {
+      "name": "score-select",
+      "makespan": 11,
+      "first_action": {
+        "job": 0,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 2
+      },
+      "supports": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "weights": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "modes": [
+        0,
+        0,
+        0
+      ],
+      "h_calls": [
+        6,
+        1,
+        0
+      ],
+      "semantic_sha256": "20edf031cceb11c42fe7b69d52200065ee7c4a4f6df4fd8ba7575e243f569241"
+    },
+    {
+      "name": "fixed-dual",
+      "makespan": 12,
+      "first_action": {
+        "job": 0,
+        "operation": 0,
+        "machine": 1,
+        "start": 0,
+        "end": 3
+      },
+      "supports": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "weights": [
+        [
+          0.6000000000000001,
+          0.4,
+          0.0
+        ],
+        [
+          0.6000000000000001,
+          0.4,
+          0.0
+        ],
+        [
+          0.6000000000000001,
+          0.4,
+          0.0
+        ]
+      ],
+      "modes": [
+        1,
+        1,
+        1
+      ],
+      "h_calls": [
+        7,
+        7,
+        0
+      ],
+      "semantic_sha256": "49137e6abe7c8fc7bd7f3c698a6c832f7f3196442cb98367e26d061192852c6b"
+    },
+    {
+      "name": "state-weights",
+      "makespan": 9,
+      "first_action": {
+        "job": 0,
+        "operation": 0,
+        "machine": 1,
+        "start": 0,
+        "end": 3
+      },
+      "supports": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "weights": [
+        [
+          0.6000000000000001,
+          0.4,
+          0.0
+        ],
+        [
+          0.46666666666666673,
+          0.5333333333333333,
+          0.0
+        ],
+        [
+          0.3333333333333334,
+          0.6666666666666666,
+          0.0
+        ]
+      ],
+      "modes": [
+        1,
+        1,
+        1
+      ],
+      "h_calls": [
+        8,
+        8,
+        0
+      ],
+      "semantic_sha256": "e64264d3a77e4e064fe632a6040e7427b383629018f6b9234f6b602a71985e48"
+    },
+    {
+      "name": "state-support-mode",
+      "makespan": 11,
+      "first_action": {
+        "job": 1,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 4
+      },
+      "supports": [
+        [
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "weights": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.5666666666666667,
+          0.4333333333333334,
+          0.0
+        ],
+        [
+          0.0,
+          0.59375,
+          0.40625000000000006
+        ]
+      ],
+      "modes": [
+        0,
+        1,
+        1
+      ],
+      "h_calls": [
+        2,
+        4,
+        5
+      ],
+      "semantic_sha256": "d5029a824b42b734d886a2b3a18b89e94a5db3753292233022923d882c7e84c2"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+--- A
++++ B
+@@ -58,7 +58,7 @@
+ Constant SELECT and single-member MIX are legal where the mode is permitted; do not force mixtures or switching.
+ These rules are engineering semantics, not evidence that combinations or any members perform better.
+ 
+-Permitted modes: SELECT (0) ONLY.
++Permitted modes: SELECT (0) OR MIX (1); at most two positive MIX weights.
+ K=10; ordered member ids 0 through 9.
+ H INFORMATION FOR OFFLINE U DESIGN ONLY (do NOT generate h):
+ The following interface defines h's SINGLE operation-machine action inputs, all in RAW, unnormalised units.

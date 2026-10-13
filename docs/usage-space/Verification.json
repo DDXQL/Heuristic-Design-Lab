@@ -1,0 +1,54 @@
+{
+  "validated_on_local_date": "2026-10-13",
+  "common_checkpoint": "243ad401bfd5ff64da338277112933323621de1f",
+  "branch": "codex/h-usage-space",
+  "python_version": "3.12.10 (main, Apr  8 2025, 11:35:47) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "packages": {
+    "numpy": "2.5.4",
+    "pytz": "2026.5",
+    "tqdm": "4.70.1"
+  },
+  "test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code:tests:. .venv/bin/python -m unittest -v test_h_usage_strategy_space test_U_usage_v2 test_research_execution test_state_scale_diagnostics test_v5_offline_preparation.V5PromptTests test_usage_v2_workflow.PairedWorkflowTests.test_context_changes_with_interface_H_weights_and_allowed_modes test_usage_v2_workflow.PairedWorkflowTests.test_inspectable_examples_are_fixtures_and_match_first_actions",
+  "tests_run": 57,
+  "tests_passed": 57,
+  "new_tests": 12,
+  "existing_regression_tests": 45,
+  "test_log": "Tests.python312.log",
+  "test_log_sha256": "feb7fb2da025cd603a8c36f2efd34f49802f730d614391dab7ab07531f98f41e",
+  "earlier_attempts": [
+    {
+      "runtime": "system Python3.13.3",
+      "tests_run": 27,
+      "passed": 27,
+      "note": "New and usage_v2 tests passed, but this was not checkpoint runtime."
+    },
+    {
+      "runtime": "system Python3.13.3",
+      "tests_run": 30,
+      "passed": 27,
+      "failed": 3,
+      "failure_tests": [
+        "test_constant_member_matches_frozen_schedule_and_failed_suffix_has_no_fitness",
+        "test_implicit_none_path_rejected_and_round_allocation_guard",
+        "test_diagnostic_timeout_cannot_invalidate_a_completed_primary_evaluation"
+      ],
+      "note": "Short per-instance deadline failures; all three passed on isolated rerun without code/deadline changes."
+    },
+    {
+      "runtime": "system Python3.13.3",
+      "operation": "full H-context prompt export",
+      "status": "rejected_before_output_creation",
+      "note": "AST identity keys differ across Python minor versions. Kept old keys intact; project Python3.12 matched all ten."
+    }
+  ],
+  "offline_bundle": "offline-v2.2/Manifest.json",
+  "offline_complete_feasible_schedules": 5,
+  "offline_deterministic_rechecks": 5,
+  "evidence_scope": "Handwritten toy execution and prompt contract coverage; no LLM-generated U or new method effect claim.",
+  "model_requests": 0,
+  "real_AB_batch_executed_here": false,
+  "benchmark_files_opened": [],
+  "formal_validation_used": false,
+  "formal_test_used": false,
+  "inherited_188_test_record": "Historical checkpoint evidence, not a 188-test rerun here."
+}

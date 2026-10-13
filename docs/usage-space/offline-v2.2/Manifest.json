@@ -1,0 +1,353 @@
+{
+  "common_checkpoint": "243ad401bfd5ff64da338277112933323621de1f",
+  "python_version": "3.12.10 (main, Apr  8 2025, 11:35:47) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "prompt_pack": {
+    "version": "FJSP-usage-prompts-v2.2-strategy-space-20261013",
+    "interface": "U-usage-v2-select-or-mix-20261012",
+    "language": "closed-numeric-return-tuples-v2-20261012",
+    "normalization": "single-raw-dual-current-action-minmax-scaled-fsum-v1",
+    "history": "largest-normalized-weight-lowest-id-v1",
+    "template_sha256": "1c880345e659bfb5bfcb5a001b4dfe8f66a0912d26c3a4c314e228cf4384a495",
+    "sections": {
+      "task": "9fc3fd393d404091fb44016ec4c2392ae8c65b89cab933817b64f43cbde22032",
+      "H_context": "ef7c9af6954a2323af61e928c1152548230d07a42de39206f90b2dcf146dbeac",
+      "cross": "d949cb1337220d50393ebbaadccaa7a37361eabc0f1b3504f29672fcc49325c3",
+      "mutate": "5b54bddeca465ab93cbebea3416cefb547081b3fdf284787ef4a4000caa15491",
+      "output": "4e9670941ce505c8241c3fbb40f540c21cf424fbee49e06c0da7787d0633538f",
+      "novelty": "ec20c6d9822c0032d755b3367af3672489e0d24f4ebf2e938a51478b68ef42b6"
+    },
+    "A_B_difference": "allowed_modes section only, before parent populations diverge",
+    "shared_initialization": "SELECT only, no H behavior, no training feedback",
+    "deduplication": "validated versioned AST only"
+  },
+  "H_prompt_context": {
+    "kind": "source-only-context",
+    "file": "docs/usage-space/H_context.source-only.json",
+    "sha256": "056d43fa2b1355196f6a1969eb84bac2e898aba0b75dc6ab589745f9d8c318e7",
+    "K": 10,
+    "notice": "H source used only to render prompts; no research-H scheduling or approval."
+  },
+  "prompt_comparison": [
+    {
+      "operator": "I1",
+      "changed_sections": [],
+      "A_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "B_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "A_bytes": 7796,
+      "B_bytes": 7796
+    },
+    {
+      "operator": "CROSS",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "164ae2f1eb3fecc0f39adff57854e39485cc6f712186b94f8573203694ae499d",
+      "B_sha256": "075cd670a47b5bef7132fc1fbcb3c1867aa364be4dc41535b1a2189f2df776e1",
+      "A_bytes": 21785,
+      "B_bytes": 21825
+    },
+    {
+      "operator": "MUTATE",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "1f589117fa34a85f4943aa9d80942b3a4e37b0ad5c173a02a29c58236b988555",
+      "B_sha256": "7d589c7f14ad54be945531ad097b64f5764fbd0a2f41f6c976cbee95bacc96c1",
+      "A_bytes": 20121,
+      "B_bytes": 20161
+    }
+  ],
+  "examples": {
+    "notice": "Handwritten engineering examples; no LLM generation, real population or benchmark performance evidence.",
+    "interface": "U-usage-v2-select-or-mix-20261012",
+    "schedule_member_count": 3,
+    "extra_K10_sources": "syntax/interface examples only; not evaluated on research H",
+    "complete_feasible_schedules": 5,
+    "deterministic_rechecks": 5,
+    "model_requests": 0,
+    "benchmark_files_opened": [],
+    "examples": [
+      {
+        "name": "constant-select",
+        "makespan": 11,
+        "first_action": {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 4
+        },
+        "supports": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        "weights": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "modes": [
+          0,
+          0,
+          0
+        ],
+        "h_calls": [
+          0,
+          0,
+          7
+        ],
+        "semantic_sha256": "a06caeb0b679f7da67654a8e7148ab33999f1eec1d68128713dd58dadb41298d"
+      },
+      {
+        "name": "score-select",
+        "makespan": 11,
+        "first_action": {
+          "job": 0,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 2
+        },
+        "supports": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "weights": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "modes": [
+          0,
+          0,
+          0
+        ],
+        "h_calls": [
+          6,
+          1,
+          0
+        ],
+        "semantic_sha256": "20edf031cceb11c42fe7b69d52200065ee7c4a4f6df4fd8ba7575e243f569241"
+      },
+      {
+        "name": "fixed-dual",
+        "makespan": 12,
+        "first_action": {
+          "job": 0,
+          "operation": 0,
+          "machine": 1,
+          "start": 0,
+          "end": 3
+        },
+        "supports": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          [
+            0.6000000000000001,
+            0.4,
+            0.0
+          ],
+          [
+            0.6000000000000001,
+            0.4,
+            0.0
+          ],
+          [
+            0.6000000000000001,
+            0.4,
+            0.0
+          ]
+        ],
+        "modes": [
+          1,
+          1,
+          1
+        ],
+        "h_calls": [
+          7,
+          7,
+          0
+        ],
+        "semantic_sha256": "49137e6abe7c8fc7bd7f3c698a6c832f7f3196442cb98367e26d061192852c6b"
+      },
+      {
+        "name": "state-weights",
+        "makespan": 9,
+        "first_action": {
+          "job": 0,
+          "operation": 0,
+          "machine": 1,
+          "start": 0,
+          "end": 3
+        },
+        "supports": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          [
+            0.6000000000000001,
+            0.4,
+            0.0
+          ],
+          [
+            0.46666666666666673,
+            0.5333333333333333,
+            0.0
+          ],
+          [
+            0.3333333333333334,
+            0.6666666666666666,
+            0.0
+          ]
+        ],
+        "modes": [
+          1,
+          1,
+          1
+        ],
+        "h_calls": [
+          8,
+          8,
+          0
+        ],
+        "semantic_sha256": "e64264d3a77e4e064fe632a6040e7427b383629018f6b9234f6b602a71985e48"
+      },
+      {
+        "name": "state-support-mode",
+        "makespan": 11,
+        "first_action": {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 4
+        },
+        "supports": [
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "weights": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.5666666666666667,
+            0.4333333333333334,
+            0.0
+          ],
+          [
+            0.0,
+            0.59375,
+            0.40625000000000006
+          ]
+        ],
+        "modes": [
+          0,
+          1,
+          1
+        ],
+        "h_calls": [
+          2,
+          4,
+          5
+        ],
+        "semantic_sha256": "d5029a824b42b734d886a2b3a18b89e94a5db3753292233022923d882c7e84c2"
+      }
+    ]
+  },
+  "source_sha256": {
+    "code/fjsp_usage/usage_v2/__init__.py": "5d8a22b5439e9d48488d498dc59757a3056e06d5f25de7076c541546c9a20a1b",
+    "code/fjsp_usage/usage_v2/candidates.py": "5b629f08df3960df18d24085a64732b43bee7567e5cf4e4c21f5ad4bac1f43b0",
+    "code/fjsp_usage/usage_v2/execution.py": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+    "code/fjsp_usage/usage_v2/prompts.py": "f53d7b0ffa03faf907d894970696737c04c9af01841ede7a8a726f4fd07b29fa",
+    "code/fjsp_usage/usage_v2/exports.py": "3d3d42a4d971b76c2b6927c37baff9f9c384157903160b4ab35e76160f22c226",
+    "code/fjsp_usage/usage_v2/strategy_examples.py": "1e7ede362519c79aba32b66ca0accf42e8c32ae30d0ed4b2054a91ebd3c9bff1",
+    "code/fjsp_usage/research/candidates.py": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+    "code/fjsp_usage/research/scheduler.py": "f855df163639424a55f4dbdc5cfc2dd7ea6f5decb8e53d782305d928212b2427",
+    "code/fjsp_usage/research_real/prompts.py": "104291219a6863687feb12afc79fc7096d51835c00e87e2cf53f097916a68486",
+    "code/fjsp_usage/research_real/initialization.py": "d7d7f2a10b1a436518cb06d6a7e1a76e6fc134f47721616bd71d9f8a1201288e",
+    "code/fjsp_usage/research_real/state_diagnostics.py": "6db01ff91f33ed6f85cc14c56ed5c2106630f80caf2b7d3909c7aa8d7043a0e4",
+    "code/fjsp_usage/offline_v2.py": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+    "code/llm4ad/task/optimization/fjsp_set/scheduler.py": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+    "code/llm4ad/task/optimization/fjsp_set/instances.py": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+    "tests/test_h_usage_strategy_space.py": "9ef19ad9e304eade86b439ab8b6c59a2cf71d0dd4151ebe130f2f110ed46f03c",
+    "experiments/tier2/usage_v2/offline_strategy_space.py": "a07614252c31d4a3da27d7bcfe36d8d1f825bee907b72abbd5cecda553b558eb"
+  },
+  "model_requests": 0,
+  "search_started": false,
+  "benchmark_files_opened": [],
+  "current_40_call_AB_batch": "not executed here; original single-experiments task is the sole executor",
+  "evidence_scope": "prompt contract coverage and handwritten offline behavior; not LLM generation or performance"
+}

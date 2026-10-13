@@ -1,0 +1,110 @@
+{
+  "prompt_pack": {
+    "version": "FJSP-usage-prompts-v2.2-strategy-space-20261013",
+    "interface": "U-usage-v2-select-or-mix-20261012",
+    "language": "closed-numeric-return-tuples-v2-20261012",
+    "normalization": "single-raw-dual-current-action-minmax-scaled-fsum-v1",
+    "history": "largest-normalized-weight-lowest-id-v1",
+    "template_sha256": "1c880345e659bfb5bfcb5a001b4dfe8f66a0912d26c3a4c314e228cf4384a495",
+    "sections": {
+      "task": "9fc3fd393d404091fb44016ec4c2392ae8c65b89cab933817b64f43cbde22032",
+      "H_context": "ef7c9af6954a2323af61e928c1152548230d07a42de39206f90b2dcf146dbeac",
+      "cross": "d949cb1337220d50393ebbaadccaa7a37361eabc0f1b3504f29672fcc49325c3",
+      "mutate": "5b54bddeca465ab93cbebea3416cefb547081b3fdf284787ef4a4000caa15491",
+      "output": "4e9670941ce505c8241c3fbb40f540c21cf424fbee49e06c0da7787d0633538f",
+      "novelty": "ec20c6d9822c0032d755b3367af3672489e0d24f4ebf2e938a51478b68ef42b6"
+    },
+    "A_B_difference": "allowed_modes section only, before parent populations diverge",
+    "shared_initialization": "SELECT only, no H behavior, no training feedback",
+    "deduplication": "validated versioned AST only"
+  },
+  "comparison": [
+    {
+      "operator": "I1",
+      "changed_sections": [],
+      "A_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "B_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "A_bytes": 7796,
+      "B_bytes": 7796
+    },
+    {
+      "operator": "CROSS",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "164ae2f1eb3fecc0f39adff57854e39485cc6f712186b94f8573203694ae499d",
+      "B_sha256": "075cd670a47b5bef7132fc1fbcb3c1867aa364be4dc41535b1a2189f2df776e1",
+      "A_bytes": 21785,
+      "B_bytes": 21825
+    },
+    {
+      "operator": "MUTATE",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "1f589117fa34a85f4943aa9d80942b3a4e37b0ad5c173a02a29c58236b988555",
+      "B_sha256": "7d589c7f14ad54be945531ad097b64f5764fbd0a2f41f6c976cbee95bacc96c1",
+      "A_bytes": 20121,
+      "B_bytes": 20161
+    }
+  ],
+  "parents": [
+    {
+      "id": "HANDWRITTEN_PREVIEW_0",
+      "candidate": {
+        "description": "Handwritten prompt preview only; not a real parent or population member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (progress + 0.0, progress + 0.1, progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9))\n",
+        "key": "b4ecb3081bbe6f5f047337816c7152e2770d651d0f62a91287aa7213436d2c5c",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "HANDWRITTEN_PREVIEW_1",
+      "candidate": {
+        "description": "Handwritten prompt preview only; not a real parent or population member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (progress + 0.1, progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0))\n",
+        "key": "d8aa0d2765f049e2f99c1b2f5c52934fb2947954b66a7116f06693c748f593c8",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "HANDWRITTEN_PREVIEW_2",
+      "candidate": {
+        "description": "Handwritten prompt preview only; not a real parent or population member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1))\n",
+        "key": "5ba59f56908c30d736a130edb4d5053900bb7cb9516df677e03fa4febd392baf",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "HANDWRITTEN_PREVIEW_3",
+      "candidate": {
+        "description": "Handwritten prompt preview only; not a real parent or population member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1, progress + 0.2))\n",
+        "key": "41b84dd7ce9c402d590a646d90712202ed38397a0d8101a193b654ee8c190de7",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "HANDWRITTEN_PREVIEW_4",
+      "candidate": {
+        "description": "Handwritten prompt preview only; not a real parent or population member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1, progress + 0.2, progress + 0.3))\n",
+        "key": "d75cb42801d27bc02d4c2b4da589ceca0682e019f7de3c6d409e5374bf7f5598",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    }
+  ],
+  "notice": "Full first initialization prompt has empty archive. CROSS/MUTATE use same HANDWRITTEN preview parents only; never imported into real P0. Later exact prompts bind actual archived/selected source in request journals.",
+  "performance_feedback": false
+}

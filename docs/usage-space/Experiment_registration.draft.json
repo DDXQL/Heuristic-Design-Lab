@@ -1,0 +1,40 @@
+{
+  "registration_id": "H-usage-space-v2.2-followup-draft-20261013",
+  "status": "DESIGN_DRAFT_NOT_AUTHORIZED_NOT_EXECUTABLE",
+  "owner_branch": "codex/h-usage-space",
+  "common_checkpoint": "243ad401bfd5ff64da338277112933323621de1f",
+  "prompt_version": "FJSP-usage-prompts-v2.2-strategy-space-20261013",
+  "research_H_scope_approval": null,
+  "model_requests_authorized": false,
+  "executions_started": 0,
+  "new_model_requests": 0,
+  "run_directory": null,
+  "seed_list": null,
+  "population_size": null,
+  "generations": null,
+  "phase_request_caps": null,
+  "token_budget": null,
+  "study": {
+    "primary_pair": {"S-score": [0], "S-mix": [0, 1]},
+    "shared_initialization": "SELECT only; identical source and no H behavior context",
+    "common_inputs": "original seven scalars; previous actual dominant id",
+    "combination_rule": "existing single raw / dual current-action min-max nonnegative weighted sum",
+    "fitness": "complete-instance mean(-Cmax/unrounded-V5-LB); any failed instance invalidates candidate",
+    "recommended_paired_seed_count": 5,
+    "original_single_member_comparison": "same ordered H/state/LB/actions; legacy audit preserves provenance; historical prompt/budget differences reported",
+    "separate_followups": ["v2.1 vs v2.2 prompt generation coverage", "fixed vs state-dependent weights", "new aggregation semantics"]
+  },
+  "execution_gates": [
+    "approved fixed-H identity and scope",
+    "new method/prompt/source and dataset fingerprints",
+    "registered seeds, generations, model settings and request/token budget",
+    "single executor and independent new ledger",
+    "predeclared validation selection and frozen-test rules"
+  ],
+  "original_seed301_40_call_AB": {
+    "executor_branch": "codex/u-single-experiments",
+    "executed_here": false,
+    "config_copied_here": false,
+    "notice": "This design is not authorization or a second execution of the original batch."
+  }
+}

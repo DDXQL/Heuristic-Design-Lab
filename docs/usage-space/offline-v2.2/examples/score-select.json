@@ -1,0 +1,356 @@
+{
+  "notice": "Handwritten engineering examples; no LLM generation, real population or benchmark performance evidence.",
+  "candidate": {
+    "description": "Handwritten engineering examples; no LLM generation, real population or benchmark performance evidence.",
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    dispersion = remaining_work_std / (1.0 + remaining_work_mean)\n    q0 = 1.0 - progress\n    q1 = progress + 2.0 * dispersion * dispersion\n    if previous_heuristic == 1:\n        q1 = q1 + 0.05\n    return (0, (q0, q1, -2))\n",
+    "key": "ff4e3578469d8626e2073e02a85607d563b9b60ba954a0493b8a6a5eec50f423",
+    "kind": "U",
+    "interface_version": "U-usage-v2-select-or-mix-20261012",
+    "member_count": 3
+  },
+  "result": {
+    "schedule": {
+      "operations": [
+        {
+          "job": 0,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 2
+        },
+        {
+          "job": 0,
+          "operation": 1,
+          "machine": 0,
+          "start": 2,
+          "end": 7
+        },
+        {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 7,
+          "end": 11
+        }
+      ],
+      "makespan": 11
+    },
+    "selected_members": [
+      0,
+      0,
+      1
+    ],
+    "lower_bound": 7.0,
+    "score": -1.5714285714285714,
+    "decisions": [
+      [
+        0,
+        [
+          1.0,
+          0.013148283418553681,
+          -2
+        ],
+        [
+          0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        0
+      ],
+      [
+        0,
+        [
+          0.6666666666666667,
+          0.3349659863945578,
+          -2
+        ],
+        [
+          0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        0
+      ],
+      [
+        0,
+        [
+          0.33333333333333337,
+          0.6666666666666666,
+          -2
+        ],
+        [
+          1
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        1
+      ]
+    ],
+    "member_calls": [
+      6,
+      1,
+      0
+    ]
+  },
+  "trace": [
+    {
+      "step": 0,
+      "state": {
+        "progress": 0.0,
+        "candidate_pair_ratio": 1.0,
+        "remaining_work_mean": 0.4230769230769231,
+        "remaining_work_std": 0.11538461538461536,
+        "machine_ready_mean": 0.0,
+        "machine_ready_std": 0.0,
+        "previous_heuristic": -1
+      },
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "mode": 0,
+      "vector": [
+        1.0,
+        0.013148283418553681,
+        -2
+      ],
+      "support": [
+        0
+      ],
+      "weights": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 0,
+      "member_id": 0,
+      "action_count": 3,
+      "h_calls": {
+        "0": 3
+      },
+      "ranges": {},
+      "actions_truncated": false,
+      "actions": [
+        {
+          "job": 0,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 2,
+          "raw_scores": {
+            "0": 10.0
+          },
+          "normalized_scores": null,
+          "score": 10.0
+        },
+        {
+          "job": 0,
+          "operation": 0,
+          "machine": 1,
+          "start": 0,
+          "end": 3,
+          "raw_scores": {
+            "0": 6.0
+          },
+          "normalized_scores": null,
+          "score": 6.0
+        },
+        {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 0,
+          "end": 4,
+          "raw_scores": {
+            "0": 0.0
+          },
+          "normalized_scores": null,
+          "score": 0.0
+        }
+      ],
+      "chosen": {
+        "job": 0,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 2
+      },
+      "chosen_score": 10.0
+    },
+    {
+      "step": 1,
+      "state": {
+        "progress": 0.3333333333333333,
+        "candidate_pair_ratio": 1.0,
+        "remaining_work_mean": 0.34615384615384615,
+        "remaining_work_std": 0.038461538461538464,
+        "machine_ready_mean": 0.07692307692307693,
+        "machine_ready_std": 0.07692307692307693,
+        "previous_heuristic": 0
+      },
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "mode": 0,
+      "vector": [
+        0.6666666666666667,
+        0.3349659863945578,
+        -2
+      ],
+      "support": [
+        0
+      ],
+      "weights": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 0,
+      "member_id": 0,
+      "action_count": 3,
+      "h_calls": {
+        "0": 3
+      },
+      "ranges": {},
+      "actions_truncated": false,
+      "actions": [
+        {
+          "job": 0,
+          "operation": 1,
+          "machine": 0,
+          "start": 2,
+          "end": 7,
+          "raw_scores": {
+            "0": 1.0
+          },
+          "normalized_scores": null,
+          "score": 1.0
+        },
+        {
+          "job": 0,
+          "operation": 1,
+          "machine": 1,
+          "start": 2,
+          "end": 8,
+          "raw_scores": {
+            "0": 1.0
+          },
+          "normalized_scores": null,
+          "score": 1.0
+        },
+        {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 2,
+          "end": 6,
+          "raw_scores": {
+            "0": 0.0
+          },
+          "normalized_scores": null,
+          "score": 0.0
+        }
+      ],
+      "chosen": {
+        "job": 0,
+        "operation": 1,
+        "machine": 0,
+        "start": 2,
+        "end": 7
+      },
+      "chosen_score": 1.0
+    },
+    {
+      "step": 2,
+      "state": {
+        "progress": 0.6666666666666666,
+        "candidate_pair_ratio": 0.3333333333333333,
+        "remaining_work_mean": 0.3076923076923077,
+        "remaining_work_std": 0.0,
+        "machine_ready_mean": 0.2692307692307692,
+        "machine_ready_std": 0.2692307692307692,
+        "previous_heuristic": 0
+      },
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "mode": 0,
+      "vector": [
+        0.33333333333333337,
+        0.6666666666666666,
+        -2
+      ],
+      "support": [
+        1
+      ],
+      "weights": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "dominant": 1,
+      "member_id": 1,
+      "action_count": 1,
+      "h_calls": {
+        "1": 1
+      },
+      "ranges": {},
+      "actions_truncated": false,
+      "actions": [
+        {
+          "job": 1,
+          "operation": 0,
+          "machine": 0,
+          "start": 7,
+          "end": 11,
+          "raw_scores": {
+            "1": 100.0
+          },
+          "normalized_scores": null,
+          "score": 100.0
+        }
+      ],
+      "chosen": {
+        "job": 1,
+        "operation": 0,
+        "machine": 0,
+        "start": 7,
+        "end": 11
+      },
+      "chosen_score": 100.0
+    }
+  ],
+  "usage": {
+    "interface_version": "U-usage-v2-select-or-mix-20261012",
+    "steps": 3,
+    "SELECT_steps": 3,
+    "MIX_steps": 0,
+    "dual_member_steps": 0,
+    "single_member_steps": 3,
+    "participation_counts": [
+      2,
+      1,
+      0
+    ],
+    "weight_mass": [
+      2.0,
+      1.0,
+      0.0
+    ],
+    "dominant_counts": [
+      2,
+      1,
+      0
+    ],
+    "dominant_switches": 1,
+    "h_calls": [
+      6,
+      1,
+      0
+    ],
+    "notice": "dominant ids do not describe all members or weights; switching is not rewarded"
+  },
+  "deterministic_recheck": true
+}
