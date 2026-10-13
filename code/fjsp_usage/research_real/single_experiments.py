@@ -54,6 +54,11 @@ def budget_inventory(roots, *, exclude=None):
     return inventory
 
 
+def ensure_no_new_paid_ledgers(origin_inventory, inventory):
+    if set(inventory) - set(origin_inventory):
+        raise BudgetStop('new paid ledger outside original history; cannot reuse first-stage authorization in a fresh batch')
+
+
 def verify_sources(root, origin, expected):
     root, origin = Path(root), Path(origin)
     for name, sha in expected.items():

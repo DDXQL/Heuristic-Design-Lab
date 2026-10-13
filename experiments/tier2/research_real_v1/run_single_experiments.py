@@ -30,7 +30,7 @@ from fjsp_usage.research_real.locking import RunLock
 from fjsp_usage.research_real.preparation import preview_parents
 from fjsp_usage.research_real.prompts import build_prompt, prompt_sections, prompt_manifest
 from fjsp_usage.research_real.single_experiments import (VERSION, Guard, GuardedTransport,
-    file_hashes, verify_sources, budget_inventory, worktree_roots, declaration_pins)
+    file_hashes, verify_sources, budget_inventory, worktree_roots, declaration_pins, ensure_no_new_paid_ledgers)
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from fjsp_usage.research_real.training_report import write_training_report
 from fjsp_usage.research_real.workflow import Workflow, ARMS
@@ -99,6 +99,8 @@ def offline_prepare(directory, origin, config_path):
     inventory = budget_inventory(worktree_roots(ROOT))
     config = ExperimentConfig.from_dict(json.loads(config_path.read_text())) if config_path else default_config(source)
     check_scale(config)
+    if config.real_requests_authorized:
+        ensure_no_new_paid_ledgers(budget_inventory([origin]),inventory)
     if config.conditional_research['source_files_sha256'] != declaration_pins(source):
         raise ValueError('new registration must pin every current read-only source file')
     dataset = StagedDataset(ROOT / 'data/fjsp_manifest.json', project_root=ROOT, mode='real')

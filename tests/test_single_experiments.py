@@ -9,7 +9,7 @@ from unittest.mock import patch
 from fjsp_usage.research.candidates import U_ARGS, CandidateError, validate_code, compile_candidate
 from fjsp_usage.research_real.budget import BudgetStop
 from fjsp_usage.research_real.single_experiments import (
-    VERSION, file_hashes, verify_sources, budget_inventory, Guard, GuardedTransport, declaration_pins)
+    VERSION, file_hashes, verify_sources, budget_inventory, Guard, GuardedTransport, declaration_pins, ensure_no_new_paid_ledgers)
 
 
 class SingleSourceTests(unittest.TestCase):
@@ -30,6 +30,11 @@ class SingleSourceTests(unittest.TestCase):
         self.assertIn('root-note.log',pins)
         self.assertNotIn('root-note.log',declaration_pins(pins))
         self.assertIn('old/budget.json',declaration_pins(pins))
+
+    def test_first_stage_authorization_cannot_register_after_new_paid_ledger(self):
+        ensure_no_new_paid_ledgers({'old':'hash'},{'old':'hash'})
+        with self.assertRaises(BudgetStop):
+            ensure_no_new_paid_ledgers({'old':'hash'},{'old':'hash','paid-first-stage':'new'})
 
     def test_read_only_source_and_copy_match(self):
         verify_sources(self.root,self.origin,self.pins)
