@@ -99,6 +99,14 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 本页第一阶段已于2026-10-13由用户批准：原H研究用途确认人DDXQL、本页独占单成员真实调用、最多60新请求、仅训练；旧40次MIX批次挂起。新增账单核对不改变实验语义，原12,000,000点未知预留保留。实际进度与全量结果写本worktree新授权目录，未完成阶段不标成功。
 
-本任务当前真实结果：[阶段汇总](runs/single-ID-paired-training-20261013-authorized-v1/Stage_summary.md)、[全量结果](runs/single-ID-paired-training-20261013-authorized-v1/Single_results.json)。10条H研究范围确认/冻结及新协议10×21train重评已完成，makespan全部复现；新增1次INIT请求返回HTTP503，wire token/实际费用未知，供应商账单无匹配记录，额度前后均1557783点。0有效U/0重复，四组未开始；没有重发、MIX或validation/test。累计80/300占用槽位、79次确认发送；原1200万点和本次1200万点预留保留，下一次保守预留总额37557783>30000000而停止。该数是预留计算，不是已花费。授权剩59槽位，需可核实本次结算后继承计数恢复，不重新申请或重置批次。
+本任务当前真实结果：[阶段汇总](runs/single-ID-paired-training-20261013-authorized-v1/Stage_summary.md)、[全量结果](runs/single-ID-paired-training-20261013-authorized-v1/Single_results.json)。10条H研究范围确认/冻结及新协议10×21train重评已完成，makespan全部复现；新增1次INIT请求返回HTTP503，wire token/实际费用未知，供应商账单无匹配记录，额度前后均1557783点。0有效U/0重复，四组未开始；没有重发、MIX或validation/test。累计80/300占用槽位、79次确认发送；原1200万点和本次1200万点预留保留，下一次保守预留总额37557783>30000000而停止。该数是预留计算，不是已花费。该阶段未用59槽位已于2026-10-14退役，不再续接；失败、未知费用和原预留不变。
 
 2026-10-14只读结算审计见[审计报告](runs/single-ID-settlement-audit-20261014-v1/Audit_report.md)。本轮模型请求0；token日志无新503记录，完整用户日志未成功读取，费用与wire usage仍未知，原24,000,000点占用保留。原12,000,000单次缓冲并非供应商上限。另确认发送前已有requested_model_listed=false而被漏检；当前key模型列表仍无gpt-5.6-sol，历史codex-deafult计费组不再出现在公开模型enable_groups，原模型访问需恢复后才续接。提交了未批准/未应用的[预算风险草案](runs/single-ID-settlement-audit-20261014-v1/Reservation_change_proposal.json)：不改30,000,000上限/300槽位/原60次授权，旧INIT000034预留不变；只提议对已发503风险占用和新请求包络作显式版本化调整。它不把未知结算为0，不授权换模型/分组。仅7项metadata/风险算术检查；研究代码、数据、H/U及原运行记录未改。
+
+## 当前模型迁移批次（2026-10-14）
+
+用户明确批准后续统一Leaf `gpt-6.1-sol`。旧gpt-5.6-sol阶段按模型访问失败中止，不将其候选/剩余授权混入新批次。新[迁移入口](experiments/tier2/research_real_v1/run_single_model_migration.py)使用原单编号/v5-state-bounds、固定既有10H及原技术审查，研究用途确认DDXQL；新共享初始化，不导入旧U。seed201、N5、初始化最多20，B0/B1/B2/P各一代10槽位，正式生成最多60，另有最多1次短诊断。诊断不进入种群；失败不重试/换模型，初始化不足5停止；仅21train。
+
+新版本`single-ID-leaf-gpt61-migration-v1-20261014`：80个历史槽位、79确认发送、两个旧未知账户预留共2400万点及全部未知token继续保留；新批次最多61槽位，总最大141/300。新费率仅用于工程风险包络：公开tiered表达式两档各类输入最大系数5、输出15，唯一公开支持组codex-deafult倍率0.5，quota_per_unit=500000；输入max(65536,提示UTF8字节+4096)、输出32768、两倍安全系数并向上取整千点，短提示预留410000点，单次上限1000000。此值不是供应商硬上界或已花费用。每次检查实际余额及模型/分组/费率，实际账单按供应商ID、模型、时间窗、分组和扣额核验；新未知结算停发，旧预留不释放。300槽位/3000万点边界不变，美元/人民币换算不确定。
+
+迁移相关55项本地检查通过；本段登记准备状态，实际诊断/训练结果以新目录`runs/single-ID-gpt61-paired-training-20261014-v1/`为准。旧40次SELECT/MIX方案仍挂起。本页独占真实调用，结束后保存`Exclusive_call_handoff.json`供其他worktree核对。

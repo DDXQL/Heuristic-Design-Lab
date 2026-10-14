@@ -283,3 +283,24 @@ PYTHONPATH=code .venv/bin/python -B -m unittest discover -s tests -p test_settle
 /api/log/token只代表当前key近期日志；本部署p、page_size、时间参数没有实际筛选效果，不能据此声称遍历账户完整分页。/api/log/self需另有适当管理会话/权限，此key查询未成功。新GET返回的x-oneapi-request-id不是旧POST的供应商ID；Chat请求没有转发本地global_key，旧503未保存供应商header/body，不能补造请求ID或零收费证明。
 
 当前原批次仍halted。模型缺席发送前GET列表本应拦截，昨日漏检已记录；恢复必须确认原gpt-5.6-sol/供应商/分组，禁止静默fallback。1200万点只是本地保守值。预算调整草案仅保存在runs、未批准未应用；使用已知prompt字节及当前公开最坏系数推导风险包络，输出32768/额外4096/费率适用性均未获供应商硬保证。具体数值、风险、需要供应商提供的结算及模型凭证见[审计报告](../../../runs/single-ID-settlement-audit-20261014-v1/Audit_report.md)，不是生产续接入口。原60次授权有效、已发1、余59、累计80槽位，不重发或重置。
+
+## gpt-6.1-sol单成员迁移（2026-10-14）
+
+只使用新目录，原gpt-5.6-sol阶段剩余59次授权退役；原503与未知预留原样保留。诊断≤1和正式生成≤60共用新账本，累计历史80+新增≤61，账户3000万点上限及2400万点历史未知占用不变。新请求采用模型专属工程包络，不以公开费率冒充账单/供应商硬限额。完整训练评价、四组定义和v5-state-bounds提示保持。
+
+```bash
+.venv/bin/python experiments/tier2/research_real_v1/run_single_model_migration.py prepare \
+  --run-dir runs/single-ID-gpt61-paired-training-20261014-v1 \
+  --origin-root ../FJSP-Heuristic-Research
+.venv/bin/python experiments/tier2/research_real_v1/run_single_model_migration.py execute \
+  --run-dir runs/single-ID-gpt61-paired-training-20261014-v1 \
+  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local
+```
+
+`prepare`只重评10H×21train、绑定历史/身份并冻结；要求新目录。`execute`先唯一短诊断：精确响应型号、完整文本/usage、实际扣额及匹配账单全部通过后才初始化及四组演化。失败/重复占槽位，不重发/补员；没有validation/test入口。归档包含代码、提示、配置、训练文件，原运行记录不改。已发送诊断/生成从日志恢复，不再次发送相同身份；终止状态不可视为已完成比较。
+
+相关离线检查：
+
+```bash
+PYTHONPATH=code:tests .venv/bin/python -m unittest test_model_migration test_single_billing test_settlement_audit test_platform_quota_guard test_openai_chat_transport test_chat_stream_transport test_conditional_research test_single_experiments test_single_report
+```

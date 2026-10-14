@@ -50,7 +50,7 @@ def rows_from(body):
     return rows
 
 
-def extract(body,kind):
+def extract(body,kind,target_model="gpt-5.6-sol"):
     result={'success':body.get('success',body.get('code')) is True,
             'top_keys':sorted(body),'data_shape':type(body.get('data')).__name__}
     data=body.get('data')
@@ -68,20 +68,20 @@ def extract(body,kind):
     elif kind=='pricing':
         models=data if isinstance(data,list) else (data.get('model',[]) if isinstance(data,dict) else body.get('model',[]))
         result['models']=[{k:v for k,v in m.items() if k in ('model_name','quota_type','model_ratio','model_price','completion_ratio','enable_groups','billing_mode','billing_expr')}
-                          for m in models if isinstance(m,dict) and m.get('model_name')=='gpt-5.6-sol']
+                          for m in models if isinstance(m,dict) and m.get('model_name')==target_model]
         for name in ('group_ratio','pricing_version'):
             if name in body:result[name]=body[name]
             elif isinstance(data,dict) and name in data:result[name]=data[name]
     elif kind=='models' and isinstance(data,list):
         if 'success' not in body and 'code' not in body:result['success']=True
         result['model_count']=len(data)
-        result['locked_model_listed']=any(isinstance(row,dict) and row.get('id')=='gpt-5.6-sol' for row in data)
+        result['locked_model_listed']=any(isinstance(row,dict) and row.get('id')==target_model for row in data)
     elif kind=='status' and isinstance(data,dict):
         result['public_fields']={k:data[k] for k in ('version','quota_per_unit','quota_display_type','display_in_currency','price') if k in data}
     return result
 
 
-def get_metadata(secret,path,kind,*,connection_factory=http.client.HTTPSConnection,authenticated=True):
+def get_metadata(secret,path,kind,*,connection_factory=http.client.HTTPSConnection,authenticated=True,target_model="gpt-5.6-sol"):
     parts=urlsplit(path)
     if parts.scheme or parts.netloc or parts.path not in ALLOWED_PATHS or parts.fragment or (secret and secret in path):
         raise ValueError('allowlisted same-origin GET only; no secret in URL')
@@ -99,7 +99,7 @@ def get_metadata(secret,path,kind,*,connection_factory=http.client.HTTPSConnecti
         if response.status==200:
             body=json.loads(raw)
             if not isinstance(body,dict):raise ValueError('metadata must be object')
-            result.update(extract(body,kind))
+            result.update(extract(body,kind,target_model))
         else:result['success']=False
     except Exception as exc:result.update(success=False,error_type=type(exc).__name__)
     finally:connection.close()

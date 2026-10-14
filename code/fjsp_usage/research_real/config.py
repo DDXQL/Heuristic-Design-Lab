@@ -277,6 +277,8 @@ class ExperimentConfig:
                   'H/search': self.H_generations * self.H_attempts}
         for seed in self.seeds:
             result[f'r{seed}/init'] = self.initialization_cap
+            if self.conditional_research and self.conditional_research.get('model_migration'):
+                result[f'r{seed}/diagnostic'] = 1
             for arm in self.search_arms():
                 result[f'r{seed}/{arm}'] = self.generations * self.attempts_per_generation
         return result

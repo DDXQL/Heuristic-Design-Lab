@@ -13,13 +13,18 @@ from .assets import check_seal, load_h, checked_candidate, check_result, validat
 from .budget import BudgetStop
 
 VERSION = 'conditional-fixed-existing-H-v1-20261011'
+MIGRATION_VERSION = 'conditional-fixed-existing-H-model-migration-v2-20261014'
 
 
 def validate_declaration(config):
     d = config.conditional_research
     fields = {'version','source_run','source_files_sha256','history_batches',
               'lifetime_request_cap','scope_approval','baseline_policy','holdout_policy'}
-    if (not isinstance(d,dict) or set(d)!=fields or d['version']!=VERSION
+    if isinstance(d,dict) and d.get('version')==MIGRATION_VERSION:
+        fields.add('model_migration')
+        from .model_migration import validate_migration
+        validate_migration(config)
+    if (not isinstance(d,dict) or set(d)!=fields or d['version'] not in (VERSION,MIGRATION_VERSION)
             or config.mode!='real' or config.purpose!='research'
             or config.development_h_source or config.development_continuation_source or config.development_acceptance
             or d['lifetime_request_cap']!=300 or config.platform_quota_ceiling!=30000000
@@ -67,7 +72,10 @@ def check_origin(root, config, dataset):
     check_seal(source,kind='H_frozen',mode='real',context=digest(old))
     if old['dataset']!=dataset.metadata or old['config']['instance_timeout']!=config.instance_timeout:
         raise ValueError('conditional source requires identical data order/hash and evaluation deadline')
-    if old['config']['provider']!=config.payload()['provider']:
+    if d['version']==MIGRATION_VERSION:
+        from .model_migration import check_provider_migration
+        check_provider_migration(config,old,docs)
+    elif old['config']['provider']!=config.payload()['provider']:
         raise ValueError('conditional source cannot silently change provider/model/parameters')
     members=load_h(source,mode='real',context=digest(old),size=config.H_size,
         names=dataset.names['train'],review_timeout=config.review_timeout)
@@ -145,7 +153,7 @@ def history_summary(root, config):
             final=not r.get('send_confirmed',False); proof=None
             if r.get('send_confirmed'):
                 z=[v for v in zero_proof['records'] if v.get('type')==5 and v.get('quota')==0
-                   and v.get('model_name')==config.provider.model and v.get('request_id')
+                   and v.get('model_name')==old['config']['provider']['model'] and v.get('request_id')
                    and q.get('started_at',float('inf'))<=v.get('created_at',0)<=q.get('finished_at',-30)+30]
                 if len(z)==1: final=True; proof=z[0]
                 s=settlement.get(key) if run==d['source_run'] else None
@@ -157,7 +165,7 @@ def history_summary(root, config):
                     match=[v for v in body['records'] if v.get('request_id')==s['proof']['provider_request_id']]
                     if (len(match)!=1 or match[0]!=s['invoice'] or match[0].get('type')!=2
                             or type(match[0].get('quota')) is not int or match[0]['quota']<0
-                            or match[0].get('model_name')!=config.provider.model
+                            or match[0].get('model_name')!=old['config']['provider']['model']
                             or not q.get('started_at',float('inf'))<=match[0].get('created_at',0)<=q.get('finished_at',-30)+30):
                         raise ValueError('failed-request invoice does not match model/window/id')
                     final=True; proof=match[0]

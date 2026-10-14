@@ -27,7 +27,7 @@ def query_invoices(secret):
         body=json.loads(raw);data=body.get('data',[])
         if isinstance(data,dict):data=data.get('items',data.get('data',data.get('logs',[])))
         if not isinstance(data,list) or body.get('success',body.get('code')) is not True:return result
-        fields=('id','created_at','type','model_name','quota','prompt_tokens','completion_tokens','use_time','request_id')
+        fields=('id','created_at','type','model_name','quota','prompt_tokens','completion_tokens','use_time','request_id','group')
         for row in data:
             if not isinstance(row,dict):raise ValueError('invalid invoice row')
             result['records'].append({k:(row[k].replace(secret,'[REDACTED]') if isinstance(row[k],str) else row[k])
@@ -92,7 +92,13 @@ class InvoiceTransport:
             if not account or not account.get('send_confirmed'):raise BudgetStop('request not confirmed sent; preserve slot and do not retry')
             # Chat response IDs need not be the gateway invoice request IDs;
             # use exclusive dispatch, before/after identity set and exact debit.
-            invoice=match_invoice(before,audit['after'],account,self.inner.config.provider.model,failed=error is not None)
+            metadata=(getattr(error,'metadata',{}) or {}) if error else reply.get('metadata',{})
+            audit['response_metadata']=metadata
+            invoice=match_invoice(before,audit['after'],account,self.inner.config.provider.model,
+                failed=error is not None,response_id=metadata.get('gateway_request_id'))
+            migration=(getattr(self.inner.config,'conditional_research',None) or {}).get('model_migration')
+            if migration and invoice.get('group')!=migration['risk_policy']['group']:
+                raise BudgetStop('invoice group differs from pinned model tariff; preserve reservation')
             audit.update(status='invoice_account_matched',invoice=invoice,actual_platform_units=invoice['quota'])
             if self.inner.data['halted']:
                 reason=self.inner.data.get('stop_reason')

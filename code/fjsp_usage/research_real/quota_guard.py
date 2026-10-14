@@ -103,13 +103,16 @@ class QuotaGuardedTransport:
         self.save()
         return quota
 
+    def reservation_for(self, prompt):
+        return self.config.platform_quota_reservation
+
     def preflight(self, prompt):
         hold = self.check_retained()
         self.transport.preflight(prompt)
         if self.data['halted']:
             raise BudgetStop(self.data['stop_reason'])
         quota = self.balance(allow_cached=True)
-        reserve = self.config.platform_quota_reservation
+        reserve = self.reservation_for(prompt)
         if quota['total_used'] + hold + reserve > self.config.platform_quota_ceiling or quota['total_available'] < hold + reserve:
             self.halt('insufficient account quota for conservative next-request reservation')
             raise BudgetStop(self.data['stop_reason'])
@@ -124,7 +127,7 @@ class QuotaGuardedTransport:
             raise BudgetStop('quota guard forbids repeated dispatch')
         self.preflight(prompt)
         before = self.data['observed_used']
-        record = {'status': 'pending', 'before_used': before, 'reserved': self.config.platform_quota_reservation,
+        record = {'status': 'pending', 'before_used': before, 'reserved': self.reservation_for(prompt),
                   'send_confirmed': False, 'started_at': time.time()}
         self.data['records'][key] = record
         self.save()
