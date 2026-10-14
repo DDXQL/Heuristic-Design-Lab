@@ -267,3 +267,19 @@ prepare 离线完整重评10条H，保存代码/提示/配置快照、数据哈�
 单成员入口新增 `--env-file`：仅 initialize/search 从明确的既有凭证路径加载到当前进程，凭证不复制或归档。每请求保存 `/api/log/token` 的安全字段及额度变化；唯一新账单匹配模型、发送时间窗口、实际扣额后才认证平台成本。仅对已认证账单的普通失败恢复继续，保留原失败、未知wire usage及token预留。其他停账原因/无法匹配账单不绕过。生成参数、提示、状态、评价和选择未改变。`results` 导出全部响应/源码、失败/重复、完整逐实例训练结果、描述性配对比较和逐请求/候选平台单位；没有美元/人民币换算。
 
 第一阶段当前停止记录见 [Stage_summary](../../../runs/single-ID-paired-training-20261013-authorized-v1/Stage_summary.md)。不是初始化20次耗尽，也不是重复率证据；唯一请求HTTP503且没有最终费用凭证。真实恢复前须取得本次可归属最终账单，核对账户后只释放有证据的本次预留，历史INIT000034的预留仍保留。run专用 `reconcile_first_failure.py` 默认dry-run，当前实际凭证会拒绝；apply路径尚未在真实结算凭证上验证。恢复须继承INIT cursor=1和本批剩59槽位，禁止重发000000/新目录重置账本。该脚本保存原停止记录/费用核验历史，只恢复结算门禁，不改变代码、提示、H/U或评价。
+
+### 只读结算范围核对（2026-10-14）
+
+新增独立 [audit_single_settlement.py](../../../tools/audit_single_settlement.py) 位于tools，未加入冻结评价/搜索代码闭包。只执行allowlist同源GET，不发模型请求、不跟随重定向、不把密钥放URL、不改账本。写新的本地审计目录；没有供应商匹配记录时保持未知。
+
+```bash
+.venv/bin/python -B tools/audit_single_settlement.py \
+  --run-dir runs/single-ID-paired-training-20261013-authorized-v1 \
+  --out-dir runs/single-ID-settlement-audit-NEW \
+  --env-file '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/.env.leafapi.local'
+PYTHONPATH=code .venv/bin/python -B -m unittest discover -s tests -p test_settlement_audit.py -v
+```
+
+/api/log/token只代表当前key近期日志；本部署p、page_size、时间参数没有实际筛选效果，不能据此声称遍历账户完整分页。/api/log/self需另有适当管理会话/权限，此key查询未成功。新GET返回的x-oneapi-request-id不是旧POST的供应商ID；Chat请求没有转发本地global_key，旧503未保存供应商header/body，不能补造请求ID或零收费证明。
+
+当前原批次仍halted。模型缺席发送前GET列表本应拦截，昨日漏检已记录；恢复必须确认原gpt-5.6-sol/供应商/分组，禁止静默fallback。1200万点只是本地保守值。预算调整草案仅保存在runs、未批准未应用；使用已知prompt字节及当前公开最坏系数推导风险包络，输出32768/额外4096/费率适用性均未获供应商硬保证。具体数值、风险、需要供应商提供的结算及模型凭证见[审计报告](../../../runs/single-ID-settlement-audit-20261014-v1/Audit_report.md)，不是生产续接入口。原60次授权有效、已发1、余59、累计80槽位，不重发或重置。

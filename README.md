@@ -100,3 +100,5 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 本页第一阶段已于2026-10-13由用户批准：原H研究用途确认人DDXQL、本页独占单成员真实调用、最多60新请求、仅训练；旧40次MIX批次挂起。新增账单核对不改变实验语义，原12,000,000点未知预留保留。实际进度与全量结果写本worktree新授权目录，未完成阶段不标成功。
 
 本任务当前真实结果：[阶段汇总](runs/single-ID-paired-training-20261013-authorized-v1/Stage_summary.md)、[全量结果](runs/single-ID-paired-training-20261013-authorized-v1/Single_results.json)。10条H研究范围确认/冻结及新协议10×21train重评已完成，makespan全部复现；新增1次INIT请求返回HTTP503，wire token/实际费用未知，供应商账单无匹配记录，额度前后均1557783点。0有效U/0重复，四组未开始；没有重发、MIX或validation/test。累计80/300占用槽位、79次确认发送；原1200万点和本次1200万点预留保留，下一次保守预留总额37557783>30000000而停止。该数是预留计算，不是已花费。授权剩59槽位，需可核实本次结算后继承计数恢复，不重新申请或重置批次。
+
+2026-10-14只读结算审计见[审计报告](runs/single-ID-settlement-audit-20261014-v1/Audit_report.md)。本轮模型请求0；token日志无新503记录，完整用户日志未成功读取，费用与wire usage仍未知，原24,000,000点占用保留。原12,000,000单次缓冲并非供应商上限。另确认发送前已有requested_model_listed=false而被漏检；当前key模型列表仍无gpt-5.6-sol，历史codex-deafult计费组不再出现在公开模型enable_groups，原模型访问需恢复后才续接。提交了未批准/未应用的[预算风险草案](runs/single-ID-settlement-audit-20261014-v1/Reservation_change_proposal.json)：不改30,000,000上限/300槽位/原60次授权，旧INIT000034预留不变；只提议对已发503风险占用和新请求包络作显式版本化调整。它不把未知结算为0，不授权换模型/分组。仅7项metadata/风险算术检查；研究代码、数据、H/U及原运行记录未改。
