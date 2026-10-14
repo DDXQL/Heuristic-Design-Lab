@@ -2,6 +2,8 @@
 
 2026-10-13，DDXQL在“梳理固定 H 的策略空间”聊天页明确授权本批及原10条H的SELECT/SELECT-MIX条件研究用途。此授权覆盖准备、登记及满足串行条件后的执行，不需要再次询问同一批次；原技术审查不改写。
 
+2026-10-14最新阶段指令：本轮仅完成离线准备，不发送真实请求。当前执行者、最新准备目录、完整提示快照、账本/结算阻碍及未来唯一运行命令以[就绪清单](H_USAGE_V22_READINESS_20261014.md)为准；单成员页停止不能替代全局结算与预算门禁解除。下列入口顺序说明保留协议流程，不代表现在可以启动。
+
 固定规模：seed301、N5、共享新SELECT初始化最多20请求，A仅SELECT、B允许SELECT/MIX（1或2正项），各一代10请求（5交叉+5变异），最多40新请求。Leaf gpt-5.6-sol、共同生成参数、状态、数据、主评价/复检/诊断期限、父代选择、生存选择沿用共同实现。失败/重复占槽位，不补发；初始化不足5则结束，无手写补员。仅训练，正式验证/测试文件不复制、不加载。
 
 ## 准备与真实发送分开
@@ -21,15 +23,15 @@
 使用本worktree的Python3.12环境。所有目录参数均为不存在的新目录，只有run/report使用已登记目录。
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py offline-prepare --directory preparations/v22-select-mix-20261013-v1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py offline-prepare --directory preparations/v22-select-mix-YYYYMMDD-new
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py peer-status
 ```
 
-peer-status确认终止/结算就绪之后，在当前已有授权内登记并执行：
+最新离线准备已存在于 `preparations/v22-select-mix-20261013-v2`，不用再次创建或覆盖。peer-status确认终止/结算就绪且全局预算允许发送之后，在当前已有授权内登记并执行：
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py register --directory runs/v22-select-mix-301-20261013-v1
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py run --directory runs/v22-select-mix-301-20261013-v1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py register --directory runs/v22-select-mix-301-20261014-v1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usage_v2/run_registered_v22.py run --directory runs/v22-select-mix-301-20261014-v1
 ```
 
 凭证只在串行门禁通过后由已有环境变量或原`.env.leafapi.local`加载，不复制到配置/快照，不打印。每次preflight和dispatch复查真实来源、对方终止文件、所有worktree账本和锁；任何外部账本变化需要核对，不能自动重新绑定并继续花费。实际预算/结算门禁停止后不自动开新目录或补发。

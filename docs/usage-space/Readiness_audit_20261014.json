@@ -1,0 +1,188 @@
+{
+  "kind": "V22_readiness_audit",
+  "audited_at_utc": "2026-10-14T08:15:53.056642+00:00",
+  "code_commit": "43a1bb6d1646543f51018becfc373ffa7cd7bbe8",
+  "branch": "codex/h-usage-space",
+  "sole_executor_thread": "01a133c9-e73d-77d2-94d4-2878b821d50a",
+  "latest_stage_instruction": "Offline readiness only; no real requests this turn. Earlier batch authorization remains recorded; shared settlement/budget gate must be resolved.",
+  "old_40_request_scheme": "suspended; never resumed",
+  "preparation": "preparations/v22-select-mix-20261013-v2",
+  "offline_ready": true,
+  "dispatch_ready": false,
+  "config_sha256": "e269204431456de94507740cd1a21f0064c9dabe16e3196a0babe427e9fcae88",
+  "protocol_sha256": "defeb9a4ab1d6b7b6ae6dd29c686c4c7ca67a4299bd815b08107f8619b336cc5",
+  "source_H_sha256": "a3527deff8bfb63b0394ea2c1f4f24339f187a331eca4b0ab8dcfff6081fed3b",
+  "ordered_H_keys": [
+    "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+    "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+    "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+    "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+    "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+    "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+    "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+    "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+    "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+    "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03"
+  ],
+  "source_files_verified": 987,
+  "provider_equal_original_and_peer": true,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-5.6-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-5.6-sol",
+    "thinking": null,
+    "stream_response": true
+  },
+  "seed": 301,
+  "N": 5,
+  "phase_request_caps": {
+    "r301/init": 20,
+    "r301/A": 10,
+    "r301/B": 10
+  },
+  "total_request_cap": 40,
+  "prompt_pack": {
+    "version": "FJSP-usage-prompts-v2.2-strategy-space-20261013",
+    "interface": "U-usage-v2-select-or-mix-20261012",
+    "language": "closed-numeric-return-tuples-v2-20261012",
+    "normalization": "single-raw-dual-current-action-minmax-scaled-fsum-v1",
+    "history": "largest-normalized-weight-lowest-id-v1",
+    "template_sha256": "1c880345e659bfb5bfcb5a001b4dfe8f66a0912d26c3a4c314e228cf4384a495",
+    "sections": {
+      "task": "9fc3fd393d404091fb44016ec4c2392ae8c65b89cab933817b64f43cbde22032",
+      "H_context": "ef7c9af6954a2323af61e928c1152548230d07a42de39206f90b2dcf146dbeac",
+      "cross": "d949cb1337220d50393ebbaadccaa7a37361eabc0f1b3504f29672fcc49325c3",
+      "mutate": "5b54bddeca465ab93cbebea3416cefb547081b3fdf284787ef4a4000caa15491",
+      "output": "4e9670941ce505c8241c3fbb40f540c21cf424fbee49e06c0da7787d0633538f",
+      "novelty": "ec20c6d9822c0032d755b3367af3672489e0d24f4ebf2e938a51478b68ef42b6"
+    },
+    "A_B_difference": "allowed_modes section only, before parent populations diverge",
+    "shared_initialization": "SELECT only, no H behavior, no training feedback",
+    "deduplication": "validated versioned AST only"
+  },
+  "prompt_comparison": [
+    {
+      "operator": "I1",
+      "changed_sections": [],
+      "A_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "B_sha256": "bb98ac6d53d4675a1a8ef22b199b19148800a63aca86e3a4a6212359812a7fe7",
+      "A_bytes": 7796,
+      "B_bytes": 7796
+    },
+    {
+      "operator": "CROSS",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "b47ea46127f21e4994b7cdde8b5e25a50e5845e8ba5efd5920ac21f54d4f8a7c",
+      "B_sha256": "e23e8818c36cf0f8a185eb588bf0450d646c486db6f60d8b54628cadfcf02f27",
+      "A_bytes": 23498,
+      "B_bytes": 23538
+    },
+    {
+      "operator": "MUTATE",
+      "changed_sections": [
+        "allowed_modes"
+      ],
+      "A_sha256": "0e29d50105356382d8cc10f8034dad4eac0830467005bac709d94a848d7bd6ba",
+      "B_sha256": "5b8b22b2d5064d57655db258f80763d809c3c2dae41d204a12143de82cc99a3f",
+      "A_bytes": 21834,
+      "B_bytes": 21874
+    }
+  ],
+  "complete_exports_regenerated_byte_identical": true,
+  "prompt_parents": "HANDWRITTEN preview only, never a real population",
+  "operator_schedule": {
+    "A": [
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE"
+    ],
+    "B": [
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE"
+    ]
+  },
+  "shared_initialization": "process verified; actual fresh population not yet generated; one SELECT-only asset reused by A/B",
+  "same_shared_state_data_fitness_parent_and_survival_algorithms": true,
+  "new_model_requests": 0,
+  "actual_initial_population_exists": false,
+  "training_files_verified": 21,
+  "holdout_files_present": false,
+  "H_members_valid_and_training_makespans_reproduced": 10,
+  "existing_offline_tests": {
+    "passed": 81,
+    "seconds": 14.532,
+    "log": "docs/usage-space/Tests.v22-registration.log",
+    "sha256": "86347e32d3a81f21edd67ba781e39929c6dbee4e83f6dc812560e7d227771f98",
+    "rerun_this_audit": false
+  },
+  "ledger_inventory_identities": 17,
+  "peer_status": {
+    "ready": false,
+    "reason": "peer account settlement halt unresolved: no unique supplier receipt matching new request/model/window"
+  },
+  "peer_terminal_status": "initialization_budget_stopped",
+  "peer_run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-paired-training-20261013-authorized-v1",
+  "peer_slots": 1,
+  "peer_unknown_sent_requests": [
+    "r201/init/INIT/init/000000"
+  ],
+  "peer_evidence_sha256": {
+    "budget.json": "1d50d26c03d70cf9bf0569adfa584c7c8e0cbbed925db1097ad1ca975f9501cf",
+    "platform_quota.json": "8f2d77a6411328efbcda906358ad2457a6603a9f9968c93180eafe5ee144c38b",
+    "r201/Initialization_status.json": "95e6ec17b829c232b90f8a3ce12dfc6a8aeda9035dd52c4ff7b04be0c68370c3",
+    "r201/INIT/budgeted_initial_requests.json": "e95ed1a8c1a46bc39959d31095fea115b2edc28f5928a4fa5010673c5ea4c46c"
+  },
+  "cumulative_slots": {
+    "ancestral": 79,
+    "peer_new": 1,
+    "this_page_new": 0,
+    "current": 80,
+    "if_this_page_uses_40_and_peer_stays_stopped": 120,
+    "cap": 300,
+    "planned_two_batch_upper_bound": 179
+  },
+  "saved_account_only_not_live_query": {
+    "observed_used": 1557783,
+    "ancestor_unknown_hold": 12000000,
+    "peer_unknown_hold": 12000000,
+    "next_request_reservation": 12000000,
+    "conservative_total_with_next": 37557783,
+    "ceiling": 30000000,
+    "notice": "Observed account delta zero does not certify zero supplier fee; raw unknown wire/token reservations remain."
+  },
+  "startup_requires": [
+    "peer completed or recorded stop, no writer locks",
+    "unique supplier/global settlement verified, unknown holds preserved unless certified",
+    "unique final ledger binding and cumulative cap300",
+    "live account30% ceiling with retained holds and next reservation fits",
+    "unchanged verified code/data/H/prompts; register one independent directory, no duplicate executor"
+  ]
+}
