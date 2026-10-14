@@ -23,7 +23,7 @@ from fjsp_usage.research_real.budget import BudgetStop
 from fjsp_usage.research_real.config import ExperimentConfig
 from fjsp_usage.research_real.leafapi import KEY_ENV,load_local_key
 from fjsp_usage.research_real.locking import RunLock
-from fjsp_usage.research_real.single_billing import match_invoice
+from fjsp_usage.research_real.single_billing import match_invoice,query_invoices
 from fjsp_usage.research_real.single_experiments import Guard
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from run_single_model_migration import MigrationWorkflow,finish
@@ -61,44 +61,60 @@ class WireRecorder:
 
 
 def reconcile(flow,quota):
+    """Reconcile only a specifically proved metadata-429 stop; never blanket clear."""
+    if not quota.data['halted']:return None
     directory=flow.directory
-    invoice_path=directory/'billing'/(hashlib.sha256(FAILED_KEY.encode()).hexdigest()+'.json')
-    original=json.loads(invoice_path.read_text());old=original['original_quota_record']
-    before=original['before']
-    qpath=directory/'Settlement_recheck_02_quota.json';ipath=directory/'Settlement_recheck_02_invoices.json'
-    q=json.loads(qpath.read_text());invoices=json.loads(ipath.read_text())
-    if q.get('success') is not True or invoices.get('success') is not True:
-        raise BudgetStop('final supplier settlement evidence unavailable')
+    resolved={r['global_key'] for r in quota.data.get('invoice_reconciliations',[])}
+    candidates=[]
+    for path in (directory/'billing').glob('*.json'):
+        audit=json.loads(path.read_text())
+        if audit.get('status')=='settlement_not_certified' and audit['global_key'] not in resolved:
+            candidates.append((path,audit))
+    if len(candidates)!=1:raise BudgetStop('exactly one unresolved native invoice required for metadata-stop recovery')
+    invoice_path,original=candidates[0];key=original['global_key'];old=original['original_quota_record']
+    reason=quota.data.get('stop_reason')
+    permitted=('supplier billing metadata unavailable; no settlement inferred',
+        'account quota unavailable/inconsistent; no retry','supplier invoice/account debit mismatch; preserve reservation')
+    if (reason not in permitted or not old or not old.get('send_confirmed')
+            or quota.data['records'].get(key)!=old or flow.ledger.data['halted']
+            or any(r['status']=='pending' for r in quota.data['records'].values())
+            or not (original.get('after',{}).get('http_status')==429 or
+                quota.data.get('last_metadata_result',{}).get('http_status')==429)):
+        raise BudgetStop('only proved metadata-429 failures may resume; protect all other gates')
+    supplier_id=original.get('response_metadata',{}).get('gateway_request_id')
+    if not supplier_id:raise BudgetStop('supplier request ID missing; cannot attribute settlement')
+    quota.balance()  # fresh validated supplier GET, never cached historical balance
+    after=query_invoices(quota.transport.secret)
+    name=hashlib.sha256(key.encode()).hexdigest()
+    qpath=directory/('Settlement.'+name+'.quota.json');ipath=directory/('Settlement.'+name+'.invoices.json')
+    if qpath.exists() or ipath.exists():raise BudgetStop('use a fresh evidence identity for repeated read-only investigation')
+    q={'success':True,'inference_requests':0,'observed_at':quota.data['observed_at'],'quota':quota.data['latest_quota']}
+    atomic_json(qpath,q);atomic_json(ipath,after)
     account={**old,'status':'settled','after_used':q['quota']['total_used'],
         'observed_account_delta':q['quota']['total_used']-old['before_used'],
         'finished_at':max(q['observed_at'],old['finished_at'])}
-    invoice=match_invoice(before,invoices,account,flow.config.provider.model,failed=True,response_id=SUPPLIER_ID)
-    if (invoice.get('group')!='codex-deafult' or invoice['quota']!=5946
-            or original['wire_usage']!={'input_tokens':2072,'output_tokens':1964}
-            or invoice.get('prompt_tokens')!=2072 or invoice.get('completion_tokens')!=1964
+    invoice=match_invoice(original['before'],after,account,flow.config.provider.model,
+        failed=True,response_id=supplier_id)
+    usage=original['wire_usage']
+    if (invoice.get('group')!='codex-deafult' or invoice['quota']>old['reserved']
+            or (usage is not None and (invoice.get('prompt_tokens')!=usage['input_tokens'] or
+                invoice.get('completion_tokens')!=usage['output_tokens']))
             or account['after_used']+quota.check_retained()>flow.config.platform_quota_ceiling):
-        raise BudgetStop('restored settlement does not match original usage/group/debit or ceiling')
-    target=directory/'Settlement_resume_proof.json'
-    proof={'version':VERSION,'global_key':FAILED_KEY,'supplier_request_id':SUPPLIER_ID,
+        raise BudgetStop('restored invoice differs from wire/group or exceeds risk reserve/ceiling')
+    folder=directory/'billing_reconciliations';folder.mkdir(exist_ok=True)
+    target=folder/(name+'.json')
+    proof={'version':VERSION,'global_key':key,'supplier_request_id':supplier_id,
         'original_quota_record':old,'original_billing_sha256':hashlib.sha256(invoice_path.read_bytes()).hexdigest(),
-        'invoice':invoice,'reconciled_account':account,'actual_platform_units':5946,
+        'invoice':invoice,'reconciled_account':account,'actual_platform_units':invoice['quota'],
         'evidence_files_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (qpath,ipath)},
-        'wire_usage':original['wire_usage'],'slot_remains_failed':True,'lost_body_not_reconstructed':True,
-        'historical_24million_hold_unchanged':True,'new_unknown_cost_reservation_released_by_invoice_only':410000}
-    if target.exists():
-        if json.loads(target.read_text())!=proof:raise BudgetStop('settlement proof changed')
-        if quota.data['halted']:raise BudgetStop('another new stop requires its own evidence; no blanket unhalt')
-        return proof
-    if (quota.data.get('stop_reason')!='supplier billing metadata unavailable; no settlement inferred'
-            or quota.data['records'].get(FAILED_KEY)!=old
-            or any(r['status']=='pending' for r in quota.data['records'].values())
-            or flow.ledger.data['halted']):
-        raise BudgetStop('only the precisely identified 429 metadata gate can be reconciled')
+        'wire_usage':usage,'slot_remains_failed':True,'no_candidate_replay_or_reconstruction':True,
+        'historical_24million_hold_unchanged':True,
+        'new_unknown_cost_reservation_released_by_invoice_only':old['reserved']}
+    if target.exists():raise BudgetStop('reconciliation proof identity already exists')
     atomic_json(target,proof)
     quota.data.setdefault('invoice_reconciliations',[]).append(proof)
-    quota.data.update(halted=False,stop_reason=None)
-    quota.save()
-    quota.balance()  # a fresh protected observation; stale receipts alone never allow sends
+    quota.data.update(halted=False,stop_reason=None);quota.save()
+    print('精确结算恢复 '+key+'；actual_points='+str(invoice['quota'])+'；原失败槽位保留',flush=True)
     return proof
 
 
@@ -114,11 +130,13 @@ def run(directory,env_file):
         amendment={'version':VERSION,'source_protocol_context':flow.context,'entry_file':str(Path(__file__)),
             'entry_sha256':own_sha,'change':'durable wire replies before settlement; explicit existing-checkpoint resume',
             'unchanged':['model parameters','prompt pack','candidate validation','state','evaluator','H','parents','survival','budget caps'],
-            'prior_stop_retained':json.loads((directory/'r201/Initialization_status.json').read_text()),
-            'next_init_cursor':6,'accepted_U_retained':4,'already_sent_diagnostic':1,'formal_already_sent':6,
-            'remaining_formal_max':54,'no_request_replay':True,'no_old_model_candidates_imported':True,
+            'prior_initial_stop_retained':json.loads((directory/'r201/Initialization_status.json').read_text()),
+            'checkpoint_sha256':{str(p.relative_to(directory)):hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in (directory/'r201').glob('*/checkpoint.json')},
+            'already_sent_diagnostic':1,'formal_already_sent':len(flow.ledger.data['records'])-1,
+            'remaining_formal_max':c.total_request_cap-len(flow.ledger.data['records']),'no_request_replay':True,'no_old_model_candidates_imported':True,
             'authorization':'DDXQL current model batch plus autonomous nonsemantic recording repairs'}
-        path=directory/'Execution_amendment.json'
+        path=directory/('Execution_amendment.'+digest(amendment)+'.json')
         if path.exists():
             if json.loads(path.read_text())!=amendment:raise BudgetStop('execution amendment changed')
         else:atomic_json(path,amendment)
@@ -140,8 +158,16 @@ def run(directory,env_file):
                 flow.write(name,'Shared_initial',seed=201,H_hash=H['artifact_sha256'],
                     training_files=list(ds.names['train']),population=engine.export_rows())
                 flow.progress('U_INITIALIZED_AFTER_CERTIFIED_METADATA_SETTLEMENT',seed=201)
-            searched=flow.search_all()
-            if any(row['status']!='completed' for row in searched['entries']):raise BudgetStop('four groups not all completed')
+            entries=[]
+            for arm in ('B0','B1','B2','P'):
+                row=flow.search_arm(201,arm);entries.append(row)
+                if row['status']!='completed':raise BudgetStop('arm stopped: '+arm+' '+row['status'])
+            # Preserve the prior stopped Search_complete.json as historical.
+            flow.write('Search_complete_resumed.json','Search_complete',dataset_hash=ds.key,
+                H_hash=H['artifact_sha256'],reference_H_hash=H['artifact_sha256'],seeds=[201],
+                entries=entries,population_hashes=[r['population_hash'] for r in entries],
+                note='Full actual resumed generation outcomes; prior stopped gate retained unchanged.')
+            flow.progress('SEARCH_COMPLETE_AFTER_METADATA_SETTLEMENTS')
         except Exception as exc:stop=str(exc)[:500];print('停止新增请求：'+stop,flush=True)
         finally:finish(flow,stop)
 
