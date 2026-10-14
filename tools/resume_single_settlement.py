@@ -25,7 +25,7 @@ from fjsp_usage.research_real.leafapi import KEY_ENV,load_local_key
 from fjsp_usage.research_real.locking import RunLock
 from fjsp_usage.research_real.single_billing import match_invoice,query_invoices
 from fjsp_usage.research_real.single_experiments import Guard
-from fjsp_usage.research_real.model_migration import check_live_tariff
+from fjsp_usage.research_real.model_migration import check_live_tariff,public_json
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from run_single_model_migration import MigrationWorkflow,finish
 
@@ -48,6 +48,24 @@ class InvoiceQueryPacer:
         finally:
             self.last=self.clock();atomic_json(self.path,{'last_finished_at':self.last,
                 'interval':self.interval,'scope':'metadata GET /api/log/token only','inference_requests':0})
+
+
+class MetadataPacer:
+    """Local conservative throttle, NOT a claimed supplier limit or retry."""
+    def __init__(self,path,interval=15,*,clock=time.time,sleep=time.sleep):
+        self.path,self.interval,self.clock,self.sleep=Path(path),interval,clock,sleep
+        self.last=json.loads(self.path.read_text())['last_finished_at'] if self.path.exists() else 0
+
+    def call(self,path,query):
+        if path not in ('/api/usage/token/','/api/log/token','/api/pricing','/api/status','/v1/models'):
+            raise ValueError('read-only metadata paths only; never inference POST')
+        delay=self.interval-(self.clock()-self.last)
+        while delay>0:
+            self.sleep(min(delay,1));delay=self.interval-(self.clock()-self.last)
+        try:return query()
+        finally:
+            self.last=self.clock();atomic_json(self.path,{'last_finished_at':self.last,'interval':self.interval,
+                'last_path':path,'inference_requests':0,'supplier_rate_limit_known':False})
 
 
 class ProtectedInvoice:
@@ -109,7 +127,7 @@ def reconcile(flow,quota):
             'new-model pricing/list metadata unavailable',
             'before-dispatch supplier invoice metadata unavailable; no inference sent',
             'account quota unavailable/inconsistent; no retry'):
-        tariff=check_live_tariff(quota.transport.secret)
+        tariff=quota.tariff_query(quota.transport.secret)
         quota.balance()
         after=quota.invoice_query()
         if after.get('success') is not True:raise BudgetStop('invoice endpoint still unavailable; no send')
@@ -178,11 +196,19 @@ def run(directory,env_file):
         flow=MigrationWorkflow(directory,config=c,dataset=ds,project_root=ROOT)
         guard=Guard(flow,flow.read('Worktree_binding.json','Worktree_binding'));guard.check()
         client=flow.client();quota=client.inner.inner
+        metadata=MetadataPacer(directory/'Metadata_global_pacing.json')
+        original_quota_query=quota.query
+        quota.query=lambda:metadata.call('/api/usage/token/',original_quota_query)
+        def public_query(secret,path,**kwargs):
+            return metadata.call(path,lambda:public_json(secret,path,**kwargs))
+        quota.tariff_query=lambda secret:check_live_tariff(secret,query=public_query)
         previous=[]
         for invoice_file in (directory/'billing').glob('*.json'):
             bill=json.loads(invoice_file.read_text())
             previous.extend(v.get('observed_at',0) for v in (bill.get('before',{}),bill.get('after',{})))
-        pacer=InvoiceQueryPacer(client.inner.query,directory/'Invoice_query_pacing.json',
+        original_invoice_query=client.inner.query
+        invoice_query=lambda:metadata.call('/api/log/token',original_invoice_query)
+        pacer=InvoiceQueryPacer(invoice_query,directory/'Invoice_query_pacing.json',
             c.platform_quota_query_interval,initial=max(previous,default=0)+15)
         client.inner.query=pacer;quota.invoice_query=pacer
         client.inner=ProtectedInvoice(client.inner,quota)
@@ -194,6 +220,8 @@ def run(directory,env_file):
                 for p in (directory/'r201').glob('*/checkpoint.json')},
             'already_sent_diagnostic':1,'formal_already_sent':len(flow.ledger.data['records'])-1,
             'remaining_formal_max':c.total_request_cap-len(flow.ledger.data['records']),'no_request_replay':True,'no_old_model_candidates_imported':True,
+            'global_metadata_get_min_interval_seconds':15,'invoice_get_min_interval_seconds':75,
+            'supplier_rate_limit_known':False,
             'authorization':'DDXQL current model batch plus autonomous nonsemantic recording repairs'}
         path=directory/('Execution_amendment.'+digest(amendment)+'.json')
         if path.exists():

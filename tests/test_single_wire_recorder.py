@@ -8,7 +8,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 import hashlib
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from resume_single_settlement import WireRecorder,reconcile,InvoiceQueryPacer,ProtectedInvoice
+from resume_single_settlement import WireRecorder,reconcile,InvoiceQueryPacer,ProtectedInvoice,MetadataPacer
 from fjsp_usage.research_real.budget import BudgetStop
 
 
@@ -22,6 +22,17 @@ class Fake:
 
 
 class RecorderTests(unittest.TestCase):
+    def test_cross_endpoint_metadata_spacing_and_post_is_not_supported(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            now=[100.0];calls=[]
+            def sleep(seconds):now[0]+=seconds
+            pacer=MetadataPacer(Path(tmp)/'all.json',clock=lambda:now[0],sleep=sleep)
+            def query():calls.append(now[0]);return {'fixture':True}
+            pacer.call('/api/pricing',query);pacer.call('/api/usage/token/',query)
+            self.assertEqual(calls,[100.0,115.0])
+            with self.assertRaises(ValueError):pacer.call('/v1/chat/completions',query)
+            self.assertEqual(len(calls),2)
+
     def test_invoice_gets_paced_across_restart_no_query_retry(self):
         with tempfile.TemporaryDirectory() as tmp:
             now=[100.0];calls=[]
