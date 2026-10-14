@@ -8,7 +8,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 import hashlib
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from resume_single_settlement import WireRecorder,reconcile
+from resume_single_settlement import WireRecorder,reconcile,InvoiceQueryPacer,ProtectedInvoice
 from fjsp_usage.research_real.budget import BudgetStop
 
 
@@ -22,6 +22,34 @@ class Fake:
 
 
 class RecorderTests(unittest.TestCase):
+    def test_invoice_gets_paced_across_restart_no_query_retry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            now=[100.0];calls=[]
+            def sleep(seconds):now[0]+=seconds
+            def query():calls.append(now[0]);return {'success':True,'inference_requests':0}
+            path=Path(tmp)/'pacing.json'
+            one=InvoiceQueryPacer(query,path,75,clock=lambda:now[0],sleep=sleep,initial=100)
+            one();self.assertEqual(calls,[175.0])
+            two=InvoiceQueryPacer(query,path,75,clock=lambda:now[0],sleep=sleep)
+            two();self.assertEqual(calls,[175.0,250.0])
+
+    def test_missing_before_invoice_halts_before_next_slot_can_send(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            class Invoice:
+                directory=Path(tmp);identity='fake';redact=staticmethod(str)
+                def dispatch(self,key,prompt,**kwargs):
+                    path=self.directory/(hashlib.sha256(key.encode()).hexdigest()+'.json')
+                    path.write_text(json.dumps({'status':'before_dispatch','before':{'success':False,'http_status':429}}))
+                    raise BudgetStop('cannot inspect supplier billing before dispatch')
+                def preflight(self,prompt):
+                    if quota.data['halted']:raise BudgetStop('halted')
+            quota=SimpleNamespace(data={'records':{},'halted':False})
+            def halt(reason):quota.data.update(halted=True,stop_reason=reason)
+            quota.halt=halt;protected=ProtectedInvoice(Invoice(),quota)
+            with self.assertRaises(BudgetStop):protected.dispatch('one','prompt')
+            self.assertTrue(quota.data['halted']);self.assertEqual(quota.data['records'],{})
+            with self.assertRaises(BudgetStop):protected.preflight('next')
+
     def settlement_fixture(self,root,*,reason='supplier billing metadata unavailable; no settlement inferred',group='codex-deafult'):
         key='r201/B0/fixture';record={'status':'settled','send_confirmed':True,'before_used':100,
             'after_used':107,'observed_account_delta':7,'reserved':410000,'started_at':100,'finished_at':102}

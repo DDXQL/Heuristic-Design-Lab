@@ -25,12 +25,47 @@ from fjsp_usage.research_real.leafapi import KEY_ENV,load_local_key
 from fjsp_usage.research_real.locking import RunLock
 from fjsp_usage.research_real.single_billing import match_invoice,query_invoices
 from fjsp_usage.research_real.single_experiments import Guard
+from fjsp_usage.research_real.model_migration import check_live_tariff
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from run_single_model_migration import MigrationWorkflow,finish
 
 VERSION='single-ID-nonsemantic-recording-settlement-amendment-v1-20261014'
 FAILED_KEY='r201/init/INIT/init/000005'
 SUPPLIER_ID='202610141327527602746288268d9d6TjCvhB6b'
+
+
+class InvoiceQueryPacer:
+    """Serialize read-only invoice GETs, including across process restarts."""
+    def __init__(self,query,path,interval,*,clock=time.time,sleep=time.sleep,initial=0):
+        self.query,self.path,self.interval,self.clock,self.sleep=query,Path(path),interval,clock,sleep
+        self.last=json.loads(self.path.read_text())['last_finished_at'] if self.path.exists() else initial
+
+    def __call__(self):
+        delay=self.interval-(self.clock()-self.last)
+        while delay>0:
+            self.sleep(min(delay,1));delay=self.interval-(self.clock()-self.last)
+        try:return self.query()
+        finally:
+            self.last=self.clock();atomic_json(self.path,{'last_finished_at':self.last,
+                'interval':self.interval,'scope':'metadata GET /api/log/token only','inference_requests':0})
+
+
+class ProtectedInvoice:
+    """Stop after one unsent pre-dispatch failure, before the next slot."""
+    def __init__(self,inner,quota):
+        self.inner,self.quota,self.identity,self.redact=inner,quota,inner.identity,inner.redact
+
+    def preflight(self,prompt):return self.inner.preflight(prompt)
+
+    def dispatch(self,key,prompt,**kwargs):
+        try:return self.inner.dispatch(key,prompt,**kwargs)
+        except BudgetStop as exc:
+            path=self.inner.directory/(hashlib.sha256(key.encode()).hexdigest()+'.json')
+            if str(exc)=='cannot inspect supplier billing before dispatch' and path.exists():
+                audit=json.loads(path.read_text())
+                if audit['status']=='before_dispatch' and audit['before'].get('success') is not True and key not in self.quota.data['records']:
+                    self.quota.halt('before-dispatch supplier invoice metadata unavailable; no inference sent')
+            raise
 
 
 class WireRecorder:
@@ -70,6 +105,22 @@ def reconcile(flow,quota):
         audit=json.loads(path.read_text())
         if audit.get('status')=='settlement_not_certified' and audit['global_key'] not in resolved:
             candidates.append((path,audit))
+    if not candidates and quota.data.get('stop_reason') in (
+            'new-model pricing/list metadata unavailable',
+            'before-dispatch supplier invoice metadata unavailable; no inference sent',
+            'account quota unavailable/inconsistent; no retry'):
+        tariff=check_live_tariff(quota.transport.secret)
+        quota.balance()
+        after=quota.invoice_query()
+        if after.get('success') is not True:raise BudgetStop('invoice endpoint still unavailable; no send')
+        audit={'version':VERSION,'inference_requests':0,'previous_stop_reason':quota.data['stop_reason'],
+            'tariff':tariff,'quota':quota.data['latest_quota'],'invoice_metadata':after,
+            'unresolved_confirmed_sent_invoices':0,'historical_hold_unchanged':quota.check_retained()}
+        path=directory/('Metadata_health_restored.'+str(int(time.time()*1000))+'.json')
+        atomic_json(path,audit)
+        quota.data.update(halted=False,stop_reason=None,latest_tariff_check=tariff)
+        quota._tariff_at=quota.clock();quota.save()
+        return audit
     if len(candidates)!=1:raise BudgetStop('exactly one unresolved native invoice required for metadata-stop recovery')
     invoice_path,original=candidates[0];key=original['global_key'];old=original['original_quota_record']
     reason=quota.data.get('stop_reason')
@@ -84,7 +135,7 @@ def reconcile(flow,quota):
     supplier_id=original.get('response_metadata',{}).get('gateway_request_id')
     if not supplier_id:raise BudgetStop('supplier request ID missing; cannot attribute settlement')
     quota.balance()  # fresh validated supplier GET, never cached historical balance
-    after=query_invoices(quota.transport.secret)
+    after=getattr(quota,'invoice_query',lambda:query_invoices(quota.transport.secret))()
     name=hashlib.sha256(key.encode()).hexdigest()
     qpath=directory/('Settlement.'+name+'.quota.json');ipath=directory/('Settlement.'+name+'.invoices.json')
     if qpath.exists() or ipath.exists():raise BudgetStop('use a fresh evidence identity for repeated read-only investigation')
@@ -127,8 +178,16 @@ def run(directory,env_file):
         flow=MigrationWorkflow(directory,config=c,dataset=ds,project_root=ROOT)
         guard=Guard(flow,flow.read('Worktree_binding.json','Worktree_binding'));guard.check()
         client=flow.client();quota=client.inner.inner
+        previous=[]
+        for invoice_file in (directory/'billing').glob('*.json'):
+            bill=json.loads(invoice_file.read_text())
+            previous.extend(v.get('observed_at',0) for v in (bill.get('before',{}),bill.get('after',{})))
+        pacer=InvoiceQueryPacer(client.inner.query,directory/'Invoice_query_pacing.json',
+            c.platform_quota_query_interval,initial=max(previous,default=0)+15)
+        client.inner.query=pacer;quota.invoice_query=pacer
+        client.inner=ProtectedInvoice(client.inner,quota)
         amendment={'version':VERSION,'source_protocol_context':flow.context,'entry_file':str(Path(__file__)),
-            'entry_sha256':own_sha,'change':'durable wire replies before settlement; explicit existing-checkpoint resume',
+            'entry_sha256':own_sha,'change':'durable wire replies; paced metadata GETs; fail-closed pre-dispatch billing; existing-checkpoint resume',
             'unchanged':['model parameters','prompt pack','candidate validation','state','evaluator','H','parents','survival','budget caps'],
             'prior_initial_stop_retained':json.loads((directory/'r201/Initialization_status.json').read_text()),
             'checkpoint_sha256':{str(p.relative_to(directory)):hashlib.sha256(p.read_bytes()).hexdigest()
