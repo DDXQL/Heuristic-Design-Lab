@@ -1,0 +1,338 @@
+Design a deterministic heuristic-usage strategy U for static FJSP, not an action priority rule h.
+Before each step, the host enumerates each unfinished job's next operation and its allowed machines.
+The host computes the state, calls U exactly ONCE, and uses only the members selected by your output to score ALL legal pairs.
+Execute the highest-scoring action, break ties by job then machine index, and append it to the machine's end.
+Continue until all operations are scheduled. Terminal states do not call U. Online scheduling never calls an LLM.
+An external evaluator measures complete feasible schedules on ALL training instances, using mean(-makespan/LB).
+Higher fitness is better. LB=max(longest job's shortest processing-time sum, total shortest processing-time sum/machine count).
+Any failed instance invalidates the candidate; there is no partial-batch mean or fallback heuristic.
+Generate only U, without changing H, the state calculator, scheduler or evaluator.
+Inputs (these are STATE summaries, not h's single-action inputs):
+progress=scheduled operation count / total operation count of the instance, NOT elapsed-time progress or population size.
+candidate_pair_ratio=legal operation-machine pair count/C; C=sum over jobs of the maximum alternatives of any operation in that job.
+remaining_work_mean/std: for each UNFINISHED job, sum shortest alternative processing times for all unscheduled operations,
+including the current operation; divide by T, then take mean and population standard deviation (ddof=0).
+machine_ready_mean/std: mean and population standard deviation of ALL machines' current end times divided by T,
+including unused machines. These summaries do not identify a particular bottleneck machine.
+T=sum of the maximum alternative processing time over ALL operations. T and C stay fixed; they are NOT extra inputs.
+previous_heuristic=-1 at the first step, otherwise the largest normalized-weight member id (ties: smallest id); it contains no rewards or improvement history.
+Use only these seven inputs, local calculations and fixed constants. Same input must yield the same output.
+Do not call H, parents or evaluators; simulate schedules; access external resources; infer extra state; or retain mutable state.
+Member ids are categories, not quality ranks: do not average ids or infer quality from their magnitude.
+Every path returns exactly (mode, (v0, ..., vK_minus_1)). Mode is a built-in int, never bool. Handle the first step and avoid division by zero.
+A constant selector is legal. Do not force switching, use of every member/input, or a particular decision-tree skeleton.
+Do not invent performance evidence, state-level winners, rewards or failure examples.
+Provable bounds in nonterminal legal states (positive processing times):
+0 <= progress < 1; 0 < candidate_pair_ratio <= 1.
+0 < remaining_work_mean <= 1; 0 <= remaining_work_std <= 0.5.
+0 <= machine_ready_mean <= 1; 0 <= machine_ready_std <= 0.5.
+previous_heuristic is -1 only at the first step, otherwise a categorical id in [0,K).
+All normalized remaining-work values and machine end times lie in [0,1].
+Remaining-work values are restricted to unfinished jobs and their sum is <=1:
+with a active jobs, mean <=1/a and std <=sqrt(a-1)/a (a=1 gives std=0).
+For either pair mean=m, std=s, s*s <= m*(1-m).
+Thus s/(1+m) <=sqrt(2)/4 (approximately 0.353554), not an unnormalized dispersion.
+These are conservative global bounds, not typical training ranges or state-level winners.
+A condition outside these bounds cannot fire. A condition inside may still never fire in training.
+Use thresholds/relations compatible with the actual normalized scale; constant selectors remain legal.
+
+Use the fixed ordered H. Vector entry i refers to member i; vector length MUST be K.
+All vector entries must be built-in int or float, NEVER bool; local boolean comparisons remain legal.
+Construct the two-level tuple literal directly in each return; do not store tuples in variables or use lists/indexing.
+SELECT mode=0: vector entries are finite member-selection scores, allowed negative.
+The host picks argmax, EXACT ties to lowest member id; all-zero scores are legal.
+MIX mode=1: vector entries are finite nonnegative raw weights with exactly one or two positive entries.
+The host normalizes by positive maximum then sum; all-zero or more than two positives fails, without repair.
+Within the permitted modes, member scores, active members, weights and mode may depend on the seven inputs.
+Scores or weights may use constants, conditions, linear or nonlinear local expressions within the allowed language;
+no formula, phase partition or program skeleton is prescribed. A score formula may contain if;
+a condition may produce weights. Program syntax alone does not determine the usage mechanism.
+For MIX, compute the one- or two-member support yourself; the host does not select top-two scores for you.
+One active member scores actions in raw units, exactly like the original single-member executor.
+Two active members each score every CURRENT legal action once. The host min-max normalizes each complete action column
+and takes the nonnegative weighted sum. A constant column becomes zero, without reallocating its weight.
+Final action ties use job then machine id. This rule is fixed by the host, not configurable by your program.
+Member-selection scores, mixture weights, raw h action scores and final combined action scores are distinct quantities.
+Your program does not receive action scores/lists and must NOT call h or simulate future schedules.
+The historical dominant id loses the other member and weight proportions; do not invent those inputs.
+Constant SELECT and single-member MIX are legal where the mode is permitted; do not force mixtures or switching.
+These rules are engineering semantics, not evidence that combinations or any members perform better.
+
+Permitted modes: SELECT (0) OR MIX (1); at most two positive MIX weights.
+K=10; ordered member ids 0 through 9.
+H INFORMATION FOR OFFLINE U DESIGN ONLY (do NOT generate h):
+The following interface defines h's SINGLE operation-machine action inputs, all in RAW, unnormalised units.
+processing_time: duration of the candidate operation on this candidate machine.
+remaining_work: sum of shortest alternative durations for this job's unscheduled operations, INCLUDING the current one.
+remaining_operations: number of this job's unscheduled operations, INCLUDING the current one.
+job_ready_time: completion time of the job's previously scheduled operation, or zero initially.
+machine_ready_time: end time of this machine's current schedule, or zero initially.
+earliest_start=max(job_ready_time, machine_ready_time).
+earliest_finish=earliest_start+processing_time.
+h returns a finite real scalar, not bool; HIGHER scores win, with job/machine index ties.
+These action features are NOT additional U inputs. The host calls only the active members for each legal action.
+Read the actual member code and reviewed behavior below. A state-to-member match is a hypothesis, not proven local superiority.
+H code is design context, not permission for U to execute H, parents or a lookahead simulator.
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+
+H MEMBER 0
+Behavior: 对各输入取绝对值并截到1e9，工序数至少为1。以2倍剩余工作量和0.25倍平均剩余工作量加分，以0.9倍最早完成、0.1倍最早开始、0.2倍加工时间，以及0.05倍工件与机器就绪时间的绝对差扣分，返回线性合成分数。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = min(abs(processing_time), 1000000000.0)
+    w = min(abs(remaining_work), 1000000000.0)
+    n = max(1.0, min(abs(remaining_operations), 1000000000.0))
+    jr = min(abs(job_ready_time), 1000000000.0)
+    mr = min(abs(machine_ready_time), 1000000000.0)
+    s = min(abs(earliest_start), 1000000000.0)
+    f = min(abs(earliest_finish), 1000000000.0)
+    average_work = w / n
+    ready_gap = abs(jr - mr)
+    score = 2.0 * w + 0.25 * average_work - 0.9 * f - 0.1 * s - 0.2 * p - 0.05 * ready_gap
+    return score
+
+
+H MEMBER 1
+Behavior: 将工作量和最早完成时间截到[0,1e9]，工序数截到[1,1e9]。估计尾部工作量为work*(operations-1)/operations，返回1/(1+finish+尾部工作量)。finish+尾部工作量越小，分数越高；其余输入不直接参与。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    tail = work * (operations - 1.0) / operations
+    estimate = finish + tail
+    score = 1.0 / (1.0 + estimate)
+    return score
+
+
+H MEMBER 2
+Behavior: 对参与计算的输入处理NaN，再截断到非负且不超过1e9，工序数至少为1。计算average=work/operations、delay=max(p,finish-job_ready)、criticality=job_ready+work，返回criticality*(1+average)/(1+average+delay)。它联合奖励工件就绪时间加剩余工作量，并以平均剩余工序工作量缩放延迟惩罚。machine_ready和earliest_start不直接参与。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = processing_time
+    if p != p:
+        p = 1000000000.0
+    if p < 0.0:
+        p = 0.0
+    if p > 1000000000.0:
+        p = 1000000000.0
+    work = remaining_work
+    if work != work:
+        work = 0.0
+    if work < 0.0:
+        work = 0.0
+    if work > 1000000000.0:
+        work = 1000000000.0
+    operations = remaining_operations
+    if operations != operations:
+        operations = 1.0
+    if operations < 1.0:
+        operations = 1.0
+    if operations > 1000000000.0:
+        operations = 1000000000.0
+    ready = job_ready_time
+    if ready != ready:
+        ready = 0.0
+    if ready < 0.0:
+        ready = 0.0
+    if ready > 1000000000.0:
+        ready = 1000000000.0
+    finish = earliest_finish
+    if finish != finish:
+        finish = 1000000000.0
+    if finish < 0.0:
+        finish = 0.0
+    if finish > 1000000000.0:
+        finish = 1000000000.0
+    average = work / operations
+    delay = finish - ready
+    if delay < p:
+        delay = p
+    criticality = ready + work
+    machine_factor = (1.0 + average) / (1.0 + average + delay)
+    score = criticality * machine_factor
+    return score
+
+
+H MEMBER 3
+Behavior: 将work、该候选机器加工时间p和finish截到[0,1e9]，工序数截到[1,1e9]。average=work/operations，扣除量为min(p,average)，尾部估计为max(0,work-扣除量)，返回1/(1+finish+尾部估计)。finish+尾部估计越小，分数越高；就绪和开始输入不直接参与。扣除量只是候选机器加工时间与平均剩余工序工作量中的较小者，没有在当前工序的所有可选机器间取最短加工时间。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    machine_time = max(0.0, min(processing_time, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    average = work / operations
+    current_minimum = min(machine_time, average)
+    tail = max(0.0, work - current_minimum)
+    estimate = finish + tail
+    return 1.0 / (1.0 + estimate)
+
+
+H MEMBER 4
+Behavior: 将p、work和finish截到[0,1e9]，工序数截到[1,1e9]。average=work/operations，分数为work*(1+average)/(1+average+p)*(1+work)/(1+work+finish)*(1+operations/(1+operations+work))。其他量相近时，最后的深度加成项对较多剩余工序提供加分。但在work和p固定时，工序数增加也会降低average、削弱机器效率比；p=0时该效率比不变。总分由各项共同决定，不能说整体规则无条件偏好更多剩余工序。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = max(0.0, min(processing_time, 1000000000.0))
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    average = work / operations
+    machine_factor = (1.0 + average) / (1.0 + average + p)
+    time_factor = (1.0 + work) / (1.0 + work + finish)
+    depth_bonus = 1.0 + operations / (1.0 + operations + work)
+    score = work * machine_factor * time_factor * depth_bonus
+    return score
+
+
+H MEMBER 5
+Behavior: 非负截断到1e9，工序数至少为1，average=work/operations，返回work*(1+average)/(1+average+p)*(1+work)/(1+work+finish)。综合剩余工作量、相对平均工序工作量的加工效率和最早完成时间。其他值固定时，缩短加工时间或提前完成不会降低分数。两个就绪时间及最早开始时间不直接参与。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = max(0.0, min(processing_time, 1000000000.0))
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    average = work / operations
+    machine_factor = (1.0 + average) / (1.0 + average + p)
+    time_factor = (1.0 + work) / (1.0 + work + finish)
+    score = work * machine_factor * time_factor
+    return score
+
+
+H MEMBER 6
+Behavior: 输入转成浮点数后非负截断到1e9，工序数至少为1。average=work/operations，gap=abs(job_ready-machine_ready)。加分项为7*work/(work+finish+1)+5*(average+1)/(average+p+1)+2*operations/(operations+4)+2/(finish+1)；扣分项为2*start/(start+work+1)+2*gap/(gap+average+p+1)+p/(p+work+1)。多个比例共同权衡剩余工作、加工效率、工序数、完成时间、开始时间和就绪差。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = min(max(float(processing_time), 0.0), 1000000000.0)
+    w = min(max(float(remaining_work), 0.0), 1000000000.0)
+    n = min(max(float(remaining_operations), 1.0), 1000000000.0)
+    jr = min(max(float(job_ready_time), 0.0), 1000000000.0)
+    mr = min(max(float(machine_ready_time), 0.0), 1000000000.0)
+    es = min(max(float(earliest_start), 0.0), 1000000000.0)
+    ef = min(max(float(earliest_finish), 0.0), 1000000000.0)
+    average_work = w / n
+    gap = abs(jr - mr)
+    criticality = w / (w + ef + 1.0)
+    machine_fit = (average_work + 1.0) / (average_work + p + 1.0)
+    depth = n / (n + 4.0)
+    completion = 1.0 / (ef + 1.0)
+    start_penalty = es / (es + w + 1.0)
+    mismatch = gap / (gap + average_work + p + 1.0)
+    current_share = p / (p + w + 1.0)
+    score = 7.0 * criticality + 5.0 * machine_fit + 2.0 * depth
+    score = score + 2.0 * completion
+    score = score - 2.0 * start_penalty - 2.0 * mismatch - current_share
+    return score
+
+
+H MEMBER 7
+Behavior: 输入非负截断到1e9，工序数至少为1。average=work/operations，gap=abs(job_ready-machine_ready)。加分项为6*work/(work+finish+1)+4*average/(average+p+1)+2*operations/(operations+4)；扣分项为2*gap/(gap+average+p+1)+start/(start+work+1)。这些归一化比例共同决定分数，单个输入的影响需要结合其他项理解。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = min(max(processing_time, 0.0), 1000000000.0)
+    w = min(max(remaining_work, 0.0), 1000000000.0)
+    n = min(max(remaining_operations, 1.0), 1000000000.0)
+    jr = min(max(job_ready_time, 0.0), 1000000000.0)
+    mr = min(max(machine_ready_time, 0.0), 1000000000.0)
+    es = min(max(earliest_start, 0.0), 1000000000.0)
+    ef = min(max(earliest_finish, 0.0), 1000000000.0)
+    average_work = w / n
+    readiness_gap = abs(jr - mr)
+    criticality = w / (w + ef + 1.0)
+    efficiency = average_work / (average_work + p + 1.0)
+    depth = n / (n + 4.0)
+    mismatch = readiness_gap / (readiness_gap + average_work + p + 1.0)
+    delay = es / (es + w + 1.0)
+    score = 6.0 * criticality + 4.0 * efficiency + 2.0 * depth - 2.0 * mismatch - delay
+    return score
+
+
+H MEMBER 8
+Behavior: 输入非负截断到1e9，工序数至少为1。average=work/operations，scale=1+average、wait=max(0,start-job_ready,machine_ready-job_ready)，返回(work+average)*(scale/(scale+p))^3*scale/(scale+wait)*(1+work)/(1+work+finish)。它综合剩余工作量和平均工序工作量，以立方机器效率因子惩罚相对较长加工，并考虑等待及最早完成时间。等待因子为1/(1+wait/(1+average))，同样的正等待量下，平均工序工作量越大，相对等待惩罚越弱；等待为零时因子恒为1。这只是等待因子的关系，总分还受其他项影响。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = max(0.0, min(processing_time, 1000000000.0))
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    job_ready = max(0.0, min(job_ready_time, 1000000000.0))
+    machine_ready = max(0.0, min(machine_ready_time, 1000000000.0))
+    start = max(0.0, min(earliest_start, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    average = work / operations
+    scale = 1.0 + average
+    machine_factor = scale / (scale + p)
+    wait = max(0.0, start - job_ready, machine_ready - job_ready)
+    wait_factor = scale / (scale + wait)
+    time_factor = (1.0 + work) / (1.0 + work + finish)
+    score = (work + average) * machine_factor * machine_factor * machine_factor
+    score = score * wait_factor * time_factor
+    return score
+
+
+H MEMBER 9
+Behavior: 输入非负截断到1e9，工序数至少为1。average=work/operations，wait=max(0,start-job_ready)，返回work*((1+average)/(1+average+p))^2*(1+work)/(1+work+finish)*(1+work)/(1+work+wait)。综合剩余工作量、平方机器效率因子、完成时间因子与等待因子。其他项固定时，较短加工、较早完成和较少等待不会降低分数。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = max(0.0, min(processing_time, 1000000000.0))
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    start = max(0.0, min(earliest_start, 1000000000.0))
+    job_ready = max(0.0, min(job_ready_time, 1000000000.0))
+    average = work / operations
+    machine_factor = (1.0 + average) / (1.0 + average + p)
+    time_factor = (1.0 + work) / (1.0 + work + finish)
+    wait = max(0.0, start - job_ready)
+    wait_factor = (1.0 + work) / (1.0 + work + wait)
+    score = work * machine_factor * machine_factor * time_factor * wait_factor
+    return score
+
+
+
+PARENT 0
+Description: Handwritten prompt preview only; not a real parent or population member.
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (0, (progress + 0.0, progress + 0.1, progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9))
+
+
+PARENT 1
+Description: Handwritten prompt preview only; not a real parent or population member.
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (0, (progress + 0.1, progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0))
+
+
+PARENT 2
+Description: Handwritten prompt preview only; not a real parent or population member.
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (0, (progress + 0.2, progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1))
+
+
+PARENT 3
+Description: Handwritten prompt preview only; not a real parent or population member.
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (0, (progress + 0.3, progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1, progress + 0.2))
+
+
+PARENT 4
+Description: Handwritten prompt preview only; not a real parent or population member.
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (0, (progress + 0.4, progress + 0.5, progress + 0.6, progress + 0.7, progress + 0.8, progress + 0.9, progress + 0.0, progress + 0.1, progress + 0.2, progress + 0.3))
+
+
+Compare how the supplied parents map available state information to H members, using H's actual behavior.
+Try to combine the decision ideas of AT LEAST TWO parents into a new usage relationship.
+You may change state conditions, relations between conditions, member mappings and parameters, member-score formulas and, where permitted, support and weight formulas, or rewrite the WHOLE function.
+Do not require fixed modules, literal code splicing, or a particular program skeleton.
+Resolve conflicting choices using the available state and H behavior, not simply parent order.
+Different parents do not prove complementarity; whole-instance results do not establish state-level winners.
+In the common at-most-three-sentence explanation, identify which parental decision ideas were inherited and how they were combined.
+Return one complete new U. Its benefit is a hypothesis to be tested by external complete-schedule evaluation.
+
+Output at most three sentences inside {braces}, followed by exactly one ```python code block. No extra text. Use one function with the exact argument names. Only numeric constants, local variables, arithmetic, comparisons, if/while/for, and these builtins are allowed: abs, min, max, int, float, round, range. Only the terminal two-level tuple (mode, (scalar,...)) is permitted; no other containers, indexing, imports, attributes, helper functions, globals, recursion, randomness or resource access. Numeric intermediates must remain finite and <=1e100; power exponents must be literal integers from 0 to 8; round ndigits must be an int in [-100,100]. End the function with return, or an if/else whose branches both end in return. No return annotation. Numeric literals <=1e9; scalar intermediates/output fields finite with absolute value <=1e100.
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):

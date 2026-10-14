@@ -51,7 +51,7 @@ def inventory(roots, exclude=None):
     return found
 
 
-def peer_terminal_audit(peer_root):
+def peer_terminal_audit(peer_root, *, model=None):
     """No lock or interrupted chat is evidence of completion by itself."""
     peer_root = Path(peer_root)
     locks = list((peer_root / 'runs').rglob('.writer.lock'))
@@ -61,7 +61,9 @@ def peer_terminal_audit(peer_root):
     for path in (peer_root / 'runs').glob('*/protocol.json'):
         body = json.loads(path.read_text()); config = body.get('config', {})
         if (config.get('real_requests_authorized') is True and config.get('seeds') == [201]
-                and config.get('total_request_cap') == 60 and config.get('purpose') == 'research'):
+                and config.get('total_request_cap') in ((60, 61) if model else (60,))
+                and config.get('purpose') == 'research'
+                and (model is None or config.get('provider', {}).get('model') == model)):
             runs.append((path.parent, body))
     if len(runs) != 1:
         raise BudgetStop('WAIT_SINGLE_PEER_REGISTERED_TERMINAL_BATCH: expected exactly one authorized seed201/cap60 batch')
@@ -125,12 +127,23 @@ class SerialGuard:
 
     def check(self):
         f, b = self.flow, self.binding
-        if b['version'] != VERSION or b['context'] != f.context:
+        from .model_migration import MIGRATION_VERSION, audit_common_evidence
+        if b['version'] not in (VERSION, MIGRATION_VERSION) or b['context'] != f.context:
             raise BudgetStop('v2.2 registration binding mismatch')
         f.assert_current()
         for group in b['source_groups']:
             verify_source_group(f.project_root, group['root'], group['files_sha256'])
-        peer = peer_terminal_audit(b['peer']['root'])
+        if b['version'] == MIGRATION_VERSION:
+            common = audit_common_evidence(b['peer']['root'], b['common_evidence'])
+            if common != b['common_audit']:
+                raise BudgetStop('common model access/pricing/risk evidence changed after registration')
+            if f.config.payload()['provider'] != common['provider']:
+                raise BudgetStop('paired model generation parameters changed')
+            if f.config.platform_quota_reservation != common['reservation']:
+                raise BudgetStop('new model reservation differs from reviewed common basis')
+            peer = common['peer']
+        else:
+            peer = peer_terminal_audit(b['peer']['root'])
         if peer != b['peer']:
             raise BudgetStop('peer final ledger/settlement changed after registration')
         if inventory(worktree_roots(f.project_root), exclude=f.directory) != b['inventory']:
@@ -166,7 +179,9 @@ class RegisteredUsageWorkflow(UsageWorkflow):
             guard = SerialGuard(self, binding); guard.check()
             history = dispatch_check(self)
             inner = JsonCandidateTransport(self.config)
-            quota = QuotaGuardedTransport(inner, self.directory / 'platform_quota.json', self.context,
+            from .model_migration import MIGRATION_VERSION, Gpt61UsageQuota
+            quota_class = Gpt61UsageQuota if binding['version'] == MIGRATION_VERSION else QuotaGuardedTransport
+            quota = quota_class(inner, self.directory / 'platform_quota.json', self.context,
                 retained_extra=history['retained_account_hold'],
                 settlement_min_used=max(history['latest_saved_account_used'], binding['peer']['observed_used']))
             self._client = SerialTransport(InvoiceTransport(quota, self.directory / 'billing'), guard)

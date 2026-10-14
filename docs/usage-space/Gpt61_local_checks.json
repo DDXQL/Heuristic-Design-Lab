@@ -1,0 +1,66 @@
+{
+  "kind": "Gpt61_local_checks",
+  "checked_at_utc": "2026-10-14T13:30:09.906762+00:00",
+  "branch": "codex/h-usage-space",
+  "provider_model": "gpt-6.1-sol",
+  "seed": 301,
+  "N": 5,
+  "new_request_cap": 40,
+  "source_H_sha256": "a3527deff8bfb63b0394ea2c1f4f24339f187a331eca4b0ab8dcfff6081fed3b",
+  "current_preparation": "preparations/v22-gpt61-select-mix-20261014-v2",
+  "current_fingerprint_equals_preparation": true,
+  "all_document_links_exist": true,
+  "six_prompt_snapshots_and_configs_byte_identical": true,
+  "H_evaluation_reused_after_solver_runtime_parser_and_data_checks": true,
+  "new_model_requests": 0,
+  "own_diagnostic_requests": 0,
+  "holdout_physical_files_present": false,
+  "new_paid_run_exists": false,
+  "peer_diagnostic": {
+    "verified": true,
+    "model": "gpt-6.1-sol",
+    "input_tokens": 14,
+    "output_tokens": 5,
+    "actual_platform_units": 20,
+    "candidate": false,
+    "record_sha256": "74a56f69d06c3823b9854a8f9f633d30161a3efb9f7ce9fd5f3e0c4250d851fc"
+  },
+  "peer_still_running": false,
+  "peer_current_slots": 7,
+  "not_final_global_ledger": false,
+  "old_unknown_account_holds": 24000000,
+  "planned_global_max": 181,
+  "lifetime_cap": 300,
+  "automation": {
+    "id": "v2-2-gpt61",
+    "kind": "heartbeat",
+    "scope": "one already-authorized batch; pause at completion or external common blocker",
+    "status": "PAUSED",
+    "reason": "actual common settlement blocker; no retry"
+  },
+  "tests": {
+    "Tests.gpt61-migration.log": {
+      "summary": "Ran 33 tests in 11.468s",
+      "sha256": "d3d369adc0a2f4dd170d47ad0099c14ff8eb311b807697d6e1866340e08868ff"
+    },
+    "Tests.gpt61-compatibility.log": {
+      "summary": "Ran 49 tests in 21.788s",
+      "sha256": "4a317bdcc707cfe698f83e72762e64f72df6438f3ce036637109bd356845a252"
+    }
+  },
+  "own_dispatch_ready": false,
+  "peer_final_status": "STOPPED",
+  "peer_stop_reason": "fresh initialization incomplete: initialization_budget_stopped",
+  "common_blocker": "supplier billing metadata unavailable; no settlement inferred",
+  "peer_quota_halted": true,
+  "global_unique_slots": 87,
+  "actual_own_experiment_status": "NOT_STARTED_COMMON_SETTLEMENT_GATE",
+  "peer_final_file_sha256": {
+    "protocol.json": "5518744f83f3db061bc7177e9604d07ff9c333974a385b022b9543459e9e353b",
+    "budget.json": "a93363bb2e3b9099698beb00d278755d08a19d0f6cbbf492df4a8947d7dcd870",
+    "platform_quota.json": "b9568299260dc5917e5516083fe281a17868497e595e5fa3b2250cda732cc986",
+    "Migration_final.json": "2b17a99e7c4d3983d29aad2912e15f024771b8c04081b45423b5dbed91f5fb19",
+    "Exclusive_call_handoff.json": "d6041f21d9abe6d6f9efcce03a4bcaf8ffbff40a3e757706d593d068e0c13963",
+    "r201/Initialization_status.json": "11f090ab7f32ba827c6718fd59911cef39d6ccf4f28f2f6c7f058af2bacf24b1"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "confirmation_person": "DDXQL",
+  "scope": "SELECT and SELECT/MIX conditional fixed-H training research",
+  "prompt_version": "FJSP-usage-prompts-v2.2-strategy-space-20261013",
+  "seed": 301,
+  "N": 5,
+  "init_cap": 20,
+  "arms": {
+    "A": [
+      0
+    ],
+    "B": [
+      0,
+      1
+    ]
+  },
+  "generations": 1,
+  "slots_per_arm": 10,
+  "operators_per_arm": {
+    "CROSS": 5,
+    "MUTATE": 5
+  },
+  "new_request_cap": 40,
+  "only_train": true,
+  "lifetime_cap": 300,
+  "account_ceiling": 30000000,
+  "note": "DDXQL approved the new model batch directly. Old gpt-5.6-sol grants stay suspended. Wait for one certified common access diagnostic, new model risk basis, peer terminal ledger and global budget clearance. Preserve every unknown historical usage/reservation.",
+  "model": "gpt-6.1-sol",
+  "approved_at": "2026-10-14",
+  "diagnostic_owner": "single-member chat only; zero diagnostic requests here",
+  "base_historical_slots": 80,
+  "planned_global_upper_bound": 181
+}

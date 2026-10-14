@@ -10,6 +10,8 @@ import http.client
 import json
 import multiprocessing as mp
 import os
+import hashlib
+import re
 import ssl
 import time
 from urllib.parse import urlsplit
@@ -20,6 +22,34 @@ from .budget import validate_usage, BudgetStop
 
 class TransportError(RuntimeError):
     pass
+
+
+def response_audit(response, secret=''):
+    """Allowlisted gateway identifiers, never Authorization/cookies/whole headers."""
+    result={'http_status':response.status}
+    for header in ('x-oneapi-request-id','x-request-id','x-new-api-request-id','date'):
+        value=response.getheader(header)
+        if isinstance(value,str):
+            value=value.replace(secret,'[REDACTED]') if secret else value
+            result[header]=value[:256]
+    result['gateway_request_id']=next((result[h] for h in
+        ('x-oneapi-request-id','x-new-api-request-id','x-request-id') if h in result),None)
+    return result
+
+
+def error_audit(raw,secret=''):
+    result={'error_body_sha256':hashlib.sha256(raw).hexdigest(),'error_body_bytes_sampled':len(raw)}
+    try:
+        error=json.loads(raw).get('error',{})
+        if isinstance(error,dict):
+            for field in ('type','code','message'):
+                value=error.get(field)
+                if isinstance(value,(str,int)):
+                    value=str(value).replace(secret,'[REDACTED]') if secret else str(value)
+                    value=re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)', '[REDACTED]', value)
+                    result['error_'+field]=value[:300]
+    except (ValueError,AttributeError):pass
+    return result
 
 
 def decode_chat(data, provider):
@@ -202,11 +232,14 @@ def _wire_worker(pipe, provider, payload, secret):
         connection.request('POST', parts.path or '/', body=json.dumps(payload).encode(), headers=headers)
         pipe.send({'kind': 'sent'})
         response = connection.getresponse()
+        metadata = response_audit(response,secret)
+        pipe.send({'kind':'audit','metadata':metadata})
         if response.status != 200:
+            metadata.update(error_audit(response.read(4096),secret))
             raise TransportError(f'HTTP status {response.status}; response body omitted')
         if getattr(provider, 'stream_response', False):
             data = decode_stream(response, provider)
-            metadata = data['metadata']
+            metadata = {**metadata,**data['metadata']}
         else:
             body = response.read(524289)
             if len(body) > 524288:
@@ -217,7 +250,7 @@ def _wire_worker(pipe, provider, payload, secret):
                 usage = validate_usage({'input_tokens': data['usage'].get('prompt_tokens'),
                                         'output_tokens': data['usage'].get('completion_tokens')})
             data = decode_chat(data, provider)
-            metadata = data['metadata']
+            metadata = {**metadata,**data['metadata']}
         if not isinstance(data, dict) or not isinstance(data.get('text'), str):
             raise TransportError('invalid response schema')
         usage = validate_usage(data.get('usage'))
@@ -232,7 +265,7 @@ def _wire_worker(pipe, provider, payload, secret):
         if secret:
             message = message.replace(secret, '[REDACTED]')
         pipe.send({'kind': 'error', 'error': message, 'usage': getattr(exc, 'usage', usage),
-                   'metadata': getattr(exc, 'metadata', metadata)})
+                   'metadata': {**metadata,**(getattr(exc, 'metadata', {}) or {})}})
     finally:
         if connection is not None:
             connection.close()
@@ -283,6 +316,7 @@ class JsonCandidateTransport:
         started = time.monotonic()
         worker.start()
         send.close()
+        audit = {}
         try:
             while True:
                 remaining = self.provider.total_timeout - (time.monotonic() - started)
@@ -294,6 +328,8 @@ class JsonCandidateTransport:
                     raise TransportError('network worker exited without a final reply') from exc
                 if message['kind'] == 'sent':
                     on_sent()
+                elif message['kind'] == 'audit':
+                    audit.update(message['metadata'])
                 elif message['kind'] == 'error':
                     error = TransportError(self.redact(message['error']))
                     error.usage = message.get('usage')
@@ -302,6 +338,9 @@ class JsonCandidateTransport:
                 else:
                     return {'text': self.redact(message['text']), 'usage': message['usage'],
                             'metadata': self.redact_metadata(message.get('metadata', {}))}
+        except BaseException as exc:
+            exc.metadata={**audit,**(getattr(exc,'metadata',{}) or {})}
+            raise
         finally:
             receive.close()
             worker.join(timeout=0.05)

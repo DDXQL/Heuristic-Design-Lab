@@ -68,7 +68,8 @@ def check_origin(root, config, dataset):
     if old['dataset']!=dataset.metadata or old['config']['instance_timeout']!=config.instance_timeout:
         raise ValueError('conditional source requires identical data order/hash and evaluation deadline')
     if old['config']['provider']!=config.payload()['provider']:
-        raise ValueError('conditional source cannot silently change provider/model/parameters')
+        from fjsp_usage.usage_v2.model_migration import check_provider_migration
+        check_provider_migration(config, old['config']['provider'], source['artifact_sha256'])
     members=load_h(source,mode='real',context=digest(old),size=config.H_size,
         names=dataset.names['train'],review_timeout=config.review_timeout)
     # Confirm frozen descriptions still reflect the actual original human action.
@@ -131,6 +132,7 @@ def history_summary(root, config):
     for run in d['history_batches']:
         budget=_get(docs,run,'budget.json'); quota=_get(docs,run,'platform_quota.json')
         old=_get(docs,run,'protocol.json')
+        historical_model=old['config']['provider']['model']
         if budget['identity']!=digest({'config':old['config'],'context':digest(old)}) or quota['identity']!=budget['identity']:
             raise ValueError('historical ledger/protocol identity mismatch')
         latest_used=max(latest_used,quota.get('observed_used',0))
@@ -145,7 +147,7 @@ def history_summary(root, config):
             final=not r.get('send_confirmed',False); proof=None
             if r.get('send_confirmed'):
                 z=[v for v in zero_proof['records'] if v.get('type')==5 and v.get('quota')==0
-                   and v.get('model_name')==config.provider.model and v.get('request_id')
+                   and v.get('model_name')==historical_model and v.get('request_id')
                    and q.get('started_at',float('inf'))<=v.get('created_at',0)<=q.get('finished_at',-30)+30]
                 if len(z)==1: final=True; proof=z[0]
                 s=settlement.get(key) if run==d['source_run'] else None
@@ -157,7 +159,7 @@ def history_summary(root, config):
                     match=[v for v in body['records'] if v.get('request_id')==s['proof']['provider_request_id']]
                     if (len(match)!=1 or match[0]!=s['invoice'] or match[0].get('type')!=2
                             or type(match[0].get('quota')) is not int or match[0]['quota']<0
-                            or match[0].get('model_name')!=config.provider.model
+                            or match[0].get('model_name')!=historical_model
                             or not q.get('started_at',float('inf'))<=match[0].get('created_at',0)<=q.get('finished_at',-30)+30):
                         raise ValueError('failed-request invoice does not match model/window/id')
                     final=True; proof=match[0]
@@ -167,7 +169,7 @@ def history_summary(root, config):
                     # immutable, model/window/debit-matched proof; never rewrite
                     # the raw ledger or discard its token reservation.
                     from fjsp_usage.usage_v2.billing import certified_reconciliation
-                    invoice=certified_reconciliation(key,q,quota['invoice_reconciliations'],docs,run,config.provider.model)
+                    invoice=certified_reconciliation(key,q,quota['invoice_reconciliations'],docs,run,historical_model)
                     if invoice is not None: final=True; proof=invoice
             if not final: hold+=reserved
             unknown.append({'run':run,'key':key,'raw_record':r,'raw_quota':q,

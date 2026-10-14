@@ -145,6 +145,8 @@ def main():
     parser.add_argument('--directory', type=Path)
     parser.add_argument('--env-file', type=Path, help='existing local credential file; read only after serial gate passes')
     args = parser.parse_args()
+    if args.stage in ('register', 'run'):
+        raise BudgetStop('old gpt-5.6-sol batch suspended; use run_registered_gpt61_v22.py for the explicitly authorized migration')
     if args.stage == 'peer-status':
         try:
             peer = peer_terminal_audit(PEER)

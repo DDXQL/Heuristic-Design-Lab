@@ -1,0 +1,25 @@
+{
+  "method": "GET",
+  "origin": "https://leafapi.cc",
+  "path": "/v1/models",
+  "inference_requests": 0,
+  "observed_at": 1791982946.5646179,
+  "response_headers_scope": "this metadata GET, not the failed POST",
+  "http_status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 13:02:27 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610141302278815358298268d9d6IUhkwcJq"
+  },
+  "response_bytes": 390,
+  "response_sha256": "eaa42e1e4b8c170ad1f24a62e7a5d96d2cbf22d397b4bddd29a238b878b3bb29",
+  "success": true,
+  "top_keys": [
+    "data",
+    "object",
+    "success"
+  ],
+  "data_shape": "list",
+  "model_count": 3,
+  "locked_model_listed": true
+}

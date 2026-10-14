@@ -1,0 +1,56 @@
+{
+  "method": "GET",
+  "origin": "https://leafapi.cc",
+  "path": "/api/pricing",
+  "inference_requests": 0,
+  "observed_at": 1791982947.4069262,
+  "response_headers_scope": "this metadata GET, not the failed POST",
+  "http_status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 13:02:28 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610141302284203225038268d9d6ncWoajSe"
+  },
+  "response_bytes": 6929,
+  "response_sha256": "99cb1971d009c0816bea980e2f145036562e7ff0094c60d8ba7bd4e23952672f",
+  "success": true,
+  "top_keys": [
+    "auto_groups",
+    "data",
+    "group_ratio",
+    "pricing_version",
+    "success",
+    "supported_endpoint",
+    "usable_group",
+    "vendors"
+  ],
+  "data_shape": "list",
+  "models": [
+    {
+      "model_name": "gpt-6.1-sol",
+      "quota_type": 0,
+      "model_ratio": 37.5,
+      "model_price": 0,
+      "completion_ratio": 2,
+      "enable_groups": [
+        "codex-deafult"
+      ],
+      "billing_mode": "tiered_expr",
+      "billing_expr": "len <= 272000 ? tier(\"0_272k\", p * 2 + cr * 0.1 + cc * 2.5 + c * 10) : tier(\"272k_plus\", p * 4 + cr * 0.2 + cc * 5 + c * 15)"
+    }
+  ],
+  "group_ratio": {
+    "cc-aws": 1.8,
+    "cc-default": 1,
+    "cc-normal": 0.25,
+    "cc-ultra": 0.6,
+    "codex-GPT-image2": 1,
+    "codex-deafult": 0.5,
+    "zaid-4.0": 5.5,
+    "zaid-5": 5.5,
+    "zaid-7.5": 7.5,
+    "zaim-test-4.0": 5.5,
+    "国产Kimi K3": 0.7
+  },
+  "pricing_version": "a42d372ccf0b5dd13ecf71203521f9d2"
+}

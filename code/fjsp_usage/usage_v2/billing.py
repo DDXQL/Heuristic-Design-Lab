@@ -115,9 +115,13 @@ class InvoiceTransport:
                      transport_status='failed' if error else 'completed')
         try:
             if not account or not account.get('send_confirmed'):raise BudgetStop('request not confirmed sent; preserve slot and do not retry')
-            # Chat response IDs need not be the gateway invoice request IDs;
-            # use exclusive dispatch, before/after identity set and exact debit.
-            invoice=match_invoice(before,audit['after'],account,self.inner.config.provider.model,failed=error is not None)
+            # Gateway headers identify the supplier invoice; the chat completion
+            # id is a different identifier. Preserve both and require a gateway
+            # match when that header is available.
+            metadata=(getattr(error,'metadata',{}) or {}) if error else reply.get('metadata',{})
+            audit['response_metadata']=metadata
+            invoice=match_invoice(before,audit['after'],account,self.inner.config.provider.model,
+                failed=error is not None,response_id=metadata.get('gateway_request_id'))
             audit.update(status='invoice_account_matched',invoice=invoice,actual_platform_units=invoice['quota'])
             if self.inner.data['halted']:
                 reason=self.inner.data.get('stop_reason')
