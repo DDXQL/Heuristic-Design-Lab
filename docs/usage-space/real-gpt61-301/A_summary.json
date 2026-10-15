@@ -1,0 +1,291 @@
+{
+  "run": "v22-gpt61-select-mix-301-20261014-v1",
+  "arm": "A",
+  "split": "train21",
+  "status": "completed",
+  "request_slots": 10,
+  "confirmed_sends": 10,
+  "complete_valid_new": 9,
+  "code_duplicates": 0,
+  "failed_settlement_slots_preserved": 1,
+  "all_supplier_charges_certified": true,
+  "supplier_points": 58403,
+  "new_candidates": [
+    {
+      "id": "A/g0000/000000",
+      "source": "A__g0000__000000.py",
+      "code_key": "2e5cbc6271b46186d467fa9006d716ee2a9678b787e6c3f6b128bfc8f1d01562",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000007",
+        "INIT/init/000005",
+        "INIT/init/000003"
+      ],
+      "operator": "CROSS",
+      "fitness": -2.391583985708433,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": false,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000002",
+      "source": "A__g0000__000002.py",
+      "code_key": "7f637a2036aed907630acac72b8d76857fa779dfc7710939e612ffaf72294507",
+      "parents": [
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000006"
+      ],
+      "operator": "CROSS",
+      "fitness": -2.3896511685445985,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000003",
+      "source": "A__g0000__000003.py",
+      "code_key": "6cb548802bad6e5618920ba46601436e65c432f77b7395e32e6f3340efa86213",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007"
+      ],
+      "operator": "CROSS",
+      "fitness": -2.5579450021692804,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000004",
+      "source": "A__g0000__000004.py",
+      "code_key": "ca505e11a308ca0157641b6ecb85ebf2f485f420f2951ae32cadde7bb91d104e",
+      "parents": [
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000006"
+      ],
+      "operator": "CROSS",
+      "fitness": -3.022977460207123,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000005",
+      "source": "A__g0000__000005.py",
+      "code_key": "9162029f93d0512f09765ad9c6ce6d782fec4a6b9b6d5c90aae6916352646da8",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "operator": "MUTATE",
+      "fitness": -2.483433501941026,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000006",
+      "source": "A__g0000__000006.py",
+      "code_key": "4f29baf02c307dba1c8e0ea7628d4b0f50698597c51e116c3881e6593b513bd7",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "operator": "MUTATE",
+      "fitness": -2.5251534597692227,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": false,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000007",
+      "source": "A__g0000__000007.py",
+      "code_key": "5e141cecc0e0dc096ce6195bf6f01e6d88ece8063dea0f8d45c044ff1e1817b5",
+      "parents": [
+        "INIT/init/000005"
+      ],
+      "operator": "MUTATE",
+      "fitness": -2.1851566838185925,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000008",
+      "source": "A__g0000__000008.py",
+      "code_key": "ab630dabaf58bdeb9392ebb7c139b7ed45303997a198de08916422090de0d8d3",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "operator": "MUTATE",
+      "fitness": -2.3726081728572597,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "A/g0000/000009",
+      "source": "A__g0000__000009.py",
+      "code_key": "e5cbb0d4139d8db4c81d220fae2561b0629904a05663a61499d817594098a051",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "operator": "MUTATE",
+      "fitness": -2.5324436172715514,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": false,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    }
+  ],
+  "final_population": [
+    {
+      "id": "A/g0000/000007",
+      "fitness": -2.1851566838185925
+    },
+    {
+      "id": "INIT/init/000005",
+      "fitness": -2.225194303277998
+    },
+    {
+      "id": "A/g0000/000008",
+      "fitness": -2.3726081728572597
+    },
+    {
+      "id": "A/g0000/000002",
+      "fitness": -2.3896511685445985
+    },
+    {
+      "id": "A/g0000/000000",
+      "fitness": -2.391583985708433
+    }
+  ],
+  "mean_final_fitness": -2.3128388628413763,
+  "best_final_fitness": -2.1851566838185925,
+  "shared_initial_unchanged": true,
+  "B_state": "pending; no comparative conclusions"
+}
