@@ -1,0 +1,130 @@
+{
+  "run": "v22-gpt61-select-mix-301-20261014-v1",
+  "seed": 301,
+  "split": "train21",
+  "stage": "shared_SELECT_initialized",
+  "shared_asset_sha256": "0b17fe54a55d7c65ec9431168aaa8d7efd26de6ef8641aad976898d1758e5140",
+  "artifact_sha256": "d1b6a70eec4a02388d4f5ee885a92b9e71d79d7ee9889eff5c70a5e5b6a5adb9",
+  "request_slots": 8,
+  "confirmed_sends": 8,
+  "valid": 5,
+  "api_failure": 3,
+  "duplicates": 0,
+  "supplier_points": 42955,
+  "wire_input_tokens_known": 19554,
+  "wire_output_tokens_known": 12679,
+  "wire_usage_unknown": 3,
+  "members": [
+    {
+      "id": "INIT/init/000005",
+      "code_key": "88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4",
+      "source": "INIT__init__000005.py",
+      "fitness": -2.225194303277998,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "INIT/init/000006",
+      "code_key": "427d67beede90b9e81bf08c59de81672211612954a0b9c676a27ae9598769bba",
+      "source": "INIT__init__000006.py",
+      "fitness": -2.391583985708433,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": false,
+        "selection_scores_vary_on_train": false,
+        "selected_member_varies_on_train": false,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "INIT/init/000007",
+      "code_key": "0cae45cb3dda23caa371e819aa449d2baac222e9023716397aa98fb545a6ca09",
+      "source": "INIT__init__000007.py",
+      "fitness": -2.4680820407480666,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "INIT/init/000001",
+      "code_key": "f436adecaa5ebfbc86d2b76d933453a0f0aa2a509faff91f3ac1cee718909784",
+      "source": "INIT__init__000001.py",
+      "fitness": -2.5251534597692227,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": false,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    {
+      "id": "INIT/init/000003",
+      "code_key": "419e77b136439b24df63ba74e0cd9b44f2ea76c2df653d4363d9413b14487048",
+      "source": "INIT__init__000003.py",
+      "fitness": -2.6088395052404283,
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    }
+  ],
+  "scope": "actual generated candidates; no handwritten imports; no holdout; A/B not yet completed"
+}

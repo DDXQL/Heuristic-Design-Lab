@@ -1,0 +1,32 @@
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    s0 = 1.0 - abs(progress - 0.1) - abs(candidate_pair_ratio - 0.2) - abs(remaining_work_mean - 0.8) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.2) - abs(machine_ready_std - 0.05)
+    s1 = 1.0 - abs(progress - 0.08) - abs(candidate_pair_ratio - 0.8) - abs(remaining_work_mean - 0.7) - abs(remaining_work_std - 0.25) - abs(machine_ready_mean - 0.3) - abs(machine_ready_std - 0.15)
+    s2 = 1.0 - abs(progress - 0.25) - abs(candidate_pair_ratio - 0.4) - abs(remaining_work_mean - 0.55) - abs(remaining_work_std - 0.1) - abs(machine_ready_mean - 0.1) - abs(machine_ready_std - 0.3)
+    s3 = 1.0 - abs(progress - 0.32) - abs(candidate_pair_ratio - 0.9) - abs(remaining_work_mean - 0.45) - abs(remaining_work_std - 0.3) - abs(machine_ready_mean - 0.45) - abs(machine_ready_std - 0.05)
+    s4 = 1.0 - abs(progress - 0.45) - abs(candidate_pair_ratio - 0.25) - abs(remaining_work_mean - 0.65) - abs(remaining_work_std - 0.2) - abs(machine_ready_mean - 0.6) - abs(machine_ready_std - 0.1)
+    s5 = 1.0 - abs(progress - 0.5) - abs(candidate_pair_ratio - 0.65) - abs(remaining_work_mean - 0.35) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.25) - abs(machine_ready_std - 0.25)
+    s6 = 1.0 - abs(progress - 0.62) - abs(candidate_pair_ratio - 0.35) - abs(remaining_work_mean - 0.5) - abs(remaining_work_std - 0.3) - abs(machine_ready_mean - 0.75) - abs(machine_ready_std - 0.1)
+    s7 = 1.0 - abs(progress - 0.7) - abs(candidate_pair_ratio - 0.95) - abs(remaining_work_mean - 0.25) - abs(remaining_work_std - 0.1) - abs(machine_ready_mean - 0.5) - abs(machine_ready_std - 0.35)
+    s8 = 1.0 - abs(progress - 0.84) - abs(candidate_pair_ratio - 0.55) - abs(remaining_work_mean - 0.2) - abs(remaining_work_std - 0.2) - abs(machine_ready_mean - 0.85) - abs(machine_ready_std - 0.05)
+    s9 = 1.0 - abs(progress - 0.92) - abs(candidate_pair_ratio - 0.15) - abs(remaining_work_mean - 0.1) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.35) - abs(machine_ready_std - 0.2)
+    if previous_heuristic == 0:
+        s0 = s0 + 0.03
+    if previous_heuristic == 1:
+        s1 = s1 + 0.03
+    if previous_heuristic == 2:
+        s2 = s2 + 0.03
+    if previous_heuristic == 3:
+        s3 = s3 + 0.03
+    if previous_heuristic == 4:
+        s4 = s4 + 0.03
+    if previous_heuristic == 5:
+        s5 = s5 + 0.03
+    if previous_heuristic == 6:
+        s6 = s6 + 0.03
+    if previous_heuristic == 7:
+        s7 = s7 + 0.03
+    if previous_heuristic == 8:
+        s8 = s8 + 0.03
+    if previous_heuristic == 9:
+        s9 = s9 + 0.03
+    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))

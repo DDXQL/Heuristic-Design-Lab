@@ -1,0 +1,65 @@
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_dispersion = remaining_work_std / (1.0 + remaining_work_mean)
+    ready_dispersion = machine_ready_std / (1.0 + machine_ready_mean)
+    if progress < 0.3:
+        if candidate_pair_ratio < 0.5:
+            if work_dispersion < 0.1:
+                target = 0
+            else:
+                target = 1
+        elif machine_ready_mean < 0.25:
+            if ready_dispersion < 0.08:
+                target = 2
+            else:
+                target = 3
+        elif remaining_work_mean < 0.25:
+            target = 4
+        else:
+            target = 5
+    elif progress < 0.75:
+        if machine_ready_mean < remaining_work_mean:
+            if work_dispersion < 0.1:
+                target = 6
+            else:
+                target = 7
+        elif ready_dispersion < 0.08:
+            target = 8
+        else:
+            target = 9
+    elif candidate_pair_ratio < 0.5:
+        target = 9
+    elif remaining_work_std < 0.05:
+        target = 0
+    else:
+        target = 1
+    s0 = 0.0
+    s1 = 0.0
+    s2 = 0.0
+    s3 = 0.0
+    s4 = 0.0
+    s5 = 0.0
+    s6 = 0.0
+    s7 = 0.0
+    s8 = 0.0
+    s9 = 0.0
+    if target == 0:
+        s0 = 1.0
+    if target == 1:
+        s1 = 1.0
+    if target == 2:
+        s2 = 1.0
+    if target == 3:
+        s3 = 1.0
+    if target == 4:
+        s4 = 1.0
+    if target == 5:
+        s5 = 1.0
+    if target == 6:
+        s6 = 1.0
+    if target == 7:
+        s7 = 1.0
+    if target == 8:
+        s8 = 1.0
+    if target == 9:
+        s9 = 1.0
+    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))

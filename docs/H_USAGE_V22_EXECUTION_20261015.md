@@ -45,3 +45,5 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python tools/resume_usage_me
 ```
 
 若只读健康仍失败则保留门禁，不消耗后续生成槽位；不得删除原状态、复制目录或重置历史预留以续跑。
+
+恢复后的实时健康核验成功（账单HTTP200）。同一checkpoint继续后，共8次初始化请求得到5个完整有效U，3次API失败、0重复；8笔实际费用42955平台点全部匹配。已知wire token为19554输入、12679输出，3笔wire用量未知，保留原预留。真实候选包括常量H4、条件单选、10成员距离评分、综合指标评分及H2/H7非线性评分。共有105个候选×实例成绩；原代码及行为摘要见[共享初始化归档](usage-space/real-gpt61-301/Shared_initial_summary.json)，逐实例见[CSV](usage-space/real-gpt61-301/Shared_initial_instances.csv)。这些是实际模型生成资产，不是教学例子。两组共享初始种群已封存；A/B结果另行报告。

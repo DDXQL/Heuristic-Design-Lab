@@ -1,0 +1,11 @@
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_fraction = remaining_work_std * remaining_work_std / (0.01 + remaining_work_mean * (1.0 - remaining_work_mean))
+    ready_fraction = machine_ready_std * machine_ready_std / (0.01 + machine_ready_mean * (1.0 - machine_ready_mean))
+    contrast = ready_fraction - work_fraction + 0.2 * (candidate_pair_ratio - 0.5) + 0.1 * (progress - 0.5)
+    score2 = contrast
+    score7 = -contrast
+    if previous_heuristic == 2:
+        score2 = score2 + 0.08
+    elif previous_heuristic == 7:
+        score7 = score7 + 0.08
+    return (0, (-2.0, -2.0, score2, -2.0, -2.0, -2.0, -2.0, score7, -2.0, -2.0))
