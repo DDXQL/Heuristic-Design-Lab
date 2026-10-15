@@ -318,3 +318,55 @@ PYTHONPATH=code:tests .venv/bin/python -m unittest test_model_migration test_sin
 暂停时使用的tools/resume_single_settlement.py逐笔匹配metadata-429结算后从下一槽位恢复，旧失败/未发送/旧停顿凭证原样保留；每个执行修订登记代码SHA/检查点，不改生成参数、提示、H、评价器或预算。账单查询最低75秒，全部metadata GET最低15秒，均为本地工程节流，供应商实际限频规则未知。发送前账单不可用现在会停后续槽位，完整wire在结算前保存。该批已完成，不用未用初始化槽位补发或启动新组。
 
 复现生成需要原真实API和新的有效授权，不能保证再次请求LLM得到同一代码；保存的响应、代码、数据/配置与指纹支持离线排程复检。代码/测试/指南随Git，runs、数据、.venv和凭证在本地，其他worktree须核对并准备相应资产；不复制或展示凭证值。
+
+## 单编号公平重跑v2：离线准备（2026-10-15）
+
+新入口`run_single_fair.py`与`config.single.fair.pending.json`，协议`single-ID-fixed-H-fair-v2`。独立目录`runs/single-ID-gpt61-fair-seed201-v2/`，不续填旧剩余槽位。固定原10H、七状态、v5-state-bounds、V5未取整LB和21train；Leaf gpt-6.1-sol、输出8192、网络10/240/300秒，温度/推理参数不发送。seed201/N5、交叉5父代/变异1父代；新共享初始化≤20，B0/B1/B2/P各一代10槽位，总上限60，无付费诊断。B0/B1五算子各2槽位、差异为H信息；B2/P各交叉5变异5、差异仅特化算子段；B1与B2还改变算子组合及分配。单seed只支持初步训练描述。
+
+`prepare`只读取13份指定来源文件、核对训练文件哈希和原代码/运行环境身份，复用已有完整H评价、原审查和研究范围批准；不调用模型/账单、不重排程H、不运行审查样例、不导入旧U。`Preparation.json`及`H_source_binding.json`不是新请求授权，也不是开始训练。H源中的旧模型生成凭证保留，不假装来自本批。真实H运行/数据及凭证仍在本地，Git只保存新代码/配置/说明。
+
+```sh
+# 仅首次创建新目录时运行；本机已完成。写离线准备材料，无网络/排程。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_fair.py prepare \
+  --run-dir runs/single-ID-gpt61-fair-seed201-v2 \
+  --config experiments/tier2/research_real_v1/config.single.fair.pending.json
+# 纯文件核对，无网络；已登记后还核对跨worktree账本/写锁。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_fair.py check \
+  --run-dir runs/single-ID-gpt61-fair-seed201-v2
+```
+
+新准备阶段没有`protocol.json`或`budget.json`。后续`register`才在同一准备目录建立新协议/空原生账本、绑定最终历史，并用新context封装原H成员；不修改原资产的代码、编号、审查、成绩或原文件。实现/配置/运行环境变化会拒绝登记，应创建新的准备版本，不能修改旧指纹以续跑。
+
+**等待另一页终态和本批明确新调用批准，以下仅提供未来操作方式，本轮未执行：**
+
+```sh
+# 离线登记；占位路径须换成实际最终交接/新授权，不能使用正在写入的run。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_fair.py register \
+  --run-dir runs/single-ID-gpt61-fair-seed201-v2 \
+  --authorization /absolute/path/to/new-fair-approval.json \
+  --additional-run /absolute/path/to/finished-peer-run \
+                   /absolute/path/to/finished-peer-run/Final_budget_handoff.json
+# 只有登记通过及本批授权有效后才运行：读指定凭证，查询账户元数据并真实生成。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_fair.py execute \
+  --run-dir runs/single-ID-gpt61-fair-seed201-v2 \
+  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local
+```
+
+新批准文件必须由实际用户授权产生，包含`approved=true`、真实`reviewer`、`scope="fixed-existing-H-single-ID-four-arm-train-only"`、`max_new_requests=60`、`exclusive_caller_branch="codex/u-single-experiments"`及`pending_config_sha256`；最后一项取`Preparation.json.config_sha256`（规范化配置digest，不是文件字节SHA）。本轮没有生成该文件，pending配置授权开关保持false。登记不复用旧授权常量。
+
+每个额外已完成批次用一对`--additional-run`明确给出。最终交接必须含原生`budget_identity/budget_sha256`、`summary.request_slots/confirmed_sends`、`real_caller_active=false`、`quota_halted=false`、空`unknown_new_fee_keys`及零`unknown_new_fee_holds`、原`old_account_hold`、`latest_verified_used_points`和`known_new_points`。原生账本不得有pending/reserved、quota记录须已结算；逐请求`billing/`或`billing_reconciliations/`须有可匹配请求ID/型号/分组/窗口/扣额的原始证明，不能只填“未知=0”。交接格式或证据不兼容时明确拒绝，不能手改财务结论。追加账本按identity与当前已登记inventory比对；基数128只计一次，续接历史不重复相加；原24,000,000点未知占用、未知wire的token预留都继承。继承最后metadata/账单查询时间，不因换目录重置节流；运行期间其他worktree新增消费或写锁立即阻止下一次发送。
+
+原搜索器/父代池/完整评价/去重/生存选择均复用。初始化不足5条即停，普通候选失败和重复占槽位，不补发；门禁停止整批，后续组不继续消耗槽位。完整wire响应在账户/账单查询前独立落盘，结算失败不丢正文、不自动回填子代。失败/未知结算须另行依据凭证处理，不能调用旧迁移批次专用恢复命令来清门禁。
+
+每组实际发送10次且同P₀才能标记`balanced_actual_request_counts=true`；即使数量相等，有接入故障也标记`balanced_counts_but_infrastructure_contaminated`。`completed`只描述代际处理终态，不证明研究有效。`Fair_status.json`、`Single_results.json`、`Training_report.json`及最终交接保留全部失败/重复/成本和逐实例成绩；求解、确定性复检、独立诊断和LLM成本分开记录。没有validation/test入口，不产生研究U*。
+
+本轮70项离线测试通过：
+
+```sh
+PYTHONPATH=code:tests .venv/bin/python -B -m unittest \
+  test_single_fair test_single_wire_recorder test_single_billing test_model_migration \
+  test_conditional_research test_single_experiments test_single_report \
+  test_research_evolution test_U_initialization_novelty -q
+```
+
+新测试的“21行评价”“45次调用”是内存手写fixture，不调用模型或真实求解器，不进入真实P₀，不是本批真实结果。测试没有重新运行基准H评价。数值和状态证据见根目录`docs/SINGLE_FAIR_OFFLINE_20261015.json`。

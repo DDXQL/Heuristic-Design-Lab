@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-15",
+  "version": "single-ID-fixed-H-fair-v2",
+  "status": "OFFLINE_PREPARED_WAITING_FOR_FINAL_PEER_HANDOFF_AND_NEW_APPROVAL",
+  "tests": {
+    "count": 70,
+    "result": "passed",
+    "command": "PYTHONPATH=code:tests .venv/bin/python -B -m unittest test_single_fair test_single_wire_recorder test_single_billing test_model_migration test_conditional_research test_single_experiments test_single_report test_research_evolution test_U_initialization_novelty -q",
+    "log": "logs/single-fair-offline-tests-20261015.log",
+    "log_sha256": "5270113a5c0c258afcddacbfff97af240ba9f5be9612e4ac1c33c36be4b82855",
+    "note": "All transport replies/calls and toy rows in new tests are handwritten fixtures, never real model candidates."
+  },
+  "new_tests": 13,
+  "real_model_requests": 0,
+  "account_or_invoice_network_queries": 0,
+  "benchmark_H_reevaluations": 0,
+  "formal_holdout_files_read": 0,
+  "fixed_H_members": 10,
+  "source_files_pinned": 13,
+  "source_H_hash": "b43ce35846870dbc0495b90e5956d9209af941cddc3e17c4f7067d2daf108eb3",
+  "original_H_scope_and_reviews_preserved": true,
+  "source_bundle_checked_unchanged": true,
+  "fresh_real_U_generated": 0,
+  "old_U_imported": 0,
+  "pending_config": "experiments/tier2/research_real_v1/config.single.fair.pending.json",
+  "prepared_directory": "runs/single-ID-gpt61-fair-seed201-v2",
+  "real_requests_authorized": false,
+  "history_registered": false,
+  "new_budget_json_exists": false,
+  "new_protocol_json_exists": false,
+  "pending_config_digest": "0f8626542df6aca6debf17a17786d93082e153a18052f2af361023976595783b",
+  "source_baseline_slots": 128,
+  "source_baseline_notice": "128 is the previous finalized single-ID handoff, NOT the current all-worktree total. Peer FINAL handoffs and invoice evidence are required before registration.",
+  "unchanged_science": [
+    "H code/order/reviews",
+    "seven-state scalar-ID interface",
+    "v5-state-bounds prompts and initialization novelty rules",
+    "complete train21 and unrounded LB fitness",
+    "parent selection, operator allocation, dedup and survival"
+  ],
+  "required_next": [
+    "peer final stopped handoff and native ledgers plus matching invoice evidence",
+    "new actual user approval tied to pending config",
+    "offline register, then explicit execute only within new authorization"
+  ],
+  "files_sha256": {
+    "code/fjsp_usage/research_real/conditional_research.py": "e8ac578855c4bf0011a0c9866a659940ff0fe1f1e17b72e880bcb3c39ad554ce",
+    "code/fjsp_usage/research_real/single_billing.py": "54276974005152470dc30c40d2682025cb7234f417952ba0c1d9874522367166",
+    "code/fjsp_usage/research_real/single_fair.py": "0ca935cf7332934365298054124fb3332860723030f423242051f344a1e3a1b7",
+    "code/fjsp_usage/research_real/single_io.py": "c2a2c1b927b1063a6d0547cf350567bf5e1241c81e94e8be721f69b44aed1b5b",
+    "experiments/tier2/research_real_v1/run_single_fair.py": "0502bed4decd261cdbdb35b8efe5ab98e7e9ef75f39a62ec707f38c1ea73dc5f",
+    "experiments/tier2/research_real_v1/config.single.fair.pending.json": "9c30fb23283817416f1d1022953ca436f8990c1bcac0a722b0a52fbff1e96659",
+    "tools/resume_single_settlement.py": "763c3b87bfddca90af286a976e0a245db2f1d1705893904f1633e8e55ed48258",
+    "tests/test_single_fair.py": "6ab2453c23ee2b62e5563edd25183d62b72c1031e11172059c8bb90c71c34531"
+  }
+}

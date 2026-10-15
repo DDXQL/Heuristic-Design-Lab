@@ -18,6 +18,9 @@ MIGRATION_VERSION = 'conditional-fixed-existing-H-model-migration-v2-20261014'
 
 def validate_declaration(config):
     d = config.conditional_research
+    if isinstance(d, dict) and d.get('version') == 'single-ID-fixed-H-fair-v2':
+        from .single_fair import validate_declaration as validate_fair
+        return validate_fair(config)
     fields = {'version','source_run','source_files_sha256','history_batches',
               'lifetime_request_cap','scope_approval','baseline_policy','holdout_policy'}
     if isinstance(d,dict) and d.get('version')==MIGRATION_VERSION:
@@ -125,6 +128,9 @@ def check_origin(root, config, dataset):
 
 def history_summary(root, config):
     """Keep every unknown wire reservation; only final invoices settle account holds."""
+    if config.conditional_research.get('version') == 'single-ID-fixed-H-fair-v2':
+        from .single_fair import history_summary as fair_history
+        return fair_history(root, config)
     d=config.conditional_research; docs=pinned_bundle(root,d)
     slots=sends=hold=0; unknown=[]; charges=[]; latest_used=0
     source=_get(docs,d['source_run'],'protocol.json')
@@ -257,6 +263,9 @@ def dispatch_check(flow):
 
 
 def budget_check(ledger,key,phase):
+    if ledger.config.conditional_research.get('version') == 'single-ID-fixed-H-fair-v2':
+        from .single_fair import budget_check as fair_budget
+        return fair_budget(ledger, key, phase)
     audit=history_summary(ledger.path.parent.parent.parent,ledger.config)
     if phase.startswith('H/') or phase not in ledger.config.phase_caps(): raise BudgetStop('conditional research permits no H generation')
     if audit['historical_request_slots']+len(ledger.data['records'])>=audit['lifetime_request_cap']:

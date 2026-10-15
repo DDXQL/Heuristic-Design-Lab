@@ -97,7 +97,8 @@ class InvoiceTransport:
             invoice=match_invoice(before,audit['after'],account,self.inner.config.provider.model,
                 failed=error is not None,response_id=metadata.get('gateway_request_id'))
             migration=(getattr(self.inner.config,'conditional_research',None) or {}).get('model_migration')
-            if migration and invoice.get('group')!=migration['risk_policy']['group']:
+            expected_group = getattr(self, 'expected_group', None) or (migration or {}).get('risk_policy', {}).get('group')
+            if expected_group and invoice.get('group') != expected_group:
                 raise BudgetStop('invoice group differs from pinned model tariff; preserve reservation')
             audit.update(status='invoice_account_matched',invoice=invoice,actual_platform_units=invoice['quota'])
             if self.inner.data['halted']:

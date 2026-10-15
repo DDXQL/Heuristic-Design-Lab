@@ -95,6 +95,8 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 ## 本分支：原单成员研究任务（2026-10-13）
 
+**2026-10-15新公平批次仅完成离线准备。** [新入口](experiments/tier2/research_real_v1/run_single_fair.py)、[待批准配置](experiments/tier2/research_real_v1/config.single.fair.pending.json)及[启动说明](experiments/tier2/research_real_v1/README.md#单编号公平重跑v2离线准备2026-10-15)使用固定既有H、原七状态/v5提示/评分和四组定义；seed201、N5、新共享初始化≤20、四组各一代10槽位、最多60次新请求，无额外诊断/MIX/holdout。缓存H评价只作来源核验，不重新排程、不导入旧U。首次请求即启用响应先落盘、metadata≥15秒/账单≥75秒节流及失败停发。当前`real_requests_authorized=false`，未创建新请求账本、未登记新调用批准；须等策略空间页最终交接、逐笔费用依据和本批新授权。旧128槽位是上批交接基数，不能冒充当前账户总量。离线结果见[核对记录](docs/SINGLE_FAIR_OFFLINE_20261015.json)。
+
 `codex/u-single-experiments` 从 checkpoint `243ad401bfd5ff64da338277112933323621de1f` 建立独立worktree，仅推进原单编号四组研究。新 [单成员入口](experiments/tier2/research_real_v1/run_single_experiments.py) 保持原运行/提示语义并增加只读来源与跨worktree账本检查；[具体配置与执行指南](experiments/tier2/research_real_v1/README.md#原单成员研究-worktree2026-10-13)提出 seed201/N5/共享新初始化≤20/四组各1代10槽位，最多60新请求。usage_v2的40次SELECT/MIX提案不适用于本任务。旧P组开发验收及旧候选重评仍为历史/工程证据；本次第一阶段付费与旧H研究范围已由用户明确批准；实际执行状态见下方2026-10-13记录。
 
 本页第一阶段已于2026-10-13由用户批准：原H研究用途确认人DDXQL、本页独占单成员真实调用、最多60新请求、仅训练；旧40次MIX批次挂起。新增账单核对不改变实验语义，原12,000,000点未知预留保留。实际进度与全量结果写本worktree新授权目录，未完成阶段不标成功。
