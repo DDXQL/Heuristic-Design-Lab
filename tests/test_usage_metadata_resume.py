@@ -30,6 +30,20 @@ class RecoveryTests(unittest.TestCase):
                 bad=deepcopy(invoices);bad['records'][0][field]=value;atomic_json(ip,bad)
                 with self.assertRaises(BudgetStop):build_proof(p,billpath,bill,account,bad,qp,ip,'gpt-6.1-sol')
 
+    def test_later_recovery_checks_supplemental_settlement_again(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'own';key,old,proof,_=amendment_fixture(p)
+            path=p/'billing_reconciliations'/(hashlib.sha256(key.encode()).hexdigest()+'.json')
+            atomic_json(path,proof)
+            # Use the native supplemental file location, not two proof copies.
+            (p/'Settlement_resume_proof.json').unlink()
+            ledger={'halted':False,'records':{key:{'send_confirmed':True,'status':'failed','usage':proof['wire_usage']}}}
+            quota={'records':{key:old},'invoice_reconciliations':[proof]}
+            self.assertEqual(len(verify_existing(p,ledger,quota,'gpt-6.1-sol')),4)
+            data=json.loads((p/'Settlement.quota.json').read_text());data['quota']['total_used']=99
+            atomic_json(p/'Settlement.quota.json',data)
+            with self.assertRaises((BudgetStop,ValueError)):verify_existing(p,ledger,quota,'gpt-6.1-sol')
+
     def fixture(self, path, success=True):
         data = {'halted': True, 'stop_reason': REASON, 'records': {}}
         ledger = {'halted': False, 'records': {}}

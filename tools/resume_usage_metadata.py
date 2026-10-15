@@ -21,7 +21,7 @@ from experiments.tier2.usage_v2.run_registered_gpt61_v22 import (
     StagedDataset, RunLock)
 from fjsp_usage.research.events import atomic_json
 from fjsp_usage.research_real.budget import BudgetStop
-from fjsp_usage.usage_v2.billing import match_invoice
+from fjsp_usage.usage_v2.billing import match_invoice, certified_reconciliation
 from fjsp_usage.usage_v2 import VERSION
 
 REASON = 'before-dispatch supplier invoice metadata unavailable; no inference sent'
@@ -43,11 +43,28 @@ def verify_existing(directory, ledger, quota, model):
         bill = json.loads(path.read_text())
         if (row.get('send_confirmed') is not True or account.get('send_confirmed') is not True
                 or row.get('status') not in ('completed', 'failed')
-                or account.get('status') != 'settled'
-                or bill.get('global_key') != key or bill.get('status') != 'invoice_account_matched'
+                or bill.get('global_key') != key
                 or bill.get('original_quota_record') != account
                 or bill.get('wire_usage') != row.get('usage')):
             raise BudgetStop('prior request not fully certified; metadata recovery forbidden')
+        if bill.get('status') == 'settlement_not_certified':
+            amendments=[x for x in quota.get('invoice_reconciliations',[]) if x.get('global_key')==key]
+            if len(amendments)!=1 or row['status']!='failed':
+                raise BudgetStop('prior unresolved failed settlement')
+            proof=amendments[0];proof_path=directory/'billing_reconciliations'/path.name
+            if json.loads(proof_path.read_text())!=proof:raise BudgetStop('saved supplemental proof differs')
+            files=[path,proof_path]
+            for name in proof.get('evidence_files_sha256',{}):
+                if Path(name).name!=name:raise BudgetStop('supplemental evidence path differs')
+                files.append(directory/name)
+            docs={directory.name+'/'+str(p.relative_to(directory)):json.loads(p.read_text()) for p in files}
+            hashes={directory.name+'/'+str(p.relative_to(directory)):sha(p) for p in files}
+            invoice=certified_reconciliation(key,account,amendments,docs,directory.name,model,hashes)
+            if invoice is None or invoice['request_id'] in ids:raise BudgetStop('unproved/duplicate supplier receipt')
+            ids.add(invoice['request_id']);proofs.update({str(p.relative_to(directory)):sha(p) for p in files})
+            continue
+        if account.get('status')!='settled' or bill.get('status')!='invoice_account_matched':
+            raise BudgetStop('prior request not settled')
         invoice = match_invoice(bill['before'], bill['after'], account, model,
             failed=bill['transport_status'] == 'failed',
             response_id=bill.get('response_metadata', {}).get('gateway_request_id'))
