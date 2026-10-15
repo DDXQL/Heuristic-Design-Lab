@@ -82,6 +82,12 @@ def build(directory):
         'unknown_cost_requests':unknown_cost,'unknown_wire_usage_requests':unknown_wire,
         'known_wire_input_tokens':sum(r['wire_usage']['input_tokens'] for r in rows if r.get('wire_usage') is not None),
         'known_wire_output_tokens':sum(r['wire_usage']['output_tokens'] for r in rows if r.get('wire_usage') is not None),
+        'per_request_cost_calibration':[{'global_key':r['global_key'],
+            'platform_points_per_1000_wire_tokens':1000*r['actual_platform_units']/sum(r['wire_usage'].values()),
+            'cached_input_tokens':r.get('response_metadata',{}).get('cached_tokens'),
+            'basis':'actual invoice and wire totals; observed I/O/cache mixture, not a price schedule'}
+            for r in rows if r['actual_platform_units'] is not None and r.get('wire_usage') is not None
+            and sum(r['wire_usage'].values())>0],
         'fixed_H_train_results':training['fixed_h_train_results'],
         'train_comparisons':results['train_comparisons'],
         'raw_body_archival_gap':['r201/init/INIT/init/000005'],
@@ -116,7 +122,11 @@ def build(directory):
         'unknown_new_fee_keys':unknown_cost,'old_account_hold':24000000,
         'unknown_new_fee_holds':artifact['new_unknown_fee_hold_points'],
         'unknown_wire_keys':unknown_wire,'reconciliation_files':[str(path.relative_to(p)) for path in proof_paths if path.exists()],
-        'old59_authorization_retired':True,'remaining_model_batch_cap':61-len(budget['records'])})
+        'old59_authorization_retired':True,'remaining_model_batch_cap':61-len(budget['records']),
+        'registered_generation_phases_complete':all(g['status']=='completed' for g in groups),
+        'unused_initial_slots_are_not_extra_generation_authorization':True,
+        'authoritative_report':'Reconciled_training_results.json',
+        'legacy_derived_reports_notice':'Migration_final.json/Single_results.json retain pre-reconciliation invoice classifications; use this handoff and the reconciled report for actual fees and sends.'})
     return artifact
 
 

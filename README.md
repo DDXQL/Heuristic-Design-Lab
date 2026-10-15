@@ -109,4 +109,8 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 新版本`single-ID-leaf-gpt61-migration-v1-20261014`：80个历史槽位、79确认发送、两个旧未知账户预留共2400万点及全部未知token继续保留；新批次最多61槽位，总最大141/300。新费率仅用于工程风险包络：公开tiered表达式两档各类输入最大系数5、输出15，唯一公开支持组codex-deafult倍率0.5，quota_per_unit=500000；输入max(65536,提示UTF8字节+4096)、输出32768、两倍安全系数并向上取整千点，短提示预留410000点，单次上限1000000。此值不是供应商硬上界或已花费用。每次检查实际余额及模型/分组/费率，实际账单按供应商ID、模型、时间窗、分组和扣额核验；新未知结算停发，旧预留不释放。300槽位/3000万点边界不变，美元/人民币换算不确定。
 
-迁移相关55项本地检查通过；本段登记准备状态，实际诊断/训练结果以新目录`runs/single-ID-gpt61-paired-training-20261014-v1/`为准。旧40次SELECT/MIX方案仍挂起。本页独占真实调用，结束后保存`Exclusive_call_handoff.json`供其他worktree核对。
+迁移相关55项本地检查通过，新增记录、429恢复、节流及费用分类专项通过。2026-10-15本批结束，[最终阶段说明](runs/single-ID-gpt61-paired-training-20261014-v1/Stage_summary.md)、[全量逐请求费用/逐实例训练报告](runs/single-ID-gpt61-paired-training-20261014-v1/Reconciled_training_results.json)、[可读报告](runs/single-ID-gpt61-paired-training-20261014-v1/Final_training_report.md)。诊断1次成功（14输入/5输出token、20点），新共享初始化7次得5有效U；四组各一代10槽位/生存选择结束。占48槽位、真实模型请求33（诊断1+正式32）、15发送前账单失败槽位未发送；有效候选21、重复0、解析失败1。B0/B1/B2/P真实演化请求5/0/10/10，有效子代4/0/6/6，新子代存活1/0/2/1。全部21有效候选完整通过21train与确定性复检，四组最佳训练fitness均未超过初始-2.070427514。
+
+**本批不能作为有效四组对照：B1没有真实演化调用，API/结算可用性与执行辅助门禁版本不同。** 未读正式validation/test、无额外seed/代数/MIX。新请求实际125096原始点全部已匹配账单，最新该凭证累计1682879/100000000点；4笔wire token仍未知，不用账单token填零。原两笔未知保留共24000000点；当前新未知费用占用0。累计128/300槽位、112确认发送。一次初始请求正文在结算失败时丢失，未补造；其后通过结算前独立归档修复，发送前失败停账和metadata节流也有登记。
+
+费用以Reconciled_training_results及[最终跨页账本](runs/single-ID-gpt61-paired-training-20261014-v1/Final_budget_handoff.json)为准，原派生Migration_final/Single_results仍有当时未结算分类，不能将其未知数当当前费用。原始日志/失败/预留/计数保留，未重发或补员。代码、提示及评价器指纹未变；各辅助执行修复保留Execution_amendment记录。[共同模型验收证明](runs/single-ID-gpt61-paired-training-20261014-v1/Shared_model_acceptance.json)可供策略空间页查证接入，但不是其他批次调用授权。旧40次SELECT/MIX仍挂起，本批调用已结束，未用13个初始化槽位不授权补发或新实验。

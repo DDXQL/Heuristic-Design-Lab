@@ -304,3 +304,17 @@ PYTHONPATH=code .venv/bin/python -B -m unittest discover -s tests -p test_settle
 ```bash
 PYTHONPATH=code:tests .venv/bin/python -m unittest test_model_migration test_single_billing test_settlement_audit test_platform_quota_guard test_openai_chat_transport test_chat_stream_transport test_conditional_research test_single_experiments test_single_report
 ```
+
+### 本批结束与可复现核对（2026-10-15）
+
+批次已结束，实际效果/费用状态以根README和本地Stage_summary为准。48槽位中实际33次模型调用，15未发送；B1真实演化0次，所以四组研究比较失败，不把代际状态completed当效果证据。原Search_complete.json保留停顿快照，Search_complete_resumed.json绑定实际四组终态。新未知费用0、两旧未知预留2400万点保留，累计128槽位/112发送。
+
+```bash
+# 离线报告与来源/全部21train成绩核对；不创建模型客户端、不读holdout
+.venv/bin/python tools/summarize_single_migration.py --run-dir runs/single-ID-gpt61-paired-training-20261014-v1
+.venv/bin/python tools/check_single_migration.py --run-dir runs/single-ID-gpt61-paired-training-20261014-v1
+```
+
+暂停时使用的tools/resume_single_settlement.py逐笔匹配metadata-429结算后从下一槽位恢复，旧失败/未发送/旧停顿凭证原样保留；每个执行修订登记代码SHA/检查点，不改生成参数、提示、H、评价器或预算。账单查询最低75秒，全部metadata GET最低15秒，均为本地工程节流，供应商实际限频规则未知。发送前账单不可用现在会停后续槽位，完整wire在结算前保存。该批已完成，不用未用初始化槽位补发或启动新组。
+
+复现生成需要原真实API和新的有效授权，不能保证再次请求LLM得到同一代码；保存的响应、代码、数据/配置与指纹支持离线排程复检。代码/测试/指南随Git，runs、数据、.venv和凭证在本地，其他worktree须核对并准备相应资产；不复制或展示凭证值。
