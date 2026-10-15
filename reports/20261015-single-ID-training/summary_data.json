@@ -1,0 +1,135 @@
+{
+  "run": "single-ID-gpt61-paired-training-20261014-v1",
+  "groups": [
+    {
+      "group": "INIT",
+      "slots": 7,
+      "sent": 7,
+      "valid": 5,
+      "failures": {
+        "流协议校验失败": 1,
+        "已发送后结算门禁失败（费用后来已核实）": 1
+      },
+      "surviving_children": null,
+      "actual_points": 24864
+    },
+    {
+      "group": "B0",
+      "slots": 10,
+      "sent": 5,
+      "valid": 4,
+      "failures": {
+        "已发送后结算门禁失败（费用后来已核实）": 1,
+        "发送前查账失败（未发送）": 5
+      },
+      "surviving_children": 1,
+      "actual_points": 23275
+    },
+    {
+      "group": "B1",
+      "slots": 10,
+      "sent": 0,
+      "valid": 0,
+      "failures": {
+        "发送前查账失败（未发送）": 10
+      },
+      "surviving_children": 0,
+      "actual_points": 0
+    },
+    {
+      "group": "B2",
+      "slots": 10,
+      "sent": 10,
+      "valid": 6,
+      "failures": {
+        "已发送后结算门禁失败（费用后来已核实）": 2,
+        "流协议校验失败": 1,
+        "响应格式解析失败": 1
+      },
+      "surviving_children": 2,
+      "actual_points": 40052
+    },
+    {
+      "group": "P",
+      "slots": 10,
+      "sent": 10,
+      "valid": 6,
+      "failures": {
+        "流协议校验失败": 2,
+        "已发送后结算门禁失败（费用后来已核实）": 2
+      },
+      "surviving_children": 1,
+      "actual_points": 36885
+    }
+  ],
+  "initial_mean": -2.2340083797336048,
+  "initial_best": -2.0704275135579646,
+  "populations": [
+    {
+      "arm": "B0",
+      "status": "completed",
+      "slots": 10,
+      "categories": {
+        "valid": 4,
+        "api_failure": 6
+      },
+      "confirmed_model_requests": 5,
+      "proved_unsent_slots": 5,
+      "mean_train_fitness": -2.195268385311221,
+      "best_train_fitness": -2.0704275135579646,
+      "initial_mean_train_fitness": -2.2340083797336048,
+      "initial_best_train_fitness": -2.0704275135579646,
+      "new_children_surviving": 1
+    },
+    {
+      "arm": "B1",
+      "status": "completed",
+      "slots": 10,
+      "categories": {
+        "api_failure": 10
+      },
+      "confirmed_model_requests": 0,
+      "proved_unsent_slots": 10,
+      "mean_train_fitness": -2.2340083797336048,
+      "best_train_fitness": -2.0704275135579646,
+      "initial_mean_train_fitness": -2.2340083797336048,
+      "initial_best_train_fitness": -2.0704275135579646,
+      "new_children_surviving": 0
+    },
+    {
+      "arm": "B2",
+      "status": "completed",
+      "slots": 10,
+      "categories": {
+        "valid": 6,
+        "api_failure": 3,
+        "parse_failure": 1
+      },
+      "confirmed_model_requests": 10,
+      "proved_unsent_slots": 0,
+      "mean_train_fitness": -2.1623725130393194,
+      "best_train_fitness": -2.0704275135579646,
+      "initial_mean_train_fitness": -2.2340083797336048,
+      "initial_best_train_fitness": -2.0704275135579646,
+      "new_children_surviving": 2
+    },
+    {
+      "arm": "P",
+      "status": "completed",
+      "slots": 10,
+      "categories": {
+        "valid": 6,
+        "api_failure": 4
+      },
+      "confirmed_model_requests": 10,
+      "proved_unsent_slots": 0,
+      "mean_train_fitness": -2.1958080719376696,
+      "best_train_fitness": -2.0704275135579646,
+      "initial_mean_train_fitness": -2.2340083797336048,
+      "initial_best_train_fitness": -2.0704275135579646,
+      "new_children_surviving": 1
+    }
+  ],
+  "scope": "One seed, fixed-existing-H conditional TRAINING study; no validation/test, effect/generalization conclusion or MIX.",
+  "comparison_integrity": "four-arm comparison invalidated by unequal infrastructure failures and zero actual B1 evolution requests"
+}

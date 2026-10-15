@@ -1,0 +1,15 @@
+{
+  "review_date": "2026-10-15 Asia/Manila",
+  "reviewer": "Codex image inspection",
+  "checks": [
+    "Chinese labels legible",
+    "16:9 canvas, no clipping or label collisions",
+    "Counts match summary and B1 actual request=0 is explicit",
+    "Both charts warn unequal budgets and no method ranking",
+    "Only initial/final endpoints, no invented multi-generation curve"
+  ],
+  "images_sha256": {
+    "03_requests.png": "e1ca9b6650727322620b51172541f59a63623a87c7881e63ee89fd105967b1ed",
+    "03_population.png": "f5720095e2bbb06b2e1bb8111f7e786fb96e25a02848ba944a4634754dc31d6a"
+  }
+}

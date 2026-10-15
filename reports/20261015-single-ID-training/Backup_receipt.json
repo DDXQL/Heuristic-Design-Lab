@@ -1,0 +1,21 @@
+{
+  "location": "/Users/DDXQL/Documents/Codex/backups/FJSP-single-ID-training-20261015-meeting-final-v2",
+  "archive": "/Users/DDXQL/Documents/Codex/backups/FJSP-single-ID-training-20261015-meeting-final-v2/experiment-and-bound-sources.tar.gz",
+  "archive_sha256": "8e807b9fc9e9a509bd996614b6eb62794b67ddbeded2a1f5030d61854bbc994b",
+  "files": 1301,
+  "all_archived_bytes_read_and_verified": true,
+  "includes": [
+    "complete native run, raw invoices local only",
+    "all 1035 pinned historical sources",
+    "train21 files and manifest",
+    "frozen code/prompts/config/data snapshot",
+    "meeting materials and generator"
+  ],
+  "excluded": [
+    "API credential files",
+    "environment directories",
+    "formal holdout instance files"
+  ],
+  "restore": "tar -xzf experiment-and-bound-sources.tar.gz -C <empty-restore-directory>",
+  "note": "Receipt is outside the archive to avoid a self-referential hash; FILES_SHA256.json enables independent verification."
+}
