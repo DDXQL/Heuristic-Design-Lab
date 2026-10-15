@@ -169,7 +169,7 @@ def history_summary(root, config):
                     # immutable, model/window/debit-matched proof; never rewrite
                     # the raw ledger or discard its token reservation.
                     from fjsp_usage.usage_v2.billing import certified_reconciliation
-                    invoice=certified_reconciliation(key,q,quota['invoice_reconciliations'],docs,run,historical_model)
+                    invoice=certified_reconciliation(key,q,quota['invoice_reconciliations'],docs,run,historical_model,d['source_files_sha256'])
                     if invoice is not None: final=True; proof=invoice
             if not final: hold+=reserved
             unknown.append({'run':run,'key':key,'raw_record':r,'raw_quota':q,

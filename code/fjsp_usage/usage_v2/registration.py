@@ -17,7 +17,7 @@ from fjsp_usage.research_real.conditional_research import history_summary, dispa
 from fjsp_usage.research_real.quota_guard import QuotaGuardedTransport
 from fjsp_usage.research_real.real_transport import JsonCandidateTransport
 from .workflow import UsageWorkflow
-from .billing import InvoiceTransport, certified_reconciliation
+from .billing import InvoiceTransport, certified_reconciliation, match_invoice
 
 VERSION = 'registered-v22-serial-train-20261013'
 
@@ -69,7 +69,8 @@ def peer_terminal_audit(peer_root, *, model=None):
         raise BudgetStop('WAIT_SINGLE_PEER_REGISTERED_TERMINAL_BATCH: expected exactly one authorized seed201/cap60 batch')
     directory, protocol = runs[0]
     context = digest(protocol)
-    gate_path = directory / 'Search_complete.json'
+    gate_path = directory / ('Search_complete_resumed.json' if (directory / 'Final_budget_handoff.json').exists()
+                              else 'Search_complete.json')
     init_path = directory / 'r201/Initialization_status.json'
     if gate_path.exists():
         gate = check_seal(json.loads(gate_path.read_text()), kind='Search_complete', mode='real', context=context)
@@ -95,7 +96,8 @@ def peer_terminal_audit(peer_root, *, model=None):
     quota = json.loads(quota_path.read_text()) if quota_path.exists() else {'records': {}}
     if budget['records'] and (quota.get('identity') != identity or quota.get('halted')):
         raise BudgetStop('peer account settlement halt unresolved: ' + str(quota.get('stop_reason', 'identity mismatch')))
-    for key, record in budget['records'].items():
+    final_costs = audit_final_handoff(directory, budget, quota, model) if (directory / 'Final_budget_handoff.json').exists() else None
+    for key, record in (() if final_costs is not None else budget['records'].items()):
         q = quota['records'].get(key)
         if record.get('send_confirmed') and (not q or q.get('status') != 'settled'):
             raise BudgetStop('peer sent request has unresolved usage/account settlement')
@@ -107,10 +109,73 @@ def peer_terminal_audit(peer_root, *, model=None):
                 raise BudgetStop('peer sent request has unresolved usage/account settlement')
     pins = {str(p.relative_to(peer_root / 'runs')): file_hash(p)
         for p in directory.rglob('*') if p.is_file()}
-    return {'run_name': directory.name, 'root': str(peer_root.resolve()), 'context': context,
+    result = {'run_name': directory.name, 'root': str(peer_root.resolve()), 'context': context,
         'ledger_identity': identity, 'request_slots': len(budget['records']),
         'confirmed_sends': sum(r.get('send_confirmed', False) for r in budget['records'].values()),
         'observed_used': quota.get('observed_used', 0), 'terminal': terminal, 'files_sha256': pins}
+    if final_costs is not None: result['final_costs'] = final_costs
+    return result
+
+
+def audit_final_handoff(directory, budget, quota, model):
+    """Count each raw request and verify its evidence, never trust a fee total."""
+    directory = Path(directory); run = directory.name
+    docs = {run + '/' + str(p.relative_to(directory)): json.loads(p.read_text())
+            for p in directory.rglob('*.json')}
+    hashes = {run + '/' + str(p.relative_to(directory)): file_hash(p)
+              for p in directory.rglob('*.json')}
+    handoff = docs[run + '/Final_budget_handoff.json']
+    if (handoff.get('real_caller_active') is not False or handoff.get('budget_identity') != budget['identity']
+            or handoff.get('budget_sha256') != file_hash(directory / 'budget.json')
+            or handoff.get('quota_halted') is not False or quota.get('halted')
+            or handoff.get('registered_generation_phases_complete') is not True):
+        raise BudgetStop('final peer handoff not released/bound/complete')
+    journals = {row['global_key']: row for body in docs.values() if isinstance(body, dict)
+                and isinstance(body.get('requests'), dict) for row in body['requests'].values()
+                if isinstance(row, dict) and 'global_key' in row}
+    rows = []; suppliers = set()
+    for key, record in budget['records'].items():
+        name = hashlib.sha256(key.encode()).hexdigest()
+        bill = docs.get(run + '/billing/' + name + '.json', {})
+        q = quota['records'].get(key)
+        if not record.get('send_confirmed'):
+            journal = journals.get(key, {})
+            if (record.get('status') != 'failed' or q is not None or bill.get('status') != 'before_dispatch'
+                    or bill.get('before', {}).get('success') is True
+                    or journal.get('error') != 'cannot inspect supplier billing before dispatch'
+                    or run + '/wire_responses/' + name + '.json' in docs):
+                raise BudgetStop('unconfirmed peer send is not proved unsent')
+            rows.append({'key': key, 'state': 'proved_unsent', 'points': None}); continue
+        if not q:
+            raise BudgetStop('sent peer request missing original account record')
+        amendments = quota.get('invoice_reconciliations', [])
+        if any(r.get('global_key') == key for r in amendments):
+            invoice = certified_reconciliation(key, q, amendments, docs, run, model, hashes)
+        else:
+            if (bill.get('status') != 'invoice_account_matched' or q.get('status') != 'settled'
+                    or bill.get('original_quota_record') != q or bill.get('wire_usage') != record.get('usage')):
+                raise BudgetStop('peer request settlement not independently certified: ' + key)
+            invoice = match_invoice(bill['before'], bill['after'], q, model,
+                failed=bill.get('transport_status') == 'failed',
+                response_id=bill.get('response_metadata', {}).get('gateway_request_id'))
+            if bill.get('invoice') != invoice or bill.get('actual_platform_units') != invoice['quota']:
+                raise BudgetStop('peer original invoice differs')
+        if not invoice or invoice['request_id'] in suppliers or invoice['quota'] > q['reserved']:
+            raise BudgetStop('peer invoice missing/reused/above reservation')
+        suppliers.add(invoice['request_id'])
+        rows.append({'key': key, 'state': 'sent_settled', 'points': invoice['quota'],
+                     'wire_usage_unknown': record.get('usage') is None})
+    amount = sum(r['points'] for r in rows if r['points'] is not None)
+    sent = sum(r['state'] == 'sent_settled' for r in rows)
+    if (handoff.get('known_new_points') != amount or handoff.get('unknown_new_fee_keys') != []
+            or handoff.get('unknown_new_fee_holds') != 0
+            or handoff.get('latest_verified_used_points') != quota.get('observed_used')
+            or handoff.get('old_account_hold') != 24000000
+            or handoff.get('summary', {}).get('request_slots') != len(rows)
+            or handoff.get('summary', {}).get('confirmed_sends') != sent):
+        raise BudgetStop('final handoff summary differs from verified request evidence')
+    return {'actual_points': amount, 'confirmed_sends': sent, 'proved_unsent': len(rows)-sent,
+            'request_slots': len(rows), 'old_hold_preserved': 24000000, 'rows': rows}
 
 
 def verify_source_group(local_root, source_root, pins):
@@ -180,9 +245,19 @@ class RegisteredUsageWorkflow(UsageWorkflow):
             history = dispatch_check(self)
             inner = JsonCandidateTransport(self.config)
             from .model_migration import MIGRATION_VERSION, Gpt61UsageQuota
+            from .model_migration import check_live_tariff
+            from .access import WireRecorder, MetadataPacer, InvoicePacer
+            from .billing import query_invoices
+            from fjsp_usage.research_real.leafapi import query_status
+            pacer = MetadataPacer(self.directory / 'Metadata_pacing.json')
+            inner = WireRecorder(inner, self.directory / 'wire_responses')
             quota_class = Gpt61UsageQuota if binding['version'] == MIGRATION_VERSION else QuotaGuardedTransport
+            kwargs = {'tariff_query': lambda secret: check_live_tariff(secret, pacer)} if binding['version'] == MIGRATION_VERSION else {}
             quota = quota_class(inner, self.directory / 'platform_quota.json', self.context,
+                query=lambda: pacer.call('/api/usage/token/', lambda: query_status(inner.secret,
+                    quota_path='/api/usage/token/', include_models=False)), **kwargs,
                 retained_extra=history['retained_account_hold'],
                 settlement_min_used=max(history['latest_saved_account_used'], binding['peer']['observed_used']))
-            self._client = SerialTransport(InvoiceTransport(quota, self.directory / 'billing'), guard)
+            invoice_query = InvoicePacer(lambda: query_invoices(inner.secret), self.directory / 'Invoice_pacing.json', pacer)
+            self._client = SerialTransport(InvoiceTransport(quota, self.directory / 'billing', query=invoice_query), guard)
         return self._client

@@ -15,12 +15,14 @@ from fjsp_usage.research.events import atomic_json
 VERSION = 'v22-supplier-settlement-v1-20261013'
 
 
-def certified_reconciliation(key, quota_record, reconciliations, docs, run, model):
+def certified_reconciliation(key, quota_record, reconciliations, docs, run, model, file_hashes=None):
     """A pinned invoice resolves account hold, never invents response tokens."""
     matches = [r for r in reconciliations if r.get('global_key') == key]
     if len(matches) != 1:
         return None
     reconciliation = matches[0]
+    if reconciliation.get('version') == 'single-ID-nonsemantic-recording-settlement-amendment-v1-20261014':
+        return certified_amendment(key, quota_record, reconciliation, docs, run, model, file_hashes or {})
     name = reconciliation.get('proof_file', '')
     if not name or Path(name).name != name:
         raise ValueError('invoice proof must be a pinned billing filename')
@@ -37,6 +39,54 @@ def certified_reconciliation(key, quota_record, reconciliations, docs, run, mode
     invoice = match_invoice(proof['before'], proof['after'], original, model, failed=True)
     if invoice != proof.get('invoice') or invoice != reconciliation.get('invoice'):
         raise ValueError('invoice reconciliation differs from independently matched receipt')
+    return invoice
+
+
+def certified_amendment(key, original, proof, docs, run, model, hashes):
+    """Verify appended settlement without rewriting raw account/wire records."""
+    prefix = run + '/'
+    billing_name = prefix + 'billing/' + hashlib.sha256(key.encode()).hexdigest() + '.json'
+    billing = docs.get(billing_name)
+    saved = [name for name, body in docs.items() if name.startswith(prefix)
+             and (name == prefix + 'Settlement_resume_proof.json' or name.startswith(prefix + 'billing_reconciliations/'))
+             and body == proof]
+    if (len(saved) != 1 or not billing or hashes.get(billing_name) != proof.get('original_billing_sha256')
+            or proof.get('global_key') != key or original != proof.get('original_quota_record')
+            or billing.get('original_quota_record') != original or not original.get('send_confirmed')
+            or billing.get('wire_usage') != proof.get('wire_usage') or proof.get('slot_remains_failed') is not True):
+        raise BudgetStop('supplemental settlement original binding differs')
+    evidence = proof.get('evidence_files_sha256', {})
+    if len(evidence) != 2:
+        raise BudgetStop('supplemental settlement requires account and invoice evidence')
+    for name, sha in evidence.items():
+        if Path(name).name != name or hashes.get(prefix + name) != sha or prefix + name not in docs:
+            raise BudgetStop('supplemental settlement evidence hash/path changed')
+    invoice_names = [n for n in evidence if 'invoices' in n]
+    quota_names = [n for n in evidence if 'quota' in n]
+    if len(invoice_names) != 1 or len(quota_names) != 1:
+        raise BudgetStop('supplemental settlement evidence types differ')
+    balance = docs[prefix + quota_names[0]]; q = balance.get('quota', {})
+    account = proof.get('reconciled_account', {})
+    values = [q.get(k) for k in ('total_used', 'total_available', 'total_granted')]
+    if (balance.get('success') is not True or balance.get('inference_requests') != 0
+            or any(type(v) is not int or v < 0 for v in values) or values[0] + values[1] != values[2]
+            or account != {**original, 'status': 'settled', 'after_used': values[0],
+                'observed_account_delta': values[0] - original['before_used'],
+                'finished_at': max(original['finished_at'], balance['observed_at'])}):
+        raise BudgetStop('supplemental account observation does not prove the debit')
+    identifier = proof.get('supplier_request_id')
+    if not identifier or identifier != billing.get('response_metadata', {}).get('gateway_request_id'):
+        raise BudgetStop('supplemental supplier request id differs')
+    invoice = match_invoice(billing['before'], docs[prefix + invoice_names[0]], account, model,
+                            failed=True, response_id=identifier)
+    usage = proof.get('wire_usage')
+    if (invoice != proof.get('invoice') or invoice['quota'] != proof.get('actual_platform_units')
+            or invoice['quota'] > original['reserved']
+            or not original['started_at']-2 <= invoice['created_at'] <= original['finished_at']+30
+            or (model == 'gpt-6.1-sol' and invoice.get('group') != 'codex-deafult')
+            or (usage is not None and (invoice.get('prompt_tokens') != usage['input_tokens']
+                or invoice.get('completion_tokens') != usage['output_tokens']))):
+        raise BudgetStop('supplemental invoice model/window/usage/reserve differs')
     return invoice
 
 
@@ -93,18 +143,29 @@ class InvoiceTransport:
         self.redact=inner.redact
         self.query=query or (lambda:query_invoices(inner.transport.secret))
         self.directory.mkdir(exist_ok=True)
+        self._before = None
 
-    def preflight(self,prompt):return self.inner.preflight(prompt)
+    def preflight(self,prompt):
+        self.inner.preflight(prompt)
+        before = self.query()
+        atomic_json(self.directory.parent / 'Invoice_preflight_metadata.json', before)
+        if before.get('success') is not True:
+            self.inner.halt('before-dispatch supplier invoice metadata unavailable; no inference sent')
+            raise BudgetStop('cannot inspect supplier billing before dispatch')
+        self._before = (prompt, before)
 
     def dispatch(self,key,prompt,*,kind='U',on_sent=lambda:None):
         if kind!='U':raise BudgetStop('v2.2 research invoice adapter permits U only')
         name=hashlib.sha256(key.encode()).hexdigest();path=self.directory/(name+'.json')
         if path.exists():raise BudgetStop('billing adapter forbids replay of request identity')
-        before=self.query()
+        before=self._before[1] if self._before and self._before[0] == prompt else self.query()
+        self._before = None
         audit={'version':VERSION,'global_key':key,'before':before,'wire_usage':None,
                'actual_platform_units':None,'status':'before_dispatch'}
         atomic_json(path,audit)
-        if before.get('success') is not True:raise BudgetStop('cannot inspect supplier billing before dispatch')
+        if before.get('success') is not True:
+            self.inner.halt('before-dispatch supplier invoice metadata unavailable; no inference sent')
+            raise BudgetStop('cannot inspect supplier billing before dispatch')
         print('真实请求开始 '+key,flush=True)
         reply,error=None,None
         try:reply=self.inner.dispatch(key,prompt,kind=kind,on_sent=on_sent)

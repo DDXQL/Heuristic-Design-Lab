@@ -134,7 +134,8 @@ def audit_common_evidence(peer_root, index=None):
     if (final.get('status') not in ('STOPPED', 'COMPLETED_TRAIN_ONLY') or verified.get('candidate') is not False
             or handoff.get('caller_released') is not True or handoff.get('status') != final['status']
             or handoff.get('budget_file_sha256') != file_hash(directory / 'budget.json')):
-        raise BudgetStop('peer terminal/exclusive-caller evidence not bound to final ledger')
+        if 'final_costs' not in peer or verified.get('candidate') is not False or handoff.get('caller_released') is not True:
+            raise BudgetStop('peer terminal/exclusive-caller evidence not bound to final ledger')
     budget = json.loads((directory / 'budget.json').read_text())
     quota = json.loads((directory / 'platform_quota.json').read_text())
     if handoff.get('quota') != quota:
@@ -188,17 +189,19 @@ def audit_common_evidence(peer_root, index=None):
             'notice': 'Dynamic risk envelope matches peer; public tariff is neither invoice nor certified hard maximum.'}
 
 
-def check_live_tariff(secret):
+def check_live_tariff(secret, metadata_pacer=None):
     replies = {}
     for path in ('/api/pricing', '/api/status', '/v1/models'):
         connection = http.client.HTTPSConnection('leafapi.cc', timeout=15)
         try:
             headers = {'Accept': 'application/json', 'Cache-Control': 'no-cache'}
             if path == '/v1/models': headers['Authorization'] = 'Bearer ' + secret
-            connection.request('GET', path, headers=headers)
-            response = connection.getresponse(); raw = response.read(2097153)
-            if response.status != 200 or len(raw) > 2097152: raise BudgetStop('live new-model metadata unavailable')
-            replies[path] = json.loads(raw)
+            def query():
+                connection.request('GET', path, headers=headers)
+                response = connection.getresponse(); raw = response.read(2097153)
+                if response.status != 200 or len(raw) > 2097152: raise BudgetStop('live new-model metadata unavailable')
+                return json.loads(raw)
+            replies[path] = metadata_pacer.call(path, query) if metadata_pacer else query()
         except (ValueError, OSError):
             raise BudgetStop('live new-model metadata unavailable; no fallback') from None
         finally: connection.close()
