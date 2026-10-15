@@ -31,3 +31,17 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python experiments/tier2/usa
 ```
 
 实际提示和响应在各阶段journal及wire_responses；源码、逐实例成绩、种群变化和训练配对由既有results导出。手写例子不进入种群。方法形式按计算与实际使用机制描述；if/else本身不代表缺乏多样性，MIX字样或双成员出现不代表组合收益。只比较本批A/B共同条件，不用另一批冠军归因组合许可，也不声称泛化。
+
+## 断线后的同批次恢复
+
+首段发送5次：2个完整有效SELECT、3次API失败，5笔供应商账单均已逐笔匹配，共31587平台点。第6次的发送前账单查询HTTP429，未预留槽位、未发送；原初始化状态保留为`initialization_budget_stopped`，checkpoint游标5、有效种群2、inflight为原第6次提示。
+
+新增`tools/resume_usage_metadata.py`只作执行恢复附件，不改变冻结源码指纹、协议或算法。它先重新独立匹配所有既有请求的原账单/账户记录，再经现有持久限速器查询实时定价、账户和账单，并重新检查另一页调用权与唯一累计账本；健康证据写入`Metadata_health_restored.*.json`后才可恢复这个已证明未发送的metadata暂停。其他预算或未结算门禁不能由此入口解除。保留原Initialization_status，现有搜索器从原checkpoint继续；失败与重复不补发，初始化20及总40上限不变。该附件自身哈希及恢复前文件哈希另存于`Execution_resume.*.json`。
+
+离线验证：新增5项恢复正反例，加既有6项交接/访问保护，共11项通过；另对本批5笔实际记录独立验算成功，未发模型。恢复命令（仅原登记目录）：
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code .venv/bin/python tools/resume_usage_metadata.py --directory runs/v22-gpt61-select-mix-301-20261014-v1
+```
+
+若只读健康仍失败则保留门禁，不消耗后续生成槽位；不得删除原状态、复制目录或重置历史预留以续跑。
