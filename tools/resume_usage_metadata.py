@@ -141,6 +141,10 @@ def run(directory):
             from fjsp_usage.research_real.leafapi import load_local_key
             os.environ[config.provider.api_key_env] = load_local_key(ORIGIN / '.env.leafapi.local')
         client = flow.client()
+        # Observed account/log HTTP429 after the original 15/75 second pacing.
+        # Engineering throttle only; inference parameters and caps stay frozen.
+        client.inner.query.metadata.interval = 30
+        client.inner.query.interval = 150
         original_check = client.guard.check
         def check():
             if sha(__file__) != driver_sha: raise BudgetStop('recovery driver changed while active')
@@ -151,7 +155,8 @@ def run(directory):
         atomic_json(directory / ('Execution_resume.' + str(time.time_ns()) + '.json'), {
             'driver_sha256': driver_sha, 'original_files_sha256': pins,
             'purpose': 'same checkpoint after before-dispatch metadata recovery; no algorithm or protocol changes',
-            'request_slots_before': len(flow.ledger.data['records']), 'inference_retries': 0})
+            'request_slots_before': len(flow.ledger.data['records']), 'inference_retries': 0,
+            'metadata_interval_seconds': 30, 'invoice_interval_seconds': 150})
         try:
             restore_metadata(flow, client, guard, driver_sha=driver_sha)
             if initialize_existing(flow)['status'] == 'initialized':

@@ -10,9 +10,26 @@ import unittest
 from tools.resume_usage_metadata import REASON, restore_metadata, verify_existing
 from fjsp_usage.research.events import atomic_json
 from fjsp_usage.research_real.budget import BudgetStop
+from tools.reconcile_usage_429 import build_proof
+from test_usage_v22_handoff_access import amendment_fixture
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_new_429_proof_reuses_verified_schema_without_rewriting_original(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'own';key,old,_,_=amendment_fixture(p)
+            billpath=p/'billing'/(hashlib.sha256(key.encode()).hexdigest()+'.json')
+            bill=json.loads(billpath.read_text());before=billpath.read_bytes()
+            qp=p/'Settlement.quota.json';ip=p/'Settlement.invoices.json'
+            account=json.loads(qp.read_text());invoices=json.loads(ip.read_text())
+            target,proof=build_proof(p,billpath,bill,account,invoices,qp,ip,'gpt-6.1-sol')
+            self.assertTrue(proof['slot_remains_failed']);self.assertEqual(proof['actual_platform_units'],3)
+            self.assertEqual(proof['research_run'],'own');self.assertEqual(billpath.read_bytes(),before)
+            self.assertEqual(proof['original_quota_record'],old);self.assertFalse(target.exists())
+            for field,value in [('quota',4),('model_name','wrong'),('group','wrong'),('created_at',180),('prompt_tokens',99)]:
+                bad=deepcopy(invoices);bad['records'][0][field]=value;atomic_json(ip,bad)
+                with self.assertRaises(BudgetStop):build_proof(p,billpath,bill,account,bad,qp,ip,'gpt-6.1-sol')
+
     def fixture(self, path, success=True):
         data = {'halted': True, 'stop_reason': REASON, 'records': {}}
         ledger = {'halted': False, 'records': {}}
