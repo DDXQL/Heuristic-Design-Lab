@@ -1,0 +1,1202 @@
+{
+  "id": "B/g0000/000003",
+  "source": "B__g0000__000003.py",
+  "fitness": -2.4242447665427376,
+  "complete_valid": true,
+  "profile": {
+    "complete_train_valid": true,
+    "SELECT_steps": 0,
+    "MIX_steps": 3800,
+    "dual_member_steps": 3800,
+    "single_member_MIX_steps": 0,
+    "MIX_observed_but_only_single_member": false,
+    "selection_vectors_not_one_hot": false,
+    "selection_scores_vary_on_train": false,
+    "selected_member_varies_on_train": false,
+    "dual_support_varies_on_train": true,
+    "dual_weights_vary_on_train": true,
+    "modes_vary_on_train": false,
+    "dual_steps_with_a_constant_column": 0,
+    "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+  },
+  "observed_supports": [
+    [
+      2,
+      4
+    ],
+    [
+      4,
+      7
+    ]
+  ],
+  "decision_samples": [
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.2696288712362587,
+        0.0,
+        0.7303711287637413,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.27293169762947556,
+        0.0,
+        0.7270683023705244,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.27716598594081254,
+        0.0,
+        0.7228340140591875,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.28036913772734606,
+        0.0,
+        0.7196308622726538,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.2844150748371599,
+        0.0,
+        0.7155849251628401,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.28845915518103193,
+        0.0,
+        0.7115408448189681,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.291553770397934,
+        0.0,
+        0.708446229602066,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.29542974770056696,
+        0.0,
+        0.704570252299433,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.29922790761589757,
+        0.0,
+        0.7007720923841024,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.30134244604584537,
+        0.0,
+        0.6986575539541546,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.30502751338170175,
+        0.0,
+        0.6949724866182982,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "Behnke1.fjsp",
+      "mode": 1,
+      "support": [
+        2,
+        4
+      ],
+      "normalized_weights": [
+        0.0,
+        0.0,
+        0.30795767779209193,
+        0.0,
+        0.6920423222079081,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "instance_results": [
+    {
+      "file": "Behnke1.fjsp",
+      "makespan": 112,
+      "lower_bound": 70.0,
+      "score": -1.6,
+      "single_solve_seconds": 0.03165495803114027,
+      "deterministic_recheck_seconds": 0.03277154196985066,
+      "single_h_calls": [
+        0,
+        0,
+        1884,
+        0,
+        2668,
+        0,
+        0,
+        784,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        1884,
+        0,
+        2668,
+        0,
+        0,
+        784,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        1884,
+        0,
+        2668,
+        0,
+        0,
+        784,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "makespan": 112,
+      "lower_bound": 75.0,
+      "score": -1.4933333333333334,
+      "single_solve_seconds": 0.033482750004623085,
+      "deterministic_recheck_seconds": 0.0329433330334723,
+      "single_h_calls": [
+        0,
+        0,
+        2224,
+        0,
+        2952,
+        0,
+        0,
+        728,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        2224,
+        0,
+        2952,
+        0,
+        0,
+        728,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        2224,
+        0,
+        2952,
+        0,
+        0,
+        728,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "makespan": 127,
+      "lower_bound": 79.0,
+      "score": -1.6075949367088607,
+      "single_solve_seconds": 0.031306583958212286,
+      "deterministic_recheck_seconds": 0.031120541971176863,
+      "single_h_calls": [
+        0,
+        0,
+        1948,
+        0,
+        2676,
+        0,
+        0,
+        728,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        1948,
+        0,
+        2676,
+        0,
+        0,
+        728,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        1948,
+        0,
+        2676,
+        0,
+        0,
+        728,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "makespan": 117,
+      "lower_bound": 76.0,
+      "score": -1.5394736842105263,
+      "single_solve_seconds": 0.032847082999069244,
+      "deterministic_recheck_seconds": 0.03265825001290068,
+      "single_h_calls": [
+        0,
+        0,
+        2096,
+        0,
+        2876,
+        0,
+        0,
+        780,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        2096,
+        0,
+        2876,
+        0,
+        0,
+        780,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        2096,
+        0,
+        2876,
+        0,
+        0,
+        780,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "makespan": 388,
+      "lower_bound": 159.7,
+      "score": -2.429555416405761,
+      "single_solve_seconds": 0.72310441598529,
+      "deterministic_recheck_seconds": 0.7256301669985987,
+      "single_h_calls": [
+        0,
+        0,
+        47856,
+        0,
+        67928,
+        0,
+        0,
+        20072,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        47856,
+        0,
+        67928,
+        0,
+        0,
+        20072,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        47856,
+        0,
+        67928,
+        0,
+        0,
+        20072,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "makespan": 407,
+      "lower_bound": 163.75,
+      "score": -2.4854961832061067,
+      "single_solve_seconds": 0.6504212090512738,
+      "deterministic_recheck_seconds": 0.6839392500114627,
+      "single_h_calls": [
+        0,
+        0,
+        41308,
+        0,
+        61472,
+        0,
+        0,
+        20164,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        41308,
+        0,
+        61472,
+        0,
+        0,
+        20164,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        41308,
+        0,
+        61472,
+        0,
+        0,
+        20164,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "makespan": 821,
+      "lower_bound": 322.35,
+      "score": -2.546921048549713,
+      "single_solve_seconds": 2.890691499982495,
+      "deterministic_recheck_seconds": 2.9270177090074867,
+      "single_h_calls": [
+        0,
+        0,
+        181352,
+        0,
+        267872,
+        0,
+        0,
+        86520,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        181352,
+        0,
+        267872,
+        0,
+        0,
+        86520,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        181352,
+        0,
+        267872,
+        0,
+        0,
+        86520,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "makespan": 91,
+      "lower_bound": 80.0,
+      "score": -1.1375,
+      "single_solve_seconds": 0.051350624999031425,
+      "deterministic_recheck_seconds": 0.05222412501461804,
+      "single_h_calls": [
+        0,
+        0,
+        3896,
+        0,
+        4940,
+        0,
+        0,
+        1044,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        3896,
+        0,
+        4940,
+        0,
+        0,
+        1044,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        3896,
+        0,
+        4940,
+        0,
+        0,
+        1044,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "makespan": 104,
+      "lower_bound": 78.0,
+      "score": -1.3333333333333333,
+      "single_solve_seconds": 0.06502383400220424,
+      "deterministic_recheck_seconds": 0.06429287500213832,
+      "single_h_calls": [
+        0,
+        0,
+        5244,
+        0,
+        6448,
+        0,
+        0,
+        1204,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        5244,
+        0,
+        6448,
+        0,
+        0,
+        1204,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        5244,
+        0,
+        6448,
+        0,
+        0,
+        1204,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "makespan": 145,
+      "lower_bound": 75.0,
+      "score": -1.9333333333333333,
+      "single_solve_seconds": 0.24175291700521484,
+      "deterministic_recheck_seconds": 0.23653562500840053,
+      "single_h_calls": [
+        0,
+        0,
+        16200,
+        0,
+        22192,
+        0,
+        0,
+        5992,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        16200,
+        0,
+        22192,
+        0,
+        0,
+        5992,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        16200,
+        0,
+        22192,
+        0,
+        0,
+        5992,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "makespan": 146,
+      "lower_bound": 81.0,
+      "score": -1.8024691358024691,
+      "single_solve_seconds": 0.1921093330020085,
+      "deterministic_recheck_seconds": 0.1944010829902254,
+      "single_h_calls": [
+        0,
+        0,
+        12012,
+        0,
+        17808,
+        0,
+        0,
+        5796,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        12012,
+        0,
+        17808,
+        0,
+        0,
+        5796,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        12012,
+        0,
+        17808,
+        0,
+        0,
+        5796,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "makespan": 286,
+      "lower_bound": 76.45,
+      "score": -3.741007194244604,
+      "single_solve_seconds": 1.2706050830311142,
+      "deterministic_recheck_seconds": 1.2659882919979282,
+      "single_h_calls": [
+        0,
+        0,
+        77320,
+        0,
+        119300,
+        0,
+        0,
+        41980,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        77320,
+        0,
+        119300,
+        0,
+        0,
+        41980,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        77320,
+        0,
+        119300,
+        0,
+        0,
+        41980,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "makespan": 291,
+      "lower_bound": 78.0,
+      "score": -3.730769230769231,
+      "single_solve_seconds": 1.2445146249956451,
+      "deterministic_recheck_seconds": 1.2224359159590676,
+      "single_h_calls": [
+        0,
+        0,
+        71768,
+        0,
+        112556,
+        0,
+        0,
+        40788,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        71768,
+        0,
+        112556,
+        0,
+        0,
+        40788,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        71768,
+        0,
+        112556,
+        0,
+        0,
+        40788,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "makespan": 622,
+      "lower_bound": 151.625,
+      "score": -4.102225886232482,
+      "single_solve_seconds": 5.117151124984957,
+      "deterministic_recheck_seconds": 4.890181292023044,
+      "single_h_calls": [
+        0,
+        0,
+        283024,
+        0,
+        454044,
+        0,
+        0,
+        171020,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        283024,
+        0,
+        454044,
+        0,
+        0,
+        171020,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        283024,
+        0,
+        454044,
+        0,
+        0,
+        171020,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "makespan": 101,
+      "lower_bound": 68.0,
+      "score": -1.4852941176470589,
+      "single_solve_seconds": 0.08453695802018046,
+      "deterministic_recheck_seconds": 0.08453375002136454,
+      "single_h_calls": [
+        0,
+        0,
+        6048,
+        0,
+        8148,
+        0,
+        0,
+        2100,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        6048,
+        0,
+        8148,
+        0,
+        0,
+        2100,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        6048,
+        0,
+        8148,
+        0,
+        0,
+        2100,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "makespan": 102,
+      "lower_bound": 68.0,
+      "score": -1.5,
+      "single_solve_seconds": 0.07911333302035928,
+      "deterministic_recheck_seconds": 0.07867299998179078,
+      "single_h_calls": [
+        0,
+        0,
+        5852,
+        0,
+        7708,
+        0,
+        0,
+        1856,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        5852,
+        0,
+        7708,
+        0,
+        0,
+        1856,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        5852,
+        0,
+        7708,
+        0,
+        0,
+        1856,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "makespan": 146,
+      "lower_bound": 76.0,
+      "score": -1.9210526315789473,
+      "single_solve_seconds": 0.31731808301992714,
+      "deterministic_recheck_seconds": 0.3098719579866156,
+      "single_h_calls": [
+        0,
+        0,
+        20556,
+        0,
+        29772,
+        0,
+        0,
+        9216,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        20556,
+        0,
+        29772,
+        0,
+        0,
+        9216,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        20556,
+        0,
+        29772,
+        0,
+        0,
+        9216,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "makespan": 159,
+      "lower_bound": 73.0,
+      "score": -2.1780821917808217,
+      "single_solve_seconds": 0.2510580419912003,
+      "deterministic_recheck_seconds": 0.25131850002799183,
+      "single_h_calls": [
+        0,
+        0,
+        14352,
+        0,
+        23092,
+        0,
+        0,
+        8740,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        14352,
+        0,
+        23092,
+        0,
+        0,
+        8740,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        14352,
+        0,
+        23092,
+        0,
+        0,
+        8740,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "makespan": 269,
+      "lower_bound": 75.0,
+      "score": -3.5866666666666664,
+      "single_solve_seconds": 1.7113918749964796,
+      "deterministic_recheck_seconds": 1.7261282080435194,
+      "single_h_calls": [
+        0,
+        0,
+        102256,
+        0,
+        161836,
+        0,
+        0,
+        59580,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        102256,
+        0,
+        161836,
+        0,
+        0,
+        59580,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        102256,
+        0,
+        161836,
+        0,
+        0,
+        59580,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "makespan": 261,
+      "lower_bound": 74.0,
+      "score": -3.527027027027027,
+      "single_solve_seconds": 1.8480229579727165,
+      "deterministic_recheck_seconds": 1.8363656250294298,
+      "single_h_calls": [
+        0,
+        0,
+        98248,
+        0,
+        167396,
+        0,
+        0,
+        69148,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        98248,
+        0,
+        167396,
+        0,
+        0,
+        69148,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        98248,
+        0,
+        167396,
+        0,
+        0,
+        69148,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "makespan": 514,
+      "lower_bound": 98.31666666666666,
+      "score": -5.228004746567215,
+      "single_solve_seconds": 6.826387750043068,
+      "deterministic_recheck_seconds": 6.880859459051862,
+      "single_h_calls": [
+        0,
+        0,
+        330140,
+        0,
+        611732,
+        0,
+        0,
+        281592,
+        0,
+        0
+      ],
+      "deterministic_recheck_h_calls": [
+        0,
+        0,
+        330140,
+        0,
+        611732,
+        0,
+        0,
+        281592,
+        0,
+        0
+      ],
+      "diagnostic_h_calls": [
+        0,
+        0,
+        330140,
+        0,
+        611732,
+        0,
+        0,
+        281592,
+        0,
+        0
+      ]
+    }
+  ],
+  "source_checkpoint_sha256_at_archive": "d7816cf517274e26137822320d7b7dad85310a2faad67252cbcd8e539c54b351",
+  "notice": "Complete valid training mixture; not proof of improvement or generalization. Generation not yet complete."
+}

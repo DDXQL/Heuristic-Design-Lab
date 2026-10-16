@@ -67,3 +67,7 @@ A第2槽位的只读调查已精确匹配5792平台点；补充凭证位于原ru
 用户随后明确要求继续。新增`tools/finish_paused_usage_reply.py`只用原已保存响应完成原pending生命周期；先匹配暂停哈希、原提示、供应商ID/模型/时间窗/用量/组别、账户及风险预留，并核验其他18笔凭证和另一页交接。通过后才将原pending账单、账户记录、budget及journal按原接口完成；原始pending文件全部另存`pause_recovery/`并绑定哈希，wire及搜索checkpoint不改写。此前已failed/interrupted或已有评价的槽位不能由此晋升；恢复期间不发模型请求。请求总墙钟时长将包含人工暂停，标注在metadata中，不能冒充provider响应延时；后续训练求解时间独立记录。
 
 新增3项正反例与既有13项共16项通过；实际B首笔暂停绑定已离线核验，wire用量12650输入、561输出。运行顺序为先`finish_paused_usage_reply.py --directory runs/v22-gpt61-select-mix-301-20261014-v1 --pause-file User_pause.20261016T002002.json`，结算闭合后再以既有`resume_usage_metadata.py`继续原游标。旧方案及其他工作区均不修改。
+
+暂停首笔已精确结算5782平台点，未新增请求；原pending快照及Completion_proof保留于`pause_recovery/1792164386293834000/`。随后正常评价。B前三个候选语法合法并在前20实例实际执行双成员，但均在最后`Behnke57.fjsp`超出原15秒期限，完整fitness=None，失败占槽位，未调时限或补发。
+
+B第4次（`B/g0000/000003`）取得首个完整有效组合：21train全部通过、独立诊断完整，3800步均为真实双成员MIX；支持集实际出现(2,4)、(4,7)，归一化权重随状态变化，无单成员MIX退化。fitness −2.4242447665427376，仍低于共享初始最佳−2.225194303277998。其真实[代码](usage-space/real-gpt61-301/B__g0000__000003.py)、[行为/逐实例证据](usage-space/real-gpt61-301/B_first_complete_mixture.json)已归档；这是可生成、可执行及完整评价证据，不是组合收益或泛化证据。生成阶段仍继续，暂不宣称它最终存活。
