@@ -95,7 +95,14 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 ## 本分支：原单成员研究任务（2026-10-13）
 
-**2026-10-15新公平批次仅完成离线准备。** [新入口](experiments/tier2/research_real_v1/run_single_fair.py)、[待批准配置](experiments/tier2/research_real_v1/config.single.fair.pending.json)及[启动说明](experiments/tier2/research_real_v1/README.md#单编号公平重跑v2离线准备2026-10-15)使用固定既有H、原七状态/v5提示/评分和四组定义；seed201、N5、新共享初始化≤20、四组各一代10槽位、最多60次新请求，无额外诊断/MIX/holdout。缓存H评价只作来源核验，不重新排程、不导入旧U。首次请求即启用响应先落盘、metadata≥15秒/账单≥75秒节流及失败停发。当前`real_requests_authorized=false`，未创建新请求账本、未登记新调用批准；须等策略空间页最终交接、逐笔费用依据和本批新授权。旧128槽位是上批交接基数，不能冒充当前账户总量。离线结果见[核对记录](docs/SINGLE_FAIR_OFFLINE_20261015.json)。
+
+**当前终态（2026-10-17）：公平四组训练小试已结束，原执行进程已退出。** `runs/single-ID-gpt61-fair-seed201-v2/`固定既有H、七状态、单编号/v5提示、seed201/N5、21train及15秒期限；初始化5次得5条有效U，B0/B1/B2/P各10次真实演化，有效子代7/7/10/10，代码重复3/3/0/0，其他失败0。共45次请求、39条有效U，无重发或补员，未用15次初始化额度不转为新调用。未读取validation/test、未扩展MIX或Tier1。
+
+四组冠军均为共同初始`INIT/init/000000`（固定选择h0），fitness −2.111804961，与固定H0的21实例全平；最终均值依次为−2.133425284/−2.162679574/−2.135325114/−2.127260945。P均值改善来自弱成员替换，未生成更强冠军；旧单编号冠军−2.070427514只作来源绑定的冻结参照，不进入本批种群。新费用141169平台点，wire token 183565输入/24542输出，均已核实；历史未知及2400万点预留保留，累计201/300槽位、185次确认发送。人民币/美元未知。单seed一代训练观察不支持独立泛化结论。
+
+[最终摘要](reports/20261017-single-fair/00_组会摘要.md) · [完整报告](reports/20261017-single-fair/01_训练报告.md) · [CSV/图表/原始证据索引](reports/20261017-single-fair/03_材料索引.md) · [完成核对](reports/20261017-single-fair/completion_verification.json)。派生报告已在进程退出后刷新，原暂停快照和请求痕迹保留；无需再次执行实验入口。下一轮搜索、重评、新数据及组合消融均未启动。
+
+**2026-10-15离线准备快照（以下“当前”指当时；现已完成，见上）。** [新入口](experiments/tier2/research_real_v1/run_single_fair.py)、[待批准配置](experiments/tier2/research_real_v1/config.single.fair.pending.json)及[启动说明](experiments/tier2/research_real_v1/README.md#单编号公平重跑v2离线准备2026-10-15)使用固定既有H、原七状态/v5提示/评分和四组定义；seed201、N5、新共享初始化≤20、四组各一代10槽位、最多60次新请求，无额外诊断/MIX/holdout。缓存H评价只作来源核验，不重新排程、不导入旧U。首次请求即启用响应先落盘、metadata≥15秒/账单≥75秒节流及失败停发。当前`real_requests_authorized=false`，未创建新请求账本、未登记新调用批准；须等策略空间页最终交接、逐笔费用依据和本批新授权。旧128槽位是上批交接基数，不能冒充当前账户总量。离线结果见[核对记录](docs/SINGLE_FAIR_OFFLINE_20261015.json)。
 
 `codex/u-single-experiments` 从 checkpoint `243ad401bfd5ff64da338277112933323621de1f` 建立独立worktree，仅推进原单编号四组研究。新 [单成员入口](experiments/tier2/research_real_v1/run_single_experiments.py) 保持原运行/提示语义并增加只读来源与跨worktree账本检查；[具体配置与执行指南](experiments/tier2/research_real_v1/README.md#原单成员研究-worktree2026-10-13)提出 seed201/N5/共享新初始化≤20/四组各1代10槽位，最多60新请求。usage_v2的40次SELECT/MIX提案不适用于本任务。旧P组开发验收及旧候选重评仍为历史/工程证据；本次第一阶段付费与旧H研究范围已由用户明确批准；实际执行状态见下方2026-10-13记录。
 
@@ -105,7 +112,7 @@ rg -n -g '*.md' -g '!runs/**' 'Tier 1|正式H|V5|deadline' .
 
 2026-10-14只读结算审计见[审计报告](runs/single-ID-settlement-audit-20261014-v1/Audit_report.md)。本轮模型请求0；token日志无新503记录，完整用户日志未成功读取，费用与wire usage仍未知，原24,000,000点占用保留。原12,000,000单次缓冲并非供应商上限。另确认发送前已有requested_model_listed=false而被漏检；当前key模型列表仍无gpt-5.6-sol，历史codex-deafult计费组不再出现在公开模型enable_groups，原模型访问需恢复后才续接。提交了未批准/未应用的[预算风险草案](runs/single-ID-settlement-audit-20261014-v1/Reservation_change_proposal.json)：不改30,000,000上限/300槽位/原60次授权，旧INIT000034预留不变；只提议对已发503风险占用和新请求包络作显式版本化调整。它不把未知结算为0，不授权换模型/分组。仅7项metadata/风险算术检查；研究代码、数据、H/U及原运行记录未改。
 
-## 当前模型迁移批次（2026-10-14）
+## 历史模型迁移批次（2026-10-14）
 
 用户明确批准后续统一Leaf `gpt-6.1-sol`。旧gpt-5.6-sol阶段按模型访问失败中止，不将其候选/剩余授权混入新批次。新[迁移入口](experiments/tier2/research_real_v1/run_single_model_migration.py)使用原单编号/v5-state-bounds、固定既有10H及原技术审查，研究用途确认DDXQL；新共享初始化，不导入旧U。seed201、N5、初始化最多20，B0/B1/B2/P各一代10槽位，正式生成最多60，另有最多1次短诊断。诊断不进入种群；失败不重试/换模型，初始化不足5停止；仅21train。
 

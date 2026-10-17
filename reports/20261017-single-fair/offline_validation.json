@@ -1,0 +1,29 @@
+{
+  "kind": "offline-report-validation",
+  "passed": true,
+  "model_queries": 0,
+  "billing_queries": 0,
+  "new_evaluations": 0,
+  "native_request_rows": 45,
+  "valid_candidate_instance_rows": 819,
+  "fixed_h_cached_rows": 210,
+  "checks": [
+    "all45 certified invoices and wire/journal/ledger joins",
+    "39 complete21 fitness arithmetic and saved feasibility",
+    "frozen historical reference seal/dataset/H identity",
+    "four terminal generation checkpoints",
+    "unknown cost stays null; tampered invoice rejected on temporary copies",
+    "active writer lock refuses report refresh",
+    "four PNG/SVG pairs visually inspected",
+    "raw evidence hashes unchanged",
+    "CSV logical values, Python AST and PNG hashes unchanged by LF/SVG whitespace cleanup"
+  ],
+  "budget_sha256": "9434ad4bfa9830f9f58cc84f0c9e485870bef4a4edd5f73358aa8c2f80aa55d9",
+  "reporter_sha256": "9d7745cae34d71456c3fc79aee29c291aaba3034ae7c78bb82c9508826231954",
+  "prelaunch_tests": {
+    "count": 72,
+    "log": "logs/single-fair-prelaunch-tests-20261017.log",
+    "sha256": "f539a30861a4c42b545cb7a232a075d09f3e988fa4b26ad01c5051cfb15a107a",
+    "scope": "previously completed before paid requests; not rerun as part of report cleanup"
+  }
+}

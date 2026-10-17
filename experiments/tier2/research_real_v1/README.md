@@ -321,6 +321,11 @@ PYTHONPATH=code:tests .venv/bin/python -m unittest test_model_migration test_sin
 
 ## 单编号公平重跑v2：离线准备（2026-10-15）
 
+**2026-10-17终态更新：本批已完成，以下为历史准备说明。** 原进程退出后已核对45次真实请求（INIT5，四组各10），39有效、6代码重复，其余失败0，演化未完成槽位0。H/状态/提示/期限/生存选择未改，旧U未进入P₀，15个未用初始化槽位不授权追加演化。最新证据为本工作区`runs/single-ID-gpt61-fair-seed201-v2/`的原生账本、各组checkpoint/journal、`Search_complete.json`及最终`Final_budget_handoff.json`；早期暂停快照保存在`derived_snapshots/pre-final-pause/`，不能当终态。
+
+[最终摘要](../../../reports/20261017-single-fair/00_组会摘要.md)、[完整报告](../../../reports/20261017-single-fair/01_训练报告.md)、[材料索引](../../../reports/20261017-single-fair/03_材料索引.md)。离线重建表图：`python3 tools/report_single_fair.py --run-dir runs/single-ID-gpt61-fair-seed201-v2 --out-dir reports/20261017-single-fair`；需要matplotlib及中文字体，无API、无求解/重评/holdout访问。不要为刷新报告重新启动`execute`。当前协议已结束，未开展下一轮实验。
+
+
 新入口`run_single_fair.py`与`config.single.fair.pending.json`，协议`single-ID-fixed-H-fair-v2`。独立目录`runs/single-ID-gpt61-fair-seed201-v2/`，不续填旧剩余槽位。固定原10H、七状态、v5-state-bounds、V5未取整LB和21train；Leaf gpt-6.1-sol、输出8192、网络10/240/300秒，温度/推理参数不发送。seed201/N5、交叉5父代/变异1父代；新共享初始化≤20，B0/B1/B2/P各一代10槽位，总上限60，无付费诊断。B0/B1五算子各2槽位、差异为H信息；B2/P各交叉5变异5、差异仅特化算子段；B1与B2还改变算子组合及分配。单seed只支持初步训练描述。
 
 `prepare`只读取13份指定来源文件、核对训练文件哈希和原代码/运行环境身份，复用已有完整H评价、原审查和研究范围批准；不调用模型/账单、不重排程H、不运行审查样例、不导入旧U。`Preparation.json`及`H_source_binding.json`不是新请求授权，也不是开始训练。H源中的旧模型生成凭证保留，不假装来自本批。真实H运行/数据及凭证仍在本地，Git只保存新代码/配置/说明。

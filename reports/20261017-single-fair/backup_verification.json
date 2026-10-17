@@ -1,0 +1,13 @@
+{
+  "archive": "/Users/DDXQL/Documents/Codex/backups/FJSP-single-fair-seed201-v2-final-20261017/experiment-and-exhibits.tar.gz",
+  "archive_sha256": "8f26dcdc691433ae0f13329ddcdf0a731efbc031e08da6c99fa6e7e8a5b1fa44",
+  "files": 300,
+  "verified_readable": true,
+  "contains_credentials": false,
+  "scope": "new run + registered code/train snapshot + exhibits + exact frozen-reference inputs + caller logs; no historical tree duplication",
+  "final_curated_archive": "/Users/DDXQL/Documents/Codex/backups/FJSP-single-fair-seed201-v2-final-20261017/final-curated-exhibits.tar.gz",
+  "final_curated_sha256": "37feff9e1ad95b4a9dd7b327ad2493f491914a9423e9bca379ff803c50fdea00",
+  "final_curated_files": 44,
+  "final_curated_verified_readable": true,
+  "restore_order": "Base archive preserves all raw experimental records; apply final-curated-exhibits last for final LF/SVG formatting and current report generator. No raw experiment files were changed."
+}
