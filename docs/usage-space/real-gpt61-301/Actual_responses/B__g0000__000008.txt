@@ -1,0 +1,26 @@
+{The parent selects the nearest fixed state prototype by summed absolute distances, with a small categorical persistence bonus. The main modification replaces those prototypes with a continuous mixture of members 0 and 9: relative remaining-work dispersion increases member 0's work-emphasis weight, while machine-end-time dispersion and scheduling progress increase member 9's efficiency-and-wait emphasis. These are design hypotheses rather than measured advantages; a small persistence adjustment remains only for the previously dominant active member.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)
+
+    machine_dispersion = 0.0
+    machine_scale = machine_ready_mean + machine_ready_std
+    if machine_scale > 0.0:
+        machine_dispersion = machine_ready_std / machine_scale
+
+    weight0 = (
+        0.55
+        + 0.25 * work_dispersion
+        - 0.20 * machine_dispersion
+        - 0.15 * progress
+    )
+
+    if previous_heuristic == 0:
+        weight0 = weight0 + 0.03
+    if previous_heuristic == 9:
+        weight0 = weight0 - 0.03
+
+    weight9 = 1.0 - weight0
+
+    return (1, (weight0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, weight9))
+```

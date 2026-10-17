@@ -1,0 +1,222 @@
+Design a deterministic heuristic-usage strategy U for static FJSP, not an action priority rule h.
+Before each step, the host enumerates each unfinished job's next operation and its allowed machines.
+The host computes the state, calls U exactly ONCE, and uses only the members selected by your output to score ALL legal pairs.
+Execute the highest-scoring action, break ties by job then machine index, and append it to the machine's end.
+Continue until all operations are scheduled. Terminal states do not call U. Online scheduling never calls an LLM.
+An external evaluator measures complete feasible schedules on ALL training instances, using mean(-makespan/LB).
+Higher fitness is better. LB=max(longest job's shortest processing-time sum, total shortest processing-time sum/machine count).
+Any failed instance invalidates the candidate; there is no partial-batch mean or fallback heuristic.
+Generate only U, without changing H, the state calculator, scheduler or evaluator.
+Inputs (these are STATE summaries, not h's single-action inputs):
+progress=scheduled operation count / total operation count of the instance, NOT elapsed-time progress or population size.
+candidate_pair_ratio=legal operation-machine pair count/C; C=sum over jobs of the maximum alternatives of any operation in that job.
+remaining_work_mean/std: for each UNFINISHED job, sum shortest alternative processing times for all unscheduled operations,
+including the current operation; divide by T, then take mean and population standard deviation (ddof=0).
+machine_ready_mean/std: mean and population standard deviation of ALL machines' current end times divided by T,
+including unused machines. These summaries do not identify a particular bottleneck machine.
+T=sum of the maximum alternative processing time over ALL operations. T and C stay fixed; they are NOT extra inputs.
+previous_heuristic=-1 at the first step, otherwise the largest normalized-weight member id (ties: smallest id); it contains no rewards or improvement history.
+Use only these seven inputs, local calculations and fixed constants. Same input must yield the same output.
+Do not call H, parents or evaluators; simulate schedules; access external resources; infer extra state; or retain mutable state.
+Member ids are categories, not quality ranks: do not average ids or infer quality from their magnitude.
+Every path returns exactly (mode, (v0, ..., vK_minus_1)). Mode is a built-in int, never bool. Handle the first step and avoid division by zero.
+A constant selector is legal. Do not force switching, use of every member/input, or a particular decision-tree skeleton.
+Do not invent performance evidence, state-level winners, rewards or failure examples.
+Provable bounds in nonterminal legal states (positive processing times):
+0 <= progress < 1; 0 < candidate_pair_ratio <= 1.
+0 < remaining_work_mean <= 1; 0 <= remaining_work_std <= 0.5.
+0 <= machine_ready_mean <= 1; 0 <= machine_ready_std <= 0.5.
+previous_heuristic is -1 only at the first step, otherwise a categorical id in [0,K).
+All normalized remaining-work values and machine end times lie in [0,1].
+Remaining-work values are restricted to unfinished jobs and their sum is <=1:
+with a active jobs, mean <=1/a and std <=sqrt(a-1)/a (a=1 gives std=0).
+For either pair mean=m, std=s, s*s <= m*(1-m).
+Thus s/(1+m) <=sqrt(2)/4 (approximately 0.353554), not an unnormalized dispersion.
+These are conservative global bounds, not typical training ranges or state-level winners.
+A condition outside these bounds cannot fire. A condition inside may still never fire in training.
+Use thresholds/relations compatible with the actual normalized scale; constant selectors remain legal.
+
+Use the fixed ordered H. Vector entry i refers to member i; vector length MUST be K.
+All vector entries must be built-in int or float, NEVER bool; local boolean comparisons remain legal.
+Construct the two-level tuple literal directly in each return; do not store tuples in variables or use lists/indexing.
+SELECT mode=0: vector entries are finite member-selection scores, allowed negative.
+The host picks argmax, EXACT ties to lowest member id; all-zero scores are legal.
+MIX mode=1: vector entries are finite nonnegative raw weights with exactly one or two positive entries.
+The host normalizes by positive maximum then sum; all-zero or more than two positives fails, without repair.
+Within the permitted modes, member scores, active members, weights and mode may depend on the seven inputs.
+Scores or weights may use constants, conditions, linear or nonlinear local expressions within the allowed language;
+no formula, phase partition or program skeleton is prescribed. A score formula may contain if;
+a condition may produce weights. Program syntax alone does not determine the usage mechanism.
+For MIX, compute the one- or two-member support yourself; the host does not select top-two scores for you.
+One active member scores actions in raw units, exactly like the original single-member executor.
+Two active members each score every CURRENT legal action once. The host min-max normalizes each complete action column
+and takes the nonnegative weighted sum. A constant column becomes zero, without reallocating its weight.
+Final action ties use job then machine id. This rule is fixed by the host, not configurable by your program.
+Member-selection scores, mixture weights, raw h action scores and final combined action scores are distinct quantities.
+Your program does not receive action scores/lists and must NOT call h or simulate future schedules.
+The historical dominant id loses the other member and weight proportions; do not invent those inputs.
+Constant SELECT and single-member MIX are legal where the mode is permitted; do not force mixtures or switching.
+These rules are engineering semantics, not evidence that combinations or any members perform better.
+
+Permitted modes: SELECT (0) ONLY.
+K=10; ordered member ids 0 through 9.
+
+
+There are no parents. Create an independent SELECT program; member ids do not imply quality.
+Output at most three sentences inside {braces}, followed by exactly one ```python code block. No extra text. Use one function with the exact argument names. Only numeric constants, local variables, arithmetic, comparisons, if/while/for, and these builtins are allowed: abs, min, max, int, float, round, range. Only the terminal two-level tuple (mode, (scalar,...)) is permitted; no other containers, indexing, imports, attributes, helper functions, globals, recursion, randomness or resource access. Numeric intermediates must remain finite and <=1e100; power exponents must be literal integers from 0 to 8; round ndigits must be an int in [-100,100]. End the function with return, or an if/else whose branches both end in return. No return annotation. Numeric literals <=1e9; scalar intermediates/output fields finite with absolute value <=1e100.
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+SHARED SELECT INITIALISATION NOVELTY CONTEXT
+Previously accepted source CODE ONLY is below, not parents, ranked examples or performance evidence.
+Create an independent SELECT strategy with different logic; formatting/renaming does not ensure diversity.
+Constants and unused inputs/members are legal; no prescribed skeleton or decision-tree form.
+SELECT may compare state-dependent member scores instead of explicitly branching on a member id.
+Do not force switching. No H behavior or scores are given during shared initialization.
+Only validated AST source keys are deduplicated; no broad equivalence or equal-fitness claims.
+
+Independent request index: 6. The index is a trace identifier, not a quality rank or member mapping.
+Archive entries included: 3; omitted by byte limit: 0.
+
+ARCHIVED SELECTOR 419e77b136439b24df63ba74e0cd9b44f2ea76c2df653d4363d9413b14487048
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    s0 = 1.0 - abs(progress - 0.1) - abs(candidate_pair_ratio - 0.2) - abs(remaining_work_mean - 0.8) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.2) - abs(machine_ready_std - 0.05)
+    s1 = 1.0 - abs(progress - 0.08) - abs(candidate_pair_ratio - 0.8) - abs(remaining_work_mean - 0.7) - abs(remaining_work_std - 0.25) - abs(machine_ready_mean - 0.3) - abs(machine_ready_std - 0.15)
+    s2 = 1.0 - abs(progress - 0.25) - abs(candidate_pair_ratio - 0.4) - abs(remaining_work_mean - 0.55) - abs(remaining_work_std - 0.1) - abs(machine_ready_mean - 0.1) - abs(machine_ready_std - 0.3)
+    s3 = 1.0 - abs(progress - 0.32) - abs(candidate_pair_ratio - 0.9) - abs(remaining_work_mean - 0.45) - abs(remaining_work_std - 0.3) - abs(machine_ready_mean - 0.45) - abs(machine_ready_std - 0.05)
+    s4 = 1.0 - abs(progress - 0.45) - abs(candidate_pair_ratio - 0.25) - abs(remaining_work_mean - 0.65) - abs(remaining_work_std - 0.2) - abs(machine_ready_mean - 0.6) - abs(machine_ready_std - 0.1)
+    s5 = 1.0 - abs(progress - 0.5) - abs(candidate_pair_ratio - 0.65) - abs(remaining_work_mean - 0.35) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.25) - abs(machine_ready_std - 0.25)
+    s6 = 1.0 - abs(progress - 0.62) - abs(candidate_pair_ratio - 0.35) - abs(remaining_work_mean - 0.5) - abs(remaining_work_std - 0.3) - abs(machine_ready_mean - 0.75) - abs(machine_ready_std - 0.1)
+    s7 = 1.0 - abs(progress - 0.7) - abs(candidate_pair_ratio - 0.95) - abs(remaining_work_mean - 0.25) - abs(remaining_work_std - 0.1) - abs(machine_ready_mean - 0.5) - abs(machine_ready_std - 0.35)
+    s8 = 1.0 - abs(progress - 0.84) - abs(candidate_pair_ratio - 0.55) - abs(remaining_work_mean - 0.2) - abs(remaining_work_std - 0.2) - abs(machine_ready_mean - 0.85) - abs(machine_ready_std - 0.05)
+    s9 = 1.0 - abs(progress - 0.92) - abs(candidate_pair_ratio - 0.15) - abs(remaining_work_mean - 0.1) - abs(remaining_work_std - 0.05) - abs(machine_ready_mean - 0.35) - abs(machine_ready_std - 0.2)
+    if previous_heuristic == 0:
+        s0 = s0 + 0.03
+    if previous_heuristic == 1:
+        s1 = s1 + 0.03
+    if previous_heuristic == 2:
+        s2 = s2 + 0.03
+    if previous_heuristic == 3:
+        s3 = s3 + 0.03
+    if previous_heuristic == 4:
+        s4 = s4 + 0.03
+    if previous_heuristic == 5:
+        s5 = s5 + 0.03
+    if previous_heuristic == 6:
+        s6 = s6 + 0.03
+    if previous_heuristic == 7:
+        s7 = s7 + 0.03
+    if previous_heuristic == 8:
+        s8 = s8 + 0.03
+    if previous_heuristic == 9:
+        s9 = s9 + 0.03
+    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))
+```
+
+ARCHIVED SELECTOR 88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    gap = remaining_work_mean - machine_ready_mean
+    spread = remaining_work_std + machine_ready_std
+    flexibility = candidate_pair_ratio * (1.0 - progress)
+    phase = progress * candidate_pair_ratio
+    s0 = 0.31 + gap - spread + flexibility - phase
+    s1 = 0.27 - gap + spread - flexibility + phase
+    s2 = 0.22 + gap + spread - 0.5 * flexibility - phase
+    s3 = 0.19 - gap - spread + 0.5 * flexibility + phase
+    s4 = 0.16 + 0.5 * gap - 0.5 * spread + flexibility + phase
+    s5 = 0.14 - 0.5 * gap + 0.5 * spread - flexibility - phase
+    s6 = 0.12 + gap - 0.5 * spread + 0.5 * flexibility - phase
+    s7 = 0.1 - gap + 0.5 * spread + 0.5 * flexibility + phase
+    s8 = 0.08 + 0.5 * gap + spread - 0.5 * flexibility - phase
+    s9 = 0.06 - 0.5 * gap - spread + 0.5 * flexibility + phase
+    if previous_heuristic == 0:
+        s0 = s0 + 0.025
+    if previous_heuristic == 1:
+        s1 = s1 + 0.025
+    if previous_heuristic == 2:
+        s2 = s2 + 0.025
+    if previous_heuristic == 3:
+        s3 = s3 + 0.025
+    if previous_heuristic == 4:
+        s4 = s4 + 0.025
+    if previous_heuristic == 5:
+        s5 = s5 + 0.025
+    if previous_heuristic == 6:
+        s6 = s6 + 0.025
+    if previous_heuristic == 7:
+        s7 = s7 + 0.025
+    if previous_heuristic == 8:
+        s8 = s8 + 0.025
+    if previous_heuristic == 9:
+        s9 = s9 + 0.025
+    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))
+```
+
+ARCHIVED SELECTOR f436adecaa5ebfbc86d2b76d933453a0f0aa2a509faff91f3ac1cee718909784
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_dispersion = remaining_work_std / (1.0 + remaining_work_mean)
+    ready_dispersion = machine_ready_std / (1.0 + machine_ready_mean)
+    if progress < 0.3:
+        if candidate_pair_ratio < 0.5:
+            if work_dispersion < 0.1:
+                target = 0
+            else:
+                target = 1
+        elif machine_ready_mean < 0.25:
+            if ready_dispersion < 0.08:
+                target = 2
+            else:
+                target = 3
+        elif remaining_work_mean < 0.25:
+            target = 4
+        else:
+            target = 5
+    elif progress < 0.75:
+        if machine_ready_mean < remaining_work_mean:
+            if work_dispersion < 0.1:
+                target = 6
+            else:
+                target = 7
+        elif ready_dispersion < 0.08:
+            target = 8
+        else:
+            target = 9
+    elif candidate_pair_ratio < 0.5:
+        target = 9
+    elif remaining_work_std < 0.05:
+        target = 0
+    else:
+        target = 1
+    s0 = 0.0
+    s1 = 0.0
+    s2 = 0.0
+    s3 = 0.0
+    s4 = 0.0
+    s5 = 0.0
+    s6 = 0.0
+    s7 = 0.0
+    s8 = 0.0
+    s9 = 0.0
+    if target == 0:
+        s0 = 1.0
+    if target == 1:
+        s1 = 1.0
+    if target == 2:
+        s2 = 1.0
+    if target == 3:
+        s3 = 1.0
+    if target == 4:
+        s4 = 1.0
+    if target == 5:
+        s5 = 1.0
+    if target == 6:
+        s6 = 1.0
+    if target == 7:
+        s7 = 1.0
+    if target == 8:
+        s8 = 1.0
+    if target == 9:
+        s9 = 1.0
+    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))
+```

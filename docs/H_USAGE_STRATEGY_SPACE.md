@@ -1,5 +1,7 @@
 # 固定 H 的使用策略空间
 
+> 后续实证更新：v2.2 gpt-6.1-sol独立训练小试已完成28次请求，取得真实评分单选及完整有效的状态相关双成员组合，结果与限制见[真实训练小试报告](H_USAGE_V22_TRAINING_RESULTS.md)。下面“尚未生成/未启动”等表述保留首轮核对时的历史状态。
+
 > 本文保留首轮阅读分析。后续第一阶段实现见 [v2.2设计与离线验证](H_USAGE_SPACE_PHASE1.md)，新方法研究见 [独立实验登记草案](H_USAGE_SPACE_EXPERIMENT_PLAN.md)。本分支从共同checkpoint继续，历史runs不随worktree复制；本文历史记录链接指原仓库首轮记录，不代表本分支已执行真实研究。
 
 核对日期：2026-10-13。对象：`U-usage-v2-select-or-mix-20261012`、提示包 v2.1、`leaf-usage-v2-AB-preparation-20261012-v2`。本文件是代码阅读与方法分析，不改变实验协议。

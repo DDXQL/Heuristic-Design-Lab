@@ -1,0 +1,18 @@
+{
+  "endpoint": "https://leafapi.cc/v1/chat/completions",
+  "model": "gpt-6.1-sol",
+  "protocol": "openai-chat-v1",
+  "api_key_env": "LEAFAPI_API_KEY",
+  "connect_timeout": 10,
+  "read_timeout": 240,
+  "total_timeout": 300,
+  "max_output_tokens": 8192,
+  "output_token_reservation": 32768,
+  "max_prompt_bytes": 262144,
+  "input_token_reservation": 65536,
+  "temperature": null,
+  "reasoning_effort": null,
+  "expected_response_model": "gpt-6.1-sol",
+  "thinking": null,
+  "stream_response": true
+}

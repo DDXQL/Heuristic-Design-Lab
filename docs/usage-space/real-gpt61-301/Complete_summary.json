@@ -1,0 +1,308 @@
+{
+  "status": "COMPLETED_TRAINING_ONLY",
+  "run": "v22-gpt61-select-mix-301-20261014-v1",
+  "seed": 301,
+  "split": "21 train only",
+  "N": 5,
+  "source_H_sha256": "a3527deff8bfb63b0394ea2c1f4f24339f187a331eca4b0ab8dcfff6081fed3b",
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "thinking": null,
+    "stream_response": true
+  },
+  "transport_messages": "one user message containing the complete archived prompt; no client system message",
+  "groups": [
+    {
+      "arm": "INIT",
+      "status": "evolution",
+      "request_slots": 8,
+      "returned_text_responses": 5,
+      "syntax_legal_responses": 5,
+      "syntax_legal_rate_per_slot": 0.625,
+      "complete_valid_new_candidates": 5,
+      "complete_valid_rate_per_slot": 0.625,
+      "duplicate_count": 0,
+      "duplicate_rate_per_slot": 0.0,
+      "failure_categories": {
+        "api_failure": 3
+      },
+      "usage_all_evaluated_prefixes": {
+        "SELECT_steps": 19000,
+        "MIX_steps": 0,
+        "dual_steps": 0,
+        "no_valid_dual_execution_observed": true
+      },
+      "mean_final_population_train_fitness": -2.4437706589488295,
+      "actual_platform_points": 42955,
+      "cost": {
+        "cost": {
+          "single_solve_seconds": 54.58745100197848,
+          "deterministic_recheck_seconds": 56.424724501150195,
+          "combination_processing_seconds": 0.17166531382827088,
+          "recheck_combination_processing_seconds": 0.18301696196431294,
+          "selected_h_scoring_seconds": 48.23774769657757
+        },
+        "certified_h_calls": {
+          "single_h_calls": 8228612,
+          "deterministic_recheck_h_calls": 8228612,
+          "diagnostic_h_calls": 8228612
+        },
+        "primary_evaluation_seconds": 113.42866637394764,
+        "independent_diagnostic_seconds": 58.20171229203697,
+        "unknown_failed_h_calls": 0,
+        "missing_failed_solve_costs": "unknown; partial successful-row totals do not include uncertified failed solve/recheck pairs"
+      },
+      "final_population": [
+        {
+          "id": "INIT/init/000005",
+          "fitness": -2.225194303277998,
+          "code_key": "88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4"
+        },
+        {
+          "id": "INIT/init/000006",
+          "fitness": -2.391583985708433,
+          "code_key": "427d67beede90b9e81bf08c59de81672211612954a0b9c676a27ae9598769bba"
+        },
+        {
+          "id": "INIT/init/000007",
+          "fitness": -2.4680820407480666,
+          "code_key": "0cae45cb3dda23caa371e819aa449d2baac222e9023716397aa98fb545a6ca09"
+        },
+        {
+          "id": "INIT/init/000001",
+          "fitness": -2.5251534597692227,
+          "code_key": "f436adecaa5ebfbc86d2b76d933453a0f0aa2a509faff91f3ac1cee718909784"
+        },
+        {
+          "id": "INIT/init/000003",
+          "fitness": -2.6088395052404283,
+          "code_key": "419e77b136439b24df63ba74e0cd9b44f2ea76c2df653d4363d9413b14487048"
+        }
+      ],
+      "best_train_fitness": -2.225194303277998
+    },
+    {
+      "arm": "A",
+      "status": "completed",
+      "request_slots": 10,
+      "returned_text_responses": 9,
+      "syntax_legal_responses": 9,
+      "syntax_legal_rate_per_slot": 0.9,
+      "complete_valid_new_candidates": 9,
+      "complete_valid_rate_per_slot": 0.9,
+      "duplicate_count": 0,
+      "duplicate_rate_per_slot": 0.0,
+      "failure_categories": {
+        "api_failure": 1
+      },
+      "usage_all_evaluated_prefixes": {
+        "SELECT_steps": 34200,
+        "MIX_steps": 0,
+        "dual_steps": 0,
+        "no_valid_dual_execution_observed": true
+      },
+      "mean_final_population_train_fitness": -2.3128388628413763,
+      "actual_platform_points": 58403,
+      "cost": {
+        "cost": {
+          "single_solve_seconds": 105.14120474492665,
+          "deterministic_recheck_seconds": 105.92326245695585,
+          "combination_processing_seconds": 0.3375157796544954,
+          "recheck_combination_processing_seconds": 0.3477139276219532,
+          "selected_h_scoring_seconds": 92.71175676613348
+        },
+        "certified_h_calls": {
+          "single_h_calls": 16591832,
+          "deterministic_recheck_h_calls": 16591832,
+          "diagnostic_h_calls": 16591832
+        },
+        "primary_evaluation_seconds": 215.31533729314106,
+        "independent_diagnostic_seconds": 107.64956399804214,
+        "unknown_failed_h_calls": 0,
+        "missing_failed_solve_costs": "unknown; partial successful-row totals do not include uncertified failed solve/recheck pairs"
+      },
+      "final_population": [
+        {
+          "id": "A/g0000/000007",
+          "fitness": -2.1851566838185925,
+          "code_key": "5e141cecc0e0dc096ce6195bf6f01e6d88ece8063dea0f8d45c044ff1e1817b5"
+        },
+        {
+          "id": "INIT/init/000005",
+          "fitness": -2.225194303277998,
+          "code_key": "88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4"
+        },
+        {
+          "id": "A/g0000/000008",
+          "fitness": -2.3726081728572597,
+          "code_key": "ab630dabaf58bdeb9392ebb7c139b7ed45303997a198de08916422090de0d8d3"
+        },
+        {
+          "id": "A/g0000/000002",
+          "fitness": -2.3896511685445985,
+          "code_key": "7f637a2036aed907630acac72b8d76857fa779dfc7710939e612ffaf72294507"
+        },
+        {
+          "id": "A/g0000/000000",
+          "fitness": -2.391583985708433,
+          "code_key": "2e5cbc6271b46186d467fa9006d716ee2a9678b787e6c3f6b128bfc8f1d01562"
+        }
+      ],
+      "best_train_fitness": -2.1851566838185925
+    },
+    {
+      "arm": "B",
+      "status": "completed",
+      "request_slots": 10,
+      "returned_text_responses": 9,
+      "syntax_legal_responses": 9,
+      "syntax_legal_rate_per_slot": 0.9,
+      "complete_valid_new_candidates": 6,
+      "complete_valid_rate_per_slot": 0.6,
+      "duplicate_count": 0,
+      "duplicate_rate_per_slot": 0.0,
+      "failure_categories": {
+        "runtime_failure": 3,
+        "api_failure": 1
+      },
+      "usage_all_evaluated_prefixes": {
+        "SELECT_steps": 0,
+        "MIX_steps": 32700,
+        "dual_steps": 32700,
+        "no_valid_dual_execution_observed": false
+      },
+      "mean_final_population_train_fitness": -2.355837826053679,
+      "actual_platform_points": 45587,
+      "cost": {
+        "cost": {
+          "single_solve_seconds": 196.9768897991744,
+          "deterministic_recheck_seconds": 194.6654039552668,
+          "combination_processing_seconds": 11.90887580771232,
+          "recheck_combination_processing_seconds": 11.725196846469771,
+          "selected_h_scoring_seconds": 174.20630901755067
+        },
+        "certified_h_calls": {
+          "single_h_calls": 28900120,
+          "deterministic_recheck_h_calls": 28900120,
+          "diagnostic_h_calls": 28900120
+        },
+        "primary_evaluation_seconds": 440.889924124931,
+        "independent_diagnostic_seconds": 203.17517612490337,
+        "unknown_failed_h_calls": null,
+        "missing_failed_solve_costs": "unknown; partial successful-row totals do not include uncertified failed solve/recheck pairs"
+      },
+      "final_population": [
+        {
+          "id": "INIT/init/000005",
+          "fitness": -2.225194303277998,
+          "code_key": "88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4"
+        },
+        {
+          "id": "B/g0000/000005",
+          "fitness": -2.3296173258645845,
+          "code_key": "63205387a3ab081bebb06fd96c179032aefd00670e311f1571fc2c72f7fec5de"
+        },
+        {
+          "id": "INIT/init/000006",
+          "fitness": -2.391583985708433,
+          "code_key": "427d67beede90b9e81bf08c59de81672211612954a0b9c676a27ae9598769bba"
+        },
+        {
+          "id": "B/g0000/000006",
+          "fitness": -2.4109941491516795,
+          "code_key": "9a2823165244f5405b7d393fd24feeaba8832ed68332d8e164b0ad33d8addcca"
+        },
+        {
+          "id": "B/g0000/000008",
+          "fitness": -2.4217993662657014,
+          "code_key": "703205908f29181c7a79d8f443c671f1295a683516fd31db0d44ee5564c4a767"
+        }
+      ],
+      "best_train_fitness": -2.225194303277998
+    }
+  ],
+  "request_slots": 28,
+  "confirmed_sends": 28,
+  "syntax_legal_candidates": 23,
+  "duplicate_count": 0,
+  "complete_valid_new_candidates": 20,
+  "known_wire_input_tokens": 173328,
+  "known_wire_output_tokens": 25970,
+  "wire_usage_unknown_requests": 4,
+  "actual_platform_points": 146945,
+  "unknown_new_fee_requests": 0,
+  "currency_conversion_verified": false,
+  "historical_request_slots": 128,
+  "lifetime_request_slots": 156,
+  "historical_account_hold_unchanged": 24000000,
+  "latest_account_used_points": 1829824,
+  "paired_train_summary": {
+    "B_better_instances": 9,
+    "A_better_instances": 10,
+    "equal_instances": 2,
+    "mean_B_minus_A_score": -0.04003761945940563
+  },
+  "best_final_candidate_profiles": {
+    "A": {
+      "id": "A/g0000/000007",
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    },
+    "B": {
+      "id": "INIT/init/000005",
+      "profile": {
+        "complete_train_valid": true,
+        "SELECT_steps": 3800,
+        "MIX_steps": 0,
+        "dual_member_steps": 0,
+        "single_member_MIX_steps": 0,
+        "MIX_observed_but_only_single_member": false,
+        "selection_vectors_not_one_hot": true,
+        "selection_scores_vary_on_train": true,
+        "selected_member_varies_on_train": true,
+        "dual_support_varies_on_train": false,
+        "dual_weights_vary_on_train": false,
+        "modes_vary_on_train": false,
+        "dual_steps_with_a_constant_column": 0,
+        "notice": "Observed training only. Non-one-hot scores do not prove effective adaptation; two members do not establish benefit. Failed-prefix behavior is not a complete valid candidate."
+      }
+    }
+  },
+  "holdouts_evaluated": false,
+  "handwritten_candidates_imported": 0,
+  "raw_export_fee_fields_remain_historical": "A slot1 and B slot4 journal metadata was not rewritten; certified fees here come from native/supplemental receipts.",
+  "cost_scope": "Primary wall includes failed main deadlines. Certified per-pass h counts and solve components omit unknown failed-instance work. Request wall may include a marked user pause.",
+  "limits": [
+    "single seed, one generation, train-selected champions",
+    "runtime/API failures reduce usable candidate counts",
+    "serial execution, pause, metadata throttle and cache/billing differences affect operational cost",
+    "MIX permission changes generated formulas as well as use mechanism; no same-formula ablation or independent generalization evidence"
+  ]
+}

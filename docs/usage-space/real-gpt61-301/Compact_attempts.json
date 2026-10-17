@@ -1,0 +1,340 @@
+{
+  "INIT": [
+    {
+      "id": "INIT/init/000000",
+      "operator": "I1",
+      "parents": [],
+      "status": "failed",
+      "category": "api_failure",
+      "code_key": null,
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000001",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "f436adecaa5ebfbc86d2b76d933453a0f0aa2a509faff91f3ac1cee718909784",
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000002",
+      "operator": "I1",
+      "parents": [],
+      "status": "failed",
+      "category": "api_failure",
+      "code_key": null,
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000003",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "419e77b136439b24df63ba74e0cd9b44f2ea76c2df653d4363d9413b14487048",
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000004",
+      "operator": "I1",
+      "parents": [],
+      "status": "failed",
+      "category": "api_failure",
+      "code_key": null,
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000005",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "88eda9301b39576fdda6ceaea0d8ce034a14b15201d37d24f761731935fd5de4",
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000006",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "427d67beede90b9e81bf08c59de81672211612954a0b9c676a27ae9598769bba",
+      "error_type": null
+    },
+    {
+      "id": "INIT/init/000007",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "0cae45cb3dda23caa371e819aa449d2baac222e9023716397aa98fb545a6ca09",
+      "error_type": null
+    }
+  ],
+  "A": [
+    {
+      "id": "A/g0000/000000",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000007",
+        "INIT/init/000005",
+        "INIT/init/000003"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "2e5cbc6271b46186d467fa9006d716ee2a9678b787e6c3f6b128bfc8f1d01562",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000001",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000007",
+        "INIT/init/000005",
+        "INIT/init/000003",
+        "INIT/init/000006",
+        "INIT/init/000001"
+      ],
+      "status": "failed",
+      "category": "api_failure",
+      "code_key": null,
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000002",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000006"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "7f637a2036aed907630acac72b8d76857fa779dfc7710939e612ffaf72294507",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000003",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "6cb548802bad6e5618920ba46601436e65c432f77b7395e32e6f3340efa86213",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000004",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000006"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "ca505e11a308ca0157641b6ecb85ebf2f485f420f2951ae32cadde7bb91d104e",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "9162029f93d0512f09765ad9c6ce6d782fec4a6b9b6d5c90aae6916352646da8",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "4f29baf02c307dba1c8e0ea7628d4b0f50698597c51e116c3881e6593b513bd7",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000005"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "5e141cecc0e0dc096ce6195bf6f01e6d88ece8063dea0f8d45c044ff1e1817b5",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "ab630dabaf58bdeb9392ebb7c139b7ed45303997a198de08916422090de0d8d3",
+      "error_type": null
+    },
+    {
+      "id": "A/g0000/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "e5cbb0d4139d8db4c81d220fae2561b0629904a05663a61499d817594098a051",
+      "error_type": null
+    }
+  ],
+  "B": [
+    {
+      "id": "B/g0000/000000",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000007",
+        "INIT/init/000005",
+        "INIT/init/000003"
+      ],
+      "status": "invalid",
+      "category": "runtime_failure",
+      "code_key": "751e7c71be701335c878c4f72d73fb2b5acffa0be6cdba12652e2b9b780ed122",
+      "error_type": "Timeout"
+    },
+    {
+      "id": "B/g0000/000001",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000007",
+        "INIT/init/000005",
+        "INIT/init/000003",
+        "INIT/init/000006",
+        "INIT/init/000001"
+      ],
+      "status": "invalid",
+      "category": "runtime_failure",
+      "code_key": "7c923b017c1513636ac42f203f4ab598ccc58e93e9c019168a47f66d9b243ecc",
+      "error_type": "Timeout"
+    },
+    {
+      "id": "B/g0000/000002",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000006"
+      ],
+      "status": "invalid",
+      "category": "runtime_failure",
+      "code_key": "177e4f1d77c80df96a3ddcf25404dc678bb6e59de11556fd9e4b739fb80b3033",
+      "error_type": "Timeout"
+    },
+    {
+      "id": "B/g0000/000003",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000006",
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "a42842be4148c3ff8b6efb612716280863443cbf2db08e1cffe1eb3a15320a25",
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000004",
+      "operator": "CROSS",
+      "parents": [
+        "INIT/init/000001",
+        "INIT/init/000003",
+        "INIT/init/000005",
+        "INIT/init/000007",
+        "INIT/init/000006"
+      ],
+      "status": "failed",
+      "category": "api_failure",
+      "code_key": null,
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "63205387a3ab081bebb06fd96c179032aefd00670e311f1571fc2c72f7fec5de",
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "9a2823165244f5405b7d393fd24feeaba8832ed68332d8e164b0ad33d8addcca",
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000005"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "ee9c743349321f00ad1223c358a727ab9e7ea7e053abe51b711bb3171207383f",
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000003"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "703205908f29181c7a79d8f443c671f1295a683516fd31db0d44ee5564c4a767",
+      "error_type": null
+    },
+    {
+      "id": "B/g0000/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "INIT/init/000001"
+      ],
+      "status": "valid",
+      "category": "valid",
+      "code_key": "ba967a35a8acc467f946893a3f15db95ad936d69cc4f5642492ca2f0d3e32091",
+      "error_type": null
+    }
+  ]
+}

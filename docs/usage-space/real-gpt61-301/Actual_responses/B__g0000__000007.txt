@@ -1,0 +1,25 @@
+{The parent selects the largest of ten affine scores built from workload–readiness gap, dispersion, flexibility and progress, with a small previous-member bonus. The main modification replaces that competition with an adaptive two-member mixture: member 0 supplies strong remaining-work emphasis, while member 9 supplies processing-efficiency and waiting penalties, with bounded relative workload and readiness summaries controlling their weights rather than asserting a state-level winner.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    flexibility = candidate_pair_ratio * (1.0 - progress)
+
+    work_dispersion = remaining_work_std / (
+        remaining_work_mean + remaining_work_std + 0.000000001
+    )
+    ready_dispersion = machine_ready_std / (
+        machine_ready_mean + machine_ready_std + 0.000000001
+    )
+    readiness_share = machine_ready_mean / (
+        remaining_work_mean + machine_ready_mean + 0.000000001
+    )
+
+    weight0 = 0.8 + 0.6 * work_dispersion + 0.3 * flexibility
+    weight9 = (
+        0.5
+        + 0.5 * progress
+        + 0.4 * readiness_share
+        + 0.3 * ready_dispersion
+    )
+
+    return (1, (weight0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, weight9))
+```

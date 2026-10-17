@@ -75,3 +75,9 @@ B第4次（`B/g0000/000003`）取得首个完整有效组合：21train全部通�
 B第5次已发送后TimeoutError，wire未取得完整响应；随后账户/账单出现DNS错误，下一槽位实时模型metadata检查失败，门禁停止新发送。DNS恢复后的单次限速只读调查`Read_only_health.1792200119547807000.*.json`表明实时计费/账户/账单均恢复，并找到唯一新账单5667点，等于账户增量；模型/组别匹配，创建时间落在原开始时间＋原provider_roundtrip_seconds＋30秒内。未取得wire token，不能用账单token替写。
 
 必要费用生命周期恢复入口`tools/settle_unique_failed_usage.py`沿用原`match_invoice`和原生认证路径（无网关响应header时仍必须唯一新供应商账单且账户差额精确吻合），只将财务unknown→known，原财务文件另存`financial_recovery/`及哈希。失败budget/journal/wire字节不改，不重建候选、不补发、不释放历史24000000点预留；仅对已有该笔费用完成认证。成功后仍需原发送前新鲜模型/账户/预算检查才可发下一笔。新增“缺失、多笔、窗口、组别、模型、账户、预留、wire状态”反例，与既有测试共18项通过。剩余5次变异沿用原授权与原目录。
+
+## 本批最终完成
+
+恢复后的剩余5次变异完成，未追加请求。最终28槽位/28发送：INIT 5有效/8，A 9有效/10，B 6有效/10；B另有3次完整评价超时及1次接入失败；全阶段代码重复淘汰0。所有28笔费用通过独立`audit_final_handoff`核验，共146945平台点、0未发送槽位；wire token未知仍为4笔，历史24000000点预留保留。唯一累计156/300槽位，当前无writer锁、调用权已释放。
+
+A训练最佳−2.1851566838185925，B−2.225194303277998；B最终3个MIX＋2个SELECT，冠军仍为初始SELECT。完整[最终报告](H_USAGE_V22_TRAINING_RESULTS.md)、[数据/提示索引](usage-space/real-gpt61-301/README.md)和原run的`Final_budget_handoff.json`为后续依据。原生export故障时费用字段保留，完整逐笔认证另行导出，不把失败候选改成成功，不把出现MIX解释为收益。

@@ -1,0 +1,20 @@
+{The parent uses progress-based partitions and aggregate-state thresholds to route among all ten members, including a middle-phase comparison of machine readiness with remaining work. The main modification is to apply that workload-versus-readiness relation consistently: select member 0’s linear workload emphasis when remaining-work pressure dominates, and member 9’s processing-efficiency and waiting penalties when readiness pressure dominates. Mean-plus-standard-deviation summaries define these pressures, with a narrow hysteresis band retaining either eligible previous member; this is a design hypothesis, not an evaluated improvement.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_pressure = remaining_work_mean + remaining_work_std
+    ready_pressure = machine_ready_mean + machine_ready_std
+
+    if work_pressure > 1.15 * ready_pressure:
+        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+    if ready_pressure > 1.15 * work_pressure:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))
+
+    if previous_heuristic == 0:
+        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+    if previous_heuristic == 9:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))
+
+    if work_pressure >= ready_pressure:
+        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))
+```
