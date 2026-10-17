@@ -9,7 +9,6 @@ import csv
 import hashlib
 import json
 from pathlib import Path
-import shutil
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,7 +24,7 @@ def save(p,v):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps
 def table(p,rows):
     fields=list(dict.fromkeys(k for row in rows for k in row))
     with p.open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+        w=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');w.writeheader();w.writerows(rows)
 
 
 def archive(run,out):
@@ -128,7 +127,8 @@ def archive(run,out):
     save(out/'Actual_prompt_pair_checks.json',comparisons);save(out/'Compact_attempts.json',compact_attempts)
     save(out/'Common_provider.json',config['provider']);table(out/'All_requests.csv',requests)
     table(out/'Evaluation_costs.csv',costs);table(out/'Paired_best_train.csv',raw['paired_best_train_results'])
-    shutil.copyfile(run/'results/All_instance_results.csv',out/'All_instance_results.csv')
+    # Normalize only the derived copy; preserve the original export's bytes.
+    (out/'All_instance_results.csv').write_text((run/'results/All_instance_results.csv').read_text())
     # Financial handoff for subsequent stages. This is our own completed run.
     handoff={'real_caller_active':False,'registered_generation_phases_complete':True,
         'budget_identity':budget['identity'],'budget_sha256':sha(run/'budget.json'),'quota_halted':False,
@@ -145,6 +145,8 @@ def archive(run,out):
     provenance.extend(run.glob('Read_only_health.*.json'))
     provenance.extend([run/'config.gpt61.authorized.json',run/'H_frozen.json'])
     save(out/'Final_evidence_manifest.json',{'run':run.name,'protocol_sha256':sha(run/'protocol.json'),
+        'raw_instance_csv_sha256':sha(run/'results/All_instance_results.csv'),
+        'derived_csv_format':'LF line endings; original export unchanged',
         'budget_sha256':sha(run/'budget.json'),'quota_sha256':sha(run/'platform_quota.json'),
         'financial_handoff_sha256':sha(run/'Final_budget_handoff.json'),'receipt_files_sha256':receipt_pins,
         'runtime_provenance_files_sha256':{str(p.relative_to(run)):sha(p) for p in provenance},
