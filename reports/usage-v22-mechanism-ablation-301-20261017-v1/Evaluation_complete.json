@@ -1,0 +1,128 @@
+{
+  "new_full_evaluations": 4,
+  "reused_originals": 2,
+  "new_model_requests": 0,
+  "opened": [
+    [
+      "train",
+      "Behnke1.fjsp"
+    ],
+    [
+      "train",
+      "Behnke2.fjsp"
+    ],
+    [
+      "train",
+      "Behnke3.fjsp"
+    ],
+    [
+      "train",
+      "Behnke4.fjsp"
+    ],
+    [
+      "train",
+      "Behnke13.fjsp"
+    ],
+    [
+      "train",
+      "Behnke14.fjsp"
+    ],
+    [
+      "train",
+      "Behnke19.fjsp"
+    ],
+    [
+      "train",
+      "Behnke25.fjsp"
+    ],
+    [
+      "train",
+      "Behnke21.fjsp"
+    ],
+    [
+      "train",
+      "Behnke29.fjsp"
+    ],
+    [
+      "train",
+      "Behnke27.fjsp"
+    ],
+    [
+      "train",
+      "Behnke33.fjsp"
+    ],
+    [
+      "train",
+      "Behnke34.fjsp"
+    ],
+    [
+      "train",
+      "Behnke36.fjsp"
+    ],
+    [
+      "train",
+      "Behnke43.fjsp"
+    ],
+    [
+      "train",
+      "Behnke44.fjsp"
+    ],
+    [
+      "train",
+      "Behnke47.fjsp"
+    ],
+    [
+      "train",
+      "Behnke46.fjsp"
+    ],
+    [
+      "train",
+      "Behnke51.fjsp"
+    ],
+    [
+      "train",
+      "Behnke53.fjsp"
+    ],
+    [
+      "train",
+      "Behnke57.fjsp"
+    ]
+  ],
+  "original_pins_unchanged": true,
+  "bounds": {
+    "Behnke1.fjsp": 70.0,
+    "Behnke2.fjsp": 75.0,
+    "Behnke3.fjsp": 79.0,
+    "Behnke4.fjsp": 76.0,
+    "Behnke13.fjsp": 159.7,
+    "Behnke14.fjsp": 163.75,
+    "Behnke19.fjsp": 322.35,
+    "Behnke25.fjsp": 80.0,
+    "Behnke21.fjsp": 78.0,
+    "Behnke29.fjsp": 75.0,
+    "Behnke27.fjsp": 81.0,
+    "Behnke33.fjsp": 76.45,
+    "Behnke34.fjsp": 78.0,
+    "Behnke36.fjsp": 151.625,
+    "Behnke43.fjsp": 68.0,
+    "Behnke44.fjsp": 68.0,
+    "Behnke47.fjsp": 76.0,
+    "Behnke46.fjsp": 73.0,
+    "Behnke51.fjsp": 75.0,
+    "Behnke53.fjsp": 74.0,
+    "Behnke57.fjsp": 98.31666666666666
+  },
+  "resource_snapshot": {
+    "time_utc": "2026-10-17T03:13:57.612950+00:00",
+    "python_processes": [
+      "14175 64103   0.0 /opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python",
+      "15113 14175   0.0 /opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python",
+      "19631 64103   0.0 /opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python",
+      "21856 79107  36.1 /opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python",
+      "21870 21856   0.0 /opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python",
+      "64157 64093   0.0 /Users/DDXQL/.vscode/extensions/ms-python.vscode-python-envs-1.38.0-darwin-arm64/python-env-tools/bin/pet"
+    ],
+    "isolated": false,
+    "note": "Serial local evaluations; OS resources not reserved. Originals/fixed h have historical timings; descriptive timing only."
+  }
+}

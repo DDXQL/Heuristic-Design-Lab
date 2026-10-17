@@ -1,0 +1,156 @@
+{
+  "B5_original": {
+    "support_counts": {
+      "0,9": 3800
+    },
+    "mode_counts": {
+      "1": 3800
+    },
+    "dominant_counts": {
+      "0": 3362,
+      "9": 438
+    },
+    "within_instance_support_switches": 0,
+    "normalized_positive_weight_ranges": {
+      "0": [
+        0.4389433354113031,
+        0.6635244023151268
+      ],
+      "9": [
+        0.33647559768487323,
+        0.561056664588697
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  },
+  "B5_equal": {
+    "support_counts": {
+      "0,9": 3800
+    },
+    "mode_counts": {
+      "1": 3800
+    },
+    "dominant_counts": {
+      "0": 3800
+    },
+    "within_instance_support_switches": 0,
+    "normalized_positive_weight_ranges": {
+      "0": [
+        0.5,
+        0.5
+      ],
+      "9": [
+        0.5,
+        0.5
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  },
+  "B5_winner": {
+    "support_counts": {
+      "0": 3256,
+      "9": 544
+    },
+    "mode_counts": {
+      "0": 3800
+    },
+    "dominant_counts": {
+      "0": 3256,
+      "9": 544
+    },
+    "within_instance_support_switches": 37,
+    "normalized_positive_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  },
+  "B3_original": {
+    "support_counts": {
+      "2,4": 2145,
+      "4,7": 1655
+    },
+    "mode_counts": {
+      "1": 3800
+    },
+    "dominant_counts": {
+      "4": 3800
+    },
+    "within_instance_support_switches": 23,
+    "normalized_positive_weight_ranges": {
+      "2": [
+        0.2617264130943804,
+        0.3624026605286302
+      ],
+      "4": [
+        0.5800276903649665,
+        0.7382735869056196
+      ],
+      "7": [
+        0.34580956411752267,
+        0.4199723096350335
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  },
+  "B3_equal": {
+    "support_counts": {
+      "2,4": 1474,
+      "4,7": 2326
+    },
+    "mode_counts": {
+      "1": 3800
+    },
+    "dominant_counts": {
+      "2": 1474,
+      "4": 2326
+    },
+    "within_instance_support_switches": 253,
+    "normalized_positive_weight_ranges": {
+      "2": [
+        0.5,
+        0.5
+      ],
+      "4": [
+        0.5,
+        0.5
+      ],
+      "7": [
+        0.5,
+        0.5
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  },
+  "B3_winner": {
+    "support_counts": {
+      "4": 3800
+    },
+    "mode_counts": {
+      "0": 3800
+    },
+    "dominant_counts": {
+      "4": 3800
+    },
+    "within_instance_support_switches": 0,
+    "normalized_positive_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ]
+    },
+    "steps": 3800,
+    "action_counterfactual_trace": "not recorded; unknown"
+  }
+}
