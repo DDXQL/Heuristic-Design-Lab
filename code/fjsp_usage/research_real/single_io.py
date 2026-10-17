@@ -90,7 +90,8 @@ class WireRecorder:
 
 
 def install_protections(invoice, quota, directory, verify, *, metadata_floor=0,
-                        invoice_floor=0, clock=time.time, sleep=time.sleep):
+                        invoice_floor=0, metadata_interval=15, invoice_interval=None,
+                        clock=time.time, sleep=time.sleep):
     """Wrap before the FIRST request; floors inherit the last caller's pacing.
 
     This function only installs callbacks. All network reads remain inside the
@@ -100,15 +101,15 @@ def install_protections(invoice, quota, directory, verify, *, metadata_floor=0,
     directory = Path(directory)
     metadata_path = directory/'Metadata_global_pacing.json'
     if not metadata_path.exists():
-        atomic_json(metadata_path, {'last_finished_at': metadata_floor, 'interval': 15})
-    metadata = MetadataPacer(metadata_path, clock=clock, sleep=sleep)
+        atomic_json(metadata_path, {'last_finished_at': metadata_floor, 'interval': metadata_interval})
+    metadata = MetadataPacer(metadata_path, interval=max(15,metadata_interval),clock=clock, sleep=sleep)
     quota_query, invoice_query = quota.query, invoice.query
     quota.query = lambda: metadata.call('/api/usage/token/', quota_query)
     def public_query(secret, path, **kwargs):
         return metadata.call(path, lambda: public_json(secret, path, **kwargs))
     quota.tariff_query = lambda secret: check_live_tariff(secret, query=public_query)
     pacer = InvoiceQueryPacer(lambda: metadata.call('/api/log/token', invoice_query),
-        directory/'Invoice_query_pacing.json', quota.config.platform_quota_query_interval,
+        directory/'Invoice_query_pacing.json', max(quota.config.platform_quota_query_interval,invoice_interval or 0),
         clock=clock, sleep=sleep, initial=invoice_floor)
     invoice.query = quota.invoice_query = pacer
     quota.transport = WireRecorder(quota.transport, directory/'wire_responses', verify)

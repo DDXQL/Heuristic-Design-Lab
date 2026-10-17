@@ -153,7 +153,7 @@ def history_summary(root, config):
     return b
 
 
-def verify_final_receipts(folder, ledger, quota, files):
+def verify_final_receipts(folder, ledger, quota, files, missing_groups=None):
     """Pin exact invoice/debit evidence, not merely a handoff's 'unknown=0'."""
     from .single_billing import match_invoice
     total = 0
@@ -167,14 +167,15 @@ def verify_final_receipts(folder, ledger, quota, files):
                 raise BudgetStop('unconfirmed peer send cannot be declared free/settled')
             continue
         account = quota['records'].get(key)
-        if not account or not account.get('send_confirmed') or account.get('status') != 'settled':
+        if not account or not account.get('send_confirmed'):
             raise BudgetStop('peer native quota settlement absent')
         after = bill.get('after',{}); metadata = bill.get('response_metadata',{})
         proof_path = folder/'billing_reconciliations'/(stem+'.json')
         if bill.get('status') != 'invoice_account_matched':
             if not proof_path.exists():raise BudgetStop('peer final invoice proof missing')
             proof = read(proof_path); files[str(proof_path)] = file_sha(proof_path)
-            if proof['original_billing_sha256'] != file_sha(path):
+            if (proof['original_billing_sha256'] != file_sha(path)
+                    or proof['original_quota_record'] != account):
                 raise BudgetStop('peer reconciliation does not bind the original bill')
             for name, expected in proof['evidence_files_sha256'].items():
                 evidence = (folder/name).resolve()
@@ -184,9 +185,13 @@ def verify_final_receipts(folder, ledger, quota, files):
                 if 'invoices' in name:after = read(evidence)
             account = proof['reconciled_account']
             metadata = {'gateway_request_id':proof['supplier_request_id']}
+        if account.get('status') != 'settled':
+            raise BudgetStop('peer native settlement requires an exact final receipt')
         invoice = match_invoice(bill['before'],after,account,MODEL,
             failed=bill.get('transport_status')=='failed',response_id=metadata.get('gateway_request_id'))
-        if invoice.get('group') != 'codex-deafult':
+        if invoice.get('group') is None:
+            if missing_groups is not None:missing_groups.append(key)
+        elif invoice.get('group') != 'codex-deafult':
             raise BudgetStop('peer invoice group mismatch')
         total += invoice['quota']
     return total
@@ -221,6 +226,9 @@ def bind_history(root, config, dataset, additional, *, inventory=None):
     used, hold = base['latest_verified_used_points'], base['old_account_hold']
     metadata_floor = docs['Metadata_global_pacing.json']['last_finished_at']
     invoice_floor = docs['Invoice_query_pacing.json']['last_finished_at']
+    metadata_interval=docs['Metadata_global_pacing.json'].get('interval',15)
+    invoice_interval=docs['Invoice_query_pacing.json'].get('interval',75)
+    missing_groups=[]
     seen = set(expected)
     for folder, handoff in additional:
         folder, handoff = Path(folder).resolve(), Path(handoff).resolve()
@@ -233,22 +241,28 @@ def bind_history(root, config, dataset, additional, *, inventory=None):
                 or h.get('budget_sha256') != file_sha(folder/'budget.json')
                 or ledger['identity'] in seen or ledger.get('mode') != 'real'
                 or any(r.get('status') in ('pending','reserved') for r in ledger['records'].values())
-                or any(r.get('status') != 'settled' for r in quota['records'].values())
+                or any(r.get('status') == 'pending' for r in quota['records'].values())
                 or h['summary']['request_slots'] != len(ledger['records'])
                 or h['summary']['confirmed_sends'] != sum(bool(r.get('send_confirmed')) for r in ledger['records'].values())):
             raise BudgetStop('peer handoff incomplete, unsettled, duplicated or inconsistent')
-        points = verify_final_receipts(folder,ledger,quota,files)
+        points = verify_final_receipts(folder,ledger,quota,files,missing_groups)
         if h.get('known_new_points') != points:
             raise BudgetStop('peer handoff actual cost differs from invoice evidence')
         seen.add(ledger['identity']); expected[ledger['identity']] = file_sha(folder/'budget.json')
         slots += len(ledger['records']); sends += h['summary']['confirmed_sends']
         charges += [r['usage'] if r.get('usage') is not None else r['reservation'] for r in ledger['records'].values()]
         used = max(used, h['latest_verified_used_points'], quota.get('observed_used',0))
-        for p in (handoff, folder/'budget.json', folder/'platform_quota.json',
-                  folder/'Metadata_global_pacing.json', folder/'Invoice_query_pacing.json'):
+        metadata_path=next((folder/n for n in ('Metadata_global_pacing.json','Metadata_pacing.json')
+                            if (folder/n).exists()),None)
+        invoice_path=next((folder/n for n in ('Invoice_query_pacing.json','Invoice_pacing.json')
+                           if (folder/n).exists()),None)
+        if metadata_path is None or invoice_path is None:raise BudgetStop('peer pacing evidence missing')
+        for p in (handoff, folder/'budget.json', folder/'platform_quota.json',metadata_path,invoice_path):
             files[str(p)] = file_sha(p)
-        metadata_floor = max(metadata_floor, read(folder/'Metadata_global_pacing.json')['last_finished_at'])
-        invoice_floor = max(invoice_floor, read(folder/'Invoice_query_pacing.json')['last_finished_at'])
+        metadata_floor = max(metadata_floor, read(metadata_path)['last_finished_at'])
+        invoice_floor = max(invoice_floor, read(invoice_path)['last_finished_at'])
+        metadata_interval=max(metadata_interval,read(metadata_path).get('interval',15))
+        invoice_interval=max(invoice_interval,read(invoice_path).get('interval',75))
     current = inventory() if inventory else budget_inventory(worktree_roots(root))
     if current != expected:
         raise BudgetStop('unregistered/changed cross-worktree consumption; final handoffs required')
@@ -260,6 +274,8 @@ def bind_history(root, config, dataset, additional, *, inventory=None):
         'historical_confirmed_sends':sends,'historical_token_charges':charges,
         'retained_account_hold':hold,'latest_saved_account_used':used,'lifetime_request_cap':300,
         'metadata_floor':metadata_floor,'invoice_floor':invoice_floor,
+        'metadata_interval':metadata_interval,'invoice_interval':invoice_interval,
+        'historical_invoice_group_missing_keys':missing_groups,
         'notice':'Old unknown usage/reservations retained; no monetary conversion; no allowance reset.'})
 
 
@@ -290,6 +306,39 @@ class FairQuota(MigrationQuota):
         return QuotaGuardedTransport.dispatch(self,key,prompt,kind=kind,on_sent=sent)
 
 
+class PreflightInvoice(InvoiceTransport):
+    """Metadata before reservation: a 429 leaves the search cursor untouched.
+
+    The before-invoice snapshot is consumed once by the unchanged billing
+    adapter. Account/tariff preflight runs LAST, keeping its cache fresh at send.
+    """
+    def preflight(self,prompt):
+        if self.inner.data['halted']:raise BudgetStop(self.inner.data.get('stop_reason','quota halted'))
+        self._before=None
+        before=self.query()
+        if before.get('success') is not True:
+            folder=self.directory.parent/'pre_send_metadata';folder.mkdir(exist_ok=True)
+            import time
+            atomic_json(folder/(str(time.time_ns())+'.json'),{
+                'prompt_key':digest(prompt),'send_confirmed':False,'inference_requests':0,
+                'status':'metadata_paused_before_reservation','invoice_query':before})
+            raise BudgetStop('invoice metadata unavailable before reservation; cursor preserved')
+        self.inner.preflight(prompt)
+        self._before=(prompt,before)
+
+    def dispatch(self,key,prompt,**kwargs):
+        if getattr(self,'_before',None) is None or self._before[0]!=prompt:
+            raise BudgetStop('fresh matching metadata preflight required')
+        before=self._before[1];self._before=None
+        original_query=self.query;first=[True]
+        def once():
+            if first[0]:first[0]=False;return before
+            return original_query()
+        self.query=once
+        try:return super().dispatch(key,prompt,**kwargs)
+        finally:self.query=original_query
+
+
 class FairWorkflow(Workflow):
     """Only registration/transport differ; V5 search and evaluator are inherited."""
     def h_asset(self):
@@ -313,12 +362,31 @@ class FairWorkflow(Workflow):
             b = history_summary(self.project_root,self.config)
             quota = FairQuota(JsonCandidateTransport(self.config),self.directory/'platform_quota.json',
                 self.context,retained_extra=b['retained_account_hold'],settlement_min_used=b['latest_saved_account_used'])
-            invoice = InvoiceTransport(quota,self.directory/'billing')
+            invoice = PreflightInvoice(quota,self.directory/'billing')
             invoice.expected_group = self.config.conditional_research['risk_policy']['group']
             protected = install_protections(invoice,quota,self.directory,self.check,
-                metadata_floor=b['metadata_floor'],invoice_floor=b['invoice_floor'])
+                metadata_floor=b['metadata_floor'],invoice_floor=b['invoice_floor'],
+                metadata_interval=b.get('metadata_interval',15),invoice_interval=b.get('invoice_interval',75))
             self._client = GuardedTransport(protected,self)
         return self._client
+
+    def initialize_u(self,seed,*,max_new_requests=None):
+        # Unlike the historical controller, a transient metadata pause is NOT
+        # persisted as a terminal Initialization_status that prevents resuming.
+        if (self.directory/f'r{seed}/Shared_initial.json').exists():
+            return super().initialize_u(seed,max_new_requests=max_new_requests)
+        self.assert_current()
+        if seed not in self.config.seeds:raise ValueError('undeclared seed')
+        H,members=self.h_asset();repeat=f'r{seed}'
+        engine=self.search_engine(repeat+'/INIT','INIT',members,self.config.u_search(seed),repeat+'/init',repeat+'/B0')
+        valid=engine.initialize(stop_after_attempts=max_new_requests)
+        if valid is None:return {'status':'initialization_paused','asset':None}
+        if not valid:
+            return {'status':'initialization_failed','asset':None}
+        asset=self.write(repeat+'/Shared_initial.json','Shared_initial',seed=seed,H_hash=H['artifact_sha256'],
+            training_files=list(self.dataset.names['train']),population=engine.export_rows())
+        self.progress('U_INITIALIZED',seed=seed)
+        return {'status':'initialized','asset':asset}
 
     def generate_h(self):
         raise BudgetStop('fixed H only; no new Tier1 requests')

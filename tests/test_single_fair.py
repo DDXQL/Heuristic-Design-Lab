@@ -238,7 +238,7 @@ class FairTests(unittest.TestCase):
             self.assertEqual(len(calls),45)  # fresh5 once, NOT five per arm
             self.assertEqual(len(evaluated),9)  # duplicates consume slots but never reevaluate
 
-    def io_fixture(self,folder,*,before_failed=False,after_failed=False):
+    def io_fixture(self,folder,*,before_failed=False,after_failed=False,preflight_invoice=False):
         config=self.authorized();clock=[1000.0];sent=[]
         def sleep(n):clock[0]+=n
         class Wire:
@@ -258,13 +258,42 @@ class FairTests(unittest.TestCase):
         quota._tariff_at=clock[0]
         invoices=iter([{'success':False,'http_status':429}] if before_failed else
                       [{'success':True,'records':[]},{'success':False,'http_status':429}])
-        invoice=InvoiceTransport(quota,folder/'billing',query=lambda:next(invoices))
+        from fjsp_usage.research_real.single_fair import PreflightInvoice
+        invoice=(PreflightInvoice if preflight_invoice else InvoiceTransport)(quota,folder/'billing',query=lambda:next(invoices))
         protected=install_protections(invoice,quota,folder,lambda:None,
             metadata_floor=1000,invoice_floor=1000,clock=lambda:clock[0],sleep=sleep)
         quota._tariff_at=100000  # keep fixture tariff valid as fake clock advances
         ledger=BudgetLedger(folder/'budget.json',config,'fixture')
         journal=BudgetJournal(folder/'journal.json',phase='r201/B0',cap=10,transport=protected,ledger=ledger)
         return quota,journal,sent,clock
+
+    def test_pre_send_metadata_pause_preserves_init_cursor_and_resumes_same_identity(self):
+        from fjsp_usage.research_real.search import V5BudgetedSearch
+        with tempfile.TemporaryDirectory() as tmp:
+            folder=Path(tmp);quota,journal,sent,_=self.io_fixture(folder,before_failed=True,preflight_invoice=True)
+            config=self.authorized()
+            engine=V5BudgetedSearch(folder/'INIT',arm='INIT',config=config.u_search(201),members=self.members,
+                evaluator=Mock(side_effect=AssertionError('no valid fixture to evaluate')),transport=journal.transport,
+                context='HANDWRITTEN_FIXTURE',kind='U',initial=None,init_phase='r201/init',search_phase='r201/B0',
+                ledger=journal.ledger,experiment=config,training_names=self.dataset.names['train'])
+            with self.assertRaises(BudgetStop):engine.initialize()
+            self.assertEqual(engine.state['init_cursor'],0);self.assertEqual(journal.ledger.data['records'],{})
+            identifier=engine.state['inflight']['id'];self.assertEqual(sent,[])
+            self.assertFalse((folder/'Initialization_status.json').exists())
+            # Healthy metadata now, same pending id. The intentionally invalid
+            # handwritten reply is consumed ONCE, never turned into a valid U.
+            journal.transport.inner.query=lambda:{'success':True,'records':[]}
+            engine.initialize(stop_after_attempts=1)
+            self.assertEqual(engine.state['init_cursor'],1);self.assertEqual(len(sent),1)
+            self.assertTrue(sent[0].endswith('/'+identifier))
+
+    def test_historical_missing_group_stays_unknown_but_wrong_group_rejects(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            peer,inventory=self.peer(Path(tmp)/'peer')
+            bill=next((peer[0]/'billing').glob('*.json'));body=json.loads(bill.read_text())
+            body['after']['records'][0].pop('group');atomic_json(bill,body)
+            b=self.binding([peer],inventory)
+            self.assertEqual(len(b['historical_invoice_group_missing_keys']),1)
 
     def test_full_chain_pre_dispatch_429_spends_one_unsent_slot_then_stops(self):
         with tempfile.TemporaryDirectory() as tmp:

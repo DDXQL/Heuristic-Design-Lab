@@ -173,9 +173,24 @@ def execute(directory,env_file,root=ROOT):
         if stop: print('停止新增请求：'+stop)
 
 
+def recover(directory,env_file,root=ROOT):
+    """Only metadata GETs, exact receipt recovery; never sends or repeats U."""
+    from fjsp_usage.research_real.single_settlement import reconcile
+    config=ExperimentConfig.from_dict(read(directory/'config.single.authorized.json'))
+    config.check_dispatch();history_summary(root,config)
+    dataset=StagedDataset(root/'data/fjsp_manifest.json',project_root=root,mode='real')
+    with RunLock(directory):
+        flow=FairWorkflow(directory,config=config,dataset=dataset,project_root=root)
+        flow.check();os.environ[KEY_ENV]=load_local_key(env_file)
+        quota=flow.client().inner.quota
+        result=reconcile(flow,quota)
+        report(flow,'read-only metadata recovery; no generation requested')
+        print(json.dumps({'recovered':result is not None,'model_requests':0},ensure_ascii=False))
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=('prepare','check','register','execute','report'))
+    p.add_argument('stage',choices=('prepare','check','register','execute','recover','report'))
     p.add_argument('--run-dir',type=Path,required=True)
     p.add_argument('--config',type=Path)
     p.add_argument('--authorization',type=Path)
@@ -202,9 +217,9 @@ def main():
     elif args.stage=='register':
         if not args.authorization:p.error('explicit new --authorization file required')
         register(directory,args.authorization,args.additional_run)
-    elif args.stage=='execute':
+    elif args.stage in ('execute','recover'):
         if not args.env_file:p.error('explicit --env-file required')
-        execute(directory,args.env_file)
+        (execute if args.stage=='execute' else recover)(directory,args.env_file)
     else:
         c=ExperimentConfig.from_dict(read(directory/'config.single.authorized.json'))
         ds=StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode='real')
