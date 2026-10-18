@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1200" height="540" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1200" height="540"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-540)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1200" height="540" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="65" y="507" style="font-family: Helvetica-Bold; font-size: 19px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1014) scale(1,-1)">Manual fixed-pair weight grid: complete-train fitness</text>
+			<text x="65" y="483" style="font-family: Times-Roman; font-size: 11px;fill: rgb(26%,26%,26%); stroke:none;" transform="translate(0,966) scale(1,-1)">Train21 | higher is better | 15s per instance includes deterministic recheck | all 12 candidates shown</text>
+			<text x="280" y="440" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,880) scale(1,-1)">Raw weights (a,b) = (0.25,0.75)</text>
+			<text x="575" y="440" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,880) scale(1,-1)">Raw weights (a,b) = (0.50,0.50)</text>
+			<text x="870" y="440" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,880) scale(1,-1)">Raw weights (a,b) = (0.75,0.25)</text>
+			<text x="65" y="370" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,740) scale(1,-1)">H0 / H1</text>
+			<rect x="250" y="337" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,93%,89%); fill-rule: evenodd;"/>
+			<text x="262" y="380" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,760) scale(1,-1)">-2.086416</text>
+			<text x="262" y="354" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,708) scale(1,-1)">delta vs H0: +0.025389</text>
+			<rect x="545" y="337" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,93%,89%); fill-rule: evenodd;"/>
+			<text x="557" y="380" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,760) scale(1,-1)">-1.983144</text>
+			<text x="557" y="354" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,708) scale(1,-1)">delta vs H0: +0.128661</text>
+			<rect x="840" y="337" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,93%,89%); fill-rule: evenodd;"/>
+			<text x="852" y="380" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,760) scale(1,-1)">-2.066605</text>
+			<text x="852" y="354" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,708) scale(1,-1)">delta vs H0: +0.045200</text>
+			<text x="65" y="280" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,560) scale(1,-1)">H0 / H2</text>
+			<rect x="250" y="247" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="262" y="290" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,580) scale(1,-1)">-2.158173</text>
+			<text x="262" y="264" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,528) scale(1,-1)">delta vs H0: -0.046368</text>
+			<rect x="545" y="247" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="557" y="290" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,580) scale(1,-1)">-2.331453</text>
+			<text x="557" y="264" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,528) scale(1,-1)">delta vs H0: -0.219648</text>
+			<rect x="840" y="247" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="852" y="290" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,580) scale(1,-1)">-2.218941</text>
+			<text x="852" y="264" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,528) scale(1,-1)">delta vs H0: -0.107137</text>
+			<text x="65" y="190" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,380) scale(1,-1)">H0 / H3</text>
+			<rect x="250" y="157" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="262" y="200" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,400) scale(1,-1)">-2.119372</text>
+			<text x="262" y="174" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">delta vs H0: -0.007567</text>
+			<rect x="545" y="157" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,93%,89%); fill-rule: evenodd;"/>
+			<text x="557" y="200" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,400) scale(1,-1)">-1.993660</text>
+			<text x="557" y="174" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">delta vs H0: +0.118145</text>
+			<rect x="840" y="157" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,93%,89%); fill-rule: evenodd;"/>
+			<text x="852" y="200" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,400) scale(1,-1)">-2.070777</text>
+			<text x="852" y="174" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">delta vs H0: +0.041028</text>
+			<text x="65" y="100" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,200) scale(1,-1)">H3 / H6</text>
+			<rect x="250" y="67" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="262" y="110" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,220) scale(1,-1)">-2.293329</text>
+			<text x="262" y="84" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,168) scale(1,-1)">delta vs H0: -0.181524</text>
+			<rect x="545" y="67" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="557" y="110" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,220) scale(1,-1)">-2.132409</text>
+			<text x="557" y="84" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,168) scale(1,-1)">delta vs H0: -0.020604</text>
+			<rect x="840" y="67" width="280" height="73" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(96%,91%,85%); fill-rule: evenodd;"/>
+			<text x="852" y="110" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,220) scale(1,-1)">-2.129650</text>
+			<text x="852" y="84" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,168) scale(1,-1)">delta vs H0: -0.017845</text>
+			<text x="65" y="39" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,78) scale(1,-1)">H0 reference: -2.111805. Green = higher fitness than H0; tan = equal/lower; red = invalid.</text>
+			<text x="65" y="17" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,34) scale(1,-1)">Manual training-set parameter selection; not LLM evolution, not independently validated.</text>
+		</g>
+	</g>
+</svg>

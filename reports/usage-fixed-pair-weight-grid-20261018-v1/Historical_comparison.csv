@@ -1,0 +1,8 @@
+source,id,origin,fitness,first_solve_seconds,recheck_seconds,primary_h_calls,timing_scope
+usage-v22-mechanism-ablation-301-20261017-v1,B5_original,historical LLM original or deterministic intervention; see original report,-2.3296173258645845,21.683062085998245,21.67674474895466,3153792,"historical, not concurrent timing control"
+usage-v22-mechanism-ablation-301-20261017-v1,B5_equal,historical LLM original or deterministic intervention; see original report,-2.35261103605384,22.42028416704852,22.558498918020632,3080640,"historical, not concurrent timing control"
+usage-v22-mechanism-ablation-301-20261017-v1,B5_winner,historical LLM original or deterministic intervention; see original report,-2.2503964692789555,11.720069248287473,11.573812045913655,1733916,"historical, not concurrent timing control"
+usage-v22-mechanism-ablation-301-20261017-v1,B3_original,historical LLM original or deterministic intervention; see original report,-2.4242447665427376,23.69384504109621,23.559890501142945,4310832,"historical, not concurrent timing control"
+usage-v22-mechanism-ablation-301-20261017-v1,B3_equal,historical LLM original or deterministic intervention; see original report,-2.3177792075657186,22.923544414923526,22.633110666822176,3343416,"historical, not concurrent timing control"
+usage-v22-mechanism-ablation-301-20261017-v1,B3_winner,historical LLM original or deterministic intervention; see original report,-2.391583985708433,14.412831333989743,14.64744533400517,2351784,"historical, not concurrent timing control"
+single-ID-gpt61-paired-training-20261014-v1,INIT/init/000004,historical single-ID LLM candidate,-2.0704275135579646,8.048874456959311,7.9592991679674014,,historical; call count not recorded

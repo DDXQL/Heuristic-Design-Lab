@@ -14,11 +14,14 @@ import json
 import math
 from pathlib import Path
 import subprocess
+from unittest.mock import patch
 
 from fjsp_usage.offline_v2 import lower_bound_v5
 from fjsp_usage.research.candidates import compile_candidate, validate_code
 from fjsp_usage.research_real.assets import check_result, check_seal, checked_candidate
 from fjsp_usage.research_real.runtime import evaluate
+from fjsp_usage.research_real.runtime import _worker as native_worker
+from fjsp_usage.research.protocol import digest
 from fjsp_usage.research_real.staged_evaluation import StagedDataset
 from fjsp_usage.usage_v2 import VERSION
 
@@ -42,9 +45,9 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def write(path, value):
+def write(path, value, *, indent=2):
     with Path(path).open('x') as f:
-        json.dump(value, f, ensure_ascii=False, indent=2, allow_nan=False)
+        json.dump(value, f, ensure_ascii=False, indent=indent, allow_nan=False)
         f.write('\n')
 
 
@@ -104,6 +107,57 @@ def resource_snapshot():
             'python_processes': [line.strip() for line in lines[1:] if 'python' in line.lower()],
             'isolated': False,
             'note': 'Serial local evaluations; OS resources not reserved. Originals/fixed h have historical timings; descriptive timing only.'}
+
+
+def physical_schedule(schedule):
+    """Canonical assignment/times, independent of U weights or commit order."""
+    return {'makespan': schedule.makespan, 'operations': sorted(
+        [op.job, op.operation, op.machine, op.start, op.end] for op in schedule.operations)}
+
+
+def schedule_recording_worker(pipe, *args):
+    """Observe the existing two solves in this spawned worker; no extra solve.
+
+    The temporary binding delegates to the original executor unchanged. Hashing
+    and serialization occur when sending the row, outside its solve timers.
+    """
+    from fjsp_usage.usage_v2 import execution
+    original = execution.construct_usage_schedule
+    schedules = []
+
+    def observed(*values, **keywords):
+        result = original(*values, **keywords)
+        schedules.append(result.schedule)
+        return result
+
+    class RecordedPipe:
+        def send(self, row):
+            if 'error' not in row:
+                if len(schedules) != 2:
+                    raise ValueError('exactly two native usage-v2 solves required')
+                first, second = map(physical_schedule, schedules)
+                if first != second:
+                    raise ValueError('physical schedule recheck mismatch')
+                row.update(physical_schedule=first, physical_schedule_sha256=digest(first),
+                    recheck_physical_schedule_sha256=digest(second),
+                    commit_sequence_sha256=digest(asdict(schedules[0])), captured_solves=2)
+                schedules.clear()
+            pipe.send(row)
+
+        def close(self):
+            pipe.close()
+
+    with patch.object(execution, 'construct_usage_schedule', observed):
+        native_worker(RecordedPipe(), *args)
+
+
+def evaluate_with_schedules(*args, **kwargs):
+    """Serial diagnostic evaluations only; retains native timeout/acceptance."""
+    from fjsp_usage.research_real import runtime
+    if kwargs.get('diagnostics', False):
+        raise ValueError('no independent replay in schedule-recording evaluation')
+    with patch.object(runtime, '_worker', schedule_recording_worker):
+        return runtime.evaluate(*args, **kwargs)
 
 
 def inputs():
@@ -208,43 +262,52 @@ def verify_pins(plan):
             raise ValueError(f'original evidence changed: {relative}')
 
 
-def run_evaluations():
-    plan = read(OUT / 'Plan.json')
+def run_evaluations(out=OUT, *, evaluator=evaluate, before_candidate=None,
+                    keep_decisions=True, result_indent=2):
+    out = Path(out)
+    plan = read(out / 'Plan.json')
     verify_pins(plan)
+    if before_candidate:
+        before_candidate()
     protocol, dataset, frozen, reassessment, members, names = inputs()
     if names != plan['names'] or [m.key for m in members] != plan['H_order']:
         raise ValueError('prepared inputs changed')
     instances = dataset.load('train')  # Only authorized train file contents opened.
     bounds = {name: lower_bound_v5(instance) for name, instance in zip(names, instances)}
-    for row in read(OUT / 'Fixed_H_reused.json'):
+    for row in read(out / 'Fixed_H_reused.json'):
         for item in row['result']['instances']:
             if not math.isclose(item['lower_bound'], bounds[item['file']], rel_tol=1e-12):
                 raise ValueError('fixed h LB differs from current unrounded V5 LB')
     for row in plan['versions']:
         if row['reused']:
-            for item in read(OUT / 'results' / f'{row["id"]}.json')['instances']:
+            for item in read(out / 'results' / f'{row["id"]}.json')['instances']:
                 if not math.isclose(item['lower_bound'], bounds[item['file']], rel_tol=1e-12):
                     raise ValueError('original U LB mismatch')
     # Exclusive marker precedes every solve: interrupted/unknown calls cannot be
     # repeated merely by invoking the command again.
-    write(OUT / 'Evaluation_started.json', resource_snapshot())
+    write(out / 'Evaluation_started.json', resource_snapshot())
     for row in plan['versions']:
         if row['reused']:
             continue
+        if before_candidate:
+            before_candidate()
         candidate = checked_candidate(row['candidate'], 'U')
-        if sha(OUT / 'sources' / f'{row["id"]}.py') != row['source_sha256']:
+        if sha(out / 'sources' / f'{row["id"]}.py') != row['source_sha256']:
             raise ValueError('derived source changed after freeze')
-        write(OUT / 'results' / f'{row["id"]}.started.json', resource_snapshot())
+        write(out / 'results' / f'{row["id"]}.started.json', resource_snapshot())
         print(f'Start {row["id"]}: one train21 evaluation + recheck, 15s/instance.', flush=True)
-        result = evaluate(candidate, members, instances, names, timeout=15,
+        result = evaluator(candidate, members, instances, names, timeout=15,
                           diagnostics=False, allowed_modes=(0, 1))
         check_result(result, names)
-        write(OUT / 'results' / f'{row["id"]}.json', compact(result))
+        write(out / 'results' / f'{row["id"]}.json',
+              compact(result, keep_decisions=keep_decisions), indent=result_indent)
         print(f'End {row["id"]}: valid={result["valid"]}, fitness={result["fitness"]}, '
               f'completed={len(result["instances"])}/21, failed={result.get("failed_instance")}', flush=True)
         verify_pins(plan)
-    write(OUT / 'Evaluation_complete.json', {'new_full_evaluations': 4,
-          'reused_originals': 2, 'new_model_requests': 0, 'opened': dataset.opened,
+    write(out / 'Evaluation_complete.json', {
+          'new_full_evaluations': sum(not r['reused'] for r in plan['versions']),
+          'reused_originals': sum(r['reused'] for r in plan['versions']),
+          'new_model_requests': 0, 'opened': dataset.opened,
           'original_pins_unchanged': True, 'bounds': bounds,
           'resource_snapshot': resource_snapshot()})
 

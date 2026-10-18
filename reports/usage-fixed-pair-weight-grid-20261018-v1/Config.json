@@ -1,0 +1,86 @@
+{
+  "version": "fixed-four-pair-three-weight-training-grid-v1",
+  "pairs": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      3,
+      6
+    ]
+  ],
+  "raw_weights": [
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.75,
+      0.25
+    ]
+  ],
+  "manual_parameter_search": true,
+  "new_model_requests": 0,
+  "new_instance_generation": false,
+  "holdout_access": false,
+  "instance_timeout": 15,
+  "candidates": 12,
+  "candidate_instance_cap": 252,
+  "successful_schedule_cap": 504,
+  "independent_diagnostic_replay": false,
+  "peer_completion": {
+    "run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-gpt61-fair-seed201-v2",
+    "search_complete_sha256": "ee4e95a8c929d0d9a232b41264c5b78cf0280894bc7f2cb043a0d829cbabbf3a",
+    "entries": [
+      {
+        "seed": 201,
+        "arm": "B0",
+        "status": "completed"
+      },
+      {
+        "seed": 201,
+        "arm": "B1",
+        "status": "completed"
+      },
+      {
+        "seed": 201,
+        "arm": "B2",
+        "status": "completed"
+      },
+      {
+        "seed": 201,
+        "arm": "P",
+        "status": "completed"
+      }
+    ],
+    "no_run_lock": true
+  },
+  "physical_schedule_schema": "operations sorted by (job,operation): [job,operation,machine,start,end], all IDs zero-based; separate commit-sequence hash",
+  "evaluation_order": [
+    "H0_H1_w25_75",
+    "H0_H1_w50_50",
+    "H0_H1_w75_25",
+    "H0_H2_w25_75",
+    "H0_H2_w50_50",
+    "H0_H2_w75_25",
+    "H0_H3_w25_75",
+    "H0_H3_w50_50",
+    "H0_H3_w75_25",
+    "H3_H6_w25_75",
+    "H3_H6_w50_50",
+    "H3_H6_w75_25"
+  ]
+}

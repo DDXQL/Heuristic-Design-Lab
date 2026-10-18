@@ -21,8 +21,8 @@ def write(name, value):
     (OUT / name).write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
 
 
-def table(name, rows):
-    with (OUT / name).open('w', newline='') as f:
+def table(name, rows, *, out=OUT):
+    with (Path(out) / name).open('w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator='\n')
         writer.writeheader()
         writer.writerows(rows)

@@ -1,0 +1,13 @@
+left,right,paired_complete_instances,same_physical_schedule,different_physical_schedule,same_makespan,different_physical_same_makespan,same_makespan_instances
+H0_H1_w25_75,H0_H1_w50_50,21,0,21,4,4,Behnke25.fjsp;Behnke21.fjsp;Behnke29.fjsp;Behnke57.fjsp
+H0_H1_w25_75,H0_H1_w75_25,21,0,21,1,1,Behnke34.fjsp
+H0_H1_w50_50,H0_H1_w75_25,21,0,21,0,0,
+H0_H2_w25_75,H0_H2_w50_50,21,0,21,0,0,
+H0_H2_w25_75,H0_H2_w75_25,21,0,21,0,0,
+H0_H2_w50_50,H0_H2_w75_25,21,0,21,0,0,
+H0_H3_w25_75,H0_H3_w50_50,21,0,21,2,2,Behnke25.fjsp;Behnke21.fjsp
+H0_H3_w25_75,H0_H3_w75_25,21,0,21,0,0,
+H0_H3_w50_50,H0_H3_w75_25,21,0,21,0,0,
+H3_H6_w25_75,H3_H6_w50_50,21,0,21,0,0,
+H3_H6_w25_75,H3_H6_w75_25,21,0,21,0,0,
+H3_H6_w50_50,H3_H6_w75_25,21,0,21,0,0,

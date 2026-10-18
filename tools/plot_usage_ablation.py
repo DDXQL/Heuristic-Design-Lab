@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Standalone train figures using ReportLab's plotting library (no evaluation)."""
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -106,5 +107,72 @@ def main():
     renderSVG.drawToFile(drawing, str(figs / 'quality_cost.svg'))
 
 
+def plot_grid(directory):
+    """Reuse drawing/axis helpers for a separately frozen manual grid."""
+    directory = Path(directory).resolve()
+    analysis = json.loads((directory / 'Analysis.json').read_text())
+    rows = analysis['summaries']
+    fixed = json.loads((directory / 'Fixed_H_reused.json').read_text())
+    h0 = next(r['result']['fitness'] for r in fixed if r['id'] == 'H0')
+    figs = directory / 'figures'
+    figs.mkdir(exist_ok=True)
+    pairs = list(dict.fromkeys(r['pair'] for r in rows))
+    drawing = base('Manual fixed-pair weight grid: complete-train fitness',
+                   'Train21 | higher is better | 15s per instance includes deterministic recheck | all 12 candidates shown')
+    for j, weight in enumerate((.25, .5, .75)):
+        drawing.add(String(280+295*j, 440, f'Raw weights (a,b) = ({weight:.2f},{1-weight:.2f})', fontSize=11))
+    for i, pair in enumerate(pairs):
+        drawing.add(String(65, 370-90*i, 'H' + pair.replace(',', ' / H'), fontSize=13))
+        for j, row in enumerate(r for r in rows if r['pair'] == pair):
+            x, y = 250+295*j, 337-90*i
+            valid = row['valid']
+            fill = '#dcefe4' if valid and row['fitness_minus_H0'] > 0 else '#f5e9da' if valid else '#f7d9db'
+            drawing.add(Rect(x, y, 280, 73, fillColor=colors.HexColor(fill), strokeColor=colors.white))
+            text = f'{row["fitness"]:.6f}' if valid else 'INVALID: ' + row['failed_instance']
+            detail = f'delta vs H0: {row["fitness_minus_H0"]:+.6f}' if valid else f'{row["completed_instances"]}/21 complete; full fitness NA'
+            drawing.add(String(x+12, y+43, text, fontSize=13))
+            drawing.add(String(x+12, y+17, detail, fontSize=10))
+    drawing.add(String(65, 39, f'H0 reference: {h0:.6f}. Green = higher fitness than H0; tan = equal/lower; red = invalid.', fontSize=11))
+    drawing.add(String(65, 17, 'Manual training-set parameter selection; not LLM evolution, not independently validated.', fontSize=10))
+    renderSVG.drawToFile(drawing, str(figs / 'grid_results.svg'))
+    valid = [r for r in rows if r['valid']]
+    drawing = base('Quality versus certified h action-scoring calls: manual grid',
+                   'Train21 | higher fitness and fewer calls preferred | calls shown for first solve; recheck certified separately')
+    if valid:
+        data = [[(r['primary_h_calls']/1e6, r['fitness'])] for r in valid]
+        plot = chart(drawing, data, joined=False)
+        xs, ys = [p[0][0] for p in data], [p[0][1] for p in data] + [h0]
+        spread = max(max(xs)-min(xs), .3)
+        ymin, ymax = min(ys), max(ys)
+        margin = max((ymax-ymin)*.13, .015)
+        plot.xValueAxis.valueMin, plot.xValueAxis.valueMax = min(xs)-.15*spread, max(xs)+.15*spread
+        plot.yValueAxis.valueMin, plot.yValueAxis.valueMax = ymin-margin, ymax+margin
+        plot.yValueAxis.labelTextFormat, plot.xValueAxis.labelTextFormat = '%.2f', '%.1f'
+        plot.lineLabelFormat = 'values'
+        plot.lineLabelArray = [[r['id'].replace('H', '').replace('_w', ':').replace('_', '/')] for r in valid]
+        label_offsets = {'H0_H1_w50_50': (8, 9), 'H0_H3_w50_50': (8, -15),
+            'H0_H1_w75_25': (8, 11), 'H0_H3_w75_25': (8, -14),
+            'H0_H3_w25_75': (12, 3), 'H3_H6_w75_25': (12, -14)}
+        for i, row in enumerate(valid):
+            plot.lines[i].strokeColor = PALETTE[pairs.index(row['pair'])]
+            plot.lines[i].symbol = makeMarker(('FilledCircle', 'FilledSquare', 'FilledDiamond')[(.25, .5, .75).index(row['weight_a'])])
+            plot.lines[i].symbol.size = 6
+            plot.lineLabels[(i, 0)].fontSize = 9
+            plot.lineLabels[(i, 0)].dx, plot.lineLabels[(i, 0)].dy = label_offsets.get(row['id'], (8, 9))
+        y = plot.y + (h0-(ymin-margin))/(ymax-ymin+2*margin)*plot.height
+        drawing.add(Line(plot.x, y, plot.x+plot.width, y, strokeColor=colors.grey, strokeDashArray=[4, 3]))
+        drawing.add(String(80, y+5, f'H0 {h0:.6f}; historical h calls NA', fontSize=10))
+    else:
+        drawing.add(String(75, 300, 'No complete valid grid candidate; full fitness and cost points unavailable.', fontSize=13))
+    drawing.add(String(75, 67, 'Certified primary h calls (millions). Labels: member a/member b : weight a/weight b in percent.', fontSize=10))
+    failed = [r['id'] for r in rows if not r['valid']]
+    drawing.add(String(75, 39, f'Complete valid: {len(valid)}/12. Failed: {len(failed)}; see red grid cells. Failed partial calls unknown; no full-fitness points.', fontSize=10))
+    drawing.add(String(75, 17, 'Fixed-h call counts were not recorded; omitted from x-axis. Historical versus current timing is descriptive only.', fontSize=10))
+    renderSVG.drawToFile(drawing, str(figs / 'grid_quality_cost.svg'))
+
+
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--grid-directory', type=Path)
+    args = parser.parse_args()
+    plot_grid(args.grid_directory) if args.grid_directory else main()

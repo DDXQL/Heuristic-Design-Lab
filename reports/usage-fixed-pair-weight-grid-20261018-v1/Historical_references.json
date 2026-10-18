@@ -1,0 +1,183 @@
+{
+  "legacy": {
+    "run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-gpt61-paired-training-20261014-v1",
+    "id": "INIT/init/000004",
+    "code_key": "0685a7908b1944a2e679112825758b72ecc98fbcd2d79dd639b4f033daa49104",
+    "source_sha256": "22e562def02c715eaff170bb292162c5b3f2f5737c7be688ef3728546805bfcb",
+    "checkpoint_sha256": "077e54d51063dc62a59105b6609d6041c3761e2110d55ca196ced8f29c0618d6",
+    "valid": true,
+    "fitness": -2.0704275135579646,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 103,
+        "lower_bound": 70.0,
+        "score": -1.4714285714285715,
+        "single_solve_seconds": 0.02865841699531302,
+        "deterministic_recheck_seconds": 0.028402917028870434
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 103,
+        "lower_bound": 75.0,
+        "score": -1.3733333333333333,
+        "single_solve_seconds": 0.03220495895948261,
+        "deterministic_recheck_seconds": 0.03258445794926956
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 113,
+        "lower_bound": 79.0,
+        "score": -1.4303797468354431,
+        "single_solve_seconds": 0.028214207966811955,
+        "deterministic_recheck_seconds": 0.11622529098531231
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 113,
+        "lower_bound": 76.0,
+        "score": -1.486842105263158,
+        "single_solve_seconds": 0.16698191699106246,
+        "deterministic_recheck_seconds": 0.11583683302160352
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 275,
+        "lower_bound": 159.7,
+        "score": -1.7219787100814028,
+        "single_solve_seconds": 0.5508562080212869,
+        "deterministic_recheck_seconds": 0.4801102500059642
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 279,
+        "lower_bound": 163.75,
+        "score": -1.7038167938931297,
+        "single_solve_seconds": 0.45975970797007903,
+        "deterministic_recheck_seconds": 0.4353555000270717
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 518,
+        "lower_bound": 322.35,
+        "score": -1.6069489685124863,
+        "single_solve_seconds": 1.7005742079927586,
+        "deterministic_recheck_seconds": 1.7005107089644298
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 101,
+        "lower_bound": 80.0,
+        "score": -1.2625,
+        "single_solve_seconds": 0.0587446250137873,
+        "deterministic_recheck_seconds": 0.06258554197847843
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 103,
+        "lower_bound": 78.0,
+        "score": -1.3205128205128205,
+        "single_solve_seconds": 0.06708608398912475,
+        "deterministic_recheck_seconds": 0.06656808400293812
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 133,
+        "lower_bound": 75.0,
+        "score": -1.7733333333333334,
+        "single_solve_seconds": 0.2148450409877114,
+        "deterministic_recheck_seconds": 0.2217592090019025
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 150,
+        "lower_bound": 81.0,
+        "score": -1.8518518518518519,
+        "single_solve_seconds": 0.1637961659580469,
+        "deterministic_recheck_seconds": 0.1604298329912126
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 253,
+        "lower_bound": 76.45,
+        "score": -3.3093525179856114,
+        "single_solve_seconds": 0.4432923750136979,
+        "deterministic_recheck_seconds": 0.444247791019734
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 242,
+        "lower_bound": 78.0,
+        "score": -3.1025641025641026,
+        "single_solve_seconds": 0.3809637080412358,
+        "deterministic_recheck_seconds": 0.37732679198961705
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 429,
+        "lower_bound": 151.625,
+        "score": -2.829348722176422,
+        "single_solve_seconds": 1.1690204999758862,
+        "deterministic_recheck_seconds": 1.143165334011428
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 98,
+        "lower_bound": 68.0,
+        "score": -1.4411764705882353,
+        "single_solve_seconds": 0.088758833007887,
+        "deterministic_recheck_seconds": 0.08821087499381974
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 102,
+        "lower_bound": 68.0,
+        "score": -1.5,
+        "single_solve_seconds": 0.08266320795519277,
+        "deterministic_recheck_seconds": 0.08508824999444187
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 137,
+        "lower_bound": 76.0,
+        "score": -1.8026315789473684,
+        "single_solve_seconds": 0.2995477910153568,
+        "deterministic_recheck_seconds": 0.2950194170116447
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 136,
+        "lower_bound": 73.0,
+        "score": -1.8630136986301369,
+        "single_solve_seconds": 0.20829954202054068,
+        "deterministic_recheck_seconds": 0.20662349998019636
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 236,
+        "lower_bound": 75.0,
+        "score": -3.1466666666666665,
+        "single_solve_seconds": 0.37629691703477874,
+        "deterministic_recheck_seconds": 0.3839315419900231
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 239,
+        "lower_bound": 74.0,
+        "score": -3.22972972972973,
+        "single_solve_seconds": 0.6096917079994455,
+        "deterministic_recheck_seconds": 0.5987535829772241
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 418,
+        "lower_bound": 98.31666666666666,
+        "score": -4.251568062383455,
+        "single_solve_seconds": 0.9186183340498246,
+        "deterministic_recheck_seconds": 0.9165634580422193
+      }
+    ]
+  },
+  "mixture_ablation_report": "reports/usage-v22-mechanism-ablation-301-20261017-v1",
+  "scope": "historical references only, no reevaluation or equal-search-budget claim"
+}
