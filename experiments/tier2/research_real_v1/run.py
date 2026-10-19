@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""S1-S6 staged runner. all-synthetic never calls an LLM or benchmark holdouts."""
+"""Staged runner; new request_budget protocols use local counters, no Leaf metadata.
+
+all-synthetic never calls an LLM or benchmark holdouts. Historical specialized
+fair/update runners keep their original quota/settlement gates.
+"""
 
 import argparse
 from contextlib import nullcontext
@@ -102,7 +106,7 @@ def main():
                         actions[stage]()
                 elif args.stage == 'preflight':
                     workflow.progress('PREFLIGHT_COMPLETE', split_files_opened=0)
-                    print('配置与数据清单已校验；未打开任何实例，未创建模型客户端。', flush=True)
+                    print('配置、数据清单及适用的本地预算已校验；未打开实例、未创建模型客户端。', flush=True)
                 else:
                     result = actions[args.stage]()
                     if args.stage in ('initialize-u','search-arm') and result['status'] not in ('initialized','completed','initialization_paused'):

@@ -4,6 +4,30 @@
 
 以下命令均从项目根目录运行，选择新的 `runs/` 子目录。文档整理只校验入口参数与路径，没有执行这些实验、测试、准备阶段或API请求。
 
+## 新协议的轻量请求预算（2026-10-19）
+
+`run.py` → `ExperimentConfig` → `Workflow` 支持显式的 `request_budget`，仅用于**独立新目录、新配置和新协议身份**。正常生成只检查本地累计槽位，随后经原 `JsonCandidateTransport` 发送一次、用原 `WireRecorder` 留存响应，再由原请求 journal、候选检查、评价及 checkpoint 继续处理。没有余额、模型列表、计费或账单 GET，没有账单匹配及结算恢复门禁。请求失败、超时、发送状态不明均占槽位；同编号不自动重发。响应 usage 缺失保留 `null`；实际费用为未知，不能把本地估算或请求上限称为账户金额上限。
+
+新 JSON 中的预算声明形状如下（占位值不是可执行批次，也不是调用授权）：
+
+```json
+"request_budget": {
+  "version": "local-request-budget-v1",
+  "lifetime_request_cap": 300,
+  "history_source": {
+    "directory": "/绝对路径/上一批运行目录",
+    "protocol_sha256": "上一批protocol.json的64位SHA256",
+    "budget_sha256": "上一批budget.json的64位SHA256"
+  }
+}
+```
+
+原 `total_request_cap`、阶段配额、搜索规模和评价期限继续生效。真实新协议必须绑定最近的权威本地账本；累计数取它已绑定的历史数加其本批槽位，去重的跨 worktree 本地账本清单必须一致，不要求历史费用已结清。未知费用和预留仍在只读来源中，不释放、不结零。新模式不接受 `conditional_research` 或旧开发续接声明；`platform_quota_ceiling`、`platform_quota_reservation` 须省略或为 `null`，旧查询间隔字段不使用。模型、提示、输出 Token 和科研参数独立保持原值，不能直接改旧配置切换模式。`history_source: null` 只准用于独立合成测试。
+
+缺省不写 `request_budget` 时，旧配置序列化身份及旧严格预算路径不变。`run_single_fair.py` / `run_single_update.py` 是历史专用入口，保持原样；尤其 A20/B10、30/60 的暂停批次不迁移、不续跑。新机制本身不批准任何新批次，也不绕过 H 的审查及资产绑定。新配置的离线预检仍使用 `run.py preflight --run-dir 新目录 --config 新配置 --manifest 清单`；它不发送模型或元数据请求。
+
+预算专项离线验证：`PYTHONPATH=code:tests .venv/bin/python -B -m unittest test_local_request_budget -v`（Mock Transport；手写 toy 评分不进入研究资产）。
+
 ## 环境与测试
 
 使用Python 3.12及项目虚拟环境。新检出可先建立环境；已有 `.venv` 时沿用：

@@ -2,6 +2,7 @@
 
 import json
 import math
+import hashlib
 from collections import Counter
 from pathlib import Path
 
@@ -11,6 +12,90 @@ from fjsp_usage.research.protocol import digest
 
 class BudgetStop(RuntimeError):
     pass
+
+
+REQUEST_BUDGET_VERSION = 'local-request-budget-v1'
+
+
+def validate_request_budget(config):
+    """Explicit future-only opt-in; never reinterpret an old specialized run."""
+    b = config.request_budget
+    if (not isinstance(b, dict) or set(b) != {'version', 'lifetime_request_cap', 'history_source'}
+            or b['version'] != REQUEST_BUDGET_VERSION or type(b['lifetime_request_cap']) is not int
+            or b['lifetime_request_cap'] != 300):
+        raise ValueError('local request budget requires version, cumulative 300 cap and history source')
+    if (config.conditional_research or config.development_continuation_source
+            or config.development_acceptance or config.development_h_source
+            or config.platform_quota_ceiling is not None or config.platform_quota_reservation is not None):
+        raise ValueError('new local-budget protocol only; legacy quota/continuation declarations cannot be migrated')
+    source = b['history_source']
+    if source is None:
+        if config.mode == 'real':
+            raise ValueError('real local-budget runs must inherit pinned cumulative history')
+        return
+    if (not isinstance(source, dict) or set(source) != {'directory', 'protocol_sha256', 'budget_sha256'}
+            or not isinstance(source['directory'], str) or not Path(source['directory']).is_absolute()
+            or any(not isinstance(source[k], str) or len(source[k]) != 64
+                   or any(c not in '0123456789abcdef' for c in source[k])
+                   for k in ('protocol_sha256', 'budget_sha256'))):
+        raise ValueError('history source requires an absolute directory and two SHA256 pins')
+
+
+def request_history(config, project_root, *, exclude=None):
+    """Read local counters only; reuse the existing cross-worktree inventory.
+
+    A pinned predecessor supplies its own slots PLUS its already-bound history.
+    No invoice, account snapshot, settlement or fee release is involved.
+    """
+    from .single_experiments import budget_inventory, worktree_roots
+    source = config.request_budget['history_source']
+
+    def read_source(pin, seen):
+        if pin is None:
+            return 0, 0, {}
+        folder = Path(pin['directory']).resolve()
+        if folder in seen or (exclude is not None and folder == Path(exclude).resolve()):
+            raise BudgetStop('local history cannot refer to itself or contain a cycle')
+        if (folder/'.writer.lock').exists():
+            raise BudgetStop('historical source still has a writer')
+        docs = {}
+        for name in ('protocol', 'budget'):
+            raw = (folder/(name+'.json')).read_bytes()
+            if hashlib.sha256(raw).hexdigest() != pin[name+'_sha256']:
+                raise BudgetStop('pinned local history changed: '+name)
+            docs[name] = json.loads(raw)
+        p, ledger = docs['protocol'], docs['budget']
+        if ledger['identity'] != digest({'config': p['config'], 'context': digest(p)}):
+            raise BudgetStop('historical ledger/protocol identity mismatch')
+        previous = p['config'].get('request_budget')
+        if previous:
+            if previous['version'] != REQUEST_BUDGET_VERSION or previous['lifetime_request_cap'] != 300:
+                raise BudgetStop('unsupported historical request budget')
+            slots, sends, inventory = read_source(previous['history_source'], seen | {folder})
+        else:
+            binding = (p['config'].get('conditional_research') or {}).get('history_binding')
+            if not binding:
+                raise BudgetStop('predecessor has no authoritative cumulative request binding')
+            from .assets import check_seal
+            check_seal(binding, kind='Fair_history_binding', mode='real')
+            if binding['lifetime_request_cap'] != 300:
+                raise BudgetStop('historical lifetime cap changed')
+            slots, sends = binding['historical_request_slots'], binding['historical_confirmed_sends']
+            inventory = dict(binding['real_budget_inventory'])
+        if ledger['identity'] in inventory:
+            raise BudgetStop('historical ledger already counted')
+        inventory[ledger['identity']] = pin['budget_sha256']
+        rows = ledger['records'].values()
+        return slots+len(ledger['records']), sends+sum(r.get('send_confirmed', False) for r in rows), inventory
+
+    slots, sends, inventory = read_source(source, set())
+    if config.mode == 'real':
+        if budget_inventory(worktree_roots(project_root), exclude=exclude) != inventory:
+            raise BudgetStop('local cumulative inventory changed or omitted a real ledger')
+    if slots+config.total_request_cap > config.request_budget['lifetime_request_cap']:
+        raise BudgetStop('new batch plus historical slots exceeds lifetime request cap')
+    return {'historical_request_slots': slots, 'historical_confirmed_sends': sends,
+            'lifetime_request_cap': config.request_budget['lifetime_request_cap']}
 
 
 def validate_usage(usage):
@@ -47,6 +132,9 @@ class BudgetLedger:
             return None
         return (usage['input_tokens'] * c.input_price_per_million
                 + usage['output_tokens'] * c.output_price_per_million) / 1e6
+
+    def request_history(self):
+        return request_history(self.config, self.path.parent.parent.parent, exclude=self.path.parent)
 
     def summary(self):
         records = list(self.data['records'].values())
@@ -86,7 +174,16 @@ class BudgetLedger:
                     if self.config.input_price_per_million is not None else None),
                 'stop_reason': self.data.get('smoke_stop_reason'),
                 'phases': phases, 'halted': self.data['halted']}
-        if getattr(self.config,'conditional_research',None):
+        if self.config.request_budget is not None:
+            historical = self.request_history()
+            result.update(**historical,
+                budget_policy=REQUEST_BUDGET_VERSION,
+                lifetime_request_slots=historical['historical_request_slots']+len(records),
+                lifetime_confirmed_sends=historical['historical_confirmed_sends']+result['confirmed_sends'],
+                actual_cost=None, actual_cost_status='unknown; no account or invoice queries',
+                account_amount_limit_enforced=False,
+                historical_costs_and_reservations='unchanged in pinned source; not released or settled')
+        elif getattr(self.config,'conditional_research',None):
             from .conditional_research import history_summary
             historical = history_summary(self.path.parent.parent.parent,self.config)
             result.update(budget_scope='local new batch plus separately pinned immutable history',
@@ -105,6 +202,10 @@ class BudgetLedger:
             if records[key]['prompt_key'] != prompt_key or records[key]['phase'] != phase:
                 raise ValueError('request key reused with changed prompt/phase')
             return records[key]
+        if self.config.request_budget is not None:
+            historical = self.request_history()
+            if historical['historical_request_slots']+len(records) >= historical['lifetime_request_cap']:
+                raise BudgetStop('lifetime request cap exhausted before dispatch')
         if getattr(self.config, 'development_continuation_source', None) is not None:
             import hashlib
             declaration = self.config.development_continuation_source

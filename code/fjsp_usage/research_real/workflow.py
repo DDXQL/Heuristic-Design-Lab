@@ -15,7 +15,7 @@ from fjsp_usage.research.protocol import digest
 from fjsp_usage.research.sets import ranked
 from .assets import (seal, check_seal, checked_candidate, check_result, load_h,
                      check_population, review_member)
-from .budget import BudgetLedger, BudgetStop
+from .budget import BudgetLedger, BudgetStop, request_history
 from .config import fingerprint, protocol
 from .evaluation_cache import EvaluationCache
 from .real_transport import JsonCandidateTransport
@@ -36,6 +36,8 @@ class Workflow:
         path = self.directory / 'protocol.json'
         if path.exists() and digest(json.loads(path.read_text())) != self.context:
             raise ValueError('resume rejected: protocol/source/runtime/data changed; start a new run')
+        if config.request_budget is not None:
+            request_history(config, self.project_root, exclude=self.directory)
         atomic_json(path, self.protocol)
         self.ledger = BudgetLedger(self.directory / 'budget.json', config, self.context)
         self.cache = EvaluationCache(self.directory / 'stage_evaluations.json', self.context)
@@ -51,6 +53,15 @@ class Workflow:
 
     def client(self):
         if self._client is None:
+            if self.config.request_budget is not None:
+                from .single_io import WireRecorder
+                def verify():
+                    self.assert_current()
+                    self.ledger.request_history()
+                verify()
+                self._client = WireRecorder(JsonCandidateTransport(self.config),
+                    self.directory/'wire_responses', verify)
+                return self._client
             evidence = None
             research_history = None
             if self.config.conditional_research:
