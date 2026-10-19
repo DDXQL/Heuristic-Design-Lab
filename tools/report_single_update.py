@@ -71,6 +71,17 @@ def build(run,out,*,charts=True):
                 'primary_evaluation_seconds':sum(e.get('primary_evaluation_seconds',0) for e in evaluations),
                 'known_provider_roundtrip_seconds':sum(r['provider_roundtrip_seconds'] for r in rs if r['provider_roundtrip_seconds'] is not None)})
     assert {r['global_key'] for r in requests}==set(ledger['records'])
+    trajectory=[]
+    for arm in ('A','B'):
+        best_id,best_fit=initial_best['id'],initial_best['fitness'];sent=0
+        trajectory.append({'arm':arm,'actual_requests':0,'champion_id':best_id,'fitness':best_fit})
+        for r in (x for x in requests if x['arm']==arm):
+            sent+=bool(r['confirmed_sent'])
+            if r['category']=='valid' and (r['fitness']>best_fit or
+                (r['fitness']==best_fit and r['id']<best_id)):
+                best_id,best_fit=r['id'],r['fitness']
+            trajectory.append({'arm':arm,'actual_requests':sent,'champion_id':best_id,'fitness':best_fit})
+    csvfile(out/'trajectory.csv',trajectory,['arm','actual_requests','champion_id','fitness'])
     csvfile(out/'requests.csv',requests, list(requests[0]) if requests else ['arm','id','confirmed_sent'])
     csvfile(out/'milestones.csv',milestones,list(milestones[0]) if milestones else ['arm','planned_boundary','actual_requests','champion_fitness'])
     csvfile(out/'all_candidate_instances.csv',instances,list(instances[0]) if instances else ['arm','id','file','makespan'])
@@ -108,6 +119,11 @@ def build(run,out,*,charts=True):
             'descendant_evaluation':evals.get(child),'source_milestone_sha256':sha(folder/f'Milestone_{survived_at:02d}.json'),
             'source_journal_sha256':sha(folder/'budgeted_evolution_requests.json'),
             'note':'Actual parent selection from updated B pool, not an inferred code resemblance.'})
+        (case/'说明.md').write_text('# 真实新子代再次成为父代\n\n'
+            f'新候选`{parent}`完整21train有效，fitness={evals[parent]["fitness"]}；'
+            f'在第{survived_at}槽位后的实际父代池存活，随后被实际请求`{child}`选作父代。'
+            '提示与响应均直接导出自原journal；完整评价及源文件哈希见evidence.json。'
+            '被选作父代本身不证明后代更强，须结合后代实际评价。\n')
     summary={'run':run.name,'complete':all(states[a].get('phase')=='completed' for a in ('A','B')),
         'milestones':milestones,'champions':{k:{'id':champion_ids[k],'fitness':v['fitness']} for k,v in champions.items()},
         'comparison':pairs,'actual_requests':sum(r['confirmed_sent'] for r in requests),
@@ -140,7 +156,7 @@ def build(run,out,*,charts=True):
         plt.rcParams.update({'font.family':font,'axes.unicode_minus':False,'svg.fonttype':'path','svg.hashsalt':'update-frequency-v1'})
         fig,ax=plt.subplots(figsize=(12,6.75))
         for arm,col in [('A','#2864AE'),('B','#239477')]:
-            rows=[x for x in milestones if x['arm']==arm];ax.plot([0]+[x['actual_requests'] for x in rows],[initial_best['fitness']]+[x['champion_fitness'] for x in rows],marker='o',label=arm+('：30次后选拔' if arm=='A' else '：每10次选拔'),color=col)
+            rows=[x for x in trajectory if x['arm']==arm];ax.step([x['actual_requests'] for x in rows],[x['fitness'] for x in rows],where='post',label=arm+('：30次后选拔' if arm=='A' else '：每10次选拔'),color=col)
         ax.axhline(H['members'][0]['fitness'],ls='--',color='#A34435',label='固定H0 / 初始最佳')
         ax.axhline(oldfit,ls=':',color='#8560A5',label='旧冻结冠军（不入种群）')
         ax.set(xlabel='本组累计确认发送的模型请求（失败、重复计入）',ylabel='完整21train冠军fitness，越大越好',title='等预算更新频率对照 · seed201 · 仅训练');ax.legend();ax.grid(alpha=.15)
@@ -149,6 +165,20 @@ def build(run,out,*,charts=True):
             path=out/f'冠军轨迹.{ext}';fig.savefig(path,dpi=180,metadata={'Date':None} if ext=='svg' else {})
             if ext=='svg':path.write_text('\n'.join(x.rstrip() for x in path.read_text().splitlines())+'\n')
         plt.close(fig)
+        plot_pairs=[(a,b) for a,b in [('B','A'),('A','H0'),('B','H0')] if a in champions and b in champions]
+        if plot_pairs:
+            fig,axes=plt.subplots(len(plot_pairs),1,figsize=(13,3.2*len(plot_pairs)),squeeze=False)
+            for ax,(a,b) in zip(axes[:,0],plot_pairs):
+                rr=[x for x in diffs if x['A']==a and x['B']==b]
+                values=[x['A_minus_B_makespan'] for x in rr]
+                ax.bar(range(21),values,color=['#239477' if v<0 else '#BC6353' for v in values])
+                ax.axhline(0,color='black',lw=.6);ax.set_xticks(range(21),[x['file'] for x in rr],rotation=55,ha='right',fontsize=7)
+                ax.set_title(a+' 对 '+b+'：负值表示前者makespan更小');ax.set_ylabel('makespan差值')
+            fig.tight_layout()
+            for ext in ('png','svg'):
+                path=out/f'逐实例比较.{ext}';fig.savefig(path,dpi=180,metadata={'Date':None} if ext=='svg' else {})
+                if ext=='svg':path.write_text('\n'.join(x.rstrip() for x in path.read_text().splitlines())+'\n')
+            plt.close(fig)
     return summary
 
 if __name__=='__main__':
