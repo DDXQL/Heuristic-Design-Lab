@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Bounded metadata-only proof for missing post-account snapshots in update v1.
+"""Bounded metadata-only settlement proofs for update v1.
+
+Only missing snapshots or uniquely proved post-snapshot timeout charges apply.
 
 No parser/search/prompt changes; never retries model requests. Genuine observed
 account/invoice mismatches remain blocked. Original invoices/records stay intact.
@@ -27,23 +29,47 @@ from fjsp_usage.research_real.leafapi import KEY_ENV,load_local_key
 REASON='supplier invoice/account debit mismatch; preserve reservation'
 WIRE_ERROR='duplicate or premature stream usage'
 
+def delayed_invoice(config,bill,old):
+    """A timeout charged AFTER the original zero-debit account snapshot."""
+    if (old.get('status')!='settled' or old.get('observed_account_delta')!=0
+        or old.get('after_used')!=old['before_used']
+        or bill.get('response_metadata',{}).get('gateway_request_id')
+        or bill.get('before',{}).get('success') is not True
+        or bill.get('after',{}).get('success') is not True):return None
+    seen={r.get('request_id') for r in bill['before']['records']}
+    rows=[r for r in bill['after']['records'] if r.get('request_id') and r['request_id'] not in seen
+        and r.get('model_name')==config.provider.model and r.get('type')==2
+        and type(r.get('created_at')) in (int,float)
+        and old['started_at']-2<=r['created_at']<=old['finished_at']+30]
+    if len(rows)!=1:return None
+    r=rows[0]
+    if (r['created_at']<=old['finished_at'] or r.get('group')!=config.conditional_research['risk_policy']['group']
+        or type(r.get('quota')) is not int or not 0<r['quota']<=old['reserved']
+        or type(r.get('prompt_tokens')) is not int or r['prompt_tokens']<=0
+        or r.get('completion_tokens')!=0 or type(r.get('use_time')) is not int
+        or not config.provider.read_timeout<=r['use_time']<=config.provider.total_timeout+30):return None
+    return r
+
 def eligible(config,native,quota,key,bill,wire):
     old=bill.get('original_quota_record',{})
     if (config.conditional_research.get('version')!=VERSION or not config.real_requests_authorized
         or config.total_request_cap!=60 or config.seeds!=(201,)
         or not key.startswith(('r201/A/A/','r201/B/B/')) or len(native['records'])>60
-        or not quota['halted'] or quota.get('stop_reason')!=REASON
+        or not quota['halted'] or quota.get('stop_reason') not in (REASON,'account quota unavailable/inconsistent; no retry')
         or bill.get('status')!='settlement_not_certified' or bill.get('settlement_error')!=REASON
         or bill.get('transport_status')!='failed' or bill.get('wire_usage') is not None
-        or not old.get('send_confirmed') or old.get('status')!='settlement_unknown'
-        or 'after_used' in old or 'observed_account_delta' in old
+        or not old.get('send_confirmed')
         or quota['records'].get(key)!=old or native['records'][key].get('status')!='failed'
         or not native['records'][key].get('send_confirmed') or native['records'][key].get('usage') is not None
-        or wire.get('error')!=WIRE_ERROR or wire.get('status')!='wire_failed'
+        or wire.get('status')!='wire_failed'
         or wire.get('global_key')!=key or not wire.get('send_confirmed')
-        or not bill.get('response_metadata',{}).get('gateway_request_id')
         or any(r['status']=='pending' for r in quota['records'].values())):
         raise BudgetStop('not the bounded missing-post-account case; original protections remain')
+    missing=(old.get('status')=='settlement_unknown' and 'after_used' not in old
+        and 'observed_account_delta' not in old and wire.get('error')==WIRE_ERROR
+        and bool(bill.get('response_metadata',{}).get('gateway_request_id')))
+    delayed=(wire.get('error')=='TimeoutError' and delayed_invoice(config,bill,old) is not None)
+    if not (missing or delayed):raise BudgetStop('neither missing snapshot nor uniquely proved post-snapshot timeout charge')
     return old
 
 def prove(config,native,quota,key,bill,wire,fresh,after,*,retained,now=None):
@@ -61,8 +87,10 @@ def prove(config,native,quota,key,bill,wire,fresh,after,*,retained,now=None):
     account={**old,'status':'settled','after_used':q['total_used'],
         'observed_account_delta':q['total_used']-old['before_used'],
         'finished_at':max(at,old['finished_at'])}
-    invoice=match_invoice(bill['before'],after,account,config.provider.model,failed=True,
-        response_id=bill['response_metadata']['gateway_request_id'])
+    late=delayed_invoice(config,bill,old) if wire.get('error')=='TimeoutError' else None
+    identifier=late['request_id'] if late else bill['response_metadata']['gateway_request_id']
+    invoice=match_invoice(bill['before'],after,account,config.provider.model,failed=True,response_id=identifier)
+    if late and invoice!=late:raise BudgetStop('fresh invoice differs from unique original delayed receipt')
     if (invoice.get('group')!=config.conditional_research['risk_policy']['group']
         or not 0<invoice['quota']<=old['reserved']):
         raise BudgetStop('positive exact fee/group/risk evidence required')
@@ -109,7 +137,7 @@ def main():
             fresh={'success':True,'observed_at':quota.data['observed_at'],'quota':quota.data['latest_quota'],'inference_requests':0}
             atomic_json(qp,fresh);atomic_json(ip,after)
             account,invoice=prove(flow.config,flow.ledger.data,quota.data,key,bill,wire,fresh,after,retained=quota.check_retained())
-            atomic_json(ep,{'version':'update-network-snapshot-proof-v1','global_key':key,
+            atomic_json(ep,{'version':'update-network-settlement-proof-v2','global_key':key,
                 'protocol_sha256':file_sha(p/'protocol.json'),'adapter_sha256':file_sha(Path(__file__)),'bill_sha256':file_sha(path),
                 'wire_sha256':file_sha(wirepath),'evidence_files_sha256':{f.name:file_sha(f) for f in (qp,ip)},
                 'quota_file':qp.name,'invoice_file':ip.name,'invoice':invoice,'reconciled_account':account,
@@ -126,14 +154,15 @@ def main():
             if Path(n).name!=n or file_sha(p/n)!=h:raise BudgetStop('evidence changed or escaped')
         account,invoice=prove(flow.config,flow.ledger.data,quota.data,key,bill,wire,read(p/e['quota_file']),read(p/e['invoice_file']),retained=quota.check_retained())
         if account!=e['reconciled_account'] or invoice!=e['invoice']:raise BudgetStop('proof recomputation differs')
-        proof={'version':'update-network-snapshot-proof-v1','global_key':key,
-            'supplier_request_id':bill['response_metadata']['gateway_request_id'],
+        proof={'version':'update-network-settlement-proof-v2','global_key':key,
+            'supplier_request_id':invoice['request_id'],
+            'supplier_id_origin':'response header' if bill.get('response_metadata',{}).get('gateway_request_id') else 'unique new invoice, not a fabricated response header',
             'original_quota_record':deepcopy(bill['original_quota_record']),'original_billing_sha256':file_sha(path),
             'invoice':invoice,'reconciled_account':account,'actual_platform_units':invoice['quota'],
             'evidence_files_sha256':e['evidence_files_sha256'],'wire_usage':None,
             'slot_remains_failed':True,'no_candidate_replay_or_reconstruction':True,
             'historical_24million_hold_unchanged':True,'new_unknown_cost_reservation_released_by_invoice_only':account['reserved'],
-            'adapter_sha256':file_sha(Path(__file__)),'limited_recovery':'missing post-account snapshot only; observed debit mismatches and old runs rejected'}
+            'adapter_sha256':file_sha(Path(__file__)),'limited_recovery':'missing snapshot OR unique timeout charge created after original zero-debit snapshot; fresh exact debit mandatory; other mismatches/old runs rejected'}
         target=p/'billing_reconciliations'/path.name
         if target.exists():raise BudgetStop('proof already exists; no overwrite')
         atomic_json(target,proof);quota.data.setdefault('invoice_reconciliations',[]).append(proof)

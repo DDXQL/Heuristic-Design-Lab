@@ -95,12 +95,16 @@ def build(run,out,*,charts=True):
         'INITIAL':initial_best['candidate']['key'],'OLD_FROZEN':old['row']['candidate']['key']}
     champion_origins={'H0':H.get('source_run'),'INITIAL':shared.get('source_run'),
         'OLD_FROZEN':old.get('source',{}).get('run')}
+    champion_roles={'H0':'cached fixed member','INITIAL':'shared P0','OLD_FROZEN':'historical reference only'}
     for arm in ('A','B'):
-        if states[arm].get('phase')=='completed':
-            best=sorted(states[arm]['population'],key=lambda x:(-x['fitness'],x['id']))[0]
+        if states[arm].get('population'):
+            complete=states[arm].get('phase')=='completed'
+            pool=states[arm]['population']+([] if complete else states[arm].get('children',[]))
+            best=sorted(pool,key=lambda x:(-x['fitness'],x['id']))[0]
             champions[arm]=best.get('training_result') or evals[best['id']];champion_ids[arm]=best['id']
             champion_keys[arm]=best['candidate']['key']
             champion_origins[arm]=shared.get('source_run') if best['id'] in init_ids else run.name
+            champion_roles[arm]='completed population' if complete else 'paused best seen; NOT final population'
     pairs=[];diffs=[]
     for a,b in [('B','A'),('A','H0'),('B','H0'),('A','OLD_FROZEN'),('B','OLD_FROZEN')]:
         if a not in champions or b not in champions:continue
@@ -134,7 +138,7 @@ def build(run,out,*,charts=True):
             '被选作父代本身不证明后代更强，须结合后代实际评价。\n')
     summary={'run':run.name,'complete':all(states[a].get('phase')=='completed' for a in ('A','B')),
         'milestones':milestones,'champions':{k:{'id':champion_ids[k],'source_run':champion_origins[k],
-            'code_key':champion_keys[k],'fitness':v['fitness']} for k,v in champions.items()},
+            'code_key':champion_keys[k],'role':champion_roles[k],'fitness':v['fitness']} for k,v in champions.items()},
         'comparison':pairs,'actual_requests':sum(r['confirmed_sent'] for r in requests),
         'known_points':sum(r['actual_platform_points'] for r in requests if r['actual_platform_points'] is not None),
         'unknown_fee_ids':[r['id'] for r in requests if r['confirmed_sent'] and r['actual_platform_points'] is None],
@@ -188,6 +192,7 @@ def build(run,out,*,charts=True):
     lines=['# 等预算更新频率对照：真实结果','',summary['scope'],'',
         'A30次期间只用P₀作父代，第30次后选拔；B每10次选拔更新。两组均采用原P特化提示及同一全局(5交叉+5变异)×3，交叉5个不同父代、变异1父代。父代选择初始RNG相同，去重独立；执行顺序预登记为A10/B10/A20/B20/A30/B30。云模型结果不保证相同。','',
         f"状态：完整={summary['complete']}；真实请求{summary['actual_requests']}，已核实点数{summary['known_points']}，未知费用{summary['unknown_fee_ids']}。",'',
+        '未完成时A/B冠军仅为暂停前已发现最佳，不是最终种群。A/B实际请求数不相等时，配对表只是当前快照，不能据此判定更新频率优劣。' if not summary['complete'] else '两组均完成后再核对真实机会数与失败构成。','',
         f"接入失败/中断：{summary['api_or_interruption_failure_ids']}。数量相等不代表接口条件完全相同；存在接入失败时保留全部槽位，并将结果标为受接口故障影响的配对探索，不把有效率或冠军差异完全归因于更新时间。",'',
         mdtable(milestones,['arm','planned_boundary','actual_requests','champion_id','champion_fitness','champion_is_new','above_initial_H0','at_least_old_frozen','actual_parent_pool_mean','observed_top5_mean','survival_updates','new_survivors_in_actual_pool','valid','code_duplicates']), '',
         '**口径。** 冠军是截至此时已发现的最佳完整有效候选（包含尚未进入A父代池的子代）；A10/20的observed_top5_mean仅为观察值，不改变父代。actual_parent_pool_mean才是实际父代种群均值。mean(−Cmax/未取整LB)越大越好；任何实例失败使整个候选无效。请求横轴采用确认发送次数，失败/重复计入预算，不补发。','',
@@ -200,6 +205,10 @@ def build(run,out,*,charts=True):
         '以下execute为原批唯一启动/续接命令，会发送剩余已授权请求；必须先核对.writer.lock中的PID与真实进程，活跃时不得再启动。recover只查询结算元数据，不能重发请求或清除无证据门禁。report仅从保存记录生成材料。','',
         '```bash\n.venv/bin/python -B -u experiments/tier2/research_real_v1/run_single_update.py execute \\\n  --run-dir runs/'+run.name+' \\\n  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local\n\n.venv/bin/python -B experiments/tier2/research_real_v1/run_single_update.py recover \\\n  --run-dir runs/'+run.name+' \\\n  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local\n\npython3 tools/report_single_update.py --run-dir runs/'+run.name+' \\\n  --out-dir reports/'+out.name+'\n```','',
         '[里程碑CSV](milestones.csv) · [逐请求](requests.csv) · [谱系](lineage.csv) · [逐实例对照](paired_instances.csv) · [最终交接]('+str(run/'Final_budget_handoff.json')+')。原始提示/响应和检查点在运行目录，快照含代码/配置/训练数据；不读取validation/test。']
+    if summary['unknown_fee_ids']:
+        lines+=['','## 当前未结算门禁','',
+            '保留本笔风险预留、原失败槽位和未知wire用量。普通recover不覆盖所有故障；缺少账户快照或已证明账单晚于原零扣费快照的超时，只能用本批限定工具获取新证据。inspect仅查询元数据，apply纯离线且必须引用inspect实际输出，180秒内精确核验账户差额、唯一账单、模型/分组/时间和原始文件SHA。无证据时不得清门禁。','',
+            '```bash\n.venv/bin/python -B tools/reconcile_single_update_network.py inspect \\\n  --run-dir runs/'+run.name+' \\\n  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local\n# 仅inspect通过后，将下列占位符替换为实际生成的证据路径。\n.venv/bin/python -B tools/reconcile_single_update_network.py apply \\\n  --run-dir runs/'+run.name+' \\\n  --evidence /actual/path/from-inspect.evidence.json\n```']
     (out/'报告.md').write_text('\n'.join(lines)+'\n')
     if charts:
         import matplotlib
@@ -212,7 +221,7 @@ def build(run,out,*,charts=True):
             rows=[x for x in trajectory if x['arm']==arm];ax.step([x['actual_requests'] for x in rows],[x['fitness'] for x in rows],where='post',label=arm+('：30次后选拔' if arm=='A' else '：每10次选拔'),color=col)
         ax.axhline(H['members'][0]['fitness'],ls='--',color='#A34435',label='固定H0 / 初始最佳')
         ax.axhline(oldfit,ls=':',color='#8560A5',label='旧冻结冠军（不入种群）')
-        ax.set(xlabel='本组累计确认发送的模型请求（失败、重复计入）',ylabel='完整21train冠军fitness，越大越好',title='等预算更新频率对照 · seed201 · 仅训练');ax.legend();ax.grid(alpha=.15)
+        ax.set(xlabel='本组累计确认发送的模型请求（失败、重复计入）',ylabel='完整21train冠军fitness，越大越好',title='等预算更新频率对照 · seed201 · 仅训练'+('（暂停，实际机会数不等）' if not summary['complete'] else ''));ax.legend();ax.grid(alpha=.15)
         fig.tight_layout()
         for ext in ('png','svg'):
             path=out/f'冠军轨迹.{ext}';fig.savefig(path,dpi=180,metadata={'Date':None} if ext=='svg' else {})
@@ -226,7 +235,8 @@ def build(run,out,*,charts=True):
                 values=[x['A_minus_B_makespan'] for x in rr]
                 ax.bar(range(21),values,color=['#239477' if v<0 else '#BC6353' for v in values])
                 ax.axhline(0,color='black',lw=.6);ax.set_xticks(range(21),[x['file'] for x in rr],rotation=55,ha='right',fontsize=7)
-                ax.set_title(a+' 对 '+b+'：负值表示前者makespan更小');ax.set_ylabel('makespan差值')
+                if not any(values):ax.text(.5,.8,'21个训练实例全部相同（差值0）',transform=ax.transAxes,ha='center',fontsize=10)
+                ax.set_title(a+' 对 '+b+'：负值表示前者makespan更小'+('（暂停快照）' if not summary['complete'] else ''));ax.set_ylabel('makespan差值')
             fig.tight_layout()
             for ext in ('png','svg'):
                 path=out/f'逐实例比较.{ext}';fig.savefig(path,dpi=180,metadata={'Date':None} if ext=='svg' else {})

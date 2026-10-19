@@ -11,3 +11,7 @@ runs/
 logs/
 data/fjsp/*.fjsp
 !data/fjsp/.gitkeep
+# Local raw exports / settlement evidence; independently backed up.
+reports/20261019-single-update-frequency-paused-at30/candidates/
+reports/20261019-single-update-frequency-paused-at30/local_reproduction/
+reports/20261019-single-update-frequency-paused-at30/pending_settlement.json

@@ -411,9 +411,9 @@ python3 tools/report_single_update.py \
 
 累计历史201槽位/185确认发送，当前批最多累计261槽位；继承两笔历史未知及2400万点占用、300槽位和3000万点账户边界。沿用metadata≥30秒、账单≥150秒节流、完整响应先保存、故障停发和原游标恢复。公开费率只是风险依据，不是实际费用；实际费用须账单核实。旧批未用初始化额度不转移。prepare/register/check不创建模型客户端、不访问账单、不运行排程。登记后冻结代码/提示/配置/训练哈希；不修改旧批协议来续跑。
 
-### 本批账户快照缺失的受限结算恢复（2026-10-19）
+### 本批发送后元数据故障的受限结算恢复（2026-10-19）
 
-[reconcile_single_update_network.py](../../../tools/reconcile_single_update_network.py)仅用于本批：发送后账户快照缺失、原始quota记录为`settlement_unknown`且没有`after_used/observed_account_delta`、wire明确报`duplicate or premature stream usage`的单笔故障。现有HTTP429恢复入口及冻结搜索代码保持不变；已有实测账户差额不符、其他错误、旧批、多个未结算请求均拒绝。4项离线测试覆盖真实差额不符、错误ID/模型/分组、过期证据、零费与历史占用修改等拒绝情形。
+[reconcile_single_update_network.py](../../../tools/reconcile_single_update_network.py)仅用于本批两类单笔故障：①账户快照缺失且wire明确报`duplicate or premature stream usage`；②`TimeoutError`后原账户快照零增量，但唯一新增正费用账单的创建时间严格晚于该快照（≤30秒）、输入token为正/输出0、处理时长与超时期一致。②仍必须取得新账户快照，精确差额等于该唯一账单；原零快照本身不能证明免费。其他真实差额不符、早于快照的账单、非唯一记录、旧批及多个未结算请求均拒绝。现有HTTP429恢复入口、冻结搜索和预算上限不变。6项离线测试覆盖上述条件；①已实际精确核对A第10次908点，②仅离线通过，当前A第20次缺新账户证据，尚未放行。
 
 `inspect`只按原节流查询新账户和账单、保存证据，保持门禁；`apply`纯离线重新验证精确ID/模型/分组/时间/扣额、原始文件及工具SHA，追加兼容原报告工具的证明，仅据实际正费用结算本笔。原账单、失败槽位、未知wire token和2400万点历史占用不改。不会补回候选或重发请求。证据限180秒内使用；失败不清门禁。工具版本及实际执行证据保存在运行目录，不影响提示、父代或评价语义。
 
@@ -426,3 +426,5 @@ python3 tools/report_single_update.py \
   --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
   --evidence /absolute/path/to/Network_settlement.ACTUAL_TIMESTAMP.evidence.json
 ```
+
+当前暂停入口：A20/B10已发送，待发`B/g0001/000000`。剩余30次原授权；两次账户核对失败后停止查询，不循环尝试。先恢复供应商账户服务，再用上述inspect/apply取得实际新证据，随后原execute续接；不得用普通recover或修改JSON清门禁。当前详见根README及暂停报告。

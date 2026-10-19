@@ -58,4 +58,33 @@ class NetworkProofTest(unittest.TestCase):
                 if change=='wire':a[5]['error']='OTHER_FAILURE'
                 with self.assertRaises(BudgetStop):m.prove(*a,retained=hold,now=now)
 
+    def delayed_fixture(self):
+        a=self.fixture();a[0].provider.read_timeout=10;a[0].provider.total_timeout=60
+        old=a[4]['original_quota_record'];old.update(status='settled',after_used=old['before_used'],observed_account_delta=0)
+        a[2]['records'][a[3]]=deepcopy(old);a[2]['stop_reason']='account quota unavailable/inconsistent; no retry'
+        a[4]['response_metadata']={};a[5]['error']='TimeoutError'
+        row=a[7]['records'][0];row.update(created_at=1055,prompt_tokens=100,completion_tokens=0,use_time=55)
+        a[4]['after']=deepcopy(a[7]);return a
+
+    def test_delayed_timeout_requires_invoice_created_after_original_snapshot(self):
+        a=self.delayed_fixture();before=deepcopy(a)
+        account,invoice=m.prove(*a,retained=24000000,now=1220)
+        self.assertEqual(invoice['quota'],account['observed_account_delta']);self.assertEqual(a,before)
+        self.assertGreater(invoice['created_at'],a[4]['original_quota_record']['finished_at'])
+
+    def test_delayed_exception_rejects_real_mismatch_and_nonunique_receipts(self):
+        for change in ('early_invoice','nonzero_original_debit','wrong_fresh_delta','nonunique','positive_output','short_duration'):
+            with self.subTest(change=change):
+                a=self.delayed_fixture()
+                if change=='early_invoice':a[4]['after']['records'][0]['created_at']=1045
+                if change=='nonzero_original_debit':
+                    a[4]['original_quota_record'].update(after_used=2000001,observed_account_delta=1)
+                    a[2]['records'][a[3]]=deepcopy(a[4]['original_quota_record'])
+                if change=='wrong_fresh_delta':a[6]['quota'].update(total_used=2000909,total_available=97999091)
+                if change=='nonunique':
+                    other=deepcopy(a[4]['after']['records'][0]);other['request_id']='OTHER_ID';a[4]['after']['records'].append(other)
+                if change=='positive_output':a[4]['after']['records'][0]['completion_tokens']=1
+                if change=='short_duration':a[4]['after']['records'][0]['use_time']=1
+                with self.assertRaises(BudgetStop):m.prove(*a,retained=24000000,now=1220)
+
 if __name__=='__main__':unittest.main()

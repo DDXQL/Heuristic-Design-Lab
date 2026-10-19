@@ -1,0 +1,47 @@
+{
+  "kind": "offline pause verification, NOT completion",
+  "confirmed_sends": 30,
+  "A": {
+    "sent": 20,
+    "complete": false,
+    "survival_updates": 0
+  },
+  "B": {
+    "sent": 10,
+    "complete": false,
+    "survival_updates": 1
+  },
+  "first10_actual_prompts_identical": true,
+  "operator_order_exact_prefix": true,
+  "A_actual_parents_all_initial": true,
+  "actual_new_child_used_as_parent": false,
+  "pending_B_parents_not_counted_as_sent": [
+    "B/g0000/000005",
+    "B/g0000/000008",
+    "INIT/init/000001",
+    "INIT/init/000000",
+    "B/g0000/000007"
+  ],
+  "no_model_requests_or_evaluations_by_verifier": true,
+  "source_files_sha256": {
+    "protocol.json": "b57858bed8c6159a3ca1f1df5dfd4467870ed3d01146b7522a0bef47d55f22ed",
+    "budget.json": "8e23ec5f4c8f8c92447c6d7b78a03ef2a2abb32c37f3357f68b507aba4d0ead9",
+    "platform_quota.json": "6d57c13377d5b962928823aa46a80beeb739f8c2f2f6fbe4f1cbacdf17e1ecf5",
+    "History_binding.json": "47731d16109c889fee4a9cdf21ad6a30743624575af287a124a7465456d9da54",
+    "Final_budget_handoff.json": "095f59a0e2a433bb7fc5ca93b37c2f1cd7f9d8533ee987431024c1fd63141773",
+    "Update_status.json": "7408063cb9e03c270c77f64974d2bf70184df7683f224438d26441be916b5f05",
+    "H_frozen.json": "52e6e15d4664b5dd6c342fa8286c54d03ace0311355dbdf7fb19774311ea2037",
+    "r201/Shared_initial.json": "b3c35cf346fc0a510dc56beafa48a371322c5f6ccae5175ddc94300ee2367e71",
+    "r201/A/checkpoint.json": "6c210c1d73f9e4a3fccb29ee28aacec26e975454ec18a68d6360d37f4487d207",
+    "r201/B/checkpoint.json": "72487a53916d7f1e40a3c10d28af2225a696b0a5842ec7f070fabb715be9ad3a",
+    "r201/A/Milestone_10.json": "79b9588cbafaf0f2da418a4ef7f176a9f816d3b25c3603edf54c6805594b10ad",
+    "r201/A/Milestone_20.json": "6e2ebaa98dfb82718851fcdd97bff451e3b02bfe5875b114846e0e58482242f4",
+    "r201/B/Milestone_10.json": "d099f8ed59d7afeff769c04889255bce2981050abe95cf52c4591eee86d24daf"
+  },
+  "known_fee_subtotal": 126118,
+  "unknown_fee_keys": [
+    "r201/A/A/g0000/000019"
+  ],
+  "new_risk_hold": 410000,
+  "old_hold": 24000000
+}

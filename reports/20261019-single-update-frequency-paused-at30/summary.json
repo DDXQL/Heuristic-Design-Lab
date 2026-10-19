@@ -1,0 +1,322 @@
+{
+  "run": "single-ID-update-frequency-seed201-v1-20261018",
+  "complete": false,
+  "milestones": [
+    {
+      "arm": "A",
+      "planned_boundary": 10,
+      "actual_requests": 10,
+      "champion_id": "INIT/init/000000",
+      "champion_fitness": -2.1118049606260487,
+      "champion_is_new": false,
+      "above_initial_H0": false,
+      "at_least_old_frozen": false,
+      "actual_parent_pool_mean": -2.162679574472372,
+      "observed_top5_mean": -2.1320789005223277,
+      "survival_updates": 0,
+      "new_survivors_in_actual_pool": 0,
+      "valid": 7,
+      "code_duplicates": 0,
+      "narrow_duplicates": 0,
+      "categories": {
+        "valid": 7,
+        "api_failure": 3
+      },
+      "valid_per_sent": 0.7,
+      "known_platform_points": 37713,
+      "unknown_fee_requests": 0,
+      "known_input_tokens": 48084,
+      "known_output_tokens": 3829,
+      "known_invoice_input_tokens": 64165,
+      "known_invoice_output_tokens": 4781,
+      "unknown_wire_requests": 3,
+      "single_solve_seconds": 30.356534413818736,
+      "deterministic_recheck_seconds": 29.92448929697275,
+      "diagnostic_replay_seconds": 30.84664341522148,
+      "primary_evaluation_seconds": 62.359405914961826,
+      "known_provider_roundtrip_seconds": 210.11135000101058
+    },
+    {
+      "arm": "A",
+      "planned_boundary": 20,
+      "actual_requests": 20,
+      "champion_id": "INIT/init/000000",
+      "champion_fitness": -2.1118049606260487,
+      "champion_is_new": false,
+      "above_initial_H0": false,
+      "at_least_old_frozen": false,
+      "actual_parent_pool_mean": -2.162679574472372,
+      "observed_top5_mean": -2.122170941619702,
+      "survival_updates": 0,
+      "new_survivors_in_actual_pool": 0,
+      "valid": 15,
+      "code_duplicates": 0,
+      "narrow_duplicates": 0,
+      "categories": {
+        "valid": 15,
+        "api_failure": 5
+      },
+      "valid_per_sent": 0.75,
+      "known_platform_points": 83079,
+      "unknown_fee_requests": 1,
+      "known_input_tokens": 96761,
+      "known_output_tokens": 12024,
+      "known_invoice_input_tokens": 118202,
+      "known_invoice_output_tokens": 13092,
+      "unknown_wire_requests": 5,
+      "single_solve_seconds": 52.65629932907177,
+      "deterministic_recheck_seconds": 52.289328968850896,
+      "diagnostic_replay_seconds": 53.60235724382801,
+      "primary_evaluation_seconds": 109.4913742080098,
+      "known_provider_roundtrip_seconds": 758.866467293934
+    },
+    {
+      "arm": "B",
+      "planned_boundary": 10,
+      "actual_requests": 10,
+      "champion_id": "INIT/init/000000",
+      "champion_fitness": -2.1118049606260487,
+      "champion_is_new": false,
+      "above_initial_H0": false,
+      "at_least_old_frozen": false,
+      "actual_parent_pool_mean": -2.127467288742102,
+      "observed_top5_mean": -2.127467288742102,
+      "survival_updates": 1,
+      "new_survivors_in_actual_pool": 3,
+      "valid": 8,
+      "code_duplicates": 0,
+      "narrow_duplicates": 0,
+      "categories": {
+        "valid": 8,
+        "api_failure": 2
+      },
+      "valid_per_sent": 0.8,
+      "known_platform_points": 43039,
+      "unknown_fee_requests": 0,
+      "known_input_tokens": 48375,
+      "known_output_tokens": 6503,
+      "known_invoice_input_tokens": 64411,
+      "known_invoice_output_tokens": 6862,
+      "unknown_wire_requests": 2,
+      "single_solve_seconds": 29.892639172903728,
+      "deterministic_recheck_seconds": 29.818140126764774,
+      "diagnostic_replay_seconds": 31.13599595380947,
+      "primary_evaluation_seconds": 62.130410540965386,
+      "known_provider_roundtrip_seconds": 594.9951864999603
+    }
+  ],
+  "champions": {
+    "H0": {
+      "id": "fixed-h0",
+      "source_run": "single-ID-gpt61-fair-seed201-v2",
+      "code_key": "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+      "role": "cached fixed member",
+      "fitness": -2.1118049606260487
+    },
+    "INITIAL": {
+      "id": "INIT/init/000000",
+      "source_run": "single-ID-gpt61-fair-seed201-v2",
+      "code_key": "0c8f4fabebb1c654cc6342718f8378b03cb415798f4dd9357f3ee6a5d487e145",
+      "role": "shared P0",
+      "fitness": -2.1118049606260487
+    },
+    "OLD_FROZEN": {
+      "id": "INIT/init/000004",
+      "source_run": "single-ID-gpt61-paired-training-20261014-v1",
+      "code_key": "0685a7908b1944a2e679112825758b72ecc98fbcd2d79dd639b4f033daa49104",
+      "role": "historical reference only",
+      "fitness": -2.0704275135579646
+    },
+    "A": {
+      "id": "INIT/init/000000",
+      "source_run": "single-ID-gpt61-fair-seed201-v2",
+      "code_key": "0c8f4fabebb1c654cc6342718f8378b03cb415798f4dd9357f3ee6a5d487e145",
+      "role": "paused best seen; NOT final population",
+      "fitness": -2.1118049606260487
+    },
+    "B": {
+      "id": "INIT/init/000000",
+      "source_run": "single-ID-gpt61-fair-seed201-v2",
+      "code_key": "0c8f4fabebb1c654cc6342718f8378b03cb415798f4dd9357f3ee6a5d487e145",
+      "role": "paused best seen; NOT final population",
+      "fitness": -2.1118049606260487
+    }
+  },
+  "comparison": [
+    {
+      "A": "B",
+      "B": "A",
+      "fitness_difference": 0.0,
+      "A_wins": 0,
+      "ties": 21,
+      "A_losses": 0
+    },
+    {
+      "A": "A",
+      "B": "H0",
+      "fitness_difference": 0.0,
+      "A_wins": 0,
+      "ties": 21,
+      "A_losses": 0
+    },
+    {
+      "A": "B",
+      "B": "H0",
+      "fitness_difference": 0.0,
+      "A_wins": 0,
+      "ties": 21,
+      "A_losses": 0
+    },
+    {
+      "A": "A",
+      "B": "OLD_FROZEN",
+      "fitness_difference": -0.041377447068084106,
+      "A_wins": 9,
+      "ties": 0,
+      "A_losses": 12
+    },
+    {
+      "A": "B",
+      "B": "OLD_FROZEN",
+      "fitness_difference": -0.041377447068084106,
+      "A_wins": 9,
+      "ties": 0,
+      "A_losses": 12
+    }
+  ],
+  "actual_requests": 30,
+  "known_points": 126118,
+  "unknown_fee_ids": [
+    "A/g0000/000019"
+  ],
+  "wire_input_tokens_known": 145136,
+  "wire_output_tokens_known": 18527,
+  "unknown_wire_usage_ids": [
+    "A/g0000/000005",
+    "A/g0000/000006",
+    "A/g0000/000009",
+    "A/g0000/000016",
+    "A/g0000/000019",
+    "B/g0000/000001",
+    "B/g0000/000002"
+  ],
+  "invoice_input_tokens_known": 182613,
+  "invoice_output_tokens_known": 19954,
+  "categories_by_arm": {
+    "A": {
+      "valid": 15,
+      "api_failure": 5
+    },
+    "B": {
+      "valid": 8,
+      "api_failure": 2
+    }
+  },
+  "api_or_interruption_failure_ids": [
+    "A/g0000/000005",
+    "A/g0000/000006",
+    "A/g0000/000009",
+    "A/g0000/000016",
+    "A/g0000/000019",
+    "B/g0000/000001",
+    "B/g0000/000002"
+  ],
+  "lineage_chain": null,
+  "initial_code_keys": [
+    "0c8f4fabebb1c654cc6342718f8378b03cb415798f4dd9357f3ee6a5d487e145",
+    "98209495366fe996c85e5980b6d47081afc2aeab4d08ba1b657ca6136d282114",
+    "ed769d0a49414749db8367d2346209dec9008da32d43e84225f4d4c1d53e8558",
+    "4afcccd334ab39a7c4da97e98cb6f18f5387dfdd28da208b7bba18ab8f4f9c88",
+    "1559c64a3a8b46db900183fb28452989d1d88ad251bf883a94a655121584750b"
+  ],
+  "source_shared_initial_hash": "4e7a6a1e0fcb061e7843d7418fb9066ffab9d3180cb241166ff37c45c686f3b3",
+  "protocol_sha256": "b57858bed8c6159a3ca1f1df5dfd4467870ed3d01146b7522a0bef47d55f22ed",
+  "budget_sha256": "8e23ec5f4c8f8c92447c6d7b78a03ef2a2abb32c37f3357f68b507aba4d0ead9",
+  "budget_handoff": {
+    "version": "single-ID-update-frequency-v1",
+    "real_caller_active": false,
+    "budget_identity": "6cd43c332f031221a2a38e2292088f17937fa7b9fe79fb368e8133f23ae94713",
+    "budget_sha256": "8e23ec5f4c8f8c92447c6d7b78a03ef2a2abb32c37f3357f68b507aba4d0ead9",
+    "summary": {
+      "mode": "real",
+      "request_hard_cap": 60,
+      "request_slots": 30,
+      "confirmed_sends": 30,
+      "remaining_request_slots": 30,
+      "settlement_statuses": {
+        "completed": 23,
+        "failed": 7
+      },
+      "phase_remaining_slots": {
+        "r201/A": 10,
+        "r201/B": 20
+      },
+      "unknown_usage_requests": 7,
+      "token_limit_basis": "configured reservation; provider upper bound not certified",
+      "money_limit_basis": "price-based estimate, not verified provider billing/hard cap",
+      "price_source": null,
+      "cost_currency": null,
+      "estimated_cost_stop": null,
+      "known_input_tokens": 145136,
+      "known_output_tokens": 18527,
+      "known_usage_cost_estimate": null,
+      "reserved_or_settled_cost_estimate": null,
+      "stop_reason": null,
+      "phases": {
+        "r201/A": {
+          "reserved_requests": 20,
+          "confirmed_sends": 20,
+          "usage_known": 15,
+          "usage_unknown": 5,
+          "input_tokens": 96761,
+          "output_tokens": 12024,
+          "reserved_or_settled_tokens": 600305,
+          "cost_estimate": null,
+          "elapsed_seconds": 2363.4125583771965
+        },
+        "r201/B": {
+          "reserved_requests": 10,
+          "confirmed_sends": 10,
+          "usage_known": 8,
+          "usage_unknown": 2,
+          "input_tokens": 48375,
+          "output_tokens": 6503,
+          "reserved_or_settled_tokens": 251486,
+          "cost_estimate": null,
+          "elapsed_seconds": 1313.740707125864
+        }
+      },
+      "halted": false,
+      "budget_scope": "local new batch plus separately pinned immutable history",
+      "historical_request_slots": 201,
+      "lifetime_request_slots": 231,
+      "lifetime_confirmed_sends": 215,
+      "lifetime_request_cap": 300,
+      "retained_historical_account_hold": 24000000
+    },
+    "registered_generation_phases_complete": false,
+    "quota_halted": true,
+    "latest_verified_used_points": 2097111,
+    "old_account_hold": 24000000,
+    "known_new_points": 126118,
+    "unknown_new_fee_keys": [
+      "r201/A/A/g0000/000019"
+    ],
+    "unknown_new_fee_holds": 410000,
+    "unknown_wire_keys": [
+      "r201/A/A/g0000/000005",
+      "r201/A/A/g0000/000006",
+      "r201/A/A/g0000/000009",
+      "r201/B/B/g0000/000001",
+      "r201/B/B/g0000/000002",
+      "r201/A/A/g0000/000016",
+      "r201/A/A/g0000/000019"
+    ],
+    "no_refill": true,
+    "generation_remaining": {
+      "A": 10,
+      "B": 20
+    }
+  },
+  "scope": "one paired exploration, fixed existing H/P0, scalar ID, train21 only; no generalization/stability inference"
+}
