@@ -1,0 +1,53 @@
+{
+  "prepared_at_utc": "2026-10-19T02:48:15.424700+00:00",
+  "status": "OFFLINE_VERIFIED_WAIT_PEER_COMPLETION",
+  "unique_executor": "this chat; codex/h-usage-space",
+  "seed": 501,
+  "new_model_requests": 0,
+  "new_training_evaluations": 0,
+  "account_or_billing_network_queries": 0,
+  "unit_checks_total": 10,
+  "evaluation_python_passed": 9,
+  "plot_only_check_passed_with_bundled_python": 1,
+  "offline_report_smoke": "five existing references only; no new evaluation or candidate generation",
+  "peer_run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018",
+  "peer_writer_lock_present": true,
+  "peer_complete": false,
+  "peer_arms": {
+    "A": {
+      "phase": "evolution",
+      "slots": 8,
+      "confirmed_sends": 8,
+      "cursor": 8,
+      "generation": 0,
+      "inflight": "A/g0000/000008"
+    },
+    "B": {
+      "phase": "not_started",
+      "slots": 0,
+      "confirmed_sends": 0,
+      "cursor": null,
+      "generation": null,
+      "inflight": null
+    }
+  },
+  "peer_request_slots": 8,
+  "peer_new_fee_unknown_keys": [],
+  "historical_hold_retained": 24000000,
+  "budget_binding_not_yet_registered": true,
+  "peer_evidence_sha256": {
+    "Final_budget_handoff.json": "382a3d563202053d91d525ac6977e1278ce32ee59ec4a7cacfcb1961e811c2da",
+    "Update_status.json": "a7f959263469b89e80121ab950ae28553de08ef3e65a11040a7a77e7597274f0",
+    "budget.json": "b420ef77fd7036ec93abdc91d186722b79ac8991f40e8f0c2993ff346868fbf9",
+    "platform_quota.json": "78db148e27991dd86eeab9235a9bb9afb966f5ba055d32ccc2aefde7648bec56"
+  },
+  "run_plan_sha256": "dba3309f4f1d3dae5f9498b9ef77f82bf3579e29107035c154770ad1c6d4bc44",
+  "next_stages": [
+    "check",
+    "register",
+    "grid",
+    "search",
+    "report"
+  ],
+  "runbook": "docs/H01_STATE_WEIGHT_SEARCH.md"
+}

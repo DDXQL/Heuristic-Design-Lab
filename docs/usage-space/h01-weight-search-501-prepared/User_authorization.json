@@ -1,0 +1,10 @@
+{
+  "approved": true,
+  "person": "DDXQL",
+  "source": "current user instruction 2026-10-19",
+  "max_new_requests": 20,
+  "scope": "fixed H0/H1 train21 seed501 N5 two generations; grid16 plus max20 new candidates",
+  "authorization_excerpt": "本条明确授权必要局部修改、离线检查、以下限定的本地评价及最多20次新增模型请求。",
+  "start_condition": "第一页完成、释放调用权并交付最终账本；全局预算及历史预留有效",
+  "pending_config_sha256": "05d5462132b1c6d0904f49aa8ab0ac6123e3902e2b4594529f0a4500cc8643cc"
+}
