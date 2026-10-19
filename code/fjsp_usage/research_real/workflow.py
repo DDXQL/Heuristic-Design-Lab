@@ -117,6 +117,8 @@ class Workflow:
             experiment=self.config, training_names=self.dataset.names['train'])
 
     def generate_h(self):
+        if self.config.fixed_h_source is not None:
+            raise ValueError('fixed H protocol cannot generate H; use bind-fixed-h')
         if self.config.conditional_research:
             raise ValueError('conditional fixed-H research does not generate a new H')
         self.assert_current()
@@ -270,6 +272,9 @@ class Workflow:
                 raise ValueError('receipt local response mismatch')
 
     def h_asset(self):
+        if self.config.fixed_h_source is not None:
+            from .fixed_h import h_asset
+            return h_asset(self)
         self.dataset.verify('train')
         if self.config.conditional_research:
             from .conditional_research import h_asset

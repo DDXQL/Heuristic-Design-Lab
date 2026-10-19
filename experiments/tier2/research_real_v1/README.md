@@ -28,6 +28,36 @@
 
 预算专项离线验证：`PYTHONPATH=code:tests .venv/bin/python -B -m unittest test_local_request_budget -v`（Mock Transport；手写 toy 评分不进入研究资产）。
 
+## 固定 H、单编号 U 的轻量执行入口（2026-10-20）
+
+**后续使用本目录的 `run.py`，新增第一步 `bind-fixed-h`；不使用历史 `run_single_fair.py` / `run_single_update.py` 续跑。** 仅有 `request_budget` 还不能复用旧 H：通用 H 加载器原本要求本批 H 生成账本。现在 `fixed_h_source` 显式绑定旧 `protocol.json` 和 `H_frozen.json`，在新 context 下创建来源引用，成员代码、编号、完整训练成绩、原生成凭证和人工审查逐字保留；原 H 资产哈希保存为 `source_H_hash`。新引用的封装哈希会因 context 改变，不代表重新生成或重新审查 H。
+
+[待授权配置](config.single.local.pending.json)保留完成批次 `single-ID-gpt61-fair-seed201-v2` 的模型、完整生成参数、v5-state-bounds 提示、七状态、单编号返回接口、种群/算子/评价设置：固定10H、seed201、N5、初始化≤20、四组各1代10槽位、交叉5父代/变异1父代、21train、15秒、总计≤60新请求。没有导入旧 U；新共享初始化供四组共用。B0/B1仍各 E1/E2/M1/M2/M3×2，B2/P仍各交叉5＋变异5。禁用 H 生成阶段，H 请求配额不再出现，其余请求和评价规模不变。
+
+配置中的 `fixed_h_source` 使用项目 `runs/` 下的来源目录名和两份文件 SHA256；实际 H 来自已完成公平小试，保留已有固定 H 研究用途及逐成员审查，不新填批准。只检查缓存凭证、数据清单、训练文件哈希和代码/运行环境兼容性，不重评 H；科研代码、数据、模型或提示不一致时拒绝复用。`request_budget.history_source` 则独立指向最新 A20/B10 暂停账本，只读继承累计231槽位/215确认发送；旧未知费用、预留和游标不变。核对时本批最大累计291/300，实际启动前还须通过本地跨 worktree 账本一致性检查；这不是费用或账户余额判断。
+
+`real_requests_authorized=false`：本文件不是新调用授权，本轮未创建真实新运行目录。获得新批次授权后，先从待授权文件保存**独立的已授权配置**并据实登记授权，所有阶段始终使用同一文件；不要先以 pending 配置创建运行协议，再在原目录改授权字段。以下 `config.single.local.authorized.json` 是届时保存的文件名，目前不存在；凭证仍由原 `LEAFAPI_API_KEY` 环境变量提供，本入口不加载或查询账户凭证元数据。
+
+```bash
+single_run=runs/single-ID-local-next-v1
+single_config=experiments/tier2/research_real_v1/config.single.local.authorized.json
+single_manifest=data/fjsp_manifest.json
+.venv/bin/python -B experiments/tier2/research_real_v1/run.py bind-fixed-h --run-dir "$single_run" --config "$single_config" --manifest "$single_manifest"
+.venv/bin/python -B experiments/tier2/research_real_v1/run.py initialize-u --run-dir "$single_run" --config "$single_config" --manifest "$single_manifest" --seed 201 --resume
+.venv/bin/python -B experiments/tier2/research_real_v1/run.py search-arm --run-dir "$single_run" --config "$single_config" --manifest "$single_manifest" --seed 201 --arm B0 --resume
+```
+
+仅在初始化得到5条完整有效 U 后继续；其余组用同一 `search-arm` 命令依次将 `--arm` 改为 B1、B2、P。初始化不足 N 停止，失败/重复占槽位，不补发。四组完成后执行：
+
+```bash
+.venv/bin/python -B experiments/tier2/research_real_v1/run.py search --run-dir "$single_run" --config "$single_config" --manifest "$single_manifest" --resume
+.venv/bin/python -B experiments/tier2/research_real_v1/run.py training-report --run-dir "$single_run" --config "$single_config" --manifest "$single_manifest" --resume
+```
+
+第一步只做本地绑定，初始化/演化阶段才会调用模型并运行训练评价；末尾 `search` 对已完成四组只核验检查点并封存完成凭证，`training-report` 是离线派生报告。这条流程不调用余额/账单接口、不重发已发送或状态不明请求，不调用 validation/test；恢复使用同一命令、相同配置/数据/源码及 `--resume`，不可迁移旧暂停批次。
+
+离线端到端验证：`PYTHONPATH=code:tests .venv/bin/python -B -m unittest test_fixed_h_local_workflow -v`。使用临时目录、10条手写合成 h、Mock 响应及独立 toy21；实际调用原候选解析、编译、调度、两次主排程、独立诊断、父代选择和生存选择。验证共享初始化、四组、完整成绩、完成后恢复零重发/零重评、未知 usage 及源文件不变；这些手写样例不是模型候选或研究效果证据。
+
 ## 环境与测试
 
 使用Python 3.12及项目虚拟环境。新检出可先建立环境；已有 `.venv` 时沿用：

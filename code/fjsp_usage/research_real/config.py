@@ -130,11 +130,15 @@ class ExperimentConfig:
     training_diagnostics: bool = False
     conditional_research: dict | None = None
     request_budget: dict | None = None
+    fixed_h_source: dict | None = None
 
     def __post_init__(self):
         if self.request_budget is not None:
             from .budget import validate_request_budget
             validate_request_budget(self)
+        if self.fixed_h_source is not None:
+            from .fixed_h import validate_source_declaration
+            validate_source_declaration(self)
         if type(self.training_diagnostics) is not bool:
             raise ValueError('training_diagnostics must be boolean')
         if self.conditional_research is not None:
@@ -279,8 +283,8 @@ class ExperimentConfig:
     def default_phase_caps(self):
         if (self.conditional_research or {}).get('version') == 'single-ID-update-frequency-v1':
             return {'r201/A':30,'r201/B':30}
-        result = {'H/init': self.H_initialization_cap,
-                  'H/search': self.H_generations * self.H_attempts}
+        result = {} if self.fixed_h_source is not None else {
+            'H/init': self.H_initialization_cap, 'H/search': self.H_generations * self.H_attempts}
         for seed in self.seeds:
             result[f'r{seed}/init'] = self.initialization_cap
             if self.conditional_research and self.conditional_research.get('model_migration'):
@@ -302,6 +306,8 @@ class ExperimentConfig:
         # Do not change serialized identities of any historical configuration.
         if self.request_budget is None:
             value.pop('request_budget')
+        if self.fixed_h_source is None:
+            value.pop('fixed_h_source')
         return value
 
     @classmethod

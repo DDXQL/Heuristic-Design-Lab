@@ -28,7 +28,7 @@ from fjsp_usage.research_real.budget import BudgetStop
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('stage', choices=('all-synthetic', 'preflight', 'prepare-research', 'freeze-conditional-h', 'training-report', 'prepare-continuation', 'generate-h', 'review-h', 'freeze-h',
+    parser.add_argument('stage', choices=('all-synthetic', 'preflight', 'bind-fixed-h', 'prepare-research', 'freeze-conditional-h', 'training-report', 'prepare-continuation', 'generate-h', 'review-h', 'freeze-h',
                                          'initialize-u', 'search-arm', 'search', 'select', 'freeze', 'test', 'report',
                                          'development-select','development-freeze','development-test','development-report'))
     parser.add_argument('--run-dir', type=Path, required=True)
@@ -84,7 +84,11 @@ def main():
             from fjsp_usage.research_real import development_acceptance
             from fjsp_usage.research_real import conditional_research
             from fjsp_usage.research_real.training_report import write_training_report
+            from fjsp_usage.research_real.fixed_h import bind_h, source_bundle
+            if config.fixed_h_source is not None:
+                source_bundle(ROOT, config, dataset)
             actions = {'generate-h': workflow.generate_h, 'search': workflow.search_all,
+                'bind-fixed-h': lambda: bind_h(workflow),
                 'prepare-research': lambda: conditional_research.prepare(workflow),
                 'freeze-conditional-h': lambda: conditional_research.freeze_h(workflow),
                 'training-report': lambda: write_training_report(workflow),

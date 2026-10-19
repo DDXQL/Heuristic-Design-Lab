@@ -1,0 +1,70 @@
+{
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "thinking": null,
+    "stream_response": true
+  },
+  "mode": "real",
+  "real_requests_authorized": false,
+  "H_size": 10,
+  "H_generations": 2,
+  "H_attempts": 10,
+  "H_initialization_cap": 100,
+  "H_seed": 7,
+  "population_size": 5,
+  "cross_parents": 5,
+  "mutation_parents": 1,
+  "attempts_per_generation": 10,
+  "generations": 1,
+  "initialization_cap": 20,
+  "seeds": [
+    201
+  ],
+  "instance_timeout": 15,
+  "review_timeout": 3.0,
+  "total_request_cap": 60,
+  "total_token_cap": null,
+  "platform_quota_ceiling": null,
+  "platform_quota_reservation": null,
+  "platform_quota_query_interval": 75.0,
+  "phase_request_caps": null,
+  "cost_cap_estimate": null,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "price_source": null,
+  "analysis": "mean_population_std_and_paired_differences_v1",
+  "purpose": "research",
+  "development_h_source": null,
+  "development_continuation_source": null,
+  "development_acceptance": null,
+  "training_diagnostics": true,
+  "conditional_research": null,
+  "request_budget": {
+    "version": "local-request-budget-v1",
+    "lifetime_request_cap": 300,
+    "history_source": {
+      "directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018",
+      "protocol_sha256": "b57858bed8c6159a3ca1f1df5dfd4467870ed3d01146b7522a0bef47d55f22ed",
+      "budget_sha256": "8e23ec5f4c8f8c92447c6d7b78a03ef2a2abb32c37f3357f68b507aba4d0ead9"
+    }
+  },
+  "fixed_h_source": {
+    "version": "fixed-H-single-ID-local-budget-v1",
+    "run": "single-ID-gpt61-fair-seed201-v2",
+    "protocol_sha256": "4913a93b8747a69ef33739a60b18b070ceedc5e7443f6ca1d37e824083d1617f",
+    "H_frozen_sha256": "e5ba8ed4b8f0e6567e62882cf8b75b59afdf17621601be9dade3d97c980afb4d"
+  }
+}
