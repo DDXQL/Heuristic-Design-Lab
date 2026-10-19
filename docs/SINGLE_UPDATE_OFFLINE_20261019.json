@@ -1,0 +1,36 @@
+{
+  "status": "offline preparation verified; no new model or account queries by these checks",
+  "date_Asia_Manila": "2026-10-19",
+  "run": "runs/single-ID-update-frequency-seed201-v1-20261018",
+  "protocol_file_sha256": "b57858bed8c6159a3ca1f1df5dfd4467870ed3d01146b7522a0bef47d55f22ed",
+  "registration_artifact": "bc61541d4a724ae4d1d8a5bc59a144622f91640c10d93217a30e0f02d045d6e5",
+  "H_source_artifact": "d3c722381d012d55d5005e2932931b25859c9e52b08462c0b4743e9f808a8d45",
+  "shared_source_artifact": "4e7a6a1e0fcb061e7843d7418fb9066ffab9d3180cb241166ff37c45c686f3b3",
+  "training_manifest_sha256": "45ccd4ff820b387f89fd1b4bbf4e714e8517d1f68578d7d65ac8ea720e6a42f2",
+  "tests": {
+    "count": 45,
+    "result": "passed",
+    "log_sha256": "1ec821482a9a74dec9deca67d27ed3a226728d7f89af08a0b5aaaeffea288825"
+  },
+  "source_identity_and_receipt_checks": "10 original H rows/review/order and 5 exact U rows/receipts/21 scores; no source reevaluation; exact train hashes and unchanged scheduler/state/scoring/P prompts",
+  "parameter_verification": "(5 CROSS,5 MUTATE)x3; A one final survival/B three updates; matching initial parent RNG; independent dedup; resume no replay; 60 native cap; no init phase",
+  "budget": {
+    "historical_slots": 201,
+    "historical_sends": 185,
+    "new_cap": 60,
+    "maximum_lifetime_slots": 261,
+    "lifetime_cap": 300,
+    "retained_unknown_points": 24000000,
+    "last_saved_used_points": 1970993,
+    "account_cap": 30000000,
+    "saved_headroom_before_new_risk": 4029007,
+    "notice": "Saved snapshot only; existing live quota/invoice guard must recheck before every paid send. No unknown reservation released."
+  },
+  "not_executed_yet": [
+    "new model generation",
+    "new candidate train evaluations",
+    "validation",
+    "test"
+  ],
+  "report_smoke": "Saved-record generator parsed registered zero-call directory and emitted CSV/PNG/SVG; not an experiment result"
+}

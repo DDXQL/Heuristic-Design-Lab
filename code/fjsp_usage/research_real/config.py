@@ -273,6 +273,8 @@ class ExperimentConfig:
                             self.H_initialization_cap, self.H_seed, self.instance_timeout)
 
     def default_phase_caps(self):
+        if (self.conditional_research or {}).get('version') == 'single-ID-update-frequency-v1':
+            return {'r201/A':30,'r201/B':30}
         result = {'H/init': self.H_initialization_cap,
                   'H/search': self.H_generations * self.H_attempts}
         for seed in self.seeds:
@@ -284,6 +286,8 @@ class ExperimentConfig:
         return result
 
     def search_arms(self):
+        if (self.conditional_research or {}).get('version') == 'single-ID-update-frequency-v1':
+            return ('A','B')
         return ('B0', 'B1', 'B2', 'P')
 
     def phase_caps(self):

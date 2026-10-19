@@ -1,0 +1,162 @@
+{
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "thinking": null,
+    "stream_response": true
+  },
+  "mode": "real",
+  "real_requests_authorized": false,
+  "H_size": 10,
+  "H_generations": 2,
+  "H_attempts": 10,
+  "H_initialization_cap": 100,
+  "H_seed": 7,
+  "population_size": 5,
+  "cross_parents": 5,
+  "mutation_parents": 1,
+  "attempts_per_generation": 10,
+  "generations": 3,
+  "initialization_cap": 5,
+  "seeds": [
+    201
+  ],
+  "instance_timeout": 15,
+  "review_timeout": 3.0,
+  "total_request_cap": 60,
+  "total_token_cap": null,
+  "platform_quota_ceiling": 30000000,
+  "platform_quota_reservation": 1000000,
+  "platform_quota_query_interval": 75.0,
+  "phase_request_caps": null,
+  "cost_cap_estimate": null,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "price_source": null,
+  "analysis": "mean_population_std_and_paired_differences_v1",
+  "purpose": "research",
+  "development_h_source": null,
+  "development_continuation_source": null,
+  "development_acceptance": null,
+  "training_diagnostics": true,
+  "conditional_research": {
+    "version": "single-ID-update-frequency-v1",
+    "source_run": "single-ID-gpt61-fair-seed201-v2",
+    "source_files_sha256": {
+      "protocol.json": "4913a93b8747a69ef33739a60b18b070ceedc5e7443f6ca1d37e824083d1617f",
+      "config.single.authorized.json": "cb4b023d3d5cb048b3a41e9feaaded4c06839e50abf3701e2fe6825f87fc35e4",
+      "H_frozen.json": "e5ba8ed4b8f0e6567e62882cf8b75b59afdf17621601be9dade3d97c980afb4d",
+      "r201/Shared_initial.json": "eb61a80ab965b69c76c4c8a28c4f726e327b85837a0d920ba9e868cb0b55c13b",
+      "r201/INIT/checkpoint.json": "498333b75d9f1066fe429b8e121b0fd27b71e7fb822b763c723e13543adbbb79",
+      "r201/INIT/budgeted_initial_requests.json": "74757615f9aedd83ec84c0c224626a92e188883c49529ed7fe6d843064fd9124",
+      "History_binding.json": "5a4b43cbba7fdff226147de03d75660040633451fd0cb5cf4820bece5843a4a8",
+      "Final_budget_handoff.json": "21eeb937649b20fed7f27d2a7f844bd8841f7095e8bbf90a0ea23c8e422f7a5b",
+      "budget.json": "9434ad4bfa9830f9f58cc84f0c9e485870bef4a4edd5f73358aa8c2f80aa55d9",
+      "platform_quota.json": "0bfd4c2da58fabd790ab9850ac9755d37019965d1a8b81ac58563b211fcd87ff",
+      "Metadata_global_pacing.json": "aa8ebaf57ca802871f80a8b8c970677983760a96ed43598af119017cbd07a370",
+      "Invoice_query_pacing.json": "e65b7fb069dec99af7439c622588db0db5f45757301b688420c9f6acc33ea89f"
+    },
+    "risk_policy": {
+      "basis": "conditional-engineering-envelope-not-certified-provider-bound",
+      "expression": "len <= 272000 ? tier(\"0_272k\", p * 2 + cr * 0.1 + cc * 2.5 + c * 10) : tier(\"272k_plus\", p * 4 + cr * 0.2 + cc * 5 + c * 15)",
+      "max_input_rate": 5,
+      "max_output_rate": 15,
+      "group": "codex-deafult",
+      "group_ratio": 0.5,
+      "quota_per_unit": 500000,
+      "safety_factor": 2,
+      "round_to_points": 1000,
+      "input_envelope_rule": "max(65536,utf8_prompt_bytes+4096)",
+      "output_envelope": 32768,
+      "max_per_request_points": 1000000
+    },
+    "scope_approval": {
+      "reviewer": "DDXQL",
+      "scope": "conditional-fixed-H-research",
+      "note": "User explicitly approved existing ten H for fixed-existing-H single-member four-arm conditional research, seed201 N5 initialization<=20 and each arm one generation ten slots, max60 new requests, training only. Original member technical reviews preserved without new technical approval claims.",
+      "source_H_sha256": "a3527deff8bfb63b0394ea2c1f4f24339f187a331eca4b0ab8dcfff6081fed3b",
+      "member_code_keys": [
+        "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+        "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+        "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+        "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+        "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+        "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+        "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+        "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+        "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+        "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03"
+      ]
+    },
+    "lifetime_request_cap": 300,
+    "history_binding": null,
+    "authorization": null,
+    "operator_cycle": [
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "CROSS",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE",
+      "MUTATE"
+    ],
+    "arm_search": {
+      "A": {
+        "generations": 1,
+        "attempts_per_generation": 30
+      },
+      "B": {
+        "generations": 3,
+        "attempts_per_generation": 10
+      }
+    },
+    "execution_order": [
+      [
+        "A",
+        10
+      ],
+      [
+        "B",
+        10
+      ],
+      [
+        "A",
+        20
+      ],
+      [
+        "B",
+        20
+      ],
+      [
+        "A",
+        30
+      ],
+      [
+        "B",
+        30
+      ]
+    ],
+    "historical_reference": {
+      "run": "single-ID-gpt61-paired-training-20261014-v1",
+      "files_sha256": {
+        "protocol.json": "5518744f83f3db061bc7177e9604d07ff9c333974a385b022b9543459e9e353b",
+        "r201/Shared_initial.json": "f513b4ea25bfe73cc86610a1ddab110401013a1025ba710ea293e6efda38e076"
+      }
+    }
+  }
+}

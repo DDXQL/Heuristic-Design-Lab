@@ -18,6 +18,9 @@ MIGRATION_VERSION = 'conditional-fixed-existing-H-model-migration-v2-20261014'
 
 def validate_declaration(config):
     d = config.conditional_research
+    if isinstance(d,dict) and d.get('version')=='single-ID-update-frequency-v1':
+        from .single_update import validate_declaration as validate_update
+        return validate_update(config)
     if isinstance(d, dict) and d.get('version') == 'single-ID-fixed-H-fair-v2':
         from .single_fair import validate_declaration as validate_fair
         return validate_fair(config)
@@ -127,6 +130,9 @@ def check_origin(root, config, dataset):
 
 
 def history_summary(root, config):
+    if config.conditional_research.get('version')=='single-ID-update-frequency-v1':
+        from .single_fair import history_summary as bound_history
+        return bound_history(root,config)
     """Keep every unknown wire reservation; only final invoices settle account holds."""
     if config.conditional_research.get('version') == 'single-ID-fixed-H-fair-v2':
         from .single_fair import history_summary as fair_history
@@ -263,6 +269,9 @@ def dispatch_check(flow):
 
 
 def budget_check(ledger,key,phase):
+    if ledger.config.conditional_research.get('version')=='single-ID-update-frequency-v1':
+        from .single_fair import budget_check as bound_budget_check
+        return bound_budget_check(ledger,key,phase)
     if ledger.config.conditional_research.get('version') == 'single-ID-fixed-H-fair-v2':
         from .single_fair import budget_check as fair_budget
         return fair_budget(ledger, key, phase)

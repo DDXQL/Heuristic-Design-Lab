@@ -375,3 +375,38 @@ PYTHONPATH=code:tests .venv/bin/python -B -m unittest \
 ```
 
 新测试的“21行评价”“45次调用”是内存手写fixture，不调用模型或真实求解器，不进入真实P₀，不是本批真实结果。测试没有重新运行基准H评价。数值和状态证据见根目录`docs/SINGLE_FAIR_OFFLINE_20261015.json`。
+
+## 等预算更新频率配对小试 v1（2026-10-19）
+
+入口 [run_single_update.py](run_single_update.py)，配置 [config.single.update-frequency.pending.json](config.single.update-frequency.pending.json)。新目录 `runs/single-ID-update-frequency-seed201-v1-20261018/`；名称保留最初准备日期，实际登记/发送时间以记录为准。复用公平四组v2的10H和完整评价的同一5条P₀，不生成初始化、不重评已有一致H/U、不导入旧冠军。固定原P特化提示、七状态、单编号接口、21train、15秒期限、生成参数及选拔规则。
+
+唯一主要变量：A在30次中冻结P₀，第30次后选拔一次；B每10次选拔更新，三轮。两组各自严格采用`(CROSS×5,MUTATE×5)×3`，从相同父代随机状态开始，独立去重；真实执行交替A10/B10/A20/B20/A30/B30。全局最多60次新增请求，失败/重复占槽位，无补员。配置中的通用初始化上限5只满足原SearchConfig构造约束，本协议没有初始化预算阶段，入口禁止新初始化调用。
+
+第10/20/30次保存`Milestone_*.json`。A在10/20时“已发现最佳”和“观察top5”不进入实际父代池；报告必须区分实际池均值与观察top5均值。冠军突破是主要判据，均值改善不替代冠军改善。H0/初始最佳−2.111804961；旧冻结冠军−2.070427514只作带来源参照，未导入、未重评。单次配对探索不支持稳定性或泛化结论。
+
+```sh
+# 纯离线首次准备/登记；authorization必须绑定实际本批用户许可和准备配置digest。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_update.py prepare \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
+  --config experiments/tier2/research_real_v1/config.single.update-frequency.pending.json
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_update.py register \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
+  --authorization runs/single-ID-update-frequency-seed201-v1-20261018/Current_task_approval.json
+# 离线检查；不能在writer活跃时运行。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_update.py check \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018
+# 原批唯一启动/续接命令：先查PID/锁；活跃时不得再启动。
+.venv/bin/python -B -u experiments/tier2/research_real_v1/run_single_update.py execute \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
+  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local
+# 仅对可归属账单执行原恢复机制，查询元数据，不发送生成请求。
+.venv/bin/python -B experiments/tier2/research_real_v1/run_single_update.py recover \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
+  --env-file ../FJSP-Heuristic-Research/.env.leafapi.local
+# caller退出后，仅保存记录生成表图；不重评、不联网。
+python3 tools/report_single_update.py \
+  --run-dir runs/single-ID-update-frequency-seed201-v1-20261018 \
+  --out-dir reports/20261019-single-update-frequency
+```
+
+累计历史201槽位/185确认发送，当前批最多累计261槽位；继承两笔历史未知及2400万点占用、300槽位和3000万点账户边界。沿用metadata≥30秒、账单≥150秒节流、完整响应先保存、故障停发和原游标恢复。公开费率只是风险依据，不是实际费用；实际费用须账单核实。旧批未用初始化额度不转移。prepare/register/check不创建模型客户端、不访问账单、不运行排程。登记后冻结代码/提示/配置/训练哈希；不修改旧批协议来续跑。

@@ -30,6 +30,12 @@ class FairTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config=pending_config(ROOT,'single-ID-gpt61-paired-training-20261014-v1')
+        # Exercise the old registration under its archived implementation
+        # identity. New-version config routing intentionally invalidates a live
+        # old-run fingerprint; production gates are never relaxed for this.
+        snapshot=json.loads((ROOT/'runs'/cls.config.conditional_research['source_run']/'protocol.json').read_text())['implementation']
+        cls.source_snapshot_patch=patch('fjsp_usage.research_real.single_fair.fingerprint',return_value=snapshot)
+        cls.source_snapshot_patch.start();cls.addClassCleanup(cls.source_snapshot_patch.stop)
         cls.dataset=StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode='real')
         cls.docs,cls.members=source_bundle(ROOT,cls.config,cls.dataset)
         cls.expected=dict(cls.docs['Worktree_binding.json']['real_budget_inventory'])
@@ -105,6 +111,12 @@ class FairTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'semantics differ'):source_bundle(ROOT,changed,self.dataset)
         caps=self.config.default_phase_caps();caps['r201/init']=10
         with self.assertRaises(ValueError):replace(self.config,phase_request_caps=caps)
+
+    def test_old_identity_rejects_new_config_routing_without_snapshot_fixture(self):
+        from fjsp_usage.research_real.config import fingerprint
+        with patch('fjsp_usage.research_real.single_fair.fingerprint',return_value=fingerprint(ROOT)):
+            with self.assertRaisesRegex(ValueError,'semantic change'):
+                source_bundle(ROOT,self.config,self.dataset)
 
     def test_offline_registration_rebinds_H_but_does_not_copy_old_U_or_create_client(self):
         with tempfile.TemporaryDirectory() as tmp,patch.object(Workflow,'train_eval',side_effect=AssertionError('NO H REEVALUATION')),\
