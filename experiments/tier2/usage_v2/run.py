@@ -69,7 +69,7 @@ def offline_prepare(directory,config):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=('prepare','local-preflight','synthetic-acceptance','freeze-h','initialize','search-arm','search','report','examples','compatibility'))
+    p.add_argument('stage',choices=('prepare','local-preflight','bind-h','synthetic-acceptance','freeze-h','initialize','search-arm','search','report','examples','compatibility'))
     p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--config',type=Path)
     p.add_argument('--seed',type=int,default=301);p.add_argument('--arm',choices=('A','B'))
     args=p.parse_args();directory=args.run_dir.resolve()
@@ -105,7 +105,9 @@ def main():
         if args.stage=='compatibility':
             from fjsp_usage.usage_v2.compatibility import audit
             result=audit(flow)
-        elif args.stage=='freeze-h':result=freeze_h(flow)
+        elif args.stage=='bind-h':result=flow.bind_fixed_h()
+        elif args.stage=='freeze-h':
+            result=flow.bind_fixed_h() if config.request_budget is not None else freeze_h(flow)
         elif args.stage=='initialize':result=flow.initialize_u(args.seed)
         elif args.stage=='search-arm':
             if not args.arm:p.error('--arm required')

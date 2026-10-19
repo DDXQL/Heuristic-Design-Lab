@@ -17,11 +17,18 @@ class UsageWorkflow(Workflow):
     _protocol=staticmethod(protocol)
 
     def h_asset(self):
+        if self.config.request_budget is not None:
+            from .fixed_h import load
+            return load(self)
         if self.config.mode=='real':return super().h_asset()
         asset=self.read('Handwritten_H_fixture.json','Handwritten_H_fixture')
         members=tuple(checked_candidate(m,'h') for m in asset['members'])
         if len(members)!=self.config.H_size:raise ValueError('fixture H size mismatch')
         return asset,members
+
+    def bind_fixed_h(self):
+        from .fixed_h import bind
+        return bind(self)[0]
 
     def train_eval(self,candidate,members,*,allowed_modes=(0,)):
         self.dataset.verify('train')
@@ -144,7 +151,14 @@ class UsageWorkflow(Workflow):
                         'failed_evaluation_count':sum(not r.get('valid',False) for r in results),
                         'missing_failed_solve_costs':'unknown; partial successful-row totals do not include uncertified failed solve/recheck pairs'}
                 (initial if arm=='INIT' else entries).append(record)
-        if self.config.mode=='real':
+        if self.config.request_budget is not None:
+            history=self.ledger.request_history()
+            fixed=[]
+            if (self.directory/'H_frozen.json').exists():
+                H,_=self.h_asset()
+                fixed=[{'source_row':row,'result':row['training_result'],'reused':True,
+                        'source_H_hash':H['source_hash']} for row in H['members']]
+        elif self.config.mode=='real':
             from fjsp_usage.research_real.conditional_research import history_summary
             history=history_summary(self.project_root,self.config)
             fixed=self.read('Conditional_H_reassessment.json','Conditional_H_reassessment')['rows'] if (self.directory/'Conditional_H_reassessment.json').exists() else []

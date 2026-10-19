@@ -14,6 +14,7 @@ class UsageConfig(ExperimentConfig):
     action_score_normalization: str=NORMALIZATION
     history_rule: str=HISTORY
     usage_experiment_version: str='SELECT-vs-SELECT-or-MIX-train-v1-20261012'
+    fixed_h_source: dict | None=None
 
     def search_arms(self):return ARMS
     def default_phase_caps(self):
@@ -21,6 +22,9 @@ class UsageConfig(ExperimentConfig):
             [(f'r{s}/init',self.initialization_cap)]+[(f'r{s}/{a}',self.generations*self.attempts_per_generation) for a in ARMS]}
     def __post_init__(self):
         super().__post_init__()
+        if self.fixed_h_source is not None:
+            from .fixed_h import validate_declaration
+            validate_declaration(self)
         expected_version=LOCAL_REQUEST_EXPERIMENT if self.request_budget is not None else 'SELECT-vs-SELECT-or-MIX-train-v1-20261012'
         if (self.u_interface_version!=VERSION or type(self.max_active_members) is not int or self.max_active_members!=2
                 or self.action_score_normalization!=NORMALIZATION or self.history_rule!=HISTORY
@@ -34,6 +38,10 @@ class UsageConfig(ExperimentConfig):
     def allowed_modes(self,arm):
         if arm not in ('INIT',*ARMS): raise ValueError('unknown paired arm')
         return (0,1) if arm=='B' else (0,)
+    def payload(self):
+        value=super().payload()
+        if self.fixed_h_source is None:value.pop('fixed_h_source')
+        return value
 
 
 def protocol(config,dataset,implementation):
