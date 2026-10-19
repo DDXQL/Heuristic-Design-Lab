@@ -133,6 +133,41 @@ def build(run,out,*,charts=True):
         'source_shared_initial_hash':shared['source_shared_hash'],'protocol_sha256':sha(run/'protocol.json'),
         'budget_sha256':sha(run/'budget.json'),'budget_handoff':read(run/'Final_budget_handoff.json'),
         'scope':'one paired exploration, fixed existing H/P0, scalar ID, train21 only; no generalization/stability inference'}
+    # Production completion proof binds saved native artifacts, not a report's
+    # optimistic status. Handwritten report fixtures deliberately lack seals.
+    if summary['complete'] and protocol.get('version'):
+        from fjsp_usage.research_real.assets import check_seal
+        from fjsp_usage.research.protocol import digest
+        context=digest(protocol);proof={}
+        for name,kind in [('H_frozen.json','H_frozen'),('r201/Shared_initial.json','Shared_initial')]:
+            check_seal(read(run/name),kind=kind,mode='real',context=context);proof[name]=sha(run/name)
+        for arm in ('A','B'):
+            s=states[arm];assert s['inflight'] is None and len(s['attempts'])==30
+            assert [x['operator'] for x in s['attempts']]==(['CROSS']*5+['MUTATE']*5)*3
+            for x in s['attempts']:
+                assert len(set(x['parents']))==(5 if x['operator']=='CROSS' else 1)
+                if arm=='A':assert set(x['parents'])<=init_ids
+            final=read(run/f'r201/{arm}/Final_population.json')
+            check_seal(final,kind='Final_population',mode='real',context=context)
+            assert [x['id'] for x in final['population']]==[x['id'] for x in s['population']]
+            assert final['shared_initial_hash']==shared['artifact_sha256']
+            for name in ('checkpoint.json','budgeted_evolution_requests.json','Final_population.json',
+                         'Milestone_10.json','Milestone_20.json','Milestone_30.json'):
+                rel=f'r201/{arm}/'+name;proof[rel]=sha(run/rel)
+        for r in requests:
+            import hashlib
+            if not r['confirmed_sent']:continue
+            rel='wire_responses/'+hashlib.sha256(r['global_key'].encode()).hexdigest()+'.json'
+            w=read(run/rel);assert w['send_confirmed'] and w['global_key']==r['global_key']
+            proof[rel]=sha(run/rel)
+            if w['status']=='wire_completed_before_settlement':
+                journal=read(run/f'r201/{r["arm"]}/budgeted_evolution_requests.json')['requests'][r['id']]
+                assert w['reply']['text']==journal['text'] and w['reply']['usage']==journal['usage']
+        for name in ('protocol.json','budget.json','History_binding.json','Final_budget_handoff.json'):
+            proof[name]=sha(run/name)
+        dump(out/'completion_verification.json',{'complete':True,'source_files_sha256':proof,
+            'actual_requests':summary['actual_requests'],'known_points':summary['known_points'],
+            'unknown_fees':summary['unknown_fee_ids'],'no_new_requests_or_evaluations':True})
     dump(out/'summary.json',summary)
     lines=['# 等预算更新频率对照：真实结果','',summary['scope'],'',
         'A30次期间只用P₀作父代，第30次后选拔；B每10次选拔更新。两组均采用原P特化提示及同一全局(5交叉+5变异)×3，交叉5个不同父代、变异1父代。父代选择初始RNG相同，去重独立；执行顺序预登记为A10/B10/A20/B20/A30/B30。云模型结果不保证相同。','',
