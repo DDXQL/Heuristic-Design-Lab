@@ -91,10 +91,16 @@ def build(run,out,*,charts=True):
     csvfile(out/'populations.csv',populations,['arm','id','fitness','from_initial'])
     champions={'H0':H['members'][0]['training_result'],'INITIAL':initial_best['training_result'],'OLD_FROZEN':old['row']['training_result']}
     champion_ids={'H0':'fixed-h0','INITIAL':initial_best['id'],'OLD_FROZEN':old['row']['id']}
+    champion_keys={'H0':H['members'][0].get('candidate',{}).get('key'),
+        'INITIAL':initial_best['candidate']['key'],'OLD_FROZEN':old['row']['candidate']['key']}
+    champion_origins={'H0':H.get('source_run'),'INITIAL':shared.get('source_run'),
+        'OLD_FROZEN':old.get('source',{}).get('run')}
     for arm in ('A','B'):
         if states[arm].get('phase')=='completed':
             best=sorted(states[arm]['population'],key=lambda x:(-x['fitness'],x['id']))[0]
             champions[arm]=best.get('training_result') or evals[best['id']];champion_ids[arm]=best['id']
+            champion_keys[arm]=best['candidate']['key']
+            champion_origins[arm]=shared.get('source_run') if best['id'] in init_ids else run.name
     pairs=[];diffs=[]
     for a,b in [('B','A'),('A','H0'),('B','H0'),('A','OLD_FROZEN'),('B','OLD_FROZEN')]:
         if a not in champions or b not in champions:continue
@@ -106,7 +112,7 @@ def build(run,out,*,charts=True):
             'A_wins':sum(x['A_minus_B_makespan']<0 for x in rows),'ties':sum(x['A_minus_B_makespan']==0 for x in rows),'A_losses':sum(x['A_minus_B_makespan']>0 for x in rows)})
     csvfile(out/'paired_instances.csv',diffs,['A','B','file','A_makespan','B_makespan','A_minus_B_makespan','A_minus_B_score'])
     csvfile(out/'paired_summary.csv',pairs,['A','B','fitness_difference','A_wins','ties','A_losses'])
-    csvfile(out/'champion_instances.csv',[{'label':g,'id':champion_ids[g],'fitness':e['fitness'],**{k:x.get(k) for k in ['file','makespan','lower_bound','score','feasible','single_solve_seconds','deterministic_recheck_seconds','diagnostic_replay_seconds']}} for g,e in champions.items() for x in e['instances']])
+    csvfile(out/'champion_instances.csv',[{'label':g,'source_run':champion_origins[g],'id':champion_ids[g],'code_key':champion_keys[g],'fitness':e['fitness'],**{k:x.get(k) for k in ['file','makespan','lower_bound','score','feasible','single_solve_seconds','deterministic_recheck_seconds','diagnostic_replay_seconds']}} for g,e in champions.items() for x in e['instances']])
     chain=next((x for x in lineage if x['arm']=='B' and x['parent_is_new']),None)
     if chain:
         folder=run/'r201/B';journal=read(folder/'budgeted_evolution_requests.json')['requests']
@@ -127,7 +133,8 @@ def build(run,out,*,charts=True):
             '提示与响应均直接导出自原journal；完整评价及源文件哈希见evidence.json。'
             '被选作父代本身不证明后代更强，须结合后代实际评价。\n')
     summary={'run':run.name,'complete':all(states[a].get('phase')=='completed' for a in ('A','B')),
-        'milestones':milestones,'champions':{k:{'id':champion_ids[k],'fitness':v['fitness']} for k,v in champions.items()},
+        'milestones':milestones,'champions':{k:{'id':champion_ids[k],'source_run':champion_origins[k],
+            'code_key':champion_keys[k],'fitness':v['fitness']} for k,v in champions.items()},
         'comparison':pairs,'actual_requests':sum(r['confirmed_sent'] for r in requests),
         'known_points':sum(r['actual_platform_points'] for r in requests if r['actual_platform_points'] is not None),
         'unknown_fee_ids':[r['id'] for r in requests if r['confirmed_sent'] and r['actual_platform_points'] is None],
