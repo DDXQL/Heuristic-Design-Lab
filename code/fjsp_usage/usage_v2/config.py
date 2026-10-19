@@ -6,6 +6,7 @@ from .prompts import prompt_manifest
 from . import VERSION,LANGUAGE,NORMALIZATION,HISTORY
 
 ARMS=('A','B')
+LOCAL_REQUEST_EXPERIMENT='SELECT-vs-SELECT-or-MIX-local-requests-v1'
 @dataclass(frozen=True)
 class UsageConfig(ExperimentConfig):
     u_interface_version: str=VERSION
@@ -20,15 +21,16 @@ class UsageConfig(ExperimentConfig):
             [(f'r{s}/init',self.initialization_cap)]+[(f'r{s}/{a}',self.generations*self.attempts_per_generation) for a in ARMS]}
     def __post_init__(self):
         super().__post_init__()
+        expected_version=LOCAL_REQUEST_EXPERIMENT if self.request_budget is not None else 'SELECT-vs-SELECT-or-MIX-train-v1-20261012'
         if (self.u_interface_version!=VERSION or type(self.max_active_members) is not int or self.max_active_members!=2
                 or self.action_score_normalization!=NORMALIZATION or self.history_rule!=HISTORY
-                or self.usage_experiment_version!='SELECT-vs-SELECT-or-MIX-train-v1-20261012'
+                or self.usage_experiment_version!=expected_version
                 or self.development_h_source or self.development_continuation_source or self.development_acceptance):
             raise ValueError('usage-v2 protocol must use explicit fixed semantics, never old development continuation')
-        if self.mode=='real' and (not self.conditional_research or len(self.seeds)!=1 or self.population_size!=5
+        if self.mode=='real' and ((not self.conditional_research and self.request_budget is None) or len(self.seeds)!=1 or self.population_size!=5
                 or self.cross_parents!=5 or self.mutation_parents!=1 or self.initialization_cap!=20
                 or self.generations!=1 or self.attempts_per_generation!=10 or self.total_request_cap!=40):
-            raise ValueError('real pilot requires conditional H, N5, init20, one seed, one generation of ten slots per arm, cap40')
+            raise ValueError('real pilot requires explicit conditional/local protocol, N5, init20, one seed, one generation of ten slots per arm, cap40')
     def allowed_modes(self,arm):
         if arm not in ('INIT',*ARMS): raise ValueError('unknown paired arm')
         return (0,1) if arm=='B' else (0,)

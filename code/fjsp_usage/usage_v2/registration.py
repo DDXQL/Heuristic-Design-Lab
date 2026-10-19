@@ -239,6 +239,10 @@ class SerialTransport:
 
 class RegisteredUsageWorkflow(UsageWorkflow):
     def client(self):
+        if self.config.request_budget is not None:
+            # Explicit new protocol only. Never consult old V22 invoice/access
+            # bindings or reinterpret a paused legacy run.
+            return super().client()
         if self._client is None:
             binding = self.read('V22_binding.json', 'V22_binding')
             guard = SerialGuard(self, binding); guard.check()

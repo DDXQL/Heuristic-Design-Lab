@@ -129,8 +129,12 @@ class ExperimentConfig:
     development_acceptance: dict | None = None
     training_diagnostics: bool = False
     conditional_research: dict | None = None
+    request_budget: dict | None = None
 
     def __post_init__(self):
+        if self.request_budget is not None:
+            from .budget import validate_request_budget
+            validate_request_budget(self)
         if type(self.training_diagnostics) is not bool:
             raise ValueError('training_diagnostics must be boolean')
         if self.conditional_research is not None:
@@ -288,7 +292,11 @@ class ExperimentConfig:
         return dict(self.phase_request_caps or self.default_phase_caps())
 
     def payload(self):
-        return asdict(self)
+        value = asdict(self)
+        # Do not change serialized identities of any historical configuration.
+        if self.request_budget is None:
+            value.pop('request_budget')
+        return value
 
     @classmethod
     def from_dict(cls, value):

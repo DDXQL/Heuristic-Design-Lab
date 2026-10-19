@@ -42,14 +42,18 @@ class InvoicePacer:
 
 class WireRecorder:
     """Commit the complete normalized reply before quota/invoice GETs happen."""
-    def __init__(self, inner, directory):
+    def __init__(self, inner, directory, verify=None):
         self.inner, self.directory = inner, Path(directory)
+        self.verify = verify
         self.config, self.identity, self.secret, self.redact = inner.config, inner.identity, inner.secret, inner.redact
         self.directory.mkdir(exist_ok=True)
 
-    def preflight(self, prompt): return self.inner.preflight(prompt)
+    def preflight(self, prompt):
+        if self.verify is not None: self.verify()
+        return self.inner.preflight(prompt)
 
     def dispatch(self, key, prompt, *, kind='U', on_sent=lambda:None):
+        if self.verify is not None: self.verify()
         path = self.directory / (hashlib.sha256(key.encode()).hexdigest() + '.json')
         if path.exists(): raise BudgetStop('wire recorder forbids sent or uncertain request replay')
         record = {'global_key': key, 'prompt_key': digest({'prompt':prompt, 'kind':kind}),

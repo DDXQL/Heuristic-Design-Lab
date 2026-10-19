@@ -36,6 +36,8 @@ def pending_config():
 
 
 def offline_prepare(directory,config):
+    if config.request_budget is not None:
+        raise ValueError('local-budget protocols use local-preflight; old conditional H preparation is not migrated')
     dataset=StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode='real')
     with RunLock(directory),patch('fjsp_usage.research_real.workflow.JsonCandidateTransport',side_effect=AssertionError('offline prepare forbids provider creation')):
         flow=UsageWorkflow(directory,config=config,dataset=dataset,project_root=ROOT)
@@ -67,10 +69,22 @@ def offline_prepare(directory,config):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=('prepare','synthetic-acceptance','freeze-h','initialize','search-arm','search','report','examples','compatibility'))
+    p.add_argument('stage',choices=('prepare','local-preflight','synthetic-acceptance','freeze-h','initialize','search-arm','search','report','examples','compatibility'))
     p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--config',type=Path)
     p.add_argument('--seed',type=int,default=301);p.add_argument('--arm',choices=('A','B'))
     args=p.parse_args();directory=args.run_dir.resolve()
+    if args.stage=='local-preflight':
+        if directory.exists():p.error('local-preflight requires a new independent run directory')
+        if not args.config:p.error('explicit new local-budget --config required')
+        if directory.parent!=ROOT/'runs':p.error('new direct project runs child required')
+        config=UsageConfig.from_dict(json.loads(args.config.read_text()))
+        if config.request_budget is None:p.error('local-preflight requires explicit request_budget')
+        dataset=StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode=config.mode)
+        with RunLock(directory):
+            flow=UsageWorkflow(directory,config=config,dataset=dataset,project_root=ROOT)
+            print(json.dumps({'budget':flow.ledger.summary(),'model_requests':0,
+                'metadata_queries':0,'instances_opened':dataset.opened},ensure_ascii=False))
+        return
     if args.stage in ('prepare','synthetic-acceptance','examples'):
         if directory.exists():p.error('create a new directory; never overwrite existing run assets')
         if args.stage=='synthetic-acceptance':
