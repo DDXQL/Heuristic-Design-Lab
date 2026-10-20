@@ -1,0 +1,26 @@
+{
+  "budget_policy": "batch-api-attempts-v1",
+  "logical_candidate_cap": 20,
+  "logical_candidates": 20,
+  "api_attempt_cap": 30,
+  "logical_candidate_cap_reached": true,
+  "api_attempt_cap_exhausted": false,
+  "api_attempts_consumed": 20,
+  "per_candidate_attempt_cap": 3,
+  "confirmed_sends": 20,
+  "attempt_statuses": {
+    "completed": 20
+  },
+  "logical_statuses": {
+    "completed": 20
+  },
+  "known_input_tokens": 53502,
+  "known_output_tokens": 6097,
+  "unknown_usage_attempts": 0,
+  "actual_cost": null,
+  "actual_cost_status": "unknown; no account, tariff or invoice queries",
+  "global_history_gate": false,
+  "cross_worktree_lock_gate": false,
+  "stop_reason": null,
+  "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+}

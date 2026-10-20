@@ -1,0 +1,26 @@
+{
+  "global_key": "r501/B/B/g0001/000005/attempt/01",
+  "prompt_key": "41c8b5870816fdaa4af4400319009559b249de8c660430ece6380e43309baa9a",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent increases H0’s weight with relative remaining-work dispersion and shifts toward H1 as progress increases when dispersion is low. The main modification replaces relative dispersion with twice the normalized remaining-work standard deviation, testing whether H0’s remaining-work emphasis should depend on imbalance relative to the instance’s fixed scale rather than imbalance relative to shrinking unfinished work, while retaining the parent’s progress-dependent blend.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    dispersion = 2.0 * remaining_work_std\n    early_alpha = 0.5 + 0.25 * dispersion\n    late_alpha = 0.25 + 0.5 * dispersion\n    alpha = (1.0 - progress) * early_alpha + progress * late_alpha\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 2464,
+      "output_tokens": 348
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "202610201508369105391418268d9d6PWLNIeJ5",
+      "date": "Tue, 20 Oct 2026 15:08:42 GMT",
+      "gateway_request_id": "202610201508369105391418268d9d6PWLNIeJ5",
+      "reasoning_tokens": 125,
+      "id": "resp_02ac00cb3bc73775016ad783f55ef08196a5068fbe9253b051",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

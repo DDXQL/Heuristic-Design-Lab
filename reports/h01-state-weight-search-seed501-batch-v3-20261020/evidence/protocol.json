@@ -1,0 +1,81 @@
+{
+  "version": "H01-alpha-search-seed501-batch-retry-v3-20261020",
+  "config": {
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "output_token_reservation": 32768,
+      "max_prompt_bytes": 262144,
+      "input_token_reservation": 65536,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "thinking": null,
+      "stream_response": true
+    },
+    "mode": "real",
+    "real_requests_authorized": true,
+    "H_size": 10,
+    "H_generations": 2,
+    "H_attempts": 10,
+    "H_initialization_cap": 100,
+    "H_seed": 7,
+    "population_size": 5,
+    "cross_parents": 5,
+    "mutation_parents": 1,
+    "attempts_per_generation": 10,
+    "generations": 2,
+    "initialization_cap": 5,
+    "seeds": [
+      501
+    ],
+    "instance_timeout": 15,
+    "review_timeout": 3.0,
+    "total_request_cap": 20,
+    "total_token_cap": null,
+    "platform_quota_ceiling": null,
+    "platform_quota_reservation": null,
+    "platform_quota_query_interval": 75.0,
+    "phase_request_caps": {
+      "r501/B": 20
+    },
+    "cost_cap_estimate": null,
+    "input_price_per_million": null,
+    "output_price_per_million": null,
+    "price_source": null,
+    "analysis": "mean_population_std_and_paired_differences_v1",
+    "purpose": "research",
+    "development_h_source": null,
+    "development_continuation_source": null,
+    "development_acceptance": null,
+    "training_diagnostics": false,
+    "conditional_research": null,
+    "request_budget": {
+      "version": "batch-api-attempts-v1",
+      "logical_candidate_cap": 20,
+      "api_attempt_cap": 30,
+      "per_candidate_attempt_cap": 3,
+      "retry_backoff_seconds": [
+        2,
+        5
+      ]
+    },
+    "experiment_version": "H01-alpha-search-seed501-batch-retry-v3-20261020",
+    "fixed_h_source": {
+      "version": "usage-frozen-H-source-v1",
+      "directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v22-gpt61-select-mix-301-20261014-v1",
+      "files_sha256": {
+        "protocol.json": "19e2e83106532c1e7ef2a5dd54891247c23bafe0232dd5cdd3340eb84777eeb9",
+        "H_frozen.json": "2c11510d3ced58aa7aeb3b15103f12b4c1f4d0ba9a2f2b06ad14af0ac0e823e1",
+        "Conditional_H_reassessment.json": "b70626ac9da769e0bbf329c3dd7ebe33a0879d3100e2502425b3c474941cb4ab"
+      }
+    }
+  },
+  "plan_sha256": "e2b2669512ca6c97e94cbe616dbfd5a84ed24222eb38896f40a810987c51a98a"
+}

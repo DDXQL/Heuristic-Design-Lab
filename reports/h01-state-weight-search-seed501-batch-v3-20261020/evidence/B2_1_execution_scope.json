@@ -1,0 +1,19 @@
+{
+  "stage": "B2-1 B–E",
+  "person": "DDXQL",
+  "source": "explicit authorization in current user message",
+  "statement": "现明确授权执行 B2-1 的阶段 B–E，包括静态网格补全、两代 LLM 自动演化和完整结果分析。",
+  "scope": {
+    "static_remaining": 16,
+    "logical_candidates": 20,
+    "api_attempts": 30,
+    "per_candidate_attempts": 3,
+    "generations": 2,
+    "seed": 501,
+    "train_only": true,
+    "account_price_invoice_queries": false
+  },
+  "scientific_protocol_unchanged": true,
+  "starting_commit": "0b6432d970ab2b3cceb690f8a0afadab570033e7",
+  "plan_sha256": "e2b2669512ca6c97e94cbe616dbfd5a84ed24222eb38896f40a810987c51a98a"
+}

@@ -1,0 +1,26 @@
+{
+  "global_key": "r501/B/B/g0000/000003/attempt/01",
+  "prompt_key": "fb8af8b7b570c3e0612244fc53ccd51cb339f95ff58684ecd5097279f5062ad7",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{This combines Parent 1’s H0-heavy weighting with Parent 0’s H1-heavy weighting, using Parent 3’s balanced blend as the initial reference when remaining workloads are equal. Greater relative remaining-work dispersion shifts weight toward H0’s positive workload preference, while increasing operation-count progress shifts toward H1’s preference for smaller finish-plus-tail estimates. These state-dependent choices are hypotheses for external complete-schedule evaluation, not established local advantages.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    alpha = 0.25 + 0.5 * (1.0 - progress) * (0.5 + 0.5 * dispersion)\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 2759,
+      "output_tokens": 400
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "202610201456494479303148268d9d6kmYOBWQ4",
+      "date": "Tue, 20 Oct 2026 14:56:55 GMT",
+      "gateway_request_id": "202610201456494479303148268d9d6kmYOBWQ4",
+      "reasoning_tokens": 180,
+      "id": "resp_08be1e1c1b4a98bf016ad78131d5dc81908d1e151b590a8907",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

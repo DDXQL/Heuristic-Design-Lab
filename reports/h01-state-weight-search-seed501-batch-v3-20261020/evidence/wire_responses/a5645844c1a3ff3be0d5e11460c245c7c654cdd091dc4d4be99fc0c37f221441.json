@@ -1,0 +1,25 @@
+{
+  "global_key": "r501/B/B/g0001/000004/attempt/01",
+  "prompt_key": "893dc66955c3b76dca4c1bdd3e06ec046d2409237a0ee16547a0b6602b1edcc4",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{Parents 2 and 4 increase H0’s weight with remaining-work dispersion, consistent with H0 rewarding larger remaining work while H1 penalizes estimated tail work; parents 1 and 3 additionally shift toward H1 with progress or machine-readiness dispersion. This policy combines these ideas by letting work dispersion attenuate both shifts, preserving more H0 emphasis when unfinished workloads are uneven without treating readiness dispersion as identification of a bottleneck. Any benefit remains a hypothesis for external complete-schedule evaluation.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (\n        machine_ready_mean + machine_ready_std + remaining_work_mean\n    )\n    alpha = (\n        0.5\n        + 0.3 * work_dispersion\n        - (1.0 - work_dispersion)\n        * (0.2 * progress + 0.1 * ready_dispersion)\n    )\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 3236,
+      "output_tokens": 275
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "20261020150734667328058268d9d6OiGV8FYU",
+      "date": "Tue, 20 Oct 2026 15:07:35 GMT",
+      "gateway_request_id": "20261020150734667328058268d9d6OiGV8FYU",
+      "id": "resp_0a7776687531ef5a016ad783b6addc8198975b6176a7274132",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

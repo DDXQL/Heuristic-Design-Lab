@@ -1,0 +1,26 @@
+{
+  "global_key": "r501/B/B/g0000/000002/attempt/01",
+  "prompt_key": "2b45fdc0bfeef2a70a803196cd3d499a6e8a44b9b1f759252b91efed8e612a0b",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{Parents 0, 1, and 3 use fixed H0 weights of 0.75, 0.5, and 0.25, ignoring state; this policy combines their long-work emphasis, balanced mixture, and H1 emphasis through a continuous weight relationship. Greater relative remaining-work dispersion increases H0's weight, while scheduling progress shifts weight toward H1 when dispersion is low—a hypothesis motivated by H0's remaining-work reward versus H1's preference for smaller finish-plus-tail estimates, requiring complete-schedule evaluation.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    early_alpha = 0.5 + 0.25 * dispersion\n    late_alpha = 0.25 + 0.5 * dispersion\n    alpha = (1.0 - progress) * early_alpha + progress * late_alpha\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 2759,
+      "output_tokens": 452
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "202610201455554223188408268d9d6VYfnfgfd",
+      "date": "Tue, 20 Oct 2026 14:56:02 GMT",
+      "gateway_request_id": "202610201455554223188408268d9d6VYfnfgfd",
+      "reasoning_tokens": 195,
+      "id": "resp_0b111e3b18f99b66016ad780fbe6e881978411bed2542b9aae",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

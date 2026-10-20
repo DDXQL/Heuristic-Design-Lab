@@ -1,0 +1,4 @@
+generation,best_fitness,mean_fitness,population_ids,champion_id,champion_is_LLM_new,new_children_survived,parents_from_previous_generation_children,surviving_children_beating_previous_champion,parent_uses_of_previous_improving_children
+0,-1.9831442949150015,-2.073590322685839,MANUAL/init/alpha_050;MANUAL/init/alpha_075;MANUAL/init/alpha_025;MANUAL/init/alpha_100;MANUAL/init/alpha_000,MANUAL/init/alpha_050,False,0,0,0,0
+1,-1.9831442949150015,-1.994290586721472,MANUAL/init/alpha_050;B/g0000/000008;B/g0000/000006;B/g0000/000004;B/g0000/000002,MANUAL/init/alpha_050,False,4,0,0,0
+2,-1.982226488242451,-1.9835722721307505,B/g0001/000000;B/g0001/000007;MANUAL/init/alpha_050;B/g0001/000002;B/g0001/000003,B/g0001/000000,True,4,23,2,0

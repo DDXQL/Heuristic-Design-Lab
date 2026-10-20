@@ -1,0 +1,25 @@
+{
+  "global_key": "r501/B/B/g0000/000007/attempt/01",
+  "prompt_key": "5b95ec4f6d4d862f646591199f587f6cbecaf8f107b68aba8ff5dde3a5ea8e45",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent always selects H0, whose score rewards remaining work while penalizing completion time and processing duration. The single modification hypothesis is to retain an H0-majority blend while gradually introducing H1 as operation-count progress increases, testing whether its finish-plus-estimated-tail preference provides a useful late-stage counterbalance; no performance improvement is assumed.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    alpha = 1.0 - 0.4 * progress * progress\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 2321,
+      "output_tokens": 166
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "20261020150016305214668268d9d6n0QdPB3l",
+      "date": "Tue, 20 Oct 2026 15:00:17 GMT",
+      "gateway_request_id": "20261020150016305214668268d9d6n0QdPB3l",
+      "id": "resp_07c105fe42459d8c016ad782007f58819b8ebd839834a12c6c",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

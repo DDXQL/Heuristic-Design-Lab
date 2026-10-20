@@ -1,0 +1,25 @@
+{
+  "global_key": "r501/B/B/g0001/000007/attempt/01",
+  "prompt_key": "2df2445757be26fdee4ca1acb0bcfc6843415216433da2e6440efeff32b308f5",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent starts with equal weights and increases H0's weight with relative dispersion in unfinished-job remaining work. The main modification is to taper that dispersion bonus as scheduling progresses, retaining the workload-imbalance hypothesis while reducing its influence near completion, when H1's estimated tail contribution diminishes as jobs approach their final operations. This is a design hypothesis requiring complete-schedule evaluation, not a claim of improved fitness.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    alpha = 0.5 + 0.3 * dispersion * (1.0 - progress)\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n```",
+    "usage": {
+      "input_tokens": 2403,
+      "output_tokens": 201
+    },
+    "metadata": {
+      "http_status": 200,
+      "x-oneapi-request-id": "202610201510462343609928268d9d6ix9TKidk",
+      "date": "Tue, 20 Oct 2026 15:10:48 GMT",
+      "gateway_request_id": "202610201510462343609928268d9d6ix9TKidk",
+      "id": "resp_0ec7da615ad0ea5e016ad78476d3a4819a9dbc285543112620",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

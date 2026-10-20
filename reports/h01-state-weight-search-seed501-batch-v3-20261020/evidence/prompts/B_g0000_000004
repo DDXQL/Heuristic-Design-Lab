@@ -1,0 +1,143 @@
+Design a deterministic H0/H1 weight policy U for static FJSP, not an action priority rule h.
+Before each step, the host enumerates each unfinished job's next operation and its allowed machines.
+The host computes the state, calls U exactly ONCE, and uses the active H0/H1 members to score ALL legal pairs.
+Execute the highest-scoring action, break ties by job then machine index, and append it to the machine's end.
+Continue until all operations are scheduled. Terminal states do not call U. Online scheduling never calls an LLM.
+An external evaluator measures complete feasible schedules on ALL training instances, using mean(-makespan/LB).
+Higher fitness is better. LB=max(longest job's shortest processing-time sum, total shortest processing-time sum/machine count).
+Any failed instance invalidates the candidate; there is no partial-batch mean or fallback heuristic.
+Generate only U, without changing H, the state calculator, scheduler or evaluator.
+Inputs (these are STATE summaries, not h's single-action inputs):
+progress=scheduled operation count / total operation count of the instance, NOT elapsed-time progress or population size.
+candidate_pair_ratio=legal operation-machine pair count/C; C=sum over jobs of the maximum alternatives of any operation in that job.
+remaining_work_mean/std: for each UNFINISHED job, sum shortest alternative processing times for all unscheduled operations,
+including the current operation; divide by T, then take mean and population standard deviation (ddof=0).
+machine_ready_mean/std: mean and population standard deviation of ALL machines' current end times divided by T,
+including unused machines. These summaries do not identify a particular bottleneck machine.
+T=sum of the maximum alternative processing time over ALL operations. T and C stay fixed; they are NOT extra inputs.
+previous_heuristic=-1 at the first step, otherwise the previous largest normalized-weight member id (ties to smaller id); it contains no rewards or improvement history.
+Use only these seven inputs, local calculations and fixed constants. Same input must yield the same output.
+Do not call H, parents or evaluators; simulate schedules; access external resources; infer extra state; or retain mutable state.
+Member ids are categories, not quality ranks: do not average ids or infer quality from their magnitude.
+Provable bounds in nonterminal legal states (positive processing times):
+0 <= progress < 1; 0 < candidate_pair_ratio <= 1.
+0 < remaining_work_mean <= 1; 0 <= remaining_work_std <= 0.5.
+0 <= machine_ready_mean <= 1; 0 <= machine_ready_std <= 0.5.
+previous_heuristic is -1 only at the first step, otherwise a categorical id in [0,K).
+All normalized remaining-work values and machine end times lie in [0,1].
+Remaining-work values are restricted to unfinished jobs and their sum is <=1:
+with a active jobs, mean <=1/a and std <=sqrt(a-1)/a (a=1 gives std=0).
+For either pair mean=m, std=s, s*s <= m*(1-m).
+Thus s/(1+m) <=sqrt(2)/4 (approximately 0.353554), not an unnormalized dispersion.
+These are conservative global bounds, not typical training ranges or state-level winners.
+A condition outside these bounds cannot fire. A condition inside may still never fire in training.
+Use thresholds/relations compatible with the actual normalized scale; constant selectors remain legal.
+
+K=10 preserves the original frozen numbering; ONLY H0 and H1 may be active.
+Every return is exactly (1, (alpha, 1.0-alpha, 0, 0, 0, 0, 0, 0, 0, 0)).
+Use a scalar local alpha, or repeat the same scalar expression and its complement.
+Two literal numeric complementary constants are also legal. Other eight entries must be literal zero.
+alpha must be a built-in finite number in [0,1], never bool. No host clipping or repair.
+Endpoints are legal: alpha=0 uses only H1; alpha=1 uses only H0, in raw action-score units.
+With both positive, each h scores ALL current legal actions. The host min-max normalizes each full
+column (constant column -> zero), combines with normalized weights, and takes the largest action score.
+Final action ties use job then machine. Host normalization uses positive maximum then sum.
+previous_heuristic records the actual dominant member at the last step, initially -1; it is not weight history.
+Weights, raw h action scores and combined action scores are different quantities. U sees no action scores.
+Constants, conditions and linear/nonlinear formulas in the existing closed language are legal.
+No phase partition, switching, dynamic dependence, complexity or improvement is required.
+Member ids are categories and are not quality ranks. Do not generate SELECT or any other member pair.
+Complete training fitness is used by external selection only. Do not invent state-level correct members,
+rewards, per-instance feedback or performance claims. You receive no such feedback.
+
+H INFORMATION FOR OFFLINE U DESIGN ONLY (do NOT generate h):
+The following interface defines h's SINGLE operation-machine action inputs, all in RAW, unnormalised units.
+processing_time: duration of the candidate operation on this candidate machine.
+remaining_work: sum of shortest alternative durations for this job's unscheduled operations, INCLUDING the current one.
+remaining_operations: number of this job's unscheduled operations, INCLUDING the current one.
+job_ready_time: completion time of the job's previously scheduled operation, or zero initially.
+machine_ready_time: end time of this machine's current schedule, or zero initially.
+earliest_start=max(job_ready_time, machine_ready_time).
+earliest_finish=earliest_start+processing_time.
+h returns a finite real scalar, not bool; HIGHER scores win, with job/machine index ties.
+These action features are NOT additional U inputs. The host calls only the positive-weight H0/H1 members for each legal action.
+Read the actual member code and reviewed behavior below. A state-to-member match is a hypothesis, not proven local superiority.
+H code is design context, not permission for U to execute H, parents or a lookahead simulator.
+
+H MEMBER 0
+Reviewed behavior: 对各输入取绝对值并截到1e9，工序数至少为1。以2倍剩余工作量和0.25倍平均剩余工作量加分，以0.9倍最早完成、0.1倍最早开始、0.2倍加工时间，以及0.05倍工件与机器就绪时间的绝对差扣分，返回线性合成分数。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    p = min(abs(processing_time), 1000000000.0)
+    w = min(abs(remaining_work), 1000000000.0)
+    n = max(1.0, min(abs(remaining_operations), 1000000000.0))
+    jr = min(abs(job_ready_time), 1000000000.0)
+    mr = min(abs(machine_ready_time), 1000000000.0)
+    s = min(abs(earliest_start), 1000000000.0)
+    f = min(abs(earliest_finish), 1000000000.0)
+    average_work = w / n
+    ready_gap = abs(jr - mr)
+    score = 2.0 * w + 0.25 * average_work - 0.9 * f - 0.1 * s - 0.2 * p - 0.05 * ready_gap
+    return score
+
+
+H MEMBER 1
+Reviewed behavior: 将工作量和最早完成时间截到[0,1e9]，工序数截到[1,1e9]。估计尾部工作量为work*(operations-1)/operations，返回1/(1+finish+尾部工作量)。finish+尾部工作量越小，分数越高；其余输入不直接参与。
+Code:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    work = max(0.0, min(remaining_work, 1000000000.0))
+    operations = max(1.0, min(remaining_operations, 1000000000.0))
+    finish = max(0.0, min(earliest_finish, 1000000000.0))
+    tail = work * (operations - 1.0) / operations
+    estimate = finish + tail
+    score = 1.0 / (1.0 + estimate)
+    return score
+
+
+
+PARENT 0
+Description: Frozen manual H0/H1 alpha=0.5; not LLM-generated
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+
+
+PARENT 1
+Description: Frozen manual H0/H1 alpha=0.75; not LLM-generated
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (0.75, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+
+
+PARENT 2
+Description: Frozen manual H0/H1 alpha=0.25; not LLM-generated
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (0.25, 0.75, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+
+
+PARENT 3
+Description: Frozen manual H0/H1 alpha=0; not LLM-generated
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+
+
+PARENT 4
+Description: Frozen manual H0/H1 alpha=1; not LLM-generated
+Code:
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+
+
+Compare how the supplied parents map available state information to H0/H1 weights, using H's actual behavior.
+Try to combine the decision ideas of AT LEAST TWO parents into a new weight relationship.
+You may change state conditions, relations between conditions, alpha formulas and parameters, or rewrite the WHOLE function.
+Do not require fixed modules, literal code splicing, or a particular program skeleton.
+Resolve conflicting choices using the available state and H behavior, not simply parent order.
+Different parents do not prove complementarity; whole-instance results do not establish state-level winners.
+In the common at-most-three-sentence explanation, identify which parental decision ideas were inherited and how they were combined.
+Return one complete new U. Its benefit is a hypothesis to be tested by external complete-schedule evaluation.
+
+Output at most three sentences inside {braces}, followed by exactly one ```python code block. No extra text. Use one function with the exact argument names. Only numeric constants, local variables, arithmetic, comparisons, if/while/for, and these builtins are allowed: abs, min, max, int, float, round, range. Only the terminal two-level tuple (mode, (scalar,...)) is permitted; no other containers, indexing, imports, attributes, helper functions, globals, recursion, randomness or resource access. Numeric intermediates must remain finite and <=1e100; power exponents must be literal integers from 0 to 8; round ndigits must be an int in [-100,100]. End the function with return, or an if/else whose branches both end in return. No return annotation. Numeric literals <=1e9; scalar intermediates/output fields finite with absolute value <=1e100.
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
