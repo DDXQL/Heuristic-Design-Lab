@@ -1,0 +1,148 @@
+{
+  "reference": "Each instance first recorded U output; interpreted on current cached full legal actions, no rollout. This is not a globally fixed strategy or a complete static-policy performance comparison.",
+  "candidates": {
+    "INIT/init/000001": {
+      "matched_states": 22,
+      "noninitial_states": 16,
+      "effective_output_unchanged": 21,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 1
+    },
+    "INIT/init/000003": {
+      "matched_states": 12,
+      "noninitial_states": 6,
+      "effective_output_unchanged": 12,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "INIT/init/000005": {
+      "matched_states": 22,
+      "noninitial_states": 16,
+      "effective_output_unchanged": 20,
+      "output_changed_action_same": 1,
+      "output_changed_action_changed": 1
+    },
+    "INIT/init/000006": {
+      "matched_states": 11,
+      "noninitial_states": 5,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "INIT/init/000007": {
+      "matched_states": 6,
+      "noninitial_states": 0,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "A/g0000/000000": {
+      "matched_states": 11,
+      "noninitial_states": 5,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "A/g0000/000002": {
+      "matched_states": 11,
+      "noninitial_states": 5,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "A/g0000/000003": {
+      "matched_states": 11,
+      "noninitial_states": 5,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "A/g0000/000004": {
+      "matched_states": 11,
+      "noninitial_states": 5,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 0
+    },
+    "A/g0000/000005": {
+      "matched_states": 18,
+      "noninitial_states": 12,
+      "effective_output_unchanged": 17,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 1
+    },
+    "A/g0000/000006": {
+      "matched_states": 22,
+      "noninitial_states": 16,
+      "effective_output_unchanged": 21,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 1
+    },
+    "A/g0000/000007": {
+      "matched_states": 12,
+      "noninitial_states": 6,
+      "effective_output_unchanged": 11,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 1
+    },
+    "A/g0000/000008": {
+      "matched_states": 10,
+      "noninitial_states": 4,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 2,
+      "output_changed_action_changed": 2
+    },
+    "A/g0000/000009": {
+      "matched_states": 38,
+      "noninitial_states": 32,
+      "effective_output_unchanged": 35,
+      "output_changed_action_same": 0,
+      "output_changed_action_changed": 3
+    },
+    "B/g0000/000003": {
+      "matched_states": 96,
+      "noninitial_states": 90,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 51,
+      "output_changed_action_changed": 39
+    },
+    "B/g0000/000005": {
+      "matched_states": 96,
+      "noninitial_states": 90,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 46,
+      "output_changed_action_changed": 44
+    },
+    "B/g0000/000006": {
+      "matched_states": 33,
+      "noninitial_states": 27,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 20,
+      "output_changed_action_changed": 7
+    },
+    "B/g0000/000007": {
+      "matched_states": 43,
+      "noninitial_states": 37,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 30,
+      "output_changed_action_changed": 7
+    },
+    "B/g0000/000008": {
+      "matched_states": 24,
+      "noninitial_states": 18,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 18,
+      "output_changed_action_changed": 0
+    },
+    "B/g0000/000009": {
+      "matched_states": 8,
+      "noninitial_states": 2,
+      "effective_output_unchanged": 6,
+      "output_changed_action_same": 2,
+      "output_changed_action_changed": 0
+    }
+  },
+  "U_executions": 0,
+  "H_executions": 0,
+  "new_solves": 0
+}

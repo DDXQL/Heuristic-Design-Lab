@@ -1,0 +1,2197 @@
+{
+  "INIT/init/000001": {
+    "0": {
+      "line": 4,
+      "expression": "progress < 0.3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1140,
+      "false": 2660
+    },
+    "1": {
+      "line": 4,
+      "expression": "progress < 0.3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1140,
+      "false": 2660
+    },
+    "2": {
+      "line": 5,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1140,
+      "true": 1024,
+      "false": 116
+    },
+    "3": {
+      "line": 5,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1140,
+      "true": 1024,
+      "false": 116
+    },
+    "4": {
+      "line": 6,
+      "expression": "work_dispersion < 0.1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1024,
+      "true": 1024,
+      "false": 0
+    },
+    "5": {
+      "line": 6,
+      "expression": "work_dispersion < 0.1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1024,
+      "true": 1024,
+      "false": 0
+    },
+    "6": {
+      "line": 10,
+      "expression": "machine_ready_mean < 0.25",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "7": {
+      "line": 10,
+      "expression": "machine_ready_mean < 0.25",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "8": {
+      "line": 11,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "9": {
+      "line": 11,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "10": {
+      "line": 15,
+      "expression": "remaining_work_mean < 0.25",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "11": {
+      "line": 15,
+      "expression": "remaining_work_mean < 0.25",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "12": {
+      "line": 19,
+      "expression": "progress < 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 2660,
+      "true": 1717,
+      "false": 943
+    },
+    "13": {
+      "line": 19,
+      "expression": "progress < 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 2660,
+      "true": 1717,
+      "false": 943
+    },
+    "14": {
+      "line": 20,
+      "expression": "machine_ready_mean < remaining_work_mean",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1717,
+      "true": 257,
+      "false": 1460
+    },
+    "15": {
+      "line": 20,
+      "expression": "machine_ready_mean < remaining_work_mean",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1717,
+      "true": 257,
+      "false": 1460
+    },
+    "16": {
+      "line": 21,
+      "expression": "work_dispersion < 0.1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 257,
+      "true": 257,
+      "false": 0
+    },
+    "17": {
+      "line": 21,
+      "expression": "work_dispersion < 0.1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 257,
+      "true": 257,
+      "false": 0
+    },
+    "18": {
+      "line": 25,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1460,
+      "true": 1460,
+      "false": 0
+    },
+    "19": {
+      "line": 25,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1460,
+      "true": 1460,
+      "false": 0
+    },
+    "20": {
+      "line": 29,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "21": {
+      "line": 29,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "22": {
+      "line": 31,
+      "expression": "remaining_work_std < 0.05",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "23": {
+      "line": 31,
+      "expression": "remaining_work_std < 0.05",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "24": {
+      "line": 45,
+      "expression": "target == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1024,
+      "false": 2776
+    },
+    "25": {
+      "line": 45,
+      "expression": "target == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1024,
+      "false": 2776
+    },
+    "26": {
+      "line": 47,
+      "expression": "target == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "27": {
+      "line": 47,
+      "expression": "target == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "28": {
+      "line": 49,
+      "expression": "target == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 116,
+      "false": 3684
+    },
+    "29": {
+      "line": 49,
+      "expression": "target == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 116,
+      "false": 3684
+    },
+    "30": {
+      "line": 51,
+      "expression": "target == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "31": {
+      "line": 51,
+      "expression": "target == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "32": {
+      "line": 53,
+      "expression": "target == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "33": {
+      "line": 53,
+      "expression": "target == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "34": {
+      "line": 55,
+      "expression": "target == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "35": {
+      "line": 55,
+      "expression": "target == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "36": {
+      "line": 57,
+      "expression": "target == 6",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 257,
+      "false": 3543
+    },
+    "37": {
+      "line": 57,
+      "expression": "target == 6",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 257,
+      "false": 3543
+    },
+    "38": {
+      "line": 59,
+      "expression": "target == 7",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "39": {
+      "line": 59,
+      "expression": "target == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "40": {
+      "line": 61,
+      "expression": "target == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1460,
+      "false": 2340
+    },
+    "41": {
+      "line": 61,
+      "expression": "target == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1460,
+      "false": 2340
+    },
+    "42": {
+      "line": 63,
+      "expression": "target == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    },
+    "43": {
+      "line": 63,
+      "expression": "target == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    }
+  },
+  "INIT/init/000003": {
+    "0": {
+      "line": 12,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 437,
+      "false": 3363
+    },
+    "1": {
+      "line": 12,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 437,
+      "false": 3363
+    },
+    "2": {
+      "line": 14,
+      "expression": "previous_heuristic == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "3": {
+      "line": 14,
+      "expression": "previous_heuristic == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "4": {
+      "line": 16,
+      "expression": "previous_heuristic == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 859,
+      "false": 2941
+    },
+    "5": {
+      "line": 16,
+      "expression": "previous_heuristic == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 859,
+      "false": 2941
+    },
+    "6": {
+      "line": 18,
+      "expression": "previous_heuristic == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "7": {
+      "line": 18,
+      "expression": "previous_heuristic == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "8": {
+      "line": 20,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "9": {
+      "line": 20,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "10": {
+      "line": 22,
+      "expression": "previous_heuristic == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 384,
+      "false": 3416
+    },
+    "11": {
+      "line": 22,
+      "expression": "previous_heuristic == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 384,
+      "false": 3416
+    },
+    "12": {
+      "line": 24,
+      "expression": "previous_heuristic == 6",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "13": {
+      "line": 24,
+      "expression": "previous_heuristic == 6",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "14": {
+      "line": 26,
+      "expression": "previous_heuristic == 7",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "15": {
+      "line": 26,
+      "expression": "previous_heuristic == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "16": {
+      "line": 28,
+      "expression": "previous_heuristic == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "17": {
+      "line": 28,
+      "expression": "previous_heuristic == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "18": {
+      "line": 30,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2099,
+      "false": 1701
+    },
+    "19": {
+      "line": 30,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2099,
+      "false": 1701
+    }
+  },
+  "INIT/init/000005": {
+    "0": {
+      "line": 16,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 919,
+      "false": 2881
+    },
+    "1": {
+      "line": 16,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 919,
+      "false": 2881
+    },
+    "2": {
+      "line": 18,
+      "expression": "previous_heuristic == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 668,
+      "false": 3132
+    },
+    "3": {
+      "line": 18,
+      "expression": "previous_heuristic == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 668,
+      "false": 3132
+    },
+    "4": {
+      "line": 20,
+      "expression": "previous_heuristic == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "5": {
+      "line": 20,
+      "expression": "previous_heuristic == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "6": {
+      "line": 22,
+      "expression": "previous_heuristic == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 157,
+      "false": 3643
+    },
+    "7": {
+      "line": 22,
+      "expression": "previous_heuristic == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 157,
+      "false": 3643
+    },
+    "8": {
+      "line": 24,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2035,
+      "false": 1765
+    },
+    "9": {
+      "line": 24,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2035,
+      "false": 1765
+    },
+    "10": {
+      "line": 26,
+      "expression": "previous_heuristic == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "11": {
+      "line": 26,
+      "expression": "previous_heuristic == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "12": {
+      "line": 28,
+      "expression": "previous_heuristic == 6",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "13": {
+      "line": 28,
+      "expression": "previous_heuristic == 6",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "14": {
+      "line": 30,
+      "expression": "previous_heuristic == 7",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "15": {
+      "line": 30,
+      "expression": "previous_heuristic == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "16": {
+      "line": 32,
+      "expression": "previous_heuristic == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "17": {
+      "line": 32,
+      "expression": "previous_heuristic == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "18": {
+      "line": 34,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "19": {
+      "line": 34,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    }
+  },
+  "INIT/init/000006": {},
+  "INIT/init/000007": {
+    "0": {
+      "line": 7,
+      "expression": "previous_heuristic == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 267,
+      "false": 3533
+    },
+    "1": {
+      "line": 7,
+      "expression": "previous_heuristic == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 267,
+      "false": 3533
+    },
+    "2": {
+      "line": 9,
+      "expression": "previous_heuristic == 7",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3533,
+      "true": 3512,
+      "false": 21
+    },
+    "3": {
+      "line": 9,
+      "expression": "previous_heuristic == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3533,
+      "true": 3512,
+      "false": 21
+    }
+  },
+  "A/g0000/000000": {
+    "0": {
+      "line": 6,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3779,
+      "false": 21
+    },
+    "1": {
+      "line": 6,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3779,
+      "false": 21
+    },
+    "2": {
+      "line": 8,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 21,
+      "true": 0,
+      "false": 21
+    },
+    "3": {
+      "line": 8,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 21,
+      "true": 0,
+      "false": 21
+    }
+  },
+  "A/g0000/000002": {
+    "0": {
+      "line": 9,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3552,
+      "false": 248
+    },
+    "1": {
+      "line": 9,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3552,
+      "false": 248
+    },
+    "2": {
+      "line": 11,
+      "expression": "previous_heuristic == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 248,
+      "true": 0,
+      "false": 248
+    },
+    "3": {
+      "line": 11,
+      "expression": "previous_heuristic == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 248,
+      "true": 0,
+      "false": 248
+    },
+    "4": {
+      "line": 13,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 248,
+      "true": 227,
+      "false": 21
+    },
+    "5": {
+      "line": 13,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 248,
+      "true": 227,
+      "false": 21
+    }
+  },
+  "A/g0000/000003": {
+    "0": {
+      "line": 7,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2635,
+      "false": 1165
+    },
+    "1": {
+      "line": 7,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2635,
+      "false": 1165
+    },
+    "2": {
+      "line": 9,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1165,
+      "true": 1144,
+      "false": 21
+    },
+    "3": {
+      "line": 9,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1165,
+      "true": 1144,
+      "false": 21
+    }
+  },
+  "A/g0000/000004": {
+    "0": {
+      "line": 9,
+      "expression": "previous_heuristic == 4",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2381,
+      "false": 1419
+    },
+    "1": {
+      "line": 9,
+      "expression": "previous_heuristic == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2381,
+      "false": 1419
+    },
+    "2": {
+      "line": 11,
+      "expression": "previous_heuristic == 2",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1419,
+      "true": 1398,
+      "false": 21
+    },
+    "3": {
+      "line": 11,
+      "expression": "previous_heuristic == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1419,
+      "true": 1398,
+      "false": 21
+    },
+    "4": {
+      "line": 13,
+      "expression": "previous_heuristic == 7",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 21,
+      "true": 0,
+      "false": 21
+    },
+    "5": {
+      "line": 13,
+      "expression": "previous_heuristic == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 21,
+      "true": 0,
+      "false": 21
+    }
+  },
+  "A/g0000/000005": {
+    "0": {
+      "line": 6,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 846,
+      "false": 2954
+    },
+    "1": {
+      "line": 6,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 846,
+      "false": 2954
+    },
+    "2": {
+      "line": 8,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2933,
+      "false": 867
+    },
+    "3": {
+      "line": 8,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2933,
+      "false": 867
+    }
+  },
+  "A/g0000/000006": {
+    "0": {
+      "line": 4,
+      "expression": "progress < 0.3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1140,
+      "false": 2660
+    },
+    "1": {
+      "line": 4,
+      "expression": "progress < 0.3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1140,
+      "false": 2660
+    },
+    "2": {
+      "line": 5,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1140,
+      "true": 1024,
+      "false": 116
+    },
+    "3": {
+      "line": 5,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1140,
+      "true": 1024,
+      "false": 116
+    },
+    "4": {
+      "line": 6,
+      "expression": "work_dispersion < 0.1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1024,
+      "true": 1024,
+      "false": 0
+    },
+    "5": {
+      "line": 6,
+      "expression": "work_dispersion < 0.1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1024,
+      "true": 1024,
+      "false": 0
+    },
+    "6": {
+      "line": 10,
+      "expression": "machine_ready_mean < 0.25",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "7": {
+      "line": 10,
+      "expression": "machine_ready_mean < 0.25",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "8": {
+      "line": 11,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "9": {
+      "line": 11,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 116,
+      "true": 116,
+      "false": 0
+    },
+    "10": {
+      "line": 15,
+      "expression": "remaining_work_mean < 0.25",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "11": {
+      "line": 15,
+      "expression": "remaining_work_mean < 0.25",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "12": {
+      "line": 19,
+      "expression": "progress < 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 2660,
+      "true": 1717,
+      "false": 943
+    },
+    "13": {
+      "line": 19,
+      "expression": "progress < 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 2660,
+      "true": 1717,
+      "false": 943
+    },
+    "14": {
+      "line": 20,
+      "expression": "machine_ready_mean < remaining_work_mean",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1717,
+      "true": 257,
+      "false": 1460
+    },
+    "15": {
+      "line": 20,
+      "expression": "machine_ready_mean < remaining_work_mean",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1717,
+      "true": 257,
+      "false": 1460
+    },
+    "16": {
+      "line": 21,
+      "expression": "work_dispersion < 0.1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 257,
+      "true": 257,
+      "false": 0
+    },
+    "17": {
+      "line": 21,
+      "expression": "work_dispersion < 0.1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 257,
+      "true": 257,
+      "false": 0
+    },
+    "18": {
+      "line": 25,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1460,
+      "true": 1460,
+      "false": 0
+    },
+    "19": {
+      "line": 25,
+      "expression": "ready_dispersion < 0.08",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1460,
+      "true": 1460,
+      "false": 0
+    },
+    "20": {
+      "line": 29,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "21": {
+      "line": 29,
+      "expression": "candidate_pair_ratio < 0.5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "22": {
+      "line": 31,
+      "expression": "remaining_work_std > 0.5 * remaining_work_mean",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "23": {
+      "line": 31,
+      "expression": "remaining_work_std > 0.5 * remaining_work_mean",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "24": {
+      "line": 35,
+      "expression": "target == 0",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1024,
+      "false": 2776
+    },
+    "25": {
+      "line": 35,
+      "expression": "target == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1024,
+      "false": 2776
+    },
+    "26": {
+      "line": 35,
+      "expression": "target == 1",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "27": {
+      "line": 35,
+      "expression": "target == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "28": {
+      "line": 35,
+      "expression": "target == 2",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 116,
+      "false": 3684
+    },
+    "29": {
+      "line": 35,
+      "expression": "target == 2",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 116,
+      "false": 3684
+    },
+    "30": {
+      "line": 35,
+      "expression": "target == 3",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "31": {
+      "line": 35,
+      "expression": "target == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "32": {
+      "line": 35,
+      "expression": "target == 4",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "33": {
+      "line": 35,
+      "expression": "target == 4",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "34": {
+      "line": 35,
+      "expression": "target == 5",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "35": {
+      "line": 35,
+      "expression": "target == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "36": {
+      "line": 35,
+      "expression": "target == 6",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 257,
+      "false": 3543
+    },
+    "37": {
+      "line": 35,
+      "expression": "target == 6",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 257,
+      "false": 3543
+    },
+    "38": {
+      "line": 35,
+      "expression": "target == 7",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "39": {
+      "line": 35,
+      "expression": "target == 7",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "40": {
+      "line": 35,
+      "expression": "target == 8",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1460,
+      "false": 2340
+    },
+    "41": {
+      "line": 35,
+      "expression": "target == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1460,
+      "false": 2340
+    },
+    "42": {
+      "line": 35,
+      "expression": "target == 9",
+      "kind": "IfExp",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    },
+    "43": {
+      "line": 35,
+      "expression": "target == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    }
+  },
+  "A/g0000/000007": {
+    "0": {
+      "line": 7,
+      "expression": "progress < 0.35",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1337,
+      "false": 2463
+    },
+    "1": {
+      "line": 7,
+      "expression": "progress < 0.35",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1337,
+      "false": 2463
+    },
+    "2": {
+      "line": 8,
+      "expression": "pressure < threshold",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1337,
+      "true": 1095,
+      "false": 242
+    },
+    "3": {
+      "line": 8,
+      "expression": "pressure < threshold",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1337,
+      "true": 1095,
+      "false": 242
+    },
+    "4": {
+      "line": 10,
+      "expression": "progress >= 0.35",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2463,
+      "false": 1337
+    },
+    "5": {
+      "line": 10,
+      "expression": "progress >= 0.35",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2463,
+      "false": 1337
+    },
+    "6": {
+      "line": 11,
+      "expression": "progress < 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 2463,
+      "true": 1520,
+      "false": 943
+    },
+    "7": {
+      "line": 11,
+      "expression": "progress < 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 2463,
+      "true": 1520,
+      "false": 943
+    },
+    "8": {
+      "line": 13,
+      "expression": "pressure < threshold",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1520,
+      "true": 1490,
+      "false": 30
+    },
+    "9": {
+      "line": 13,
+      "expression": "pressure < threshold",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1520,
+      "true": 1490,
+      "false": 30
+    },
+    "10": {
+      "line": 15,
+      "expression": "progress >= 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 2463,
+      "true": 943,
+      "false": 1520
+    },
+    "11": {
+      "line": 15,
+      "expression": "progress >= 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 2463,
+      "true": 943,
+      "false": 1520
+    },
+    "12": {
+      "line": 17,
+      "expression": "pressure < threshold",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "13": {
+      "line": 17,
+      "expression": "pressure < threshold",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 943,
+      "false": 0
+    },
+    "14": {
+      "line": 20,
+      "expression": "boundary < 0.05",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1174,
+      "false": 2626
+    },
+    "15": {
+      "line": 20,
+      "expression": "boundary < 0.05",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1174,
+      "false": 2626
+    },
+    "16": {
+      "line": 21,
+      "expression": "progress < 0.35",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1174,
+      "true": 823,
+      "false": 351
+    },
+    "17": {
+      "line": 21,
+      "expression": "progress < 0.35",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1174,
+      "true": 823,
+      "false": 351
+    },
+    "18": {
+      "line": 22,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 823,
+      "true": 246,
+      "false": 577
+    },
+    "19": {
+      "line": 22,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 823,
+      "true": 246,
+      "false": 577
+    },
+    "20": {
+      "line": 24,
+      "expression": "previous_heuristic == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 823,
+      "true": 560,
+      "false": 263
+    },
+    "21": {
+      "line": 24,
+      "expression": "previous_heuristic == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 823,
+      "true": 560,
+      "false": 263
+    },
+    "22": {
+      "line": 26,
+      "expression": "progress >= 0.35",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1174,
+      "true": 351,
+      "false": 823
+    },
+    "23": {
+      "line": 26,
+      "expression": "progress >= 0.35",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1174,
+      "true": 351,
+      "false": 823
+    },
+    "24": {
+      "line": 27,
+      "expression": "progress < 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 351,
+      "false": 0
+    },
+    "25": {
+      "line": 27,
+      "expression": "progress < 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 351,
+      "false": 0
+    },
+    "26": {
+      "line": 28,
+      "expression": "previous_heuristic == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 64,
+      "false": 287
+    },
+    "27": {
+      "line": 28,
+      "expression": "previous_heuristic == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 64,
+      "false": 287
+    },
+    "28": {
+      "line": 30,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 274,
+      "false": 77
+    },
+    "29": {
+      "line": 30,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 274,
+      "false": 77
+    },
+    "30": {
+      "line": 32,
+      "expression": "progress >= 0.75",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 0,
+      "false": 351
+    },
+    "31": {
+      "line": 32,
+      "expression": "progress >= 0.75",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 351,
+      "true": 0,
+      "false": 351
+    },
+    "32": {
+      "line": 33,
+      "expression": "previous_heuristic == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "33": {
+      "line": 33,
+      "expression": "previous_heuristic == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "34": {
+      "line": 35,
+      "expression": "previous_heuristic == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "35": {
+      "line": 35,
+      "expression": "previous_heuristic == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "36": {
+      "line": 47,
+      "expression": "target == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 266,
+      "false": 3534
+    },
+    "37": {
+      "line": 47,
+      "expression": "target == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 266,
+      "false": 3534
+    },
+    "38": {
+      "line": 49,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 266,
+      "true": 259,
+      "false": 7
+    },
+    "39": {
+      "line": 49,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 266,
+      "true": 259,
+      "false": 7
+    },
+    "40": {
+      "line": 51,
+      "expression": "target == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "41": {
+      "line": 51,
+      "expression": "target == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "42": {
+      "line": 53,
+      "expression": "previous_heuristic == 1",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "43": {
+      "line": 53,
+      "expression": "previous_heuristic == 1",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "44": {
+      "line": 55,
+      "expression": "target == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    },
+    "45": {
+      "line": 55,
+      "expression": "target == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 943,
+      "false": 2857
+    },
+    "46": {
+      "line": 57,
+      "expression": "previous_heuristic == 3",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 922,
+      "false": 21
+    },
+    "47": {
+      "line": 57,
+      "expression": "previous_heuristic == 3",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 943,
+      "true": 922,
+      "false": 21
+    },
+    "48": {
+      "line": 59,
+      "expression": "target == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 69,
+      "false": 3731
+    },
+    "49": {
+      "line": 59,
+      "expression": "target == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 69,
+      "false": 3731
+    },
+    "50": {
+      "line": 61,
+      "expression": "previous_heuristic == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 69,
+      "true": 64,
+      "false": 5
+    },
+    "51": {
+      "line": 61,
+      "expression": "previous_heuristic == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 69,
+      "true": 64,
+      "false": 5
+    },
+    "52": {
+      "line": 63,
+      "expression": "target == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1071,
+      "false": 2729
+    },
+    "53": {
+      "line": 63,
+      "expression": "target == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1071,
+      "false": 2729
+    },
+    "54": {
+      "line": 65,
+      "expression": "previous_heuristic == 8",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1071,
+      "true": 1057,
+      "false": 14
+    },
+    "55": {
+      "line": 65,
+      "expression": "previous_heuristic == 8",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1071,
+      "true": 1057,
+      "false": 14
+    },
+    "56": {
+      "line": 67,
+      "expression": "target == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1451,
+      "false": 2349
+    },
+    "57": {
+      "line": 67,
+      "expression": "target == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1451,
+      "false": 2349
+    },
+    "58": {
+      "line": 69,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 1451,
+      "true": 1430,
+      "false": 21
+    },
+    "59": {
+      "line": 69,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 1451,
+      "true": 1430,
+      "false": 21
+    }
+  },
+  "A/g0000/000008": {
+    "0": {
+      "line": 7,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "1": {
+      "line": 7,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 0,
+      "false": 3800
+    },
+    "2": {
+      "line": 9,
+      "expression": "previous_heuristic == 5",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2516,
+      "false": 1284
+    },
+    "3": {
+      "line": 9,
+      "expression": "previous_heuristic == 5",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2516,
+      "false": 1284
+    },
+    "4": {
+      "line": 11,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1263,
+      "false": 2537
+    },
+    "5": {
+      "line": 11,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 1263,
+      "false": 2537
+    }
+  },
+  "A/g0000/000009": {
+    "0": {
+      "line": 4,
+      "expression": "work_pressure > 1.15 * ready_pressure",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 650,
+      "false": 3150
+    },
+    "1": {
+      "line": 4,
+      "expression": "work_pressure > 1.15 * ready_pressure",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 650,
+      "false": 3150
+    },
+    "2": {
+      "line": 6,
+      "expression": "ready_pressure > 1.15 * work_pressure",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3150,
+      "true": 2972,
+      "false": 178
+    },
+    "3": {
+      "line": 6,
+      "expression": "ready_pressure > 1.15 * work_pressure",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3150,
+      "true": 2972,
+      "false": 178
+    },
+    "4": {
+      "line": 8,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 178,
+      "true": 178,
+      "false": 0
+    },
+    "5": {
+      "line": 8,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 178,
+      "true": 178,
+      "false": 0
+    },
+    "6": {
+      "line": 10,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "7": {
+      "line": 10,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "8": {
+      "line": 12,
+      "expression": "work_pressure >= ready_pressure",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    },
+    "9": {
+      "line": 12,
+      "expression": "work_pressure >= ready_pressure",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 0,
+      "true": 0,
+      "false": 0
+    }
+  },
+  "B/g0000/000003": {
+    "0": {
+      "line": 7,
+      "expression": "contrast >= 0.0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2145,
+      "false": 1655
+    },
+    "1": {
+      "line": 7,
+      "expression": "contrast >= 0.0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 2145,
+      "false": 1655
+    }
+  },
+  "B/g0000/000005": {},
+  "B/g0000/000006": {},
+  "B/g0000/000007": {},
+  "B/g0000/000008": {
+    "0": {
+      "line": 5,
+      "expression": "machine_scale > 0.0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3779,
+      "false": 21
+    },
+    "1": {
+      "line": 5,
+      "expression": "machine_scale > 0.0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3779,
+      "false": 21
+    },
+    "2": {
+      "line": 8,
+      "expression": "previous_heuristic == 0",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 294,
+      "false": 3506
+    },
+    "3": {
+      "line": 8,
+      "expression": "previous_heuristic == 0",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 294,
+      "false": 3506
+    },
+    "4": {
+      "line": 10,
+      "expression": "previous_heuristic == 9",
+      "kind": "If",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3485,
+      "false": 315
+    },
+    "5": {
+      "line": 10,
+      "expression": "previous_heuristic == 9",
+      "kind": "comparison",
+      "proof": "not_proven",
+      "evaluations": 3800,
+      "true": 3485,
+      "false": 315
+    }
+  },
+  "B/g0000/000009": {}
+}

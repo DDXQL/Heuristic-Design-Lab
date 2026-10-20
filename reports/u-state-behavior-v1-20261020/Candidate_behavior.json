@@ -1,0 +1,1509 @@
+[
+  {
+    "id": "INIT/init/000001",
+    "mode": "SELECT",
+    "fitness": -2.5251534597692227,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 1024,
+      "2": 116,
+      "6": 257,
+      "8": 1460,
+      "9": 943
+    },
+    "support_counts": {
+      "(0,)": 1024,
+      "(2,)": 116,
+      "(6,)": 257,
+      "(8,)": 1460,
+      "(9,)": 943
+    },
+    "dominant_counts": {
+      "0": 1024,
+      "2": 116,
+      "6": 257,
+      "8": 1460,
+      "9": 943
+    },
+    "weight_mass": {
+      "0": 1024.0,
+      "2": 116.0,
+      "6": 257.0,
+      "8": 1460.0,
+      "9": 943.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "2": [
+        1.0,
+        1.0
+      ],
+      "6": [
+        1.0,
+        1.0
+      ],
+      "8": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 5,
+    "unique_normalized_weights": 5,
+    "raw_output_switches": 136,
+    "support_switches": 136,
+    "weight_switches": 136,
+    "dominant_switches": 136,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 22,
+    "control_never_true": 5,
+    "control_not_evaluated": 2,
+    "control_both_outcomes": 9,
+    "matched_common_states": 22,
+    "common_agreement_H": [
+      21,
+      2,
+      4,
+      2,
+      8,
+      8,
+      4,
+      4,
+      6,
+      5
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "INIT/init/000003",
+    "mode": "SELECT",
+    "fitness": -2.6088395052404283,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 437,
+      "2": 859,
+      "5": 384,
+      "9": 2120
+    },
+    "support_counts": {
+      "(2,)": 859,
+      "(9,)": 2120,
+      "(5,)": 384,
+      "(0,)": 437
+    },
+    "dominant_counts": {
+      "0": 437,
+      "2": 859,
+      "5": 384,
+      "9": 2120
+    },
+    "weight_mass": {
+      "0": 437.0,
+      "2": 859.0,
+      "5": 384.0,
+      "9": 2120.0
+    },
+    "active_weight_ranges": {
+      "2": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ],
+      "5": [
+        1.0,
+        1.0
+      ],
+      "0": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 4,
+    "raw_output_switches": 3779,
+    "support_switches": 90,
+    "weight_switches": 90,
+    "dominant_switches": 90,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 10,
+    "control_never_true": 6,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 4,
+    "matched_common_states": 12,
+    "common_agreement_H": [
+      10,
+      0,
+      5,
+      0,
+      7,
+      7,
+      3,
+      3,
+      5,
+      5
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "INIT/init/000005",
+    "mode": "SELECT",
+    "fitness": -2.225194303277998,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 919,
+      "1": 689,
+      "3": 157,
+      "4": 2035
+    },
+    "support_counts": {
+      "(0,)": 919,
+      "(4,)": 2035,
+      "(1,)": 689,
+      "(3,)": 157
+    },
+    "dominant_counts": {
+      "0": 919,
+      "1": 689,
+      "3": 157,
+      "4": 2035
+    },
+    "weight_mass": {
+      "0": 919.0,
+      "1": 689.0,
+      "3": 157.0,
+      "4": 2035.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "4": [
+        1.0,
+        1.0
+      ],
+      "1": [
+        1.0,
+        1.0
+      ],
+      "3": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 4,
+    "raw_output_switches": 3779,
+    "support_switches": 49,
+    "weight_switches": 49,
+    "dominant_switches": 49,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 10,
+    "control_never_true": 6,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 4,
+    "matched_common_states": 22,
+    "common_agreement_H": [
+      21,
+      2,
+      4,
+      2,
+      11,
+      11,
+      6,
+      6,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "INIT/init/000006",
+    "mode": "SELECT",
+    "fitness": -2.391583985708433,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "4": 3800
+    },
+    "support_counts": {
+      "(4,)": 3800
+    },
+    "dominant_counts": {
+      "4": 3800
+    },
+    "weight_mass": {
+      "4": 3800.0
+    },
+    "active_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 1,
+    "unique_normalized_weights": 1,
+    "raw_output_switches": 0,
+    "support_switches": 0,
+    "weight_switches": 0,
+    "dominant_switches": 0,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 0,
+    "control_conditions": 0,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 0,
+    "matched_common_states": 11,
+    "common_agreement_H": [
+      2,
+      1,
+      6,
+      1,
+      11,
+      11,
+      5,
+      7,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [
+      4,
+      5
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "INIT/init/000007",
+    "mode": "SELECT",
+    "fitness": -2.4680820407480666,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "2": 273,
+      "7": 3527
+    },
+    "support_counts": {
+      "(7,)": 3527,
+      "(2,)": 273
+    },
+    "dominant_counts": {
+      "2": 273,
+      "7": 3527
+    },
+    "weight_mass": {
+      "2": 273.0,
+      "7": 3527.0
+    },
+    "active_weight_ranges": {
+      "7": [
+        1.0,
+        1.0
+      ],
+      "2": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 14,
+    "weight_switches": 14,
+    "dominant_switches": 14,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 10,
+    "control_conditions": 2,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 6,
+    "common_agreement_H": [
+      2,
+      0,
+      4,
+      0,
+      4,
+      4,
+      5,
+      6,
+      4,
+      4
+    ],
+    "static_H_matching_all_common": [
+      7
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000000",
+    "mode": "SELECT",
+    "fitness": -2.391583985708433,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "4": 3800
+    },
+    "support_counts": {
+      "(4,)": 3800
+    },
+    "dominant_counts": {
+      "4": 3800
+    },
+    "weight_mass": {
+      "4": 3800.0
+    },
+    "active_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 1,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 0,
+    "dominant_switches": 0,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 0,
+    "control_conditions": 2,
+    "control_never_true": 1,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 1,
+    "matched_common_states": 11,
+    "common_agreement_H": [
+      2,
+      1,
+      6,
+      1,
+      11,
+      11,
+      5,
+      7,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [
+      4,
+      5
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0,
+    "H9_minus_H4_selection_score_range": [
+      -0.2546245271717126,
+      -0.0701542511950059
+    ]
+  },
+  {
+    "id": "A/g0000/000002",
+    "mode": "SELECT",
+    "fitness": -2.3896511685445985,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "4": 3562,
+      "9": 238
+    },
+    "support_counts": {
+      "(4,)": 3562,
+      "(9,)": 238
+    },
+    "dominant_counts": {
+      "4": 3562,
+      "9": 238
+    },
+    "weight_mass": {
+      "4": 3562.0,
+      "9": 238.0
+    },
+    "active_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 11,
+    "weight_switches": 11,
+    "dominant_switches": 11,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 11,
+    "control_conditions": 3,
+    "control_never_true": 1,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 11,
+    "common_agreement_H": [
+      2,
+      1,
+      6,
+      1,
+      11,
+      11,
+      5,
+      7,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [
+      4,
+      5
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000003",
+    "mode": "SELECT",
+    "fitness": -2.5579450021692804,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "4": 2635,
+      "9": 1165
+    },
+    "support_counts": {
+      "(4,)": 2635,
+      "(9,)": 1165
+    },
+    "dominant_counts": {
+      "4": 2635,
+      "9": 1165
+    },
+    "weight_mass": {
+      "4": 2635.0,
+      "9": 1165.0
+    },
+    "active_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 21,
+    "weight_switches": 21,
+    "dominant_switches": 21,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 2,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 11,
+    "common_agreement_H": [
+      2,
+      1,
+      6,
+      1,
+      11,
+      11,
+      5,
+      7,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [
+      4,
+      5
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000004",
+    "mode": "SELECT",
+    "fitness": -3.022977460207123,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "2": 1419,
+      "4": 2381
+    },
+    "support_counts": {
+      "(4,)": 2381,
+      "(2,)": 1419
+    },
+    "dominant_counts": {
+      "2": 1419,
+      "4": 2381
+    },
+    "weight_mass": {
+      "2": 1419.0,
+      "4": 2381.0
+    },
+    "active_weight_ranges": {
+      "4": [
+        1.0,
+        1.0
+      ],
+      "2": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 21,
+    "weight_switches": 21,
+    "dominant_switches": 21,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 3,
+    "control_never_true": 1,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 11,
+    "common_agreement_H": [
+      2,
+      1,
+      6,
+      1,
+      11,
+      11,
+      5,
+      7,
+      6,
+      7
+    ],
+    "static_H_matching_all_common": [
+      4,
+      5
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000005",
+    "mode": "SELECT",
+    "fitness": -2.483433501941026,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 846,
+      "9": 2954
+    },
+    "support_counts": {
+      "(0,)": 846,
+      "(9,)": 2954
+    },
+    "dominant_counts": {
+      "0": 846,
+      "9": 2954
+    },
+    "weight_mass": {
+      "0": 846.0,
+      "9": 2954.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 29,
+    "weight_switches": 29,
+    "dominant_switches": 29,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 2,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 18,
+    "common_agreement_H": [
+      17,
+      1,
+      4,
+      1,
+      9,
+      9,
+      5,
+      5,
+      5,
+      6
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000006",
+    "mode": "SELECT",
+    "fitness": -2.5251534597692227,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 1024,
+      "2": 116,
+      "6": 257,
+      "8": 1460,
+      "9": 943
+    },
+    "support_counts": {
+      "(0,)": 1024,
+      "(2,)": 116,
+      "(6,)": 257,
+      "(8,)": 1460,
+      "(9,)": 943
+    },
+    "dominant_counts": {
+      "0": 1024,
+      "2": 116,
+      "6": 257,
+      "8": 1460,
+      "9": 943
+    },
+    "weight_mass": {
+      "0": 1024.0,
+      "2": 116.0,
+      "6": 257.0,
+      "8": 1460.0,
+      "9": 943.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "2": [
+        1.0,
+        1.0
+      ],
+      "6": [
+        1.0,
+        1.0
+      ],
+      "8": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 5,
+    "unique_normalized_weights": 5,
+    "raw_output_switches": 136,
+    "support_switches": 136,
+    "weight_switches": 136,
+    "dominant_switches": 136,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 22,
+    "control_never_true": 5,
+    "control_not_evaluated": 2,
+    "control_both_outcomes": 9,
+    "matched_common_states": 22,
+    "common_agreement_H": [
+      21,
+      2,
+      4,
+      2,
+      8,
+      8,
+      4,
+      4,
+      6,
+      5
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000007",
+    "mode": "SELECT",
+    "fitness": -2.1851566838185925,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 266,
+      "3": 943,
+      "5": 69,
+      "8": 1071,
+      "9": 1451
+    },
+    "support_counts": {
+      "(0,)": 266,
+      "(5,)": 69,
+      "(9,)": 1451,
+      "(3,)": 943,
+      "(8,)": 1071
+    },
+    "dominant_counts": {
+      "0": 266,
+      "3": 943,
+      "5": 69,
+      "8": 1071,
+      "9": 1451
+    },
+    "weight_mass": {
+      "0": 266.0,
+      "3": 943.0,
+      "5": 69.0,
+      "8": 1071.0,
+      "9": 1451.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "5": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ],
+      "3": [
+        1.0,
+        1.0
+      ],
+      "8": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 10,
+    "unique_normalized_weights": 5,
+    "raw_output_switches": 115,
+    "support_switches": 47,
+    "weight_switches": 47,
+    "dominant_switches": 47,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 30,
+    "control_never_true": 2,
+    "control_not_evaluated": 3,
+    "control_both_outcomes": 23,
+    "matched_common_states": 12,
+    "common_agreement_H": [
+      8,
+      0,
+      7,
+      0,
+      9,
+      9,
+      5,
+      5,
+      7,
+      8
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000008",
+    "mode": "SELECT",
+    "fitness": -2.3726081728572597,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "5": 2532,
+      "9": 1268
+    },
+    "support_counts": {
+      "(5,)": 2532,
+      "(9,)": 1268
+    },
+    "dominant_counts": {
+      "5": 2532,
+      "9": 1268
+    },
+    "weight_mass": {
+      "5": 2532.0,
+      "9": 1268.0
+    },
+    "active_weight_ranges": {
+      "5": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 3779,
+    "support_switches": 37,
+    "weight_switches": 37,
+    "dominant_switches": 37,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 3,
+    "control_never_true": 1,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 2,
+    "matched_common_states": 10,
+    "common_agreement_H": [
+      3,
+      2,
+      7,
+      2,
+      9,
+      8,
+      6,
+      7,
+      7,
+      10
+    ],
+    "static_H_matching_all_common": [
+      9
+    ],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "A/g0000/000009",
+    "mode": "SELECT",
+    "fitness": -2.5324436172715514,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 828,
+      "9": 2972
+    },
+    "support_counts": {
+      "(0,)": 828,
+      "(9,)": 2972
+    },
+    "dominant_counts": {
+      "0": 828,
+      "9": 2972
+    },
+    "weight_mass": {
+      "0": 828.0,
+      "9": 2972.0
+    },
+    "active_weight_ranges": {
+      "0": [
+        1.0,
+        1.0
+      ],
+      "9": [
+        1.0,
+        1.0
+      ]
+    },
+    "unique_raw_vectors": 2,
+    "unique_normalized_weights": 2,
+    "raw_output_switches": 21,
+    "support_switches": 21,
+    "weight_switches": 21,
+    "dominant_switches": 21,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 5,
+    "control_never_true": 0,
+    "control_not_evaluated": 2,
+    "control_both_outcomes": 2,
+    "matched_common_states": 38,
+    "common_agreement_H": [
+      35,
+      4,
+      6,
+      4,
+      16,
+      16,
+      9,
+      8,
+      9,
+      14
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 0,
+    "common_strict_below_all_maxima": 0
+  },
+  {
+    "id": "B/g0000/000003",
+    "mode": "MIX",
+    "fitness": -2.4242447665427376,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "2": 2145,
+      "4": 3800,
+      "7": 1655
+    },
+    "support_counts": {
+      "(2, 4)": 2145,
+      "(4, 7)": 1655
+    },
+    "dominant_counts": {
+      "4": 3800
+    },
+    "weight_mass": {
+      "2": 670.6233345342388,
+      "4": 2486.7389675880413,
+      "7": 642.6376978777208
+    },
+    "active_weight_ranges": {
+      "2": [
+        0.2617264130943804,
+        0.3624026605286302
+      ],
+      "4": [
+        0.5800276903649665,
+        0.7382735869056196
+      ],
+      "7": [
+        0.34580956411752267,
+        0.4199723096350335
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 23,
+    "weight_switches": 3779,
+    "dominant_switches": 0,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 1,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 1,
+    "matched_common_states": 96,
+    "common_agreement_H": [
+      14,
+      5,
+      13,
+      6,
+      50,
+      49,
+      26,
+      23,
+      25,
+      37
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 24,
+    "common_strict_below_all_maxima": 23
+  },
+  {
+    "id": "B/g0000/000005",
+    "mode": "MIX",
+    "fitness": -2.3296173258645845,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 3800,
+      "9": 3800
+    },
+    "support_counts": {
+      "(0, 9)": 3800
+    },
+    "dominant_counts": {
+      "0": 3362,
+      "9": 438
+    },
+    "weight_mass": {
+      "0": 2049.591882855742,
+      "9": 1750.4081171442583
+    },
+    "active_weight_ranges": {
+      "0": [
+        0.4389433354113031,
+        0.6635244023151268
+      ],
+      "9": [
+        0.33647559768487323,
+        0.561056664588697
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 3779,
+    "dominant_switches": 31,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 0,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 0,
+    "matched_common_states": 96,
+    "common_agreement_H": [
+      20,
+      6,
+      16,
+      6,
+      35,
+      36,
+      16,
+      19,
+      36,
+      50
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 21,
+    "common_strict_below_all_maxima": 19
+  },
+  {
+    "id": "B/g0000/000006",
+    "mode": "MIX",
+    "fitness": -2.4109941491516795,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 3800,
+      "9": 3800
+    },
+    "support_counts": {
+      "(0, 9)": 3800
+    },
+    "dominant_counts": {
+      "0": 1874,
+      "9": 1926
+    },
+    "weight_mass": {
+      "0": 1846.6845152042802,
+      "9": 1953.3154847957194
+    },
+    "active_weight_ranges": {
+      "0": [
+        0.24009941197121204,
+        0.6729686393707796
+      ],
+      "9": [
+        0.32703136062922045,
+        0.7599005880287879
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 3779,
+    "dominant_switches": 23,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 0,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 0,
+    "matched_common_states": 33,
+    "common_agreement_H": [
+      13,
+      4,
+      11,
+      4,
+      20,
+      20,
+      9,
+      11,
+      16,
+      24
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 2,
+    "common_strict_below_all_maxima": 2
+  },
+  {
+    "id": "B/g0000/000007",
+    "mode": "MIX",
+    "fitness": -2.4304009227798073,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 3800,
+      "9": 3800
+    },
+    "support_counts": {
+      "(0, 9)": 3800
+    },
+    "dominant_counts": {
+      "0": 1310,
+      "9": 2490
+    },
+    "weight_mass": {
+      "0": 1797.3057333648587,
+      "9": 2002.6942666351408
+    },
+    "active_weight_ranges": {
+      "0": [
+        0.35482118127155776,
+        0.6640657870859654
+      ],
+      "9": [
+        0.33593421291403447,
+        0.6451788187284423
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 3779,
+    "dominant_switches": 23,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 0,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 0,
+    "matched_common_states": 43,
+    "common_agreement_H": [
+      14,
+      4,
+      12,
+      4,
+      25,
+      26,
+      10,
+      13,
+      18,
+      26
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 4,
+    "common_strict_below_all_maxima": 4
+  },
+  {
+    "id": "B/g0000/000008",
+    "mode": "MIX",
+    "fitness": -2.4217993662657014,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 3800,
+      "9": 3800
+    },
+    "support_counts": {
+      "(0, 9)": 3800
+    },
+    "dominant_counts": {
+      "0": 294,
+      "9": 3506
+    },
+    "weight_mass": {
+      "0": 1654.0349360013906,
+      "9": 2145.965063998609
+    },
+    "active_weight_ranges": {
+      "0": [
+        0.2662121624009849,
+        0.5787107992134745
+      ],
+      "9": [
+        0.42128920078652554,
+        0.7337878375990151
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 3779,
+    "dominant_switches": 23,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 3,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 3,
+    "matched_common_states": 24,
+    "common_agreement_H": [
+      8,
+      2,
+      6,
+      2,
+      16,
+      16,
+      8,
+      8,
+      8,
+      15
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 2,
+    "common_strict_below_all_maxima": 2
+  },
+  {
+    "id": "B/g0000/000009",
+    "mode": "MIX",
+    "fitness": -2.456137543890912,
+    "steps": 3800,
+    "transitions": 3779,
+    "loaded_state_args": [
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std"
+    ],
+    "syntactic_args_note": "Loaded AST name is not evidence of marginal information value.",
+    "active_h_counts": {
+      "0": 3800,
+      "9": 3800
+    },
+    "support_counts": {
+      "(0, 9)": 3800
+    },
+    "dominant_counts": {
+      "0": 1212,
+      "9": 2588
+    },
+    "weight_mass": {
+      "0": 1614.6530641596953,
+      "9": 2185.346935840298
+    },
+    "active_weight_ranges": {
+      "0": [
+        0.15445533454674676,
+        0.7672264795280846
+      ],
+      "9": [
+        0.23277352047191535,
+        0.8455446654532531
+      ]
+    },
+    "unique_raw_vectors": 3800,
+    "unique_normalized_weights": 3800,
+    "raw_output_switches": 3779,
+    "support_switches": 0,
+    "weight_switches": 3779,
+    "dominant_switches": 21,
+    "mode_switches": 0,
+    "within_instance_dynamic_instances": 21,
+    "control_conditions": 0,
+    "control_never_true": 0,
+    "control_not_evaluated": 0,
+    "control_both_outcomes": 0,
+    "matched_common_states": 8,
+    "common_agreement_H": [
+      4,
+      1,
+      4,
+      1,
+      5,
+      5,
+      2,
+      3,
+      4,
+      4
+    ],
+    "static_H_matching_all_common": [],
+    "common_not_any_H_top": 1,
+    "common_strict_below_all_maxima": 1
+  }
+]

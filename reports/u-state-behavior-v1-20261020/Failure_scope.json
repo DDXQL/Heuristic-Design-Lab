@@ -1,0 +1,38 @@
+[
+  {
+    "id": "B/g0000/000000",
+    "fitness": null,
+    "completed_instances": 20,
+    "failure": {
+      "failed_instance": "Behnke57.fjsp",
+      "error": "whole-instance deadline exceeded",
+      "error_type": "Timeout"
+    },
+    "trace_steps_available": 3300,
+    "notice": "Failure prefix excluded from complete-valid state-use census; missing coverage is unknown."
+  },
+  {
+    "id": "B/g0000/000001",
+    "fitness": null,
+    "completed_instances": 20,
+    "failure": {
+      "failed_instance": "Behnke57.fjsp",
+      "error": "whole-instance deadline exceeded",
+      "error_type": "Timeout"
+    },
+    "trace_steps_available": 3300,
+    "notice": "Failure prefix excluded from complete-valid state-use census; missing coverage is unknown."
+  },
+  {
+    "id": "B/g0000/000002",
+    "fitness": null,
+    "completed_instances": 20,
+    "failure": {
+      "failed_instance": "Behnke57.fjsp",
+      "error": "whole-instance deadline exceeded",
+      "error_type": "Timeout"
+    },
+    "trace_steps_available": 3300,
+    "notice": "Failure prefix excluded from complete-valid state-use census; missing coverage is unknown."
+  }
+]

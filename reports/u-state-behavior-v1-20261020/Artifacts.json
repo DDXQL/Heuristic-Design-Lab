@@ -1,0 +1,20 @@
+{
+  "format": "sha256-v1",
+  "files": {
+    "Candidate_behavior.csv": "f11950c54317e2b458bf3904bc7424d7047d7a50186245d13c35ee6b8db73086",
+    "Candidate_behavior.json": "a91b05225fcd3563205a2505fa94bc4a99087362c7328805deb52aadc92b702c",
+    "Common_state_joins.csv": "f7ab47efbb37ac876c47b150e9959a1052f2241865f8eafdddd83d30f41302bb",
+    "Control_conditions.csv": "791dfd1a4470faa6f2ef1c34cdb42e1054c5facfbfaa264a10007ce6e87a3644",
+    "Evidence_index.json": "a31d4a03ac6cc72bcd0ad1ef25a0c42ae79e22cd34f753c5ffc7642bbf16d883",
+    "Failure_scope.json": "161b61b4aa10c0273fe275046260b05407d5daad54ceaf41c745a5ad08831685",
+    "Instance_behavior_and_scores.csv": "46a6a2302c02afb2b951f309a12e7bdc27c6360b176930ff15c8b0d49250b509",
+    "Predicate_coverage.json": "7fb25daec60f9ff00b1e39fb18f2a8264109c49a83e1fdcf993b9e28e5db2a18",
+    "README.md": "e62333297ab47fc145780d3c6927e8efe3b9f7f9afaec27dd1593367112bcbe2",
+    "Same_state_output_effect.csv": "b41441a5cf949242a52a0c1a341b1f140258a0e6c0defbec766f19dd57a980d1",
+    "Same_state_output_effect.json": "535d76e0392e1658ff473ef5ded251a37c1ad67d4f56b6ba2727c6dae29430df",
+    "Verification.json": "7bb809b4a7b4bb7813cd9e4e6fc6f9385bb9b05f8f5bf11bddc11db3c4ae3a12",
+    "analyze_records.py": "297bef84fd1ef95ea2d3b48f410539e72b95818e920e384106ed415c8e6bd4e2",
+    "compare_saved_outputs.py": "fa01b1a69f8f96d4c06856d6caad1938baa67917f2ef01ee764b335805e247e3"
+  },
+  "scope": "Task 2 saved-record analysis only. No Task 4 experiments."
+}
