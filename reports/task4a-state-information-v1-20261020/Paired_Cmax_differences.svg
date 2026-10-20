@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1420" height="710" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1420 710" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1420" height="710"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-710)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1420" height="710" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="35" y="670" style="font-family: Helvetica-Bold; font-size: 23px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1340) scale(1,-1)">Task4A: one forced H0/H1 action, then frozen H0 continuation</text>
+			<text x="35" y="639" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1278) scale(1,-1)">Train only / 6 instances / 12 fixed states / same complete prefix / unchanged native executor / deterministic rechecks</text>
+			<text x="35" y="615" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1230) scale(1,-1)">Delta = Cmax(H1 first) - Cmax(H0 first). Positive favors H0. These are conditional local outcomes, not U fitness.</text>
+			<path d="M 490,122 L 490,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="485.002" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">-5</text>
+			<path d="M 552,122 L 552,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="547.002" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">-4</text>
+			<path d="M 614,122 L 614,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="609.002" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">-3</text>
+			<path d="M 676,122 L 676,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="671.002" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">-2</text>
+			<path d="M 738,122 L 738,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="733.002" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">-1</text>
+			<path d="M 800,122 L 800,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="797.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">0</text>
+			<path d="M 862,122 L 862,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="859.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">1</text>
+			<path d="M 924,122 L 924,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="921.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">2</text>
+			<path d="M 986,122 L 986,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="983.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">3</text>
+			<path d="M 1048,122 L 1048,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="1045.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">4</text>
+			<path d="M 1110,122 L 1110,562 Z" style="stroke: rgb(86%,86%,86%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="1107.0" y="101" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">5</text>
+			<path d="M 800,122 L 800,562 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<text x="574.899" y="580" style="font-family: Times-Roman; font-size: 14px;fill: rgb(71%,35%,7%); stroke:none;" transform="translate(0,1160) scale(1,-1)">H1 action better</text>
+			<text x="934.899" y="580" style="font-family: Times-Roman; font-size: 14px;fill: rgb(12%,40%,67%); stroke:none;" transform="translate(0,1160) scale(1,-1)">H0 action better</text>
+			<text x="1210.0965" y="580" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1160) scale(1,-1)">Cmax: H0 / H1</text>
+			<text x="40" y="545" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1090) scale(1,-1)">S00  Behnke19  B3  step 133</text>
+			<rect x="552" y="538" width="248" height="20" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(84%,47%,14%); fill-rule: evenodd;"/>
+			<text x="529.171" y="544" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1088) scale(1,-1)">-4</text>
+			<text x="1225.443" y="545" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1090) scale(1,-1)">730 / 726</text>
+			<text x="40" y="510" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1020) scale(1,-1)">S01  Behnke19  B5  step 365</text>
+			<rect x="800" y="503" width="248" height="20" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,40%,67%); fill-rule: evenodd;"/>
+			<text x="1060" y="509" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1018) scale(1,-1)">+4</text>
+			<text x="1225.443" y="510" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1020) scale(1,-1)">725 / 729</text>
+			<text x="40" y="475" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,950) scale(1,-1)">S02  Behnke43  B5  step 22</text>
+			<circle cx="800" cy="478" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="475" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,950) scale(1,-1)">101 / 101</text>
+			<rect x="25" y="429" width="1365" height="31" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(94%,94%,94%); fill-rule: evenodd;"/>
+			<text x="40" y="440" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,880) scale(1,-1)">S03  Behnke43  B3  step 26</text>
+			<rect x="795" y="438" width="10" height="10" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="1231.943" y="440" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,880) scale(1,-1)">91 / 91</text>
+			<text x="380" y="440" style="font-family: Times-Roman; font-size: 10px;fill: rgb(50%,50%,50%); stroke:none;" transform="translate(0,880) scale(1,-1)">same-action control</text>
+			<text x="40" y="405" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,810) scale(1,-1)">S04  Behnke3  B3  step 22</text>
+			<circle cx="800" cy="408" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="405" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,810) scale(1,-1)">106 / 106</text>
+			<rect x="25" y="359" width="1365" height="31" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(94%,94%,94%); fill-rule: evenodd;"/>
+			<text x="40" y="370" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,740) scale(1,-1)">S05  Behnke3  B3  step 26</text>
+			<rect x="795" y="368" width="10" height="10" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="370" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,740) scale(1,-1)">106 / 106</text>
+			<text x="380" y="370" style="font-family: Times-Roman; font-size: 10px;fill: rgb(50%,50%,50%); stroke:none;" transform="translate(0,740) scale(1,-1)">same-action control</text>
+			<text x="40" y="335" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,670) scale(1,-1)">S06  Behnke53  B5  step 66</text>
+			<circle cx="800" cy="338" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="335" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,670) scale(1,-1)">237 / 237</text>
+			<text x="40" y="300" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,600) scale(1,-1)">S07  Behnke53  B3  step 182</text>
+			<circle cx="800" cy="303" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="300" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,600) scale(1,-1)">234 / 234</text>
+			<text x="40" y="265" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,530) scale(1,-1)">S08  Behnke46  B3  step 26</text>
+			<circle cx="800" cy="268" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="265" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,530) scale(1,-1)">131 / 131</text>
+			<text x="40" y="230" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,460) scale(1,-1)">S09  Behnke46  B5  step 72</text>
+			<rect x="800" y="223" width="124" height="20" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,40%,67%); fill-rule: evenodd;"/>
+			<text x="936" y="229" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,458) scale(1,-1)">+2</text>
+			<text x="1225.443" y="230" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,460) scale(1,-1)">134 / 136</text>
+			<text x="40" y="195" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,390) scale(1,-1)">S10  Behnke29  B5  step 26</text>
+			<circle cx="800" cy="198" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="1225.443" y="195" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,390) scale(1,-1)">136 / 136</text>
+			<text x="40" y="160" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,320) scale(1,-1)">S11  Behnke29  B3  step 72</text>
+			<rect x="552" y="153" width="248" height="20" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(84%,47%,14%); fill-rule: evenodd;"/>
+			<text x="529.171" y="159" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,318) scale(1,-1)">-4</text>
+			<text x="1225.443" y="160" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,320) scale(1,-1)">139 / 135</text>
+			<text x="35" y="58" style="font-family: Times-Roman; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,116) scale(1,-1)">10 disagreement states: H0 better 2, H1 better 2, tied 6. Two same-action controls: identical complete schedules.</text>
+			<text x="35" y="32" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,64) scale(1,-1)">Repeated states within an instance are dependent. Prefix/path, scale and progress are confounded. No predictive model fitted.</text>
+		</g>
+	</g>
+</svg>

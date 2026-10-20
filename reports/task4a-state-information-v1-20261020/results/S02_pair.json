@@ -1,0 +1,270 @@
+{
+  "file": "Behnke43.fjsp",
+  "state_id": "S02",
+  "valid": true,
+  "branches": {
+    "0": {
+      "state_id": "S02",
+      "forced_member": 0,
+      "makespan": 101,
+      "lower_bound": 68.0,
+      "score": -1.4852941176470589,
+      "schedule_sha256": "004b640e866c219ad1a8ff0d05452094c0409fd7b0db1732edbc7b5dec652314",
+      "native_result_sha256": "3ccbfc31b1e37ea50e32748e3ceb1c573d4f03ab271fabe0de32ef7ed029af06",
+      "recheck_native_result_sha256": "3ccbfc31b1e37ea50e32748e3ceb1c573d4f03ab271fabe0de32ef7ed029af06",
+      "primary": {
+        "wall_seconds": 0.12246258300729096,
+        "phase_h_calls": {
+          "prefix": [
+            4808,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4808
+          ],
+          "forced": [
+            316,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            3756,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          8880,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4808
+        ],
+        "selected_h_scoring_seconds": 0.1029781261458993,
+        "combination_processing_seconds": 0.004811044200323522
+      },
+      "recheck": {
+        "wall_seconds": 0.10189791698940098,
+        "phase_h_calls": {
+          "prefix": [
+            4808,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4808
+          ],
+          "forced": [
+            316,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            3756,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          8880,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4808
+        ],
+        "selected_h_scoring_seconds": 0.08502541505731642,
+        "combination_processing_seconds": 0.004345909634139389
+      },
+      "forced_action": [
+        0,
+        2,
+        42,
+        34,
+        44
+      ],
+      "forced_history_member": 0,
+      "prefix_snapshot_sha256": "c3146a0f534cd43ef3f35d8c5e05cd1fd57fe04f2fed13c669634775de15b57d",
+      "full_prefix_and_constant_H0_suffix_checked": true
+    },
+    "1": {
+      "state_id": "S02",
+      "forced_member": 1,
+      "makespan": 101,
+      "lower_bound": 68.0,
+      "score": -1.4852941176470589,
+      "schedule_sha256": "eaa29c8cf937b423cd5d1fe5f4cce79f9e36c35290028016118e275e6f283a7b",
+      "native_result_sha256": "d8d5a2693da29b2967b37c52db9b32fc75ab82395578fa3cd1da078e0c401ee3",
+      "recheck_native_result_sha256": "d8d5a2693da29b2967b37c52db9b32fc75ab82395578fa3cd1da078e0c401ee3",
+      "primary": {
+        "wall_seconds": 0.11012487497646362,
+        "phase_h_calls": {
+          "prefix": [
+            4808,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4808
+          ],
+          "forced": [
+            0,
+            316,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            3788,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          8596,
+          316,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4808
+        ],
+        "selected_h_scoring_seconds": 0.09197829279582947,
+        "combination_processing_seconds": 0.004363207728601992
+      },
+      "recheck": {
+        "wall_seconds": 0.09970199997769669,
+        "phase_h_calls": {
+          "prefix": [
+            4808,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4808
+          ],
+          "forced": [
+            0,
+            316,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            3788,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          8596,
+          316,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4808
+        ],
+        "selected_h_scoring_seconds": 0.08358820440480486,
+        "combination_processing_seconds": 0.0041249172645621
+      },
+      "forced_action": [
+        5,
+        2,
+        11,
+        23,
+        35
+      ],
+      "forced_history_member": 1,
+      "prefix_snapshot_sha256": "c3146a0f534cd43ef3f35d8c5e05cd1fd57fe04f2fed13c669634775de15b57d",
+      "full_prefix_and_constant_H0_suffix_checked": true
+    }
+  },
+  "delta_H1_minus_H0": 0,
+  "normalized_delta": 0.0,
+  "parent_wall_seconds": 0.7176157080102712
+}

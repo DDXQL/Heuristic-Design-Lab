@@ -1,0 +1,1801 @@
+{
+  "id": "S08",
+  "file": "Behnke46.fjsp",
+  "sample_id": "Behnke46.fjsp/B3/0026",
+  "source_U": "B/g0000/000003",
+  "source_native_result_hash": "70aea1de1043f82e4d0a30e1e49953c12cfa22805d94ef25c5818393fecbc95e",
+  "step": 26,
+  "group": "disagreement",
+  "action_count": 252,
+  "snapshot": {
+    "scheduled": [
+      {
+        "job": 17,
+        "operation": 0,
+        "machine": 3,
+        "start": 0,
+        "end": 10
+      },
+      {
+        "job": 18,
+        "operation": 0,
+        "machine": 1,
+        "start": 0,
+        "end": 15
+      },
+      {
+        "job": 6,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 10
+      },
+      {
+        "job": 18,
+        "operation": 1,
+        "machine": 9,
+        "start": 15,
+        "end": 25
+      },
+      {
+        "job": 17,
+        "operation": 1,
+        "machine": 33,
+        "start": 10,
+        "end": 20
+      },
+      {
+        "job": 15,
+        "operation": 0,
+        "machine": 2,
+        "start": 0,
+        "end": 14
+      },
+      {
+        "job": 4,
+        "operation": 0,
+        "machine": 3,
+        "start": 10,
+        "end": 23
+      },
+      {
+        "job": 19,
+        "operation": 0,
+        "machine": 0,
+        "start": 10,
+        "end": 24
+      },
+      {
+        "job": 18,
+        "operation": 2,
+        "machine": 41,
+        "start": 25,
+        "end": 35
+      },
+      {
+        "job": 4,
+        "operation": 1,
+        "machine": 6,
+        "start": 23,
+        "end": 33
+      },
+      {
+        "job": 19,
+        "operation": 1,
+        "machine": 43,
+        "start": 24,
+        "end": 35
+      },
+      {
+        "job": 11,
+        "operation": 0,
+        "machine": 2,
+        "start": 14,
+        "end": 27
+      },
+      {
+        "job": 17,
+        "operation": 2,
+        "machine": 14,
+        "start": 20,
+        "end": 31
+      },
+      {
+        "job": 14,
+        "operation": 0,
+        "machine": 3,
+        "start": 23,
+        "end": 37
+      },
+      {
+        "job": 13,
+        "operation": 0,
+        "machine": 1,
+        "start": 15,
+        "end": 25
+      },
+      {
+        "job": 14,
+        "operation": 1,
+        "machine": 10,
+        "start": 37,
+        "end": 47
+      },
+      {
+        "job": 6,
+        "operation": 1,
+        "machine": 33,
+        "start": 20,
+        "end": 31
+      },
+      {
+        "job": 11,
+        "operation": 1,
+        "machine": 44,
+        "start": 27,
+        "end": 37
+      },
+      {
+        "job": 2,
+        "operation": 0,
+        "machine": 1,
+        "start": 25,
+        "end": 39
+      },
+      {
+        "job": 5,
+        "operation": 0,
+        "machine": 2,
+        "start": 27,
+        "end": 38
+      },
+      {
+        "job": 2,
+        "operation": 1,
+        "machine": 41,
+        "start": 39,
+        "end": 49
+      },
+      {
+        "job": 13,
+        "operation": 1,
+        "machine": 8,
+        "start": 25,
+        "end": 35
+      },
+      {
+        "job": 5,
+        "operation": 1,
+        "machine": 9,
+        "start": 38,
+        "end": 48
+      },
+      {
+        "job": 12,
+        "operation": 0,
+        "machine": 3,
+        "start": 37,
+        "end": 47
+      },
+      {
+        "job": 7,
+        "operation": 0,
+        "machine": 0,
+        "start": 24,
+        "end": 40
+      },
+      {
+        "job": 4,
+        "operation": 2,
+        "machine": 20,
+        "start": 33,
+        "end": 44
+      }
+    ],
+    "selected_members": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "cursors": [
+      0,
+      0,
+      2,
+      0,
+      3,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      2,
+      1,
+      2,
+      2,
+      1,
+      0,
+      3,
+      3,
+      2
+    ],
+    "job_ready": [
+      0,
+      0,
+      49,
+      0,
+      44,
+      48,
+      31,
+      40,
+      0,
+      0,
+      0,
+      37,
+      47,
+      35,
+      47,
+      14,
+      0,
+      31,
+      35,
+      35
+    ],
+    "machine_ready": [
+      40,
+      39,
+      38,
+      47,
+      0,
+      0,
+      33,
+      0,
+      35,
+      48,
+      47,
+      0,
+      0,
+      0,
+      31,
+      0,
+      0,
+      0,
+      0,
+      0,
+      44,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      31,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      49,
+      0,
+      35,
+      37,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "remaining_work": [
+      [
+        56,
+        42,
+        32,
+        22,
+        12,
+        0
+      ],
+      [
+        53,
+        42,
+        30,
+        20,
+        10,
+        0
+      ],
+      [
+        58,
+        44,
+        34,
+        24,
+        13,
+        0
+      ],
+      [
+        62,
+        44,
+        34,
+        24,
+        14,
+        0
+      ],
+      [
+        63,
+        50,
+        40,
+        29,
+        12,
+        0
+      ],
+      [
+        54,
+        43,
+        33,
+        23,
+        13,
+        0
+      ],
+      [
+        59,
+        49,
+        38,
+        28,
+        12,
+        0
+      ],
+      [
+        58,
+        42,
+        32,
+        22,
+        12,
+        0
+      ],
+      [
+        58,
+        44,
+        33,
+        23,
+        13,
+        0
+      ],
+      [
+        52,
+        40,
+        30,
+        20,
+        10,
+        0
+      ],
+      [
+        55,
+        43,
+        32,
+        22,
+        11,
+        0
+      ],
+      [
+        58,
+        45,
+        35,
+        21,
+        11,
+        0
+      ],
+      [
+        54,
+        44,
+        32,
+        21,
+        11,
+        0
+      ],
+      [
+        52,
+        42,
+        32,
+        22,
+        12,
+        0
+      ],
+      [
+        62,
+        48,
+        38,
+        23,
+        13,
+        0
+      ],
+      [
+        62,
+        48,
+        35,
+        25,
+        15,
+        0
+      ],
+      [
+        59,
+        42,
+        32,
+        21,
+        11,
+        0
+      ],
+      [
+        65,
+        55,
+        45,
+        34,
+        24,
+        0
+      ],
+      [
+        73,
+        58,
+        48,
+        38,
+        17,
+        0
+      ],
+      [
+        64,
+        50,
+        40,
+        28,
+        18,
+        0
+      ]
+    ],
+    "time_scale": 2768,
+    "candidate_bound": 748,
+    "total_operations": 100,
+    "features": {
+      "progress": 0.26,
+      "candidate_pair_ratio": 0.33689839572192515,
+      "remaining_work_mean": 0.015895953757225433,
+      "remaining_work_std": 0.003675395583341005,
+      "machine_ready_mean": 0.003335741811175337,
+      "machine_ready_std": 0.00614139417399842,
+      "previous_heuristic": 4
+    }
+  },
+  "prefix": [
+    {
+      "step": 0,
+      "state": {
+        "progress": 0.0,
+        "candidate_pair_ratio": 0.10695187165775401,
+        "remaining_work_mean": 0.021260838150289018,
+        "remaining_work_std": 0.0018288876839616546,
+        "machine_ready_mean": 0.0,
+        "machine_ready_std": 0.0,
+        "previous_heuristic": -1
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.3553204517553769,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.26216711427557576,
+        0.0,
+        0.7378328857244242,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 17,
+        "operation": 0,
+        "machine": 3,
+        "start": 0,
+        "end": 10
+      }
+    },
+    {
+      "step": 1,
+      "state": {
+        "progress": 0.01,
+        "candidate_pair_ratio": 0.1497326203208556,
+        "remaining_work_mean": 0.02108020231213873,
+        "remaining_work_std": 0.0017782311567427853,
+        "machine_ready_mean": 6.021194605009634e-05,
+        "machine_ready_std": 0.0004624967333735915,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.3606412762947394,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2650524297460884,
+        0.0,
+        0.7349475702539117,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 18,
+        "operation": 0,
+        "machine": 1,
+        "start": 0,
+        "end": 15
+      }
+    },
+    {
+      "step": 2,
+      "state": {
+        "progress": 0.02,
+        "candidate_pair_ratio": 0.21390374331550802,
+        "remaining_work_mean": 0.020809248554913295,
+        "remaining_work_std": 0.001299574114783594,
+        "machine_ready_mean": 0.00015052986512524084,
+        "machine_ready_std": 0.0008272297485569656,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.36698423769019056,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2684626695552014,
+        0.0,
+        0.7315373304447985,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 6,
+        "operation": 0,
+        "machine": 0,
+        "start": 0,
+        "end": 10
+      }
+    },
+    {
+      "step": 3,
+      "state": {
+        "progress": 0.03,
+        "candidate_pair_ratio": 0.21390374331550802,
+        "remaining_work_mean": 0.020628612716763008,
+        "remaining_work_std": 0.0014581239935412252,
+        "machine_ready_mean": 0.0002107418111753372,
+        "machine_ready_std": 0.0009381283990175145,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.37012828107352325,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2701413336155066,
+        0.0,
+        0.7298586663844934,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 18,
+        "operation": 1,
+        "machine": 9,
+        "start": 15,
+        "end": 25
+      }
+    },
+    {
+      "step": 4,
+      "state": {
+        "progress": 0.04,
+        "candidate_pair_ratio": 0.16042780748663102,
+        "remaining_work_mean": 0.020447976878612717,
+        "remaining_work_std": 0.0016213009878841668,
+        "machine_ready_mean": 0.000361271676300578,
+        "machine_ready_std": 0.0014674924863865536,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.3707306131981749,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2704620511343144,
+        0.0,
+        0.7295379488656856,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 17,
+        "operation": 1,
+        "machine": 33,
+        "start": 10,
+        "end": 20
+      }
+    },
+    {
+      "step": 5,
+      "state": {
+        "progress": 0.05,
+        "candidate_pair_ratio": 0.12299465240641712,
+        "remaining_work_mean": 0.020267341040462426,
+        "remaining_work_std": 0.0018594088486210648,
+        "machine_ready_mean": 0.0004816955684007707,
+        "machine_ready_std": 0.0017094255258403648,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.37213299360802543,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2712076710796825,
+        0.0,
+        0.7287923289203175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 15,
+        "operation": 0,
+        "machine": 2,
+        "start": 0,
+        "end": 14
+      }
+    },
+    {
+      "step": 6,
+      "state": {
+        "progress": 0.06,
+        "candidate_pair_ratio": 0.12834224598930483,
+        "remaining_work_mean": 0.020014450867052024,
+        "remaining_work_std": 0.0018959019889309141,
+        "machine_ready_mean": 0.0005659922928709057,
+        "machine_ready_std": 0.0018055955357737,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.3755788820456497,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.273033329420643,
+        0.0,
+        0.7269666705793569,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 4,
+        "operation": 0,
+        "machine": 3,
+        "start": 10,
+        "end": 23
+      }
+    },
+    {
+      "step": 7,
+      "state": {
+        "progress": 0.07,
+        "candidate_pair_ratio": 0.18716577540106952,
+        "remaining_work_mean": 0.019779624277456647,
+        "remaining_work_std": 0.0018310273602522842,
+        "machine_ready_mean": 0.0006442678227360308,
+        "machine_ready_std": 0.002024509728125779,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.3815209560350739,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.27616009324247115,
+        0.0,
+        0.7238399067575289,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 19,
+        "operation": 0,
+        "machine": 0,
+        "start": 10,
+        "end": 24
+      }
+    },
+    {
+      "step": 8,
+      "state": {
+        "progress": 0.08,
+        "candidate_pair_ratio": 0.20855614973262032,
+        "remaining_work_mean": 0.01952673410404624,
+        "remaining_work_std": 0.0016963426830329008,
+        "machine_ready_mean": 0.0007285645472061656,
+        "machine_ready_std": 0.002240167630278216,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.38568584476558215,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2783357037401425,
+        0.0,
+        0.7216642962598575,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 18,
+        "operation": 2,
+        "machine": 41,
+        "start": 25,
+        "end": 35
+      }
+    },
+    {
+      "step": 9,
+      "state": {
+        "progress": 0.09,
+        "candidate_pair_ratio": 0.19786096256684493,
+        "remaining_work_mean": 0.019346098265895954,
+        "remaining_work_std": 0.0020705469129018014,
+        "machine_ready_mean": 0.0009393063583815029,
+        "machine_ready_std": 0.0027076904429686587,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.38838324452919115,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.27973777849854,
+        0.0,
+        0.7202622215014599,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 4,
+        "operation": 1,
+        "machine": 6,
+        "start": 23,
+        "end": 33
+      }
+    },
+    {
+      "step": 10,
+      "state": {
+        "progress": 0.1,
+        "candidate_pair_ratio": 0.1443850267379679,
+        "remaining_work_mean": 0.019165462427745663,
+        "remaining_work_std": 0.0023174247514283017,
+        "machine_ready_mean": 0.0011380057803468207,
+        "machine_ready_std": 0.0030475751723457196,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.38915919786345154,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.28014010090563013,
+        0.0,
+        0.7198598990943698,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 19,
+        "operation": 1,
+        "machine": 43,
+        "start": 24,
+        "end": 35
+      }
+    },
+    {
+      "step": 11,
+      "state": {
+        "progress": 0.11,
+        "candidate_pair_ratio": 0.15508021390374332,
+        "remaining_work_mean": 0.018984826589595376,
+        "remaining_work_std": 0.00252754660223889,
+        "machine_ready_mean": 0.001348747591522158,
+        "machine_ready_std": 0.0033805884369753863,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.39284706819858695,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.28204608902732475,
+        0.0,
+        0.7179539109726752,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 11,
+        "operation": 0,
+        "machine": 2,
+        "start": 14,
+        "end": 27
+      }
+    },
+    {
+      "step": 12,
+      "state": {
+        "progress": 0.12,
+        "candidate_pair_ratio": 0.1657754010695187,
+        "remaining_work_mean": 0.01875,
+        "remaining_work_std": 0.0025517649402327027,
+        "machine_ready_mean": 0.0014270231213872832,
+        "machine_ready_std": 0.003517176604077464,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.39650748518961165,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.28392793407460726,
+        0.0,
+        0.7160720659253926,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 17,
+        "operation": 2,
+        "machine": 14,
+        "start": 20,
+        "end": 31
+      }
+    },
+    {
+      "step": 13,
+      "state": {
+        "progress": 0.13,
+        "candidate_pair_ratio": 0.17647058823529413,
+        "remaining_work_mean": 0.018551300578034682,
+        "remaining_work_std": 0.0028726778076552445,
+        "machine_ready_mean": 0.0016136801541425819,
+        "machine_ready_std": 0.0037273869514702815,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.40015247202254195,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.28579206909124366,
+        0.0,
+        0.7142079309087563,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 14,
+        "operation": 0,
+        "machine": 3,
+        "start": 23,
+        "end": 37
+      }
+    },
+    {
+      "step": 14,
+      "state": {
+        "progress": 0.14,
+        "candidate_pair_ratio": 0.21390374331550802,
+        "remaining_work_mean": 0.018298410404624276,
+        "remaining_work_std": 0.0027425136885076027,
+        "machine_ready_mean": 0.0016979768786127168,
+        "machine_ready_std": 0.003929566487911812,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4049607031490991,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.288236320234021,
+        0.0,
+        0.711763679765979,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 13,
+        "operation": 0,
+        "machine": 1,
+        "start": 15,
+        "end": 25
+      }
+    },
+    {
+      "step": 15,
+      "state": {
+        "progress": 0.15,
+        "candidate_pair_ratio": 0.25133689839572193,
+        "remaining_work_mean": 0.01811777456647399,
+        "remaining_work_std": 0.0028222579424250853,
+        "machine_ready_mean": 0.0017581888246628132,
+        "machine_ready_std": 0.004012917286384967,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4097026414038791,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2906305410592612,
+        0.0,
+        0.7093694589407388,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 14,
+        "operation": 1,
+        "machine": 10,
+        "start": 37,
+        "end": 47
+      }
+    },
+    {
+      "step": 16,
+      "state": {
+        "progress": 0.16,
+        "candidate_pair_ratio": 0.21390374331550802,
+        "remaining_work_mean": 0.0179371387283237,
+        "remaining_work_std": 0.0029775340031393395,
+        "machine_ready_mean": 0.002041184971098266,
+        "machine_ready_std": 0.004453482473092045,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4113156239621943,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2914412743532502,
+        0.0,
+        0.7085587256467499,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 6,
+        "operation": 1,
+        "machine": 33,
+        "start": 20,
+        "end": 31
+      }
+    },
+    {
+      "step": 17,
+      "state": {
+        "progress": 0.17,
+        "candidate_pair_ratio": 0.24598930481283424,
+        "remaining_work_mean": 0.01773843930635838,
+        "remaining_work_std": 0.0031159551185115032,
+        "machine_ready_mean": 0.002107418111753372,
+        "machine_ready_std": 0.00455840620962377,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.41579925958676295,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2936851794287027,
+        0.0,
+        0.7063148205712972,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 11,
+        "operation": 1,
+        "machine": 44,
+        "start": 27,
+        "end": 37
+      }
+    },
+    {
+      "step": 18,
+      "state": {
+        "progress": 0.18,
+        "candidate_pair_ratio": 0.23529411764705882,
+        "remaining_work_mean": 0.01755780346820809,
+        "remaining_work_std": 0.0032960967421841168,
+        "machine_ready_mean": 0.0023302023121387285,
+        "machine_ready_std": 0.004771624822915836,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4185092273082483,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2950345470098972,
+        0.0,
+        0.7049654529901028,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 2,
+        "operation": 0,
+        "machine": 1,
+        "start": 25,
+        "end": 39
+      }
+    },
+    {
+      "step": 19,
+      "state": {
+        "progress": 0.19,
+        "candidate_pair_ratio": 0.2727272727272727,
+        "remaining_work_mean": 0.017304913294797688,
+        "remaining_work_std": 0.003218969155034447,
+        "machine_ready_mean": 0.002414499036608863,
+        "machine_ready_std": 0.004931277510094157,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4231894612841137,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2973528632669039,
+        0.0,
+        0.702647136733096,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 5,
+        "operation": 0,
+        "machine": 2,
+        "start": 27,
+        "end": 38
+      }
+    },
+    {
+      "step": 20,
+      "state": {
+        "progress": 0.2,
+        "candidate_pair_ratio": 0.31016042780748665,
+        "remaining_work_mean": 0.01710621387283237,
+        "remaining_work_std": 0.003199396754525733,
+        "machine_ready_mean": 0.002480732177263969,
+        "machine_ready_std": 0.0050545624536507275,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.42782299247406025,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.2996330740778659,
+        0.0,
+        0.7003669259221341,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 2,
+        "operation": 1,
+        "machine": 41,
+        "start": 39,
+        "end": 49
+      }
+    },
+    {
+      "step": 21,
+      "state": {
+        "progress": 0.21,
+        "candidate_pair_ratio": 0.32620320855614976,
+        "remaining_work_mean": 0.01692557803468208,
+        "remaining_work_std": 0.003360554880976612,
+        "machine_ready_mean": 0.0025650289017341036,
+        "machine_ready_std": 0.0052613114390557625,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4315800934936318,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.30147114747900877,
+        0.0,
+        0.6985288525209913,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 13,
+        "operation": 1,
+        "machine": 8,
+        "start": 25,
+        "end": 35
+      }
+    },
+    {
+      "step": 22,
+      "state": {
+        "progress": 0.22,
+        "candidate_pair_ratio": 0.3315508021390374,
+        "remaining_work_mean": 0.016744942196531793,
+        "remaining_work_std": 0.003542074880544907,
+        "machine_ready_mean": 0.0027757707129094414,
+        "machine_ready_std": 0.00540560773026236,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4348841036213143,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.3030796024039627,
+        0.0,
+        0.6969203975960374,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 5,
+        "operation": 1,
+        "machine": 9,
+        "start": 38,
+        "end": 48
+      }
+    },
+    {
+      "step": 23,
+      "state": {
+        "progress": 0.23,
+        "candidate_pair_ratio": 0.31016042780748665,
+        "remaining_work_mean": 0.016564306358381502,
+        "remaining_work_std": 0.003688290115293692,
+        "machine_ready_mean": 0.002914258188824663,
+        "machine_ready_std": 0.005664353818454044,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4371833389530064,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.30419454992533945,
+        0.0,
+        0.6958054500746605,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 12,
+        "operation": 0,
+        "machine": 3,
+        "start": 37,
+        "end": 47
+      }
+    },
+    {
+      "step": 24,
+      "state": {
+        "progress": 0.24,
+        "candidate_pair_ratio": 0.31016042780748665,
+        "remaining_work_mean": 0.016383670520231215,
+        "remaining_work_std": 0.003627633583018447,
+        "machine_ready_mean": 0.002974470134874759,
+        "machine_ready_std": 0.005792889911422714,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.44030716785019397,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.30570365660777593,
+        0.0,
+        0.6942963433922241,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 7,
+        "operation": 0,
+        "machine": 0,
+        "start": 24,
+        "end": 40
+      }
+    },
+    {
+      "step": 25,
+      "state": {
+        "progress": 0.25,
+        "candidate_pair_ratio": 0.3422459893048128,
+        "remaining_work_mean": 0.016094653179190753,
+        "remaining_work_std": 0.0034792450678184854,
+        "machine_ready_mean": 0.003070809248554913,
+        "machine_ready_std": 0.005933183852371101,
+        "previous_heuristic": 4
+      },
+      "mode": 1,
+      "vector": [
+        0.0,
+        0.0,
+        0.4446408814967445,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        2,
+        4
+      ],
+      "weights": [
+        0.0,
+        0.0,
+        0.3077864451932627,
+        0.0,
+        0.6922135548067372,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant": 4,
+      "chosen": {
+        "job": 4,
+        "operation": 2,
+        "machine": 20,
+        "start": 33,
+        "end": 44
+      }
+    }
+  ],
+  "recommendations": [
+    [
+      3,
+      0,
+      2,
+      38,
+      56
+    ],
+    [
+      17,
+      3,
+      46,
+      31,
+      41
+    ]
+  ],
+  "branch_order": [
+    0,
+    1
+  ],
+  "snapshot_sha256": "fae4d4e652cf7a14737a86baf9457f48a99bb23747ebc968f3a4fe07d6573a4c"
+}

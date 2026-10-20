@@ -1,0 +1,152 @@
+{
+  "eligible_disagreement_pairs": 10,
+  "controls": 2,
+  "disagreement_directions": {
+    "H1": 2,
+    "H0": 2,
+    "tie": 6
+  },
+  "control_directions": {
+    "tie": 2
+  },
+  "delta_range": [
+    -4,
+    4
+  ],
+  "max_abs_difference_relative_to_better_Cmax": 0.02962962962962963,
+  "tie_Cmax_but_different_physical_schedule": 1,
+  "all_controls_exact_physical_match": true,
+  "six_feature_spearman_vs_delta_over_LB": {
+    "progress": 0.28941438070815306,
+    "candidate_pair_ratio": -0.3277385961594811,
+    "remaining_work_mean": -0.15704141065975136,
+    "remaining_work_std": 0.013655774839978378,
+    "machine_ready_mean": 0.11607408613981622,
+    "machine_ready_std": -0.20483662259967567
+  },
+  "previous_member_categorical": {
+    "4": {
+      "H1": 2,
+      "tie": 3
+    },
+    "0": {
+      "H0": 2,
+      "tie": 2
+    },
+    "9": {
+      "tie": 1
+    }
+  },
+  "source_U_groups": {
+    "B/g0000/000003": {
+      "H1": 2,
+      "tie": 3
+    },
+    "B/g0000/000005": {
+      "H0": 2,
+      "tie": 3
+    }
+  },
+  "by_instance": {
+    "Behnke19.fjsp": [
+      {
+        "id": "S00",
+        "source": "B/g0000/000003",
+        "progress": 0.266,
+        "delta": -4,
+        "winner": "H1"
+      },
+      {
+        "id": "S01",
+        "source": "B/g0000/000005",
+        "progress": 0.73,
+        "delta": 4,
+        "winner": "H0"
+      }
+    ],
+    "Behnke43.fjsp": [
+      {
+        "id": "S02",
+        "source": "B/g0000/000005",
+        "progress": 0.44,
+        "delta": 0,
+        "winner": "tie"
+      }
+    ],
+    "Behnke3.fjsp": [
+      {
+        "id": "S04",
+        "source": "B/g0000/000003",
+        "progress": 0.44,
+        "delta": 0,
+        "winner": "tie"
+      }
+    ],
+    "Behnke53.fjsp": [
+      {
+        "id": "S06",
+        "source": "B/g0000/000005",
+        "progress": 0.264,
+        "delta": 0,
+        "winner": "tie"
+      },
+      {
+        "id": "S07",
+        "source": "B/g0000/000003",
+        "progress": 0.728,
+        "delta": 0,
+        "winner": "tie"
+      }
+    ],
+    "Behnke46.fjsp": [
+      {
+        "id": "S08",
+        "source": "B/g0000/000003",
+        "progress": 0.26,
+        "delta": 0,
+        "winner": "tie"
+      },
+      {
+        "id": "S09",
+        "source": "B/g0000/000005",
+        "progress": 0.72,
+        "delta": 2,
+        "winner": "H0"
+      }
+    ],
+    "Behnke29.fjsp": [
+      {
+        "id": "S10",
+        "source": "B/g0000/000005",
+        "progress": 0.26,
+        "delta": 0,
+        "winner": "tie"
+      },
+      {
+        "id": "S11",
+        "source": "B/g0000/000003",
+        "progress": 0.72,
+        "delta": -4,
+        "winner": "H1"
+      }
+    ]
+  },
+  "progress_groups": {
+    "below_0.5": {
+      "H1": 1,
+      "tie": 5
+    },
+    "at_least_0.5": {
+      "H0": 2,
+      "tie": 1,
+      "H1": 1
+    }
+  },
+  "paired_wall_seconds": 48.127187167992815,
+  "max_pair_wall_seconds": 14.700718667008914,
+  "paired_certified_h_calls": 5814128,
+  "reference_certified_h_calls": 8196,
+  "prefix_h_calls_total": 4126784,
+  "native_solves": 50,
+  "statistical_limits": "Descriptive only, ten disagreement states from six train instances; repeated within-instance observations and source/path confounding. No predictor or p-values; correlations are not marginal feature value or evidence of insufficiency."
+}

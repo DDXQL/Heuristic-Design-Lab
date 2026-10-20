@@ -1,0 +1,18 @@
+{
+  "planned_pairs": 12,
+  "attempted_pairs": 12,
+  "complete_pairs": 12,
+  "input_pins_unchanged": true,
+  "dataset_opened": [
+    "Behnke19.fjsp",
+    "Behnke43.fjsp",
+    "Behnke3.fjsp",
+    "Behnke53.fjsp",
+    "Behnke46.fjsp",
+    "Behnke29.fjsp"
+  ],
+  "holdout_opened": false,
+  "new_model_requests": 0,
+  "new_U_candidates": 0,
+  "note": "Paired local training diagnostics only; no U fitness or search result. Failed deltas remain null; no retries."
+}

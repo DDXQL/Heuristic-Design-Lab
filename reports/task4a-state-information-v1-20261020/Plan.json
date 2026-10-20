@@ -1,0 +1,445 @@
+{
+  "kind": "Task4A-controlled-continuation-train-v1",
+  "new_model_requests": 0,
+  "new_U_candidates": 0,
+  "selection": "Reuse prior six structural instances in their fixed order. Source pool: archived B3/B5, step>0, >=10 legal actions. Two controls are the per-instance agreement states nearest progress .5, selecting the two closest instances (ties: prior instance order, step, B3 before B5). Control instances receive one disagreement near .5; other instances receive two near .25/.75. Disagreement source alternates B3/B5 by (instance_index+target_index)%2; closest progress, then lower step. No fitness/outcome selection or fallback.",
+  "samples": [
+    {
+      "id": "S00",
+      "file": "Behnke19.fjsp",
+      "sample_id": "Behnke19.fjsp/B3/0133",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "502b4e8a9caf66907c6b84954d817c0cfe595ba467db3d9f9ff730a53609cd11",
+      "step": 133,
+      "group": "disagreement",
+      "action_count": 612,
+      "recommendations": [
+        [
+          19,
+          1,
+          5,
+          160,
+          184
+        ],
+        [
+          26,
+          3,
+          5,
+          160,
+          178
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "3d7c8fbb592c90fd2858fdc4df77673eeb909b35fad1452d16354f377faf8c73"
+    },
+    {
+      "id": "S01",
+      "file": "Behnke19.fjsp",
+      "sample_id": "Behnke19.fjsp/B5/0365",
+      "source_U": "B/g0000/000005",
+      "source_native_result_hash": "21d297c9d5c02a0cb1c0fc6e6f52b7643e5aec3a73be8dcda2439020ed8d5540",
+      "step": 365,
+      "group": "disagreement",
+      "action_count": 496,
+      "recommendations": [
+        [
+          45,
+          3,
+          5,
+          432,
+          445
+        ],
+        [
+          80,
+          4,
+          19,
+          445,
+          455
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "c63be792e5f73792e02021629a17c12efba5f7db2ca6f0fb62e9eaf222984d0f"
+    },
+    {
+      "id": "S02",
+      "file": "Behnke43.fjsp",
+      "sample_id": "Behnke43.fjsp/B5/0022",
+      "source_U": "B/g0000/000005",
+      "source_native_result_hash": "fcf0950c03ff21d345b789b44ccb2bda0503c1fe6ba9eb3f3ee9e9ceae361e6c",
+      "step": 22,
+      "group": "disagreement",
+      "action_count": 316,
+      "recommendations": [
+        [
+          0,
+          2,
+          42,
+          34,
+          44
+        ],
+        [
+          5,
+          2,
+          11,
+          23,
+          35
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "c3146a0f534cd43ef3f35d8c5e05cd1fd57fe04f2fed13c669634775de15b57d"
+    },
+    {
+      "id": "S03",
+      "file": "Behnke43.fjsp",
+      "sample_id": "Behnke43.fjsp/B3/0026",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "9e888620657d28ce6cd027aa270f81a02bb99e518190766fff7e6725b47d05f5",
+      "step": 26,
+      "group": "agreement",
+      "action_count": 260,
+      "recommendations": [
+        [
+          9,
+          2,
+          53,
+          21,
+          31
+        ],
+        [
+          9,
+          2,
+          53,
+          21,
+          31
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "2f5306e90e172640521d1f19e20d1da8bfcd6e01d6c2d73be8189bcc57fdf78e"
+    },
+    {
+      "id": "S04",
+      "file": "Behnke3.fjsp",
+      "sample_id": "Behnke3.fjsp/B3/0022",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "caf25398f300c88fc1101106895ec6d2b998289cab97ac1abda1c089fdaedbca",
+      "step": 22,
+      "group": "disagreement",
+      "action_count": 80,
+      "recommendations": [
+        [
+          4,
+          1,
+          10,
+          35,
+          49
+        ],
+        [
+          0,
+          2,
+          11,
+          22,
+          36
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "d6ee0a5f9664580676e9f3dfaa87b9759657c6c15ae3905e6181ae98674d608f"
+    },
+    {
+      "id": "S05",
+      "file": "Behnke3.fjsp",
+      "sample_id": "Behnke3.fjsp/B3/0026",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "caf25398f300c88fc1101106895ec6d2b998289cab97ac1abda1c089fdaedbca",
+      "step": 26,
+      "group": "agreement",
+      "action_count": 68,
+      "recommendations": [
+        [
+          5,
+          2,
+          4,
+          21,
+          43
+        ],
+        [
+          5,
+          2,
+          4,
+          21,
+          43
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "433378a096dcc611585593219c567cceceedbb0390a76f94f34c0f6478fa0f14"
+    },
+    {
+      "id": "S06",
+      "file": "Behnke53.fjsp",
+      "sample_id": "Behnke53.fjsp/B5/0066",
+      "source_U": "B/g0000/000005",
+      "source_native_result_hash": "7ba0bfc35af30215f81c449fe06ea51105aed98e36aeda78dc32bc810a8be707",
+      "step": 66,
+      "group": "disagreement",
+      "action_count": 648,
+      "recommendations": [
+        [
+          42,
+          0,
+          2,
+          71,
+          93
+        ],
+        [
+          4,
+          4,
+          57,
+          43,
+          62
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "8871126fdec16eb369f17c51715b56c63509fb61dd635ad34b361c3635cf2bd8"
+    },
+    {
+      "id": "S07",
+      "file": "Behnke53.fjsp",
+      "sample_id": "Behnke53.fjsp/B3/0182",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "ecc74b6508a15a744cfecd0b9dbb61325429f05eccde2bf9cc49baea00f9975f",
+      "step": 182,
+      "group": "disagreement",
+      "action_count": 836,
+      "recommendations": [
+        [
+          28,
+          4,
+          56,
+          61,
+          78
+        ],
+        [
+          12,
+          4,
+          56,
+          59,
+          75
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "df97d96df2f6ed9e7270f10251b7548878b30d3ab1a58904f8d382306a541894"
+    },
+    {
+      "id": "S08",
+      "file": "Behnke46.fjsp",
+      "sample_id": "Behnke46.fjsp/B3/0026",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "70aea1de1043f82e4d0a30e1e49953c12cfa22805d94ef25c5818393fecbc95e",
+      "step": 26,
+      "group": "disagreement",
+      "action_count": 252,
+      "recommendations": [
+        [
+          3,
+          0,
+          2,
+          38,
+          56
+        ],
+        [
+          17,
+          3,
+          46,
+          31,
+          41
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "fae4d4e652cf7a14737a86baf9457f48a99bb23747ebc968f3a4fe07d6573a4c"
+    },
+    {
+      "id": "S09",
+      "file": "Behnke46.fjsp",
+      "sample_id": "Behnke46.fjsp/B5/0072",
+      "source_U": "B/g0000/000005",
+      "source_native_result_hash": "e8996db82fa75edb680504d07077eaf3588dd47a6febcbd9a5e3380ccaa97ef1",
+      "step": 72,
+      "group": "disagreement",
+      "action_count": 272,
+      "recommendations": [
+        [
+          11,
+          3,
+          22,
+          51,
+          63
+        ],
+        [
+          6,
+          4,
+          59,
+          57,
+          69
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "3665ea8f4333fc94ec926e1fcaa9018af88acfc0651c462b5792715d36c9aece"
+    },
+    {
+      "id": "S10",
+      "file": "Behnke29.fjsp",
+      "sample_id": "Behnke29.fjsp/B5/0026",
+      "source_U": "B/g0000/000005",
+      "source_native_result_hash": "5123bd9d36f4822fea7cb5f79bb90d8e82cfb6996c0785b587e86a91a35c9363",
+      "step": 26,
+      "group": "disagreement",
+      "action_count": 260,
+      "recommendations": [
+        [
+          18,
+          0,
+          3,
+          38,
+          56
+        ],
+        [
+          13,
+          2,
+          16,
+          21,
+          32
+        ]
+      ],
+      "branch_order": [
+        0,
+        1
+      ],
+      "snapshot_sha256": "be2afa533ec4e7882f8bc832138d71b96f1b759246acd02aba313d6b3bb63aa6"
+    },
+    {
+      "id": "S11",
+      "file": "Behnke29.fjsp",
+      "sample_id": "Behnke29.fjsp/B3/0072",
+      "source_U": "B/g0000/000003",
+      "source_native_result_hash": "8f96f7bdedcaa87c4634a323294a37e193e3a1de7eb5385d89ad041352c1adb4",
+      "step": 72,
+      "group": "disagreement",
+      "action_count": 240,
+      "recommendations": [
+        [
+          0,
+          4,
+          39,
+          43,
+          60
+        ],
+        [
+          13,
+          4,
+          39,
+          42,
+          56
+        ]
+      ],
+      "branch_order": [
+        1,
+        0
+      ],
+      "snapshot_sha256": "d56606c05714b03ab2e81ccf02abb6ac5ecb71c414e75596e88c016cfbe99e95"
+    }
+  ],
+  "training_instance_files": {
+    "Behnke19.fjsp": "data/fjsp/Behnke19.fjsp",
+    "Behnke43.fjsp": "data/fjsp/Behnke43.fjsp",
+    "Behnke3.fjsp": "data/fjsp/Behnke3.fjsp",
+    "Behnke53.fjsp": "data/fjsp/Behnke53.fjsp",
+    "Behnke46.fjsp": "data/fjsp/Behnke46.fjsp",
+    "Behnke29.fjsp": "data/fjsp/Behnke29.fjsp"
+  },
+  "continuation": "After ONE native H0/H1 SELECT decision, always native H0 raw-score single-member path; original prefix outputs replayed verbatim; previous_heuristic always updated by native executor.",
+  "semantics": "Use unchanged native executor from empty state to authenticate/reproduce complete prefix, then intervene. Diagnostic controller is trusted host test fixture, not a generated/registered U. Prefix replay cost is included.",
+  "pair_deadline_seconds": 15,
+  "deadline_scope": "Per state: H0 branch and H1 branch, each primary+deterministic recheck, share a SINGLE native runtime._collect 15-second worker deadline (stricter than separate 15s per branch). No retry/time extension.",
+  "pair_count": 12,
+  "disagreement_count": 10,
+  "agreement_controls": 2,
+  "max_paired_native_solves": 48,
+  "reference_checks": 2,
+  "reference_deadline_seconds": 15,
+  "max_all_native_solves": 50,
+  "failure": "Any branch failure makes paired delta null. Preserve completed certified branches; timeout work not certified is unknown. Integrity failure stops remaining pairs. No automatic rerun.",
+  "analysis": "Delta=Cmax(H1 action; then H0)-Cmax(H0 action; then H0), positive favors H0. Controls separate. Descriptive all-six-continuous-feature Spearman vs Delta/LB, previous member categorical, progress <.5/>=.5. No predictor, p-value, feature selection or test split; repeated states within instance are not independent.",
+  "offline_checks": {
+    "complete_prefix_actions_inputs_features_restored": true,
+    "negative_wrong_start_rejected": true,
+    "negative_wrong_operation_rejected": true,
+    "negative_changed_snapshot_hash_rejected": true
+  },
+  "pins": {
+    "reports/task4a-state-information-v1-20261020/diagnose.py": "60759f96e41e0635a69821e7f1f5d3c7b7c8b5dd39968c3b6e050dd32eff29a2",
+    "runs/v22-gpt61-select-mix-301-20261014-v1/H_frozen.json": "2c11510d3ced58aa7aeb3b15103f12b4c1f4d0ba9a2f2b06ad14af0ac0e823e1",
+    "runs/v22-gpt61-select-mix-301-20261014-v1/Conditional_H_reassessment.json": "b70626ac9da769e0bbf329c3dd7ebe33a0879d3100e2502425b3c474941cb4ab",
+    "runs/v22-gpt61-select-mix-301-20261014-v1/protocol.json": "19e2e83106532c1e7ef2a5dd54891247c23bafe0232dd5cdd3340eb84777eeb9",
+    "runs/v22-gpt61-select-mix-301-20261014-v1/r301/B/checkpoint.json": "0cfa9d28141d90b74d90f4daa1e7465750721083f20c95b4fc7382a1c8be2772",
+    "reports/h10-decision-diversity-v1-20261020/Plan.json": "57ecc982a7b5a2f4204cf1a6fc0702c11882b441cf819bfcafd5f3cd6411bd56",
+    "reports/h10-decision-diversity-v1-20261020/sampled_states.jsonl.gz": "44928d21d245d850f31ef4383aa1e9d5bf770f299559810b57d55a38bd6139fa",
+    "data/fjsp_manifest.json": "45ccd4ff820b387f89fd1b4bbf4e714e8517d1f68578d7d65ac8ea720e6a42f2",
+    "tools/diagnose_h_decision_diversity.py": "f4d1709f955548426bcbdf50ce4be95db2bbfeeeea675253ac7e0f16791e8ba3",
+    "code/fjsp_usage/research_real/runtime.py": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+    "code/fjsp_usage/offline_v2.py": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+    "code/fjsp_usage/usage_v2/execution.py": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+    "code/fjsp_usage/research/candidates.py": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+    "code/fjsp_usage/research/protocol.py": "a4a1ca453ec85951f4a1bbbf45fbc25340bfe6e39aee8566f23dea49b9f00286",
+    "code/fjsp_usage/research_real/staged_evaluation.py": "d9b6668c0c77d1b3b2803debf2cbe0c27ae048a20c1c40cf22cb638515ea198a",
+    "code/llm4ad/task/optimization/fjsp_set/instances.py": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+    "code/llm4ad/task/optimization/fjsp_set/scheduler.py": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+    "data/fjsp/Behnke19.fjsp": "4cb39580b22bed47bbd714a3337d6af1e5cea4fb3d218b36b94a2f8403f86dd1",
+    "data/fjsp/Behnke43.fjsp": "292143a27f269e91e3318933b4494573d60c915840c477d47a3d4a5724eff9c3",
+    "data/fjsp/Behnke3.fjsp": "ab1b801d6511a5e6cfe2ddbbceab456a8f168bab8f41b8602647ac84e7f0bd06",
+    "data/fjsp/Behnke53.fjsp": "52c6e7e9d6dd772c6bd2bf4a1bd63dfb780c47aea92799b9a51559901a5d1ab0",
+    "data/fjsp/Behnke46.fjsp": "2e430a4c56f0f03eb469ce3cbba1414948afac832dcf84208d5b8403ee57d674",
+    "data/fjsp/Behnke29.fjsp": "e9ff0b55cc48abc20f0e37160246ce506511b85a461e1fe8f32cf1bccdfbcf35",
+    "reports/task4a-state-information-v1-20261020/states/S00.json": "c9ecbbf6889eeb81ffe55a4fdee14969cd9bd6d982d2b511d5a4a127747600e4",
+    "reports/task4a-state-information-v1-20261020/states/S01.json": "9bf7972085c35237e06abf45d1ad0b921173cff357ccd78957c3a8619f222f92",
+    "reports/task4a-state-information-v1-20261020/states/S02.json": "118b3c9f579e234069b0854cbb7f17404981ef01e8473ed6b82a63c67b65478e",
+    "reports/task4a-state-information-v1-20261020/states/S03.json": "a090adccb5ff6290f733f271db04b369be5fbc2d98b380597cc3a9a25d38334f",
+    "reports/task4a-state-information-v1-20261020/states/S04.json": "23de4ebbfed2b391bbbec889e8d32ec1faee91ffa74dac9d7d5b1a87ceac7283",
+    "reports/task4a-state-information-v1-20261020/states/S05.json": "e87f0bf034015f2115fdda27d5b44e4ee7b44649c02abb9a0f7c384b257fc558",
+    "reports/task4a-state-information-v1-20261020/states/S06.json": "bcd6673da0d6c123215fbb7b66b5e2d114f8b332aee264c4c20300c95891a715",
+    "reports/task4a-state-information-v1-20261020/states/S07.json": "f8cbd0a70440ff87f87e33a4f63a0dd294065a2977810ca831bc611419420a6a",
+    "reports/task4a-state-information-v1-20261020/states/S08.json": "3de9c34541b8bddfc4e877d3e3824d817bb4df4f7267671a811308185b8c2351",
+    "reports/task4a-state-information-v1-20261020/states/S09.json": "96a2235c61e2120ba80edcada1f7018361c151e6ff6a4d724f47b2806bc53ad2",
+    "reports/task4a-state-information-v1-20261020/states/S10.json": "cf5ea0e00bf37e07f7da7b6933170f15484e2375fe37c37621cc887c3e9bad87",
+    "reports/task4a-state-information-v1-20261020/states/S11.json": "9ab07a5d203113af687305311e3498d01da6e04f5a48e80746bdf27b9c55ff47",
+    "reports/task4a-state-information-v1-20261020/Reference_checks_input.json": "571075a32fbe3ec280c22fc0ab66c6c0e38953e234c06418a45cde94f71cdca7"
+  }
+}

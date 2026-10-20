@@ -1,0 +1,270 @@
+{
+  "file": "Behnke29.fjsp",
+  "state_id": "S11",
+  "valid": true,
+  "branches": {
+    "1": {
+      "state_id": "S11",
+      "forced_member": 1,
+      "makespan": 135,
+      "lower_bound": 75.0,
+      "score": -1.8,
+      "schedule_sha256": "4c77e1639925e3e2ba68d903d8fdad05372c58f4acc8c462e9cf0c30f6dad955",
+      "native_result_sha256": "53eb838115df5aecd57cf24171a85f0cf9630a324d1f5cda5e97a376bd68b22b",
+      "recheck_native_result_sha256": "53eb838115df5aecd57cf24171a85f0cf9630a324d1f5cda5e97a376bd68b22b",
+      "primary": {
+        "wall_seconds": 0.2333779580076225,
+        "phase_h_calls": {
+          "prefix": [
+            0,
+            0,
+            16200,
+            0,
+            19856,
+            0,
+            0,
+            3656,
+            0,
+            0
+          ],
+          "forced": [
+            0,
+            240,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            2960,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          2960,
+          240,
+          16200,
+          0,
+          19856,
+          0,
+          0,
+          3656,
+          0,
+          0
+        ],
+        "selected_h_scoring_seconds": 0.188297709741164,
+        "combination_processing_seconds": 0.016695953265298158
+      },
+      "recheck": {
+        "wall_seconds": 0.2331820409744978,
+        "phase_h_calls": {
+          "prefix": [
+            0,
+            0,
+            16200,
+            0,
+            19856,
+            0,
+            0,
+            3656,
+            0,
+            0
+          ],
+          "forced": [
+            0,
+            240,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            2960,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          2960,
+          240,
+          16200,
+          0,
+          19856,
+          0,
+          0,
+          3656,
+          0,
+          0
+        ],
+        "selected_h_scoring_seconds": 0.1880067900638096,
+        "combination_processing_seconds": 0.016525209182873368
+      },
+      "forced_action": [
+        13,
+        4,
+        39,
+        42,
+        56
+      ],
+      "forced_history_member": 1,
+      "prefix_snapshot_sha256": "d56606c05714b03ab2e81ccf02abb6ac5ecb71c414e75596e88c016cfbe99e95",
+      "full_prefix_and_constant_H0_suffix_checked": true
+    },
+    "0": {
+      "state_id": "S11",
+      "forced_member": 0,
+      "makespan": 139,
+      "lower_bound": 75.0,
+      "score": -1.8533333333333333,
+      "schedule_sha256": "fed040f4f287fb02d7a708bbd285e48671b5b878ea6cfc37d9484f34530628b9",
+      "native_result_sha256": "ec31ec1e9dd6d90ca25759232b255a06d3e915da2b0b0aa007d4b7cec3612528",
+      "recheck_native_result_sha256": "ec31ec1e9dd6d90ca25759232b255a06d3e915da2b0b0aa007d4b7cec3612528",
+      "primary": {
+        "wall_seconds": 0.23303012497490272,
+        "phase_h_calls": {
+          "prefix": [
+            0,
+            0,
+            16200,
+            0,
+            19856,
+            0,
+            0,
+            3656,
+            0,
+            0
+          ],
+          "forced": [
+            240,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            2940,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          3180,
+          0,
+          16200,
+          0,
+          19856,
+          0,
+          0,
+          3656,
+          0,
+          0
+        ],
+        "selected_h_scoring_seconds": 0.18876800092402846,
+        "combination_processing_seconds": 0.016536326322238892
+      },
+      "recheck": {
+        "wall_seconds": 0.23240408301353455,
+        "phase_h_calls": {
+          "prefix": [
+            0,
+            0,
+            16200,
+            0,
+            19856,
+            0,
+            0,
+            3656,
+            0,
+            0
+          ],
+          "forced": [
+            240,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "continuation": [
+            2940,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "h_calls": [
+          3180,
+          0,
+          16200,
+          0,
+          19856,
+          0,
+          0,
+          3656,
+          0,
+          0
+        ],
+        "selected_h_scoring_seconds": 0.18785428936826065,
+        "combination_processing_seconds": 0.016466706932988018
+      },
+      "forced_action": [
+        0,
+        4,
+        39,
+        43,
+        60
+      ],
+      "forced_history_member": 0,
+      "prefix_snapshot_sha256": "d56606c05714b03ab2e81ccf02abb6ac5ecb71c414e75596e88c016cfbe99e95",
+      "full_prefix_and_constant_H0_suffix_checked": true
+    }
+  },
+  "delta_H1_minus_H0": -4,
+  "normalized_delta": -0.05333333333333334,
+  "parent_wall_seconds": 1.1550761249964125
+}
