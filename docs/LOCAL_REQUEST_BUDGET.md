@@ -82,6 +82,8 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=code:tests:. \
 
 **未迁移入口：**`run_registered_v22.py`、`run_registered_gpt61_v22.py`的历史专用登记CLI，以及`tools/h01_weight_search.py`。它们保持原登记、交接及财务门禁；本次不恢复这些入口下的任何暂停实验。`usage_v2/billing.py`已核对但无需修改：新模式不调用它，旧模式继续保留。
 
+B2-0新增独立H0/H1入口`tools/h01_weight_local.py`，保留旧专用入口及旧准备身份。它复用原两代20槽科研逻辑，接入公共本地预算及冻结H审计；工程验收不授权正式运行。详见[H01 B2-0验收](H01_B2_0_ENGINEERING_ACCEPTANCE.md)。
+
 ## 离线验证
 
 2026-10-19预算分流首轮的`tests/test_local_request_budget.py`复用参考提交的12项测试，并增加3项SELECT/MIX客户端、科研参数/提示及CLI贯通检查，共15项通过。所有新请求测试使用手写响应和临时目录，真实网络、账户/账单包装器和旧串行财务门禁被替换为“调用即报错”。测试还逐字节及mtime核对历史夹具账本、未知预留与检查点未改。

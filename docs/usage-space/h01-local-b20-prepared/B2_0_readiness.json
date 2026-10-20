@@ -1,0 +1,74 @@
+{
+  "stage": "B2-0 engineering preparation only",
+  "new_model_requests": 0,
+  "new_train_evaluations": 0,
+  "real_execution_authorized": false,
+  "science_equal": true,
+  "prompt_bytes_equal": true,
+  "H_and_data_equal": true,
+  "historical_request_slots": 231,
+  "planned_request_cap": 20,
+  "actual_cost": null,
+  "next": "B2-1 requires new explicit user confirmation",
+  "new_offline_tests_passed": 9,
+  "all_distinct_offline_checks_passed": 34,
+  "main_python_tests_passed": 33,
+  "plot_python_tests_passed": 1,
+  "old_preparation_files_protected": 42,
+  "old_preparation_bytes_and_mtimes_unchanged": true,
+  "remaining_grid_evaluations": 16,
+  "next_total_evaluations_max": 36,
+  "planned_lifetime_request_slots_max": 251,
+  "old_eight_fingerprint_mismatches": [
+    {
+      "file": "code/fjsp_usage/research_real/budget.py",
+      "old_sha256": "1bde9f1124b2f1005ab37223d7fff89ecad28567f7bf181c5705521f27a8dfcd",
+      "new_sha256": "03da4b3f3a7275b1af1899258aec86d7fd5c227749f01adf65936333140e24fd",
+      "classification": "engineering: local request ledger"
+    },
+    {
+      "file": "code/fjsp_usage/research_real/config.py",
+      "old_sha256": "f093d2bbab9c50e5831b3d58f3c7dc218f268aba7e1fa3f5fca3f77cb2587c93",
+      "new_sha256": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+      "classification": "engineering: explicit budget declaration"
+    },
+    {
+      "file": "code/fjsp_usage/research_real/workflow.py",
+      "old_sha256": "d16e648c2e7a4a14260d3d589a7a47879df7f72e3674d4524edd3247a7be51a6",
+      "new_sha256": "cd4cdb0cb9a5fdbc38e1d28bc674431f9324667f5e0fbb6f43036be5c971c97b",
+      "classification": "engineering: client dispatch split"
+    },
+    {
+      "file": "code/fjsp_usage/usage_v2/access.py",
+      "old_sha256": "d0f0bfccbd844e1343b4e7b64606fab6d20c834c698bec53c31b691796cae9f9",
+      "new_sha256": "5348fe4bd742b4ed718a313acba5c0da27a2f9efe7903975b0f462835cd4e74d",
+      "classification": "engineering: durable response recorder"
+    },
+    {
+      "file": "code/fjsp_usage/usage_v2/config.py",
+      "old_sha256": "1eff644359579394e7a83026a8d26890c4eebd5dcf0c15acee664707dd0714d0",
+      "new_sha256": "e3aa75dc295a03f51edcb03084d19530e2acd2d69bc726248c76c1ef68bc3144",
+      "classification": "engineering: new protocol/fixed-H declaration"
+    },
+    {
+      "file": "code/fjsp_usage/usage_v2/registration.py",
+      "old_sha256": "1bd325fa058b9c4d88de5c1e6e9f10756bf99e8f8ed1c6dd73bb56f48ce06971",
+      "new_sha256": "311c65c797c1763fae00e8c9dbf36bcdbf207aa9451037c9dbc87f45e84acd5f",
+      "classification": "engineering: local client branch"
+    },
+    {
+      "file": "code/fjsp_usage/usage_v2/workflow.py",
+      "old_sha256": "c5160c4a5b15971162fab82ea97e4a58fae1160602096ea13e60499f9d132475",
+      "new_sha256": "950a322a8f0350a70392db2429608844f9ef74fc4d9d3d9cf2b8f4c6163cfa75",
+      "classification": "engineering: H binding and report routing"
+    },
+    {
+      "file": "experiments/tier2/usage_v2/run.py",
+      "old_sha256": "b3f926691ef75a01505612f536fb56248ab5f4e73e5fba787dc78c7c6e1c595e",
+      "new_sha256": "7ba8db310d14f634f6b9e755a41b55a97556f9d37d0f9d3c49a4d683693e17f2",
+      "classification": "engineering: local CLI stages"
+    }
+  ],
+  "B2_1_engineering_ready": true,
+  "B2_1_execution_authorized": false
+}

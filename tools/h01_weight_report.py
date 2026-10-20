@@ -49,10 +49,12 @@ def alpha_profile(result, constant=None):
         'per_instance':rows, 'scope':'complete trajectory' if result['valid'] else 'success prefix; failed portion unknown'}
 
 
-def report(run, out=None):
+def report(run, out=None, *, plan_reader=None, version=None):
     import reportlab  # Fail before creating outputs; use the bundled artifact Python.
     from tools.h01_weight_search import pins_check, validate, VERSION
-    plan = pins_check(run)
+    plan = (plan_reader or pins_check)(run)
+    local_budget = plan.get('budget_policy') == 'local-request-budget-v1'
+    VERSION = version or VERSION
     out = Path(out) if out is not None else common.ROOT/'reports'/run.name
     out.mkdir(exist_ok=False)
     (out/'sources').mkdir()
@@ -75,7 +77,10 @@ def report(run, out=None):
     results = dict(references)
     checkpoint = run/'r501/B/checkpoint.json'
     generation_rows = [{'generation':0,'best_fitness':initial_champion['fitness'],
-        'mean_fitness':fmean(r['fitness'] for r in initial),'population_ids':';'.join(r['id'] for r in ranked(initial))}]
+        'mean_fitness':fmean(r['fitness'] for r in initial),'population_ids':';'.join(r['id'] for r in ranked(initial)),
+        'champion_id':initial_champion['id'],'champion_is_LLM_new':False,
+        'new_children_survived':0,'parents_from_previous_generation_children':0,
+        'surviving_children_beating_previous_champion':0,'parent_uses_of_previous_improving_children':0}]
     lineage, profiles, new_ids, request_rows = [], {}, [], []
     state = common.read(checkpoint) if checkpoint.exists() else None
     if state:
@@ -85,13 +90,13 @@ def report(run, out=None):
             record = journal[attempt['id']]
             usage = record.get('usage')
             bill_path = run/'billing'/(hashlib.sha256(record['global_key'].encode()).hexdigest()+'.json')
-            bill = common.read(bill_path) if bill_path.exists() else {}
+            bill = common.read(bill_path) if not local_budget and bill_path.exists() else {}
             request_rows.append({'id':attempt['id'],'global_key':record['global_key'],'status':attempt['status'],
                 'input_tokens':usage['input_tokens'] if usage is not None else None,
                 'output_tokens':usage['output_tokens'] if usage is not None else None,
                 'request_seconds':record.get('elapsed_seconds'),
                 'actual_platform_points':bill.get('actual_platform_units') if bill.get('status')=='invoice_account_matched' else None,
-                'billing_status':bill.get('status','not_recorded')})
+                'billing_status':'unknown; local budget does not query fees' if local_budget else bill.get('status','not_recorded')})
             lineage.append({**{k:v for k,v in attempt.items() if k != 'parents'},
                 'parents':';'.join(attempt['parents']),'prompt_key':record['prompt_key']})
             if record['status'] != 'completed':continue
@@ -120,6 +125,7 @@ def report(run, out=None):
         # Reconstruct only from already evaluated rows and the unchanged stable
         # survival rule. No new evaluator invocation or outcome-dependent search.
         population = list(initial)
+        previous_improving_ids = set()
         for gen in (0,1):
             outcomes = [a for a in state['attempts'] if f'/g{gen:04d}/' in a['id']]
             if len(outcomes) != 10:break
@@ -129,10 +135,25 @@ def report(run, out=None):
                 c = parse_response(journal[a['id']]['text'],interface_version=INTERFACE,member_count=10)
                 r = results[a['id']]
                 children.append({'id':a['id'],'candidate':{'key':c.key},'fitness':r['fitness']})
+            previous_best = max(r['fitness'] for r in population)
             population = ranked(population+children)[:5]
+            improving_ids = {c['id'] for c in children if c['fitness'] > previous_best} & {r['id'] for r in population}
             generation_rows.append({'generation':gen+1,'best_fitness':population[0]['fitness'],
                 'mean_fitness':fmean(r['fitness'] for r in population),
-                'population_ids':';'.join(r['id'] for r in population)})
+                'population_ids':';'.join(r['id'] for r in population),
+                'champion_id':population[0]['id'],
+                'champion_is_LLM_new':population[0]['id'].startswith('B/g'),
+                'new_children_survived':sum(r['id'] in {c['id'] for c in children} for r in population),
+                'surviving_children_beating_previous_champion':len(improving_ids),
+                'parent_uses_of_previous_improving_children':sum(p in previous_improving_ids for a in outcomes for p in a['parents']),
+                'parents_from_previous_generation_children':sum('/g0000/' in p for a in outcomes for p in a['parents']) if gen else 0})
+            previous_improving_ids = improving_ids
+        survivor_generation = {g['generation']:set(g['population_ids'].split(';')) for g in generation_rows}
+        for row in lineage:
+            gen = int(row['id'].split('/')[1][1:])
+            row['generation'] = gen+1
+            row['survived_generation'] = row['id'] in survivor_generation.get(gen+1,set()) if gen+1 in survivor_generation else None
+            row['survived_final'] = row['id'] in {p['id'] for p in state['population']} if state['phase']=='completed' else None
     for key,result in results.items():
         indexed = {r['file']:r for r in result['instances']}
         for name in plan['names']:
@@ -157,30 +178,42 @@ def report(run, out=None):
             **{label:sum(r['outcome']==label for r in rows) for label in ('win','loss','tie')},
             'unknown':sum(r['outcome'] is None for r in rows),
             'notice':'complete train21' if results[key]['valid'] else 'success prefix only; complete fitness null'})
+    for row in summaries:
+        row['initial_manual_seed'] = row['kind']=='fixed_grid' and row.get('alpha') in (0,.25,.5,.75,1)
+        if row['kind'] == 'LLM_new':
+            p = profiles[row['id']]
+            row['strategy_class'] = ('LLM_new_constant' if p['provably_input_independent'] else
+                'LLM_new_observed_dynamic' if p['any_within_instance_alpha_varies'] else 'LLM_new_observed_unchanged_or_unknown')
     for name,rows in [('Candidates.csv',summaries),('Instances.csv',instances),('Comparisons.csv',comparison),
                        ('Win_loss_tie.csv',counts),('Generations.csv',generation_rows),('Lineage.csv',lineage),('Requests.csv',request_rows)]:
         if rows:
             fields = list(dict.fromkeys(k for row in rows for k in row))
             table(name,[{k:row.get(k) for k in fields} for row in rows],out=out)
     budget = common.read(run/'Budget_summary.json') if (run/'Budget_summary.json').exists() else None
-    actual_points = 0; unknown = []
-    for path in (run/'billing').glob('*.json'):
+    actual_points = None if local_budget else 0; unknown = []
+    for path in (() if local_budget else (run/'billing').glob('*.json')):
         bill = common.read(path)
         if bill.get('status')=='invoice_account_matched':actual_points += bill['actual_platform_units']
         else:unknown.append(bill.get('global_key'))
     best_new = max((k for k in new_ids if results[k]['valid']),key=lambda k:results[k]['fitness'],default=None)
+    best_constant = max((k for k in new_ids if results[k]['valid'] and profiles[k]['provably_input_independent']),key=lambda k:results[k]['fitness'],default=None)
+    best_dynamic = max((k for k in new_ids if results[k]['valid'] and profiles[k]['any_within_instance_alpha_varies']),key=lambda k:results[k]['fitness'],default=None)
     attempts = state['attempts'] if state else []
     legal = sum(a['status'] in ('valid','invalid','duplicate') for a in attempts)
     duplicates = sum(a['status']=='duplicate' for a in attempts)
     evidence = {'version':VERSION,'run':str(run),'fixed_grid_complete':complete_grid,'best_grid':best_grid,
         'best_grid_alpha':next(v['alpha'] for v in plan['versions'] if v['id']==best_grid) if best_grid else None,
-        'initial_champion':initial_champion['id'],'best_new':best_new,
+        'initial_champion':initial_champion['id'],'initial_manual_ids':[r['id'] for r in initial],
+        'best_new':best_new,'best_new_constant':best_constant,'best_new_dynamic':best_dynamic,
+        'final_champion':ranked(state['population'])[0]['id'] if state and state['phase']=='completed' else None,
         'best_new_profile':profiles.get(best_new),'generation_rows':generation_rows,
         'attempt_status_counts':dict(Counter(a['status'] for a in state['attempts'])) if state else {},
         'request_slot_denominator':len(attempts),'legal_candidates':legal,
         'legal_rate':legal/len(attempts) if attempts else None,
         'duplicate_rate':duplicates/len(attempts) if attempts else None,
-        'known_actual_platform_points':actual_points,'unknown_billing_keys':unknown,
+        'known_actual_platform_points':actual_points,'actual_cost':None if local_budget else actual_points,
+        'fee_status':'unknown; no account or invoice queries' if local_budget else 'historical invoice evidence',
+        'unknown_billing_keys':[r['global_key'] for r in request_rows] if local_budget else unknown,
         'budget':budget,'alpha_profiles':profiles,'source_pins':plan['pins'],
         'new_evaluations_completed':sum(not v['reused'] and v['id'] in references for v in plan['versions'])+len(new_ids),
         'new_single_solve_seconds_certified':sum(recorded_costs(results[k])['single_solve_seconds'] for k in new_ids),
@@ -192,7 +225,8 @@ def report(run, out=None):
     lines = ['# H0/H1权重搜索：训练探索', '',
         f'固定网格完成：{complete_grid}；最佳alpha：{evidence["best_grid_alpha"]}；新模型候选最佳：{best_new}。',
         f'初始池冠军：{initial_champion["fitness"]:.12f}。继承初始池的成绩不计为模型收益。',
-        f'已核对实际费用：{actual_points}平台点；未解决账单：{len(unknown)}；金额不换算为人民币。',
+        ('实际费用：unknown/null；轻量预算不查询账户、价格或账单。' if local_budget else
+         f'已核对实际费用：{actual_points}平台点；未解决账单：{len(unknown)}；金额不换算为人民币。'),
         '常量或轨迹中不变权重归为常量/观测不变权重；仅权重变化不能证明收益。',
         '比较使用完整21train平均-Cmax/LB，任一失败则fitness为空；前缀不代替完整成绩。',
         '端点采用单成员语义复用，旧计时不包含新alpha检查开销；精确速度差异不可据此归因。',

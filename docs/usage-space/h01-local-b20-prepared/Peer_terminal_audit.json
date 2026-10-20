@@ -1,0 +1,27 @@
+{
+  "status": "stopped_or_not_started",
+  "native_slots": 30,
+  "confirmed_sends": 30,
+  "prepared_only": [
+    {
+      "id": "B/g0001/000000",
+      "state": "prepared_only_not_sent; preserved, not resumed"
+    }
+  ],
+  "history": {
+    "historical_request_slots": 231,
+    "historical_confirmed_sends": 215,
+    "lifetime_request_cap": 300
+  },
+  "billing_queried": false,
+  "files_sha256": {
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/protocol.json": "b57858bed8c6159a3ca1f1df5dfd4467870ed3d01146b7522a0bef47d55f22ed",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/budget.json": "8e23ec5f4c8f8c92447c6d7b78a03ef2a2abb32c37f3357f68b507aba4d0ead9",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/Update_status.json": "7408063cb9e03c270c77f64974d2bf70184df7683f224438d26441be916b5f05",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/Final_budget_handoff.json": "095f59a0e2a433bb7fc5ca93b37c2f1cd7f9d8533ee987431024c1fd63141773",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/r201/A/checkpoint.json": "6c210c1d73f9e4a3fccb29ee28aacec26e975454ec18a68d6360d37f4487d207",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/r201/A/budgeted_evolution_requests.json": "04cc9103c589d3a8114ad069a3d1f1e19e289c863247194e957ffb08f4ef96d7",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/r201/B/checkpoint.json": "72487a53916d7f1e40a3c10d28af2225a696b0a5842ec7f070fabb715be9ad3a",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/single-ID-update-frequency-seed201-v1-20261018/r201/B/budgeted_evolution_requests.json": "987d540f80c9689b5f25fa4e1525b43fe215b1fe641e435f25cdca9326c4163e"
+  }
+}
