@@ -1,0 +1,31 @@
+{
+  "mode": "mock SHA fault injection only; no files modified",
+  "cases": [
+    {
+      "simulated_mismatch": "dynamic_U",
+      "rejected": true,
+      "error": "frozen file changed: runs/v1-h01-frozen-pair-test28-v1-20261021/sources/B_g0001_000000.py"
+    },
+    {
+      "simulated_mismatch": "equal_U",
+      "rejected": true,
+      "error": "frozen file changed: runs/v1-h01-frozen-pair-test28-v1-20261021/sources/alpha_050.py"
+    },
+    {
+      "simulated_mismatch": "H_asset",
+      "rejected": true,
+      "error": "frozen file changed: runs/v1-h01-frozen-pair-test28-v1-20261021/sources/H_frozen.json"
+    },
+    {
+      "simulated_mismatch": "test_input",
+      "rejected": true,
+      "error": "frozen file changed: runs/v1-h01-frozen-pair-test28-v1-20261021/inputs/test/Behnke6.fjsp"
+    },
+    {
+      "simulated_mismatch": "evaluator",
+      "rejected": true,
+      "error": "frozen file changed: code/fjsp_usage/research_real/runtime.py"
+    }
+  ],
+  "formal_evaluations": 0
+}

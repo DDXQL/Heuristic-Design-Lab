@@ -1,0 +1,418 @@
+{
+  "checked_project_roots": [
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space",
+      "available": true
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research",
+      "available": true
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments",
+      "available": true
+    }
+  ],
+  "checked_evidence": [
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/conditional-paired-research-20261011-v4/Dataset_usage_audit.json",
+      "sha256": "53f5e6cc9526d12ef0e6ff7337152d30145fc7224c1824f226736f89fe031c12",
+      "facts": {
+        "validation11_already_evaluated": true,
+        "sources": [
+          {
+            "path": "/Users/DDXQL/Documents/大学/硕士/代码/EoH-S/logs/fjsp_tier1_formal/run03/validation_evaluation.json",
+            "sha256": "89aae4bcc7902bfedea9cb8e14f16cbfccd8076df23b2fb0231c8d54bc057c3e"
+          },
+          {
+            "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+            "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750"
+          }
+        ],
+        "test28_prior_numeric_results_found_in_scanned_records": false,
+        "limitations": "Repository and referenced EoH-S formal log scan only; cannot certify unknown external use.",
+        "this_run_holdout_access": "bytes hashed for identity only; no validation/test parsing, scheduling, strategy selection or fitness."
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/h01-state-weight-search-seed501-batch-v3-20261020/Execution_audit.json",
+      "sha256": "d9143b59319ff51edcc7360e5512e93fe2d8cae0a981a16b17cc2788854e91d8",
+      "facts": {
+        "no_validation_test_instance_load": true,
+        "training_only": true
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/leaf-framework-30pct-20261010-v3/H_development_summary_20261010.json",
+      "sha256": "10f5e792701fa740acc2af8cbda503c416237a5107da7b85925037d48d6e244b",
+      "facts": {
+        "H_each_train_instances": 21,
+        "validation_or_test_stages_run": false
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/h10-decision-diversity-v1-20261020/Plan.json",
+      "sha256": "57ecc982a7b5a2f4204cf1a6fc0702c11882b441cf819bfcafd5f3cd6411bd56",
+      "facts": {
+        "train_only": true
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/task4a-state-information-v1-20261020/Plan.json",
+      "sha256": "12f3fcec6918e25590441ebcd3f5155cbf3bfa9ee6f6aee516a1cc0b3d7509fb",
+      "facts": {
+        "training_instance_files": {
+          "Behnke19.fjsp": "data/fjsp/Behnke19.fjsp",
+          "Behnke43.fjsp": "data/fjsp/Behnke43.fjsp",
+          "Behnke3.fjsp": "data/fjsp/Behnke3.fjsp",
+          "Behnke53.fjsp": "data/fjsp/Behnke53.fjsp",
+          "Behnke46.fjsp": "data/fjsp/Behnke46.fjsp",
+          "Behnke29.fjsp": "data/fjsp/Behnke29.fjsp"
+        }
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/u-state-behavior-v1-20261020/Evidence_index.json",
+      "sha256": "a31d4a03ac6cc72bcd0ad1ef25a0c42ae79e22cd34f753c5ffc7642bbf16d883",
+      "facts": {
+        "evidence_index_only": true,
+        "no_inference_from_absent_flags": true
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/baselines/tier1_single_rule_v1/records/2026092003/evaluation_result.json",
+      "sha256": "3fb8d981ae3e26c9a6161b16f29d8e10625209cef0dd0e2e19917e5a6cfd9021",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/baselines/tier1_single_rule_v1/records/2026092004/evaluation_result.json",
+      "sha256": "0f4878c6a62b40f00180af4249b2c948ae8aae2e0520b1aa06bb35169150f981",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092003/evaluation_result.json",
+      "sha256": "3fb8d981ae3e26c9a6161b16f29d8e10625209cef0dd0e2e19917e5a6cfd9021",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092004/evaluation_result.json",
+      "sha256": "0f4878c6a62b40f00180af4249b2c948ae8aae2e0520b1aa06bb35169150f981",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/baselines/tier1_single_rule_v1/records/2026092003/evaluation_result.json",
+      "sha256": "3fb8d981ae3e26c9a6161b16f29d8e10625209cef0dd0e2e19917e5a6cfd9021",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/baselines/tier1_single_rule_v1/records/2026092004/evaluation_result.json",
+      "sha256": "0f4878c6a62b40f00180af4249b2c948ae8aae2e0520b1aa06bb35169150f981",
+      "facts": {
+        "test_evaluated": false,
+        "classification": "historical train/validation selection; missing flag remains unknown"
+      }
+    }
+  ],
+  "bounded_stage_index": [
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/formal-readiness-synthetic-20261009-v1/Test_complete.json",
+      "sha256": "1e0fac8d95e9e68d91e1725afd3e1f24f59dadd64f44164608bb94193bd51232",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-acceptance-20261005/Test_complete.json",
+      "sha256": "adfbb985965379ffb138018c98df033105ecf6858834061fa548e7af37162d51",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-final-20261005/Test_complete.json",
+      "sha256": "04b95c595ac5354137292a850e98245fe0bc912b42c9a2c1686ea7d728c2dfa1",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v5-four-arm-offline-20261008/Test_complete.json",
+      "sha256": "155437006538d2970d6d41192947148ef40d84a2345859a112cb6dac920ead36",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/formal-readiness-synthetic-20261009-v1/Selection_complete.json",
+      "sha256": "ee4a79c01f38b3b1de91d236d4675bf59c9e4cd272f1d206aa4386a535066d87",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-acceptance-20261005/Selection_complete.json",
+      "sha256": "1c5f010b42295ba5a9179eb953bef637bc48d665eb9a0b3b942bb135ef26ad4c",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-final-20261005/Selection_complete.json",
+      "sha256": "01a8884b054938dc8881907bee2df6d3c20679ea0949c74e7561a9e4d9e882dc",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v5-four-arm-offline-20261008/Selection_complete.json",
+      "sha256": "755e355782e10d2bccf3b6e78d8a969b08a5fd1086dcdd1851d062a2bc2d88a2",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/formal-readiness-synthetic-20261009-v1/Experiment_frozen.json",
+      "sha256": "117289005735e9bfd9cef32b29f7efef944808e09ec10e6c740e9921b0abcdf1",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-acceptance-20261005/Experiment_frozen.json",
+      "sha256": "c9b5639cd4bf1feff130841bcf6ea91272ee5f33c85cbf6ae860d2277483435f",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/s1-s6-final-20261005/Experiment_frozen.json",
+      "sha256": "b597dc7d9cb5c3326ff05f9ec42b161450c32b4e13f8d3c627aeed75f3712c15",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v5-four-arm-offline-20261008/Experiment_frozen.json",
+      "sha256": "2a8683157f87695ce960ce92373861ffa0cf8fcadd0613af567f0c615aa69751",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/leaf-tier2-single-P-acceptance-20261010-v4/Development_test_complete.json",
+      "sha256": "e9e2bca6440295d692aef836b2157ca95ecd81b1ae183d7042aac9ca9c040de3",
+      "mode": "real",
+      "kind": "Development_test_complete",
+      "classification": "development test; inspect registered protocol, not evidence of official test28 use"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/formal-readiness-synthetic-20261009-v1/Test_complete.json",
+      "sha256": "1e0fac8d95e9e68d91e1725afd3e1f24f59dadd64f44164608bb94193bd51232",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-acceptance-20261005/Test_complete.json",
+      "sha256": "adfbb985965379ffb138018c98df033105ecf6858834061fa548e7af37162d51",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-final-20261005/Test_complete.json",
+      "sha256": "04b95c595ac5354137292a850e98245fe0bc912b42c9a2c1686ea7d728c2dfa1",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/v5-four-arm-offline-20261008/Test_complete.json",
+      "sha256": "155437006538d2970d6d41192947148ef40d84a2345859a112cb6dac920ead36",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/formal-readiness-synthetic-20261009-v1/Selection_complete.json",
+      "sha256": "ee4a79c01f38b3b1de91d236d4675bf59c9e4cd272f1d206aa4386a535066d87",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-acceptance-20261005/Selection_complete.json",
+      "sha256": "1c5f010b42295ba5a9179eb953bef637bc48d665eb9a0b3b942bb135ef26ad4c",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-final-20261005/Selection_complete.json",
+      "sha256": "01a8884b054938dc8881907bee2df6d3c20679ea0949c74e7561a9e4d9e882dc",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/v5-four-arm-offline-20261008/Selection_complete.json",
+      "sha256": "755e355782e10d2bccf3b6e78d8a969b08a5fd1086dcdd1851d062a2bc2d88a2",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/formal-readiness-synthetic-20261009-v1/Experiment_frozen.json",
+      "sha256": "117289005735e9bfd9cef32b29f7efef944808e09ec10e6c740e9921b0abcdf1",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-acceptance-20261005/Experiment_frozen.json",
+      "sha256": "c9b5639cd4bf1feff130841bcf6ea91272ee5f33c85cbf6ae860d2277483435f",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/s1-s6-final-20261005/Experiment_frozen.json",
+      "sha256": "b597dc7d9cb5c3326ff05f9ec42b161450c32b4e13f8d3c627aeed75f3712c15",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/v5-four-arm-offline-20261008/Experiment_frozen.json",
+      "sha256": "2a8683157f87695ce960ce92373861ffa0cf8fcadd0613af567f0c615aa69751",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/runs/leaf-tier2-single-P-acceptance-20261010-v4/Development_test_complete.json",
+      "sha256": "e9e2bca6440295d692aef836b2157ca95ecd81b1ae183d7042aac9ca9c040de3",
+      "mode": "real",
+      "kind": "Development_test_complete",
+      "classification": "development test; inspect registered protocol, not evidence of official test28 use"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/formal-readiness-synthetic-20261009-v1/Test_complete.json",
+      "sha256": "1e0fac8d95e9e68d91e1725afd3e1f24f59dadd64f44164608bb94193bd51232",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-acceptance-20261005/Test_complete.json",
+      "sha256": "adfbb985965379ffb138018c98df033105ecf6858834061fa548e7af37162d51",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-final-20261005/Test_complete.json",
+      "sha256": "04b95c595ac5354137292a850e98245fe0bc912b42c9a2c1686ea7d728c2dfa1",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/v5-four-arm-offline-20261008/Test_complete.json",
+      "sha256": "155437006538d2970d6d41192947148ef40d84a2345859a112cb6dac920ead36",
+      "mode": "synthetic",
+      "kind": "Test_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/formal-readiness-synthetic-20261009-v1/Selection_complete.json",
+      "sha256": "ee4a79c01f38b3b1de91d236d4675bf59c9e4cd272f1d206aa4386a535066d87",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-acceptance-20261005/Selection_complete.json",
+      "sha256": "1c5f010b42295ba5a9179eb953bef637bc48d665eb9a0b3b942bb135ef26ad4c",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-final-20261005/Selection_complete.json",
+      "sha256": "01a8884b054938dc8881907bee2df6d3c20679ea0949c74e7561a9e4d9e882dc",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/v5-four-arm-offline-20261008/Selection_complete.json",
+      "sha256": "755e355782e10d2bccf3b6e78d8a969b08a5fd1086dcdd1851d062a2bc2d88a2",
+      "mode": "synthetic",
+      "kind": "Selection_complete"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/formal-readiness-synthetic-20261009-v1/Experiment_frozen.json",
+      "sha256": "117289005735e9bfd9cef32b29f7efef944808e09ec10e6c740e9921b0abcdf1",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-acceptance-20261005/Experiment_frozen.json",
+      "sha256": "c9b5639cd4bf1feff130841bcf6ea91272ee5f33c85cbf6ae860d2277483435f",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/s1-s6-final-20261005/Experiment_frozen.json",
+      "sha256": "b597dc7d9cb5c3326ff05f9ec42b161450c32b4e13f8d3c627aeed75f3712c15",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/v5-four-arm-offline-20261008/Experiment_frozen.json",
+      "sha256": "2a8683157f87695ce960ce92373861ffa0cf8fcadd0613af567f0c615aa69751",
+      "mode": "synthetic",
+      "kind": "Experiment_frozen"
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/runs/leaf-tier2-single-P-acceptance-20261010-v4/Development_test_complete.json",
+      "sha256": "e9e2bca6440295d692aef836b2157ca95ecd81b1ae183d7042aac9ca9c040de3",
+      "mode": "real",
+      "kind": "Development_test_complete",
+      "classification": "development test; inspect registered protocol, not evidence of official test28 use"
+    }
+  ],
+  "historical_audit_source_checks": [
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/EoH-S/logs/fjsp_tier1_formal/run03/validation_evaluation.json",
+      "exists": true,
+      "matches_historical_sha256": true
+    },
+    {
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+      "exists": true,
+      "matches_historical_sha256": true
+    }
+  ],
+  "validation11_known_development_exposure": true,
+  "real_official_test_markers_found": [],
+  "blocks_execution": false,
+  "conclusion": "No official test28 evaluation found in checked project stage records; this is not a proof of global non-use.",
+  "unconfirmed": [
+    "unregistered/custom result filenames",
+    "deleted or inaccessible histories",
+    "external scripts and manual feedback",
+    "LLM pretraining exposure",
+    "whether related benchmark instances share a generator parent"
+  ],
+  "future_confirmation_required": "DDXQL confirms no known unrecorded test28 performance use influencing H/U or manual choices, and accepts one-time reserved-test consumption"
+}

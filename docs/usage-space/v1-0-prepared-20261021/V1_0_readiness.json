@@ -1,0 +1,19 @@
+{
+  "stage": "V1-0 only",
+  "test28_parsed_for_metadata": 28,
+  "test28_solve_count": 0,
+  "LLM_requests": 0,
+  "real_execution_authorized": false,
+  "protocol_sha256": "11e87d24f00eeec628659cddcff2e796cd9f6824c062da4323623162ff3bad60",
+  "history_gate": false,
+  "duplicate_gate": false,
+  "external_history_confirmation_required": true,
+  "engineering_ready": true,
+  "offline_unit_tests_passed": 20,
+  "full_56_task_mock_passed": true,
+  "restart_extra_mock_evaluations": 0,
+  "frozen_mismatch_cases_rejected": 5,
+  "unauthorized_CLI_rejected": true,
+  "protected_B2_1_files_unchanged": 258,
+  "status": "V1-0 frozen; awaiting V1-1 explicit execution and independence confirmation"
+}

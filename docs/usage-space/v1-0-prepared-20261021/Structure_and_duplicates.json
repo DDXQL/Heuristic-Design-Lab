@@ -1,0 +1,76 @@
+{
+  "summaries": {
+    "train": {
+      "n": 21,
+      "machine_counts": {
+        "20": 7,
+        "40": 7,
+        "60": 7
+      },
+      "jobs": {
+        "min": 10,
+        "max": 100,
+        "mean": 36.19047619047619
+      },
+      "operations": {
+        "min": 50,
+        "max": 500,
+        "mean": 180.95238095238096
+      },
+      "flexibility": {
+        "min": 0.26066666666666666,
+        "max": 0.374,
+        "mean": 0.3153047619047619
+      },
+      "nominal_max_load_share": {
+        "min": 0.050408936831922366,
+        "max": 0.06729943133003313,
+        "mean": 0.056082988522535716
+      },
+      "nominal_load_CV": {
+        "min": 0.0366613942806362,
+        "max": 0.8156360288146416,
+        "mean": 0.4714578155862852
+      }
+    },
+    "test": {
+      "n": 28,
+      "machine_counts": {
+        "20": 10,
+        "40": 9,
+        "60": 9
+      },
+      "jobs": {
+        "min": 10,
+        "max": 100,
+        "mean": 50.714285714285715
+      },
+      "operations": {
+        "min": 50,
+        "max": 500,
+        "mean": 253.57142857142858
+      },
+      "flexibility": {
+        "min": 0.2613333333333333,
+        "max": 0.348,
+        "mean": 0.3137285714285714
+      },
+      "nominal_max_load_share": {
+        "min": 0.05199026259222443,
+        "max": 0.06516863353386296,
+        "mean": 0.05541551764630089
+      },
+      "nominal_load_CV": {
+        "min": 0.030078580456671514,
+        "max": 0.8271880804561712,
+        "mean": 0.44935249423224627
+      }
+    }
+  },
+  "duplicates": [],
+  "blocks_execution": false,
+  "nominal_load_definition": "L_m=sum(p_om/number_of_alternatives_o); max share=max(L)/sum(L), CV=population_std(L)/mean(L); NOT actual scheduled load",
+  "duplicate_scope": "byte, ordered operation records, job-multiset ignoring job labels; machine relabel isomorphism/near duplicates not certified",
+  "no_score_based_selection": true,
+  "all_original_test28_retained": true
+}

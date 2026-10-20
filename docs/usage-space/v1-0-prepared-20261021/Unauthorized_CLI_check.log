@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/h01_v1.py", line 269, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/h01_v1.py", line 256, in main
+    require_execution(directory)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/h01_v1.py", line 65, in require_execution
+    if not path.exists():raise ValueError('V1-1 not authorized; V1-0 cannot evaluate test28')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: V1-1 not authorized; V1-0 cannot evaluate test28
