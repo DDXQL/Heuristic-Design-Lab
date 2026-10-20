@@ -43,12 +43,14 @@ def wrapper(config, context, source):
         'source_mechanism':'unchanged existing frozen H; original reviews/receipts retained; no generation or new review'})
 
 
-def source_h(config, dataset, implementation, *, target=None, ancestors=()):
+def source_h(config, dataset, implementation, *, target=None, ancestors=(), check_writer=None):
     validate_declaration(config)
+    if check_writer is None:
+        check_writer = (getattr(config,'request_budget',None) or {}).get('version') != 'batch-api-attempts-v1'
     d = config.fixed_h_source; folder = Path(d['directory']).resolve()
     if folder in ancestors or len(ancestors) >= 8 or (target is not None and folder == Path(target).resolve()):
         raise ValueError('fixed-H source cycle or self-reference')
-    if (folder/'.writer.lock').exists():
+    if check_writer and (folder/'.writer.lock').exists():
         raise ValueError('fixed-H source has a writer lock')
     docs = {}
     for name, sha in d['files_sha256'].items():
@@ -81,7 +83,7 @@ def source_h(config, dataset, implementation, *, target=None, ancestors=()):
         return check_seal(docs[name],kind=kind,mode=config.mode,context=context)
 
     if original.get('fixed_h_source'):
-        parent, members = source_h(old,dataset,implementation,target=target,ancestors=(*ancestors,folder))
+        parent, members = source_h(old,dataset,implementation,target=target,ancestors=(*ancestors,folder),check_writer=check_writer)
         if asset != wrapper(old,context,parent):
             raise ValueError('inherited fixed-H wrapper differs from its original members/provenance')
         return asset, members
@@ -89,7 +91,7 @@ def source_h(config, dataset, implementation, *, target=None, ancestors=()):
     # A reader object, NOT Workflow.__init__: no source protocol, budget, cache
     # or checkpoint is created or rewritten when auditing an old asset.
     reader = SimpleNamespace(directory=folder, project_root=folder.parent.parent,
-        config=old, dataset=dataset, context=context, read=read)
+        config=old, dataset=dataset, context=context, read=read,check_source_writer=check_writer)
     if original.get('conditional_research'):
         if 'Conditional_H_reassessment.json' not in docs:
             raise ValueError('conditional H requires pinned reassessment and original scope approval')

@@ -24,6 +24,10 @@ ROOT = old.ROOT
 LEGACY = old.DEFAULT
 VERSION = 'H01-alpha-search-seed501-local-requests-v2-20261020'
 DEFAULT = ROOT/'runs/h01-state-weight-search-seed501-local-v2-20261020'
+BATCH_VERSION = 'H01-alpha-search-seed501-batch-retry-v3-20261020'
+BATCH_DEFAULT = ROOT/'runs/h01-state-weight-search-seed501-batch-v3-20261020'
+BATCH_POLICY = {'version':'batch-api-attempts-v1','logical_candidate_cap':20,
+                'api_attempt_cap':30,'per_candidate_attempt_cap':3,'retry_backoff_seconds':[2,5]}
 REBIND = {
     'code/fjsp_usage/research_real/budget.py': 'engineering: local request ledger',
     'code/fjsp_usage/research_real/config.py': 'engineering: explicit budget declaration',
@@ -33,6 +37,8 @@ REBIND = {
     'code/fjsp_usage/usage_v2/registration.py': 'engineering: local client branch',
     'code/fjsp_usage/usage_v2/workflow.py': 'engineering: H binding and report routing',
     'experiments/tier2/usage_v2/run.py': 'engineering: local CLI stages',
+    'code/fjsp_usage/research_real/real_transport.py': 'engineering: structured transient network evidence; no transport retries',
+    'code/fjsp_usage/research_real/conditional_research.py': 'engineering: pinned asset reads can omit old writer gate; hashes and provenance remain strict',
 }
 REPORT = 'tools/h01_weight_report.py'
 ENGINEERING_FIELDS = {'experiment_version', 'real_requests_authorized', 'request_budget',
@@ -51,7 +57,8 @@ class Config(old.Config):
     def __post_init__(self):
         ExperimentConfig.__post_init__(self)
         original = old.common.read(LEGACY/'config.pending.json')
-        if (self.experiment_version != VERSION or self.request_budget is None
+        batch = self.request_budget == BATCH_POLICY
+        if (self.experiment_version != (BATCH_VERSION if batch else VERSION) or self.request_budget is None
                 or science(self.payload()) != science(original)):
             raise ValueError('B2 science/model/search fields must equal the frozen H01 protocol')
         validate_declaration(self)
@@ -136,13 +143,13 @@ def audit_legacy_inputs(legacy_plan):
     return changes
 
 
-def prepare(directory):
+def prepare(directory, *, batch_retries=False):
     original = old.common.read(LEGACY/'config.pending.json')
     legacy_plan = old.common.read(LEGACY/'Plan.json')
     peer = old.PEER_RUN; source = old.common.RUN
-    payload = {**original,'experiment_version':VERSION,'real_requests_authorized':False,
+    payload = {**original,'experiment_version':BATCH_VERSION if batch_retries else VERSION,'real_requests_authorized':False,
         'platform_quota_ceiling':None,'platform_quota_reservation':None,
-        'request_budget':{'version':'local-request-budget-v1','lifetime_request_cap':300,
+        'request_budget':dict(BATCH_POLICY) if batch_retries else {'version':'local-request-budget-v1','lifetime_request_cap':300,
             'history_source':{'directory':str(peer), **{n+'_sha256':old.common.sha(peer/(n+'.json')) for n in ('protocol','budget')}}},
         'fixed_h_source':{'version':'usage-frozen-H-source-v1','directory':str(source),
             'files_sha256':{n:old.common.sha(source/n) for n in ('protocol.json','H_frozen.json','Conditional_H_reassessment.json')}}}
@@ -151,7 +158,7 @@ def prepare(directory):
     dataset,H,members = data_and_h(config,directory)
     if dataset.metadata != legacy_plan['dataset'] or [m.key for m in members] != legacy_plan['H_order']:
         raise ValueError('frozen H order or dataset changed')
-    peer_audit = audit_peer(directory,config,legacy_plan)
+    peer_audit = None if batch_retries else audit_peer(directory,config,legacy_plan)
     initial = old.common.read(LEGACY/'Initial_population.json')
     if [r['id'] for r in initial] != legacy_plan['initial_ids']:
         raise ValueError('initial source identities changed')
@@ -174,35 +181,47 @@ def prepare(directory):
     for name in ('Initial_population.json','H_context.json'):
         (directory/name).write_bytes((LEGACY/name).read_bytes())
     atomic_json(directory/'config.pending.json',config.payload())
-    plan = {**{k:v for k,v in legacy_plan.items() if k != 'pins'},'version':VERSION,
+    plan = {**{k:v for k,v in legacy_plan.items() if k != 'pins'},'version':config.experiment_version,
         'scientific_protocol':old.VERSION,'legacy_preparation':str(LEGACY),
-        'budget_policy':'local-request-budget-v1','real_execution_authorized':False,
-        'start_condition':'new B2-1 user confirmation; peer explicitly stopped/completed and released; pinned local cumulative history valid',
+        'budget_policy':config.request_budget['version'],'real_execution_authorized':False,
+        'start_condition':('new B2-1 user confirmation; this run is single-writer; no historical/global budget or cross-worktree gate' if batch_retries else
+            'new B2-1 user confirmation; peer explicitly stopped/completed and released; pinned local cumulative history valid'),
         'identity_changes':changes,'legacy_plan_sha256':old.common.sha(LEGACY/'Plan.json'),
         'peer_terminal_audit_digest':digest(peer_audit)}
     paths = {ROOT/n for n in legacy_plan['pins']} | {LEGACY/'Plan.json',Path(__file__).resolve(),
         ROOT/'tests/test_h01_weight_local.py',ROOT/'code/fjsp_usage/usage_v2/fixed_h.py'}
+    if batch_retries:
+        plan.pop('peer_run',None)
+        plan.pop('peer_terminal_audit_digest',None)
+        plan.update(new_model_request_cap=30,new_logical_candidate_cap=20,new_api_attempt_cap=30,
+                    per_candidate_attempt_cap=3,global_history_gate=False,cross_worktree_lock_gate=False)
+        paths |= {ROOT/'code/fjsp_usage/research_real/attempt_budget.py',ROOT/'tests/test_h01_attempt_retries.py'}
     paths |= {p for p in directory.rglob('*') if p.is_file()}
     plan['pins'] = {str(p.relative_to(ROOT)):old.common.sha(p) for p in sorted(paths)}
     atomic_json(directory/'Plan.json',plan)
-    atomic_json(directory/'Peer_terminal_audit.json',peer_audit)
+    if not batch_retries:atomic_json(directory/'Peer_terminal_audit.json',peer_audit)
     # Engineering preview, explicitly not an execution-protocol H_frozen asset.
     atomic_json(directory/'H_source_binding.json',wrapper(config,digest(plan),H))
-    atomic_json(directory/'B2_0_readiness.json',{'stage':'B2-0 engineering preparation only',
+    atomic_json(directory/('B2_0_1_readiness.json' if batch_retries else 'B2_0_readiness.json'),{
+        'stage':'B2-0.1 engineering preparation only' if batch_retries else 'B2-0 engineering preparation only',
         'new_model_requests':0,'new_train_evaluations':0,'real_execution_authorized':False,
         'science_equal':True,'prompt_bytes_equal':True,'H_and_data_equal':True,
-        'historical_request_slots':peer_audit['history']['historical_request_slots'],
-        'planned_request_cap':20,'actual_cost':None,'next':'B2-1 requires new explicit user confirmation'})
+        'historical_request_slots':None if batch_retries else peer_audit['history']['historical_request_slots'],
+        'global_history_gate':not batch_retries,'cross_worktree_lock_gate':not batch_retries,
+        'planned_api_attempt_cap':30 if batch_retries else 20,'logical_candidate_cap':20,
+        'per_candidate_attempt_cap':3 if batch_retries else 1,
+        'actual_cost':None,'next':'B2-1 requires new explicit user confirmation'})
 
 
 def pins_check(directory):
     plan = old.common.read(directory/'Plan.json')
-    if plan['version'] != VERSION or plan['scientific_protocol'] != old.VERSION:
+    if plan['version'] not in (VERSION,BATCH_VERSION) or plan['scientific_protocol'] != old.VERSION:
         raise ValueError('new B2 protocol identity required')
     for name,sha in plan['pins'].items():
         if old.common.sha(ROOT/name) != sha:
             raise ValueError('new frozen input/source changed: '+name)
-    Config.from_dict(old.common.read(directory/'config.pending.json'))
+    config = Config.from_dict(old.common.read(directory/'config.pending.json'))
+    if config.experiment_version != plan['version']:raise ValueError('plan/config version differs')
     return plan
 
 
@@ -215,9 +234,10 @@ def check(directory):
         raise ValueError('science identity changed')
     if old.common.read(directory/'H_source_binding.json') != wrapper(config,digest(plan),H):
         raise ValueError('frozen H wrapper changed')
-    audit = audit_peer(directory,config,plan)
-    if audit != old.common.read(directory/'Peer_terminal_audit.json') or digest(audit) != plan['peer_terminal_audit_digest']:
-        raise BudgetStop('peer handoff evidence changed; explicit new binding required')
+    if config.experiment_version != BATCH_VERSION:
+        audit = audit_peer(directory,config,plan)
+        if audit != old.common.read(directory/'Peer_terminal_audit.json') or digest(audit) != plan['peer_terminal_audit_digest']:
+            raise BudgetStop('peer handoff evidence changed; explicit new binding required')
     return plan,config,members
 
 
@@ -227,8 +247,11 @@ def require_execution(directory):
     if not auth_path.exists():
         raise BudgetStop('B2-1 not authorized: engineering acceptance must not execute grid/search')
     auth = old.common.read(auth_path)
-    if auth != {'stage':'B2-1','approved':True,'person':'DDXQL',
-                'plan_sha256':old.common.sha(directory/'Plan.json'),'max_new_requests':20}:
+    expected = {'stage':'B2-1','approved':True,'person':'DDXQL',
+                'plan_sha256':old.common.sha(directory/'Plan.json'),'max_new_requests':20}
+    if config.experiment_version == BATCH_VERSION:
+        expected.pop('max_new_requests');expected.update(logical_candidate_cap=20,api_attempt_cap=30,per_candidate_attempt_cap=3)
+    if auth != expected:
         raise BudgetStop('B2-1 authorization binding differs')
     payload = config.payload();payload['real_requests_authorized'] = True
     return plan,Config.from_dict(payload),members
@@ -244,18 +267,46 @@ def client(directory,config,verify):
 def make_search(directory,config,plan,members,transport,evaluator):
     # Reuse the same checkpoint, source-key dedup, per-generation selection and
     # durable request journal. The new ledger context includes the frozen plan.
-    protocol = json.loads(json.dumps({'version':VERSION,'config':config.payload(),'plan_sha256':old.common.sha(directory/'Plan.json')}))
+    protocol = json.loads(json.dumps({'version':config.experiment_version,'config':config.payload(),'plan_sha256':old.common.sha(directory/'Plan.json')}))
     path = directory/'protocol.json'
     if path.exists() and old.common.read(path) != protocol:
         raise ValueError('registered protocol changed')
     atomic_json(path,protocol)
     context = digest(protocol)
+    if config.experiment_version == BATCH_VERSION:
+        return batch_search(directory,config,plan,members,transport,evaluator,context)
     ledger = BudgetLedger(directory/'budget.json',config,context)
     searcher = old.WeightSearch(directory/'r501/B',arm='B',config=config.u_search(501),members=members,
         evaluator=evaluator,transport=transport,context=context,
         initial=old.common.read(directory/'Initial_population.json'),init_phase='r501/init',
         search_phase=old.PHASE,ledger=ledger,experiment=config,training_names=plan['names'])
     return searcher,ledger
+
+
+class BatchWeightSearch(old.WeightSearch):
+    """Same Search engine and WeightSearch operators; only the journal changes."""
+    def __init__(self,directory,*,experiment,training_names,**kwargs):
+        from fjsp_usage.research.evolution import Search
+        from fjsp_usage.research_real.attempt_budget import AttemptJournal
+        self.experiment,self.training_names = experiment,tuple(training_names)
+        Search.__init__(self,directory,**kwargs)
+        self.evolution_requests = AttemptJournal(self.directory/'budgeted_evolution_requests.json',
+            config=experiment,context=kwargs['context'],phase=old.PHASE,transport=kwargs['transport'])
+        self.ledger = self.evolution_requests
+
+    def _prepare(self,*,initial):
+        if self.state['inflight'] is None:self.evolution_requests.ensure_capacity()
+        super()._prepare(initial=initial)
+
+    def report(self):
+        return {**super().report(),'api_attempt_budget':self.evolution_requests.summary()}
+
+
+def batch_search(directory,config,plan,members,transport,evaluator,context):
+    engine = BatchWeightSearch(directory/'r501/B',arm='B',config=config.u_search(501),members=members,
+        evaluator=evaluator,transport=transport,context=context,
+        initial=old.common.read(directory/'Initial_population.json'),experiment=config,training_names=plan['names'])
+    return engine,engine.evolution_requests
 
 
 def execute(directory,stage,env_file=None):
@@ -267,7 +318,7 @@ def execute(directory,stage,env_file=None):
         dataset = StagedDataset(ROOT/'data/fjsp_manifest.json',project_root=ROOT,mode='real')
         H = old.common.read(directory/'H_source_binding.json')
         with patch.object(old,'pins_check',side_effect=pins_check), \
-             patch.object(old,'check_history',side_effect=lambda d:audit_peer(d,config,plan)), \
+             patch.object(old,'check_history',side_effect=lambda d:check(d) if config.experiment_version==BATCH_VERSION else audit_peer(d,config,plan)), \
              patch.object(old.common,'inputs',return_value=(None,dataset,H,None,members,plan['names'])):
             old.grid_evaluate(directory)
         return
@@ -300,19 +351,22 @@ def execute(directory,stage,env_file=None):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('stage',choices=('prepare','check','grid','search','report'))
-    p.add_argument('--run-dir',type=Path,default=DEFAULT);p.add_argument('--env-file',type=Path)
-    args = p.parse_args();directory = args.run_dir.resolve()
+    p.add_argument('--run-dir',type=Path);p.add_argument('--env-file',type=Path)
+    p.add_argument('--batch-retries',action='store_true',help='prepare a NEW B2-0.1 20/30/3 batch')
+    args = p.parse_args();directory = (args.run_dir or (BATCH_DEFAULT if args.batch_retries else DEFAULT)).resolve()
     if directory.parent != ROOT/'runs' or directory == LEGACY:
         p.error('a new independent runs/ directory is required')
     if args.stage == 'prepare':
-        prepare(directory)
+        prepare(directory,batch_retries=args.batch_retries)
     elif args.stage == 'check':
         plan,config,_ = check(directory)
-        print(json.dumps({'status':'B2-0 ready; B2-1 remains unauthorized','version':VERSION,
-            'science_equal':True,'max_new_requests':20,'actual_cost':None},ensure_ascii=False))
+        print(json.dumps({'status':'engineering ready; B2-1 remains unauthorized','version':config.experiment_version,
+            'science_equal':True,'logical_candidate_cap':20,'api_attempt_cap':config.request_budget.get('api_attempt_cap',20),
+            'per_candidate_attempt_cap':config.request_budget.get('per_candidate_attempt_cap',1),
+            'actual_cost':None},ensure_ascii=False))
     elif args.stage == 'report':
         from tools.h01_weight_report import report
-        report(directory,plan_reader=pins_check,version=VERSION)
+        report(directory,plan_reader=pins_check,version=pins_check(directory)['version'])
     else:
         with RunLock(directory):execute(directory,args.stage,args.env_file)
 

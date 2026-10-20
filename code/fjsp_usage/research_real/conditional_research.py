@@ -43,12 +43,12 @@ def validate_declaration(config):
             raise ValueError('actual human scope approval required; no placeholder reviewer')
 
 
-def pinned_bundle(root, declaration):
+def pinned_bundle(root, declaration, *, check_writer=True):
     runs=(Path(root)/'runs').resolve(); docs={}
     for name,expected in declaration['source_files_sha256'].items():
         path=(runs/name).resolve()
         if not path.is_relative_to(runs) or path==runs: raise ValueError('source path escape')
-        if (runs/PurePosixPath(name).parts[0]/'.writer.lock').exists(): raise ValueError('research source has a writer lock')
+        if check_writer and (runs/PurePosixPath(name).parts[0]/'.writer.lock').exists(): raise ValueError('research source has a writer lock')
         raw=path.read_bytes()
         if hashlib.sha256(raw).hexdigest()!=expected: raise ValueError('historical research source changed: '+name)
         if path.suffix=='.json': docs[name]=json.loads(raw)
@@ -61,8 +61,8 @@ def _get(docs, run, name):
     return docs[key]
 
 
-def check_origin(root, config, dataset):
-    d=config.conditional_research; docs=pinned_bundle(root,d); run=d['source_run']
+def check_origin(root, config, dataset, *, check_writer=True):
+    d=config.conditional_research; docs=pinned_bundle(root,d,check_writer=check_writer); run=d['source_run']
     old=_get(docs,run,'protocol.json'); source=_get(docs,run,'H_frozen.json')
     check_seal(source,kind='H_frozen',mode='real',context=digest(old))
     if old['dataset']!=dataset.metadata or old['config']['instance_timeout']!=config.instance_timeout:
@@ -231,7 +231,7 @@ def freeze_h(flow):
 
 
 def h_asset(flow):
-    source,_,_=check_origin(flow.project_root,flow.config,flow.dataset)
+    source,_,_=check_origin(flow.project_root,flow.config,flow.dataset,check_writer=getattr(flow,'check_source_writer',True))
     a=flow.read('Conditional_H_reassessment.json','Conditional_H_reassessment')
     H=flow.read('H_frozen.json','H_frozen')
     approval=flow.config.conditional_research['scope_approval']

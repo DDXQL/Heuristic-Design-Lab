@@ -20,6 +20,10 @@ REQUEST_BUDGET_VERSION = 'local-request-budget-v1'
 def validate_request_budget(config):
     """Explicit future-only opt-in; never reinterpret an old specialized run."""
     b = config.request_budget
+    if isinstance(b,dict) and b.get('version') == 'batch-api-attempts-v1':
+        from .attempt_budget import validate_policy
+        validate_policy(config)
+        return
     if (not isinstance(b, dict) or set(b) != {'version', 'lifetime_request_cap', 'history_source'}
             or b['version'] != REQUEST_BUDGET_VERSION or type(b['lifetime_request_cap']) is not int
             or b['lifetime_request_cap'] != 300):
@@ -110,6 +114,8 @@ def validate_usage(usage):
 
 class BudgetLedger:
     def __init__(self, path, config, context):
+        if (config.request_budget or {}).get('version') == 'batch-api-attempts-v1':
+            raise ValueError('batch attempt policy requires AttemptJournal, not the legacy global BudgetLedger')
         self.path = Path(path)
         self.config = config
         self.config_key = digest(config.payload())

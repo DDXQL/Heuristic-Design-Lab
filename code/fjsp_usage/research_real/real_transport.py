@@ -7,12 +7,14 @@ This is an explicit generic gateway protocol, not a claimed provider SDK.
 """
 
 import http.client
+import errno
 import json
 import multiprocessing as mp
 import os
 import hashlib
 import re
 import ssl
+import socket
 import time
 from urllib.parse import urlsplit
 
@@ -22,6 +24,20 @@ from .budget import validate_usage, BudgetStop
 
 class TransportError(RuntimeError):
     pass
+
+
+def network_failure_metadata(exc):
+    """Structured evidence for opt-in retry journals; no transport retries."""
+    current = exc
+    for _ in range(6):
+        if isinstance(current,(TimeoutError,ConnectionError,socket.gaierror,
+                               ssl.SSLEOFError,http.client.RemoteDisconnected,http.client.IncompleteRead)) or (
+                isinstance(current,OSError) and current.errno in (errno.ECONNRESET,errno.ECONNABORTED,
+                    errno.ECONNREFUSED,errno.ETIMEDOUT,errno.ENETUNREACH,errno.EHOSTUNREACH,errno.ENETDOWN,errno.EPIPE)):
+            return {'temporary_network_failure':True,'network_error_type':type(current).__name__}
+        current = current.__cause__ or current.__context__
+        if current is None:break
+    return {}
 
 
 def response_audit(response, secret=''):
@@ -136,7 +152,11 @@ def decode_stream(response, provider):
         while True:
             line = response.readline(65537)
             size += len(line)
-            if not line or len(line) > 65536 or size > 8388608:
+            if not line:
+                error = TransportError('stream ended without DONE or exceeded byte limit')
+                error.metadata = {'temporary_network_failure':True,'network_error_type':'stream_eof'}
+                raise error
+            if len(line) > 65536 or size > 8388608:
                 raise TransportError('stream ended without DONE or exceeded byte limit')
             line = line.decode('utf-8').rstrip('\r\n')
             if line:
@@ -202,7 +222,7 @@ def decode_stream(response, provider):
                     raise TransportError('stream completion truncated or refused')
     except BaseException as exc:
         error = exc if isinstance(exc, TransportError) else TransportError('malformed or interrupted SSE stream')
-        error.metadata = audit
+        error.metadata = {**audit,**(getattr(exc,'metadata',{}) or {}),**network_failure_metadata(exc)}
         error.usage = getattr(exc, 'usage', None)
         if error.usage is None and isinstance(raw_usage, dict):
             try:
@@ -265,7 +285,7 @@ def _wire_worker(pipe, provider, payload, secret):
         if secret:
             message = message.replace(secret, '[REDACTED]')
         pipe.send({'kind': 'error', 'error': message, 'usage': getattr(exc, 'usage', usage),
-                   'metadata': {**metadata,**(getattr(exc, 'metadata', {}) or {})}})
+                   'metadata': {**metadata,**(getattr(exc, 'metadata', {}) or {}),**network_failure_metadata(exc)}})
     finally:
         if connection is not None:
             connection.close()

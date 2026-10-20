@@ -68,5 +68,6 @@ class WireRecorder:
             return reply
         except Exception as exc:
             record.update(status='wire_failed', error=self.redact(str(exc))[:500],
+                          error_type=type(exc).__name__,
                           usage=getattr(exc,'usage',None), metadata=getattr(exc,'metadata',{}) or {})
             atomic_json(path, record); raise

@@ -53,7 +53,7 @@ def report(run, out=None, *, plan_reader=None, version=None):
     import reportlab  # Fail before creating outputs; use the bundled artifact Python.
     from tools.h01_weight_search import pins_check, validate, VERSION
     plan = (plan_reader or pins_check)(run)
-    local_budget = plan.get('budget_policy') == 'local-request-budget-v1'
+    local_budget = plan.get('budget_policy') in ('local-request-budget-v1','batch-api-attempts-v1')
     VERSION = version or VERSION
     out = Path(out) if out is not None else common.ROOT/'reports'/run.name
     out.mkdir(exist_ok=False)
@@ -81,11 +81,16 @@ def report(run, out=None, *, plan_reader=None, version=None):
         'champion_id':initial_champion['id'],'champion_is_LLM_new':False,
         'new_children_survived':0,'parents_from_previous_generation_children':0,
         'surviving_children_beating_previous_champion':0,'parent_uses_of_previous_improving_children':0}]
-    lineage, profiles, new_ids, request_rows = [], {}, [], []
+    lineage, profiles, new_ids, request_rows, api_rows = [], {}, [], [], []
     state = common.read(checkpoint) if checkpoint.exists() else None
     if state:
         from fjsp_usage.usage_v2 import VERSION as INTERFACE
-        journal = common.read(run/'r501/B/budgeted_evolution_requests.json')['requests']
+        journal_data = common.read(run/'r501/B/budgeted_evolution_requests.json')
+        journal = journal_data['requests']
+        api_rows = [{**{k:v for k,v in a.items() if k not in ('reply','metadata')},
+                     'provider_response_id':(a.get('reply',{}).get('metadata') or {}).get('id'),
+                     'http_status':a.get('metadata',{}).get('http_status')}
+                    for a in journal_data.get('api_attempts',{}).values()]
         for attempt in state['attempts']:
             record = journal[attempt['id']]
             usage = record.get('usage')
@@ -95,6 +100,12 @@ def report(run, out=None, *, plan_reader=None, version=None):
                 'input_tokens':usage['input_tokens'] if usage is not None else None,
                 'output_tokens':usage['output_tokens'] if usage is not None else None,
                 'request_seconds':record.get('elapsed_seconds'),
+                'api_attempt_count':len(record.get('attempt_ids',[record['global_key']])),
+                'accepted_attempt_id':record.get('accepted_attempt_id'),
+                'response_id':record.get('response_id'),
+                'accepted_code_key':attempt.get('code_key'),
+                'evaluation_valid':state['evaluations'].get(attempt['id'],{}).get('result',{}).get('valid'),
+                'fitness':state['evaluations'].get(attempt['id'],{}).get('result',{}).get('fitness'),
                 'actual_platform_points':bill.get('actual_platform_units') if bill.get('status')=='invoice_account_matched' else None,
                 'billing_status':'unknown; local budget does not query fees' if local_budget else bill.get('status','not_recorded')})
             lineage.append({**{k:v for k,v in attempt.items() if k != 'parents'},
@@ -122,6 +133,13 @@ def report(run, out=None, *, plan_reader=None, version=None):
                 'fitness_minus_equal':result['fitness']-equal['fitness'] if result['valid'] and equal else None,
                 'fitness_minus_grid_best':result['fitness']-references[best_grid]['fitness'] if result['valid'] and complete_grid and best_grid else None,
                 'fitness_minus_initial_champion':result['fitness']-initial_champion['fitness'] if result['valid'] else None})
+        processed = {a['id'] for a in state['attempts']}
+        for key,record in journal.items():
+            if key not in processed:
+                request_rows.append({'id':key,'global_key':record['global_key'],'status':record['status'],
+                    'candidate_status':'not_committed','api_attempt_count':len(record.get('attempt_ids',[record['global_key']])),
+                    'accepted_attempt_id':record.get('accepted_attempt_id'),'response_id':record.get('response_id'),
+                    'actual_platform_points':None})
         # Reconstruct only from already evaluated rows and the unchanged stable
         # survival rule. No new evaluator invocation or outcome-dependent search.
         population = list(initial)
@@ -185,7 +203,8 @@ def report(run, out=None, *, plan_reader=None, version=None):
             row['strategy_class'] = ('LLM_new_constant' if p['provably_input_independent'] else
                 'LLM_new_observed_dynamic' if p['any_within_instance_alpha_varies'] else 'LLM_new_observed_unchanged_or_unknown')
     for name,rows in [('Candidates.csv',summaries),('Instances.csv',instances),('Comparisons.csv',comparison),
-                       ('Win_loss_tie.csv',counts),('Generations.csv',generation_rows),('Lineage.csv',lineage),('Requests.csv',request_rows)]:
+                       ('Win_loss_tie.csv',counts),('Generations.csv',generation_rows),('Lineage.csv',lineage),
+                       ('Requests.csv',request_rows),('API_attempts.csv',api_rows)]:
         if rows:
             fields = list(dict.fromkeys(k for row in rows for k in row))
             table(name,[{k:row.get(k) for k in fields} for row in rows],out=out)
@@ -209,6 +228,9 @@ def report(run, out=None, *, plan_reader=None, version=None):
         'best_new_profile':profiles.get(best_new),'generation_rows':generation_rows,
         'attempt_status_counts':dict(Counter(a['status'] for a in state['attempts'])) if state else {},
         'request_slot_denominator':len(attempts),'legal_candidates':legal,
+        'logical_candidates_requested':len(journal) if state else 0,
+        'api_attempts_consumed':len(api_rows) if plan.get('budget_policy')=='batch-api-attempts-v1' else len(attempts),
+        'request_scope':'logical candidates; retry attempts have separate counters',
         'legal_rate':legal/len(attempts) if attempts else None,
         'duplicate_rate':duplicates/len(attempts) if attempts else None,
         'known_actual_platform_points':actual_points,'actual_cost':None if local_budget else actual_points,

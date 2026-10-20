@@ -1,5 +1,7 @@
 # 新运行的轻量请求预算
 
+2026-10-20 B2-0.1新增显式`batch-api-attempts-v1`：仅新H0/H1批次采用20逻辑候选、30 API尝试、单候选3尝试及有限退避；不使用下文旧300槽历史门禁，也不检查其他worktree调用权。旧协议及旧目录不迁移，旧单发语义保留。详见[新批次重试验收](H01_B2_0_1_ATTEMPT_ACCEPTANCE.md)。
+
 参考 `codex/u-single-experiments` 的 `f1896578045a9d876d77352bf33abac6c558d6a8`，仅移植公共预算、配置和客户端分流的必要增量。本分支复用已有 `usage_v2.registration.inventory/worktree_roots` 与 `usage_v2.access.WireRecorder`，没有复制另一分支的目录或单成员辅助模块。
 
 ## 生效条件
