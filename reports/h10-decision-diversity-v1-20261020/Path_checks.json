@@ -1,0 +1,242 @@
+[
+  {
+    "file": "Behnke19.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 670,
+    "native_result_hash_matches": true,
+    "steps_verified": 500,
+    "new_native_h_calls": 242384,
+    "diagnostic_wall_seconds": 3.0530908750370145
+  },
+  {
+    "file": "Behnke19.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 532,
+    "native_result_hash_matches": true,
+    "steps_verified": 500,
+    "new_native_h_calls": 120152,
+    "diagnostic_wall_seconds": 0.9800972090451978
+  },
+  {
+    "file": "Behnke19.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 821,
+    "native_result_hash_matches": true,
+    "steps_verified": 500,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 1.3483780829701573
+  },
+  {
+    "file": "Behnke19.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 734,
+    "native_result_hash_matches": true,
+    "steps_verified": 500,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 1.2584842499927618
+  },
+  {
+    "file": "Behnke43.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 94,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 9260,
+    "diagnostic_wall_seconds": 0.39622762496583164
+  },
+  {
+    "file": "Behnke43.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 101,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 1920,
+    "diagnostic_wall_seconds": 0.07719337497837842
+  },
+  {
+    "file": "Behnke43.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 101,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.301944957987871
+  },
+  {
+    "file": "Behnke43.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 101,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.33083720901049674
+  },
+  {
+    "file": "Behnke3.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 105,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 2844,
+    "diagnostic_wall_seconds": 0.32586966699454933
+  },
+  {
+    "file": "Behnke3.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 122,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 1360,
+    "diagnostic_wall_seconds": 0.06329145800555125
+  },
+  {
+    "file": "Behnke3.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 127,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.10989520797738805
+  },
+  {
+    "file": "Behnke3.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 107,
+    "native_result_hash_matches": true,
+    "steps_verified": 50,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.106699583993759
+  },
+  {
+    "file": "Behnke53.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 240,
+    "native_result_hash_matches": true,
+    "steps_verified": 250,
+    "new_native_h_calls": 155260,
+    "diagnostic_wall_seconds": 2.4196084159775637
+  },
+  {
+    "file": "Behnke53.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 235,
+    "native_result_hash_matches": true,
+    "steps_verified": 250,
+    "new_native_h_calls": 31560,
+    "diagnostic_wall_seconds": 0.401078500028234
+  },
+  {
+    "file": "Behnke53.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 261,
+    "native_result_hash_matches": true,
+    "steps_verified": 250,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 1.448225625033956
+  },
+  {
+    "file": "Behnke53.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 265,
+    "native_result_hash_matches": true,
+    "steps_verified": 250,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 1.1476447920431383
+  },
+  {
+    "file": "Behnke46.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 125,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 26080,
+    "diagnostic_wall_seconds": 0.6506984169827774
+  },
+  {
+    "file": "Behnke46.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 137,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 5528,
+    "diagnostic_wall_seconds": 0.13792154198745266
+  },
+  {
+    "file": "Behnke46.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 159,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.4300138750113547
+  },
+  {
+    "file": "Behnke46.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 147,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.43354224995709956
+  },
+  {
+    "file": "Behnke29.fjsp",
+    "driver": "H0",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 138,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 24196,
+    "diagnostic_wall_seconds": 0.6167272920138203
+  },
+  {
+    "file": "Behnke29.fjsp",
+    "driver": "H1",
+    "method": "one native singleton-MIX endpoint replay with observer",
+    "makespan": 133,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 5348,
+    "diagnostic_wall_seconds": 0.13374974997714162
+  },
+  {
+    "file": "Behnke29.fjsp",
+    "driver": "B3",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 145,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.4409235410275869
+  },
+  {
+    "file": "Behnke29.fjsp",
+    "driver": "B5",
+    "method": "archived legal commits; no new full solve",
+    "makespan": 142,
+    "native_result_hash_matches": true,
+    "steps_verified": 100,
+    "new_native_h_calls": 0,
+    "diagnostic_wall_seconds": 0.40754595800535753
+  }
+]
