@@ -1,0 +1,372 @@
+{
+  "mode": "SYNTHETIC_MOCK_ONLY_NOT_RESEARCH_RESULTS",
+  "cross_parents": 2,
+  "population_size": 5,
+  "logical_mock_requests": 25,
+  "mock_evaluations": 25,
+  "generation_cross_pairs": {
+    "0": [
+      [
+        "B/init/000002",
+        "B/init/000001"
+      ],
+      [
+        "B/init/000004",
+        "B/init/000000"
+      ],
+      [
+        "B/init/000003",
+        "B/init/000002"
+      ],
+      [
+        "B/init/000001",
+        "B/init/000003"
+      ],
+      [
+        "B/init/000000",
+        "B/init/000003"
+      ]
+    ],
+    "1": [
+      [
+        "B/g0000/000007",
+        "B/g0000/000008"
+      ],
+      [
+        "B/g0000/000005",
+        "B/g0000/000008"
+      ],
+      [
+        "B/g0000/000008",
+        "B/g0000/000009"
+      ],
+      [
+        "B/g0000/000009",
+        "B/g0000/000008"
+      ],
+      [
+        "B/g0000/000007",
+        "B/g0000/000009"
+      ]
+    ]
+  },
+  "generation_parent_pools": {
+    "0": [
+      "B/init/000004",
+      "B/init/000003",
+      "B/init/000002",
+      "B/init/000001",
+      "B/init/000000"
+    ],
+    "1": [
+      "B/g0000/000009",
+      "B/g0000/000008",
+      "B/g0000/000007",
+      "B/g0000/000006",
+      "B/g0000/000005"
+    ]
+  },
+  "P0_P1_P2": {
+    "P0": [
+      "B/init/000004",
+      "B/init/000003",
+      "B/init/000002",
+      "B/init/000001",
+      "B/init/000000"
+    ],
+    "P1": [
+      "B/g0000/000009",
+      "B/g0000/000008",
+      "B/g0000/000007",
+      "B/g0000/000006",
+      "B/g0000/000005"
+    ],
+    "P2": [
+      "B/g0001/000009",
+      "B/g0001/000008",
+      "B/g0001/000007",
+      "B/g0001/000006",
+      "B/g0001/000005"
+    ]
+  },
+  "second_generation_uses_first_generation_children": true,
+  "lineage": [
+    {
+      "id": "B/init/000000",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000001",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000002",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000003",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000004",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000000",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000002",
+        "B/init/000001"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000001",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000004",
+        "B/init/000000"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000002",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000003",
+        "B/init/000002"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000003",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000001",
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000004",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000000",
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000004"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000001"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000004"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000000",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000007",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000001",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000005",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000002",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000008",
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000003",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000009",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000004",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000007",
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000007"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000006"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000006"
+      ],
+      "status": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    }
+  ],
+  "scientific_API_requests": 0,
+  "formal_train_evaluations": 0
+}

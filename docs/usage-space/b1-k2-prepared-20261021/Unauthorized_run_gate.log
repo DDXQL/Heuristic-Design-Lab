@@ -1,0 +1,11 @@
+EXPECTED REJECTION; no authorization was created
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_usage_local.py", line 292, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_usage_local.py", line 286, in main
+    require_execution(directory)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_usage_local.py", line 232, in require_execution
+    if not auth.exists():raise BudgetStop('B1-1 not authorized; engineering and Mock only')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fjsp_usage.research_real.budget.BudgetStop: B1-1 not authorized; engineering and Mock only

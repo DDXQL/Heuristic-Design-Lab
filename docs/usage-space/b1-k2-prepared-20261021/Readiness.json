@@ -1,0 +1,19 @@
+{
+  "protocol_sha256": "d5ec72d53583c8dd5829b6a9d8f002511956c346127aad99348e1485f8e3e898",
+  "cross_parents": 2,
+  "population_size": 5,
+  "mutation_parents": 1,
+  "generations": 2,
+  "cross_per_generation": 5,
+  "mutate_per_generation": 5,
+  "logical_candidate_cap": 40,
+  "api_attempt_cap": 60,
+  "unit_tests_passed": 41,
+  "real_requests": 0,
+  "formal_train_evaluations": 0,
+  "new_test28_use": false,
+  "engineering_checks_passed": true,
+  "formal_execution_authorized": false,
+  "frozen_objects": 231,
+  "remaining_condition": "new explicit B1-1 authorization bound to this protocol; no model/solver started"
+}

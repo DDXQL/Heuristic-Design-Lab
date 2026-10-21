@@ -1,0 +1,25 @@
+{
+  "mode": "MOCK_HASH_FAULTS_ONLY_NO_FILES_MUTATED",
+  "checks": [
+    {
+      "file": "tools/b1_usage_local.py",
+      "rejected": true,
+      "reason": "frozen file changed: tools/b1_usage_local.py"
+    },
+    {
+      "file": "tools/b1_usage_prompts.py",
+      "rejected": true,
+      "reason": "frozen file changed: tools/b1_usage_prompts.py"
+    },
+    {
+      "file": "code/fjsp_usage/research/evolution.py",
+      "rejected": true,
+      "reason": "frozen file changed: code/fjsp_usage/research/evolution.py"
+    },
+    {
+      "file": "code/fjsp_usage/usage_v2/execution.py",
+      "rejected": true,
+      "reason": "frozen file changed: code/fjsp_usage/usage_v2/execution.py"
+    }
+  ]
+}
