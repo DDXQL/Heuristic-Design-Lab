@@ -1,0 +1,27 @@
+{
+  "protocol_sha256": "11e87d24f00eeec628659cddcff2e796cd9f6824c062da4323623162ff3bad60",
+  "execution_commit": "81206b33643df4d6de8d0027f5ea261a5c80db28",
+  "completed_tasks": 56,
+  "status_counts": {
+    "completed": 56
+  },
+  "valid_evaluations": 56,
+  "certified_successful_solve_passes": 112,
+  "failed_evaluations": [],
+  "all_original_28_pairs_complete": true,
+  "evaluation_wall_seconds": 114.47591417119838,
+  "reservation_to_last_finish_wall_seconds": 116.98179507255554,
+  "CPU_process_seconds": null,
+  "API_requests": 0,
+  "new_model_programs": 0,
+  "automatic_retries": 0,
+  "execution_restarts": 0,
+  "extra_replays": 0,
+  "analysis_python": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+  "presentation_note": "Saved-result analysis only. Frozen solver and statistical report use original project venv. Tables retained; no new dependencies, solves or statistical substitution.",
+  "protected_B2_files_checked": 258,
+  "protected_B2_bytes_and_mtimes_changed": [],
+  "independence_scope": "Checked project records and DDXQL knowledge only, not proof of all external history.",
+  "frozen_external_use_confirmation_pending_note": "V1-0 historical pending marker retained unchanged; fulfilled by V1_1_authorization.json, not by editing Protocol.json.",
+  "resource_isolation": "Sequential CLI, original per-run lock; no dedicated CPU/resource reservation. Wall times are observations, not precise speed causality."
+}
