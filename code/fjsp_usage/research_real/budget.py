@@ -20,7 +20,7 @@ REQUEST_BUDGET_VERSION = 'local-request-budget-v1'
 def validate_request_budget(config):
     """Explicit future-only opt-in; never reinterpret an old specialized run."""
     b = config.request_budget
-    if isinstance(b,dict) and b.get('version') == 'batch-api-attempts-v1':
+    if isinstance(b,dict) and b.get('version') in ('batch-api-attempts-v1', 'batch-api-attempts-v2-t1'):
         from .attempt_budget import validate_policy
         validate_policy(config)
         return

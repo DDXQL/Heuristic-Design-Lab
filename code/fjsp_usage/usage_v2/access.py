@@ -6,6 +6,7 @@ import time
 from fjsp_usage.research.events import atomic_json
 from fjsp_usage.research.protocol import digest
 from fjsp_usage.research_real.budget import BudgetStop
+from fjsp_usage.research_real.real_transport import redact_diagnostic
 
 
 class MetadataPacer:
@@ -45,7 +46,8 @@ class WireRecorder:
     def __init__(self, inner, directory, verify=None):
         self.inner, self.directory = inner, Path(directory)
         self.verify = verify
-        self.config, self.identity, self.secret, self.redact = inner.config, inner.identity, inner.secret, inner.redact
+        self.config, self.identity, self.secret = inner.config, inner.identity, inner.secret
+        self.redact = lambda text: redact_diagnostic(inner.redact(text), self.secret)
         self.directory.mkdir(exist_ok=True)
 
     def preflight(self, prompt):
@@ -66,8 +68,18 @@ class WireRecorder:
             record.update(status='wire_completed_before_settlement', reply=reply)
             atomic_json(path, record)
             return reply
-        except Exception as exc:
-            record.update(status='wire_failed', error=self.redact(str(exc))[:500],
+        except BaseException as exc:
+            # An interrupt immediately after atomic commit must not downgrade
+            # the first durable response and make recovery request it again.
+            persisted = json.loads(path.read_text())
+            if (persisted.get('status') == 'wire_completed_before_settlement'
+                    and persisted.get('global_key') == key
+                    and persisted.get('prompt_key') == record['prompt_key']):
+                raise
+            record.update(status='wire_failed' if isinstance(exc, Exception) else 'interrupted_unknown',
+                          error=redact_diagnostic(self.redact(str(exc)), self.secret)[:500],
                           error_type=type(exc).__name__,
-                          usage=getattr(exc,'usage',None), metadata=getattr(exc,'metadata',{}) or {})
+                          usage=getattr(exc,'usage',None),
+                          metadata=redact_diagnostic(getattr(exc,'metadata',{}) or {}, self.secret))
+            exc.metadata = record['metadata']
             atomic_json(path, record); raise

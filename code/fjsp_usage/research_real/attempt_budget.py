@@ -14,12 +14,19 @@ from fjsp_usage.research.protocol import digest
 from .budget import BudgetStop, validate_usage
 
 VERSION = 'batch-api-attempts-v1'
+CIRCUIT_VERSION = 'batch-api-attempts-v2-t1'
 
 
 def validate_policy(config):
     b = config.request_budget
-    if (not isinstance(b,dict) or set(b) != {'version','logical_candidate_cap','api_attempt_cap','per_candidate_attempt_cap','retry_backoff_seconds'}
-            or b['version'] != VERSION
+    fields = {'version','logical_candidate_cap','api_attempt_cap','per_candidate_attempt_cap','retry_backoff_seconds'}
+    if isinstance(b, dict) and b.get('version') == CIRCUIT_VERSION:
+        fields.add('protocol_error_circuit_threshold')
+    if (not isinstance(b,dict) or set(b) != fields
+            or b['version'] not in (VERSION, CIRCUIT_VERSION)
+            or (b['version'] == CIRCUIT_VERSION and
+                (type(b['protocol_error_circuit_threshold']) is not int or
+                 not 1 <= b['protocol_error_circuit_threshold'] <= 10))
             or any(type(b[k]) is not int or b[k] < 1 for k in
                    ('logical_candidate_cap','api_attempt_cap','per_candidate_attempt_cap'))
             or b['logical_candidate_cap'] != config.total_request_cap
@@ -42,10 +49,21 @@ def failure_policy(message, metadata=None, error_type=''):
              'model_not_found','model not found','does not exist','invalid_request_error',
              'invalid_parameter','invalid parameter')
     status = m.get('http_status')
-    if any(word in text for word in fatal) or status in (400,401,402,403,404,405,422):
+    upstream_status = m.get('upstream_http_status')
+    if (any(word in text for word in fatal)
+            or m.get('error_code') in ('authentication_error','permission_denied','insufficient_balance')
+            or m.get('error_type') in ('authentication_error','permission_denied','insufficient_balance')
+            or status in (400,401,402,403,404,405,422)
+            or upstream_status in (400,401,402,403,404,405,422)):
         return False, 'permanent_auth_quota_model_or_parameter_error', True
+    if m.get('failure_class') == 'protocol_incompatible':
+        return False, 'non_retryable_protocol_incompatible', False
+    if m.get('failure_class') == 'permanent':
+        return False, 'non_retryable_permanent_response_error', False
     if status in (429,502,503,504):
         return True, 'temporary_http_'+str(status), False
+    if upstream_status in (429,502,503,504):
+        return True, 'temporary_upstream_http_'+str(upstream_status), False
     if m.get('temporary_network_failure') or error_type in (
             'TimeoutError','ConnectionError','ConnectionResetError','ConnectionAbortedError',
             'ConnectionRefusedError','RemoteDisconnected','IncompleteRead','gaierror','SSLEOFError'):
@@ -53,7 +71,8 @@ def failure_policy(message, metadata=None, error_type=''):
     # The existing worker uses this exact bounded-deadline error.
     if message.startswith('total network deadline exceeded'):
         return True, 'temporary_total_deadline', False
-    if (m.get('error_code') in ('service_unavailable','temporarily_unavailable','server_overloaded')
+    if (m.get('error_code') in ('service_unavailable','temporarily_unavailable','server_overloaded','rate_limit_exceeded')
+            or m.get('error_type') in ('service_unavailable','temporarily_unavailable','server_overloaded','rate_limit_exceeded')
             or 'service temporarily unavailable' in text):
         return True, 'explicit_temporary_service_error', False
     return False, 'non_retryable_unclassified_error', False
@@ -71,18 +90,23 @@ class AttemptJournal:
         self._config_key = digest(config.payload())
         self.phase,self.clock,self.sleep = phase,clock,sleep
         self.policy = json.loads(json.dumps(config.request_budget))
-        self.identity = digest({'version':VERSION,'config':config.payload(),'context':context,
+        self.version = self.policy['version']
+        self.identity = digest({'version':self.version,'config':config.payload(),'context':context,
                                 'transport':transport.identity,'phase':phase,'journal_path':str(self.path.resolve())})
         self.path.parent.mkdir(parents=True,exist_ok=True)
-        self.data = {'identity':self.identity,'version':VERSION,'policy':self.policy,'revision':0,
+        self.data = {'identity':self.identity,'version':self.version,'policy':self.policy,'revision':0,
                      'requests':{},'api_attempts':{},'halt_reason':None}
         self._disk = None
         if self.path.exists():
             self.data = json.loads(self.path.read_text())
-            if self.data['identity'] != self.identity or self.data['policy'] != self.policy or self.data['version'] != VERSION:
+            if self.data['identity'] != self.identity or self.data['policy'] != self.policy or self.data['version'] != self.version:
                 raise ValueError('attempt journal protocol, batch or transport identity changed')
             self._disk = digest(self.data)
         self.validate_counts()
+        before = self.data['halt_reason']
+        self._apply_circuit()
+        if self.data['halt_reason'] != before:
+            self.save()
 
     def validate_counts(self):
         requests,attempts = self.data['requests'],self.data['api_attempts']
@@ -94,7 +118,8 @@ class AttemptJournal:
             if len(r['attempt_ids'])>self.policy['per_candidate_attempt_cap']:
                 raise ValueError('per-candidate attempt cap exceeded in saved journal')
             for n,aid in enumerate(r['attempt_ids'],1):
-                if aid != self.phase+'/'+key+f'/attempt/{n:02d}' or attempts[aid]['number']!=n:
+                if (aid != self.phase+'/'+key+f'/attempt/{n:02d}' or attempts[aid]['number']!=n
+                        or attempts[aid]['logical_id'] != key or attempts[aid]['prompt_key'] != r['prompt_key']):
                     raise ValueError('saved API attempt identity differs')
 
     @property
@@ -122,9 +147,26 @@ class AttemptJournal:
         if self.attempt_count >= self.policy['api_attempt_cap']:
             raise BudgetStop('batch API attempt cap exhausted')
 
+    def protocol_error_streak(self):
+        streak = 0
+        for attempt in self.data['api_attempts'].values():
+            if attempt['status'] in ('pending', 'interrupted_unknown'):
+                continue  # An unknown outcome must not clear previous evidence.
+            if (attempt['status'] == 'failed' and
+                    attempt.get('metadata', {}).get('stream_protocol_anomaly') is True):
+                streak += 1
+            else:
+                streak = 0
+        return streak
+
+    def _apply_circuit(self):
+        if (self.version == CIRCUIT_VERSION and not self.data['halt_reason'] and
+                self.protocol_error_streak() >= self.policy['protocol_error_circuit_threshold']):
+            self.data['halt_reason'] = 'transport_protocol_circuit_open'
+
     def summary(self):
         attempts = list(self.data['api_attempts'].values())
-        return {'budget_policy':VERSION,'logical_candidate_cap':self.policy['logical_candidate_cap'],
+        return {'budget_policy':self.version,'logical_candidate_cap':self.policy['logical_candidate_cap'],
                 'logical_candidates':self.calls,'api_attempt_cap':self.policy['api_attempt_cap'],
                 'logical_candidate_cap_reached':self.calls >= self.policy['logical_candidate_cap'],
                 'api_attempt_cap_exhausted':len(attempts) >= self.policy['api_attempt_cap'],
@@ -137,6 +179,8 @@ class AttemptJournal:
                 'unknown_usage_attempts':sum(a.get('usage') is None for a in attempts),
                 'actual_cost':None,'actual_cost_status':'unknown; no account, tariff or invoice queries',
                 'global_history_gate':False,'cross_worktree_lock_gate':False,'stop_reason':self.data['halt_reason'],
+                'protocol_error_circuit_threshold':self.policy.get('protocol_error_circuit_threshold'),
+                'consecutive_protocol_errors':self.protocol_error_streak(),
                 'count_basis':'reserved attempts, conservatively includes uncertain pre-dispatch interruptions'}
 
     def _accept(self,record,attempt,reply):
@@ -173,10 +217,17 @@ class AttemptJournal:
                     a.update(status='interrupted_unknown',retryable=True,retry_reason='uncertain_dispatch_charged')
             else:
                 a.update(status='interrupted_unknown',retryable=True,retry_reason='uncertain_reservation_charged')
+            if a['status'] == 'interrupted_unknown' and self.version == CIRCUIT_VERSION:
+                # T1 retries only evidenced temporary failures. Unknown delivery
+                # is charged and paused, never silently treated as a timeout.
+                a.update(retryable=False, retry_reason='uncertain_dispatch_requires_review')
+                if not self.data['halt_reason']:
+                    self.data['halt_reason'] = 'uncertain_dispatch_requires_review'
             a['elapsed_seconds'] = None
             a['observed_after_restart_at'] = self.clock()
             if len(record['attempt_ids']) < self.policy['per_candidate_attempt_cap']:
                 a['retry_not_before'] = self.clock()+self.policy['retry_backoff_seconds'][len(record['attempt_ids'])-1]
+            self._apply_circuit()
             self.save()
 
     def request(self,key,prompt,*,kind='U'):
@@ -229,6 +280,7 @@ class AttemptJournal:
             else:
                 self._accept(record,a,reply)
             a['finished_at'] = self.clock();a['elapsed_seconds'] = max(0,a['finished_at']-a['started_at'])
+            self._apply_circuit()
             self.save()
             if record['status'] == 'completed':
                 record['elapsed_seconds'] = self.logical_elapsed(record)

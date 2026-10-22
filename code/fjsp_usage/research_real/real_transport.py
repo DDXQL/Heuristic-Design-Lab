@@ -26,6 +26,124 @@ class TransportError(RuntimeError):
     pass
 
 
+WIRE_VERSION = 'bounded-sse-evidence-t1-v1'
+TEMPORARY_CODES = frozenset(('service_unavailable', 'temporarily_unavailable',
+                            'server_overloaded', 'rate_limit_exceeded'))
+PERMANENT_CODES = frozenset(('insufficient_quota', 'invalid_api_key', 'authentication_error',
+                            'model_not_found', 'invalid_request_error', 'invalid_parameter',
+                            'permission_denied', 'insufficient_balance'))
+
+
+def redact_diagnostic(value, secret=''):
+    """Recursive defense in depth; structural SSE evidence stores no free text."""
+    if isinstance(value, str):
+        if secret:
+            value = value.replace(secret, '[REDACTED]')
+        return re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)', '[REDACTED]', value)
+    if isinstance(value, dict):
+        return {k: ('[REDACTED]' if str(k).lower() in
+                    ('authorization', 'cookie', 'set-cookie', 'api_key', 'access_token', 'password')
+                    else redact_diagnostic(v, secret)) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [redact_diagnostic(v, secret) for v in value]
+    return value
+
+
+def field_evidence(value):
+    result = {'type': type(value).__name__}
+    if isinstance(value, (dict, list)):
+        result['count'] = len(value)
+    if isinstance(value, str):
+        raw = value.encode('utf-8', errors='replace')
+        result.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+    return result
+
+
+def upstream_error_evidence(data):
+    """Keep only recognized machine codes/markers; never server message bodies."""
+    error = data.get('error', data) if isinstance(data, dict) else data
+    result = {'upstream_error_shape': field_evidence(error)}
+    if not isinstance(error, dict):
+        return result
+    for name in ('code', 'type'):
+        value = error.get(name)
+        result['error_' + name + '_evidence'] = field_evidence(value)
+        if isinstance(value, str) and value in TEMPORARY_CODES | PERMANENT_CODES:
+            result['error_' + name] = value
+    # This value is an allowlisted marker, not a quote of the provider's message.
+    message = error.get('message')
+    result['error_message_evidence'] = field_evidence(message)
+    if isinstance(message, str):
+        markers = ('insufficient balance', 'insufficient funds', 'insufficient quota',
+                   'quota exhausted', 'quota exceeded', 'invalid api key', 'unauthorized',
+                   'authentication', 'model not found', 'invalid parameter',
+                   '余额不足', '额度不足', '欠费', 'service temporarily unavailable')
+        result['error_message'] = ' '.join(x for x in markers if x in message.lower())
+    status = error.get('status', error.get('http_status'))
+    if type(status) is int and status in (400, 401, 402, 403, 404, 405, 422, 429, 502, 503, 504):
+        result['upstream_http_status'] = status
+    codes = {result.get('error_code'), result.get('error_type')}
+    if (codes & PERMANENT_CODES or status in (400, 401, 402, 403, 404, 405, 422)
+            or result.get('error_message', '').replace('service temporarily unavailable', '').strip()):
+        result['failure_class'] = 'permanent'
+    elif (codes & TEMPORARY_CODES or status in (429, 502, 503, 504)
+          or result.get('error_message') == 'service temporarily unavailable'):
+        result['failure_class'] = 'temporary'
+    else:
+        result['failure_class'] = 'unknown'
+    return result
+
+
+def frame_evidence(chunk, content):
+    result = {**field_evidence(chunk), 'frame_sha256': hashlib.sha256(content.encode()).hexdigest()}
+    if isinstance(chunk, dict):
+        known = ('id', 'model', 'choices', 'usage', 'error', 'object', 'type', 'code', 'message')
+        result['fields'] = {k: field_evidence(chunk[k]) for k in known if k in chunk}
+        result['other_field_count'] = sum(k not in known for k in chunk)
+        choices = chunk.get('choices')
+        if isinstance(choices, list):
+            result['choice_shapes'] = []
+            for choice in choices[:2]:
+                shape = field_evidence(choice)
+                if isinstance(choice, dict):
+                    shape['index'] = field_evidence(choice.get('index'))
+                    shape['finish_reason'] = field_evidence(choice.get('finish_reason'))
+                    delta = choice.get('delta')
+                    shape['delta'] = field_evidence(delta)
+                    if isinstance(delta, dict):
+                        names = ('role', 'content', 'reasoning_content', 'refusal', 'tool_calls', 'function_call', 'audio')
+                        shape['delta_fields'] = {k: field_evidence(delta[k]) for k in names if k in delta}
+                result['choice_shapes'].append(shape)
+    return result
+
+
+def sse_lines(response, counters):
+    """Bounded LF/CRLF/CR framing, including CR split across HTTP read chunks."""
+    pending, after_cr = bytearray(), False
+    read = getattr(response, 'read1', None) or response.readline
+    while True:
+        block = read(4096)
+        if not block:
+            error = TransportError('stream ended without DONE or exceeded byte limit')
+            error.metadata = {'temporary_network_failure': True, 'network_error_type': 'stream_eof'}
+            raise error
+        counters['wire_bytes_seen'] += len(block)
+        if counters['wire_bytes_seen'] > 8388608:
+            raise TransportError('stream exceeds byte limit')
+        for byte in block:
+            if after_cr and byte == 10:
+                after_cr = False
+                continue
+            after_cr = byte == 13
+            if byte in (10, 13):
+                yield bytes(pending)
+                pending.clear()
+            else:
+                pending.append(byte)
+                if len(pending) > 65536:
+                    raise TransportError('stream line exceeds byte limit')
+
+
 def network_failure_metadata(exc):
     """Structured evidence for opt-in retry journals; no transport retries."""
     current = exc
@@ -56,14 +174,7 @@ def response_audit(response, secret=''):
 def error_audit(raw,secret=''):
     result={'error_body_sha256':hashlib.sha256(raw).hexdigest(),'error_body_bytes_sampled':len(raw)}
     try:
-        error=json.loads(raw).get('error',{})
-        if isinstance(error,dict):
-            for field in ('type','code','message'):
-                value=error.get(field)
-                if isinstance(value,(str,int)):
-                    value=str(value).replace(secret,'[REDACTED]') if secret else str(value)
-                    value=re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)', '[REDACTED]', value)
-                    result['error_'+field]=value[:300]
+        result.update(upstream_error_evidence(json.loads(raw)))
     except (ValueError,AttributeError):pass
     return result
 
@@ -145,42 +256,61 @@ def decode_stream(response, provider):
     count from the final usage frame. No reconnect or partial acceptance.
     """
     text, audit, raw_usage, finish = [], {}, None, None
-    size, text_size, event = 0, 0, []
+    text_size, event, event_type, event_size = 0, [], '', 0
+    counters = {'wire_bytes_seen': 0, 'event_index': 0}
+    evidence, current_frame, first_line = {}, None, True
     try:
-        if response.getheader('Content-Type', '').split(';')[0].strip() != 'text/event-stream':
+        if response.getheader('Content-Type', '').split(';')[0].strip().lower() != 'text/event-stream':
             raise TransportError('stream response must use text/event-stream')
-        while True:
-            line = response.readline(65537)
-            size += len(line)
-            if not line:
-                error = TransportError('stream ended without DONE or exceeded byte limit')
-                error.metadata = {'temporary_network_failure':True,'network_error_type':'stream_eof'}
-                raise error
-            if len(line) > 65536 or size > 8388608:
-                raise TransportError('stream ended without DONE or exceeded byte limit')
-            line = line.decode('utf-8').rstrip('\r\n')
+        for raw_line in sse_lines(response, counters):
+            line = raw_line.decode('utf-8-sig' if first_line else 'utf-8')
+            first_line = False
             if line:
-                if line.startswith('data:'):
-                    event.append(line[5:].lstrip(' '))
-                elif not line.startswith((':', 'event:', 'id:', 'retry:')):
-                    raise TransportError('invalid SSE field')
+                if line.startswith(':'):
+                    continue
+                field, _, value = line.partition(':')
+                if value.startswith(' '):
+                    value = value[1:]
+                if field == 'data':
+                    event.append(value)
+                    event_size += len(raw_line)
+                    if event_size > 8388608:
+                        raise TransportError('SSE event exceeds byte limit')
+                elif field == 'event':
+                    event_type = value
+                # SSE id/retry and unknown fields do not alter JSON identities,
+                # reconnect, or change local backoff. See WHATWG SSE framing.
                 continue
             if not event:
+                if event_type == 'error':
+                    raise TransportError('error event without structured data')
+                event_type = ''
                 continue
-            content, event = '\n'.join(event), []
+            content, event, event_size = '\n'.join(event), [], 0
+            counters['event_index'] += 1
+            current_frame = frame_evidence(None, content)
             if content == '[DONE]':
+                if event_type == 'error':
+                    raise TransportError('error event cannot terminate successfully')
                 if finish != 'stop' or raw_usage is None:
                     raise TransportError('stream requires stop and final usage before DONE')
                 return decode_chat({**audit, 'usage':raw_usage, 'choices':[
                     {'message':{'content':''.join(text)}, 'finish_reason':finish}]}, provider)
             chunk = json.loads(content)
-            if not isinstance(chunk, dict) or chunk.get('error'):
+            current_frame = frame_evidence(chunk, content)
+            if (not isinstance(chunk, dict) or 'error' in chunk or
+                    chunk.get('type') == 'error' or event_type == 'error'):
+                evidence.update(upstream_error_evidence(chunk))
+                evidence.setdefault('failure_class', 'unknown' if isinstance(chunk, dict) else 'protocol_incompatible')
                 raise TransportError('invalid/error stream chunk')
+            event_type = ''
             for field in ('id', 'model'):
                 value = chunk.get(field)
                 if not isinstance(value, str) or not value or len(value) > 256:
                     raise TransportError('missing stream identity/model')
                 if field in audit and audit[field] != value:
+                    evidence['identity_change'] = {'field': field,
+                        'previous': field_evidence(audit[field]), 'observed': field_evidence(value)}
                     raise TransportError('stream identity/model changed')
                 audit[field] = value
             if provider.expected_response_model and audit['model'] != provider.expected_response_model:
@@ -222,7 +352,18 @@ def decode_stream(response, provider):
                     raise TransportError('stream completion truncated or refused')
     except BaseException as exc:
         error = exc if isinstance(exc, TransportError) else TransportError('malformed or interrupted SSE stream')
-        error.metadata = {**audit,**(getattr(exc,'metadata',{}) or {}),**network_failure_metadata(exc)}
+        # Do not retain raw error frames, messages, arbitrary fields or identities.
+        network = network_failure_metadata(exc)
+        error.metadata = {**evidence, **(getattr(exc,'metadata',{}) or {}), **network,
+            'transport_version': WIRE_VERSION, 'failure_stage': 'sse_decode',
+            'stream_evidence': {**counters, 'text_bytes_seen': text_size,
+                'last_frame': current_frame,
+                'identities': {k: field_evidence(v) for k, v in audit.items()}}}
+        error.metadata.setdefault('failure_class', 'temporary' if
+            error.metadata.get('temporary_network_failure') else 'protocol_incompatible')
+        error.metadata['stream_protocol_anomaly'] = (not error.metadata.get('temporary_network_failure', False)
+            and error.metadata['failure_class'] in ('protocol_incompatible', 'unknown'))
+
         error.usage = getattr(exc, 'usage', None)
         if error.usage is None and isinstance(raw_usage, dict):
             try:
@@ -236,7 +377,7 @@ def decode_stream(response, provider):
 def _wire_worker(pipe, provider, payload, secret):
     connection = None
     usage = None
-    metadata = {}
+    metadata = {'failure_stage': 'connect'}
     try:
         parts = urlsplit(provider.endpoint)
         cls = http.client.HTTPSConnection if parts.scheme == 'https' else http.client.HTTPConnection
@@ -249,10 +390,12 @@ def _wire_worker(pipe, provider, payload, secret):
         headers = {'Content-Type': 'application/json'}
         if secret:
             headers['Authorization'] = 'Bearer ' + secret
+        metadata['failure_stage'] = 'http_send'
         connection.request('POST', parts.path or '/', body=json.dumps(payload).encode(), headers=headers)
         pipe.send({'kind': 'sent'})
+        metadata['failure_stage'] = 'http_receive'
         response = connection.getresponse()
-        metadata = response_audit(response,secret)
+        metadata = {**metadata, **response_audit(response,secret)}
         pipe.send({'kind':'audit','metadata':metadata})
         if response.status != 200:
             metadata.update(error_audit(response.read(4096),secret))
@@ -300,13 +443,14 @@ class JsonCandidateTransport:
         self.secret = os.environ.get(self.provider.api_key_env, '') if self.provider.api_key_env else ''
         if self.provider.api_key_env and not self.secret:
             raise ValueError('configured local credential environment variable is absent')
-        self.identity = digest({'provider': config.payload()['provider'], 'mode': config.mode})
+        self.identity = digest({'provider': config.payload()['provider'], 'mode': config.mode,
+                                'transport_version': WIRE_VERSION})
 
     def redact(self, text):
         return text.replace(self.secret, '[REDACTED]') if self.secret else text
 
     def redact_metadata(self, metadata):
-        return {k: self.redact(v) if isinstance(v, str) else v for k, v in metadata.items()}
+        return redact_diagnostic(metadata, self.secret)
 
     def preflight(self, prompt):
         if not isinstance(prompt, str) or len(prompt.encode()) > self.provider.max_prompt_bytes:
