@@ -1,0 +1,54 @@
+{
+  "scope": "Read-only local Git/config history; no environment secrets or provider queries.",
+  "gpt-5.6-sol": {
+    "earliest_dated_reference_in_inspected_history": {
+      "path": "docs/API_PUBLIC_PRICING_20261007.json",
+      "document_date": "2026-10-07 Asia/Manila",
+      "meaning": "public catalog reference, NOT inference evidence",
+      "retaining_commit": "130155daa8b6230205769ed22a2c08d9cb0566b0"
+    },
+    "dated_preparation": {
+      "path": "docs/FORMAL_FLOW_READINESS_20261008.json",
+      "document_date": "2026-10-08",
+      "requested_model": "gpt-5.6-sol",
+      "inference_requests": 0
+    },
+    "earliest_retained_code_config_match": {
+      "commit": "130155daa8b6230205769ed22a2c08d9cb0566b0",
+      "time": "2026-10-12T14:09:09+08:00",
+      "path": "code/fjsp_usage/research_real/leafapi.py",
+      "symbol": "MODEL and provider()",
+      "current_branch_ancestor": true
+    },
+    "earliest_actual_inference": "not established by the inspected dated/Git evidence"
+  },
+  "gpt-6.1-sol": {
+    "earliest_retained_code_match_all_local_refs": {
+      "commit": "d71fd1f07ff1bb162c0c29a5045ef67944c2b4a1",
+      "time": "2026-10-14T21:12:10+08:00",
+      "path": "code/fjsp_usage/research_real/model_migration.py",
+      "current_branch_ancestor": false,
+      "meaning": "explicit migration in another local research history; read through Git objects only"
+    },
+    "earliest_retained_code_match_current_branch": {
+      "commit": "a9794f1f8d81f9c988655ec30cb50b04b97b5acc",
+      "time": "2026-10-14T21:34:47+08:00",
+      "path": "code/fjsp_usage/usage_v2/model_migration.py",
+      "symbols": [
+        "MODEL",
+        "check_provider_migration",
+        "MigratedUsageConfig"
+      ],
+      "current_branch_ancestor": true,
+      "meaning": "explicit fixed-H migration; changes requested and expected response model"
+    },
+    "current_diagnostic_provider_sha256": "52d885e80d08cbbac238891ae6e398c374e409235a8bf3479efe26a43230a36d",
+    "earliest_actual_inference": "migration commit alone does not establish first real request time"
+  },
+  "environment": {
+    "actual_secret_file_read": false,
+    "credential_loader": "leafapi.load_local_key accepts one LEAFAPI_API_KEY assignment, no model override",
+    "request_model_source": "provider.model from frozen JSON; not MODEL/OPENAI_MODEL environment variables"
+  },
+  "provider_side_change": "unknown; local model strings and matching response model cannot prove backend weights or routing; no automatic replacement inferred"
+}

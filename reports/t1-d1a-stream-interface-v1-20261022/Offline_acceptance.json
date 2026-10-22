@@ -1,0 +1,53 @@
+{
+  "stage": "T1-D1A",
+  "status": "OFFLINE_READY_WAIT_T1_D1_AUTHORIZATION",
+  "T1_commit": "2eaabe09f4344d23199906def3152871846df8e0",
+  "protocol_sha256": "7907dac215ba4e5b992a1894c52f243cc872c3107e6682579fc370f3279a6c24",
+  "prompt_sha256": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+  "prompt_bytes": 21250,
+  "runtime_files_pinned": 13,
+  "T1_baseline_files_match": 12,
+  "source_files_checked_unchanged": 3,
+  "old_B1_ledger_authorization_checkpoint_accessed": false,
+  "new_real_API_requests": 0,
+  "datasets_loaded": 0,
+  "FJSP_evaluations": 0,
+  "research_population_created": false,
+  "authorization_created": false,
+  "authorization_template_approved": false,
+  "journal_created": false,
+  "checkpoint_created": false,
+  "policy": {
+    "version": "batch-api-attempts-v2-t1",
+    "logical_candidate_cap": 2,
+    "api_attempt_cap": 2,
+    "per_candidate_attempt_cap": 1,
+    "retry_backoff_seconds": [],
+    "protocol_error_circuit_threshold": 1
+  },
+  "test_counts": {
+    "diagnostic_new": 26,
+    "T1_regression": 35,
+    "SSE_regression": 4,
+    "total": 65,
+    "passed": 65,
+    "failed": 0
+  },
+  "cost": {
+    "actual_cost": null,
+    "no_account_or_billing_queries": true,
+    "suggested_risk_budget_cny": 5,
+    "enforceable_monetary_cap": false
+  },
+  "execution_entry": "tools/t1_d1_diagnostic.py",
+  "run_directory": "runs/t1-d1-stream-interface-v1-20261022-final",
+  "source_provenance": {
+    "Protocol.json": "d5ec72d53583c8dd5829b6a9d8f002511956c346127aad99348e1485f8e3e898",
+    "config.pending.json": "e7b87532380b485a9ba15bfc17e64cc0612ad8ed4b4709c75144eba60c20c10f",
+    "r501/B/prompts/B_init_000000": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e"
+  },
+  "experiment_id": "t1-d1-stream-interface-v1-20261022-final",
+  "run_directory_bound_in_protocol": true,
+  "copied_protocol_rejected": true,
+  "superseded_unexecuted_draft": "runs/t1-d1-stream-interface-v1-20261022"
+}
