@@ -1,0 +1,82 @@
+{
+  "protocol_sha256": "254fc61b96a04347cc8f7ae4205a6546266e48d83791b4408d6f381f7ed352ec",
+  "journal_identity": "a4c1abb8b8fc8018ce31ff46513a418ed0920809f9a81894172e1daca11d67f1",
+  "provenance": "real",
+  "phase": "completed",
+  "outcome": {
+    "attempt_id": "T1-D4/B1-INIT/attempt/01",
+    "response_id": "T1-D4/B1-INIT/attempt/01/response",
+    "public_transport_received": true,
+    "complete_response": true,
+    "output_legal": false,
+    "diagnostic_pass": false,
+    "usage": {
+      "input_tokens": 10104,
+      "output_tokens": 105
+    },
+    "actual_cost": null,
+    "attempt_reserved_at": 1792666213.97411,
+    "finished_at": 1792666222.389302,
+    "elapsed_seconds": 8.415192127227783,
+    "send_confirmed": true,
+    "send_confirmation_at": 1792666215.486241,
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "gateway_request_id": "202610221050158256233858268d9d6LMoI4OEf",
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610221050158256233858268d9d6LMoI4OEf",
+      "x-request-id": "871d8c6c-a28a-454b-a71f-80d38e5c27a0",
+      "date": "Thu, 22 Oct 2026 10:50:22 GMT",
+      "gateway_request_id": "202610221050158256233858268d9d6LMoI4OEf",
+      "cached_tokens": 4224,
+      "id": "resp_041eecd419ce19b8016ad9ea6a3fe48195bc95eef592d30814",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    },
+    "error_type": "CandidateError",
+    "error": "expected one {description} and one python block only",
+    "failure_stage": "U_static_validation",
+    "finish_reason": "stop",
+    "response_model": "gpt-6.1-sol",
+    "delivery_unknown": false,
+    "failure_class": "invalid_U_output",
+    "source": "INTERFACE_DIAGNOSTIC_NOT_RESEARCH"
+  },
+  "budget": {
+    "budget_policy": "batch-api-attempts-v2-t1",
+    "logical_candidate_cap": 1,
+    "logical_candidates": 1,
+    "api_attempt_cap": 1,
+    "logical_candidate_cap_reached": true,
+    "api_attempt_cap_exhausted": true,
+    "api_attempts_consumed": 1,
+    "per_candidate_attempt_cap": 1,
+    "confirmed_sends": 1,
+    "attempt_statuses": {
+      "completed": 1
+    },
+    "logical_statuses": {
+      "completed": 1
+    },
+    "known_input_tokens": 10104,
+    "known_output_tokens": 105,
+    "unknown_usage_attempts": 0,
+    "actual_cost": null,
+    "actual_cost_status": "unknown; no account, tariff or invoice queries",
+    "global_history_gate": false,
+    "cross_worktree_lock_gate": false,
+    "stop_reason": null,
+    "protocol_error_circuit_threshold": 1,
+    "consecutive_protocol_errors": 0,
+    "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+  },
+  "data_loaded": false,
+  "FJSP_evaluations": 0,
+  "U_executed": false
+}

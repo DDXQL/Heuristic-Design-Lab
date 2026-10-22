@@ -1,0 +1,16 @@
+{
+  "scope": "READ_ONLY_EXACT_CODE_BLOCK_AST_AUDIT_ONLY_NOT_ACCEPTED_U",
+  "response_sha256": "01e7f62492ecebadd344df1678a6c657c70c893370a185b2967b941a2ae00645",
+  "extraction": "verbatim content between existing python fence lines; original response unchanged",
+  "code_block_sha256": "778612871445a9de9b95e5ba47e645da2355598425fca4190f55288ae19b9321",
+  "code_only_restricted_AST_pass": true,
+  "interface_version": "U-usage-v2-select-or-mix-20261012",
+  "member_count": 10,
+  "official_complete_response_output_legal": false,
+  "official_failure": "expected one {description} and one python block only",
+  "accepted_candidate": false,
+  "source_repaired": false,
+  "code_executed": false,
+  "FJSP_evaluated": false,
+  "interpretation": "Literal SELECT mode 0; member0 score1 and other scores0; constant H0 selector by source inspection, no state dependence."
+}

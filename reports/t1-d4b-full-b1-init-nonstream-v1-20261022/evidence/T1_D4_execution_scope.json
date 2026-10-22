@@ -1,0 +1,16 @@
+{
+  "stage": "T1-D4B",
+  "person": "DDXQL",
+  "authorized_at_utc": "2026-10-22T10:50:13.803523+00:00",
+  "code_commit": "602982db2520269d8e0947b2c96a82c5d81b5a78",
+  "protocol_sha256": "254fc61b96a04347cc8f7ae4205a6546266e48d83791b4408d6f381f7ed352ec",
+  "human_authorization": "现在正式授权执行 T1-D4B：完整 B1 初始化 Prompt 的单次非流式真实 API 诊断。最多一次真实API尝试，无自动重试或补发，接受费用风险，不视为货币硬上限。",
+  "logical_task_cap": 1,
+  "API_attempt_cap": 1,
+  "automatic_retries": false,
+  "unknown_cost_risk_accepted": true,
+  "no_U_execution_or_FJSP": true,
+  "no_population_or_search": true,
+  "preflight": "PASS: exact code commit and15 runtime hashes,protocol,prompt original bytes,provider,timeouts,no earlier request/checkpoint/authorization/active writer",
+  "automatic_followup_experiments": false
+}

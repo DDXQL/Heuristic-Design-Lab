@@ -1,0 +1,10 @@
+{
+  "version": "batch-api-attempts-v2-t1",
+  "logical_candidate_cap": 1,
+  "api_attempt_cap": 1,
+  "per_candidate_attempt_cap": 1,
+  "retry_backoff_seconds": [],
+  "protocol_error_circuit_threshold": 1,
+  "started": false,
+  "actual_cost": null
+}
