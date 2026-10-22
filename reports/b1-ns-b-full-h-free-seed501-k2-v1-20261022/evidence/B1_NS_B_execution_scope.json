@@ -1,0 +1,16 @@
+{
+  "stage": "B1-NS-B",
+  "person": "DDXQL",
+  "authorized_at_utc": "2026-10-22T11:24:12.426411+00:00",
+  "protocol_sha256": "94381988c5536bd19f72aa0cbcdcafc7dfc1b8a4ece7b18fcbd71ad0b4a90083",
+  "engineering_commit": "efe04fb84fcb024e1442297f0e1a904de2a0fb5c",
+  "human_authorization": "B1-NS-A工程验收已PASS，现授权执行B1-NS-B，完整10H非流式自由初始化及两代CROSS/MUTATE，仅21train，最多40逻辑任务/60实际尝试/每任务3次，遵守既定重试、熔断及停止规则。不得人工修复非法U、放宽检查、追加请求、使用validation11或test28、恢复旧实验或自动扩展。",
+  "logical_task_cap": 40,
+  "API_attempt_cap": 60,
+  "per_task_attempt_cap": 3,
+  "protocol_error_circuit_threshold": 3,
+  "unknown_cost_record_null": true,
+  "only_frozen_train21": true,
+  "no_old_U_injection": true,
+  "automatic_followup_experiments": false
+}

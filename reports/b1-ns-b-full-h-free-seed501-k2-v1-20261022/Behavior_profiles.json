@@ -1,0 +1,131 @@
+{
+  "B/init/000001": {
+    "SELECT_steps": 3800,
+    "MIX_steps": 0,
+    "supports": {
+      "8": 21,
+      "9": 3779
+    },
+    "dominant_counts": {
+      "8": 21,
+      "9": 3779
+    },
+    "dominant_switches": 21,
+    "observed_distinct_raw_vectors": 2,
+    "participation_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      21,
+      3779
+    ],
+    "weight_mass": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      21.0,
+      3779.0
+    ],
+    "active_members": [
+      8,
+      9
+    ],
+    "dual_member_steps": 0,
+    "no_causal_gain_claim": true
+  },
+  "B/init/000002": {
+    "SELECT_steps": 3800,
+    "MIX_steps": 0,
+    "supports": {
+      "5": 3800
+    },
+    "dominant_counts": {
+      "5": 3800
+    },
+    "dominant_switches": 0,
+    "observed_distinct_raw_vectors": 1,
+    "participation_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3800,
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_mass": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      3800.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "active_members": [
+      5
+    ],
+    "dual_member_steps": 0,
+    "no_causal_gain_claim": true
+  },
+  "B/init/000005": {
+    "SELECT_steps": 3800,
+    "MIX_steps": 0,
+    "supports": {
+      "8": 1015,
+      "9": 2785
+    },
+    "dominant_counts": {
+      "8": 1015,
+      "9": 2785
+    },
+    "dominant_switches": 399,
+    "observed_distinct_raw_vectors": 2,
+    "participation_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1015,
+      2785
+    ],
+    "weight_mass": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1015.0,
+      2785.0
+    ],
+    "active_members": [
+      8,
+      9
+    ],
+    "dual_member_steps": 0,
+    "no_causal_gain_claim": true
+  }
+}

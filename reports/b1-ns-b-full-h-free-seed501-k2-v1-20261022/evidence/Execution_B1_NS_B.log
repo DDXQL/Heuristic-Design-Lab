@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_nonstream_local.py", line 290, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_nonstream_local.py", line 287, in main
+    with RunLock(directory):run(directory,a.env_file)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_nonstream_local.py", line 256, in run
+    try: engine.run()
+         ^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_usage_local.py", line 123, in run
+    super().run(**kwargs)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/research/evolution.py", line 220, in run
+    if not self.initialize():
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/research/evolution.py", line 214, in initialize
+    self._prepare(initial=True)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_usage_local.py", line 92, in _prepare
+    self.verify()
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_nonstream_local.py", line 254, in <lambda>
+    verify=lambda:check(directory),arm='B',config=c.u_search(501),members=members,
+                  ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/b1_nonstream_local.py", line 204, in check
+    if sha(ROOT/n) != h: raise ValueError('frozen input/code differs: '+n)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: frozen input/code differs: tools/usage_mechanism_ablation.py

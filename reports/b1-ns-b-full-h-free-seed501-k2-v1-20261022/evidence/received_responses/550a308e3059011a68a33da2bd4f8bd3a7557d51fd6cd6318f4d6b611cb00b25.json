@@ -1,0 +1,24 @@
+{
+  "text": "This uses a constant selector: member 5 scores each legal action directly, with no unsupported state-level performance claims.\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0, 0, 0, 0, 0, 5, 0, 0, 0, 0))\n```",
+  "usage": {
+    "input_tokens": 10104,
+    "output_tokens": 389
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610221125020106891348268d9d6cNWTaV0S",
+    "x-request-id": "90a71a3f-0cef-467f-8f5b-2f9cec3c263a",
+    "date": "Thu, 22 Oct 2026 11:25:08 GMT",
+    "gateway_request_id": "202610221125020106891348268d9d6cNWTaV0S",
+    "cached_tokens": 4224,
+    "reasoning_tokens": 289,
+    "id": "resp_01b22d5b5218dd40016ad9f28f7fe88190b366d71d29982023",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

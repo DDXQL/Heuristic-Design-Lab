@@ -1,0 +1,7 @@
+id,operator,status,category,error,API_attempts,HTTP_status,model,finish_reason,input_tokens,output_tokens,API_elapsed_seconds,static_contract_pass,complete_train_valid,fitness,initial_pool_at_stop,full_P0_formed,identity_exception_in_run
+B/init/000000,I1,parse_or_constraint_error,parse_failure,expected one {description} and one python block only,1,200,gpt-6.1-sol,stop,10104,389,15.808752059936523,False,,,False,False,True
+B/init/000001,I1,valid,valid,,1,200,gpt-6.1-sol,stop,10104,915,52.58503198623657,True,True,-2.5611498256653267,True,False,True
+B/init/000002,I1,valid,valid,,1,200,gpt-6.1-sol,stop,10498,266,12.852610111236572,True,True,-2.4010715776754177,True,False,True
+B/init/000003,I1,parse_or_constraint_error,parse_failure,expected one {description} and one python block only,1,200,gpt-6.1-sol,stop,10633,117,11.608602046966553,False,,,False,False,True
+B/init/000004,I1,parse_or_constraint_error,parse_failure,expected one {description} and one python block only,1,200,gpt-6.1-sol,stop,10633,95,10.501691102981567,False,,,False,False,True
+B/init/000005,I1,valid,valid,,1,200,gpt-6.1-sol,stop,10633,987,59.45156812667847,True,True,-2.5270363059129246,True,False,True

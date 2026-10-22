@@ -1,0 +1,403 @@
+{
+  "full_P0_formed": false,
+  "partial_initial_pool": [
+    {
+      "id": "B/init/000001",
+      "candidate": {
+        "description": "Selects a single heuristic deterministically using normalized workload and machine-readiness dispersion. The first step and all later states use the same bounded state rules without treating member ids as quality ranks.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n",
+        "key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.5611498256653267,
+      "scores": [
+        -1.5,
+        -1.4933333333333334,
+        -1.481012658227848,
+        -1.5526315789473684,
+        -2.279273638071384,
+        -2.50381679389313,
+        -2.407321234682798,
+        -1.2375,
+        -1.4230769230769231,
+        -2.1333333333333333,
+        -1.7777777777777777,
+        -4.251144538914323,
+        -3.923076923076923,
+        -4.089035449299258,
+        -1.4852941176470589,
+        -1.5294117647058822,
+        -1.9605263157894737,
+        -2.26027397260274,
+        -4.133333333333334,
+        -4.22972972972973,
+        -6.133242922529242
+      ]
+    },
+    {
+      "id": "B/init/000002",
+      "candidate": {
+        "description": "A constant selector is used; this makes no claim about comparative performance.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.4010715776754177,
+      "scores": [
+        -1.6,
+        -1.5466666666666666,
+        -1.518987341772152,
+        -1.5789473684210527,
+        -2.229179711959925,
+        -2.3877862595419845,
+        -2.366992399565689,
+        -1.2375,
+        -1.4871794871794872,
+        -2.0,
+        -1.7654320987654322,
+        -3.623283191628515,
+        -3.8974358974358974,
+        -4.0032976092333055,
+        -1.5147058823529411,
+        -1.5,
+        -2.039473684210526,
+        -2.0273972602739727,
+        -3.56,
+        -3.472972972972973,
+        -5.065265299203255
+      ]
+    },
+    {
+      "id": "B/init/000005",
+      "candidate": {
+        "description": "This deterministic selector favors members whose scoring formulas explicitly balance remaining work, processing efficiency, and completion timing, with state-dependent choices based only on the supplied summaries. It handles the first step explicitly and always returns ten finite scalar scores.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.5270363059129246,
+      "scores": [
+        -1.4142857142857144,
+        -1.3866666666666667,
+        -1.4177215189873418,
+        -1.513157894736842,
+        -2.460864120225423,
+        -2.3755725190839696,
+        -2.385605708081278,
+        -1.2375,
+        -1.4230769230769231,
+        -2.0,
+        -1.7777777777777777,
+        -4.015696533682145,
+        -3.7948717948717947,
+        -4.089035449299258,
+        -1.5294117647058822,
+        -1.5294117647058822,
+        -1.9605263157894737,
+        -2.26027397260274,
+        -4.133333333333334,
+        -4.22972972972973,
+        -6.133242922529242
+      ]
+    }
+  ],
+  "P0": null,
+  "P1": null,
+  "P2": null,
+  "attempts": [
+    {
+      "id": "B/init/000000",
+      "operator": "I1",
+      "parents": [],
+      "status": "parse_or_constraint_error",
+      "error": "expected one {description} and one python block only",
+      "category": "parse_failure",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000001",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+        "predicates": {
+          "0": {
+            "line": 2,
+            "expression": "previous_heuristic == -1",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "1": {
+            "line": 2,
+            "expression": "previous_heuristic == -1",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                -1.0,
+                9.0
+              ],
+              [
+                -1.0000000000000002,
+                -0.9999999999999999
+              ]
+            ]
+          },
+          "2": {
+            "line": 4,
+            "expression": "machine_ready_std > 0.125",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "3": {
+            "line": 4,
+            "expression": "machine_ready_std > 0.125",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                0.5
+              ],
+              [
+                0.125,
+                0.125
+              ]
+            ]
+          },
+          "4": {
+            "line": 6,
+            "expression": "remaining_work_std > 0.125",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "5": {
+            "line": 6,
+            "expression": "remaining_work_std > 0.125",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                0.5
+              ],
+              [
+                0.125,
+                0.125
+              ]
+            ]
+          },
+          "6": {
+            "line": 8,
+            "expression": "remaining_work_mean > 0.25",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "7": {
+            "line": 8,
+            "expression": "remaining_work_mean > 0.25",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.25,
+                0.25
+              ]
+            ]
+          }
+        },
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000002",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000003",
+      "operator": "I1",
+      "parents": [],
+      "status": "parse_or_constraint_error",
+      "error": "expected one {description} and one python block only",
+      "category": "parse_failure",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000004",
+      "operator": "I1",
+      "parents": [],
+      "status": "parse_or_constraint_error",
+      "error": "expected one {description} and one python block only",
+      "category": "parse_failure",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000005",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+        "predicates": {
+          "0": {
+            "line": 2,
+            "expression": "previous_heuristic == -1",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "1": {
+            "line": 2,
+            "expression": "previous_heuristic == -1",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                -1.0,
+                9.0
+              ],
+              [
+                -1.0000000000000002,
+                -0.9999999999999999
+              ]
+            ]
+          },
+          "2": {
+            "line": 4,
+            "expression": "machine_ready_std > 0.2",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "3": {
+            "line": 4,
+            "expression": "machine_ready_std > 0.2",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                0.5
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ]
+          },
+          "4": {
+            "line": 6,
+            "expression": "remaining_work_std > 0.2",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "5": {
+            "line": 6,
+            "expression": "remaining_work_std > 0.2",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                0.5
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ]
+          },
+          "6": {
+            "line": 8,
+            "expression": "candidate_pair_ratio < 0.35",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "7": {
+            "line": 8,
+            "expression": "candidate_pair_ratio < 0.35",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.35,
+                0.35
+              ]
+            ]
+          },
+          "8": {
+            "line": 10,
+            "expression": "progress > 0.75",
+            "kind": "If",
+            "proof": "not_proven"
+          },
+          "9": {
+            "line": 10,
+            "expression": "progress > 0.75",
+            "kind": "comparison",
+            "proof": "not_proven",
+            "operands": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.75,
+                0.75
+              ]
+            ]
+          }
+        },
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    }
+  ],
+  "no_evolution_occurred": true
+}
