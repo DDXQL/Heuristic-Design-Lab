@@ -67,6 +67,7 @@ def pending_config(cross_parents=2):
 
 class B1Search(UsageSearch):
     _build_prompt = staticmethod(prompts.build_prompt)
+    request_phase = 'r501/B'  # New protocols may namespace receipts; legacy default is unchanged.
 
     def __init__(self,directory,*,experiment,training_names,verify=lambda:None,**kwargs):
         self.experiment,self.training_names,self.verify = experiment,tuple(training_names),verify
@@ -80,7 +81,7 @@ class B1Search(UsageSearch):
         Search.__init__(self,directory,**kwargs)
         # One durable budget for BOTH initialisation and evolution; no per-stage reset.
         journal = AttemptJournal(self.directory/'batch_requests.json',config=experiment,
-            context=kwargs['context'],phase='r501/B',transport=kwargs['transport'])
+            context=kwargs['context'],phase=self.request_phase,transport=kwargs['transport'])
         self.initial_requests = self.evolution_requests = self.ledger = journal
 
     def _initial_prompt(self,prompt,index):

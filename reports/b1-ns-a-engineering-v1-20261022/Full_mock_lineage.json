@@ -1,0 +1,2191 @@
+{
+  "synthetic_only": true,
+  "not_formal_experiment": true,
+  "artificial_fitness_improves_each_evaluation": true,
+  "report": {
+    "arm": "B",
+    "phase": "completed",
+    "generation": 2,
+    "initialization_requests": 5,
+    "evolution_requests": 20,
+    "evaluations_reserved": 25,
+    "valid_attempts": 25,
+    "attempts": 25,
+    "population": [
+      {
+        "id": "B/g0001/000009",
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 24\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        },
+        "fitness": -27.5,
+        "scores": [
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5,
+          -27.5
+        ]
+      },
+      {
+        "id": "B/g0001/000008",
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 23\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        },
+        "fitness": -27.6,
+        "scores": [
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6,
+          -27.6
+        ]
+      },
+      {
+        "id": "B/g0001/000007",
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 22\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        },
+        "fitness": -27.7,
+        "scores": [
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7,
+          -27.7
+        ]
+      },
+      {
+        "id": "B/g0001/000006",
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 21\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        },
+        "fitness": -27.8,
+        "scores": [
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8,
+          -27.8
+        ]
+      },
+      {
+        "id": "B/g0001/000005",
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 20\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        },
+        "fitness": -27.9,
+        "scores": [
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9,
+          -27.9
+        ]
+      }
+    ],
+    "research_stage": "B1",
+    "cross_parents": 2,
+    "mutation_parents": 1,
+    "population_size": 5,
+    "api_attempt_budget": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 40,
+      "logical_candidates": 25,
+      "api_attempt_cap": 60,
+      "logical_candidate_cap_reached": false,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 25,
+      "per_candidate_attempt_cap": 3,
+      "confirmed_sends": 25,
+      "attempt_statuses": {
+        "completed": 25
+      },
+      "logical_statuses": {
+        "completed": 25
+      },
+      "known_input_tokens": 250,
+      "known_output_tokens": 250,
+      "unknown_usage_attempts": 0,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "population_snapshots": {
+      "P0": [
+        {
+          "id": "B/init/000004",
+          "fitness": -29.5,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 4\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+            "key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/init/000003",
+          "fitness": -29.6,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 3\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+            "key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/init/000002",
+          "fitness": -29.7,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 2\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/init/000001",
+          "fitness": -29.8,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 1\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/init/000000",
+          "fitness": -29.9,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 0\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        }
+      ],
+      "P1": [
+        {
+          "id": "B/g0000/000009",
+          "fitness": -28.5,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 14\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+            "key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0000/000008",
+          "fitness": -28.6,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 13\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+            "key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0000/000007",
+          "fitness": -28.7,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 12\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0000/000006",
+          "fitness": -28.8,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 11\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0000/000005",
+          "fitness": -28.9,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 10\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        }
+      ],
+      "P2": [
+        {
+          "id": "B/g0001/000009",
+          "fitness": -27.5,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 24\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+            "key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0001/000008",
+          "fitness": -27.6,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 23\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+            "key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0001/000007",
+          "fitness": -27.7,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 22\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0001/000006",
+          "fitness": -27.8,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 21\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        },
+        {
+          "id": "B/g0001/000005",
+          "fitness": -27.9,
+          "candidate": {
+            "description": "Synthetic fixture only",
+            "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 20\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+            "key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+            "kind": "U",
+            "interface_version": "U-usage-v2-select-or-mix-20261012",
+            "member_count": 10
+          }
+        }
+      ]
+    },
+    "lineage": [
+      {
+        "id": "B/init/000000",
+        "operator": "I1",
+        "parents": [],
+        "status": "valid",
+        "code_key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/init/000001",
+        "operator": "I1",
+        "parents": [],
+        "status": "valid",
+        "code_key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/init/000002",
+        "operator": "I1",
+        "parents": [],
+        "status": "valid",
+        "code_key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/init/000003",
+        "operator": "I1",
+        "parents": [],
+        "status": "valid",
+        "code_key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/init/000004",
+        "operator": "I1",
+        "parents": [],
+        "status": "valid",
+        "code_key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000000",
+        "operator": "CROSS",
+        "parents": [
+          "B/init/000002",
+          "B/init/000001"
+        ],
+        "status": "valid",
+        "code_key": "750c619817ed7032c8ad758b12a925f46788f40b96be4cc8ca21f44bedd98712",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "750c619817ed7032c8ad758b12a925f46788f40b96be4cc8ca21f44bedd98712",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000001",
+        "operator": "CROSS",
+        "parents": [
+          "B/init/000004",
+          "B/init/000000"
+        ],
+        "status": "valid",
+        "code_key": "5e4bdf8e8ec007bffa7c128a34ae79c0d13985b216471fc3fdc1776e9a4d1fd8",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "5e4bdf8e8ec007bffa7c128a34ae79c0d13985b216471fc3fdc1776e9a4d1fd8",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000002",
+        "operator": "CROSS",
+        "parents": [
+          "B/init/000003",
+          "B/init/000002"
+        ],
+        "status": "valid",
+        "code_key": "947e238d72bd9db635a2fc937b47d2ba7389d339f51b284ad1e77f4ab94216d1",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "947e238d72bd9db635a2fc937b47d2ba7389d339f51b284ad1e77f4ab94216d1",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000003",
+        "operator": "CROSS",
+        "parents": [
+          "B/init/000001",
+          "B/init/000003"
+        ],
+        "status": "valid",
+        "code_key": "2fad686d98046bb6efb1e9d9f7f86efe02c3eebd37161d933d3521f6f1b6e1a6",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "2fad686d98046bb6efb1e9d9f7f86efe02c3eebd37161d933d3521f6f1b6e1a6",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000004",
+        "operator": "CROSS",
+        "parents": [
+          "B/init/000000",
+          "B/init/000003"
+        ],
+        "status": "valid",
+        "code_key": "01d885944c2d650af043c8b0cfc9526ef7ad8a6ff7a5ee1fe985d80fa3a6d024",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "01d885944c2d650af043c8b0cfc9526ef7ad8a6ff7a5ee1fe985d80fa3a6d024",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000005",
+        "operator": "MUTATE",
+        "parents": [
+          "B/init/000003"
+        ],
+        "status": "valid",
+        "code_key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000006",
+        "operator": "MUTATE",
+        "parents": [
+          "B/init/000004"
+        ],
+        "status": "valid",
+        "code_key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000007",
+        "operator": "MUTATE",
+        "parents": [
+          "B/init/000001"
+        ],
+        "status": "valid",
+        "code_key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000008",
+        "operator": "MUTATE",
+        "parents": [
+          "B/init/000004"
+        ],
+        "status": "valid",
+        "code_key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0000/000009",
+        "operator": "MUTATE",
+        "parents": [
+          "B/init/000003"
+        ],
+        "status": "valid",
+        "code_key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 0,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000000",
+        "operator": "CROSS",
+        "parents": [
+          "B/g0000/000007",
+          "B/g0000/000008"
+        ],
+        "status": "valid",
+        "code_key": "551ca7b741ee4de068b4013c32d2dff1badf6752faa59d1eea08d19d178e97f8",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "551ca7b741ee4de068b4013c32d2dff1badf6752faa59d1eea08d19d178e97f8",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000001",
+        "operator": "CROSS",
+        "parents": [
+          "B/g0000/000005",
+          "B/g0000/000008"
+        ],
+        "status": "valid",
+        "code_key": "1ffd3d949c1ae9b5cc869eb288d8f698ce0a65eccc796ab60f189869008cb99b",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "1ffd3d949c1ae9b5cc869eb288d8f698ce0a65eccc796ab60f189869008cb99b",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000002",
+        "operator": "CROSS",
+        "parents": [
+          "B/g0000/000008",
+          "B/g0000/000009"
+        ],
+        "status": "valid",
+        "code_key": "58f843998459f02fa7ef061e0276c90b5de18d383ee4fbe1af5c93a442a29831",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "58f843998459f02fa7ef061e0276c90b5de18d383ee4fbe1af5c93a442a29831",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000003",
+        "operator": "CROSS",
+        "parents": [
+          "B/g0000/000009",
+          "B/g0000/000008"
+        ],
+        "status": "valid",
+        "code_key": "a99b646904e51ea5214de090f774ecdf6b04169409e309424d4ef27350bcfab2",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "a99b646904e51ea5214de090f774ecdf6b04169409e309424d4ef27350bcfab2",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000004",
+        "operator": "CROSS",
+        "parents": [
+          "B/g0000/000007",
+          "B/g0000/000009"
+        ],
+        "status": "valid",
+        "code_key": "d13da28eb96eecfc354eb8d8dba1dacaea73fec41e3e00502e82565e1f029852",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "d13da28eb96eecfc354eb8d8dba1dacaea73fec41e3e00502e82565e1f029852",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000005",
+        "operator": "MUTATE",
+        "parents": [
+          "B/g0000/000007"
+        ],
+        "status": "valid",
+        "code_key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000006",
+        "operator": "MUTATE",
+        "parents": [
+          "B/g0000/000009"
+        ],
+        "status": "valid",
+        "code_key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000007",
+        "operator": "MUTATE",
+        "parents": [
+          "B/g0000/000006"
+        ],
+        "status": "valid",
+        "code_key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000008",
+        "operator": "MUTATE",
+        "parents": [
+          "B/g0000/000009"
+        ],
+        "status": "valid",
+        "code_key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      },
+      {
+        "id": "B/g0001/000009",
+        "operator": "MUTATE",
+        "parents": [
+          "B/g0000/000006"
+        ],
+        "status": "valid",
+        "code_key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+        "error_type": null,
+        "selector_diagnostics": {
+          "version": "V5-state-bounds-and-coverage-v1-20261011",
+          "code_key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+          "predicates": {},
+          "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+        },
+        "category": "valid",
+        "cross_parents": 2,
+        "generation": 1,
+        "expected_children": 1
+      }
+    ],
+    "mode": "synthetic",
+    "all_evaluations": [
+      {
+        "id": "B/init/000000",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.9,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/init/000000"
+      },
+      {
+        "id": "B/init/000001",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.8,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/init/000001"
+      },
+      {
+        "id": "B/init/000002",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.7,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/init/000002"
+      },
+      {
+        "id": "B/init/000003",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.6,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/init/000003"
+      },
+      {
+        "id": "B/init/000004",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.5,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/init/000004"
+      },
+      {
+        "id": "B/g0000/000000",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.4,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000000"
+      },
+      {
+        "id": "B/g0000/000001",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.3,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000001"
+      },
+      {
+        "id": "B/g0000/000002",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.2,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000002"
+      },
+      {
+        "id": "B/g0000/000003",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.1,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000003"
+      },
+      {
+        "id": "B/g0000/000004",
+        "status": "completed",
+        "valid": true,
+        "fitness": -29.0,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000004"
+      },
+      {
+        "id": "B/g0000/000005",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.9,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000005"
+      },
+      {
+        "id": "B/g0000/000006",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.8,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000006"
+      },
+      {
+        "id": "B/g0000/000007",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.7,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000007"
+      },
+      {
+        "id": "B/g0000/000008",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.6,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000008"
+      },
+      {
+        "id": "B/g0000/000009",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.5,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0000/000009"
+      },
+      {
+        "id": "B/g0001/000000",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.4,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000000"
+      },
+      {
+        "id": "B/g0001/000001",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.3,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000001"
+      },
+      {
+        "id": "B/g0001/000002",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.2,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000002"
+      },
+      {
+        "id": "B/g0001/000003",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.1,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000003"
+      },
+      {
+        "id": "B/g0001/000004",
+        "status": "completed",
+        "valid": true,
+        "fitness": -28.0,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000004"
+      },
+      {
+        "id": "B/g0001/000005",
+        "status": "completed",
+        "valid": true,
+        "fitness": -27.9,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000005"
+      },
+      {
+        "id": "B/g0001/000006",
+        "status": "completed",
+        "valid": true,
+        "fitness": -27.8,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000006"
+      },
+      {
+        "id": "B/g0001/000007",
+        "status": "completed",
+        "valid": true,
+        "fitness": -27.7,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000007"
+      },
+      {
+        "id": "B/g0001/000008",
+        "status": "completed",
+        "valid": true,
+        "fitness": -27.6,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000008"
+      },
+      {
+        "id": "B/g0001/000009",
+        "status": "completed",
+        "valid": true,
+        "fitness": -27.5,
+        "completed_instances": 21,
+        "failed_instance": null,
+        "error_type": null,
+        "primary_evaluation_seconds": null,
+        "certified_successful_prefix_costs": {
+          "single_solve_seconds": 0,
+          "deterministic_recheck_seconds": 0,
+          "single_h_calls": 0,
+          "deterministic_recheck_h_calls": 0
+        },
+        "failed_instance_cost_unknown": false,
+        "full_result": "checkpoint.json: evaluations/B/g0001/000009"
+      }
+    ],
+    "mean_population_fitness": -27.7,
+    "claim": "training exploration only; no single-factor B1/B2 performance attribution",
+    "experiment_version": "B1-NS-full-H-free-seed501-k2-v1-20261022",
+    "stream_response": false,
+    "request_identity": "journal identity + independently namespaced attempt ID",
+    "no_D4_or_other_U_injection": true
+  },
+  "population_snapshots": {
+    "P0": [
+      {
+        "id": "B/init/000004",
+        "fitness": -29.5,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 4\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000003",
+        "fitness": -29.6,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 3\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000002",
+        "fitness": -29.7,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 2\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000001",
+        "fitness": -29.8,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 1\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000000",
+        "fitness": -29.9,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 0\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      }
+    ],
+    "P1": [
+      {
+        "id": "B/g0000/000009",
+        "fitness": -28.5,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 14\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000008",
+        "fitness": -28.6,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 13\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000007",
+        "fitness": -28.7,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 12\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000006",
+        "fitness": -28.8,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 11\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000005",
+        "fitness": -28.9,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 10\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      }
+    ],
+    "P2": [
+      {
+        "id": "B/g0001/000009",
+        "fitness": -27.5,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 24\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0001/000008",
+        "fitness": -27.6,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 23\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0001/000007",
+        "fitness": -27.7,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 22\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0001/000006",
+        "fitness": -27.8,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 21\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0001/000005",
+        "fitness": -27.9,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 20\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      }
+    ]
+  },
+  "lineage": [
+    {
+      "id": "B/init/000000",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000001",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000002",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000003",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/init/000004",
+      "operator": "I1",
+      "parents": [],
+      "status": "valid",
+      "code_key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000000",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000002",
+        "B/init/000001"
+      ],
+      "status": "valid",
+      "code_key": "750c619817ed7032c8ad758b12a925f46788f40b96be4cc8ca21f44bedd98712",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "750c619817ed7032c8ad758b12a925f46788f40b96be4cc8ca21f44bedd98712",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000001",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000004",
+        "B/init/000000"
+      ],
+      "status": "valid",
+      "code_key": "5e4bdf8e8ec007bffa7c128a34ae79c0d13985b216471fc3fdc1776e9a4d1fd8",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "5e4bdf8e8ec007bffa7c128a34ae79c0d13985b216471fc3fdc1776e9a4d1fd8",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000002",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000003",
+        "B/init/000002"
+      ],
+      "status": "valid",
+      "code_key": "947e238d72bd9db635a2fc937b47d2ba7389d339f51b284ad1e77f4ab94216d1",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "947e238d72bd9db635a2fc937b47d2ba7389d339f51b284ad1e77f4ab94216d1",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000003",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000001",
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "code_key": "2fad686d98046bb6efb1e9d9f7f86efe02c3eebd37161d933d3521f6f1b6e1a6",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "2fad686d98046bb6efb1e9d9f7f86efe02c3eebd37161d933d3521f6f1b6e1a6",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000004",
+      "operator": "CROSS",
+      "parents": [
+        "B/init/000000",
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "code_key": "01d885944c2d650af043c8b0cfc9526ef7ad8a6ff7a5ee1fe985d80fa3a6d024",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "01d885944c2d650af043c8b0cfc9526ef7ad8a6ff7a5ee1fe985d80fa3a6d024",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "code_key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000004"
+      ],
+      "status": "valid",
+      "code_key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000001"
+      ],
+      "status": "valid",
+      "code_key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000004"
+      ],
+      "status": "valid",
+      "code_key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0000/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "B/init/000003"
+      ],
+      "status": "valid",
+      "code_key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 0,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000000",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000007",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "code_key": "551ca7b741ee4de068b4013c32d2dff1badf6752faa59d1eea08d19d178e97f8",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "551ca7b741ee4de068b4013c32d2dff1badf6752faa59d1eea08d19d178e97f8",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000001",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000005",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "code_key": "1ffd3d949c1ae9b5cc869eb288d8f698ce0a65eccc796ab60f189869008cb99b",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "1ffd3d949c1ae9b5cc869eb288d8f698ce0a65eccc796ab60f189869008cb99b",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000002",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000008",
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "code_key": "58f843998459f02fa7ef061e0276c90b5de18d383ee4fbe1af5c93a442a29831",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "58f843998459f02fa7ef061e0276c90b5de18d383ee4fbe1af5c93a442a29831",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000003",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000009",
+        "B/g0000/000008"
+      ],
+      "status": "valid",
+      "code_key": "a99b646904e51ea5214de090f774ecdf6b04169409e309424d4ef27350bcfab2",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "a99b646904e51ea5214de090f774ecdf6b04169409e309424d4ef27350bcfab2",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000004",
+      "operator": "CROSS",
+      "parents": [
+        "B/g0000/000007",
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "code_key": "d13da28eb96eecfc354eb8d8dba1dacaea73fec41e3e00502e82565e1f029852",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "d13da28eb96eecfc354eb8d8dba1dacaea73fec41e3e00502e82565e1f029852",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000005",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000007"
+      ],
+      "status": "valid",
+      "code_key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "7ba3bedbc9a7c4a0b5f48bd16a8446e41ca89d8cfc3a3db0a0a76de61bbfba66",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000006",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "code_key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "ada64aa1e922d349ef67e683ff0adffa7c58b830fcea8ebb763dc01ca190c316",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000007",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000006"
+      ],
+      "status": "valid",
+      "code_key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "174f4403ac41b114f58817bdc67cf8b8356fb68875094ba59cd69baf87443814",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000009"
+      ],
+      "status": "valid",
+      "code_key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "66dbeaa551c79f006b85a0d301d77122fb31dab5a51c168775ce0dc70c2e79b1",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    },
+    {
+      "id": "B/g0001/000009",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000006"
+      ],
+      "status": "valid",
+      "code_key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+      "error_type": null,
+      "selector_diagnostics": {
+        "version": "V5-state-bounds-and-coverage-v1-20261011",
+        "code_key": "342b88b57ac77ce72cac629d04d0ec04755613b70f07828bc599238051de0b40",
+        "predicates": {},
+        "note": "Interval proofs only, conditional on a legal state reaching this expression; not_proven does not mean reachable. No rejection or semantic dedup."
+      },
+      "category": "valid",
+      "cross_parents": 2,
+      "generation": 1,
+      "expected_children": 1
+    }
+  ],
+  "parent_pools": {
+    "0": [
+      {
+        "id": "B/init/000004",
+        "fitness": -29.5,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 4\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "d323ca780b62308a5da917110d0744e6f4ee5ead15b56f4766bd8ed3a64ad5c8",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000003",
+        "fitness": -29.6,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 3\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5edac8616e6a6329b5b443396ecf04d1d25d662881d057d615a7328abe25fb13",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000002",
+        "fitness": -29.7,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 2\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "310046db924c7fcfec875c2982a29318b7312da3e13852640a8946d2f652843d",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000001",
+        "fitness": -29.8,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 1\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "2725f88ce02f07f3924259492ced563a9c39928c3f8729b0ded91c78486e25fd",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/init/000000",
+        "fitness": -29.9,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 0\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "e627b114f6e179b6d4bd93ab2063a31ff7faf960145cfb475264111d6d530937",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      }
+    ],
+    "1": [
+      {
+        "id": "B/g0000/000009",
+        "fitness": -28.5,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 14\n    return (0, (0, 0, 0, 0, 1, 0, 0, 0, 0, 0))\n",
+          "key": "cde42baf05edcf964d3c90a29354a94f53c810eedaf9d8f7221351012be7f2ab",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000008",
+        "fitness": -28.6,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 13\n    return (1, (0, 0, 0, 1, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5900a2509730d361d340fe1a268e0eab9c5fb80529e1618e7809c99f91700ea3",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000007",
+        "fitness": -28.7,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 12\n    return (0, (0, 0, 1, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "5e464f745b6a7f9815153a7efc241b4fc1172f59cc449dc6a162ec4cffc4d813",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000006",
+        "fitness": -28.8,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 11\n    return (1, (0, 1, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "3c3d541d25385d4e23bb83dee64cfdeed8cb452194cc7b87c0f7372234a036d8",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      },
+      {
+        "id": "B/g0000/000005",
+        "fitness": -28.9,
+        "candidate": {
+          "description": "Synthetic fixture only",
+          "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    mock_marker = 10\n    return (0, (1, 0, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+          "key": "3629375d5ffbe7a01a8cfbf118fff4191659795680dc46eb70d85ecff5f2d21f",
+          "kind": "U",
+          "interface_version": "U-usage-v2-select-or-mix-20261012",
+          "member_count": 10
+        }
+      }
+    ]
+  },
+  "mock_calls": 25,
+  "mock_evaluations": 25
+}

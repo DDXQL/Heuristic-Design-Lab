@@ -1,0 +1,101 @@
+{
+  "config_changes_only": {
+    "provider": {
+      "old": {
+        "endpoint": "https://leafapi.cc/v1/chat/completions",
+        "model": "gpt-6.1-sol",
+        "protocol": "openai-chat-v1",
+        "api_key_env": "LEAFAPI_API_KEY",
+        "connect_timeout": 10,
+        "read_timeout": 240,
+        "total_timeout": 300,
+        "max_output_tokens": 8192,
+        "output_token_reservation": 32768,
+        "max_prompt_bytes": 262144,
+        "input_token_reservation": 65536,
+        "temperature": null,
+        "reasoning_effort": null,
+        "expected_response_model": "gpt-6.1-sol",
+        "thinking": null,
+        "stream_response": true
+      },
+      "new": {
+        "endpoint": "https://leafapi.cc/v1/chat/completions",
+        "model": "gpt-6.1-sol",
+        "protocol": "openai-chat-v1",
+        "api_key_env": "LEAFAPI_API_KEY",
+        "connect_timeout": 10,
+        "read_timeout": 240,
+        "total_timeout": 300,
+        "max_output_tokens": 8192,
+        "output_token_reservation": 32768,
+        "max_prompt_bytes": 262144,
+        "input_token_reservation": 65536,
+        "temperature": null,
+        "reasoning_effort": null,
+        "expected_response_model": "gpt-6.1-sol",
+        "thinking": null,
+        "stream_response": false
+      }
+    },
+    "request_budget": {
+      "old": {
+        "version": "batch-api-attempts-v1",
+        "logical_candidate_cap": 40,
+        "api_attempt_cap": 60,
+        "per_candidate_attempt_cap": 3,
+        "retry_backoff_seconds": [
+          2,
+          5
+        ]
+      },
+      "new": {
+        "version": "batch-api-attempts-v2-t1",
+        "logical_candidate_cap": 40,
+        "api_attempt_cap": 60,
+        "per_candidate_attempt_cap": 3,
+        "retry_backoff_seconds": [
+          2,
+          5
+        ],
+        "protocol_error_circuit_threshold": 3
+      }
+    },
+    "experiment_version": {
+      "old": "B1-full-H-free-search-batch-v1-20261021",
+      "new": "B1-NS-full-H-free-seed501-k2-v1-20261022"
+    }
+  },
+  "scientific_fields_equal": {
+    "fixed_h_source": true,
+    "H_size": true,
+    "population_size": true,
+    "cross_parents": true,
+    "mutation_parents": true,
+    "seeds": true,
+    "generations": true,
+    "attempts_per_generation": true,
+    "initialization_cap": true,
+    "instance_timeout": true,
+    "review_timeout": true,
+    "training_diagnostics": true,
+    "total_request_cap": true,
+    "phase_request_caps": true
+  },
+  "request_limit_equal": {
+    "logical": 40,
+    "actual_attempts": 60,
+    "per_task": 3,
+    "backoff": [
+      2,
+      5
+    ]
+  },
+  "new_engineering_safety": {
+    "budget_version": "batch-api-attempts-v2-t1",
+    "consecutive_protocol_error_threshold": 3,
+    "unknown_delivery": "charged; no automatic retry",
+    "nonstream_profile": "nonempty id,locked model,stop,validated usage",
+    "legacy_protocol_flag": "stream_protocol_anomaly with protocol_kind=nonstream_json"
+  }
+}
