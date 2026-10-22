@@ -1,0 +1,15 @@
+{
+  "stage": "T1-D2B",
+  "person": "DDXQL",
+  "authorized_at_utc": "2026-10-22T08:49:21.529777+00:00",
+  "code_commit": "b8ba4fb21abd472cac5e7f0aa25f7d69ddc5739a",
+  "protocol_sha256": "5a71bbb9ab4b2befcf0d04b053ccd5ff2b198bd4470de8dcdf62bd4785a0221d",
+  "human_authorization": "现正式授权执行 T1-D2B：B2/B1 历史 Prompt 真实 API 流式响应对照诊断。A、B各最多一次，总计最多2次，不自动重试；普通SSE异常继续另一组，全局异常或发送状态未知停止。",
+  "API_attempt_cap": 2,
+  "per_arm_attempt_cap": 1,
+  "same_arm_retry": false,
+  "unknown_fees_record_null": true,
+  "no_FJSP_or_population": true,
+  "preflight": "PASS: branch/commit,14 code pins,exact source prompts,no prior requests/checkpoint/authorization/active writer",
+  "no_automatic_followup_experiments": true
+}

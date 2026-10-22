@@ -1,0 +1,115 @@
+{
+  "global_key": "T1-D2/B/attempt/01",
+  "prompt_key": "ef65e84c2fc4910e7aea82248c9761c070803297a53278aefee2eb7103826ed0",
+  "status": "wire_failed",
+  "send_confirmed": true,
+  "error": "stream identity/model changed",
+  "error_type": "TransportError",
+  "usage": null,
+  "metadata": {
+    "failure_stage": "sse_decode",
+    "http_status": 200,
+    "http_content_type": "text/event-stream",
+    "x-oneapi-request-id": "202610220850504911789028268d9d6XIheI4U4",
+    "date": "Thu, 22 Oct 2026 08:50:55 GMT",
+    "gateway_request_id": "202610220850504911789028268d9d6XIheI4U4",
+    "identity_change": {
+      "field": "id",
+      "previous": {
+        "type": "str",
+        "bytes": 44,
+        "sha256": "44aed34db46d5b5b51c67e03222bf80f83cd48ceb1a4fe904dc9714a1acf3b5b"
+      },
+      "observed": {
+        "type": "str",
+        "bytes": 55,
+        "sha256": "1a37c638fed856333c77ef996a6e8dab0b6373c60f58b57b1225e50bceaaece8"
+      }
+    },
+    "transport_version": "bounded-sse-evidence-t1-v1",
+    "stream_observation": {
+      "version": "paired-stream-observation-d2-v1",
+      "stop_received": false,
+      "usage_received": false,
+      "usage_validated": false,
+      "DONE_received": false,
+      "complete_text": false,
+      "id_check": "changed",
+      "model_check": "observed_consistent",
+      "model_matches_expected": true,
+      "data_events_seen": 3,
+      "wire_bytes_seen": 1383,
+      "text_bytes_seen": 1,
+      "scope": "parsed_prefix_only_unless_complete"
+    },
+    "stream_evidence": {
+      "wire_bytes_seen": 1383,
+      "event_index": 3,
+      "text_bytes_seen": 1,
+      "last_frame": {
+        "type": "dict",
+        "count": 6,
+        "frame_sha256": "fbee492f8903bbfbd87c743ab9ace7af6c81c848f289a6bb31a8b6f638e1094f",
+        "fields": {
+          "id": {
+            "type": "str",
+            "bytes": 55,
+            "sha256": "1a37c638fed856333c77ef996a6e8dab0b6373c60f58b57b1225e50bceaaece8"
+          },
+          "model": {
+            "type": "str",
+            "bytes": 11,
+            "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+          },
+          "choices": {
+            "type": "list",
+            "count": 1
+          },
+          "object": {
+            "type": "str",
+            "bytes": 21,
+            "sha256": "4f3fdcc1c3fe648f328d45afd6039791a4173c594533e11ff7d2d3fe2a463b74"
+          }
+        },
+        "other_field_count": 2,
+        "choice_shapes": [
+          {
+            "type": "dict",
+            "count": 3,
+            "index": {
+              "type": "int"
+            },
+            "finish_reason": {
+              "type": "NoneType"
+            },
+            "delta": {
+              "type": "dict",
+              "count": 1
+            },
+            "delta_fields": {
+              "content": {
+                "type": "str",
+                "bytes": 3,
+                "sha256": "f1b901847390b0ed7e374e7c1e464ec17b46a427c487a5ad6cbd2906405083d5"
+              }
+            }
+          }
+        ]
+      },
+      "identities": {
+        "id": {
+          "type": "str",
+          "bytes": 44,
+          "sha256": "44aed34db46d5b5b51c67e03222bf80f83cd48ceb1a4fe904dc9714a1acf3b5b"
+        },
+        "model": {
+          "type": "str",
+          "bytes": 11,
+          "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+        }
+      }
+    },
+    "failure_class": "protocol_incompatible",
+    "stream_protocol_anomaly": true
+  }
+}

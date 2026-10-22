@@ -1,0 +1,3 @@
+group,transport_success,output_legal,send_confirmation_at,finished_at,elapsed_seconds,http_status,http_content_type,gateway_request_id,data_events_seen,id_check,model_check,complete_text,stop_received,usage_received,DONE_received,input_tokens,output_tokens,stage,error_type,error,actual_cost
+A,False,,1792658962.440285,1792659049.295699,87.60448479652405,200,text/event-stream,202610220849226698088548268d9d6yeCQun7d,3,changed,observed_consistent,False,False,False,False,,,sse_decode,TransportError,stream identity/model changed,
+B,False,,1792659050.091219,1792659055.275636,5.964247941970825,200,text/event-stream,202610220850504911789028268d9d6XIheI4U4,3,changed,observed_consistent,False,False,False,False,,,sse_decode,TransportError,stream identity/model changed,

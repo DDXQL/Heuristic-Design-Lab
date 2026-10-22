@@ -1,0 +1,129 @@
+{
+  "protocol_sha256": "5a71bbb9ab4b2befcf0d04b053ccd5ff2b198bd4470de8dcdf62bd4785a0221d",
+  "journal_identity": "08be018adaee0a39d28e72864145a9da87af77fa3f6e9972e9679571dbd47726",
+  "provenance": "real",
+  "phase": "completed",
+  "outcomes": [
+    {
+      "group": "A",
+      "logical_id": "A",
+      "attempt_id": "T1-D2/A/attempt/01",
+      "response_id": null,
+      "transport_success": false,
+      "output_legal": null,
+      "source": "INTERFACE_DIAGNOSTIC_NOT_RESEARCH",
+      "send_confirmation_at": 1792658962.440285,
+      "attempt_reserved_at": 1792658961.691214,
+      "finished_at": 1792659049.295699,
+      "elapsed_seconds": 87.60448479652405,
+      "gateway_request_id": "202610220849226698088548268d9d6yeCQun7d",
+      "http_status": 200,
+      "http_content_type": "text/event-stream",
+      "stream_observation": {
+        "version": "paired-stream-observation-d2-v1",
+        "stop_received": false,
+        "usage_received": false,
+        "usage_validated": false,
+        "DONE_received": false,
+        "complete_text": false,
+        "id_check": "changed",
+        "model_check": "observed_consistent",
+        "model_matches_expected": true,
+        "data_events_seen": 3,
+        "wire_bytes_seen": 656,
+        "text_bytes_seen": 1,
+        "scope": "parsed_prefix_only_unless_complete"
+      },
+      "identity_change": {
+        "field": "id",
+        "previous": {
+          "type": "str",
+          "bytes": 44,
+          "sha256": "0ccd966adbd457b21819ed9f6293ef595f29aa72fe62d53659f651c1b71168f8"
+        },
+        "observed": {
+          "type": "str",
+          "bytes": 55,
+          "sha256": "44bbd79e532436ffacd44875b86f283616e42df9ceba807c6b4af643558be0cf"
+        }
+      },
+      "usage": null,
+      "actual_cost": null,
+      "error_type": "TransportError",
+      "error": "stream identity/model changed",
+      "stage": "sse_decode",
+      "global_stop_reason": null,
+      "data_events_seen": 3,
+      "complete_text": false,
+      "stop_received": false,
+      "usage_received": false,
+      "DONE_received": false,
+      "id_check": "changed",
+      "model_check": "observed_consistent",
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "group": "B",
+      "logical_id": "B",
+      "attempt_id": "T1-D2/B/attempt/01",
+      "response_id": null,
+      "transport_success": false,
+      "output_legal": null,
+      "source": "INTERFACE_DIAGNOSTIC_NOT_RESEARCH",
+      "send_confirmation_at": 1792659050.091219,
+      "attempt_reserved_at": 1792659049.311388,
+      "finished_at": 1792659055.275636,
+      "elapsed_seconds": 5.964247941970825,
+      "gateway_request_id": "202610220850504911789028268d9d6XIheI4U4",
+      "http_status": 200,
+      "http_content_type": "text/event-stream",
+      "stream_observation": {
+        "version": "paired-stream-observation-d2-v1",
+        "stop_received": false,
+        "usage_received": false,
+        "usage_validated": false,
+        "DONE_received": false,
+        "complete_text": false,
+        "id_check": "changed",
+        "model_check": "observed_consistent",
+        "model_matches_expected": true,
+        "data_events_seen": 3,
+        "wire_bytes_seen": 1383,
+        "text_bytes_seen": 1,
+        "scope": "parsed_prefix_only_unless_complete"
+      },
+      "identity_change": {
+        "field": "id",
+        "previous": {
+          "type": "str",
+          "bytes": 44,
+          "sha256": "44aed34db46d5b5b51c67e03222bf80f83cd48ceb1a4fe904dc9714a1acf3b5b"
+        },
+        "observed": {
+          "type": "str",
+          "bytes": 55,
+          "sha256": "1a37c638fed856333c77ef996a6e8dab0b6373c60f58b57b1225e50bceaaece8"
+        }
+      },
+      "usage": null,
+      "actual_cost": null,
+      "error_type": "TransportError",
+      "error": "stream identity/model changed",
+      "stage": "sse_decode",
+      "global_stop_reason": null,
+      "data_events_seen": 3,
+      "complete_text": false,
+      "stop_received": false,
+      "usage_received": false,
+      "DONE_received": false,
+      "id_check": "changed",
+      "model_check": "observed_consistent",
+      "input_tokens": null,
+      "output_tokens": null
+    }
+  ],
+  "inflight": null,
+  "window_started_at": 1792658961.686906,
+  "global_stop_reason": null
+}
