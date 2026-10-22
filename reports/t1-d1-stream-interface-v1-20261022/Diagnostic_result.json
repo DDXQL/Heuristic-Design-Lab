@@ -1,0 +1,134 @@
+{
+  "stage": "T1-D1",
+  "result": "FAIL_STOPPED_FIRST_REQUEST",
+  "protocol_sha256": "7907dac215ba4e5b992a1894c52f243cc872c3107e6682579fc370f3279a6c24",
+  "code_commit": "c04e84a3adc81b396ba68113494d3acda752a0c9",
+  "real_API_attempts": 1,
+  "confirmed_sends": 1,
+  "retries": 0,
+  "logical_tasks": 1,
+  "second_task_sent": false,
+  "complete_normalized_responses": 0,
+  "transport_passed": false,
+  "U_legality": "NOT_CHECKED_NO_COMPLETE_RESPONSE",
+  "overall_passed": false,
+  "failure_class": "protocol_incompatible",
+  "error_type": "TransportError",
+  "error": "stream identity/model changed",
+  "http_status": 200,
+  "failure_stage": "sse_decode",
+  "upstream_error_code": null,
+  "identity_change": {
+    "field": "id",
+    "previous": {
+      "type": "str",
+      "bytes": 44,
+      "sha256": "2e25cfe7d03f5aa8cc3263032480402082228332ddc2ce139f4d6abf4552f15c"
+    },
+    "observed": {
+      "type": "str",
+      "bytes": 55,
+      "sha256": "57072df4f3edfcdb1f349bff100037e6f9b122e533eeb4449aa816a48b66282d"
+    }
+  },
+  "stream_evidence": {
+    "wire_bytes_seen": 1137,
+    "event_index": 3,
+    "text_bytes_seen": 1,
+    "last_frame": {
+      "type": "dict",
+      "count": 6,
+      "frame_sha256": "51238fef765d77f5d406342773cad3c2c4eff73d1cfe4b912c2cd2e41b235e15",
+      "fields": {
+        "id": {
+          "type": "str",
+          "bytes": 55,
+          "sha256": "57072df4f3edfcdb1f349bff100037e6f9b122e533eeb4449aa816a48b66282d"
+        },
+        "model": {
+          "type": "str",
+          "bytes": 11,
+          "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+        },
+        "choices": {
+          "type": "list",
+          "count": 1
+        },
+        "object": {
+          "type": "str",
+          "bytes": 21,
+          "sha256": "4f3fdcc1c3fe648f328d45afd6039791a4173c594533e11ff7d2d3fe2a463b74"
+        }
+      },
+      "other_field_count": 2,
+      "choice_shapes": [
+        {
+          "type": "dict",
+          "count": 3,
+          "index": {
+            "type": "int"
+          },
+          "finish_reason": {
+            "type": "NoneType"
+          },
+          "delta": {
+            "type": "dict",
+            "count": 1
+          },
+          "delta_fields": {
+            "content": {
+              "type": "str",
+              "bytes": 1,
+              "sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96"
+            }
+          }
+        }
+      ]
+    },
+    "identities": {
+      "id": {
+        "type": "str",
+        "bytes": 44,
+        "sha256": "2e25cfe7d03f5aa8cc3263032480402082228332ddc2ce139f4d6abf4552f15c"
+      },
+      "model": {
+        "type": "str",
+        "bytes": 11,
+        "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+      }
+    }
+  },
+  "observed_model_hash_matches_locked_model": true,
+  "gateway_request_id": "202610220756177548718178268d9d66hmy2nOL",
+  "start_Asia_Manila": "2026-10-22T15:56:16.177877+08:00",
+  "finish_Asia_Manila": "2026-10-22T15:56:32.252285+08:00",
+  "elapsed_seconds": 16.074408054351807,
+  "input_tokens": null,
+  "output_tokens": null,
+  "actual_cost": null,
+  "usage_unknown_attempts": 1,
+  "pending_attempts": 0,
+  "inflight_logical_task": null,
+  "budget_stop_reason": "transport_protocol_circuit_open",
+  "unused_attempt_allowance": 1,
+  "unused_allowance_must_not_be_sent": true,
+  "frozen_inputs_unchanged": true,
+  "frozen_input_sha256": {
+    "Protocol.json": "7907dac215ba4e5b992a1894c52f243cc872c3107e6682579fc370f3279a6c24",
+    "Protocol.sha256": "5c3b99d1a571bbbdce823f6b312934c2479fcf48bf3bd58a6971a657913670f7",
+    "config.pending.json": "1c84f6fe12bfa2ea7f7143b49159e0fcf5881a59876f2f24b948ced8f6870c06",
+    "Budget_plan.json": "cdbf54f68361fe83049f46020a28c435789357f6c34e33e135af79b72b29bb94",
+    "Prompt.txt": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+    "Authorization.template.json": "82f0418347d1046cf0601a861eb9979d64fb188cc2f53963d6735b0ea141d178"
+  },
+  "data_loaded": false,
+  "FJSP_evaluations": 0,
+  "population_created": false,
+  "old_B1_accessed_or_resumed": false,
+  "limitations": [
+    "No full triggering frame or plaintext identities are reconstructed from hashes.",
+    "Observed model matches do not prove backend model identity or stable routing.",
+    "No full response was available to validate U.",
+    "Provider usage and fee unknown; known-token aggregates of zero are not actual zero usage."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "stage": "T1-D1",
+  "person": "DDXQL",
+  "authorization_source": "explicit user message in this chat",
+  "recorded_at": "2026-10-22T15:56:16.024073+08:00",
+  "code_commit": "c04e84a3adc81b396ba68113494d3acda752a0c9",
+  "protocol_sha256": "7907dac215ba4e5b992a1894c52f243cc872c3107e6682579fc370f3279a6c24",
+  "logical_task_cap": 2,
+  "api_attempt_cap": 2,
+  "per_task_attempt_cap": 1,
+  "automatic_retries": false,
+  "first_failure_stops": true,
+  "unknown_cost_risk_accepted": true,
+  "CNY_5_not_a_hard_cap": true,
+  "data_loading": false,
+  "FJSP_evaluation": false,
+  "old_B1_access_or_resume": false
+}

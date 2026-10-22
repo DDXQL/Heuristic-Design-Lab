@@ -1,0 +1,23 @@
+{
+  "protocol_sha256": "7907dac215ba4e5b992a1894c52f243cc872c3107e6682579fc370f3279a6c24",
+  "provenance": "real",
+  "journal_identity": "c60c94c17e8f5cecab2bdf6790b88893060e5e3a330616d377910cfff504aa1b",
+  "phase": "stopped",
+  "inflight": null,
+  "outcomes": [
+    {
+      "id": "D1/000000",
+      "accepted_response_id": null,
+      "attempt_ids": [
+        "T1-D1/D1/000000/attempt/01"
+      ],
+      "valid": false,
+      "source": "INTERFACE_DIAGNOSTIC_ONLY",
+      "evaluated": false,
+      "status": "transport_failed",
+      "error_type": "GenerationTransportFailure",
+      "failure_class": "protocol_incompatible",
+      "retry_reason": "non_retryable_protocol_incompatible"
+    }
+  ]
+}
