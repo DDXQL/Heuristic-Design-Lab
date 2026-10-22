@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "mock_tests_run": 24,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 5.373579334001988,
+  "selection": [
+    "test_b1_ns_recovery.RecoveryTests",
+    "test_b1_nonstream_local.NSTests.test_full_two_generations_initialisation_parent_pools_and_inheritance",
+    "test_b1_nonstream_local.NSTests.test_prompt_semantics_all_h_no_manual_or_fitness_injection",
+    "test_b1_nonstream_local.NSTests.test_only_explicit_engineering_config_differences"
+  ],
+  "synthetic_only": true,
+  "API_and_dataset_load_and_real_evaluator_blocked_by_fixtures": true,
+  "new_tool_sha256": "e412ef514a57eda7fbe23308c6a2364074ba9f165a9312efdda62ff5296711ae",
+  "test_sha256": "0a2887c03187ee0d3885db981b75031b0b8aa8a065692004f1449c1a93660817",
+  "old_runner_sha256": "ae28a66c8aa56d230a069a9fff2e004abe499edebd0c0dbba49aa4f494014927",
+  "protocol_sha256": "565537b020173b30a6bd41d316228691892c500c8bcecb3266491d70193bcd72"
+}
