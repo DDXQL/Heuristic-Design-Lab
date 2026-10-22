@@ -1,0 +1,26 @@
+[
+  {
+    "mock": "in-memory SHA mismatch: tools/usage_mechanism_ablation.py",
+    "result": "PASS; native guard refused; no send/evaluation reached"
+  },
+  {
+    "mock": "in-memory SHA mismatch: code/fjsp_usage/usage_v2/execution.py",
+    "result": "PASS; native guard refused; no send/evaluation reached"
+  },
+  {
+    "mock": "in-memory SHA mismatch: tools/b1_usage_prompts.py",
+    "result": "PASS; native guard refused; no send/evaluation reached"
+  },
+  {
+    "mock": "in-memory SHA mismatch: runs/b1-ns-full-h-free-seed501-k2-v1-20261022/H_source_binding.json",
+    "result": "PASS; native guard refused; no send/evaluation reached"
+  },
+  {
+    "mock": "in-memory SHA mismatch: runs/b1-ns-full-h-free-seed501-k2-v1-20261022/config.pending.json",
+    "result": "PASS; native guard refused; no send/evaluation reached"
+  },
+  {
+    "mock": "temporary fixture mtime-only vs content change",
+    "result": "PASS; SHA ignores mtime only and detects content change"
+  }
+]

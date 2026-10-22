@@ -1,0 +1,44 @@
+{
+  "suite": "test_b1_nonstream_local.NSTests",
+  "tests": [
+    {
+      "name": "test_complete_wire_and_evaluation_resume_no_duplicates",
+      "result": "PASS"
+    },
+    {
+      "name": "test_unknown_delivery_resume_never_resends_or_resets",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reserved_but_unconfirmed_resume_charged",
+      "result": "PASS"
+    },
+    {
+      "name": "test_sixty_attempt_shared_limit_persists_across_restart",
+      "result": "PASS"
+    },
+    {
+      "name": "test_forty_logical_tasks_shared_limit",
+      "result": "PASS"
+    },
+    {
+      "name": "test_invalid_and_duplicate_do_not_retry_or_evaluate",
+      "result": "PASS"
+    },
+    {
+      "name": "test_saved_evaluation_incomplete_result_never_survives",
+      "result": "PASS"
+    },
+    {
+      "name": "test_only_explicit_engineering_config_differences",
+      "result": "PASS"
+    }
+  ],
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 1.752,
+  "network_and_real_evaluator": "blocked by existing setUp patches",
+  "fixtures": "synthetic only; temporary directories",
+  "source_modified": false
+}
