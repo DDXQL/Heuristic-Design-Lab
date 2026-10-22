@@ -27,6 +27,7 @@ class TransportError(RuntimeError):
 
 
 WIRE_VERSION = 'bounded-sse-evidence-t1-v1'
+OBSERVATION_VERSION = 'paired-stream-observation-d2-v1'
 TEMPORARY_CODES = frozenset(('service_unavailable', 'temporarily_unavailable',
                             'server_overloaded', 'rate_limit_exceeded'))
 PERMANENT_CODES = frozenset(('insufficient_quota', 'invalid_api_key', 'authentication_error',
@@ -161,6 +162,9 @@ def network_failure_metadata(exc):
 def response_audit(response, secret=''):
     """Allowlisted gateway identifiers, never Authorization/cookies/whole headers."""
     result={'http_status':response.status}
+    content_type = response.getheader('Content-Type')
+    if isinstance(content_type, str):
+        result['http_content_type'] = redact_diagnostic(content_type, secret)[:256]
     for header in ('x-oneapi-request-id','x-request-id','x-new-api-request-id','date'):
         value=response.getheader(header)
         if isinstance(value,str):
@@ -259,6 +263,15 @@ def decode_stream(response, provider):
     text_size, event, event_type, event_size = 0, [], '', 0
     counters = {'wire_bytes_seen': 0, 'event_index': 0}
     evidence, current_frame, first_line = {}, None, True
+    observed = {'version': OBSERVATION_VERSION, 'stop_received': False, 'usage_received': False,
+                'usage_validated': False, 'DONE_received': False, 'complete_text': False,
+                'id_check': 'not_observed', 'model_check': 'not_observed',
+                'model_matches_expected': None}
+
+    def observation():
+        return {**observed, 'data_events_seen': counters['event_index'],
+                'wire_bytes_seen': counters['wire_bytes_seen'], 'text_bytes_seen': text_size,
+                'scope': 'parsed_prefix_only_unless_complete'}
     try:
         if response.getheader('Content-Type', '').split(';')[0].strip().lower() != 'text/event-stream':
             raise TransportError('stream response must use text/event-stream')
@@ -290,14 +303,21 @@ def decode_stream(response, provider):
             counters['event_index'] += 1
             current_frame = frame_evidence(None, content)
             if content == '[DONE]':
+                observed['DONE_received'] = True
                 if event_type == 'error':
                     raise TransportError('error event cannot terminate successfully')
                 if finish != 'stop' or raw_usage is None:
                     raise TransportError('stream requires stop and final usage before DONE')
-                return decode_chat({**audit, 'usage':raw_usage, 'choices':[
+                result = decode_chat({**audit, 'usage':raw_usage, 'choices':[
                     {'message':{'content':''.join(text)}, 'finish_reason':finish}]}, provider)
+                observed['complete_text'] = True
+                result['metadata']['stream_observation'] = observation()
+                return result
             chunk = json.loads(content)
             current_frame = frame_evidence(chunk, content)
+            if isinstance(chunk, dict) and isinstance(chunk.get('model'), str) and provider.expected_response_model:
+                match = chunk['model'] == provider.expected_response_model
+                observed['model_matches_expected'] = match if observed['model_matches_expected'] is not False else False
             if (not isinstance(chunk, dict) or 'error' in chunk or
                     chunk.get('type') == 'error' or event_type == 'error'):
                 evidence.update(upstream_error_evidence(chunk))
@@ -307,24 +327,29 @@ def decode_stream(response, provider):
             for field in ('id', 'model'):
                 value = chunk.get(field)
                 if not isinstance(value, str) or not value or len(value) > 256:
+                    observed[field + '_check'] = 'missing_or_invalid'
                     raise TransportError('missing stream identity/model')
                 if field in audit and audit[field] != value:
+                    observed[field + '_check'] = 'changed'
                     evidence['identity_change'] = {'field': field,
                         'previous': field_evidence(audit[field]), 'observed': field_evidence(value)}
                     raise TransportError('stream identity/model changed')
                 audit[field] = value
+                observed[field + '_check'] = 'observed_consistent'
             if provider.expected_response_model and audit['model'] != provider.expected_response_model:
                 raise TransportError('stream model differs from locked model')
             choices = chunk.get('choices')
             if not isinstance(choices, list) or len(choices) > 1:
                 raise TransportError('stream requires one choice')
             if chunk.get('usage') is not None:
+                observed['usage_received'] = True
                 if raw_usage is not None or finish is None:
                     raise TransportError('duplicate or premature stream usage')
                 raw_usage = chunk['usage']
                 # Validate details immediately, so later interruption preserves known usage.
                 decode_chat({**audit, 'usage':raw_usage, 'choices':[
                     {'message':{'content':''.join(text)}, 'finish_reason':finish}]}, provider)
+                observed['usage_validated'] = True
             if not choices:
                 if chunk.get('usage') is None:
                     raise TransportError('empty choice without final usage')
@@ -348,6 +373,7 @@ def decode_stream(response, provider):
             reason = choice.get('finish_reason')
             if reason is not None:
                 finish = reason
+                observed['stop_received'] = reason == 'stop'
                 if reason != 'stop':
                     raise TransportError('stream completion truncated or refused')
     except BaseException as exc:
@@ -356,6 +382,7 @@ def decode_stream(response, provider):
         network = network_failure_metadata(exc)
         error.metadata = {**evidence, **(getattr(exc,'metadata',{}) or {}), **network,
             'transport_version': WIRE_VERSION, 'failure_stage': 'sse_decode',
+            'stream_observation': observation(),
             'stream_evidence': {**counters, 'text_bytes_seen': text_size,
                 'last_frame': current_frame,
                 'identities': {k: field_evidence(v) for k, v in audit.items()}}}
@@ -444,7 +471,7 @@ class JsonCandidateTransport:
         if self.provider.api_key_env and not self.secret:
             raise ValueError('configured local credential environment variable is absent')
         self.identity = digest({'provider': config.payload()['provider'], 'mode': config.mode,
-                                'transport_version': WIRE_VERSION})
+                                'transport_version': WIRE_VERSION, 'observation_version': OBSERVATION_VERSION})
 
     def redact(self, text):
         return text.replace(self.secret, '[REDACTED]') if self.secret else text

@@ -1,0 +1,30 @@
+{
+  "stage": "T1-D2A",
+  "result": "PASS",
+  "real_API_requests": 0,
+  "credential_reads": 0,
+  "FJSP_evaluations": 0,
+  "data_loaded": false,
+  "run_directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/t1-d2-b2-b1-prompt-ab-v1-20261022",
+  "protocol_sha256": "5a71bbb9ab4b2befcf0d04b053ccd5ff2b198bd4470de8dcdf62bd4785a0221d",
+  "check_status": {
+    "phase": "prepared",
+    "logical_tasks": 0,
+    "api_attempts": 0,
+    "authorization_present": false,
+    "actual_cost": null
+  },
+  "test_counts": {
+    "test_t1_d2_prompt_ab": 27,
+    "test_t1_stream_reliability": 35,
+    "test_chat_stream_transport": 4
+  },
+  "tests_passed": 66,
+  "tests_are_mock_only": true,
+  "historical_files_unchanged": 189,
+  "old_directory_new_files": 0,
+  "authorization": "WAIT_T1_D2B_EXPLICIT_NEW_APPROVAL",
+  "monetary_cost": null,
+  "monetary_queries": 0,
+  "superseded_experiment_resumed": false
+}

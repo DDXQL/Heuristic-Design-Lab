@@ -1,0 +1,45 @@
+{
+  "A": {
+    "source_run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020",
+    "historical_logical_id": "B/g0000/000000",
+    "historical_attempt_id": "r501/B/B/g0000/000000/attempt/01",
+    "operator": "CROSS",
+    "prompt_file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/prompts/B_g0000_000000",
+    "prompt_sha256": "3f9c60c00b3b92db43f5b8ceb596b31665449776a2377c96ffe9c1212033d167",
+    "utf8_bytes": 11058,
+    "historical_usage": {
+      "input_tokens": 2759,
+      "output_tokens": 515
+    },
+    "historical_reasoning_tokens_subset": 298,
+    "historical_request_status": "completed",
+    "historical_confirmed_send": true,
+    "historical_wire_status": "wire_completed_before_settlement",
+    "files_sha256": {
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/prompts/B_g0000_000000": "3f9c60c00b3b92db43f5b8ceb596b31665449776a2377c96ffe9c1212033d167",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/budgeted_evolution_requests.json": "45be846c64bd81fb682397a12eca283a4b11410eef405adfbd8b3d34ab6d97a8",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020/wire_responses/2b33b811c1cdf0c1fba5ac5924c601b70df6c9dfdd697a058a523c6d5bc04481.json": "60bde161ba534ef18190667ec11856d4a7b4bf9e50516dd5f9bfd139df08c83e",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-state-weight-search-seed501-batch-v3-20261020/config.pending.json": "cd562547bc3f901cfb914656ed77717d7323dedaa8d9461d5536100414521643"
+    }
+  },
+  "B": {
+    "source_run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021",
+    "historical_logical_id": "B/init/000000",
+    "historical_attempt_id": "r501/B/B/init/000000/attempt/01",
+    "operator": "INIT",
+    "prompt_file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/prompts/B_init_000000",
+    "prompt_sha256": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+    "utf8_bytes": 21250,
+    "historical_usage": null,
+    "historical_reasoning_tokens_subset": null,
+    "historical_request_status": "failed",
+    "historical_confirmed_send": true,
+    "historical_wire_status": "wire_failed",
+    "files_sha256": {
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/prompts/B_init_000000": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/batch_requests.json": "9c74e31cd02b1c4f0c7519f259f353dcc55e2118c2ec35a3ee7e6ccd64eca151",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/wire_responses/90dd34f5bb2cbf1d2ee18d352009afde6e0ef4085b88072064d5ecac97cda8d7.json": "255741a8ffca20954f9bd77bc3d04c56569db0db58cf1ed758b870b1c1cbaae2",
+      "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/config.pending.json": "e7b87532380b485a9ba15bfc17e64cc0612ad8ed4b4709c75144eba60c20c10f"
+    }
+  }
+}
