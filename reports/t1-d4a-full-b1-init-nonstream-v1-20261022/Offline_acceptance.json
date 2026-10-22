@@ -1,0 +1,53 @@
+{
+  "stage": "T1-D4A",
+  "result": "PASS",
+  "run_directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/t1-d4-full-b1-init-nonstream-v1-20261022",
+  "protocol_sha256": "254fc61b96a04347cc8f7ae4205a6546266e48d83791b4408d6f381f7ed352ec",
+  "test_counts": {
+    "test_t1_d4_nonstream_init": 22,
+    "test_t1_stream_reliability": 35,
+    "test_chat_stream_transport": 4,
+    "test_t1_d2_prompt_ab": 27,
+    "test_t1_d3b_api_diagnostic": 10
+  },
+  "passed_tests": 98,
+  "tests_are_mock_only": true,
+  "real_API_requests": 0,
+  "credential_reads": 0,
+  "FJSP_evaluations": 0,
+  "U_executed": false,
+  "data_loaded": false,
+  "request_policy": {
+    "version": "batch-api-attempts-v2-t1",
+    "logical_candidate_cap": 1,
+    "api_attempt_cap": 1,
+    "per_candidate_attempt_cap": 1,
+    "retry_backoff_seconds": [],
+    "protocol_error_circuit_threshold": 1
+  },
+  "provider_delta_from_original_B1": {
+    "stream_response": [
+      true,
+      false
+    ]
+  },
+  "stream_options": "omitted; actual payload construction verified with fake HTTP",
+  "timeouts_seconds": {
+    "connect": 10,
+    "read": 240,
+    "total": 300
+  },
+  "current_status": {
+    "phase": "prepared",
+    "logical_tasks": 0,
+    "api_attempts": 0,
+    "authorization_present": false,
+    "actual_cost": null
+  },
+  "historical_files_unchanged": 225,
+  "old_batches_resumed": false,
+  "actual_cost": null,
+  "financial_queries": 0,
+  "authorized_real_execution": false,
+  "next_required_authorization": "T1-D4B explicit approval bound to this protocol"
+}

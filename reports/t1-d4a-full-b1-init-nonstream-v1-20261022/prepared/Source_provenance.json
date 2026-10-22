@@ -1,0 +1,41 @@
+{
+  "source_run": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021",
+  "source_prompt_file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/prompts/B_init_000000",
+  "historical_logical_id": "B/init/000000",
+  "historical_attempt_id": "r501/B/B/init/000000/attempt/01",
+  "source_protocol_sha256": "d5ec72d53583c8dd5829b6a9d8f002511956c346127aad99348e1485f8e3e898",
+  "prompt_sha256": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+  "utf8_bytes": 21250,
+  "historical_usage": null,
+  "source_files_sha256": {
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/prompts/B_init_000000": "7307e5fd4d2d781ee0c546e809c5c3f1d0d694eec2915f9c1bc688a5ab68833e",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/Protocol.json": "d5ec72d53583c8dd5829b6a9d8f002511956c346127aad99348e1485f8e3e898",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/config.pending.json": "e7b87532380b485a9ba15bfc17e64cc0612ad8ed4b4709c75144eba60c20c10f",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/batch_requests.json": "9c74e31cd02b1c4f0c7519f259f353dcc55e2118c2ec35a3ee7e6ccd64eca151",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-full-h-free-seed501-k2-v1-20261021/wire_responses/90dd34f5bb2cbf1d2ee18d352009afde6e0ef4085b88072064d5ecac97cda8d7.json": "255741a8ffca20954f9bd77bc3d04c56569db0db58cf1ed758b870b1c1cbaae2"
+  },
+  "provider_original": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "thinking": null,
+    "stream_response": true
+  },
+  "provider_delta": {
+    "stream_response": {
+      "old": true,
+      "new": false
+    }
+  }
+}
