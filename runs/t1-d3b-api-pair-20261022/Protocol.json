@@ -1,0 +1,76 @@
+{
+  "base_commit": "c4e388613c2e0928d209dcd9d91e3c5826630675",
+  "budget": {
+    "append_requests": false,
+    "attempts_per_group": 1,
+    "automatic_retries": false,
+    "logical_requests_per_group": 1,
+    "total_attempts": 2
+  },
+  "common_generation": {
+    "connect_timeout": 10,
+    "max_output_tokens": 128,
+    "n": 1,
+    "read_timeout": 240,
+    "reasoning_effort": null,
+    "temperature": null,
+    "total_timeout": 300
+  },
+  "continuation_policy": {
+    "ordinary_http_200_protocol_error_may_continue_to_next_group": true,
+    "stop_on_auth_quota_rate_limit_model_identity_or_unknown_send": true
+  },
+  "credential_content_or_hash_recorded": false,
+  "credential_env_var": "LEAFAPI_API_KEY",
+  "credential_source": "../FJSP-Heuristic-Research/.env.leafapi.local",
+  "endpoint": "https://leafapi.cc/v1/chat/completions",
+  "expected_response_model": "gpt-6.1-sol",
+  "groups": {
+    "A": {
+      "stream_options": null,
+      "stream_response": false
+    },
+    "B": {
+      "stream_options": {
+        "include_usage": true
+      },
+      "stream_response": true
+    }
+  },
+  "model": "gpt-6.1-sol",
+  "order": [
+    "A",
+    "B"
+  ],
+  "prompt": "你好，请只回复OK",
+  "provider_protocol": "openai-chat-v1",
+  "purpose": "simple_prompt_api_transport_diagnostic_only",
+  "response_fields": [
+    "http_status",
+    "gateway_request_id",
+    "complete_response",
+    "response_text",
+    "finish_reason",
+    "usage",
+    "error_type",
+    "redacted_error_metadata"
+  ],
+  "scope": {
+    "account_or_invoice_queries": false,
+    "candidate_or_fitness_creation": false,
+    "fjsp_evaluation": false,
+    "real_requests_authorized": false,
+    "train21_validation11_test28_access": false
+  },
+  "source_sha256": {
+    "code/fjsp_usage/research/events.py": "f68aabf420aa9df4081deb0681c60aa729f0fd9a5d7ab118246340238799bda2",
+    "code/fjsp_usage/research/protocol.py": "a4a1ca453ec85951f4a1bbbf45fbc25340bfe6e39aee8566f23dea49b9f00286",
+    "code/fjsp_usage/research_real/attempt_budget.py": "9f72b7bad939b8942a91096183aa173b6720631eaba3da6ea476ff9abc431c91",
+    "code/fjsp_usage/research_real/config.py": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+    "code/fjsp_usage/research_real/real_transport.py": "0e10e404614ce46bdbf962660e907b0952bedd46d2e8b9448ad24957b75da286",
+    "code/fjsp_usage/usage_v2/access.py": "211fe4b700c8d031dddbef2d543756bf195e46c823976cd33bb5ce8de753b265"
+  },
+  "stage": "T1-D3B",
+  "transport_version": "bounded-sse-evidence-t1-v1",
+  "version": "T1-D3B-simple-prompt-stream-pair-v1-20261022"
+}
