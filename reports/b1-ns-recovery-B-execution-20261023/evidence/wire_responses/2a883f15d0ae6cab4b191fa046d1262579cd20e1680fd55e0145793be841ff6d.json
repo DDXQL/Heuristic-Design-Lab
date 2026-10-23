@@ -1,0 +1,29 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/g0000/000006/attempt/01",
+  "prompt_key": "c56d8ab8314569364edf77bf6e0176eda55b77437b22f7e944ba25d44d8bff5a",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent’s default is member 5, with narrow overrides for low pair availability and work dispersion, then a late-progress switch to member 9. The main change is to make that late switch depend on machine-readiness dispersion rather than mean readiness: member 9 explicitly penalizes job waiting, so dispersion is a more relevant available summary of uneven machine end times, while the other existing selection branches remain intact. This is a design hypothesis, not a claim of measured superiority.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_std > 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n```",
+    "usage": {
+      "input_tokens": 10467,
+      "output_tokens": 415
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230251057459576208268d9d6qGTmlhuO",
+      "x-request-id": "72137076-aa3a-48f5-8aad-359ad07a5d85",
+      "date": "Fri, 23 Oct 2026 02:51:13 GMT",
+      "gateway_request_id": "202610230251057459576208268d9d6qGTmlhuO",
+      "cached_tokens": 2445,
+      "id": "resp_0121a6fe7ca08a9d016adacb9bc0ac819b850c4553ce3136d8",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

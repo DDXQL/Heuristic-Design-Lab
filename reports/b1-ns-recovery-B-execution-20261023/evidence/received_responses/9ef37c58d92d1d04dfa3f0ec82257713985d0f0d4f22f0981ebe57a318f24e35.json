@@ -1,0 +1,23 @@
+{
+  "text": "Use a constant selector for member 5; this is a deterministic choice, not a claim of superior performance.\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n```",
+  "usage": {
+    "input_tokens": 10633,
+    "output_tokens": 117
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610221128105825491798268d9d63ModMhpW",
+    "x-request-id": "728efdb9-f661-41cb-8cbe-256e62ae2901",
+    "date": "Thu, 22 Oct 2026 11:28:15 GMT",
+    "gateway_request_id": "202610221128105825491798268d9d63ModMhpW",
+    "cached_tokens": 4224,
+    "id": "resp_0b46472fca2fdead016ad9f34d678481968ad1104c20890c4e",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

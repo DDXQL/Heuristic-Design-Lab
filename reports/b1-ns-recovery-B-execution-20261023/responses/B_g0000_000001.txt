@@ -1,0 +1,23 @@
+{This strategy inherits Parent 0's sparse-candidate, low-remaining-work condition and late-progress preference for member 9, together with Parent 1's use of machine-readiness dispersion to favor member 8. It combines these ideas through two-member mixtures: member 1 contributes its finish-plus-tail preference in sparse states, while elsewhere member 5 is balanced against member 8 or 9 using relative dispersion and progress, without identifying a bottleneck machine. These mappings are hypotheses for external complete-schedule evaluation, not established state-level advantages.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_dispersion = remaining_work_std / (
+        0.01 + remaining_work_mean + remaining_work_std
+    )
+    ready_dispersion = machine_ready_std / (
+        0.01 + machine_ready_mean + machine_ready_std
+    )
+
+    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:
+        finish_weight = 0.25 + 0.35 * progress * (1.0 - candidate_pair_ratio)
+        return (1, (0.0, finish_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - finish_weight))
+
+    if ready_dispersion > work_dispersion:
+        efficiency_weight = 0.35 + 0.30 * (
+            ready_dispersion - work_dispersion
+        )
+        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - efficiency_weight, 0.0, 0.0, efficiency_weight, 0.0))
+
+    wait_weight = 0.20 + 0.40 * progress + 0.15 * ready_dispersion
+    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - wait_weight, 0.0, 0.0, 0.0, wait_weight))
+```

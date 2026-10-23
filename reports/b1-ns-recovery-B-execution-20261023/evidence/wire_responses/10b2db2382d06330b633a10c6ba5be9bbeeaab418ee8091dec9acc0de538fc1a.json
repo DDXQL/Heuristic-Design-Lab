@@ -1,0 +1,30 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/init/000006/attempt/01",
+  "prompt_key": "31b7d16391b2f32a6b0ad30da83188ae7242521c11e7aad59b3743373f9ba8a1",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{Deterministic SELECT policy using bounded state summaries; its member choices are design hypotheses, not performance claims.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n```",
+    "usage": {
+      "input_tokens": 11093,
+      "output_tokens": 524
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230242341824333618268d9d6KJdnrpgx",
+      "x-request-id": "842d364b-5144-4c08-a62c-a0dc5c2ad0b3",
+      "date": "Fri, 23 Oct 2026 02:42:39 GMT",
+      "gateway_request_id": "202610230242341824333618268d9d6KJdnrpgx",
+      "cached_tokens": 2561,
+      "reasoning_tokens": 181,
+      "id": "resp_0fd7580544039e60016adac99ab3d4819bb80e5f5d63e9639d",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

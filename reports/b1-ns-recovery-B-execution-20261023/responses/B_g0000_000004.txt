@@ -1,0 +1,13 @@
+{Parent 0 uses workload and machine-readiness dispersion to choose members, including member 8 for high readiness dispersion and member 5 for high workload dispersion; Parent 1 always selects member 5. This strategy combines member 5 as a baseline with a continuous weight on member 8, increasing that weight with relative readiness dispersion and decreasing it with relative workload dispersion; member 8 applies a stronger processing-efficiency penalty and an explicit waiting penalty. This relationship is a hypothesis for external complete-schedule evaluation, not evidence of state-level superiority.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    readiness_dispersion = machine_ready_std / (
+        machine_ready_mean + machine_ready_std + remaining_work_mean
+    )
+    workload_dispersion = remaining_work_std / (
+        remaining_work_mean + remaining_work_std
+    )
+    weight_8 = 0.15 + 0.55 * readiness_dispersion - 0.10 * workload_dispersion
+    weight_5 = 1.0 - weight_8
+    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, weight_5, 0.0, 0.0, weight_8, 0.0))
+```

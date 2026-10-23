@@ -1,0 +1,5 @@
+{The parent always selects member 5, regardless of state. The single modification hypothesis is to retain member 5 as the dominant component while mixing in member 9 at a fixed 3:1 weight ratio, adding its squared processing-efficiency factor and explicit waiting penalty through the host's normalized action-score combination. This is an untested design hypothesis, not a claim of improved makespan.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0, 1.0))
+```

@@ -1,0 +1,567 @@
+{
+  "B/init/000001": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          8
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          8
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          6
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "machine_ready_std",
+      "previous_heuristic",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/init/000002": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": []
+  },
+  "B/init/000005": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          8
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          8
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          6
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_std",
+      "previous_heuristic",
+      "progress",
+      "remaining_work_std"
+    ]
+  },
+  "B/init/000006": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          1
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          4
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/init/000008": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          0,
+          9
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "machine_ready_mean",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000000": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          0,
+          8
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          0,
+          8
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          0,
+          9
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000001": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          9
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          1,
+          9
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          8
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000002": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          0,
+          5
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          9
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "machine_ready_mean",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000003": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          6
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_std",
+      "previous_heuristic",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000004": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          8
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "machine_ready_mean",
+      "machine_ready_std",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000005": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          9
+        ],
+        "literal_vector": false
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "machine_ready_std",
+      "remaining_work_mean"
+    ]
+  },
+  "B/g0000/000006": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          1
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          4
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000007": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          8,
+          9
+        ],
+        "literal_vector": false
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          8
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          6
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_std",
+      "previous_heuristic",
+      "progress",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000008": {
+    "returns": [
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          5
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          1
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          4
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          9
+        ],
+        "literal_vector": true
+      },
+      {
+        "mode_expression": "0",
+        "literal_mode": 0,
+        "nonzero_or_computed_coordinates": [
+          7
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": [
+      "candidate_pair_ratio",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "progress",
+      "remaining_work_mean",
+      "remaining_work_std"
+    ]
+  },
+  "B/g0000/000009": {
+    "returns": [
+      {
+        "mode_expression": "1",
+        "literal_mode": 1,
+        "nonzero_or_computed_coordinates": [
+          5,
+          9
+        ],
+        "literal_vector": true
+      }
+    ],
+    "literal_modes_conclusive": true,
+    "definition": "Coordinates with literal zero excluded; this is source expression coverage, not actual activation.",
+    "loaded_state_names": []
+  }
+}

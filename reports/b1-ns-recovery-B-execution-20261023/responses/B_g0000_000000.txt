@@ -1,0 +1,18 @@
+{Parent 0 increases member 0's mixture weight with relative remaining-work dispersion and member 9's weight with progress and relative machine-readiness dispersion; Parent 1 instead selects member 8 initially and member 9 under low candidate availability or late progress. This strategy combines those ideas by mixing member 0 with member 8 initially, then choosing member 8 or 9 using progress and candidate availability, while continuously adjusting weights: member 0 emphasizes remaining work, member 8 applies a cubic processing-efficiency penalty, and member 9 applies a squared efficiency penalty and a different waiting factor. Any benefit remains a hypothesis requiring external evaluation on every training instance.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)
+    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)
+
+    work_weight = 1.0 + work_dispersion
+    efficiency_weight = 1.0 + progress + ready_dispersion
+
+    if previous_heuristic == -1:
+        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))
+
+    transition = progress + 0.5 * (1.0 - candidate_pair_ratio)
+    if transition >= 0.75:
+        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))
+
+    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))
+```

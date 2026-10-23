@@ -1,0 +1,24 @@
+{
+  "text": "{The parent starts with member 8, prioritizes dispersion-triggered selections of members 6 and 5, and otherwise switches from member 8 to member 9 when candidate availability is low or operation-count progress is high. The main modification replaces only that abrupt 8-to-9 transition with a continuous two-member mixture, retaining the first-step choice and dispersion overrides: member 8 has a cubic processing-efficiency penalty, whereas member 9 uses a squared penalty and a different waiting scale. The mixture gradually shifts toward member 9 as either original switching boundary approaches; this is an unevaluated design hypothesis, not a claim of improved fitness.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    weight_9 = min(1.0, max(progress / 0.75, (1.0 - candidate_pair_ratio) / 0.65))\n    weight_8 = 1.0 - weight_9\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, weight_8, weight_9))\n```",
+  "usage": {
+    "input_tokens": 6215,
+    "output_tokens": 504
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610230251276985442778268d9d6hMAPRso6",
+    "x-request-id": "c4b558d7-76e7-49db-adc2-1bf8920c50fd",
+    "date": "Fri, 23 Oct 2026 02:51:44 GMT",
+    "gateway_request_id": "202610230251276985442778268d9d6hMAPRso6",
+    "cached_tokens": 1208,
+    "reasoning_tokens": 32,
+    "id": "resp_0",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

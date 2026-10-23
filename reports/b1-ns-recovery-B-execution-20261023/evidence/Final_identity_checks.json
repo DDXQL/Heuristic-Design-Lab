@@ -1,0 +1,110 @@
+{
+  "protocol_sha256": "565537b020173b30a6bd41d316228691892c500c8bcecb3266491d70193bcd72",
+  "original_pins_checked": 143,
+  "snapshot_files_checked": 181,
+  "current_mismatches": [],
+  "original_47_files_SHA_and_mtime_unchanged": true,
+  "complete_valid_child_before_after_checks": [
+    {
+      "id": "B/init/000001",
+      "key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+      "before_sha256": "2d8068c50ac3e4ecc474f33738a8d7b2867ab0f4d726d54d7a8af31d3e1dad39",
+      "after_sha256": "85c57e26c5f0b736307eb9fd0ccfc3d0627a74abcb6943ce203d335838c062d4",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/init/000002",
+      "key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+      "before_sha256": "961dcc05b927136d0e977b044df135939b1f816360b08715f2b20680bbb911cb",
+      "after_sha256": "07bd585ff93ee32fe21b3a91eec89ec02f22797c49a58827e40664f786c63744",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/init/000005",
+      "key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+      "before_sha256": "283599bf58356eb228c8a339628ee20c409b632c12854db19b34cce3b6aa0719",
+      "after_sha256": "cefd5f169135fccbe2a5b78f5480d1ffefc043149112036035f4f8039db99b88",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/init/000006",
+      "key": "3f6963be06fb56e3a6b4469b78331256e5e2d6881e0536b253e3fe7c8a9afcc7",
+      "before_sha256": "d20a6bd08b2000bfaf9a03b88a3dfcd486d8f9d2eadb782e41a3418e669ee471",
+      "after_sha256": "b7898b40c0203d98339c7c377229b57e4faa297542e335e6d3b66bcd97d0ea0d",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/init/000008",
+      "key": "8e8288d5e9212d7359ed25b0e5be79a563324ac3e5cab45429022f56e9a5bf85",
+      "before_sha256": "fe3fad71e250464ab2a6d40d1bf2766df1930e07c269de6ccb3ad054d4a707d3",
+      "after_sha256": "0542cc03cf792789680aad53e2ab4c7206bda779059c42d5cae10e9d55134245",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000000",
+      "key": "048e0edd7e8b6bf0caeed92ee89aab5be0962efc6ffdf3c4ff4281c6a2e4a077",
+      "before_sha256": "582bdf8b8ab21ddc9abbf6d0887c9fc964cd7f319860262373de631433673e29",
+      "after_sha256": "cc3033b2b0d57fc8d32197685aa1b3c62144ea34f7ce095d9f63a4ef93e1b1ed",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000001",
+      "key": "af1c6500f7b8ac8488a8c2503ef769fe06e21183b2d69b07133262b32a94026f",
+      "before_sha256": "261040b00ba943d637426ae0cca34f87f93857a8fe597d44141459dcb8b09325",
+      "after_sha256": "eaf323fad3a140e7aaa783010d1e464d5479cf8dac873f003f45d303df295ca6",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000002",
+      "key": "a37c580934f624dca64acbe4cc229770bc3ad8330430d081c4bdcb8c0e5e11d1",
+      "before_sha256": "2a939cd13b5f0f6d242e5febd00384a691eed9604ec4c05ceb06afe6d86c3e2a",
+      "after_sha256": "138737621a26fb38228c367b9b0ad5259b75b12dee033ee1fabd80513f353200",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000003",
+      "key": "bed039eb09f4849eb49d2b626913f6b9e17faae49c3aca56401a3f533c45a4e6",
+      "before_sha256": "6c36a4a5ac9ed1efaa38f7b55bc2746e4817acf015ade17723d98cbb7bbee00e",
+      "after_sha256": "1c00aac6ba084056b918987e3c8226a036bedbdcabe25429794a2456f5750599",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000004",
+      "key": "03e33a58c13aebb30aa75d580002cdbe1cfff41c9be95faa28587c914c02c51a",
+      "before_sha256": "fbc96e7b0fbd399a5b02685f16da1bc8c9c79332f3be382588de4faa49ae67e2",
+      "after_sha256": "68faeece29ac9567fc139feb9356d5de33da16e983aa82de21861471a9742493",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000005",
+      "key": "c5e0c12ae32653083105f8b60acc09b08b8a6951fed7590ef4aa4fdfe6b4617e",
+      "before_sha256": "f84ef1089118438319c9fbacba06b54bad06bec6e3dcebd7b5f83f829b17cd1e",
+      "after_sha256": "ef13c1442e05a6d42cad4c6a5d65358b5162bdd8dad7eb4cbdacbb85d2086d3d",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000006",
+      "key": "14971cef4bfa78dcdde17117ff1d1e3aae6c8c222c585baa8d2fb34fdb0342cd",
+      "before_sha256": "1c3ec01940d7f9cef306697f3646c3d0cc86483aa24ae1e9776aba85a698e263",
+      "after_sha256": "0ec5d91b1a2e4fc586bb0eae18f5fbf62c476b7b2ec06c086bf7a9519e06c882",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000007",
+      "key": "ac65c1c96d9edaf9a671d7b384dfffeaf54133769b54849bd2f9c7e38023a2b5",
+      "before_sha256": "bea2b089825ccca5662c711f629a4f2d99fb41d871c996a57718d48af7da0ce1",
+      "after_sha256": "340f75823d0e8587177bfa2da770198d8638255ac3c9de1ae00fe16b7b4e9af3",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    {
+      "id": "B/g0000/000008",
+      "key": "8858af67cea87db6ddd4f633c447b92fe21de83e369a016b54927a20977f5c7b",
+      "before_sha256": "25eeb8bda9e99ffc2ffe02de2e2a755e18686b838db8140e1f9afe02d730e9bb",
+      "after_sha256": "50a2a6fba767bfeeeb7ea43f2093d51b8456947c3d114ecc86a998e465946abd",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    }
+  ],
+  "failed_child_end_identity": "missing due to timed-out worker; no observed source content mismatch",
+  "all_original_six_requests_preserved": true,
+  "actual_LLM_endpoint_queries_other_than_generation": 0
+}

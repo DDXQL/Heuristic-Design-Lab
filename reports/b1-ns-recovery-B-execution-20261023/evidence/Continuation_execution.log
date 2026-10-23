@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py", line 447, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py", line 444, in main
+    else: execute(directory,args.stage,args.env_file)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py", line 431, in execute
+    try: engine.run()
+         ^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_usage_local.py", line 123, in run
+    super().run(**kwargs)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research/evolution.py", line 227, in run
+    self._prepare(initial=False)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_usage_local.py", line 92, in _prepare
+    self.verify()
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py", line 427, in verify
+    if (directory/'Identity_stop.json').exists(): raise BudgetStop('source identity stop requires review')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fjsp_usage.research_real.budget.BudgetStop: source identity stop requires review

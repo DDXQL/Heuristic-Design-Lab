@@ -1,0 +1,20 @@
+id,operator,generation,parents,outcome,fitness,in_P0,in_P1,in_P2
+B/init/000000,I1,0,[],parse_or_constraint_error,,False,False,False
+B/init/000001,I1,0,[],valid,-2.5611498256653267,True,False,False
+B/init/000002,I1,0,[],valid,-2.4010715776754177,True,False,False
+B/init/000003,I1,0,[],parse_or_constraint_error,,False,False,False
+B/init/000004,I1,0,[],parse_or_constraint_error,,False,False,False
+B/init/000005,I1,0,[],valid,-2.5270363059129246,True,False,False
+B/init/000006,I1,0,[],valid,-2.115159624699559,True,True,False
+B/init/000007,I1,0,[],parse_or_constraint_error,,False,False,False
+B/init/000008,I1,0,[],valid,-2.404627600830643,True,False,False
+B/g0000/000000,CROSS,0,"[""B/init/000008"", ""B/init/000005""]",valid,-2.38633390280752,False,True,False
+B/g0000/000001,CROSS,0,"[""B/init/000006"", ""B/init/000001""]",valid,-2.2776599654065897,False,True,False
+B/g0000/000002,CROSS,0,"[""B/init/000002"", ""B/init/000008""]",valid,-2.5177467380886434,False,False,False
+B/g0000/000003,CROSS,0,"[""B/init/000005"", ""B/init/000002""]",valid,-2.4010715776754177,False,False,False
+B/g0000/000004,CROSS,0,"[""B/init/000001"", ""B/init/000002""]",valid,-2.4663142737207355,False,False,False
+B/g0000/000005,MUTATE,0,"[""B/init/000002""]",valid,-2.5273495131620853,False,False,False
+B/g0000/000006,MUTATE,0,"[""B/init/000006""]",valid,-2.115159624699559,False,True,False
+B/g0000/000007,MUTATE,0,"[""B/init/000005""]",valid,-2.549881652451567,False,False,False
+B/g0000/000008,MUTATE,0,"[""B/init/000006""]",valid,-2.115159624699559,False,True,False
+B/g0000/000009,MUTATE,0,"[""B/init/000002""]",invalid,,False,False,False

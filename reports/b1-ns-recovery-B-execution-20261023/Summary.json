@@ -1,0 +1,130 @@
+{
+  "protocol_sha256": "565537b020173b30a6bd41d316228691892c500c8bcecb3266491d70193bcd72",
+  "phase": "evolution",
+  "generation": 1,
+  "P0_formed": true,
+  "initial_logicals": 9,
+  "derived_population_snapshots": [
+    "P1"
+  ],
+  "evolution_logicals": 10,
+  "inherited_logicals": 6,
+  "inherited_API_attempts": 6,
+  "logical_tasks": 19,
+  "API_attempts": 19,
+  "new_logicals": 13,
+  "new_API_attempts": 13,
+  "retries": 0,
+  "pending_attempts": 0,
+  "attempt_statuses": {
+    "completed": 19
+  },
+  "outcomes": {
+    "parse_or_constraint_error": 4,
+    "valid": 14,
+    "invalid": 1
+  },
+  "stage_outcomes": {
+    "I1": {
+      "parse_or_constraint_error": 4,
+      "valid": 5
+    },
+    "CROSS": {
+      "valid": 5
+    },
+    "MUTATE": {
+      "valid": 4,
+      "invalid": 1
+    }
+  },
+  "static_legal_outputs": 15,
+  "complete_valid_candidates": 14,
+  "distinct_observed_physical_groups": 11,
+  "actual_evaluation_tasks_this_recovery": 15,
+  "revalidation_tasks": 3,
+  "new_candidate_evaluation_tasks": 12,
+  "certified_successful_instance_pairs": 314,
+  "pair_count_scope": "Native recorded successful first/recheck pairs, including failed candidate prefix; not all have final child attestation.",
+  "complete_valid_and_end_attested_instance_pairs": 294,
+  "failed_candidate_prefix_pairs_without_end_attestation": 20,
+  "first_seconds": 213.34439991449472,
+  "recheck_seconds": 212.96342961548362,
+  "primary_evaluation_wall_seconds": 450.38071950001176,
+  "first_h_calls": 34479880,
+  "recheck_h_calls": 34479880,
+  "new_input_tokens": 125780,
+  "new_output_tokens": 5717,
+  "all_input_tokens": 188385,
+  "all_output_tokens": 8486,
+  "unknown_usage_attempts": 0,
+  "best_id": "B/g0000/000006",
+  "best_fitness": -2.115159624699559,
+  "population_metrics": {
+    "P0": {
+      "members": 5,
+      "best": -2.115159624699559,
+      "mean": -2.401808986956774
+    },
+    "P1": {
+      "members": 5,
+      "best": -2.115159624699559,
+      "mean": -2.2018945484625574
+    }
+  },
+  "active_members": [
+    0,
+    1,
+    5,
+    8,
+    9
+  ],
+  "observed_dual_pairs": [
+    "0,5",
+    "0,8",
+    "0,9",
+    "1,9",
+    "5,8",
+    "5,9",
+    "8,9"
+  ],
+  "H01_dual_steps": 0,
+  "complete_valid_source_coordinate_coverage": [
+    0,
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "complete_valid_active_members": [
+    0,
+    1,
+    5,
+    8,
+    9
+  ],
+  "complete_valid_mode_types": {
+    "SELECT_only": 7,
+    "MIX_only": 6,
+    "SELECT_and_MIX": 1
+  },
+  "complete_valid_dominant_members": [
+    0,
+    1,
+    5,
+    8,
+    9
+  ],
+  "complete_valid_h01_dual_steps": 0,
+  "actual_cost": null,
+  "account_price_invoice_queries": 0,
+  "halt_reason": null,
+  "identity_stop": {
+    "candidate_key": "baf445cc463558cc8fc5e85218f5099d3273f484c2a740c314453a8c1e3fff13",
+    "reason": "missing/differing child attestation"
+  },
+  "failure_costs_not_zero_filled": true,
+  "no_new_evaluation_or_API_in_report": true
+}

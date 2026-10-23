@@ -1,0 +1,29 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/init/000004/attempt/01",
+  "prompt_key": "310a728d8f97b3f50a32a0604b642abc6e2aa57a541b3507f2be28275727380b",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n```",
+    "usage": {
+      "input_tokens": 10633,
+      "output_tokens": 95
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610221128445244845608268d9d6EtgV8e2r",
+      "x-request-id": "e0ac8434-4c15-43f6-93f0-3294a23d7308",
+      "date": "Thu, 22 Oct 2026 11:28:48 GMT",
+      "gateway_request_id": "202610221128445244845608268d9d6EtgV8e2r",
+      "cached_tokens": 4224,
+      "id": "resp_0874a307ea182720016ad9f36f41f48196b3c2b24b030f0bc0",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

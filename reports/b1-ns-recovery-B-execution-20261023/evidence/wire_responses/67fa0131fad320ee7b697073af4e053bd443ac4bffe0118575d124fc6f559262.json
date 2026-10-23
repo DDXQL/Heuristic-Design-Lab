@@ -1,0 +1,30 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/g0000/000000/attempt/01",
+  "prompt_key": "12c8328dec1a03fa1beefbff14714d00f2dd1cbe7373fd961993248f0201777d",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{Parent 0 increases member 0's mixture weight with relative remaining-work dispersion and member 9's weight with progress and relative machine-readiness dispersion; Parent 1 instead selects member 8 initially and member 9 under low candidate availability or late progress. This strategy combines those ideas by mixing member 0 with member 8 initially, then choosing member 8 or 9 using progress and candidate availability, while continuously adjusting weights: member 0 emphasizes remaining work, member 8 applies a cubic processing-efficiency penalty, and member 9 applies a squared efficiency penalty and a different waiting factor. Any benefit remains a hypothesis requiring external evaluation on every training instance.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n\n    if previous_heuristic == -1:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n\n    transition = progress + 0.5 * (1.0 - candidate_pair_ratio)\n    if transition >= 0.75:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n```",
+    "usage": {
+      "input_tokens": 10640,
+      "output_tokens": 538
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230244038186030878268d9d6Vo38xr6c",
+      "x-request-id": "610d5634-bb69-463a-a2cf-72563512de13",
+      "date": "Fri, 23 Oct 2026 02:44:20 GMT",
+      "gateway_request_id": "202610230244038186030878268d9d6Vo38xr6c",
+      "cached_tokens": 4096,
+      "reasoning_tokens": 100,
+      "id": "resp_000afe06a830320e016adac9f48b80819080e38e5677e9d55c",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

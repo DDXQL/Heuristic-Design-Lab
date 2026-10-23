@@ -1,0 +1,239 @@
+{
+  "pid": 68060,
+  "time_unix": 1792723782.733676,
+  "modules": {
+    "tools.b1_ns_recovery": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py",
+      "source_sha256": "e412ef514a57eda7fbe23308c6a2364074ba9f165a9312efdda62ff5296711ae",
+      "loaded_functions": {
+        "input_manifest": "d8f992eeb71c7d5a0c05471947ef313a174b791cffa8ff3cbc610a528e02b963",
+        "verify_files": "65e8c084d45eb9425f25b96c79cee8fa091c79a866692bf612585bd59aea0227",
+        "inherited_state": "55c1979b3618a1851f43e036810c95112331f905bb1dd7d32f9dae6e58817e30",
+        "prepare": "32b4dec1a8cd4f5382b6bdecdc5ebe29be171ddae44d545f336fcc9af218429e",
+        "check": "d8ec212fc9374b54c16b8595ed74a818043e46c9bf5c5602679624105b95b7eb",
+        "approval": "3717c0ba808d92fd82fb63ec13e2667c58ff2187648e4b282fa34677c173c990",
+        "require_execution": "00f660caa0c8649411eb5614413762c06462d65fdb7a42b731a627d7a42c15e4",
+        "code_identity": "86eec90cb67806c8a284ca83947ddb3f724da9af5988b4411c6621abbb696704",
+        "source_attestation": "9cbceb3333e78eaba4fb9ed5988661636d839e776f9086df8277cb317dcbece0",
+        "identity_worker": "4b41ee7f138cfc3b67c9af6545983d03845a5369f332e9357229e7ade63c75ed",
+        "evaluator": "1437974d395f7a229c376713850a587f06a64f7af4155387244b354d4b0c08dc",
+        "compare_results": "ec3ad79cd9f94ecd3bcc4f9a7b931fda58f5ed5fb520913f084ce16db16ca67d",
+        "verify_worker_evidence": "5179c8b1e50f4b28f87540034d00519283c02dfc04b7f05879ac84aefaaf801d",
+        "comparison_table": "63afc8b98772357a0a44474c21fcff903bba92220666bf8fc450bb43397d43fa",
+        "revalidate_saved": "a9a803d290db04dabc6a0bfc810e371745fbf0421fa5eacbeea9752bc9462fe5",
+        "install_progress": "c5abca7f5c0066e525a8e552bcc9e5f0dd11b41d29f41cd113899ae842cf8b72",
+        "execute": "1d4a1e6eb111d3cfc93130c0a3c95276cf7f397722f504d93d5632918a725b11",
+        "main": "d91be8d9df8e65c3d84cc46a443ecf3db7d68af13343e54c3f079b2494b533a7"
+      }
+    },
+    "tools.b1_nonstream_local": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_nonstream_local.py",
+      "source_sha256": "ae28a66c8aa56d230a069a9fff2e004abe499edebd0c0dbba49aa4f494014927",
+      "loaded_functions": {
+        "baseline": "414a3c3a99125f366e2c179b485e5631b892016b472eea76d5e433d8fd938b46",
+        "Config.search_arms": "7aac1cba25d4493de207750385979a00f94b63284ac1ceb62cdf641aad8a6035",
+        "Config.default_phase_caps": "60bda1a58e3ba898c22ee21fd0eb49c39f500ec58b1b2ec64410012ef7d556a2",
+        "Config.__post_init__": "6afb38dc0e1530bba1af0bafca58eaa45a0edf5e33336bfd1bba64ab3cc3fa51",
+        "pending_config": "2c0d9019e38860776b19e8f31eff0bed511d92dd28c3f4e0bab4a0f0f765aa25",
+        "directory_path": "6c19385a6211e24377c052ee416e86b93b6cec5320a34d9aab3bf8c7efd512e6",
+        "CompleteNonstreamTransport.__init__": "35c8e98ff7e642e21006ab7228f3a213b9b4b1ab3ec26d30bf4897e14491377d",
+        "CompleteNonstreamTransport.preflight": "7f2832835681baa1a630302e3eec5c45c565761b8d588f96835de72b911927d2",
+        "CompleteNonstreamTransport.protocol_evidence": "0aa2e04a32ff84c0bc40ab02bc40b531f4d869e52b97fe9fc6fad3022fa7196c",
+        "CompleteNonstreamTransport.dispatch": "b353585ff844268581c52ac80fef5556deed011d9414e36fa1e931c02e3226a0",
+        "NSSearch._attempt": "92d90ccd0ac9d302358988317856aee0cb899361ccf44db5d679624df6468003",
+        "NSSearch.report": "efecd9f3d83ba22d47990d21d676e2da365335943a32367ac6aac5fd31bd1bbf",
+        "prepare": "997209e01750287bb2818456fbb744e3bcb65d761c3d86294a6fb5ecafc47cab",
+        "check": "ccd14713888aaccb42bc60d71dfe19631d525a1bbe9e58505810c0dd8b4b1b7e",
+        "approval": "ef764398d04f8dfdc1839fc13d40b04ca8a020d6e3623a470c3ca3544aa3bad7",
+        "require_execution": "81e8d5b8adbd01cd13ab419bfd18198491b9c28c3722c6b8f8d64c4a5fb4a227",
+        "training_evaluator": "8bf0cbc33aba5ab28d1f318a6cae122c77b5d6c00ebfcf7970a7225bb3470cb3",
+        "run": "f9ed93058ef5b6b458c89e1407a2a953757bca6b09fe9d6fbfd98c1a4f9487e5",
+        "report": "f84b76743d18576cb25773ffe9bdb75e39a745c4bc9b037d33477b0d1778c115",
+        "main": "0150fe1c411e294d3615323cc5e90099f14676ef899e671cdbc098e6cae69e9f"
+      }
+    },
+    "tools.b1_usage_local": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_usage_local.py",
+      "source_sha256": "71dccb75f7c6d676bf70bb7f3dddb69d335cee4e6e944ade9ebd2c25536be8c1",
+      "loaded_functions": {
+        "Config.search_arms": "7aac1cba25d4493de207750385979a00f94b63284ac1ceb62cdf641aad8a6035",
+        "Config.default_phase_caps": "60bda1a58e3ba898c22ee21fd0eb49c39f500ec58b1b2ec64410012ef7d556a2",
+        "Config.__post_init__": "ca0a3e6587de5af888f1e03c25a153f3d0ece25d1709ee301e2e7cde7f57b3eb",
+        "pending_config": "a6a33d98ffed4eea1d4247091a09c3ab936c02c13a8ac30fc9d4a612c2434d32",
+        "B1Search.__init__": "fcb11e9ea051fc726bea79af39b30663f5bdb87611aef222020cb41e8117495b",
+        "B1Search._initial_prompt": "c7743c12e70f921fd2951d6e050e3923406a73d2727fcb12331d46fb750bb7ef",
+        "B1Search._prepare": "542f36c8b7108fe6d8f3a187e503016f8119c466007c5f4d794c34a6d2b5f779",
+        "B1Search._attempt": "6068ef7870ba95860bcab9b5c4b17f356db4af05f7dc5a98a5a23892796ac4ed",
+        "B1Search.run": "e7e2af523d96f9f746eb144ca49ac8574d4c616cfa59b80a5f4d406d7a0a2a4a",
+        "B1Search.report": "dd2c430763eccbf8f16dac8da1b5541267466d1ad2488ccba726a11882b9ec16",
+        "B1Search.export_rows": "ecb77dac3fe9609769f72e32a90ca198a68dfc6bd4ba54655cd53d6f15342734",
+        "prepare": "7aa8c8fc7ff7c7ebb0e030671df332c36b62a1488c92da06ef0482190f6b651f",
+        "check": "7108c736451dcda457768de40bcfbe1adcb6b34b7e86b6750281807856353d1e",
+        "require_execution": "6e34760275540c7f845a6fbd5cabb537520a2786953b151232e62eddbe13fa54",
+        "run": "87b43de60dd8a5e0630dbf4bc3633e0547cbf85b5f4111c5d14bc522cde75ade",
+        "report": "96de318ecccbda029b4e0816b212aac11c4682120d2fa932f6c984ed430ef5a6",
+        "main": "6eccb8bfd284b6d863151395cf6039741e92cf395ed068b62b8e8ceb8065a93f"
+      }
+    },
+    "tools.b1_usage_prompts": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_usage_prompts.py",
+      "source_sha256": "d1b1944cfafa7331757b372ad86960532015fad9d50cdd81c61dd92de0891762",
+      "loaded_functions": {
+        "build_prompt": "caa778a55db0bcb63f6cbb11fb18f1a6fe0aa0a8de56100ec022e2ff653c3507",
+        "manifest": "505caee50820b4517f3a46ae2ca56bd1f59544e95916d73a8990b8d6057463ba"
+      }
+    },
+    "tools.usage_mechanism_ablation": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/usage_mechanism_ablation.py",
+      "source_sha256": "8f46ff2420db2e4783ff36bb82c403f8b594b4ff1c7fb38f10588d4cb0f1d1e4",
+      "loaded_functions": {
+        "read": "fbddd3ae501fa78f2f0aca079e6915076357499d5ffecf65ffe5fb7c3b77126d",
+        "sha": "7492937db3fe59a8a59145b8f43e861a6f7295aa2be1b46679356f9556ed2f42",
+        "write": "d1dd9f40b64378b3a0a3706ffc110d5bd91f2488c5ff8373028ffc5afdb6ffaa",
+        "transform": "2b46886df941f80b8329c8b066c9df94be278af1685e421f3680072221ae26b8",
+        "compact": "9a5c3e61fd312b1b9768d2ab0c347f222a121be974986ea7c98d016d1bd9dd46",
+        "resource_snapshot": "32363dd4c3e955536caab0a815816ba97987f679715d5ca470b01bce965e3a4a",
+        "physical_schedule": "8618534faa208a2c67025b6d6318a463b944bd424a35b9a47f3b29ad34a12353",
+        "schedule_recording_worker": "4d36788ac290af8ad83d795c22525eeceb05dc16b27a55c07ca72d530fc26a37",
+        "evaluate_with_schedules": "2351705a55f71b3fd9137fc02c4b166e4104a4477da683828647c31d11334a96",
+        "inputs": "a8ef83af159c480b3e10cbbc79d271864c491a1faee3a087f3a7fb46c1a7deb5",
+        "prepare": "a52c1cf7b72983c034300b273d7d2edd90329c61b105150907ef119d4a8b940a",
+        "verify_pins": "6a6b8f7cb7a0008f03219f9ea0c97bb8c661f34a51007d1a5442ba3b63b26a21",
+        "run_evaluations": "f4431adb8157e0d4cf6c92d69f1f75eec6fbac51851e95359aacfce80235279c"
+      }
+    },
+    "fjsp_usage.research_real.runtime": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research_real/runtime.py",
+      "source_sha256": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+      "loaded_functions": {
+        "_worker": "e5b382c72c42105de11731c31c0e6668afd395ac46b3ad73ac973d47483b5e29",
+        "_diagnostic_worker": "0d539d4ffdfa15ca565d6ef69298e2f7e1b5cee2043fe99994493085a3d9084d",
+        "_collect": "e2afb8b664eb8348c146bc385109adc84d0254dcd0d08083c830719b9b46de9a",
+        "evaluate": "ab00c06139b80b104957f5b9b79ed9fe356572fd5f06409615f89f44f0c35d0a"
+      }
+    },
+    "fjsp_usage.research.candidates": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research/candidates.py",
+      "source_sha256": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+      "loaded_functions": {
+        "parse_response": "c6e2888e6b8e77fa21fb78f952e05c836df9a08c782cc92ae94354a6e37e8b20",
+        "validate_code": "8644fefba63c1204aff35459c0514f1a26dc7c9e877f2e12892f7743f58afe7a",
+        "compile_candidate": "3f0b6cffd847840c742af613543151158cb35c9838b62f1df6082ff97e52e0bf"
+      }
+    },
+    "fjsp_usage.research.evolution": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research/evolution.py",
+      "source_sha256": "c829b388ddbc582cf267f071d4409a0498d4368798e571f1b1107db1c4b1074d",
+      "loaded_functions": {
+        "_tuple_tree": "85208df85e57fa0e0b8618519daf36f10e1b383681dd0738ee3ae50160624daf",
+        "select_parents": "1996b8b2e5d5527dfa309750567ad50a52077bf372963ed1496a544f29a4a533",
+        "operator_at": "40f713ac273110438414a733dc9e15a13371fbc9be3dd9dbeb1a3ad91c8e60cc",
+        "Search.__init__": "70685c2db52ca1fd7e80032f0539241636a38633a8872adb608bf14faad091dd",
+        "Search._save": "1624e22be72982f5f549b0f63024a59bc9fc9ed183e91b87e9470a46343851b3",
+        "Search._evaluate_once": "328615c1e5b850f054dce5a581b8b328a7cb85637519fb46e6162b83c47e1705",
+        "Search._attempt": "7e893256c60118f24818733b94db39e70d96a4ad756284342ada4707ad3c4651",
+        "Search._duplicate_of": "39f5d4cae128a387078c3f0b968b2c5d78ec56f3bac7b2748edaa182d4ba1012",
+        "Search._initial_prompt": "d43019314c0bb5da7b927db6d885b200546fa3ff726769259e04e01127270268",
+        "Search._prepare": "a1753c46b05f492b7c75b49c560db6389aa54d89982d02fdc2247d61697db8a5",
+        "Search.initialize": "51be2b43fb0d205d3be27295bcc989012922550847193983cb84712fe66cb86f",
+        "Search.run": "84a319f84fcc18ccac2778f7c7a73d10bb0dcd52c379c564985b4064057fe25e",
+        "Search.report": "537e71d5a69faa7b27d285babfdb51ece7e562afe17807e5e00235506d3d7391"
+      }
+    },
+    "fjsp_usage.usage_v2.search": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/usage_v2/search.py",
+      "source_sha256": "cee73960d64d42ef6b02f938902216936f713ae05e5eac2cacf9dc8ad52eb0ca",
+      "loaded_functions": {
+        "UsageSearch._parse_candidate": "888072a4d5ad0cddf4848a0da0e87789148fd1c349e8be86b783c774f9e34f3e",
+        "UsageSearch._initial_prompt": "0f3e4ddefd12ff72f04b3678a9163b5ca591f3cff5dc5b5b4c4f9846d7a13a88",
+        "UsageSearch._duplicate_of": "462dc3261397b1399c88ba3937361a408e623fb0e14eb77422106e3a4f77d8ec"
+      }
+    },
+    "fjsp_usage.research_real.attempt_budget": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research_real/attempt_budget.py",
+      "source_sha256": "9f72b7bad939b8942a91096183aa173b6720631eaba3da6ea476ff9abc431c91",
+      "loaded_functions": {
+        "validate_policy": "5d0daac590493294447e0de8a53e4426782eec38264d52737ce9a330aebceb4a",
+        "failure_policy": "febf031b032ba3ca1c7de4a1f7d0a8bf62679f7d9327f40dc3aef37d083bb84a",
+        "AttemptJournal.__init__": "cfb4fd1da5164fa9206637345a104af05ab04983f0bfb76dfa09f411132a0686",
+        "AttemptJournal.validate_counts": "5152a19c829c31b338c4355691df8a5b281c6a3699dbe32f43b73124fc9dc52f",
+        "AttemptJournal.save": "5006cf53a9ecc7ef5db16055022526f38f5648811c285ce096367b444bb976ee",
+        "AttemptJournal.ensure_capacity": "69c497251c3f8d9311496304eeea13db04a5ac4bf24f04d4379f90ea260463b8",
+        "AttemptJournal.protocol_error_streak": "1d677b242ffdbb1cba4d57e1b3cf9690a103210394b018dd1badcf78be12d6cb",
+        "AttemptJournal._apply_circuit": "f82dd177f39a652facd8795ea32a2dde1dbe23542eb229979c3375793e42065b",
+        "AttemptJournal.summary": "8573120af0e8e112f4b392ce7c3d3eea38f3a6d8151a7c23f6cd810e26c4a9bd",
+        "AttemptJournal._accept": "e6c3eb916793e9f7c1502b111f5fa807dc3a28d6546f22a375312c18ebd4a692",
+        "AttemptJournal._recover": "841733796a01b73700ead5ca0134eae906af5d5e989216e1e3ef0d0ca2e75b35",
+        "AttemptJournal.request": "f8a124ac44039a9b0e494abca9aefd865a4fcf4a788251c207b655f8e314277c",
+        "AttemptJournal.logical_elapsed": "8a7a8b2de4b3b2663ce7266ac8dc898ec05f69aa6687cf5cbad03cf9699cd011"
+      }
+    },
+    "fjsp_usage.usage_v2.execution": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/usage_v2/execution.py",
+      "source_sha256": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+      "loaded_functions": {
+        "_number": "dcdac2101e164960c2f4c14ffd1d6e02c4a65c111ce5ba0ce6e87964cff79c56",
+        "decode_output": "cd2d200ca26ee9912d59d8f57717cbb145ac10512f9e16ba2db1cba31ff553ee",
+        "normalize_scores": "09f258c3df9df1b8e77b38a6fde61a7d2dc1ecdbbeb43a02e96675189cd4bdd2",
+        "combine_scores": "91f7eaf876e90a3191313059928d912f485aa67c8a2b215950bfb819302402f9",
+        "construct_usage_schedule": "d971be0e20a85e6eeba11f2a4fd2e98e74bccf1a044c2b38b7b119e30fa2a611",
+        "usage_summary": "c541b8c8dc4bb5f7f219524afb2fa2b6a66944e456fe4f23d6e3c73cfd890c1e",
+        "LegacyAdapter.__init__": "4983901681297877d5011719df444054892b548c7b79b4d5fc69b4238df379d9",
+        "LegacyAdapter.__call__": "a3ce237d55830557f49a0235fff21752159963e30d5df7bc11421f8a4713836a"
+      }
+    },
+    "fjsp_usage.research.scheduler": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research/scheduler.py",
+      "source_sha256": "f855df163639424a55f4dbdc5cfc2dd7ea6f5decb8e53d782305d928212b2427",
+      "loaded_functions": {
+        "construct_usage_schedule": "5459f53811a1ae4f4db9bb5de80461d180759f72232cd77e541d5cce3b946870"
+      }
+    },
+    "fjsp_usage.offline_v2": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/offline_v2.py",
+      "source_sha256": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+      "loaded_functions": {
+        "lower_bound_v5": "e2c6f9bc6d94b97ae9cf03de4859bcf5f7d85b5a51cc10f7a4c75981f9dbe007",
+        "_SchedulingState.__init__": "bc81c52f7c8cfb2e19e8e48eaa4d9937939b0974e0c7f90014c7a37828286a31",
+        "_SchedulingState.features": "cfdc1da93386c8c6c211ae09bed7575f8df99b6d0e1b05774bf6a5919b2a378a",
+        "construct_usage_schedule": "4bba965bc1fd0f7cbf20833357b5fad7a1ab0c9f519e7eb91fd776b8ea922896"
+      }
+    },
+    "fjsp_usage.research_real.state_diagnostics": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/fjsp_usage/research_real/state_diagnostics.py",
+      "source_sha256": "6db01ff91f33ed6f85cc14c56ed5c2106630f80caf2b7d3909c7aa8d7043a0e4",
+      "loaded_functions": {
+        "state_contract": "417d84e0db50ef2770eb95fa16c79c085e46607ef29d4bec5364d2cae9ea15ed",
+        "predicates": "200bd77a445326aada71ed68c4dc56577edf61b4986c0e1d03ff2fd826815d90",
+        "instrument": "092047f27ee9aa3bee22e5a72a7f46d40476fe5ca2a25fcc43b94e64fb794475",
+        "Bounds.__new__": "d22b4732487e7b167c7ebeb0caf0415af7e0381eb00dec757184fa541958022a",
+        "Bounds.__getnewargs__": "70a94280e928fe952fc757af0ff56fb414f127459f2649c1b967a1eca0d252f3",
+        "_out": "9feb37073677d1a592d728380437e7cf08e3974de55258813e21a155bf6967ca",
+        "interval": "3cf74d60f94a3d0a1e1c9d1d8858656229215e56cc32b56cb67eab8a47dcd95c",
+        "_interval": "f2637dda1f4f44c40485ecc1b6821868bd51610dc6868b57d6bb3a30a8051162",
+        "union": "e87086d1e27a45e6092fca877dda68bb250eb0ceaabe6d66b172329d17c15f58",
+        "truth": "2d39fc39e58849efd8078af09428663d91df70bf60f3fcdfdc80723c9b9de987",
+        "static_diagnostics": "611b0b07972b4667094b338c4bb2a67e1a86916a684cc9973dc80d957be2cc83",
+        "Coverage.__init__": "efd862f71d3e810798992594f398f736df3c8b245bdcd21ba265b91ed9ef9cba",
+        "Coverage.observe": "6fa7e1e31cad8b69432066b60afaf388201146d2fe113c0f1d0ff3cccbb01be6",
+        "Coverage.report": "b8631fcdc623337623dcf0f80b16922a5b9b312b3cc270b687c9227cc543a854"
+      }
+    },
+    "llm4ad.task.optimization.fjsp_set.scheduler": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "source_sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+      "loaded_functions": {
+        "construct_schedule": "836fd6f03a6cad7032c80f9871fe13d969623b896e5553571a92da50f0c592a4",
+        "validate_schedule": "7a4f6e02ed55c061dd4eeb6bad4394f58bd72a2fc19948afd07bfe31d941f7b5"
+      }
+    },
+    "llm4ad.task.optimization.fjsp_set.instances": {
+      "file": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "source_sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+      "loaded_functions": {
+        "load_instance": "e0d04fcc39c7d32ea5033edd1537354567061102edff4dbd61f676de1e7dff53"
+      }
+    }
+  },
+  "identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+}

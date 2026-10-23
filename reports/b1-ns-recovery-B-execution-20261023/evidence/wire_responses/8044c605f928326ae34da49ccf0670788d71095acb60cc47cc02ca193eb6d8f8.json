@@ -1,0 +1,30 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/g0000/000005/attempt/01",
+  "prompt_key": "60431ec3dc719771c96f91a64bc0a01f1ef6c769b18ee11e685d2bec81c9d901",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent always selects member 5. The main modification is to retain member 5 while adding member 9 with increasing weight as machine-ready dispersion grows relative to mean remaining job work, testing whether its stronger processing-time penalty and explicit waiting penalty help in those states. This is a design hypothesis without evaluation evidence; zero machine-ready dispersion preserves the parent's single-member behavior.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    additional_weight = machine_ready_std / (remaining_work_mean + machine_ready_std)\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, additional_weight))\n```",
+    "usage": {
+      "input_tokens": 10073,
+      "output_tokens": 343
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230249500741090668268d9d6ynxQknkA",
+      "x-request-id": "51b73c89-c067-439c-8437-4abcb5f51dd8",
+      "date": "Fri, 23 Oct 2026 02:50:06 GMT",
+      "gateway_request_id": "202610230249500741090668268d9d6ynxQknkA",
+      "cached_tokens": 4096,
+      "reasoning_tokens": 156,
+      "id": "resp_0353dedb29490e38016adacb4ebcb881919c2f1fee1d28ebc6",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

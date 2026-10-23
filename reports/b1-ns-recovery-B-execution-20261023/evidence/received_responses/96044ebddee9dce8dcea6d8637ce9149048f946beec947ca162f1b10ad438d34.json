@@ -1,0 +1,23 @@
+{
+  "text": "```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if remaining_work_mean > 0.5:\n        return (0, (0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if machine_ready_std > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n```",
+  "usage": {
+    "input_tokens": 11456,
+    "output_tokens": 227
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610230242489794930018268d9d6YW7Yx0lP",
+    "x-request-id": "da37ae56-c974-428e-a0c4-1f892162da92",
+    "date": "Fri, 23 Oct 2026 02:42:56 GMT",
+    "gateway_request_id": "202610230242489794930018268d9d6YW7Yx0lP",
+    "cached_tokens": 2506,
+    "id": "resp_0cc4e9879fca80fb016adac9ac3378819bbf79f5c00ba7ea0a",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

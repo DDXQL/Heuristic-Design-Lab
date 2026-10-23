@@ -1,0 +1,15 @@
+{
+  "person": "DDXQL",
+  "approved": true,
+  "approved_at_utc": "2026-10-23T02:38:39.726988+00:00",
+  "protocol_sha256": "565537b020173b30a6bd41d316228691892c500c8bcecb3266491d70193bcd72",
+  "scope": "First revalidate three original U; only after all exact checks and inheritance checks succeed continue from INIT7 through original two generations.",
+  "inherited_logical_tasks": 6,
+  "inherited_api_attempts": 6,
+  "remaining_logical_tasks_max": 34,
+  "remaining_api_attempts_max": 54,
+  "per_task_attempt_cap": 3,
+  "original_protocol_unchanged": true,
+  "no_validation_test": true,
+  "no_automatic_retry_on_stop_conditions": true
+}

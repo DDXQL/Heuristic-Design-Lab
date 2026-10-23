@@ -1,0 +1,24 @@
+{
+  "text": "{Parent 0 contributes member 5 as a stable baseline, while Parent 1 contributes relative-dispersion signals and the contrast between member 0's linear remaining-work emphasis and member 9's stronger processing-efficiency and waiting penalties. The new strategy mixes member 5 with member 0 when progress-discounted work dispersion exceeds combined progress and readiness dispersion, otherwise with member 9; the selected signal sets the partner's weight. This relationship is an unvalidated hypothesis requiring external complete-schedule evaluation on all training instances.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_signal = (1.0 - progress) * work_dispersion\n    efficiency_signal = 0.5 * (progress + ready_dispersion)\n\n    if work_signal > efficiency_signal:\n        partner_weight = 0.25 + 0.75 * work_signal\n        return (1, (partner_weight, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    else:\n        partner_weight = 0.25 + 0.75 * efficiency_signal\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, partner_weight))\n```",
+  "usage": {
+    "input_tokens": 10448,
+    "output_tokens": 571
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202610230246075795117838268d9d6r3uVtcTV",
+    "x-request-id": "b2f59cc3-c285-44d5-8cfd-a7afaeed716a",
+    "date": "Fri, 23 Oct 2026 02:46:51 GMT",
+    "gateway_request_id": "202610230246075795117838268d9d6r3uVtcTV",
+    "cached_tokens": 2450,
+    "reasoning_tokens": 198,
+    "id": "resp_0f55cf1822c3b818016adaca87c4c081a1b89fd9966d9a9160",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

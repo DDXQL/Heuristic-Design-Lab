@@ -1,0 +1,97 @@
+{
+  "all_saved_prompt_bytes_replayed": 19,
+  "rank_sampling_seed501_matches": true,
+  "CROSS_parents": 2,
+  "MUTATE_parents": 1,
+  "one_child_per_logical_task": true,
+  "parent_trace": [
+    {
+      "id": "B/g0000/000000",
+      "parents": [
+        "B/init/000008",
+        "B/init/000005"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000001",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000002",
+      "parents": [
+        "B/init/000002",
+        "B/init/000008"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000003",
+      "parents": [
+        "B/init/000005",
+        "B/init/000002"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000004",
+      "parents": [
+        "B/init/000001",
+        "B/init/000002"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000005",
+      "parents": [
+        "B/init/000002"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000006",
+      "parents": [
+        "B/init/000006"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000007",
+      "parents": [
+        "B/init/000005"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000008",
+      "parents": [
+        "B/init/000006"
+      ],
+      "rank_sampling_replayed": true
+    },
+    {
+      "id": "B/g0000/000009",
+      "parents": [
+        "B/init/000002"
+      ],
+      "rank_sampling_replayed": true
+    }
+  ],
+  "survival": [
+    {
+      "generation": 0,
+      "offspring_surviving": [
+        "B/g0000/000006",
+        "B/g0000/000008",
+        "B/g0000/000001",
+        "B/g0000/000000"
+      ],
+      "strict_champion_improvement": false
+    }
+  ],
+  "second_generation_requests": 0
+}

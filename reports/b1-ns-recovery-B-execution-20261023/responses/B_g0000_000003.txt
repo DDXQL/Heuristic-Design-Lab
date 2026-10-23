@@ -1,0 +1,13 @@
+{This combines Parent 0’s state-dependent selection with Parent 1’s preference for member 5. When machine readiness is highly dispersed, it selects member 6, whose score includes machine readiness and mismatch; otherwise it favors member 5, which balances remaining work, processing efficiency, and completion timing. These are hypotheses based on the supplied formulas, not claims of state-level superiority.}
+```python
+def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
+    if previous_heuristic == -1:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))
+    if machine_ready_std > 0.2:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))
+    if remaining_work_std > 0.2 and remaining_work_mean < 0.25:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))
+    if candidate_pair_ratio < 0.35 or progress > 0.75:
+        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))
+    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))
+```

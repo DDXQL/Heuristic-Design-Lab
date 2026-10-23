@@ -1,0 +1,241 @@
+{
+  "P0": [
+    {
+      "id": "B/init/000006",
+      "fitness": -2.115159624699559,
+      "candidate": {
+        "description": "Deterministic SELECT policy using bounded state summaries; its member choices are design hypotheses, not performance claims.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "3f6963be06fb56e3a6b4469b78331256e5e2d6881e0536b253e3fe7c8a9afcc7",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "B/init/000002",
+      "fitness": -2.4010715776754177,
+      "candidate": {
+        "description": "A constant selector is used; this makes no claim about comparative performance.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "B/init/000008",
+      "fitness": -2.404627600830643,
+      "candidate": {
+        "description": "U mixes member 0's linear remaining-work emphasis with member 9's processing-efficiency and waiting penalties, increasing their respective weights with relative remaining-work dispersion and with operation-count progress plus relative machine-readiness dispersion. This is an unvalidated design hypothesis, not a claim of superiority; fitness requires evaluation on every training instance.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "8e8288d5e9212d7359ed25b0e5be79a563324ac3e5cab45429022f56e9a5bf85",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "B/init/000005",
+      "fitness": -2.5270363059129246,
+      "candidate": {
+        "description": "This deterministic selector favors members whose scoring formulas explicitly balance remaining work, processing efficiency, and completion timing, with state-dependent choices based only on the supplied summaries. It handles the first step explicitly and always returns ten finite scalar scores.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    },
+    {
+      "id": "B/init/000001",
+      "fitness": -2.5611498256653267,
+      "candidate": {
+        "description": "Selects a single heuristic deterministically using normalized workload and machine-readiness dispersion. The first step and all later states use the same bounded state rules without treating member ids as quality ranks.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n",
+        "key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      }
+    }
+  ],
+  "P1": [
+    {
+      "id": "B/g0000/000006",
+      "candidate": {
+        "description": "The parent’s default is member 5, with narrow overrides for low pair availability and work dispersion, then a late-progress switch to member 9. The main change is to make that late switch depend on machine-readiness dispersion rather than mean readiness: member 9 explicitly penalizes job waiting, so dispersion is a more relevant available summary of uneven machine end times, while the other existing selection branches remain intact. This is a design hypothesis, not a claim of measured superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_std > 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "14971cef4bfa78dcdde17117ff1d1e3aae6c8c222c585baa8d2fb34fdb0342cd",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.115159624699559,
+      "scores": [
+        -1.6142857142857143,
+        -1.6266666666666667,
+        -1.4430379746835442,
+        -1.5921052631578947,
+        -1.8534752661239826,
+        -1.783206106870229,
+        -1.6503800217155264,
+        -1.2875,
+        -1.3205128205128205,
+        -1.7733333333333334,
+        -1.9012345679012346,
+        -3.2439502943100065,
+        -3.269230769230769,
+        -2.7699917559769167,
+        -1.4852941176470589,
+        -1.3970588235294117,
+        -1.8421052631578947,
+        -1.8767123287671232,
+        -3.2,
+        -3.175675675675676,
+        -4.31259535514494
+      ]
+    },
+    {
+      "id": "B/g0000/000008",
+      "candidate": {
+        "description": "The parent defaults to member 5, with narrow overrides for members 1, 4, and 9. The main change is to make the default depend on normalized machine-readiness dispersion: member 7 accounts for readiness mismatch, while member 5 remains the default when machines are more evenly loaded; the existing late-progress override to member 9 is retained because its score directly accounts for waiting. These mappings are behavioral hypotheses based on the supplied state summaries and member descriptions, not claims of measured superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if machine_ready_std > 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "8858af67cea87db6ddd4f633c447b92fe21de83e369a016b54927a20977f5c7b",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.115159624699559,
+      "scores": [
+        -1.6142857142857143,
+        -1.6266666666666667,
+        -1.4430379746835442,
+        -1.5921052631578947,
+        -1.8534752661239826,
+        -1.783206106870229,
+        -1.6503800217155264,
+        -1.2875,
+        -1.3205128205128205,
+        -1.7733333333333334,
+        -1.9012345679012346,
+        -3.2439502943100065,
+        -3.269230769230769,
+        -2.7699917559769167,
+        -1.4852941176470589,
+        -1.3970588235294117,
+        -1.8421052631578947,
+        -1.8767123287671232,
+        -3.2,
+        -3.175675675675676,
+        -4.31259535514494
+      ]
+    },
+    {
+      "id": "B/init/000006",
+      "candidate": {
+        "description": "Deterministic SELECT policy using bounded state summaries; its member choices are design hypotheses, not performance claims.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "3f6963be06fb56e3a6b4469b78331256e5e2d6881e0536b253e3fe7c8a9afcc7",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.115159624699559,
+      "scores": [
+        -1.6142857142857143,
+        -1.6266666666666667,
+        -1.4430379746835442,
+        -1.5921052631578947,
+        -1.8534752661239826,
+        -1.783206106870229,
+        -1.6503800217155264,
+        -1.2875,
+        -1.3205128205128205,
+        -1.7733333333333334,
+        -1.9012345679012346,
+        -3.2439502943100065,
+        -3.269230769230769,
+        -2.7699917559769167,
+        -1.4852941176470589,
+        -1.3970588235294117,
+        -1.8421052631578947,
+        -1.8767123287671232,
+        -3.2,
+        -3.175675675675676,
+        -4.31259535514494
+      ]
+    },
+    {
+      "id": "B/g0000/000001",
+      "candidate": {
+        "description": "This strategy inherits Parent 0's sparse-candidate, low-remaining-work condition and late-progress preference for member 9, together with Parent 1's use of machine-readiness dispersion to favor member 8. It combines these ideas through two-member mixtures: member 1 contributes its finish-plus-tail preference in sparse states, while elsewhere member 5 is balanced against member 8 or 9 using relative dispersion and progress, without identifying a bottleneck machine. These mappings are hypotheses for external complete-schedule evaluation, not established state-level advantages.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (0.01 + remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.01 + machine_ready_mean + machine_ready_std)\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        finish_weight = 0.25 + 0.35 * progress * (1.0 - candidate_pair_ratio)\n        return (1, (0.0, finish_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - finish_weight))\n    if ready_dispersion > work_dispersion:\n        efficiency_weight = 0.35 + 0.3 * (ready_dispersion - work_dispersion)\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - efficiency_weight, 0.0, 0.0, efficiency_weight, 0.0))\n    wait_weight = 0.2 + 0.4 * progress + 0.15 * ready_dispersion\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0 - wait_weight, 0.0, 0.0, 0.0, wait_weight))\n",
+        "key": "af1c6500f7b8ac8488a8c2503ef769fe06e21183b2d69b07133262b32a94026f",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.2776599654065897,
+      "scores": [
+        -1.5,
+        -1.4133333333333333,
+        -1.4430379746835442,
+        -1.486842105263158,
+        -2.21665623043206,
+        -2.448854961832061,
+        -2.2056770590972543,
+        -1.1625,
+        -1.2179487179487178,
+        -1.8133333333333332,
+        -1.728395061728395,
+        -3.6363636363636362,
+        -3.5128205128205128,
+        -3.36356141797197,
+        -1.338235294117647,
+        -1.5,
+        -1.8289473684210527,
+        -1.917808219178082,
+        -3.6533333333333333,
+        -3.5,
+        -4.943210713680285
+      ]
+    },
+    {
+      "id": "B/g0000/000000",
+      "candidate": {
+        "description": "Parent 0 increases member 0's mixture weight with relative remaining-work dispersion and member 9's weight with progress and relative machine-readiness dispersion; Parent 1 instead selects member 8 initially and member 9 under low candidate availability or late progress. This strategy combines those ideas by mixing member 0 with member 8 initially, then choosing member 8 or 9 using progress and candidate availability, while continuously adjusting weights: member 0 emphasizes remaining work, member 8 applies a cubic processing-efficiency penalty, and member 9 applies a squared efficiency penalty and a different waiting factor. Any benefit remains a hypothesis requiring external evaluation on every training instance.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if previous_heuristic == -1:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n    transition = progress + 0.5 * (1.0 - candidate_pair_ratio)\n    if transition >= 0.75:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n",
+        "key": "048e0edd7e8b6bf0caeed92ee89aab5be0962efc6ffdf3c4ff4281c6a2e4a077",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "fitness": -2.38633390280752,
+      "scores": [
+        -1.4285714285714286,
+        -1.4133333333333333,
+        -1.4556962025316456,
+        -1.5921052631578947,
+        -2.128991859737007,
+        -2.186259541984733,
+        -2.1095082984333797,
+        -1.2375,
+        -1.3205128205128205,
+        -1.9866666666666666,
+        -1.7654320987654322,
+        -3.963374754741661,
+        -3.7564102564102564,
+        -3.7658697444352844,
+        -1.4852941176470589,
+        -1.3529411764705883,
+        -1.855263157894737,
+        -2.0136986301369864,
+        -3.8266666666666667,
+        -3.945945945945946,
+        -5.5229699949143924
+      ]
+    }
+  ]
+}

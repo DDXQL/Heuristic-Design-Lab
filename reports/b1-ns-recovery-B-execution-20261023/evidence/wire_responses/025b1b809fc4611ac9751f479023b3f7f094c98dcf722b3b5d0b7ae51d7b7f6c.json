@@ -1,0 +1,29 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/g0000/000008/attempt/01",
+  "prompt_key": "c56d8ab8314569364edf77bf6e0176eda55b77437b22f7e944ba25d44d8bff5a",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{The parent defaults to member 5, with narrow overrides for members 1, 4, and 9. The main change is to make the default depend on normalized machine-readiness dispersion: member 7 accounts for readiness mismatch, while member 5 remains the default when machines are more evenly loaded; the existing late-progress override to member 9 is retained because its score directly accounts for waiting. These mappings are behavioral hypotheses based on the supplied state summaries and member descriptions, not claims of measured superiority.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if machine_ready_std > 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n```",
+    "usage": {
+      "input_tokens": 10467,
+      "output_tokens": 487
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230252209406261608268d9d6WzmzQeOq",
+      "x-request-id": "eed725a4-4997-4d8d-8193-a9ef1294c720",
+      "date": "Fri, 23 Oct 2026 02:52:32 GMT",
+      "gateway_request_id": "202610230252209406261608268d9d6WzmzQeOq",
+      "cached_tokens": 8461,
+      "id": "resp_0a3f5144d9bc0441016adacbecad408199b590987595dbf57c",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}

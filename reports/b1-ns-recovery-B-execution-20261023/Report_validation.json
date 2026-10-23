@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "evidence_files_verified": 145,
+  "decompressed_hashes_match_originals": true,
+  "credential_pattern_findings": [],
+  "logical_rows": 19,
+  "API_attempt_rows": 19,
+  "new_attempt_rows": 13,
+  "static_source_files": 15,
+  "complete_valid_candidates": 14,
+  "complete_valid_instance_rows": 294,
+  "failed_prefix_rows": 20,
+  "failed_null_rows": 1,
+  "partial_fitness_used": false,
+  "source_writer_active": false,
+  "safety_stop_retained": true,
+  "new_model_requests_or_evaluations_in_analysis": 0
+}

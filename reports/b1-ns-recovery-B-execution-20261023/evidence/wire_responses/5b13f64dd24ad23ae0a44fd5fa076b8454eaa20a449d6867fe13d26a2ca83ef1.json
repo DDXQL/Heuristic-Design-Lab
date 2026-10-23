@@ -1,0 +1,30 @@
+{
+  "global_key": "B1-NS-full-H-free-seed501-k2-v1-20261022/r501/B/B/g0000/000004/attempt/01",
+  "prompt_key": "88a6b7429fbaf2b26ad9b01275134bbec8ffcd139590081fb11d3d409a946580",
+  "status": "wire_completed_before_settlement",
+  "send_confirmed": true,
+  "reply": {
+    "text": "{Parent 0 uses workload and machine-readiness dispersion to choose members, including member 8 for high readiness dispersion and member 5 for high workload dispersion; Parent 1 always selects member 5. This strategy combines member 5 as a baseline with a continuous weight on member 8, increasing that weight with relative readiness dispersion and decreasing it with relative workload dispersion; member 8 applies a stronger processing-efficiency penalty and an explicit waiting penalty. This relationship is a hypothesis for external complete-schedule evaluation, not evidence of state-level superiority.}\n```python\ndef use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    readiness_dispersion = machine_ready_std / (\n        machine_ready_mean + machine_ready_std + remaining_work_mean\n    )\n    workload_dispersion = remaining_work_std / (\n        remaining_work_mean + remaining_work_std\n    )\n    weight_8 = 0.15 + 0.55 * readiness_dispersion - 0.10 * workload_dispersion\n    weight_5 = 1.0 - weight_8\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, weight_5, 0.0, 0.0, weight_8, 0.0))\n```",
+    "usage": {
+      "input_tokens": 10452,
+      "output_tokens": 496
+    },
+    "metadata": {
+      "failure_stage": "http_receive",
+      "http_status": 200,
+      "http_content_type": "application/json; charset=utf-8",
+      "x-oneapi-request-id": "202610230248337520423078268d9d6HjT1Snj2",
+      "x-request-id": "20153924-4782-46ae-a84f-ec64f68feadf",
+      "date": "Fri, 23 Oct 2026 02:48:47 GMT",
+      "gateway_request_id": "202610230248337520423078268d9d6HjT1Snj2",
+      "cached_tokens": 4096,
+      "reasoning_tokens": 203,
+      "id": "resp_00cf631ddcbc5c69016adacb026d0c8196b044670c6b488b78",
+      "model": "gpt-6.1-sol",
+      "finish_reason": "stop",
+      "content_type": "str",
+      "refusal_present": false,
+      "tool_calls_present": false
+    }
+  }
+}
