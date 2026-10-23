@@ -188,6 +188,32 @@ class RecoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(BudgetStop,'revalidation not ready'):
                 recovery.execute(self.directory,'continue')
 
+    def test_conditional_full_execute_bridge_revalidates_migrates_then_finishes_two_generations(self):
+        """The two EXISTING execution gates, whole native search, synthetic only."""
+        f=self.fixture;inner=ns_fixture.Inner(f.config)
+        inner.answers=[mock_code(3),mock_code(4)]
+        env_file=(f.path/'MOCK.env').resolve();p={**self.p,'config':f.config.payload(),'credential_source':str(env_file)}
+        original=recovery.input_manifest(self.directory/'inherited')
+        with patch.object(recovery,'require_execution',return_value=p) as gates, \
+                patch.object(recovery,'check',return_value=p), \
+                patch.object(recovery,'evaluator',side_effect=[(self.recheck,f.members),(f.evaluator,f.members)]), \
+                patch('fjsp_usage.research_real.leafapi.load_local_key',return_value='MOCK-ONLY'), \
+                patch('fjsp_usage.research_real.real_transport.JsonCandidateTransport',return_value=inner), \
+                patch.dict('os.environ',{},clear=False):
+            state=recovery.execute(self.directory,'revalidate')
+            self.assertTrue(state['ready']);self.assertEqual(len(self.calls),3)
+            inherited,ledger=recovery.inherited_state(self.directory)
+            self.assertEqual((len(ledger['requests']),len(ledger['api_attempts'])),(6,6))
+            recovery.execute(self.directory,'continue',env_file)
+        self.assertEqual([call.args[1] for call in gates.call_args_list],['revalidate','continue'])
+        result=ns.read(self.directory/'Search_status.json')
+        self.assertEqual(result['phase'],'completed');self.assertEqual(result['generation'],2)
+        self.assertEqual(result['initialization_requests'],8);self.assertEqual(result['evolution_requests'],20)
+        self.assertEqual(result['api_attempt_budget']['api_attempts_consumed'],28)
+        self.assertEqual(len(inner.sent),22)
+        self.assertTrue(all('/B/init/00000'+str(i)+'/attempt/' not in key for key,_ in inner.sent for i in range(6)))
+        self.assertEqual(recovery.input_manifest(self.directory/'inherited'),original)
+
     def test_approved_stage_still_cannot_execute_from_shared_workspace(self):
         atomic_json(self.directory/'revalidate.Authorization.json',recovery.approval(self.directory,'revalidate',True))
         with patch.object(recovery,'check',return_value={'source_snapshot':str(self.directory/'mock-snapshot')}):

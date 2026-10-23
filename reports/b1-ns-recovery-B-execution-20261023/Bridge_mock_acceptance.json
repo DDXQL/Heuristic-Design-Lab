@@ -1,0 +1,29 @@
+{
+  "stage": "conditional_execution_bridge_offline",
+  "checked_at_utc": "2026-10-23T02:38:38.924591+00:00",
+  "protocol_sha256": "565537b020173b30a6bd41d316228691892c500c8bcecb3266491d70193bcd72",
+  "frozen_code_or_protocol_changed": false,
+  "new_test": "test_conditional_full_execute_bridge_revalidates_migrates_then_finishes_two_generations",
+  "tests_run": 4,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 1.663,
+  "mock_observation": {
+    "revalidated": 3,
+    "inherited_logicals": 6,
+    "inherited_attempts": 6,
+    "new_mock_API_attempts": 22,
+    "total_mock_API_attempts": 28,
+    "init_logicals": 8,
+    "evolution_logicals": 20,
+    "generations_completed": 2,
+    "old_requests_resent": 0
+  },
+  "negative_checks": [
+    "revalidation_mismatch_stops",
+    "not_ready_no_credentials_or_evaluator",
+    "interrupted_migration_preserves_budget"
+  ],
+  "synthetic_only": true,
+  "conditional_orchestration": "Existing revalidate CLI must complete and all three match; only then register continue approval and execute existing continue CLI."
+}
