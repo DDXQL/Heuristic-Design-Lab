@@ -1,0 +1,23 @@
+test_changed_or_incomplete_manifest_stops (test_b1_timeout_boundary.BoundaryTests.test_changed_or_incomplete_manifest_stops) ... ok
+test_collector_records_termination_and_does_not_repeat (test_b1_timeout_boundary.BoundaryTests.test_collector_records_termination_and_does_not_repeat) ... ok
+test_complete_matching_identity_delegates_original_result_check (test_b1_timeout_boundary.BoundaryTests.test_complete_matching_identity_delegates_original_result_check) ... ok
+test_confirmed_timeout_is_invalid_never_prefix_fitness (test_b1_timeout_boundary.BoundaryTests.test_confirmed_timeout_is_invalid_never_prefix_fitness) ... ok
+test_eof_is_not_timeout (test_b1_timeout_boundary.BoundaryTests.test_eof_is_not_timeout) ... ok
+test_historical_missing_lifecycle_still_stops (test_b1_timeout_boundary.BoundaryTests.test_historical_missing_lifecycle_still_stops) ... ok
+test_identity_mismatch_stops_even_if_timeout (test_b1_timeout_boundary.BoundaryTests.test_identity_mismatch_stops_even_if_timeout) ... ok
+test_kill_escalation_preserves_unknown_if_still_alive (test_b1_timeout_boundary.BoundaryTests.test_kill_escalation_preserves_unknown_if_still_alive) ... ok
+test_live_wrong_pid_unknown_exit_and_started_receipt_stop (test_b1_timeout_boundary.BoundaryTests.test_live_wrong_pid_unknown_exit_and_started_receipt_stop) ... ok
+test_normal_completion_missing_after_stops (test_b1_timeout_boundary.BoundaryTests.test_normal_completion_missing_after_stops) ... ok
+test_persistence_failure_does_not_leave_worker_unmanaged (test_b1_timeout_boundary.BoundaryTests.test_persistence_failure_does_not_leave_worker_unmanaged) ... ok
+test_unexpected_exit_or_timeout_without_termination_stops (test_b1_timeout_boundary.BoundaryTests.test_unexpected_exit_or_timeout_without_termination_stops) ... ok
+test_worker_failure_and_forged_before_stop (test_b1_timeout_boundary.BoundaryTests.test_worker_failure_and_forged_before_stop) ... ok
+test_native_result_saved_before_missing_identity_stops_acceptance (test_b1_ns_recovery.RecoveryTests.test_native_result_saved_before_missing_identity_stops_acceptance) ... ok
+test_worker_identity_change_is_reported_not_silently_accepted (test_b1_ns_recovery.RecoveryTests.test_worker_identity_change_is_reported_not_silently_accepted) ... ok
+test_frozen_wrapper_cannot_be_excluded (test_b1_ns_recovery.RecoveryTests.test_frozen_wrapper_cannot_be_excluded) ... ok
+test_conditional_full_execute_bridge_revalidates_migrates_then_finishes_two_generations (test_b1_ns_recovery.RecoveryTests.test_conditional_full_execute_bridge_revalidates_migrates_then_finishes_two_generations)
+The two EXISTING execution gates, whole native search, synthetic only. ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.392s
+
+OK

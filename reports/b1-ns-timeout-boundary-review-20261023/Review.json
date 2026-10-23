@@ -1,0 +1,65 @@
+{
+  "scope": "targeted offline review; no API/evaluation/replay",
+  "snapshot_files_checked": 181,
+  "original_pins_checked": 143,
+  "current_core_mismatches": [],
+  "original_47_sha_mtime_unchanged": true,
+  "source_run_all_sha_mtime_unchanged": true,
+  "complete_valid_identity_pairs": 14,
+  "logical_tasks": 19,
+  "api_attempts": 19,
+  "pending_requests": 0,
+  "pending_evaluations": 0,
+  "journal_halt_reason": null,
+  "identity_stop_exists": true,
+  "P1_matches_original_survival": true,
+  "P1": [
+    [
+      "B/g0000/000006",
+      -2.115159624699559,
+      "14971cef4bfa78dcdde17117ff1d1e3aae6c8c222c585baa8d2fb34fdb0342cd"
+    ],
+    [
+      "B/g0000/000008",
+      -2.115159624699559,
+      "8858af67cea87db6ddd4f633c447b92fe21de83e369a016b54927a20977f5c7b"
+    ],
+    [
+      "B/init/000006",
+      -2.115159624699559,
+      "3f6963be06fb56e3a6b4469b78331256e5e2d6881e0536b253e3fe7c8a9afcc7"
+    ],
+    [
+      "B/g0000/000001",
+      -2.2776599654065897,
+      "af1c6500f7b8ac8488a8c2503ef769fe06e21183b2d69b07133262b32a94026f"
+    ],
+    [
+      "B/g0000/000000",
+      -2.38633390280752,
+      "048e0edd7e8b6bf0caeed92ee89aab5be0962efc6ffdf3c4ff4281c6a2e4a077"
+    ]
+  ],
+  "RNG_matches_first_generation_parent_draws": true,
+  "generation": 1,
+  "cursor": 0,
+  "second_generation_requests": 0,
+  "failed_candidate": "B/g0000/000009",
+  "native_failure": {
+    "error_type": "Timeout",
+    "error": "whole-instance deadline exceeded",
+    "failed_instance": "Behnke57.fjsp",
+    "fitness": null,
+    "parent_observed_instance_seconds": 15.002655584015884
+  },
+  "before_pid": 69192,
+  "pid_observation": "not_present_at_review_only",
+  "historical_exitcode_and_terminal_receipt": null,
+  "historical_boundary_decision": {
+    "decision": "stop",
+    "reason": "termination_unknown",
+    "fitness": null
+  },
+  "writer_lock_exists": false,
+  "ready_for_real_resume": false
+}

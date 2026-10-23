@@ -1,0 +1,15 @@
+{
+  "scope": "synthetic responses/results/lifecycle only; no API/FJSP/data load",
+  "tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "new_boundary_tests": 13,
+  "reused_protection_tests": [
+    "test_native_result_saved_before_missing_identity_stops_acceptance",
+    "test_worker_identity_change_is_reported_not_silently_accepted",
+    "test_frozen_wrapper_cannot_be_excluded",
+    "test_conditional_full_execute_bridge_revalidates_migrates_then_finishes_two_generations"
+  ],
+  "installed_in_production": false
+}
