@@ -1,0 +1,14 @@
+{
+  "status": "terminal",
+  "pid": 63974,
+  "deadline_seconds": 15,
+  "started_monotonic": 640407.459229291,
+  "trigger": "parent_poll_timeout",
+  "cleanup": [
+    "join_0.05",
+    "terminate"
+  ],
+  "alive": false,
+  "exitcode": -15,
+  "finished_monotonic": 640471.92296675
+}

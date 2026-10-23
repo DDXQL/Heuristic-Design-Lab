@@ -1,0 +1,10 @@
+strategy,valid,completed_instances,failed_instance,error_type,exitcode,alive,boundary_decision,end_identity
+H0_H1_WEIGHTED_SUM,True,21,,,0,False,original_result_checks_required,matched
+H0_H1_MAX,True,21,,,0,False,original_result_checks_required,matched
+H0_H1_MIN,True,21,,,0,False,original_result_checks_required,matched
+H0_H5_WEIGHTED_SUM,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated
+H0_H5_MAX,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated
+H0_H5_MIN,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated
+H5_H9_WEIGHTED_SUM,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated
+H5_H9_MAX,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated
+H5_H9_MIN,False,20,Behnke57.fjsp,Timeout,-15,False,candidate_invalid_continue,unavailable_confirmed_terminated

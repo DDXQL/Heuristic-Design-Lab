@@ -1,0 +1,21 @@
+{
+  "protocol_sha256": "363a7b3c76cc708630db169398ce0c747471d8872c942deb4f223b1a08b66bfe",
+  "analysis_source_sha256": "e4f3bc47a3b0290490ffea4b0aeba9dc2b7dc2d79f606b5093d9ccc0f10af9b4",
+  "analysis_scope": "post-evaluation recombination/audit only; frozen operators/pairs/metric unchanged",
+  "new_solves": 0,
+  "new_H_calls": 0,
+  "new_API_requests": 0,
+  "189_rows": 189,
+  "complete_pairs": 183,
+  "null_timeout_rows": 6,
+  "valid_strategies": 3,
+  "confirmed_timeout_strategies": 6,
+  "identity_mismatches": 0,
+  "unknown_process_terminations": 0,
+  "same_state_occurrences": 31200,
+  "same_state_deduplicated_union": 30245,
+  "source_protection_final_check": "PASS",
+  "floating_point_raw_endpoint_exceptions": 2,
+  "MAX_corrected_interpretation": "MAX selects the first top action of normalized columns; finite min-max can merge distinct raw scores, so it need not equal a raw SELECT endpoint",
+  "quality_boundary": "only H01 has a complete three-operator comparison; cross-pair ranking consistency is unknown"
+}

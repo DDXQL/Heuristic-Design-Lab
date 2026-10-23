@@ -1,0 +1,9 @@
+{
+  "command": "PYTHONPATH=code:. .venv/bin/python -B -m unittest tests.test_fusion_v2 tests.test_U_usage_v2 tests.test_fjsp_usage_v2 tests.test_b1_timeout_boundary -q",
+  "tests_run": 54,
+  "result": "OK",
+  "source_tests_sha256": "b4fe0695a634d13f1b6345cc1f0f1aed265dbb693676dfe662170f4f28405583",
+  "evidence": "completed before preparation of the formal v2 run; includes real spawned toy worker, math/V1 regressions and mocked timeout lifecycle",
+  "new_formal_evaluations": 0,
+  "real_API_requests": 0
+}
