@@ -1,0 +1,278 @@
+{
+  "budget": {
+    "grid_references": 21,
+    "grid_new_full_evaluations": 16,
+    "grid_reused": 5,
+    "manual_P0": 5,
+    "manual_P0_is_subset_of_grid": true,
+    "B2_logical_generation_requests": 20,
+    "B2_actual_API_attempts": 20,
+    "B2_API_retries": 0,
+    "B2_complete_valid_new_evaluations": 19,
+    "B2_duplicate_requests": 1,
+    "B2_duplicate": {
+      "id": "B/g0001/000008",
+      "operator": "MUTATE",
+      "parents": [
+        "B/g0000/000008"
+      ],
+      "status": "duplicate",
+      "code_key": "92f8e5fe9d7e91d78683f897f98567d14eb2e9bdbae05e1dbb3fc371aca5720e",
+      "duplicate_of": "B/g0001/000007"
+    },
+    "B2_failed_solve_evaluations": 0,
+    "new_full_evaluations_grid_plus_evolution": 35,
+    "new_program_instance_evaluations": 735,
+    "new_solve_passes": 1470,
+    "new_grid_and_evolution_first_seconds": 452.54681446932955,
+    "new_grid_and_evolution_recheck_seconds": 453.5099808460218,
+    "extra_grid16_in_manual_P0": false,
+    "reused_program_instance_evaluations": 105,
+    "note": "R&D references and a single search incremental budget are different; no invoices queried."
+  },
+  "science_sources": [
+    {
+      "path": "code/fjsp_usage/offline_v2.py",
+      "pinned_sha256": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+      "current_sha256": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research/candidates.py",
+      "pinned_sha256": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+      "current_sha256": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/usage_v2/candidates.py",
+      "pinned_sha256": "5b629f08df3960df18d24085a64732b43bee7567e5cf4e4c21f5ad4bac1f43b0",
+      "current_sha256": "5b629f08df3960df18d24085a64732b43bee7567e5cf4e4c21f5ad4bac1f43b0",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/usage_v2/execution.py",
+      "pinned_sha256": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+      "current_sha256": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/runtime.py",
+      "pinned_sha256": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+      "current_sha256": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "pinned_sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+      "current_sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "pinned_sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+      "current_sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "tools/usage_mechanism_ablation.py",
+      "pinned_sha256": "8f46ff2420db2e4783ff36bb82c403f8b594b4ff1c7fb38f10588d4cb0f1d1e4",
+      "current_sha256": "8f46ff2420db2e4783ff36bb82c403f8b594b4ff1c7fb38f10588d4cb0f1d1e4",
+      "current_matches": true,
+      "pin_origin": "B2-pinned earlier grid Plan",
+      "execution_commit_matches": true
+    },
+    {
+      "path": "tools/h01_weight_search.py",
+      "pinned_sha256": "ac1b1edd4f0b2d88e26252e7e9ca651cee83c6480f26c671e5198dad493eb91a",
+      "current_sha256": "ac1b1edd4f0b2d88e26252e7e9ca651cee83c6480f26c671e5198dad493eb91a",
+      "current_matches": true,
+      "pin_origin": "B2 Plan",
+      "execution_commit_matches": true
+    }
+  ],
+  "train21": [
+    {
+      "file": "Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1",
+      "relative_path": "inputs/train/Behnke1.fjsp",
+      "LB": 70.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d",
+      "relative_path": "inputs/train/Behnke2.fjsp",
+      "LB": 75.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "sha256": "ab1b801d6511a5e6cfe2ddbbceab456a8f168bab8f41b8602647ac84e7f0bd06",
+      "relative_path": "inputs/train/Behnke3.fjsp",
+      "LB": 79.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "sha256": "5fedca81cc5b4d08885f0c3beb1476ada6e8d269a74ca61dcca4f64a4b4828f4",
+      "relative_path": "inputs/train/Behnke4.fjsp",
+      "LB": 76.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "sha256": "a22c9aa60791db298ddb90b977b448b86e7a125eb298c41cafae74be55de7824",
+      "relative_path": "inputs/train/Behnke13.fjsp",
+      "LB": 159.7,
+      "operations": 250
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "sha256": "94c35ae8933d2201e6b328aa61b60190e9746f43e37dcbd7c33d78974a99dac2",
+      "relative_path": "inputs/train/Behnke14.fjsp",
+      "LB": 163.75,
+      "operations": 250
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "sha256": "4cb39580b22bed47bbd714a3337d6af1e5cea4fb3d218b36b94a2f8403f86dd1",
+      "relative_path": "inputs/train/Behnke19.fjsp",
+      "LB": 322.35,
+      "operations": 500
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "sha256": "a303bb6c188c429442d51315f0fec921479892126ff62fe228a43033a4ccf2ac",
+      "relative_path": "inputs/train/Behnke25.fjsp",
+      "LB": 80.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "sha256": "1a4315457ab6f43dfb4f9fc7a6588b292ee6e3811af52ce19516aa70bc3b90ff",
+      "relative_path": "inputs/train/Behnke21.fjsp",
+      "LB": 78.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "sha256": "e9ff0b55cc48abc20f0e37160246ce506511b85a461e1fe8f32cf1bccdfbcf35",
+      "relative_path": "inputs/train/Behnke29.fjsp",
+      "LB": 75.0,
+      "operations": 100
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "sha256": "137ba364379386ab3a6d94ad29025d1664d67b17bbc236e2b6364ebc613b24cb",
+      "relative_path": "inputs/train/Behnke27.fjsp",
+      "LB": 81.0,
+      "operations": 100
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "sha256": "d5215fd5c53e107d81e8cf669f7889e98d3ea2599341e08afa882ff86302b377",
+      "relative_path": "inputs/train/Behnke33.fjsp",
+      "LB": 76.45,
+      "operations": 250
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "sha256": "0eaf0b922ac3172882a4b85904b4bec1293e9002557b45056979be15b6fcf67c",
+      "relative_path": "inputs/train/Behnke34.fjsp",
+      "LB": 78.0,
+      "operations": 250
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "sha256": "b7be4d581ad0eb3193637d793679a279fb4871a7f959c3f049017966df5a96a7",
+      "relative_path": "inputs/train/Behnke36.fjsp",
+      "LB": 151.625,
+      "operations": 500
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "sha256": "292143a27f269e91e3318933b4494573d60c915840c477d47a3d4a5724eff9c3",
+      "relative_path": "inputs/train/Behnke43.fjsp",
+      "LB": 68.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "sha256": "ef047696b1546ace09b2c4685438657526821acf772cd2f60d81e772a82cdab7",
+      "relative_path": "inputs/train/Behnke44.fjsp",
+      "LB": 68.0,
+      "operations": 50
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "sha256": "5a2081d61f7a36f4c1939ad0bf9f46addb08fa4ad50bb06de4682bf2ef653f53",
+      "relative_path": "inputs/train/Behnke47.fjsp",
+      "LB": 76.0,
+      "operations": 100
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "sha256": "2e430a4c56f0f03eb469ce3cbba1414948afac832dcf84208d5b8403ee57d674",
+      "relative_path": "inputs/train/Behnke46.fjsp",
+      "LB": 73.0,
+      "operations": 100
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "sha256": "0876f4655f170c54232adfbb3e4b8d0982e87cc82c65b35ac2fc239c6c4b50af",
+      "relative_path": "inputs/train/Behnke51.fjsp",
+      "LB": 75.0,
+      "operations": 250
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "sha256": "52c6e7e9d6dd772c6bd2bf4a1bd63dfb780c47aea92799b9a51559901a5d1ab0",
+      "relative_path": "inputs/train/Behnke53.fjsp",
+      "LB": 74.0,
+      "operations": 250
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "sha256": "a429b93686d367db841e01e83df5de39c7fcb22b066ef5c173475ba14ca4e6d0",
+      "relative_path": "inputs/train/Behnke57.fjsp",
+      "LB": 98.31666666666666,
+      "operations": 500
+    }
+  ],
+  "H_order": [
+    "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+    "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+    "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+    "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+    "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+    "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+    "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+    "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+    "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+    "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03"
+  ],
+  "historical_execution_commit": "0b6432d970ab2b3cceb690f8a0afadab570033e7",
+  "result_hash_manifest": "reports/h01-state-weight-search-seed501-batch-v3-20261020/Original_result_hashes.json",
+  "modern_PID_exit0_receipts": "not reconstructed for historical grid/B2; retained legacy two-solve evidence",
+  "seed_scope": "B2 search seed501; static grid deterministic, reused native H entries have historical generation seed rather than a new seed501 solve",
+  "observed_dynamic_alpha": {
+    "min": 0.26274604371385935,
+    "max": 0.5396204804872137,
+    "distinct": 3800,
+    "recorded_steps": 3800
+  }
+}

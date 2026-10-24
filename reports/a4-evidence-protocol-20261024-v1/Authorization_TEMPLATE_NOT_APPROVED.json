@@ -1,0 +1,21 @@
+{
+  "approved": false,
+  "version": "A4-Static-RS-grid20-Q60-R5-v1-20261024",
+  "allow_new_FJSP": false,
+  "LLM_API_cap": 0,
+  "queries_per_repeat": 60,
+  "search_seeds": [
+    2026102601,
+    2026102602,
+    2026102603,
+    2026102604,
+    2026102605
+  ],
+  "solve_seed": 501,
+  "new_evaluation_cap": 6300,
+  "new_solve_pass_cap": 12600,
+  "instance_result_seconds": 30,
+  "wall_launch_budget_seconds": 21600,
+  "user_instruction_reference": "",
+  "note": "NOT AUTHORIZED THIS ROUND. Only a future explicit human instruction can populate a real approval file. This is not loaded by this round."
+}

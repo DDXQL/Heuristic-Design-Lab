@@ -1,0 +1,19 @@
+{
+  "scope": "Analytic expectations only; no formal indices sampled or scores queried",
+  "space_size": 865,
+  "queries_per_repeat": 60,
+  "repeats": 5,
+  "expected_pairs_visited_per_repeat": 33.6881706505827,
+  "expected_single_queries_per_repeat": 0.6936416184971098,
+  "probability_no_single_per_repeat": 0.48540120831613603,
+  "expected_unique_policies_all_repeats": 261.16960267938555,
+  "audited_quality_cache_policies": 73,
+  "expected_new_unique_policies": 239.12869979430445,
+  "logical_queries": 300,
+  "logical_instance_evaluations": 6300,
+  "logical_solve_passes": 12600,
+  "scenario_construct_seconds_using_old_equal_pair_mean": 8844.539730950788,
+  "scenario_note": "No guarantee: weights alter actions/cost; excludes source scans/startup/IPC/IO; cache entries need future identity gates",
+  "worst_result_wait_allocation_seconds": 189000,
+  "wall_launch_budget_seconds": 21600
+}

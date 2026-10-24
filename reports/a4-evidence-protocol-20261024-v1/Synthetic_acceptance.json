@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "tests_run": 10,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "code/fjsp_usage/a4_static/__init__.py": "f09d3c157577d0d60f20bcb7279d8608ed66b2154dc9f1115389c3f46e1ea829",
+    "code/fjsp_usage/a4_static/authorization.py": "cb43ee80760d3b358917b14523ad600ec871d135fe340481fc01ff6cc05913ee",
+    "code/fjsp_usage/a4_static/engine.py": "67443596d76e74ad98b53d89a156e6b66340fc11709f9550c09a34b19ee1af02",
+    "code/fjsp_usage/a4_static/model.py": "3921cc4a291cf07747d4d87049b7b9b03208d8e09276c3c14a675af9bdf7e785",
+    "docs/STATIC_BASELINE_SCOPE_ADDENDUM_V2.md": "9370939482e5efd370b5fac8894546a10eb7ae48a388c3ac01427da043c10372",
+    "docs/TIER2_A4_STATIC_SEARCH_PROTOCOL_V1.md": "7b8811b191c61d9a41df68339f50aaf95517defffe58351cf2f68b36c3166f5d",
+    "experiments/tier2/a4_static/run.py": "793a695412ef3fbd206c128b2e703f73ed71894d016f6bbca3d68fb20bbfeb47",
+    "tests/test_a4_static.py": "fd35037a5c8598839c8d07412256d73f7c0a9fad22adf0baa1e3858c2ec08693",
+    "tools/a4_static_audit.py": "0bbb7c456ca773b38a375b24766eb8ea9d3e22723ad407f5909a71452be1c9a0",
+    "tools/a4_static_experiment.py": "e8c291ffde4c1061877135fb29d0688289e9e4c8f6254a5262abf67c053e373a",
+    "tools/a4_static_report.py": "53b74f7db0f34cbfdbb4d25459cff895f3d26c7adc194e6350b6aa88db28e7cf"
+  },
+  "receipts": [
+    {
+      "mock": "synthetic7-policy/2-repeat campaign",
+      "summary": {
+        "mode": "synthetic",
+        "phase": "completed",
+        "completed_repeats": 2,
+        "completed_repeats_with_no_valid_strategy": 0,
+        "queries_consumed": 6,
+        "candidates_precommitted": 6,
+        "logical_evaluations_reserved": 12,
+        "physical_evaluations_reserved": 8,
+        "physical_passes_reserved": 16,
+        "valid_queries": 6,
+        "invalid_queries": 0,
+        "unique_tickets": 5,
+        "within_repeat_duplicate_queries": 0,
+        "historical_cache_hits": 1,
+        "campaign_cache_hits": 1,
+        "complete_repeat_quality": {
+          "n": 2,
+          "median": -2.625,
+          "min": -3.25,
+          "max": -2.0,
+          "q25": -2.9375,
+          "q75": -2.3125
+        },
+        "actual_new_evaluation_markers_and_costs": {
+          "first_starts": 0,
+          "recheck_starts": 0,
+          "complete_pair_markers": 0,
+          "primary_wall_seconds": 0.0,
+          "successful_prefix_first_seconds": 0.0,
+          "successful_prefix_recheck_seconds": 0.0,
+          "h_scoring_seconds": 0.0,
+          "fusion_seconds": 0.0
+        },
+        "invalid_rate": 0.0,
+        "construction_legal_rate": 1.0,
+        "failed_internal_solve_time": "unknown if terminated; parent wall included; no zero-filled failure cost",
+        "LLM_API_requests": 0,
+        "note": "No valid-prefix fitness; partial repeats are not full-budget final estimates. Search seeds, not solver timing replicates."
+      },
+      "formal_space_sampled": false
+    },
+    {
+      "mock": "real process, synthetic H and in-memory toy, no raw train open",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 33482,
+        "deadline_seconds": 30,
+        "started_monotonic": 673346.6216425,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": null,
+        "cleanup": [
+          "join_exit_grace_2.0"
+        ],
+        "expected_rows": 1,
+        "rows_received": 1,
+        "all_results_received": true,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": true,
+        "results_complete_monotonic": 673347.085657875,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "TOY.fjsp",
+            "started": 673346.622600208,
+            "deadline": 673376.622600208,
+            "finished": 673347.085487916,
+            "timely": true
+          }
+        ],
+        "exit_wait_observed_seconds": 0.02045050007291138,
+        "alive": false,
+        "exitcode": 0,
+        "finished_monotonic": 673347.106153625
+      },
+      "identity": "094702861e350ba1787309275b9c8da1969ba8a8c0b02cd7879c17d928d6c814"
+    }
+  ],
+  "formal_A4_plans_drawn": 0,
+  "formal_train_solves": 0,
+  "real_API_calls": 0,
+  "scope": "toy-index7 samples/synthetic results/in-memory toy only; future formal prepare explicitly denied by false authorization test"
+}

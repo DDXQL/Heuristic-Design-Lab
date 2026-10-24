@@ -1,0 +1,75 @@
+{
+  "complete": 21,
+  "best": {
+    "id": "alpha_050",
+    "H0_weight": 0.5,
+    "H1_weight": 0.5,
+    "valid": true,
+    "complete_instances": 21,
+    "fitness": -1.9831442949150015,
+    "sum_Cmax": 4047,
+    "mean_Cmax_over_LB": 1.9831442949150015,
+    "reused": true,
+    "in_manual_P0": true,
+    "candidate_key": "fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448",
+    "result_path": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_050.json",
+    "result_sha256": "e3f4d98e7f8813a212826c97d045d4558712fb3829f091c5b897afd6db511a04",
+    "first_seconds": 10.446331997867674,
+    "recheck_seconds": 10.440438586112577,
+    "receipt_level": "legacy_physical_recheck"
+  },
+  "B2_fitness": -1.982226488242451,
+  "comparisons": [
+    {
+      "A": "grid_best",
+      "B": "equal_H01",
+      "delta_F": 0.0,
+      "wins": 0,
+      "losses": 0,
+      "ties": 21,
+      "mean_Cmax_over_LB_A": 1.9831442949150015,
+      "mean_Cmax_over_LB_B": 1.9831442949150015,
+      "relative_mean_ratio_change_pct": 0.0,
+      "sum_Cmax_A": 4047,
+      "sum_Cmax_B": 4047,
+      "sum_Cmax_delta": 0
+    },
+    {
+      "A": "B2_dynamic",
+      "B": "grid_best",
+      "delta_F": 0.0009178066725505918,
+      "wins": 10,
+      "losses": 7,
+      "ties": 4,
+      "mean_Cmax_over_LB_A": 1.982226488242451,
+      "mean_Cmax_over_LB_B": 1.9831442949150015,
+      "relative_mean_ratio_change_pct": -0.046280377827467856,
+      "sum_Cmax_A": 4050,
+      "sum_Cmax_B": 4047,
+      "sum_Cmax_delta": 3
+    },
+    {
+      "A": "B2_dynamic",
+      "B": "equal_H01",
+      "delta_F": 0.0009178066725505918,
+      "wins": 10,
+      "losses": 7,
+      "ties": 4,
+      "mean_Cmax_over_LB_A": 1.982226488242451,
+      "mean_Cmax_over_LB_B": 1.9831442949150015,
+      "relative_mean_ratio_change_pct": -0.046280377827467856,
+      "sum_Cmax_A": 4050,
+      "sum_Cmax_B": 4047,
+      "sum_Cmax_delta": 3
+    }
+  ],
+  "pair_construct_cost_seconds": {
+    "min": 8.654317872598767,
+    "median": 34.526135255000554,
+    "mean": 36.986525408948204,
+    "max": 81.4344268781133
+  },
+  "new_FJSP_solves": 0,
+  "new_API_requests": 0,
+  "A4_formal_candidates_drawn": 0
+}
