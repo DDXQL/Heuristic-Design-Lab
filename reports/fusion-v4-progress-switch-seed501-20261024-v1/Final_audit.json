@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "complete_strategies": 6,
+  "complete_evaluations": 126,
+  "solve_passes": 252,
+  "same_state_decisions_verified": 22800,
+  "actual_switches": 126,
+  "WS_steps": 11400,
+  "BORDA_steps": 11400,
+  "changed_vs_WS_on_dynamic_states": 9358,
+  "different_physical_vs_WS": 122,
+  "boundary_action_changed_instances": 95,
+  "best_positive_contribution": 0.017913616693674955,
+  "best_negative_contribution": -0.036680632285531076,
+  "protocol_sha256": "43c4dc09c6c985f2e8ee98dcb21091e79319c9ae48610c55d1545eedad6cd8d0",
+  "protected_old_records_rechecked": true,
+  "source_identity_and_normal_exit0_all_verified": true,
+  "claim_scope": "full train21 descriptive; no generalization/LLM-search efficacy claim"
+}

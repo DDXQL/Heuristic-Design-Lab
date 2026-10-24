@@ -1,0 +1,3217 @@
+{
+  "kind": "H_frozen",
+  "mode": "real",
+  "context": "335685161905bd7aeaa3907209c0fc770d8c66a38c2b6bb0a5921dfe2a81a412",
+  "member_count": 10,
+  "training_files": [
+    "Behnke1.fjsp",
+    "Behnke2.fjsp",
+    "Behnke3.fjsp",
+    "Behnke4.fjsp",
+    "Behnke13.fjsp",
+    "Behnke14.fjsp",
+    "Behnke19.fjsp",
+    "Behnke25.fjsp",
+    "Behnke21.fjsp",
+    "Behnke29.fjsp",
+    "Behnke27.fjsp",
+    "Behnke33.fjsp",
+    "Behnke34.fjsp",
+    "Behnke36.fjsp",
+    "Behnke43.fjsp",
+    "Behnke44.fjsp",
+    "Behnke47.fjsp",
+    "Behnke46.fjsp",
+    "Behnke51.fjsp",
+    "Behnke53.fjsp",
+    "Behnke57.fjsp"
+  ],
+  "members": [
+    {
+      "id": "H/g0000/000009",
+      "candidate": {
+        "description": "This rule prioritizes critical jobs with substantial remaining work while favoring early completion and shorter machine assignments. A small readiness-gap penalty discourages poorly synchronized choices, and clipping keeps the score finite.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(abs(processing_time), 1000000000.0)\n    w = min(abs(remaining_work), 1000000000.0)\n    n = max(1.0, min(abs(remaining_operations), 1000000000.0))\n    jr = min(abs(job_ready_time), 1000000000.0)\n    mr = min(abs(machine_ready_time), 1000000000.0)\n    s = min(abs(earliest_start), 1000000000.0)\n    f = min(abs(earliest_finish), 1000000000.0)\n    average_work = w / n\n    ready_gap = abs(jr - mr)\n    score = 2.0 * w + 0.25 * average_work - 0.9 * f - 0.1 * s - 0.2 * p - 0.05 * ready_gap\n    return score\n",
+        "key": "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+        "kind": "h"
+      },
+      "fitness": -2.1118049606260487,
+      "scores": [
+        -1.5142857142857142,
+        -1.44,
+        -1.3291139240506329,
+        -1.5263157894736843,
+        -1.9787100814026302,
+        -2.1251908396946564,
+        -2.0784861175740654,
+        -1.1875,
+        -1.2307692307692308,
+        -1.84,
+        -1.6419753086419753,
+        -3.4139960758665793,
+        -3.1538461538461537,
+        -2.809563066776587,
+        -1.3823529411764706,
+        -1.3529411764705883,
+        -1.7894736842105263,
+        -1.7123287671232876,
+        -3.1733333333333333,
+        -3.2432432432432434,
+        -4.4244787252076625
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0000/000009",
+        "prompt_key": "61803bfe599ab530374937cfa5b885bc4b6a48cfa21d78aa3be484726e9e8988",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{This rule prioritizes critical jobs with substantial remaining work while favoring early completion and shorter machine assignments. A small readiness-gap penalty discourages poorly synchronized choices, and clipping keeps the score finite.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(abs(processing_time), 1000000000.0)\n    w = min(abs(remaining_work), 1000000000.0)\n    n = max(1.0, min(abs(remaining_operations), 1000000000.0))\n    jr = min(abs(job_ready_time), 1000000000.0)\n    mr = min(abs(machine_ready_time), 1000000000.0)\n    s = min(abs(earliest_start), 1000000000.0)\n    f = min(abs(earliest_finish), 1000000000.0)\n    average_work = w / n\n    ready_gap = abs(jr - mr)\n    score = 2.0 * w + 0.25 * average_work - 0.9 * f - 0.1 * s - 0.2 * p - 0.05 * ready_gap\n    return score\n```",
+        "response_sha256": "6e5fa26ef715e6a7f4dc2a8cd4d3f1da363ed9782c266621fd1c99fa62d49d8c",
+        "usage": {
+          "input_tokens": 468,
+          "output_tokens": 6679
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 106,
+            "lower_bound": 70.0,
+            "score": -1.5142857142857142,
+            "feasible": true,
+            "single_solve_seconds": 0.0197213749634102,
+            "deterministic_recheck_seconds": 0.019492416991852224,
+            "deterministic_schedule_sha256": "b8f505ea7525430cd4c26ce9dfb3dd82426db1999de803ca6cc206a18f40c981"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 108,
+            "lower_bound": 75.0,
+            "score": -1.44,
+            "feasible": true,
+            "single_solve_seconds": 0.020321624993812293,
+            "deterministic_recheck_seconds": 0.022244666994083673,
+            "deterministic_schedule_sha256": "02d6fa7dca5773d37fc6f8a806e6721cf95cd6e4ab2fdb0adffb4f7b8e8fcbae"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 105,
+            "lower_bound": 79.0,
+            "score": -1.3291139240506329,
+            "feasible": true,
+            "single_solve_seconds": 0.021124457998666912,
+            "deterministic_recheck_seconds": 0.022368500009179115,
+            "deterministic_schedule_sha256": "8585704e13b91ddebaca6e2fbd6a91553b74e8d99a9ab767cd0e37d6d391624c"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 116,
+            "lower_bound": 76.0,
+            "score": -1.5263157894736843,
+            "feasible": true,
+            "single_solve_seconds": 0.025498708011582494,
+            "deterministic_recheck_seconds": 0.03152916696853936,
+            "deterministic_schedule_sha256": "123ffa550fc4944d141c7415b09987eefa4a3ca84d2737f32579ac8cd9c8511e"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 316,
+            "lower_bound": 159.7,
+            "score": -1.9787100814026302,
+            "feasible": true,
+            "single_solve_seconds": 0.9269740000017919,
+            "deterministic_recheck_seconds": 0.4978714999742806,
+            "deterministic_schedule_sha256": "a78c48ea3016e21e5f2dee4b297537bcd84fe3c2f75c9540d34b56e1e3f8bd0c"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 348,
+            "lower_bound": 163.75,
+            "score": -2.1251908396946564,
+            "feasible": true,
+            "single_solve_seconds": 1.2760056249680929,
+            "deterministic_recheck_seconds": 0.6960505829774775,
+            "deterministic_schedule_sha256": "fdfe0d61705da47e3a0a973734dc5d6b43d305747742b65f63a618bba90caa6b"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 670,
+            "lower_bound": 322.35,
+            "score": -2.0784861175740654,
+            "feasible": true,
+            "single_solve_seconds": 2.4697202499955893,
+            "deterministic_recheck_seconds": 1.9937540420214646,
+            "deterministic_schedule_sha256": "3fc28b2fd984dff7d672734b855babbe19b501e8cf6afa43c177ba5cd9c2a673"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 95,
+            "lower_bound": 80.0,
+            "score": -1.1875,
+            "feasible": true,
+            "single_solve_seconds": 0.03540087497094646,
+            "deterministic_recheck_seconds": 0.0350235000369139,
+            "deterministic_schedule_sha256": "ef8cde7aeb515366b3a6542fc1f5120b4b48c10e78bd747305cdd4c6fcda08d5"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 96,
+            "lower_bound": 78.0,
+            "score": -1.2307692307692308,
+            "feasible": true,
+            "single_solve_seconds": 0.04359016701346263,
+            "deterministic_recheck_seconds": 0.04323816701071337,
+            "deterministic_schedule_sha256": "bde51b02ac0c24ac07f418af6500a421d1aca032700fd42531e426423228f7a7"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 138,
+            "lower_bound": 75.0,
+            "score": -1.84,
+            "feasible": true,
+            "single_solve_seconds": 0.14832195901544765,
+            "deterministic_recheck_seconds": 0.14831429196055979,
+            "deterministic_schedule_sha256": "3d5e0740cb745cef0e1b491009a2f001e36ee94d266b489de24db08f89ec3706"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 133,
+            "lower_bound": 81.0,
+            "score": -1.6419753086419753,
+            "feasible": true,
+            "single_solve_seconds": 0.1319382909568958,
+            "deterministic_recheck_seconds": 0.13774049998028204,
+            "deterministic_schedule_sha256": "3026bcfa5231ec70074d07ad406b52b93222eb23e53bc7aeb41b3ced4f68a1e8"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 261,
+            "lower_bound": 76.45,
+            "score": -3.4139960758665793,
+            "feasible": true,
+            "single_solve_seconds": 0.7263684999779798,
+            "deterministic_recheck_seconds": 0.718871625023894,
+            "deterministic_schedule_sha256": "6f5166ebc0c80ca185467918a8d097107fa6cbdc775cd724fd6d86f6023bccb6"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 246,
+            "lower_bound": 78.0,
+            "score": -3.1538461538461537,
+            "feasible": true,
+            "single_solve_seconds": 0.7473762079607695,
+            "deterministic_recheck_seconds": 0.6913612500065938,
+            "deterministic_schedule_sha256": "8c371c7232038c2a4bda68559d3c577e1995d2454a7cf7b62f98468ae3c6ea24"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 426,
+            "lower_bound": 151.625,
+            "score": -2.809563066776587,
+            "feasible": true,
+            "single_solve_seconds": 1.8568455000058748,
+            "deterministic_recheck_seconds": 2.0391265839571133,
+            "deterministic_schedule_sha256": "57e1fb5dc2e8652621bc8520021d797aadaa02e16d8ba2e1f884903f63793ac2"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 94,
+            "lower_bound": 68.0,
+            "score": -1.3823529411764706,
+            "feasible": true,
+            "single_solve_seconds": 0.0798650830402039,
+            "deterministic_recheck_seconds": 0.06488779198843986,
+            "deterministic_schedule_sha256": "b4731ccbe62a9783707b34f43d6a7534b97af353530bbf847ce5710132652947"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 92,
+            "lower_bound": 68.0,
+            "score": -1.3529411764705883,
+            "feasible": true,
+            "single_solve_seconds": 0.0750721669755876,
+            "deterministic_recheck_seconds": 0.30201658298028633,
+            "deterministic_schedule_sha256": "ed17a81566b2d1d25e7b08cabd6733606a5ff586a0732b0951d3e29d9211ae11"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 136,
+            "lower_bound": 76.0,
+            "score": -1.7894736842105263,
+            "feasible": true,
+            "single_solve_seconds": 0.48250954097602516,
+            "deterministic_recheck_seconds": 0.26541508303489536,
+            "deterministic_schedule_sha256": "b96b3d5711c38e53fd2eff18e2f1d46a693de5688e7e5a3b83ca6875042656d9"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 125,
+            "lower_bound": 73.0,
+            "score": -1.7123287671232876,
+            "feasible": true,
+            "single_solve_seconds": 0.21064404101343825,
+            "deterministic_recheck_seconds": 0.21211170800961554,
+            "deterministic_schedule_sha256": "4137ee912781613946af584149f5622ee3eb3492280525f4bf6142ddc5fa7402"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 238,
+            "lower_bound": 75.0,
+            "score": -3.1733333333333333,
+            "feasible": true,
+            "single_solve_seconds": 1.0507392089930363,
+            "deterministic_recheck_seconds": 1.0047814999707043,
+            "deterministic_schedule_sha256": "b26b58d90a7e4b01fcffee844c21a05e9db0a48ec812e9ad6484aba60e79359e"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 240,
+            "lower_bound": 74.0,
+            "score": -3.2432432432432434,
+            "feasible": true,
+            "single_solve_seconds": 1.0108891669660807,
+            "deterministic_recheck_seconds": 1.0882146660005674,
+            "deterministic_schedule_sha256": "ce6c6da01e4abc24bde1b3e90d194c30b61ebfcdcba9a00d1acec6652dbb39dc"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 435,
+            "lower_bound": 98.31666666666666,
+            "score": -4.4244787252076625,
+            "feasible": true,
+            "single_solve_seconds": 2.7442263339762576,
+            "deterministic_recheck_seconds": 3.1010237500304356,
+            "deterministic_schedule_sha256": "792b415da23de7aa0c06153d4a68418dae44c3c733e08ddcdfd51c5c47abc1ae"
+          }
+        ],
+        "fitness": -2.1118049606260487,
+        "primary_evaluation_seconds": 27.541548874985892,
+        "elapsed_seconds": 27.541632707987446
+      },
+      "member_id": 0,
+      "review": {
+        "reviewed_code_key": "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+        "description": "对各输入取绝对值并截到1e9，工序数至少为1。以2倍剩余工作量和0.25倍平均剩余工作量加分，以0.9倍最早完成、0.1倍最早开始、0.2倍加工时间，以及0.05倍工件与机器就绪时间的绝对差扣分，返回线性合成分数。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 5.2749999999999995
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": -0.5999999999999996
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 23.650000000000002
+          }
+        ],
+        "sample_sha256": "b220bbb3cb8f142be91966527a47fa6f762ac6bb1a2a411e495fde8d8d37829a"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0000/000003",
+      "candidate": {
+        "description": "Estimate each job’s completion horizon as the candidate operation’s earliest finish plus the average-work tail left after one operation. Higher scores favor the shortest estimated completion horizon, rather than rewarding large remaining workloads.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    tail = work * (operations - 1.0) / operations\n    estimate = finish + tail\n    score = 1.0 / (1.0 + estimate)\n    return score\n",
+        "key": "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+        "kind": "h"
+      },
+      "fitness": -2.119981806736931,
+      "scores": [
+        -1.6142857142857143,
+        -1.6266666666666667,
+        -1.5443037974683544,
+        -1.5921052631578947,
+        -1.8534752661239826,
+        -1.783206106870229,
+        -1.6503800217155264,
+        -1.2875,
+        -1.3205128205128205,
+        -1.7733333333333334,
+        -1.9012345679012346,
+        -3.2439502943100065,
+        -3.269230769230769,
+        -2.7699917559769167,
+        -1.4852941176470589,
+        -1.3970588235294117,
+        -1.8421052631578947,
+        -1.8767123287671232,
+        -3.2,
+        -3.175675675675676,
+        -4.31259535514494
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0000/000003",
+        "prompt_key": "26435b892811e0c9ae9f5fbe34872f0bee8228f7ef014f32523b9b474d704a44",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{Estimate each job’s completion horizon as the candidate operation’s earliest finish plus the average-work tail left after one operation. Higher scores favor the shortest estimated completion horizon, rather than rewarding large remaining workloads.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    tail = work * (operations - 1.0) / operations\n    estimate = finish + tail\n    score = 1.0 / (1.0 + estimate)\n    return score\n```",
+        "response_sha256": "ba5872d6eaaff15b6e5bab32d7116b19b2ee7f1581ebd3aa3d90ee9e503f2f98",
+        "usage": {
+          "input_tokens": 1023,
+          "output_tokens": 6004
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 113,
+            "lower_bound": 70.0,
+            "score": -1.6142857142857143,
+            "feasible": true,
+            "single_solve_seconds": 0.00466795900138095,
+            "deterministic_recheck_seconds": 0.004631542018614709,
+            "deterministic_schedule_sha256": "b009b8645a36fcb3c6a8d212b0a8a4987a1a5be155b06093c5cc58d7ea4f98c0"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 122,
+            "lower_bound": 75.0,
+            "score": -1.6266666666666667,
+            "feasible": true,
+            "single_solve_seconds": 0.005135292012710124,
+            "deterministic_recheck_seconds": 0.004712916968856007,
+            "deterministic_schedule_sha256": "dda1134553f9cdf709277aafaea34b703b89a56735e2a0ebc69b70426ab1bde3"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 122,
+            "lower_bound": 79.0,
+            "score": -1.5443037974683544,
+            "feasible": true,
+            "single_solve_seconds": 0.004685125022660941,
+            "deterministic_recheck_seconds": 0.005268875043839216,
+            "deterministic_schedule_sha256": "7a26755817eb3ebc0b645cf2851e8500b18de4e8ec5efdd3a9ab23ee03a1b5d7"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 121,
+            "lower_bound": 76.0,
+            "score": -1.5921052631578947,
+            "feasible": true,
+            "single_solve_seconds": 0.004852583981119096,
+            "deterministic_recheck_seconds": 0.004765999969094992,
+            "deterministic_schedule_sha256": "9ba993f0d8f121fc283e4f6566235cec66b71307dcdf74df1209cca1a59f92ed"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 296,
+            "lower_bound": 159.7,
+            "score": -1.8534752661239826,
+            "feasible": true,
+            "single_solve_seconds": 0.10714329098118469,
+            "deterministic_recheck_seconds": 0.1057628330308944,
+            "deterministic_schedule_sha256": "4a14477e35ea26e203aea7a63df7639b758efb26713c6ed0a08d7f9f995c7da1"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 292,
+            "lower_bound": 163.75,
+            "score": -1.783206106870229,
+            "feasible": true,
+            "single_solve_seconds": 0.11065712501294911,
+            "deterministic_recheck_seconds": 0.10586570901796222,
+            "deterministic_schedule_sha256": "905b99f1d3f1dde4341a8e32671ccec137b3567cb960e9f7561af83f8f001009"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 532,
+            "lower_bound": 322.35,
+            "score": -1.6503800217155264,
+            "feasible": true,
+            "single_solve_seconds": 0.48627483402378857,
+            "deterministic_recheck_seconds": 0.5776120410300791,
+            "deterministic_schedule_sha256": "6bb33566e3c76a7eacb8aa4a7df0d736eea78d68daad5a04d11b8c97c7d6c58d"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 103,
+            "lower_bound": 80.0,
+            "score": -1.2875,
+            "feasible": true,
+            "single_solve_seconds": 0.023625207948498428,
+            "deterministic_recheck_seconds": 0.01677212497452274,
+            "deterministic_schedule_sha256": "a1432b689fef4a9f0554c13b35e3d73c5ba1f81ad1390d0bf818df3228e24974"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 103,
+            "lower_bound": 78.0,
+            "score": -1.3205128205128205,
+            "feasible": true,
+            "single_solve_seconds": 0.012466459011193365,
+            "deterministic_recheck_seconds": 0.012173041992355138,
+            "deterministic_schedule_sha256": "47fb29efed7ce95034c9f8a91742a7c94e487d7ec3428c04991a2ee3a95ec626"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 133,
+            "lower_bound": 75.0,
+            "score": -1.7733333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.029699250007979572,
+            "deterministic_recheck_seconds": 0.030924875056371093,
+            "deterministic_schedule_sha256": "fba9b5a752c48014b4a40b40ae162a7484a567a1cbdb265ea77e2c4376036400"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 154,
+            "lower_bound": 81.0,
+            "score": -1.9012345679012346,
+            "feasible": true,
+            "single_solve_seconds": 0.029128749971278012,
+            "deterministic_recheck_seconds": 0.02991037501487881,
+            "deterministic_schedule_sha256": "f48e9288161bf0296ffc38311ec8f9ab856556996f4a82a76510004a0ec07f12"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 248,
+            "lower_bound": 76.45,
+            "score": -3.2439502943100065,
+            "feasible": true,
+            "single_solve_seconds": 0.13164208398666233,
+            "deterministic_recheck_seconds": 0.1146500000031665,
+            "deterministic_schedule_sha256": "7a8854632b4172d9788b159a0d1bc412ead2e6a189e1a66f34d5053c38142ece"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 255,
+            "lower_bound": 78.0,
+            "score": -3.269230769230769,
+            "feasible": true,
+            "single_solve_seconds": 0.09923270798753947,
+            "deterministic_recheck_seconds": 0.09728508396074176,
+            "deterministic_schedule_sha256": "8244c1868365a813be27cbc7a1f1e86fe45723621eff21592458d254e6d121a6"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 420,
+            "lower_bound": 151.625,
+            "score": -2.7699917559769167,
+            "feasible": true,
+            "single_solve_seconds": 0.5022110409918241,
+            "deterministic_recheck_seconds": 0.49897970899473876,
+            "deterministic_schedule_sha256": "75748fb98e6cd46db7aeee67cce5b2cdb63245fc5e6c847cfa2defd6a135445c"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 101,
+            "lower_bound": 68.0,
+            "score": -1.4852941176470589,
+            "feasible": true,
+            "single_solve_seconds": 0.00826016702922061,
+            "deterministic_recheck_seconds": 0.007417541986797005,
+            "deterministic_schedule_sha256": "9717241feaa5c8f317c5cc2055f6edb2e2d25b339c48cec713feebc8aa171320"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 95,
+            "lower_bound": 68.0,
+            "score": -1.3970588235294117,
+            "feasible": true,
+            "single_solve_seconds": 0.008165916020516306,
+            "deterministic_recheck_seconds": 0.007332250010222197,
+            "deterministic_schedule_sha256": "2daf9bce4a7d75d96c72b152323555a3686b6c533b64f512b4e0eb7f22dc81d9"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 140,
+            "lower_bound": 76.0,
+            "score": -1.8421052631578947,
+            "feasible": true,
+            "single_solve_seconds": 0.022329665953293443,
+            "deterministic_recheck_seconds": 0.021580709028057754,
+            "deterministic_schedule_sha256": "f329ac761ad4b43be2b461088271cb26623fa0bfe78b94fc0c71fdf5c499df5c"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 137,
+            "lower_bound": 73.0,
+            "score": -1.8767123287671232,
+            "feasible": true,
+            "single_solve_seconds": 0.02153337502386421,
+            "deterministic_recheck_seconds": 0.027092000003904104,
+            "deterministic_schedule_sha256": "527a26bb7a907b27ff7c7df09892f88b00a70cf67687abfc500f9141413cab8d"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 240,
+            "lower_bound": 75.0,
+            "score": -3.2,
+            "feasible": true,
+            "single_solve_seconds": 0.11383937497157604,
+            "deterministic_recheck_seconds": 0.11410100001376122,
+            "deterministic_schedule_sha256": "a00bef30fa6d0b71d7a7d8ff6ff542e54377e4d2ed7f61581a74ad86e33f7894"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 235,
+            "lower_bound": 74.0,
+            "score": -3.175675675675676,
+            "feasible": true,
+            "single_solve_seconds": 0.11823583400109783,
+            "deterministic_recheck_seconds": 0.11898254201514646,
+            "deterministic_schedule_sha256": "b4ae039071c7a8f1fe230f9586e9eece2ac47e12d15c104aa01fdf94da14f0e7"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 424,
+            "lower_bound": 98.31666666666666,
+            "score": -4.31259535514494,
+            "feasible": true,
+            "single_solve_seconds": 0.4316581670427695,
+            "deterministic_recheck_seconds": 0.42539270798442885,
+            "deterministic_schedule_sha256": "2f28b8d2f1efd999333c9714f8aaff650b44ee53b453f1b9ec283a544e048765"
+          }
+        ],
+        "fitness": -2.119981806736931,
+        "primary_evaluation_seconds": 5.050961458007805,
+        "elapsed_seconds": 5.051052625000011
+      },
+      "member_id": 1,
+      "review": {
+        "reviewed_code_key": "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+        "description": "将工作量和最早完成时间截到[0,1e9]，工序数截到[1,1e9]。估计尾部工作量为work*(operations-1)/operations，返回1/(1+finish+尾部工作量)。finish+尾部工作量越小，分数越高；其余输入不直接参与。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 0.11764705882352941
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.1
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 0.09090909090909091
+          }
+        ],
+        "sample_sha256": "6c4c103ee183ef33f2364d8ec418473f065d0df41780520f96332f1bf40a6ba2"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0001/000009",
+      "candidate": {
+        "description": "Prioritize jobs with the largest ready-time-plus-remaining-work completion bound, while discounting machines by their incremental completion delay. Average remaining operation size keeps that penalty scale-aware.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = processing_time\n    if p != p:\n        p = 1000000000.0\n    if p < 0.0:\n        p = 0.0\n    if p > 1000000000.0:\n        p = 1000000000.0\n    work = remaining_work\n    if work != work:\n        work = 0.0\n    if work < 0.0:\n        work = 0.0\n    if work > 1000000000.0:\n        work = 1000000000.0\n    operations = remaining_operations\n    if operations != operations:\n        operations = 1.0\n    if operations < 1.0:\n        operations = 1.0\n    if operations > 1000000000.0:\n        operations = 1000000000.0\n    ready = job_ready_time\n    if ready != ready:\n        ready = 0.0\n    if ready < 0.0:\n        ready = 0.0\n    if ready > 1000000000.0:\n        ready = 1000000000.0\n    finish = earliest_finish\n    if finish != finish:\n        finish = 1000000000.0\n    if finish < 0.0:\n        finish = 0.0\n    if finish > 1000000000.0:\n        finish = 1000000000.0\n    average = work / operations\n    delay = finish - ready\n    if delay < p:\n        delay = p\n    criticality = ready + work\n    machine_factor = (1.0 + average) / (1.0 + average + delay)\n    score = criticality * machine_factor\n    return score\n",
+        "key": "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+        "kind": "h"
+      },
+      "fitness": -2.142188696710061,
+      "scores": [
+        -1.7142857142857142,
+        -1.3466666666666667,
+        -1.4556962025316456,
+        -1.5657894736842106,
+        -1.8346900438321854,
+        -2.033587786259542,
+        -1.7837753994105785,
+        -1.1875,
+        -1.2692307692307692,
+        -1.7733333333333334,
+        -1.7530864197530864,
+        -3.440156965336821,
+        -3.2948717948717947,
+        -2.9942291838417145,
+        -1.4852941176470589,
+        -1.411764705882353,
+        -1.75,
+        -1.7808219178082192,
+        -3.2266666666666666,
+        -3.2972972972972974,
+        -4.587218172571623
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0001/000009",
+        "prompt_key": "ddeb6a47d728803ccae8972a800d233169aaa1c53c1a3e8ed24bd19317ef6234",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{Prioritize jobs with the largest ready-time-plus-remaining-work completion bound, while discounting machines by their incremental completion delay. Average remaining operation size keeps that penalty scale-aware.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = processing_time\n    if p != p:\n        p = 1000000000.0\n    if p < 0.0:\n        p = 0.0\n    if p > 1000000000.0:\n        p = 1000000000.0\n\n    work = remaining_work\n    if work != work:\n        work = 0.0\n    if work < 0.0:\n        work = 0.0\n    if work > 1000000000.0:\n        work = 1000000000.0\n\n    operations = remaining_operations\n    if operations != operations:\n        operations = 1.0\n    if operations < 1.0:\n        operations = 1.0\n    if operations > 1000000000.0:\n        operations = 1000000000.0\n\n    ready = job_ready_time\n    if ready != ready:\n        ready = 0.0\n    if ready < 0.0:\n        ready = 0.0\n    if ready > 1000000000.0:\n        ready = 1000000000.0\n\n    finish = earliest_finish\n    if finish != finish:\n        finish = 1000000000.0\n    if finish < 0.0:\n        finish = 0.0\n    if finish > 1000000000.0:\n        finish = 1000000000.0\n\n    average = work / operations\n    delay = finish - ready\n    if delay < p:\n        delay = p\n    criticality = ready + work\n    machine_factor = (1.0 + average) / (1.0 + average + delay)\n    score = criticality * machine_factor\n    return score\n```",
+        "response_sha256": "6c59e2ea88bc69618588c3784f1fac90de0e2c0414757366bdb4348c4a583560",
+        "usage": {
+          "input_tokens": 561,
+          "output_tokens": 5625
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 120,
+            "lower_bound": 70.0,
+            "score": -1.7142857142857142,
+            "feasible": true,
+            "single_solve_seconds": 0.003325040976051241,
+            "deterministic_recheck_seconds": 0.0031097919563762844,
+            "deterministic_schedule_sha256": "2b870a342943a8751829d67aeae5221159c78d30c59a183b01ac9bb45bc4b223"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 101,
+            "lower_bound": 75.0,
+            "score": -1.3466666666666667,
+            "feasible": true,
+            "single_solve_seconds": 0.003061334020458162,
+            "deterministic_recheck_seconds": 0.0030606669606640935,
+            "deterministic_schedule_sha256": "db0d6807ffb385743e4b442f60ccd33f2ccde7f0d0a2dbc25abc75a233a7d809"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 115,
+            "lower_bound": 79.0,
+            "score": -1.4556962025316456,
+            "feasible": true,
+            "single_solve_seconds": 0.003114874998573214,
+            "deterministic_recheck_seconds": 0.0036126250051893294,
+            "deterministic_schedule_sha256": "cbb4ca9b010ee97a309ae31930bf8c72b32aef9630d89dd5d2ab86cf4e0c2c7a"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 119,
+            "lower_bound": 76.0,
+            "score": -1.5657894736842106,
+            "feasible": true,
+            "single_solve_seconds": 0.003188834001775831,
+            "deterministic_recheck_seconds": 0.0031181250233203173,
+            "deterministic_schedule_sha256": "d81d05053c4536622aa8033b05f5da4f21267c3d564e985d5d8f67ff1390c0e5"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 293,
+            "lower_bound": 159.7,
+            "score": -1.8346900438321854,
+            "feasible": true,
+            "single_solve_seconds": 0.06185279198689386,
+            "deterministic_recheck_seconds": 0.060986333002801985,
+            "deterministic_schedule_sha256": "95bdbb39920566e1a9e8cc359ba098aa4301a207dc9db84675ba19163c521faa"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 333,
+            "lower_bound": 163.75,
+            "score": -2.033587786259542,
+            "feasible": true,
+            "single_solve_seconds": 0.060283750004600734,
+            "deterministic_recheck_seconds": 0.06011441699229181,
+            "deterministic_schedule_sha256": "3092396cd7988e2c455095a6d4d62167d69b1b33e6ac1d0af4757967e035411c"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 575,
+            "lower_bound": 322.35,
+            "score": -1.7837753994105785,
+            "feasible": true,
+            "single_solve_seconds": 0.24490008398424834,
+            "deterministic_recheck_seconds": 0.4366376670077443,
+            "deterministic_schedule_sha256": "072c3f3ecf209985826faf2814a82f833f57c99242b999fbf32b4e7faf48cd96"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 95,
+            "lower_bound": 80.0,
+            "score": -1.1875,
+            "feasible": true,
+            "single_solve_seconds": 0.0035873749875463545,
+            "deterministic_recheck_seconds": 0.003852958034258336,
+            "deterministic_schedule_sha256": "f877e4169389be5f493fc8fc290b42bf09703b7268203cf054045b300198b611"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 99,
+            "lower_bound": 78.0,
+            "score": -1.2692307692307692,
+            "feasible": true,
+            "single_solve_seconds": 0.004141832992900163,
+            "deterministic_recheck_seconds": 0.004342667001765221,
+            "deterministic_schedule_sha256": "60d1cea74773139e71ea3d3a5931d3fe1fa07bb25829bd735cca641af1395684"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 133,
+            "lower_bound": 75.0,
+            "score": -1.7733333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.013567333982791752,
+            "deterministic_recheck_seconds": 0.013937624986283481,
+            "deterministic_schedule_sha256": "63d9d39d5ac82c55b4a8e9bbe24caa2ff42c71ac7471cde8d16677d8a087ddd7"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 142,
+            "lower_bound": 81.0,
+            "score": -1.7530864197530864,
+            "feasible": true,
+            "single_solve_seconds": 0.012716167024336755,
+            "deterministic_recheck_seconds": 0.012762041005771607,
+            "deterministic_schedule_sha256": "258358343c3d02e3f6641092fa87156d087d07846d68a2ad3b4187d0d2d31df5"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 263,
+            "lower_bound": 76.45,
+            "score": -3.440156965336821,
+            "feasible": true,
+            "single_solve_seconds": 0.06844037503469735,
+            "deterministic_recheck_seconds": 0.06909025000641122,
+            "deterministic_schedule_sha256": "901e0f797b297c6530257f4ead9a9bbf9aa24d907680f0d811a5a7f193799040"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 257,
+            "lower_bound": 78.0,
+            "score": -3.2948717948717947,
+            "feasible": true,
+            "single_solve_seconds": 0.06898645800538361,
+            "deterministic_recheck_seconds": 0.07037891598884016,
+            "deterministic_schedule_sha256": "af16fa7c73c8dcdab1e56343351b7fbb1cd4c8f0fe38c463595a9a0212a0f567"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 454,
+            "lower_bound": 151.625,
+            "score": -2.9942291838417145,
+            "feasible": true,
+            "single_solve_seconds": 0.2735276250168681,
+            "deterministic_recheck_seconds": 0.33115937502589077,
+            "deterministic_schedule_sha256": "05af33906cffe01717a750bf860321211d1a8152a9788969452be3213603c401"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 101,
+            "lower_bound": 68.0,
+            "score": -1.4852941176470589,
+            "feasible": true,
+            "single_solve_seconds": 0.008519917028024793,
+            "deterministic_recheck_seconds": 0.007681417046114802,
+            "deterministic_schedule_sha256": "154f3c12a047b3767211ff2f5f8425d8cb482528f4e1e784a0ecbc1d10cc4b9f"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 96,
+            "lower_bound": 68.0,
+            "score": -1.411764705882353,
+            "feasible": true,
+            "single_solve_seconds": 0.006976666045375168,
+            "deterministic_recheck_seconds": 0.006680583988782018,
+            "deterministic_schedule_sha256": "47c06d0d8476ba3beca1339987f279d3362057b744f7f8edaa5db4712e3c0e1e"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 133,
+            "lower_bound": 76.0,
+            "score": -1.75,
+            "feasible": true,
+            "single_solve_seconds": 0.01580162497702986,
+            "deterministic_recheck_seconds": 0.017313375021331012,
+            "deterministic_schedule_sha256": "8010b4da270ff2a68e562dd79fe587053289b89764e10f96ddf6a8b62766eb1d"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 130,
+            "lower_bound": 73.0,
+            "score": -1.7808219178082192,
+            "feasible": true,
+            "single_solve_seconds": 0.015034375013783574,
+            "deterministic_recheck_seconds": 0.021327166992705315,
+            "deterministic_schedule_sha256": "e5485dfe091c624b1c44662a0570627bd98ff801543a9ded931ad9c3c659d14b"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 242,
+            "lower_bound": 75.0,
+            "score": -3.2266666666666666,
+            "feasible": true,
+            "single_solve_seconds": 0.07734583399724215,
+            "deterministic_recheck_seconds": 0.08541699999477714,
+            "deterministic_schedule_sha256": "fad0572bf64ce25066d10557fca4122fc8ff301b0ed2ff4c1006b8491bfe2643"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 244,
+            "lower_bound": 74.0,
+            "score": -3.2972972972972974,
+            "feasible": true,
+            "single_solve_seconds": 0.07287899998482317,
+            "deterministic_recheck_seconds": 0.07146333297714591,
+            "deterministic_schedule_sha256": "122ecd6d31d2057853b514d9c0b1d66313720ba3bd76e7f442e188c7d8b050a6"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 451,
+            "lower_bound": 98.31666666666666,
+            "score": -4.587218172571623,
+            "feasible": true,
+            "single_solve_seconds": 0.26618720800615847,
+            "deterministic_recheck_seconds": 0.25225970800966024,
+            "deterministic_schedule_sha256": "5d148d2c355194740b0410b3b68f326ea2ac460614e8dd28560f1c2007779034"
+          }
+        ],
+        "fitness": -2.142188696710061,
+        "primary_evaluation_seconds": 3.131100707978476,
+        "elapsed_seconds": 3.131197875016369
+      },
+      "member_id": 2,
+      "review": {
+        "reviewed_code_key": "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+        "description": "对参与计算的输入处理NaN，再截断到非负且不超过1e9，工序数至少为1。计算average=work/operations、delay=max(p,finish-job_ready)、criticality=job_ready+work，返回criticality*(1+average)/(1+average+delay)。它联合奖励工件就绪时间加剩余工作量，并以平均剩余工序工作量缩放延迟惩罚。machine_ready和earliest_start不直接参与。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 2.0588235294117645
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 5.0
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 9.600000000000001
+          }
+        ],
+        "sample_sha256": "43225816cfc5dcdaa3f14d11eb7f4faa71c359057a93337e18031a823adb4184"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0001/000005",
+      "candidate": {
+        "description": "This preserves the shortest estimated completion horizon while refining the tail estimate: it subtracts a proxy for the current operation’s shortest processing time, bounded by the candidate machine time. That avoids treating a fast machine choice as though the full average operation were still left in the tail.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    machine_time = max(0.0, min(processing_time, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    current_minimum = min(machine_time, average)\n    tail = max(0.0, work - current_minimum)\n    estimate = finish + tail\n    return 1.0 / (1.0 + estimate)\n",
+        "key": "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+        "kind": "h"
+      },
+      "fitness": -2.1702888986591966,
+      "scores": [
+        -1.6142857142857143,
+        -1.6666666666666667,
+        -1.5569620253164558,
+        -1.5921052631578947,
+        -1.991233562930495,
+        -1.9236641221374047,
+        -1.6658911121451836,
+        -1.325,
+        -1.358974358974359,
+        -1.92,
+        -1.9382716049382716,
+        -3.4139960758665793,
+        -3.2948717948717947,
+        -2.7304204451772467,
+        -1.5441176470588236,
+        -1.4705882352941178,
+        -1.868421052631579,
+        -1.904109589041096,
+        -3.2133333333333334,
+        -3.189189189189189,
+        -4.39396507882692
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0001/000005",
+        "prompt_key": "8024721a864eae53b0a49ded79c4029e04a28511fbee633134d6ce347bd904cd",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{This preserves the shortest estimated completion horizon while refining the tail estimate: it subtracts a proxy for the current operation’s shortest processing time, bounded by the candidate machine time. That avoids treating a fast machine choice as though the full average operation were still left in the tail.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    machine_time = max(0.0, min(processing_time, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    current_minimum = min(machine_time, average)\n    tail = max(0.0, work - current_minimum)\n    estimate = finish + tail\n    return 1.0 / (1.0 + estimate)\n```",
+        "response_sha256": "30b509208a78b7ddf200b768852b75c8313ff5ee20fb938525816176257b93ed",
+        "usage": {
+          "input_tokens": 526,
+          "output_tokens": 4854
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 113,
+            "lower_bound": 70.0,
+            "score": -1.6142857142857143,
+            "feasible": true,
+            "single_solve_seconds": 0.006539041991345584,
+            "deterministic_recheck_seconds": 0.005609583982732147,
+            "deterministic_schedule_sha256": "d1d09d277496a2aa9f06c13c3b74cae1f446ef387d826f083644aade326c20fe"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 125,
+            "lower_bound": 75.0,
+            "score": -1.6666666666666667,
+            "feasible": true,
+            "single_solve_seconds": 0.006089290953241289,
+            "deterministic_recheck_seconds": 0.006186500017065555,
+            "deterministic_schedule_sha256": "ae933eeef83347f576e1e0281b9edac9d8e9357c8317bd83a5495258aeae2625"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 123,
+            "lower_bound": 79.0,
+            "score": -1.5569620253164558,
+            "feasible": true,
+            "single_solve_seconds": 0.005701041023712605,
+            "deterministic_recheck_seconds": 0.00643208296969533,
+            "deterministic_schedule_sha256": "4cbe4b147c77ab7d41293ab0594d81b1811f595e4bb30503fa4e82611786da19"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 121,
+            "lower_bound": 76.0,
+            "score": -1.5921052631578947,
+            "feasible": true,
+            "single_solve_seconds": 0.0058590410044416785,
+            "deterministic_recheck_seconds": 0.005814541946165264,
+            "deterministic_schedule_sha256": "5e5d1bb41dbad8a284dd547e47d18b4e9195de46df61d410ae2039c0846fa40e"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 318,
+            "lower_bound": 159.7,
+            "score": -1.991233562930495,
+            "feasible": true,
+            "single_solve_seconds": 0.14152937498874962,
+            "deterministic_recheck_seconds": 0.1480832909583114,
+            "deterministic_schedule_sha256": "34d92cdad10953996234706d2a82fe50d283f0cd73f929de5ac43d6cadc22630"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 315,
+            "lower_bound": 163.75,
+            "score": -1.9236641221374047,
+            "feasible": true,
+            "single_solve_seconds": 0.1414743330096826,
+            "deterministic_recheck_seconds": 0.15058466600021347,
+            "deterministic_schedule_sha256": "b576d0d34c4230f290d57f78327ce1d8b1d9f02f1ef13ca2359708f1b9c86e8e"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 537,
+            "lower_bound": 322.35,
+            "score": -1.6658911121451836,
+            "feasible": true,
+            "single_solve_seconds": 0.6256850829813629,
+            "deterministic_recheck_seconds": 0.5495952499913983,
+            "deterministic_schedule_sha256": "a5c5a2ea91fcd6179abdea04b9bb0611c663055e5f9058e156caaf705342132a"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 106,
+            "lower_bound": 80.0,
+            "score": -1.325,
+            "feasible": true,
+            "single_solve_seconds": 0.007721000001765788,
+            "deterministic_recheck_seconds": 0.007143083028495312,
+            "deterministic_schedule_sha256": "55e75fb68077f7fbff28aaa1bd93576b52a5955fda0a25aed38b811246eed861"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 106,
+            "lower_bound": 78.0,
+            "score": -1.358974358974359,
+            "feasible": true,
+            "single_solve_seconds": 0.00825104198884219,
+            "deterministic_recheck_seconds": 0.008093166979961097,
+            "deterministic_schedule_sha256": "3b5371e5c1793b45bbe3581778fc6e174860bc0ca0c85fff8a60fa65dd18cd11"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 144,
+            "lower_bound": 75.0,
+            "score": -1.92,
+            "feasible": true,
+            "single_solve_seconds": 0.023948749992996454,
+            "deterministic_recheck_seconds": 0.024624375044368207,
+            "deterministic_schedule_sha256": "03fbfd4e2f64cc71b988722d277401a160319a3360adf74202890cdbf5ec2de1"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 157,
+            "lower_bound": 81.0,
+            "score": -1.9382716049382716,
+            "feasible": true,
+            "single_solve_seconds": 0.0232079999987036,
+            "deterministic_recheck_seconds": 0.023358042002655566,
+            "deterministic_schedule_sha256": "978fb8660fc09eb860080a510ef361e3ee6dd51ae8d9d8bee336265d674a3b83"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 261,
+            "lower_bound": 76.45,
+            "score": -3.4139960758665793,
+            "feasible": true,
+            "single_solve_seconds": 0.12967304198537022,
+            "deterministic_recheck_seconds": 0.1308398749679327,
+            "deterministic_schedule_sha256": "d3ab00666da8d1b1847583c7a5ffbcb9aae9718926bec39cbb6c27e0e6f33994"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 257,
+            "lower_bound": 78.0,
+            "score": -3.2948717948717947,
+            "feasible": true,
+            "single_solve_seconds": 0.13124274997971952,
+            "deterministic_recheck_seconds": 0.129537166969385,
+            "deterministic_schedule_sha256": "f787aab523b20277289df3ba986f0c2f39bea12716611a7eb12afcfd67f76a8f"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 414,
+            "lower_bound": 151.625,
+            "score": -2.7304204451772467,
+            "feasible": true,
+            "single_solve_seconds": 0.47408479201840237,
+            "deterministic_recheck_seconds": 0.6280994589906186,
+            "deterministic_schedule_sha256": "e627f10664f535c31939e62a8aa4bfa980ecac8e70396fb36886a35d9b0a728f"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 105,
+            "lower_bound": 68.0,
+            "score": -1.5441176470588236,
+            "feasible": true,
+            "single_solve_seconds": 0.009375041991006583,
+            "deterministic_recheck_seconds": 0.008788625011220574,
+            "deterministic_schedule_sha256": "70f071500d4bf869d85b74ab4acfd9f84e2927a4177691dae7c7c7e43e61339c"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 100,
+            "lower_bound": 68.0,
+            "score": -1.4705882352941178,
+            "feasible": true,
+            "single_solve_seconds": 0.009093875007238239,
+            "deterministic_recheck_seconds": 0.009050375025253743,
+            "deterministic_schedule_sha256": "64de4a852140ba3651e11dd84a67c5a35d5c41fc8b87b1cbf5b796dececfc5f0"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 142,
+            "lower_bound": 76.0,
+            "score": -1.868421052631579,
+            "feasible": true,
+            "single_solve_seconds": 0.027575790998525918,
+            "deterministic_recheck_seconds": 0.026829708949662745,
+            "deterministic_schedule_sha256": "6266db3b2731b55f9de46ab9cd100961da5de7dff92b25d6eab8ec2963510809"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 139,
+            "lower_bound": 73.0,
+            "score": -1.904109589041096,
+            "feasible": true,
+            "single_solve_seconds": 0.025769166997633874,
+            "deterministic_recheck_seconds": 0.026474042038898915,
+            "deterministic_schedule_sha256": "ba5434b72d8490d8a1da23d947e871289bb85458b1d65c28b2d6c74c69a4beec"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 241,
+            "lower_bound": 75.0,
+            "score": -3.2133333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.13704879203578457,
+            "deterministic_recheck_seconds": 0.14235220901900902,
+            "deterministic_schedule_sha256": "ad32bd7a56cc9432fa36b71677fac5579a2e14fe789d8fc97c56d855e32504f5"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 236,
+            "lower_bound": 74.0,
+            "score": -3.189189189189189,
+            "feasible": true,
+            "single_solve_seconds": 0.14550120796775445,
+            "deterministic_recheck_seconds": 0.14290629199240357,
+            "deterministic_schedule_sha256": "6d22698e9dc900691447274b029562bf45e81a5452fc1dddc650bd714ddf786d"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 432,
+            "lower_bound": 98.31666666666666,
+            "score": -4.39396507882692,
+            "feasible": true,
+            "single_solve_seconds": 0.4809835000196472,
+            "deterministic_recheck_seconds": 0.4765622079721652,
+            "deterministic_schedule_sha256": "c96e5c990daa96876b0663a2a5dc6a0b719fb75e66fe541880131f9305b18910"
+          }
+        ],
+        "fitness": -2.1702888986591966,
+        "primary_evaluation_seconds": 5.495090292009991,
+        "elapsed_seconds": 5.495168084045872
+      },
+      "member_id": 3,
+      "review": {
+        "reviewed_code_key": "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+        "description": "将work、该候选机器加工时间p和finish截到[0,1e9]，工序数截到[1,1e9]。average=work/operations，扣除量为min(p,average)，尾部估计为max(0,work-扣除量)，返回1/(1+finish+尾部估计)。finish+尾部估计越小，分数越高；就绪和开始输入不直接参与。扣除量只是候选机器加工时间与平均剩余工序工作量中的较小者，没有在当前工序的所有可选机器间取最短加工时间。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 0.1111111111111111
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.1
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 0.07692307692307693
+          }
+        ],
+        "sample_sha256": "137169c569b99230acf1b7f84f67bdb4bffd9eb739ff76d103054cd7f26ba7ba"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0000/000008",
+      "candidate": {
+        "description": "I add a bounded operation-depth bonus to favor long precedence chains while retaining the parent’s workload, machine-speed, and early-finish preferences.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    depth_bonus = 1.0 + operations / (1.0 + operations + work)\n    score = work * machine_factor * time_factor * depth_bonus\n    return score\n",
+        "key": "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+        "kind": "h"
+      },
+      "fitness": -2.391583985708433,
+      "scores": [
+        -1.6,
+        -1.5466666666666666,
+        -1.518987341772152,
+        -1.5789473684210527,
+        -2.1603005635566688,
+        -2.314503816793893,
+        -2.376299053823484,
+        -1.2375,
+        -1.2820512820512822,
+        -2.1333333333333333,
+        -1.7654320987654322,
+        -3.6102027468933944,
+        -4.012820512820513,
+        -4.0032976092333055,
+        -1.6764705882352942,
+        -1.5,
+        -2.039473684210526,
+        -2.0273972602739727,
+        -3.4,
+        -3.5675675675675675,
+        -4.872012205458552
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0000/000008",
+        "prompt_key": "ddeb6a47d728803ccae8972a800d233169aaa1c53c1a3e8ed24bd19317ef6234",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{I add a bounded operation-depth bonus to favor long precedence chains while retaining the parent’s workload, machine-speed, and early-finish preferences.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    depth_bonus = 1.0 + operations / (1.0 + operations + work)\n    score = work * machine_factor * time_factor * depth_bonus\n    return score\n```",
+        "response_sha256": "759040724bd3ff5d2eb7ae7726d2ccc63fcfee6d612b3948ee8599207d69054a",
+        "usage": {
+          "input_tokens": 562,
+          "output_tokens": 4902
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 112,
+            "lower_bound": 70.0,
+            "score": -1.6,
+            "feasible": true,
+            "single_solve_seconds": 0.016930749989114702,
+            "deterministic_recheck_seconds": 0.017060624959412962,
+            "deterministic_schedule_sha256": "fcde07574b825d89320c740d9bc29e5c66773484ac488cfb42188758bd88404c"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 116,
+            "lower_bound": 75.0,
+            "score": -1.5466666666666666,
+            "feasible": true,
+            "single_solve_seconds": 0.019433333014603704,
+            "deterministic_recheck_seconds": 0.01891054102452472,
+            "deterministic_schedule_sha256": "390de640b56ec3b891596e0853a3d82e52f9db3ee09ec72e6507263a42ea02da"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 120,
+            "lower_bound": 79.0,
+            "score": -1.518987341772152,
+            "feasible": true,
+            "single_solve_seconds": 0.016250292013864964,
+            "deterministic_recheck_seconds": 0.01591700001154095,
+            "deterministic_schedule_sha256": "082634e281170beb26113474e57e5a3b28eaa182ff02981f9b1ef344c326e576"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 120,
+            "lower_bound": 76.0,
+            "score": -1.5789473684210527,
+            "feasible": true,
+            "single_solve_seconds": 0.01776691694976762,
+            "deterministic_recheck_seconds": 0.01780837500700727,
+            "deterministic_schedule_sha256": "1fc3dcfea0e3577585ae8969bc84a003f9f8248acb2e61fbb7069689666b1449"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 345,
+            "lower_bound": 159.7,
+            "score": -2.1603005635566688,
+            "feasible": true,
+            "single_solve_seconds": 0.3976069579948671,
+            "deterministic_recheck_seconds": 0.4849876670050435,
+            "deterministic_schedule_sha256": "b3b9d86b3949f392f138b0cf160892c17f7276b3361b890a7031876ec20b2548"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 379,
+            "lower_bound": 163.75,
+            "score": -2.314503816793893,
+            "feasible": true,
+            "single_solve_seconds": 0.38476779201300815,
+            "deterministic_recheck_seconds": 0.45462216704618186,
+            "deterministic_schedule_sha256": "2afb83a8a3f076af0865a965e2edaf3e2790e487c76fd3bdfe82173fdd6cd311"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 766,
+            "lower_bound": 322.35,
+            "score": -2.376299053823484,
+            "feasible": true,
+            "single_solve_seconds": 1.640353083028458,
+            "deterministic_recheck_seconds": 1.6511448749806732,
+            "deterministic_schedule_sha256": "66ede680bdc4ec2de130bba043495ba2717527c33c518358b4bfe04f4ced1445"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 99,
+            "lower_bound": 80.0,
+            "score": -1.2375,
+            "feasible": true,
+            "single_solve_seconds": 0.03197725000791252,
+            "deterministic_recheck_seconds": 0.032722582982387394,
+            "deterministic_schedule_sha256": "b5f3f07459c5f471e532ffebb80a98139c02f63f4e0b50417af263de61830003"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 100,
+            "lower_bound": 78.0,
+            "score": -1.2820512820512822,
+            "feasible": true,
+            "single_solve_seconds": 0.04491079197032377,
+            "deterministic_recheck_seconds": 0.05137141700834036,
+            "deterministic_schedule_sha256": "8085abff274bfb1370bc8bdaca81b0d84ee1892f434ffc1801c7c34388335833"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 160,
+            "lower_bound": 75.0,
+            "score": -2.1333333333333333,
+            "feasible": true,
+            "single_solve_seconds": 0.17300237499875948,
+            "deterministic_recheck_seconds": 0.16197795805055648,
+            "deterministic_schedule_sha256": "5d44c681410ce27d9376e16d09eca07427cfc001ab9e69b4e330941a891965ee"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 143,
+            "lower_bound": 81.0,
+            "score": -1.7654320987654322,
+            "feasible": true,
+            "single_solve_seconds": 0.15970329195261002,
+            "deterministic_recheck_seconds": 0.1385226669954136,
+            "deterministic_schedule_sha256": "01bf2a13357be278602646aa40d5ed82fdcb75eea7541673eae10e5e7fd281c1"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 276,
+            "lower_bound": 76.45,
+            "score": -3.6102027468933944,
+            "feasible": true,
+            "single_solve_seconds": 0.7258024999755435,
+            "deterministic_recheck_seconds": 0.6703941670130007,
+            "deterministic_schedule_sha256": "e8b2f4aca3ff2486eb17401b79224346a6c5ad62df8fb813149fe0fcc5fbaf23"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 313,
+            "lower_bound": 78.0,
+            "score": -4.012820512820513,
+            "feasible": true,
+            "single_solve_seconds": 0.6906312910141423,
+            "deterministic_recheck_seconds": 0.6570389160187915,
+            "deterministic_schedule_sha256": "fb61bcee934c03cac114be51a798eb5275f348f2134ba2d56d741d0b64879b19"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 607,
+            "lower_bound": 151.625,
+            "score": -4.0032976092333055,
+            "feasible": true,
+            "single_solve_seconds": 2.6067357920110226,
+            "deterministic_recheck_seconds": 3.184328290983103,
+            "deterministic_schedule_sha256": "6d48fdee2566a608632970d7fff7a44d2083b9d6937e76427cc85aa0d2533219"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 114,
+            "lower_bound": 68.0,
+            "score": -1.6764705882352942,
+            "feasible": true,
+            "single_solve_seconds": 0.061318666965235025,
+            "deterministic_recheck_seconds": 0.06543529196642339,
+            "deterministic_schedule_sha256": "40a4167850d36f570ba796475373c6e79d4d7e71adf1f57da1dea41344a8677a"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 102,
+            "lower_bound": 68.0,
+            "score": -1.5,
+            "feasible": true,
+            "single_solve_seconds": 0.06150287500349805,
+            "deterministic_recheck_seconds": 0.06532820797292516,
+            "deterministic_schedule_sha256": "68887d3f34b140183bd3adc7b3a8ec6cc562af1eac022d6da646390084eb7189"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 155,
+            "lower_bound": 76.0,
+            "score": -2.039473684210526,
+            "feasible": true,
+            "single_solve_seconds": 0.2141494580428116,
+            "deterministic_recheck_seconds": 0.20683404197916389,
+            "deterministic_schedule_sha256": "d74199d29748d4c15b75efb80eec1fa5eeaf12fd64ab1019ff2df7b1e754bba1"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 148,
+            "lower_bound": 73.0,
+            "score": -2.0273972602739727,
+            "feasible": true,
+            "single_solve_seconds": 0.16385079099563882,
+            "deterministic_recheck_seconds": 0.20994879200588912,
+            "deterministic_schedule_sha256": "6043e7d4d4ac9faf2a9526fcf0e187c68648d7516c832d3a2cf71e23f475a26c"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 255,
+            "lower_bound": 75.0,
+            "score": -3.4,
+            "feasible": true,
+            "single_solve_seconds": 1.1877555830287747,
+            "deterministic_recheck_seconds": 1.3937800420098938,
+            "deterministic_schedule_sha256": "c96e9dda2835517d03194d270410784ab919bba4bfac5c57e577314ae9968301"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 264,
+            "lower_bound": 74.0,
+            "score": -3.5675675675675675,
+            "feasible": true,
+            "single_solve_seconds": 1.28283341700444,
+            "deterministic_recheck_seconds": 1.0774662920157425,
+            "deterministic_schedule_sha256": "e38a6b1916a112a742b84f3a2dac9aee3332c52b3720096378174bd88f1e7037"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 479,
+            "lower_bound": 98.31666666666666,
+            "score": -4.872012205458552,
+            "feasible": true,
+            "single_solve_seconds": 3.7733831250225194,
+            "deterministic_recheck_seconds": 4.169039166998118,
+            "deterministic_schedule_sha256": "006835cde91a315bb76f8afe9afe793196e9c17906df5084b5278e0ef3e1a8bc"
+          }
+        ],
+        "fitness": -2.391583985708433,
+        "primary_evaluation_seconds": 28.742472834012005,
+        "elapsed_seconds": 28.742572624993045
+      },
+      "member_id": 4,
+      "review": {
+        "reviewed_code_key": "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+        "description": "将p、work和finish截到[0,1e9]，工序数截到[1,1e9]。average=work/operations，分数为work*(1+average)/(1+average+p)*(1+work)/(1+work+finish)*(1+operations/(1+operations+work))。其他量相近时，最后的深度加成项对较多剩余工序提供加分。但在work和p固定时，工序数增加也会降低average、削弱机器效率比；p=0时该效率比不变。总分由各项共同决定，不能说整体规则无条件偏好更多剩余工序。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 2.1694214876033056
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.925925925925926
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 11.011764705882356
+          }
+        ],
+        "sample_sha256": "974c436fded30206ebc65c223cde7da041095847d63e72675a19cec0194ced70"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/init/000001",
+      "candidate": {
+        "description": "Favor jobs with substantial remaining work, while discounting slow machine choices and late finishes. Clipping keeps the score finite; ties are left to the host.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    score = work * machine_factor * time_factor\n    return score\n",
+        "key": "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+        "kind": "h"
+      },
+      "fitness": -2.4010715776754177,
+      "scores": [
+        -1.6,
+        -1.5466666666666666,
+        -1.518987341772152,
+        -1.5789473684210527,
+        -2.229179711959925,
+        -2.3877862595419845,
+        -2.366992399565689,
+        -1.2375,
+        -1.4871794871794872,
+        -2.0,
+        -1.7654320987654322,
+        -3.623283191628515,
+        -3.8974358974358974,
+        -4.0032976092333055,
+        -1.5147058823529411,
+        -1.5,
+        -2.039473684210526,
+        -2.0273972602739727,
+        -3.56,
+        -3.472972972972973,
+        -5.065265299203255
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/init/H/init/000001",
+        "prompt_key": "227a5a5a59cb2e2d594fa659f748a23b4b604d647a4b37d1a3c044c00e76f962",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{Favor jobs with substantial remaining work, while discounting slow machine choices and late finishes. Clipping keeps the score finite; ties are left to the host.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    score = work * machine_factor * time_factor\n    return score\n```",
+        "response_sha256": "155f620a7d693bde9049882a428e8a72951b33ab947d06487ac7b83011839fab",
+        "usage": {
+          "input_tokens": 341,
+          "output_tokens": 5064
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 112,
+            "lower_bound": 70.0,
+            "score": -1.6,
+            "feasible": true,
+            "single_solve_seconds": 0.0130211659707129,
+            "deterministic_recheck_seconds": 0.013393209024798125,
+            "deterministic_schedule_sha256": "fcde07574b825d89320c740d9bc29e5c66773484ac488cfb42188758bd88404c"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 116,
+            "lower_bound": 75.0,
+            "score": -1.5466666666666666,
+            "feasible": true,
+            "single_solve_seconds": 0.0191899579949677,
+            "deterministic_recheck_seconds": 0.0312229169649072,
+            "deterministic_schedule_sha256": "2e9a7a4813d6f412745daee1e110b499fc4a0050ad64e935c4b94849e7127207"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 120,
+            "lower_bound": 79.0,
+            "score": -1.518987341772152,
+            "feasible": true,
+            "single_solve_seconds": 0.028173792001325637,
+            "deterministic_recheck_seconds": 0.013338375021703541,
+            "deterministic_schedule_sha256": "96643eb789ef8fa2722c4067f789c3e52fd61fd70c21cf1034fca54301c095cb"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 120,
+            "lower_bound": 76.0,
+            "score": -1.5789473684210527,
+            "feasible": true,
+            "single_solve_seconds": 0.014961541979573667,
+            "deterministic_recheck_seconds": 0.014729709015227854,
+            "deterministic_schedule_sha256": "86ca4f0f10f2f95325cb8dbf87bba2a51d3ba07b9227c5dd8a055cb29ee63892"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 356,
+            "lower_bound": 159.7,
+            "score": -2.229179711959925,
+            "feasible": true,
+            "single_solve_seconds": 0.3276611249893904,
+            "deterministic_recheck_seconds": 0.33783745899563655,
+            "deterministic_schedule_sha256": "d43ff33ea46622ff2fd3d723698a4d35db1831b65a9127d1b72d2553e8753c43"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 391,
+            "lower_bound": 163.75,
+            "score": -2.3877862595419845,
+            "feasible": true,
+            "single_solve_seconds": 0.39187041600234807,
+            "deterministic_recheck_seconds": 0.36263941699871793,
+            "deterministic_schedule_sha256": "1096137c5ec0cbc41fd59c80b08591937371def7d5021be6c24c10cb9a2cb533"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 763,
+            "lower_bound": 322.35,
+            "score": -2.366992399565689,
+            "feasible": true,
+            "single_solve_seconds": 1.343388374953065,
+            "deterministic_recheck_seconds": 1.2181617089663632,
+            "deterministic_schedule_sha256": "7974cc4a5709d8389c88bafaeb489f335b53a07411d5de5e83b10d2ee3a14c0f"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 99,
+            "lower_bound": 80.0,
+            "score": -1.2375,
+            "feasible": true,
+            "single_solve_seconds": 0.02289108303375542,
+            "deterministic_recheck_seconds": 0.022934583015739918,
+            "deterministic_schedule_sha256": "b5f3f07459c5f471e532ffebb80a98139c02f63f4e0b50417af263de61830003"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 116,
+            "lower_bound": 78.0,
+            "score": -1.4871794871794872,
+            "feasible": true,
+            "single_solve_seconds": 0.028503332985565066,
+            "deterministic_recheck_seconds": 0.02871649997541681,
+            "deterministic_schedule_sha256": "4bf17bcd92386b2181f4a3f22e8e3b56d14bd874cba2d0d6d8ef95a8eb25d3ad"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 150,
+            "lower_bound": 75.0,
+            "score": -2.0,
+            "feasible": true,
+            "single_solve_seconds": 0.10536295897327363,
+            "deterministic_recheck_seconds": 0.10450666601536795,
+            "deterministic_schedule_sha256": "c08db0de35a6d80d47b0c3026a1a38a307f218baf0cf787a9b9b57969a6e29ff"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 143,
+            "lower_bound": 81.0,
+            "score": -1.7654320987654322,
+            "feasible": true,
+            "single_solve_seconds": 0.08456450002267957,
+            "deterministic_recheck_seconds": 0.08449508302146569,
+            "deterministic_schedule_sha256": "f9ec8367d516f530369077313939ed992409b061fdb6cdef7fddbe7065cf6fb0"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 277,
+            "lower_bound": 76.45,
+            "score": -3.623283191628515,
+            "feasible": true,
+            "single_solve_seconds": 0.5636102079879493,
+            "deterministic_recheck_seconds": 0.5563830409664661,
+            "deterministic_schedule_sha256": "80bd1eda7b24be5addb53ca5a5921ed7e27aaa681e6d3c7ebde3583229fdeaf5"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 304,
+            "lower_bound": 78.0,
+            "score": -3.8974358974358974,
+            "feasible": true,
+            "single_solve_seconds": 0.5580963339889422,
+            "deterministic_recheck_seconds": 0.5508385830326006,
+            "deterministic_schedule_sha256": "3a49f224267bec44d433b1a6e03d8a219dde03651d30e2cb2f88bfff729e9f97"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 607,
+            "lower_bound": 151.625,
+            "score": -4.0032976092333055,
+            "feasible": true,
+            "single_solve_seconds": 2.171091417025309,
+            "deterministic_recheck_seconds": 2.1871623329934664,
+            "deterministic_schedule_sha256": "aa5e52ae0a66fc517ee7cd046cc31ffeae1ca56a62cfe0757e5d8a700e813ed9"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 103,
+            "lower_bound": 68.0,
+            "score": -1.5147058823529411,
+            "feasible": true,
+            "single_solve_seconds": 0.040102541039232165,
+            "deterministic_recheck_seconds": 0.04013329098233953,
+            "deterministic_schedule_sha256": "6f70728b6b33ef5b775090027ada574ccedeade0f1b91de38dd57b4e8e2a3e5a"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 102,
+            "lower_bound": 68.0,
+            "score": -1.5,
+            "feasible": true,
+            "single_solve_seconds": 0.03914333297871053,
+            "deterministic_recheck_seconds": 0.039052083040587604,
+            "deterministic_schedule_sha256": "c56d922ca94ab947a8c14daef4e82a32e0f0174ab03bb103f2d828c4cc0ccfaa"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 155,
+            "lower_bound": 76.0,
+            "score": -2.039473684210526,
+            "feasible": true,
+            "single_solve_seconds": 0.14021620899438858,
+            "deterministic_recheck_seconds": 0.14029470802051947,
+            "deterministic_schedule_sha256": "a7a3323d5cf565aebed77ff0155ebf41ab401af30610b0e0c7c8b907dc08ece2"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 148,
+            "lower_bound": 73.0,
+            "score": -2.0273972602739727,
+            "feasible": true,
+            "single_solve_seconds": 0.11253425001632422,
+            "deterministic_recheck_seconds": 0.1194017079542391,
+            "deterministic_schedule_sha256": "25d9df96294fafffbfbc59c896a3cea26ee73c4ec041d08b81e107f32b700e1e"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 267,
+            "lower_bound": 75.0,
+            "score": -3.56,
+            "feasible": true,
+            "single_solve_seconds": 0.7757537920260802,
+            "deterministic_recheck_seconds": 0.8134916660492308,
+            "deterministic_schedule_sha256": "0232da361870a895c7743fd10dbe895ec9a511604b6828a4c3afbdff6ac5893d"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 257,
+            "lower_bound": 74.0,
+            "score": -3.472972972972973,
+            "feasible": true,
+            "single_solve_seconds": 0.84927358396817,
+            "deterministic_recheck_seconds": 0.9178352499729954,
+            "deterministic_schedule_sha256": "28722a491897bd7d55b9739217c608b34db551162832b7dcbc67821e5c94143e"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 498,
+            "lower_bound": 98.31666666666666,
+            "score": -5.065265299203255,
+            "feasible": true,
+            "single_solve_seconds": 3.7527378340018913,
+            "deterministic_recheck_seconds": 3.012626209005248,
+            "deterministic_schedule_sha256": "dfb54fa862a3ff9ff6a4537ea396d0aeea93ac6ad1c8f1fd3b352d17bb621d47"
+          }
+        ],
+        "fitness": -2.4010715776754177,
+        "primary_evaluation_seconds": 22.379406500025652,
+        "elapsed_seconds": 22.379477541020606
+      },
+      "member_id": 5,
+      "review": {
+        "reviewed_code_key": "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+        "description": "非负截断到1e9，工序数至少为1，average=work/operations，返回work*(1+average)/(1+average+p)*(1+work)/(1+work+finish)。综合剩余工作量、相对平均工序工作量的加工效率和最早完成时间。其他值固定时，缩短加工时间或提前完成不会降低分数。两个就绪时间及最早开始时间不直接参与。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 1.7355371900826444
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.7936507936507937
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 8.914285714285716
+          }
+        ],
+        "sample_sha256": "b8ce7c2c516a75fc70d712de58bf50c152eb6662f1fcb14205d253da95665d83"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0001/000008",
+      "candidate": {
+        "description": "This version emphasizes remaining work and operation depth while rewarding short machine processing times, low completion times, and aligned readiness. All terms are bounded to keep the score finite and numerically stable.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(max(float(processing_time), 0.0), 1000000000.0)\n    w = min(max(float(remaining_work), 0.0), 1000000000.0)\n    n = min(max(float(remaining_operations), 1.0), 1000000000.0)\n    jr = min(max(float(job_ready_time), 0.0), 1000000000.0)\n    mr = min(max(float(machine_ready_time), 0.0), 1000000000.0)\n    es = min(max(float(earliest_start), 0.0), 1000000000.0)\n    ef = min(max(float(earliest_finish), 0.0), 1000000000.0)\n    average_work = w / n\n    gap = abs(jr - mr)\n    criticality = w / (w + ef + 1.0)\n    machine_fit = (average_work + 1.0) / (average_work + p + 1.0)\n    depth = n / (n + 4.0)\n    completion = 1.0 / (ef + 1.0)\n    start_penalty = es / (es + w + 1.0)\n    mismatch = gap / (gap + average_work + p + 1.0)\n    current_share = p / (p + w + 1.0)\n    score = 7.0 * criticality + 5.0 * machine_fit + 2.0 * depth\n    score = score + 2.0 * completion\n    score = score - 2.0 * start_penalty - 2.0 * mismatch - current_share\n    return score\n",
+        "key": "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+        "kind": "h"
+      },
+      "fitness": -2.4158572928209923,
+      "scores": [
+        -1.5571428571428572,
+        -1.4133333333333333,
+        -1.6329113924050633,
+        -1.5263157894736843,
+        -1.9724483406386977,
+        -2.2045801526717557,
+        -2.0226461920272993,
+        -1.4,
+        -1.4743589743589745,
+        -1.9066666666666667,
+        -1.8271604938271604,
+        -3.780248528449967,
+        -3.641025641025641,
+        -3.5877988458367684,
+        -1.5294117647058822,
+        -1.6323529411764706,
+        -1.9605263157894737,
+        -2.191780821917808,
+        -3.986666666666667,
+        -4.013513513513513,
+        -5.472113917613155
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0001/000008",
+        "prompt_key": "62d5c01e288655f7117c5a21875415cff45b2b4553a23e617074bc6b5d3b0125",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": " {This version emphasizes remaining work and operation depth while rewarding short machine processing times, low completion times, and aligned readiness. All terms are bounded to keep the score finite and numerically stable.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(max(float(processing_time), 0.0), 1000000000.0)\n    w = min(max(float(remaining_work), 0.0), 1000000000.0)\n    n = min(max(float(remaining_operations), 1.0), 1000000000.0)\n    jr = min(max(float(job_ready_time), 0.0), 1000000000.0)\n    mr = min(max(float(machine_ready_time), 0.0), 1000000000.0)\n    es = min(max(float(earliest_start), 0.0), 1000000000.0)\n    ef = min(max(float(earliest_finish), 0.0), 1000000000.0)\n\n    average_work = w / n\n    gap = abs(jr - mr)\n    criticality = w / (w + ef + 1.0)\n    machine_fit = (average_work + 1.0) / (average_work + p + 1.0)\n    depth = n / (n + 4.0)\n    completion = 1.0 / (ef + 1.0)\n    start_penalty = es / (es + w + 1.0)\n    mismatch = gap / (gap + average_work + p + 1.0)\n    current_share = p / (p + w + 1.0)\n\n    score = 7.0 * criticality + 5.0 * machine_fit + 2.0 * depth\n    score = score + 2.0 * completion\n    score = score - 2.0 * start_penalty - 2.0 * mismatch - current_share\n    return score\n```",
+        "response_sha256": "dc1513bffe06fa4a167fbb6ae2a5204ebff7c6ab1fa1f1d69dc605e382aea261",
+        "usage": {
+          "input_tokens": 5080,
+          "output_tokens": 1053
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 109,
+            "lower_bound": 70.0,
+            "score": -1.5571428571428572,
+            "feasible": true,
+            "single_solve_seconds": 0.030202665948309004,
+            "deterministic_recheck_seconds": 0.029906250012572855,
+            "deterministic_schedule_sha256": "22ba584855a17d360b44d322761e00f381ea1dd7a50e3d518e0400303f98a5fc"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 106,
+            "lower_bound": 75.0,
+            "score": -1.4133333333333333,
+            "feasible": true,
+            "single_solve_seconds": 0.0350079580093734,
+            "deterministic_recheck_seconds": 0.0343504169723019,
+            "deterministic_schedule_sha256": "80c016e62ffd320cae1759b728ea3706f86cb7fdbe2ee34f3e318bbf59187f1a"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 129,
+            "lower_bound": 79.0,
+            "score": -1.6329113924050633,
+            "feasible": true,
+            "single_solve_seconds": 0.029244457953609526,
+            "deterministic_recheck_seconds": 0.029198458010796458,
+            "deterministic_schedule_sha256": "473b682415d38419f2fd7522113453f99350353a5020d78adc19fa6824067840"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 116,
+            "lower_bound": 76.0,
+            "score": -1.5263157894736843,
+            "feasible": true,
+            "single_solve_seconds": 0.03199329203926027,
+            "deterministic_recheck_seconds": 0.032212416001129895,
+            "deterministic_schedule_sha256": "8bd7fcbb2497cb4ca17dcd38561556cce54029c53c8e4c78782cd4f44902a33f"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 315,
+            "lower_bound": 159.7,
+            "score": -1.9724483406386977,
+            "feasible": true,
+            "single_solve_seconds": 0.6282964589772746,
+            "deterministic_recheck_seconds": 0.63211958296597,
+            "deterministic_schedule_sha256": "d6db87835d72c33d8621b014b9614441aaeb24eb979cb0c38be49869634f5675"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 361,
+            "lower_bound": 163.75,
+            "score": -2.2045801526717557,
+            "feasible": true,
+            "single_solve_seconds": 0.6206585410400294,
+            "deterministic_recheck_seconds": 0.6832674579927698,
+            "deterministic_schedule_sha256": "bf361a18975e1b79be8e14062a723eabb54d92761d0205a3ebd33e103c42501e"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 652,
+            "lower_bound": 322.35,
+            "score": -2.0226461920272993,
+            "feasible": true,
+            "single_solve_seconds": 2.8691092919907533,
+            "deterministic_recheck_seconds": 2.8701724580023438,
+            "deterministic_schedule_sha256": "f0e23f79c7cdd1d76aa2cd66c422110b9b384c08bc4a732b42ae146a791437fb"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 112,
+            "lower_bound": 80.0,
+            "score": -1.4,
+            "feasible": true,
+            "single_solve_seconds": 0.06260100001236424,
+            "deterministic_recheck_seconds": 0.06580112501978874,
+            "deterministic_schedule_sha256": "35d953ac1ea14d606858664c0baa5e674607744b488d1effbf74d4677f90e9a1"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 115,
+            "lower_bound": 78.0,
+            "score": -1.4743589743589745,
+            "feasible": true,
+            "single_solve_seconds": 0.07434304198250175,
+            "deterministic_recheck_seconds": 0.07375587499700487,
+            "deterministic_schedule_sha256": "69b21a8603186d81d7b3ad4d4f94801b9b47703540f4bee0d4a607411f849d36"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 143,
+            "lower_bound": 75.0,
+            "score": -1.9066666666666667,
+            "feasible": true,
+            "single_solve_seconds": 0.2505399159854278,
+            "deterministic_recheck_seconds": 0.26483404100872576,
+            "deterministic_schedule_sha256": "00b07a2d6e56e64fbcf36549e97e7f6ce89d9e99d7c748454a9eb61f5457b27b"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 148,
+            "lower_bound": 81.0,
+            "score": -1.8271604938271604,
+            "feasible": true,
+            "single_solve_seconds": 0.21333737502573058,
+            "deterministic_recheck_seconds": 0.21383591700578108,
+            "deterministic_schedule_sha256": "a392d6ecf9ec223fe4de27f3594c6f88a06fe0732b464094bfbb7b210f54fffb"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 289,
+            "lower_bound": 76.45,
+            "score": -3.780248528449967,
+            "feasible": true,
+            "single_solve_seconds": 1.6671976249781437,
+            "deterministic_recheck_seconds": 1.4210632080212235,
+            "deterministic_schedule_sha256": "995f4bd219d2654de8af059ad07765ad27e4d85c6de19f9430a97ae0d27d3ced"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 284,
+            "lower_bound": 78.0,
+            "score": -3.641025641025641,
+            "feasible": true,
+            "single_solve_seconds": 1.012548541999422,
+            "deterministic_recheck_seconds": 1.2404839999508113,
+            "deterministic_schedule_sha256": "9b6911dc9ea0cef5173a8a3f5342e8c5955c41c725851b2896ad2e7302e129a5"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 544,
+            "lower_bound": 151.625,
+            "score": -3.5877988458367684,
+            "feasible": true,
+            "single_solve_seconds": 3.771236458036583,
+            "deterministic_recheck_seconds": 3.3707527079968713,
+            "deterministic_schedule_sha256": "39d1d0078ac6f2829bb022b69a213ca74b040f12dcca7ad86dd4bbb00a343515"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 104,
+            "lower_bound": 68.0,
+            "score": -1.5294117647058822,
+            "feasible": true,
+            "single_solve_seconds": 0.10788337502162904,
+            "deterministic_recheck_seconds": 0.10813583299750462,
+            "deterministic_schedule_sha256": "51f3005aba5d870ba271ce6672407ed8bae93c204ee8311e10a9bcbcee8e8878"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 111,
+            "lower_bound": 68.0,
+            "score": -1.6323529411764706,
+            "feasible": true,
+            "single_solve_seconds": 0.11348308302694932,
+            "deterministic_recheck_seconds": 0.09696129203075543,
+            "deterministic_schedule_sha256": "8a9a1b2fdf83ffcdffbf3006bce254e3a4306f33ecb6d88c3e7ffa3646515160"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 149,
+            "lower_bound": 76.0,
+            "score": -1.9605263157894737,
+            "feasible": true,
+            "single_solve_seconds": 0.3405037090415135,
+            "deterministic_recheck_seconds": 0.3555669169872999,
+            "deterministic_schedule_sha256": "1adb29609dbb2bf5eb0f75ee7066d602b32fe91962e216b56120b4a60e7c8e19"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 160,
+            "lower_bound": 73.0,
+            "score": -2.191780821917808,
+            "feasible": true,
+            "single_solve_seconds": 0.26681937504326925,
+            "deterministic_recheck_seconds": 0.27077704202383757,
+            "deterministic_schedule_sha256": "b0da8cc33658ffff69136e1ab1f696a3d573894734aa9da1248b26d164cd05cf"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 299,
+            "lower_bound": 75.0,
+            "score": -3.986666666666667,
+            "feasible": true,
+            "single_solve_seconds": 1.6265060839941725,
+            "deterministic_recheck_seconds": 1.574244708986953,
+            "deterministic_schedule_sha256": "3919ae0989c03da5fc04ed1cbf5a4b1a737eae05119b5128493f793186b046b2"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 297,
+            "lower_bound": 74.0,
+            "score": -4.013513513513513,
+            "feasible": true,
+            "single_solve_seconds": 1.6139493330265395,
+            "deterministic_recheck_seconds": 1.6017963749472983,
+            "deterministic_schedule_sha256": "34c9c04420abe628efaf320ad15032d2386e591877850accd40b0ed43abd71d5"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 538,
+            "lower_bound": 98.31666666666666,
+            "score": -5.472113917613155,
+            "feasible": true,
+            "single_solve_seconds": 4.274268582987133,
+            "deterministic_recheck_seconds": 4.182628666982055,
+            "deterministic_schedule_sha256": "a50001bb166f13643c09e5b4729943cda8437aaf68f973283bf6f2a003429299"
+          }
+        ],
+        "fitness": -2.4158572928209923,
+        "primary_evaluation_seconds": 39.130098666995764,
+        "elapsed_seconds": 39.13031595799839
+      },
+      "member_id": 6,
+      "review": {
+        "reviewed_code_key": "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+        "description": "输入转成浮点数后非负截断到1e9，工序数至少为1。average=work/operations，gap=abs(job_ready-machine_ready)。加分项为7*work/(work+finish+1)+5*(average+1)/(average+p+1)+2*operations/(operations+4)+2/(finish+1)；扣分项为2*start/(start+work+1)+2*gap/(gap+average+p+1)+p/(p+work+1)。多个比例共同权衡剩余工作、加工效率、工序数、完成时间、开始时间和就绪差。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 5.74108734402852
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 3.3179487179487186
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 11.928571428571429
+          }
+        ],
+        "sample_sha256": "1092b0d15b4fa51567fa97ca7c2ad41ca0d72c757766e2f08e4faddb9ad65d22"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/source/H/source/H/init/000001",
+      "candidate": {
+        "description": "This rule favors critical jobs with substantial remaining work, efficient machine choices relative to the job's average operation length, and early completion. It penalizes readiness mismatch and delayed starts; higher scores win.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(max(processing_time, 0.0), 1000000000.0)\n    w = min(max(remaining_work, 0.0), 1000000000.0)\n    n = min(max(remaining_operations, 1.0), 1000000000.0)\n    jr = min(max(job_ready_time, 0.0), 1000000000.0)\n    mr = min(max(machine_ready_time, 0.0), 1000000000.0)\n    es = min(max(earliest_start, 0.0), 1000000000.0)\n    ef = min(max(earliest_finish, 0.0), 1000000000.0)\n    average_work = w / n\n    readiness_gap = abs(jr - mr)\n    criticality = w / (w + ef + 1.0)\n    efficiency = average_work / (average_work + p + 1.0)\n    depth = n / (n + 4.0)\n    mismatch = readiness_gap / (readiness_gap + average_work + p + 1.0)\n    delay = es / (es + w + 1.0)\n    score = 6.0 * criticality + 4.0 * efficiency + 2.0 * depth - 2.0 * mismatch - delay\n    return score\n",
+        "key": "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+        "kind": "h"
+      },
+      "fitness": -2.477265237831543,
+      "scores": [
+        -1.8714285714285714,
+        -1.5733333333333333,
+        -1.6582278481012658,
+        -1.618421052631579,
+        -1.9974953036944272,
+        -2.119083969465649,
+        -1.9730107026523964,
+        -1.6125,
+        -1.5128205128205128,
+        -2.2933333333333334,
+        -1.962962962962963,
+        -3.6102027468933944,
+        -3.8333333333333335,
+        -3.376751854905194,
+        -1.6911764705882353,
+        -1.8529411764705883,
+        -2.0657894736842106,
+        -2.26027397260274,
+        -4.12,
+        -3.527027027027027,
+        -5.49245634853365
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "4a5ab69ea5840e912a11c22f4878599d68ed490cec23f3fe8555420b930a745d",
+        "ledger_identity": "0a0ae400a2764597c8f9f6919a22769e145d0d088fa729edad90f30f4bdc9a20",
+        "global_key": "H/init/H/init/000001",
+        "prompt_key": "227a5a5a59cb2e2d594fa659f748a23b4b604d647a4b37d1a3c044c00e76f962",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{This rule favors critical jobs with substantial remaining work, efficient machine choices relative to the job's average operation length, and early completion. It penalizes readiness mismatch and delayed starts; higher scores win.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = min(max(processing_time, 0.0), 1000000000.0)\n    w = min(max(remaining_work, 0.0), 1000000000.0)\n    n = min(max(remaining_operations, 1.0), 1000000000.0)\n    jr = min(max(job_ready_time, 0.0), 1000000000.0)\n    mr = min(max(machine_ready_time, 0.0), 1000000000.0)\n    es = min(max(earliest_start, 0.0), 1000000000.0)\n    ef = min(max(earliest_finish, 0.0), 1000000000.0)\n    average_work = w / n\n    readiness_gap = abs(jr - mr)\n    criticality = w / (w + ef + 1.0)\n    efficiency = average_work / (average_work + p + 1.0)\n    depth = n / (n + 4.0)\n    mismatch = readiness_gap / (readiness_gap + average_work + p + 1.0)\n    delay = es / (es + w + 1.0)\n    score = 6.0 * criticality + 4.0 * efficiency + 2.0 * depth - 2.0 * mismatch - delay\n    return score\n```",
+        "response_sha256": "3df6c2d5589ac80890efdebac444a0590bf6a0c1129e530fdfacc981a5a90df5",
+        "usage": {
+          "input_tokens": 4710,
+          "output_tokens": 1361
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 131,
+            "lower_bound": 70.0,
+            "score": -1.8714285714285714,
+            "feasible": true,
+            "single_solve_seconds": 0.022992749989498407,
+            "deterministic_recheck_seconds": 0.02275975001975894,
+            "deterministic_schedule_sha256": "b0eece02f19545aba12c7eb76d74d0402bc471aef845c7701ad77a9d29722cb0"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 118,
+            "lower_bound": 75.0,
+            "score": -1.5733333333333333,
+            "feasible": true,
+            "single_solve_seconds": 0.02640620799502358,
+            "deterministic_recheck_seconds": 0.027934874990023673,
+            "deterministic_schedule_sha256": "dc9b6774011e9fc817482bb3bde7bb68bf9f9a73876a568f720f0cf2970f038e"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 131,
+            "lower_bound": 79.0,
+            "score": -1.6582278481012658,
+            "feasible": true,
+            "single_solve_seconds": 0.022248417022638023,
+            "deterministic_recheck_seconds": 0.02231845899950713,
+            "deterministic_schedule_sha256": "1bda09554e8e5a77c41592e3746a91edafd00fc2b7d6ee9b67fd6396db26d484"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 123,
+            "lower_bound": 76.0,
+            "score": -1.618421052631579,
+            "feasible": true,
+            "single_solve_seconds": 0.02490224997745827,
+            "deterministic_recheck_seconds": 0.025401499995496124,
+            "deterministic_schedule_sha256": "e888f17ca11dc6b1d7ebc770f03d11d3a118c9548b1660f4bcf7d98552b30680"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 319,
+            "lower_bound": 159.7,
+            "score": -1.9974953036944272,
+            "feasible": true,
+            "single_solve_seconds": 0.5259310830151662,
+            "deterministic_recheck_seconds": 0.5146121670259163,
+            "deterministic_schedule_sha256": "2bf8a9cda822833849b06d2bbed6a1061dda57aa6d43640d3ce680e42595ad6f"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 347,
+            "lower_bound": 163.75,
+            "score": -2.119083969465649,
+            "feasible": true,
+            "single_solve_seconds": 0.4958012499846518,
+            "deterministic_recheck_seconds": 0.5116209170082584,
+            "deterministic_schedule_sha256": "cd469b25547aaba9a1d5b0b11362fc23101a4e597760f9d1208a9cf0fe2dd5c1"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 636,
+            "lower_bound": 322.35,
+            "score": -1.9730107026523964,
+            "feasible": true,
+            "single_solve_seconds": 1.726828499988187,
+            "deterministic_recheck_seconds": 1.7718355829711072,
+            "deterministic_schedule_sha256": "e87b13abf1d89530778adba0b6f50d3e99ad283744726d126160f051114ea914"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 129,
+            "lower_bound": 80.0,
+            "score": -1.6125,
+            "feasible": true,
+            "single_solve_seconds": 0.04563645803136751,
+            "deterministic_recheck_seconds": 0.04257837502518669,
+            "deterministic_schedule_sha256": "45181f3bafa0e970c765ae2e8cd0b911f4efe0804c987e4ae2ca6717d16774ca"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 118,
+            "lower_bound": 78.0,
+            "score": -1.5128205128205128,
+            "feasible": true,
+            "single_solve_seconds": 0.053005792025942355,
+            "deterministic_recheck_seconds": 0.05724295799154788,
+            "deterministic_schedule_sha256": "05ec5717084ea506f5700cb7a114b2c9d1c47aa2dff4994e688e35086de72a4f"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 172,
+            "lower_bound": 75.0,
+            "score": -2.2933333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.19801141700008884,
+            "deterministic_recheck_seconds": 0.18356491602025926,
+            "deterministic_schedule_sha256": "e9b54ec163509ef0b80921d8880041e75bb7ea3bc7771cf41ea135730836640f"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 159,
+            "lower_bound": 81.0,
+            "score": -1.962962962962963,
+            "feasible": true,
+            "single_solve_seconds": 0.14731733303051442,
+            "deterministic_recheck_seconds": 0.1445757079636678,
+            "deterministic_schedule_sha256": "1320f07ecf26c933289fb5ab8ee6ab32a301f6fc4947b21685ef82217ecad372"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 276,
+            "lower_bound": 76.45,
+            "score": -3.6102027468933944,
+            "feasible": true,
+            "single_solve_seconds": 0.7032273329677992,
+            "deterministic_recheck_seconds": 0.6997327500139363,
+            "deterministic_schedule_sha256": "86f78b597b58ea46f8abab02472449467e04ed56d4f721a224a599983760a3cc"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 299,
+            "lower_bound": 78.0,
+            "score": -3.8333333333333335,
+            "feasible": true,
+            "single_solve_seconds": 0.6707988329580985,
+            "deterministic_recheck_seconds": 0.6675213339622132,
+            "deterministic_schedule_sha256": "0982e4f1e3f6f1d48e77348af5364178fa34939466d1346b8ae4e769be209ec7"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 512,
+            "lower_bound": 151.625,
+            "score": -3.376751854905194,
+            "feasible": true,
+            "single_solve_seconds": 1.8020707920077257,
+            "deterministic_recheck_seconds": 1.777665583009366,
+            "deterministic_schedule_sha256": "c40d03b619306887e791a56edad5a0bd67e3450ac6dfd0b2e4e7fcd9653685ec"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 115,
+            "lower_bound": 68.0,
+            "score": -1.6911764705882353,
+            "feasible": true,
+            "single_solve_seconds": 0.07103900000220165,
+            "deterministic_recheck_seconds": 0.07050899998284876,
+            "deterministic_schedule_sha256": "6f60fa8d9e877f6d75a06412515548985df72bba8c03eabdaa56c3d139b4418f"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 126,
+            "lower_bound": 68.0,
+            "score": -1.8529411764705883,
+            "feasible": true,
+            "single_solve_seconds": 0.06732712499797344,
+            "deterministic_recheck_seconds": 0.06755679100751877,
+            "deterministic_schedule_sha256": "608e62080f06dddc3f204cd2a6dfae32fc18419b81629745e2d1f763f275bfca"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 157,
+            "lower_bound": 76.0,
+            "score": -2.0657894736842106,
+            "feasible": true,
+            "single_solve_seconds": 0.2545421249815263,
+            "deterministic_recheck_seconds": 0.23557320900727063,
+            "deterministic_schedule_sha256": "c1675af9d0763d6acfc962957e53b49cf1024c82b73b1eb8074905ab44143655"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 165,
+            "lower_bound": 73.0,
+            "score": -2.26027397260274,
+            "feasible": true,
+            "single_solve_seconds": 0.1818101250100881,
+            "deterministic_recheck_seconds": 0.18138641701079905,
+            "deterministic_schedule_sha256": "13c2b886cf1708ecc3a1c49c63150a522682feaa831580c6669571d3d60cc69a"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 309,
+            "lower_bound": 75.0,
+            "score": -4.12,
+            "feasible": true,
+            "single_solve_seconds": 0.8051150829996914,
+            "deterministic_recheck_seconds": 0.8175403340137564,
+            "deterministic_schedule_sha256": "5467f5d63003115f5eba47e58ef31bdbb9fb65979d458a08c28a1be54f03bbde"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 261,
+            "lower_bound": 74.0,
+            "score": -3.527027027027027,
+            "feasible": true,
+            "single_solve_seconds": 1.0090984579874203,
+            "deterministic_recheck_seconds": 1.0777095829835162,
+            "deterministic_schedule_sha256": "1f9f83f535dc16a39aab6a8d54d3fd5d482586996f4d3e36c63dd0ca0f16f92e"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 540,
+            "lower_bound": 98.31666666666666,
+            "score": -5.49245634853365,
+            "feasible": true,
+            "single_solve_seconds": 2.0374221249949187,
+            "deterministic_recheck_seconds": 1.9985717920353636,
+            "deterministic_schedule_sha256": "ee56fd3c9146cb9374282497bc080eb8ef7339f4b3fda53a7a0a7bc799f23c3a"
+          }
+        ],
+        "fitness": -2.477265237831543,
+        "primary_evaluation_seconds": 22.230442750034854,
+        "elapsed_seconds": 22.23053499998059
+      },
+      "origin_id": "H/init/000001",
+      "origin_context": "68dded7147ded8166c53aec8fe4b9c5be4b547aa0d8459bbad5da2a41924d490",
+      "source_import_hash": "c789c296d1f350ac6cbfeb66c86ee8f683dd2fb3abc92f68160ee7f3be3eda0f",
+      "member_id": 7,
+      "review": {
+        "reviewed_code_key": "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+        "description": "输入非负截断到1e9，工序数至少为1。average=work/operations，gap=abs(job_ready-machine_ready)。加分项为6*work/(work+finish+1)+4*average/(average+p+1)+2*operations/(operations+4)；扣分项为2*gap/(gap+average+p+1)+start/(start+work+1)。这些归一化比例共同决定分数，单个输入的影响需要结合其他项理解。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 4.172905525846702
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 2.7766788766788766
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 8.542857142857143
+          }
+        ],
+        "sample_sha256": "d0ab4814bddf80eaf518b575ffe1eaf359ecc7771bbf1373ddf9aa1bd1728186"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0001/000006",
+      "candidate": {
+        "description": "This revision scales machine-induced waiting by average operation work, making congestion penalties more responsive for long job tails. A cubic machine factor further favors faster alternatives while preserving remaining-work and earliest-finish priorities.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    job_ready = max(0.0, min(job_ready_time, 1000000000.0))\n    machine_ready = max(0.0, min(machine_ready_time, 1000000000.0))\n    start = max(0.0, min(earliest_start, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    scale = 1.0 + average\n    machine_factor = scale / (scale + p)\n    wait = max(0.0, start - job_ready, machine_ready - job_ready)\n    wait_factor = scale / (scale + wait)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    score = (work + average) * machine_factor * machine_factor * machine_factor\n    score = score * wait_factor * time_factor\n    return score\n",
+        "key": "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+        "kind": "h"
+      },
+      "fitness": -2.5246075809055775,
+      "scores": [
+        -1.4142857142857144,
+        -1.52,
+        -1.5822784810126582,
+        -1.513157894736842,
+        -2.360676268002505,
+        -2.3694656488549617,
+        -2.301845819761129,
+        -1.2625,
+        -1.4230769230769231,
+        -2.2,
+        -1.9753086419753085,
+        -4.054937867887508,
+        -3.91025641025641,
+        -3.502061005770816,
+        -1.6764705882352942,
+        -1.5441176470588236,
+        -2.236842105263158,
+        -2.410958904109589,
+        -4.053333333333334,
+        -4.243243243243243,
+        -5.461942702152908
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0001/000006",
+        "prompt_key": "8e5d67773a9efbb1eae2591a869fdafb93a50faf511a3b90aef562af9de76f97",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{This revision scales machine-induced waiting by average operation work, making congestion penalties more responsive for long job tails. A cubic machine factor further favors faster alternatives while preserving remaining-work and earliest-finish priorities.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    job_ready = max(0.0, min(job_ready_time, 1000000000.0))\n    machine_ready = max(0.0, min(machine_ready_time, 1000000000.0))\n    start = max(0.0, min(earliest_start, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    average = work / operations\n    scale = 1.0 + average\n    machine_factor = scale / (scale + p)\n    wait = max(0.0, start - job_ready, machine_ready - job_ready)\n    wait_factor = scale / (scale + wait)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    score = (work + average) * machine_factor * machine_factor * machine_factor\n    score = score * wait_factor * time_factor\n    return score\n```",
+        "response_sha256": "02596b1b7de36b0eb6f330cf80f18b81ff11c12bcd42193d2dd47cbc53efe6df",
+        "usage": {
+          "input_tokens": 641,
+          "output_tokens": 3972
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 99,
+            "lower_bound": 70.0,
+            "score": -1.4142857142857144,
+            "feasible": true,
+            "single_solve_seconds": 0.016053917002864182,
+            "deterministic_recheck_seconds": 0.015729749982710928,
+            "deterministic_schedule_sha256": "0ad1340de8e87600cdc2463a460ce03aff88e1b00608e135bb461496ee6dcf54"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 114,
+            "lower_bound": 75.0,
+            "score": -1.52,
+            "feasible": true,
+            "single_solve_seconds": 0.019052541989367455,
+            "deterministic_recheck_seconds": 0.01868916698731482,
+            "deterministic_schedule_sha256": "926340b2a19671a51b775c9679906c31cd0ba9de3bd7df3e85d7fba94e70ac56"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 125,
+            "lower_bound": 79.0,
+            "score": -1.5822784810126582,
+            "feasible": true,
+            "single_solve_seconds": 0.016732749994844198,
+            "deterministic_recheck_seconds": 0.015832707984372973,
+            "deterministic_schedule_sha256": "ea80e6426888b3998727b71eb2927e6dabb83e59203faabfc879a4766ab630d9"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 115,
+            "lower_bound": 76.0,
+            "score": -1.513157894736842,
+            "feasible": true,
+            "single_solve_seconds": 0.014792375033721328,
+            "deterministic_recheck_seconds": 0.01475783297792077,
+            "deterministic_schedule_sha256": "4bbce0bff1d14f1b29d1cbf32fdac17a6117c461cee89c3fe6aed23b554b0d82"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 377,
+            "lower_bound": 159.7,
+            "score": -2.360676268002505,
+            "feasible": true,
+            "single_solve_seconds": 0.28740166599163786,
+            "deterministic_recheck_seconds": 0.2885251250118017,
+            "deterministic_schedule_sha256": "57e86eedd15fd87739b7818e92f04d30d67365f668fc0c6a3c87d1e0dec6d962"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 388,
+            "lower_bound": 163.75,
+            "score": -2.3694656488549617,
+            "feasible": true,
+            "single_solve_seconds": 0.29810295795323327,
+            "deterministic_recheck_seconds": 0.2973117920337245,
+            "deterministic_schedule_sha256": "f7225bfdf8f38dfd04d26a3d79797f4f53b4412d85a059a48a747bb4ace9e959"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 742,
+            "lower_bound": 322.35,
+            "score": -2.301845819761129,
+            "feasible": true,
+            "single_solve_seconds": 1.1680284580215812,
+            "deterministic_recheck_seconds": 1.156554415996652,
+            "deterministic_schedule_sha256": "e4342f1fac9c0054b708d6f14b953d6093f8cd7677f6e18bc18d5cc04f100dd8"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 101,
+            "lower_bound": 80.0,
+            "score": -1.2625,
+            "feasible": true,
+            "single_solve_seconds": 0.029363708978053182,
+            "deterministic_recheck_seconds": 0.02938449999783188,
+            "deterministic_schedule_sha256": "e91263f14c8fa9f2ffa53171dcc7b9e53070abbc166f349e0a9ddd5a04da9434"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 111,
+            "lower_bound": 78.0,
+            "score": -1.4230769230769231,
+            "feasible": true,
+            "single_solve_seconds": 0.026384208002127707,
+            "deterministic_recheck_seconds": 0.0263610000256449,
+            "deterministic_schedule_sha256": "c3bd8fcbb8ff54f94cbe1bf59c1866ab37462b5447d7835ab6a069c1ee04ef39"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 165,
+            "lower_bound": 75.0,
+            "score": -2.2,
+            "feasible": true,
+            "single_solve_seconds": 0.0792375830351375,
+            "deterministic_recheck_seconds": 0.07849191600689664,
+            "deterministic_schedule_sha256": "4b6fa44878e2a7330e02120da0cad99370f5f6d56b9e0cd2f90b5bdd9a560b89"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 160,
+            "lower_bound": 81.0,
+            "score": -1.9753086419753085,
+            "feasible": true,
+            "single_solve_seconds": 0.07101404201239347,
+            "deterministic_recheck_seconds": 0.0707472920184955,
+            "deterministic_schedule_sha256": "0865f6752bc7822aed0f2a8c7ac41e08c50dabaa864d5c6b7cf2df340b083038"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 310,
+            "lower_bound": 76.45,
+            "score": -4.054937867887508,
+            "feasible": true,
+            "single_solve_seconds": 0.31417095800861716,
+            "deterministic_recheck_seconds": 0.30550795898307115,
+            "deterministic_schedule_sha256": "203304feb05223cc2c6cee77201bfdd546114addb67c3201bc30f3bf71e113ea"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 305,
+            "lower_bound": 78.0,
+            "score": -3.91025641025641,
+            "feasible": true,
+            "single_solve_seconds": 0.3223512079566717,
+            "deterministic_recheck_seconds": 0.3056564580183476,
+            "deterministic_schedule_sha256": "96d1bbe8da7b489035db8fbb53ca480c3b98fe5f00a271a15434a88030662d9b"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 531,
+            "lower_bound": 151.625,
+            "score": -3.502061005770816,
+            "feasible": true,
+            "single_solve_seconds": 1.123285667039454,
+            "deterministic_recheck_seconds": 1.0936804589582607,
+            "deterministic_schedule_sha256": "9293eef6096551a5e203066bfcbd4382e3c1b11c8d76b6056c3e87ca241f52f3"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 114,
+            "lower_bound": 68.0,
+            "score": -1.6764705882352942,
+            "feasible": true,
+            "single_solve_seconds": 0.03821062500355765,
+            "deterministic_recheck_seconds": 0.03817020799033344,
+            "deterministic_schedule_sha256": "7c282a05bab7d040316be482a15bbdb3313eb03a46d6f49a163e8a981a5b85dc"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 105,
+            "lower_bound": 68.0,
+            "score": -1.5441176470588236,
+            "feasible": true,
+            "single_solve_seconds": 0.03866466699400917,
+            "deterministic_recheck_seconds": 0.03739608300384134,
+            "deterministic_schedule_sha256": "50add528600fd2eedd8fa992a4691a9c85481607d0a570feb8a04cc362a14d4d"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 170,
+            "lower_bound": 76.0,
+            "score": -2.236842105263158,
+            "feasible": true,
+            "single_solve_seconds": 0.09271216701017693,
+            "deterministic_recheck_seconds": 0.0863636250142008,
+            "deterministic_schedule_sha256": "8de3a68c6548b828bed88617ab90b4e47f11217da0d884997734f7bacc392bb2"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 176,
+            "lower_bound": 73.0,
+            "score": -2.410958904109589,
+            "feasible": true,
+            "single_solve_seconds": 0.07651899999473244,
+            "deterministic_recheck_seconds": 0.07039391598664224,
+            "deterministic_schedule_sha256": "6deff82e7256f25cacf9d5715a9f5531caf4feed2a63bc428420218eb569a456"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 304,
+            "lower_bound": 75.0,
+            "score": -4.053333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.3389972920413129,
+            "deterministic_recheck_seconds": 0.3377853750134818,
+            "deterministic_schedule_sha256": "32eb3b2f284be089f7b0f491aab0d96531ff4495261020bae45eeff398cd35e8"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 314,
+            "lower_bound": 74.0,
+            "score": -4.243243243243243,
+            "feasible": true,
+            "single_solve_seconds": 0.4815654580015689,
+            "deterministic_recheck_seconds": 0.3526605000370182,
+            "deterministic_schedule_sha256": "a89c0ddb3acc7be0788222dad20a3cf134461def564e68034aa06320b432b879"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 537,
+            "lower_bound": 98.31666666666666,
+            "score": -5.461942702152908,
+            "feasible": true,
+            "single_solve_seconds": 1.1559381670085713,
+            "deterministic_recheck_seconds": 1.1175169170019217,
+            "deterministic_schedule_sha256": "ee684df58fcb4d8e590e498be45030bbba6049202e7adf1b02dbca22873c6bda"
+          }
+        ],
+        "fitness": -2.5246075809055775,
+        "primary_evaluation_seconds": 12.069989332987461,
+        "elapsed_seconds": 12.07010024995543
+      },
+      "member_id": 8,
+      "review": {
+        "reviewed_code_key": "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+        "description": "输入非负截断到1e9，工序数至少为1。average=work/operations，scale=1+average、wait=max(0,start-job_ready,machine_ready-job_ready)，返回(work+average)*(scale/(scale+p))^3*scale/(scale+wait)*(1+work)/(1+work+finish)。它综合剩余工作量和平均工序工作量，以立方机器效率因子惩罚相对较长加工，并考虑等待及最早完成时间。等待因子为1/(1+wait/(1+average))，同样的正等待量下，平均工序工作量越大，相对等待惩罚越弱；等待为零时因子恒为1。这只是等待因子的关系，总分还受其他项影响。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 0.5676629906532235
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.4899078973153048
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 7.1314285714285734
+          }
+        ],
+        "sample_sha256": "6163b2bfb3e3b116af29de736cb6c01deb144ce59fb993fcfacafd7b76007941"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    },
+    {
+      "id": "H/g0000/000006",
+      "candidate": {
+        "description": "This strengthens the preference for fast machine choices and accounts separately for machine-induced waiting while retaining remaining-work and finish-time priorities.",
+        "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    start = max(0.0, min(earliest_start, 1000000000.0))\n    job_ready = max(0.0, min(job_ready_time, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    wait = max(0.0, start - job_ready)\n    wait_factor = (1.0 + work) / (1.0 + work + wait)\n    score = work * machine_factor * machine_factor * time_factor * wait_factor\n    return score\n",
+        "key": "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03",
+        "kind": "h"
+      },
+      "fitness": -2.5611498256653267,
+      "scores": [
+        -1.5,
+        -1.4933333333333334,
+        -1.481012658227848,
+        -1.5526315789473684,
+        -2.279273638071384,
+        -2.50381679389313,
+        -2.407321234682798,
+        -1.2375,
+        -1.4230769230769231,
+        -2.1333333333333333,
+        -1.7777777777777777,
+        -4.251144538914323,
+        -3.923076923076923,
+        -4.089035449299258,
+        -1.4852941176470589,
+        -1.5294117647058822,
+        -1.9605263157894737,
+        -2.26027397260274,
+        -4.133333333333334,
+        -4.22972972972973,
+        -6.133242922529242
+      ],
+      "receipt": {
+        "mode": "real",
+        "model": "gpt-5.6-sol",
+        "protocol": "openai-chat-v1",
+        "transport_identity": "6bb9d71942a73c0abb98fb34e2aa972dfc80e89fad3d027314f0a80352218357",
+        "ledger_identity": "ea1cf57d80b33e9a82fd469b050bcd3b0e35285395fedf0b90016b4a5699042e",
+        "global_key": "H/search/H/g0000/000006",
+        "prompt_key": "ddeb6a47d728803ccae8972a800d233169aaa1c53c1a3e8ed24bd19317ef6234",
+        "status": "completed",
+        "send_confirmed": true,
+        "response_text": "{This strengthens the preference for fast machine choices and accounts separately for machine-induced waiting while retaining remaining-work and finish-time priorities.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    p = max(0.0, min(processing_time, 1000000000.0))\n    work = max(0.0, min(remaining_work, 1000000000.0))\n    operations = max(1.0, min(remaining_operations, 1000000000.0))\n    finish = max(0.0, min(earliest_finish, 1000000000.0))\n    start = max(0.0, min(earliest_start, 1000000000.0))\n    job_ready = max(0.0, min(job_ready_time, 1000000000.0))\n    average = work / operations\n    machine_factor = (1.0 + average) / (1.0 + average + p)\n    time_factor = (1.0 + work) / (1.0 + work + finish)\n    wait = max(0.0, start - job_ready)\n    wait_factor = (1.0 + work) / (1.0 + work + wait)\n    score = work * machine_factor * machine_factor * time_factor * wait_factor\n    return score\n```",
+        "response_sha256": "a4dc8c4929e20874409730a9e91779f3c270c8aa346d0539f83148a1a995dae7",
+        "usage": {
+          "input_tokens": 562,
+          "output_tokens": 3820
+        }
+      },
+      "training_result": {
+        "valid": true,
+        "total_instances": 21,
+        "instances": [
+          {
+            "file": "Behnke1.fjsp",
+            "makespan": 105,
+            "lower_bound": 70.0,
+            "score": -1.5,
+            "feasible": true,
+            "single_solve_seconds": 0.017963125021196902,
+            "deterministic_recheck_seconds": 0.018131083983462304,
+            "deterministic_schedule_sha256": "def8af66d90487bd47c1338bbfb006fc9a2e08f06927958fc89b2301efc2f1ca"
+          },
+          {
+            "file": "Behnke2.fjsp",
+            "makespan": 112,
+            "lower_bound": 75.0,
+            "score": -1.4933333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.021773834014311433,
+            "deterministic_recheck_seconds": 0.022563665988855064,
+            "deterministic_schedule_sha256": "31f373a13541ac8c2e17165fde00fb96a21c0008c2b814c5f2f1f7151d499246"
+          },
+          {
+            "file": "Behnke3.fjsp",
+            "makespan": 117,
+            "lower_bound": 79.0,
+            "score": -1.481012658227848,
+            "feasible": true,
+            "single_solve_seconds": 0.019803250033874065,
+            "deterministic_recheck_seconds": 0.020499459002166986,
+            "deterministic_schedule_sha256": "c90580cc6ea9b98c6aff0e32e39dc2bb78be6c4f9b6118b61f2b6609d9a8aa0c"
+          },
+          {
+            "file": "Behnke4.fjsp",
+            "makespan": 118,
+            "lower_bound": 76.0,
+            "score": -1.5526315789473684,
+            "feasible": true,
+            "single_solve_seconds": 0.021639458020217717,
+            "deterministic_recheck_seconds": 0.020613084023352712,
+            "deterministic_schedule_sha256": "d8453758b659b6e4569fcc56d79037dcb922fcbfb2f48c5a9039b6173f749363"
+          },
+          {
+            "file": "Behnke13.fjsp",
+            "makespan": 364,
+            "lower_bound": 159.7,
+            "score": -2.279273638071384,
+            "feasible": true,
+            "single_solve_seconds": 0.4128385840449482,
+            "deterministic_recheck_seconds": 0.400304667011369,
+            "deterministic_schedule_sha256": "587256b708a4cf7124f5e8a6db407634a64bceb3d0ec4391a8125192f1212d53"
+          },
+          {
+            "file": "Behnke14.fjsp",
+            "makespan": 410,
+            "lower_bound": 163.75,
+            "score": -2.50381679389313,
+            "feasible": true,
+            "single_solve_seconds": 0.384898999996949,
+            "deterministic_recheck_seconds": 0.3868759580072947,
+            "deterministic_schedule_sha256": "1335e4c1d69c306190d4498cbe504712f828c26e87d098feab23cb044c02e313"
+          },
+          {
+            "file": "Behnke19.fjsp",
+            "makespan": 776,
+            "lower_bound": 322.35,
+            "score": -2.407321234682798,
+            "feasible": true,
+            "single_solve_seconds": 1.5471261250204407,
+            "deterministic_recheck_seconds": 1.5472026250208728,
+            "deterministic_schedule_sha256": "b7cc8717994715a5d9974da8eedb48cfde1e9ee90f947c933a6b3760f9f95e91"
+          },
+          {
+            "file": "Behnke25.fjsp",
+            "makespan": 99,
+            "lower_bound": 80.0,
+            "score": -1.2375,
+            "feasible": true,
+            "single_solve_seconds": 0.03278816700913012,
+            "deterministic_recheck_seconds": 0.03275912499520928,
+            "deterministic_schedule_sha256": "320f994c17c93d749f3fb671f6428c643ffe4016dcb4683f00a4dddedfec2d63"
+          },
+          {
+            "file": "Behnke21.fjsp",
+            "makespan": 111,
+            "lower_bound": 78.0,
+            "score": -1.4230769230769231,
+            "feasible": true,
+            "single_solve_seconds": 0.037808583001606166,
+            "deterministic_recheck_seconds": 0.03769550001015887,
+            "deterministic_schedule_sha256": "dab1ea080e113e7a1e2efe0c66803b8746133715e1a8b220160fcf18fba3fd15"
+          },
+          {
+            "file": "Behnke29.fjsp",
+            "makespan": 160,
+            "lower_bound": 75.0,
+            "score": -2.1333333333333333,
+            "feasible": true,
+            "single_solve_seconds": 0.1334350419929251,
+            "deterministic_recheck_seconds": 0.13346162502421066,
+            "deterministic_schedule_sha256": "177b0f6674c2d26780bcb0caf91dc0437564514c78ef27c13c4e2fcaa29c6d9f"
+          },
+          {
+            "file": "Behnke27.fjsp",
+            "makespan": 144,
+            "lower_bound": 81.0,
+            "score": -1.7777777777777777,
+            "feasible": true,
+            "single_solve_seconds": 0.11059062497224659,
+            "deterministic_recheck_seconds": 0.11043108400190249,
+            "deterministic_schedule_sha256": "a704d1e2cd6b2570f104bcaaf71ea05cfb86edfffaa45c25e4721b2174fa143c"
+          },
+          {
+            "file": "Behnke33.fjsp",
+            "makespan": 325,
+            "lower_bound": 76.45,
+            "score": -4.251144538914323,
+            "feasible": true,
+            "single_solve_seconds": 0.5852620420046151,
+            "deterministic_recheck_seconds": 0.581594875024166,
+            "deterministic_schedule_sha256": "65a9e5af7200467e480be36df2c2199c81ba5aaa8561d130f9aa130e6ddea058"
+          },
+          {
+            "file": "Behnke34.fjsp",
+            "makespan": 306,
+            "lower_bound": 78.0,
+            "score": -3.923076923076923,
+            "feasible": true,
+            "single_solve_seconds": 0.5454265829757787,
+            "deterministic_recheck_seconds": 0.5711155830067582,
+            "deterministic_schedule_sha256": "eff2c5e955294240f262e7b5418e34ef9e98617f19ced617e5f3df88c2cefcd2"
+          },
+          {
+            "file": "Behnke36.fjsp",
+            "makespan": 620,
+            "lower_bound": 151.625,
+            "score": -4.089035449299258,
+            "feasible": true,
+            "single_solve_seconds": 1.6843192920205183,
+            "deterministic_recheck_seconds": 1.6874181249877438,
+            "deterministic_schedule_sha256": "d508886978e38c3c8fcd686949cb7d06982de9caf8c324364a40f09f712a5490"
+          },
+          {
+            "file": "Behnke43.fjsp",
+            "makespan": 101,
+            "lower_bound": 68.0,
+            "score": -1.4852941176470589,
+            "feasible": true,
+            "single_solve_seconds": 0.057124000042676926,
+            "deterministic_recheck_seconds": 0.05580199998803437,
+            "deterministic_schedule_sha256": "0369d417cb9918d0e92c6352b4499359c1b0d2d31f773d8e5938e20149ede5c0"
+          },
+          {
+            "file": "Behnke44.fjsp",
+            "makespan": 104,
+            "lower_bound": 68.0,
+            "score": -1.5294117647058822,
+            "feasible": true,
+            "single_solve_seconds": 0.049135458015371114,
+            "deterministic_recheck_seconds": 0.04913445800775662,
+            "deterministic_schedule_sha256": "6b91a413984ac2b8a2453097272f13feff0299666570b6542bba710396d888a8"
+          },
+          {
+            "file": "Behnke47.fjsp",
+            "makespan": 149,
+            "lower_bound": 76.0,
+            "score": -1.9605263157894737,
+            "feasible": true,
+            "single_solve_seconds": 0.1730308749829419,
+            "deterministic_recheck_seconds": 0.17068833397934213,
+            "deterministic_schedule_sha256": "3611c08c771bbc234e04f3cded7d4d8ffe17f785e689b3ec1d74d81fb58ce43b"
+          },
+          {
+            "file": "Behnke46.fjsp",
+            "makespan": 165,
+            "lower_bound": 73.0,
+            "score": -2.26027397260274,
+            "feasible": true,
+            "single_solve_seconds": 0.136626333987806,
+            "deterministic_recheck_seconds": 0.13276145805139095,
+            "deterministic_schedule_sha256": "41109d7d2cc14f454213b97b03a1749266cc9db1306c69abb20ccf1b5cf6c7cf"
+          },
+          {
+            "file": "Behnke51.fjsp",
+            "makespan": 310,
+            "lower_bound": 75.0,
+            "score": -4.133333333333334,
+            "feasible": true,
+            "single_solve_seconds": 0.6369879589765333,
+            "deterministic_recheck_seconds": 0.9400852920371108,
+            "deterministic_schedule_sha256": "9341e158c76e12f2c7fc0150878b64e0fad1adfbce15aaf37d82cf8964eda544"
+          },
+          {
+            "file": "Behnke53.fjsp",
+            "makespan": 313,
+            "lower_bound": 74.0,
+            "score": -4.22972972972973,
+            "feasible": true,
+            "single_solve_seconds": 0.8347612919751555,
+            "deterministic_recheck_seconds": 1.3963060000096448,
+            "deterministic_schedule_sha256": "71fd400f1dd1118ca73a261487f2466ffa9b5af59568313cc000614f395646d8"
+          },
+          {
+            "file": "Behnke57.fjsp",
+            "makespan": 603,
+            "lower_bound": 98.31666666666666,
+            "score": -6.133242922529242,
+            "feasible": true,
+            "single_solve_seconds": 4.729234417027328,
+            "deterministic_recheck_seconds": 3.5045052919886075,
+            "deterministic_schedule_sha256": "af883931a9ce73ff80a750a966c0badb145442456f171ea0bc79af500e739ca9"
+          }
+        ],
+        "fitness": -2.5611498256653267,
+        "primary_evaluation_seconds": 24.33282024995424,
+        "elapsed_seconds": 24.334303832962178
+      },
+      "member_id": 9,
+      "review": {
+        "reviewed_code_key": "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03",
+        "description": "输入非负截断到1e9，工序数至少为1。average=work/operations，wait=max(0,start-job_ready)，返回work*((1+average)/(1+average+p))^2*(1+work)/(1+work+finish)*(1+work)/(1+work+wait)。综合剩余工作量、平方机器效率因子、完成时间因子与等待因子。其他项固定时，较短加工、较早完成和较少等待不会降低分数。",
+        "reviewer": "DDXQL",
+        "method": "human review of source/code key/three fixed sample scores/final corrected behavior description",
+        "note": "用户逐条核对h0-h9后明确批准，仅用于本次framework_development；不代表正式研究H或研究效果批准。",
+        "samples": [
+          {
+            "inputs": [
+              2.0,
+              5.0,
+              2,
+              0.0,
+              3.0,
+              3.0,
+              5.0
+            ],
+            "score": 0.7362885048835459
+          },
+          {
+            "inputs": [
+              4.0,
+              4.0,
+              1,
+              5.0,
+              1.0,
+              5.0,
+              9.0
+            ],
+            "score": 0.44091710758377434
+          },
+          {
+            "inputs": [
+              1.0,
+              12.0,
+              4,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "score": 7.1314285714285734
+          }
+        ],
+        "sample_sha256": "362dbb1ef7c38fa8f7ecf7cf7197126bc70985119beede1279c89ad5687a8b09"
+      },
+      "conditional_source_hash": "0d44e9f661a162cbe5ad28b52eac5a81baabc5f1d8ab7b6d54920463ed874fb2"
+    }
+  ],
+  "source_hash": "2e619df0a2cec74e397d7acb02a314bdcd22b8e0b296bdd431660dc91f6d61e2",
+  "source_context": "988fa6287a5ca037ffa1a2c6c19b0f794bf62ec72becab4f721e880a1ddc7009",
+  "fixed_h_source": {
+    "version": "usage-frozen-H-source-v1",
+    "directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v22-gpt61-select-mix-301-20261014-v1",
+    "files_sha256": {
+      "protocol.json": "19e2e83106532c1e7ef2a5dd54891247c23bafe0232dd5cdd3340eb84777eeb9",
+      "H_frozen.json": "2c11510d3ced58aa7aeb3b15103f12b4c1f4d0ba9a2f2b06ad14af0ac0e823e1",
+      "Conditional_H_reassessment.json": "b70626ac9da769e0bbf329c3dd7ebe33a0879d3100e2502425b3c474941cb4ab"
+    }
+  },
+  "source_mechanism": "unchanged existing frozen H; original reviews/receipts retained; no generation or new review",
+  "artifact_sha256": "320afb768487134bc9f8f0bca490e741d5c664f7e29317964d65da5b1c4f6a3e"
+}

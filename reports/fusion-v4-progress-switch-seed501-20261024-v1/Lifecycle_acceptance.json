@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "scope": "real spawned synthetic row +0.25s post-send cleanup; no FJSP/API",
+  "old_receipts": [
+    {
+      "status": "started",
+      "pid": 12638,
+      "deadline_seconds": 15,
+      "started_monotonic": 653283.056818791,
+      "trigger": null,
+      "cleanup": [
+        "join_0.05",
+        "terminate"
+      ]
+    },
+    {
+      "status": "terminal",
+      "pid": 12638,
+      "deadline_seconds": 15,
+      "started_monotonic": 653283.056818791,
+      "trigger": null,
+      "cleanup": [
+        "join_0.05",
+        "terminate"
+      ],
+      "alive": false,
+      "exitcode": -15,
+      "finished_monotonic": 653283.253063625
+    }
+  ],
+  "new_receipts": [
+    {
+      "status": "started",
+      "pid": 12640,
+      "deadline_seconds": 15,
+      "started_monotonic": 653283.254368916,
+      "trigger": null,
+      "cleanup": [
+        "join_exit_grace_2.0"
+      ],
+      "expected_rows": 1,
+      "rows_received": 0,
+      "all_results_received": false,
+      "exit_grace_seconds": 2.0,
+      "exit_grace_used": false,
+      "results_complete_monotonic": null
+    },
+    {
+      "status": "terminal",
+      "pid": 12640,
+      "deadline_seconds": 15,
+      "started_monotonic": 653283.254368916,
+      "trigger": null,
+      "cleanup": [
+        "join_exit_grace_2.0"
+      ],
+      "expected_rows": 1,
+      "rows_received": 1,
+      "all_results_received": true,
+      "exit_grace_seconds": 2.0,
+      "exit_grace_used": true,
+      "results_complete_monotonic": 653283.398861125,
+      "exit_wait_observed_seconds": 0.2946589579805732,
+      "alive": false,
+      "exitcode": 0,
+      "finished_monotonic": 653283.693588958
+    }
+  ],
+  "frozen_files": {
+    "code/fjsp_usage/fusion_v4/lifecycle.py": "7b88460d7b53580ce93f236680594f8cce6087c09bbbfc7f0886cc2ab4cfcea7",
+    "tests/test_fusion_v4.py": "6f69b87310e62c5c79c599866c385b6ae524d51c225635b6b98aad55c4789715",
+    "tools/b1_timeout_boundary.py": "f0913b56bbc1f020465e64d6250fff619c7d452869789a502166d027d954a95d"
+  },
+  "contract": "poll15 unchanged;2s grace starts only after all rows; normal exit0/end identity still required"
+}

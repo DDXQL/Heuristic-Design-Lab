@@ -1,0 +1,8 @@
+{
+  "result": "OK",
+  "tests_run": 79,
+  "elapsed_seconds": 2.185,
+  "command": "PYTHONPATH=code:. .venv/bin/python -B -m unittest tests.test_fusion_v4 tests.test_fusion_v3 tests.test_fusion_v2 tests.test_U_usage_v2 tests.test_fjsp_usage_v2 tests.test_b1_timeout_boundary -q",
+  "tests_sha256": "6f69b87310e62c5c79c599866c385b6ae524d51c225635b6b98aad55c4789715",
+  "scope": "offline synthetic/mock and V1/V2/V3 compatibility; zero formal train solves/API"
+}

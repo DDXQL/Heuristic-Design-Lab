@@ -1,0 +1,267 @@
+{
+  "baselines": {
+    "WS": {
+      "path": "runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/result.json",
+      "sha256": "57e4e5c1dc00bbf0942ac3edbe4c8ab7693ca884783871bf48ab7ef024470b08"
+    },
+    "BORDA": {
+      "path": "runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/result.json",
+      "sha256": "a0f30ca8a764d444b1b4bd5afbc00181df5095637341c03d72da6c15312a4621"
+    }
+  },
+  "traces": [
+    {
+      "role": "WS",
+      "file": "Behnke1.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke1.trace.jsonl.gz",
+      "sha256": "9f578dc7ffd414e3a51632cecab5f303dbed9574fd4795df7f1384c81f434d5d"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke2.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke2.trace.jsonl.gz",
+      "sha256": "f9a0fe8db58419d861b8e0012e15ce28e1890d99c2a6144108b0d70fb033e1e3"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke3.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke3.trace.jsonl.gz",
+      "sha256": "a710f164571240c68cf09595e4067933ffe4235b98a8bb724d7fec52598186c5"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke4.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke4.trace.jsonl.gz",
+      "sha256": "28c73b496d3dacb99234722cd6585330c122395cb296f5fc353ef1dbc724f5a0"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke13.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke13.trace.jsonl.gz",
+      "sha256": "979e2d27435a2607958577c65f137f5197bae0ff02b7042b6b6149b4a4a97795"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke14.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke14.trace.jsonl.gz",
+      "sha256": "0f9e0cc38c9354e333905d62b73ae25885bb0061ee713ac653b5d3a535441a9b"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke19.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke19.trace.jsonl.gz",
+      "sha256": "391f8ee86e2603166f02707197f64008b59552d65cab7381c755d72a56fa50a5"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke25.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke25.trace.jsonl.gz",
+      "sha256": "9fe8dd787fff0dc7e0944012c83ad7f6eb08f5d08ad2586d83bd3733d1d5abb5"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke21.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke21.trace.jsonl.gz",
+      "sha256": "2556cdc2e53b83ab9f7e1f124459ebbf5a08eea3f28847052fc726630757220e"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke29.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke29.trace.jsonl.gz",
+      "sha256": "be388507b441b42a84d1829bcbc8fa1e859e6f60664453b493f37375286d4f93"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke27.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke27.trace.jsonl.gz",
+      "sha256": "9e3fad8793380f375eb1d7716b0913478805f49014037c9eb263eb91ea052d8e"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke33.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke33.trace.jsonl.gz",
+      "sha256": "6f97c80fd29d751252297c808865e7e92bac2cf33cc356f36ef63a754c2a5e32"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke34.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke34.trace.jsonl.gz",
+      "sha256": "7387aa2f76dd45d05fac81eda40bd516499948e9de47ff988995041d99d67008"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke36.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke36.trace.jsonl.gz",
+      "sha256": "4ac208b7ae62db93f471f13818c19b22c12a4d4687c35154d1aaefb360ee5d3c"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke43.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke43.trace.jsonl.gz",
+      "sha256": "52d89243eebdfc11360e424e0111b6274f2d22e58e408cd20ebe7e149fadab33"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke44.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke44.trace.jsonl.gz",
+      "sha256": "da41f7da289610983cbf75abad56b80e9615a84addbf1c4b2b6837a4cd99a2ee"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke47.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke47.trace.jsonl.gz",
+      "sha256": "708dcc5e8e9b9348377c068f9993f23c51ff0c1f72392dee75b5f0ff9d2871ac"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke46.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke46.trace.jsonl.gz",
+      "sha256": "83b55df97d158c94402f9b438317cd60c7e94ba14b79fba8922579b4be39581f"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke51.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke51.trace.jsonl.gz",
+      "sha256": "9ac5c1e64432f32044d00849b262cbc799ca862f97c1030eb88e876bd7050d47"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke53.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke53.trace.jsonl.gz",
+      "sha256": "c5fde1441d7bc8e247295b62a58b92c9c2214055def54f4929c3719f9b3ec40f"
+    },
+    {
+      "role": "WS",
+      "file": "Behnke57.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v2-train21-seed501-20261023-v2/evidence/H0_H1_WEIGHTED_SUM/Behnke57.trace.jsonl.gz",
+      "sha256": "56d85ca72dbf36225a29d0bf281691c84d6b198803e9053571a184c55f02ef76"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke1.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke1.trace.jsonl.gz",
+      "sha256": "55e175033ce2103ced25ad9d0d4cf768a20c0e0a44baa5399ee656109eda4f40"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke2.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke2.trace.jsonl.gz",
+      "sha256": "5e9db211d8cf6803e8c03e5f179c8fe530c7c300ccbd992e852ae6239a0e7fb6"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke3.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke3.trace.jsonl.gz",
+      "sha256": "756606e23cb66f9346de229d8586d00e8e163010bbaad9a7ef660411737cc571"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke4.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke4.trace.jsonl.gz",
+      "sha256": "872bb15d591d31b2ca68ef77f9e0122b271c8c8c68f098ad7bb5220f043e6d65"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke13.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke13.trace.jsonl.gz",
+      "sha256": "a56a2cdadaf1c9ee7438524197ff4d81d18f540edb4eeccb0570fba6b5efa69a"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke14.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke14.trace.jsonl.gz",
+      "sha256": "e6586761595f7700a4dae9a9fee9c03ab840e202e1a1e317b9df82de5a2cc520"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke19.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke19.trace.jsonl.gz",
+      "sha256": "cdb831fd1db1d966dd459bc019673d14e7558f4aa070807c1d6f9dfc42a3a8e7"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke25.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke25.trace.jsonl.gz",
+      "sha256": "aac6e896b38fa3faaf283fff8c973a6e61de4534e00a9d1bdfa58d536da4c5af"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke21.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke21.trace.jsonl.gz",
+      "sha256": "42e8f70299f302923e3f710db5b83ce3400555bf3bb95a298207f0601b3ad0af"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke29.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke29.trace.jsonl.gz",
+      "sha256": "442c66f03872f8f16df49d66fdad0b136ffc8ac11a69110bd48110f4e2e0a24a"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke27.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke27.trace.jsonl.gz",
+      "sha256": "cd4f1f6b91d6d1efafda12662dade10763324d4e800ab1c321839b3bdf1d59df"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke33.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke33.trace.jsonl.gz",
+      "sha256": "cf09754b6f19e1dba277e75110a86877bbf1be3b7627dd8f80b5a90da0f83f19"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke34.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke34.trace.jsonl.gz",
+      "sha256": "cdfc2ec4c96bd01d3b0e1040c8c39ea8f13d8b939cb41ce401bc8834d5afd3d6"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke36.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke36.trace.jsonl.gz",
+      "sha256": "36e0817ad2fcf475fe50c21bd3784e11dc976345f257ab9267910fc46ea55d7a"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke43.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke43.trace.jsonl.gz",
+      "sha256": "767ef95e8f5ecb8f79299db212b4493d3cfddd4fbf31637381ce54630f31435f"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke44.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke44.trace.jsonl.gz",
+      "sha256": "6e1f49456ef46df08a00b2ef54bc36abd4a16d1f0d43407e920379ceb9b3c42f"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke47.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke47.trace.jsonl.gz",
+      "sha256": "d8c33d8d0446c938690b7cce2e225ccb9fa94c02de4450c93b7ee3b42647ea7c"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke46.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke46.trace.jsonl.gz",
+      "sha256": "7bcb33e9c4a18bbf4a9ed519271e7b33e00eff3592b28d71c7e531617ad5c693"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke51.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke51.trace.jsonl.gz",
+      "sha256": "012aa01eea7810a8d68e232f33d49753eb663e3224ed989ba3ac74e59d8812bc"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke53.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke53.trace.jsonl.gz",
+      "sha256": "63078a050a895b91fdbb489b803475a63d5a8387badd0cf14c869c7a843cb3ec"
+    },
+    {
+      "role": "BORDA",
+      "file": "Behnke57.fjsp",
+      "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fusion-v3-borda-train21-seed501-20261024-v1/evidence/H0_H1_BORDA/Behnke57.trace.jsonl.gz",
+      "sha256": "9349d3e4ad65a04d5ce41ae62881cc6fa455974f644e46520be02fc9840e8dbc"
+    }
+  ],
+  "new_baseline_solves": 0
+}

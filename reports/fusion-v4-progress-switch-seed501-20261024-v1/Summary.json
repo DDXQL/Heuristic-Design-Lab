@@ -1,0 +1,309 @@
+{
+  "phase": "completed",
+  "protocol_sha256": "43c4dc09c6c985f2e8ee98dcb21091e79319c9ae48610c55d1545eedad6cd8d0",
+  "rankings": [
+    {
+      "strategy": "FIXED_WS",
+      "status": "historical_certified",
+      "fitness": -1.9831442949150015,
+      "delta_F_vs_WS": 0.0,
+      "delta_F_vs_BORDA": 0.08376042141320506
+    },
+    {
+      "strategy": "FIXED_BORDA",
+      "status": "historical_certified",
+      "fitness": -2.0669047163282066,
+      "delta_F_vs_WS": -0.08376042141320506,
+      "delta_F_vs_BORDA": 0.0
+    },
+    {
+      "strategy": "WS_BORDA_t025",
+      "status": "valid",
+      "fitness": -2.0230122501849106,
+      "delta_F_vs_WS": -0.03986795526990905,
+      "delta_F_vs_BORDA": 0.043892466143296005
+    },
+    {
+      "strategy": "WS_BORDA_t050",
+      "status": "valid",
+      "fitness": -2.0023997563112808,
+      "delta_F_vs_WS": -0.019255461396279205,
+      "delta_F_vs_BORDA": 0.06450496001692585
+    },
+    {
+      "strategy": "WS_BORDA_t075",
+      "status": "valid",
+      "fitness": -2.00234576524964,
+      "delta_F_vs_WS": -0.019201470334638593,
+      "delta_F_vs_BORDA": 0.06455895107856646
+    },
+    {
+      "strategy": "BORDA_WS_t025",
+      "status": "valid",
+      "fitness": -2.0019113105068578,
+      "delta_F_vs_WS": -0.01876701559185623,
+      "delta_F_vs_BORDA": 0.06499340582134883
+    },
+    {
+      "strategy": "BORDA_WS_t050",
+      "status": "valid",
+      "fitness": -2.025582763738861,
+      "delta_F_vs_WS": -0.04243846882385949,
+      "delta_F_vs_BORDA": 0.04132195258934557
+    },
+    {
+      "strategy": "BORDA_WS_t075",
+      "status": "valid",
+      "fitness": -2.045439249156767,
+      "delta_F_vs_WS": -0.06229495424176523,
+      "delta_F_vs_BORDA": 0.021465467171439823
+    }
+  ],
+  "comparisons": [
+    {
+      "strategy": "WS_BORDA_t025",
+      "baseline": "WS",
+      "delta_F": -0.03986795526990907,
+      "wins": 4,
+      "losses": 13,
+      "ties": 4,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4135
+    },
+    {
+      "strategy": "WS_BORDA_t025",
+      "baseline": "BORDA",
+      "delta_F": 0.043892466143295984,
+      "wins": 16,
+      "losses": 3,
+      "ties": 2,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4135
+    },
+    {
+      "strategy": "WS_BORDA_t050",
+      "baseline": "WS",
+      "delta_F": -0.019255461396278963,
+      "wins": 5,
+      "losses": 13,
+      "ties": 3,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4097
+    },
+    {
+      "strategy": "WS_BORDA_t050",
+      "baseline": "BORDA",
+      "delta_F": 0.0645049600169261,
+      "wins": 18,
+      "losses": 2,
+      "ties": 1,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4097
+    },
+    {
+      "strategy": "WS_BORDA_t075",
+      "baseline": "WS",
+      "delta_F": -0.019201470334638784,
+      "wins": 4,
+      "losses": 9,
+      "ties": 8,
+      "same_physical_instances": 4,
+      "Cmax_sum": 4100
+    },
+    {
+      "strategy": "WS_BORDA_t075",
+      "baseline": "BORDA",
+      "delta_F": 0.06455895107856627,
+      "wins": 18,
+      "losses": 2,
+      "ties": 1,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4100
+    },
+    {
+      "strategy": "BORDA_WS_t025",
+      "baseline": "WS",
+      "delta_F": -0.018767015591856125,
+      "wins": 8,
+      "losses": 12,
+      "ties": 1,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4075
+    },
+    {
+      "strategy": "BORDA_WS_t025",
+      "baseline": "BORDA",
+      "delta_F": 0.06499340582134894,
+      "wins": 16,
+      "losses": 1,
+      "ties": 4,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4075
+    },
+    {
+      "strategy": "BORDA_WS_t050",
+      "baseline": "WS",
+      "delta_F": -0.042438468823859564,
+      "wins": 4,
+      "losses": 15,
+      "ties": 2,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4117
+    },
+    {
+      "strategy": "BORDA_WS_t050",
+      "baseline": "BORDA",
+      "delta_F": 0.04132195258934549,
+      "wins": 14,
+      "losses": 2,
+      "ties": 5,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4117
+    },
+    {
+      "strategy": "BORDA_WS_t075",
+      "baseline": "WS",
+      "delta_F": -0.0622949542417656,
+      "wins": 5,
+      "losses": 14,
+      "ties": 2,
+      "same_physical_instances": 0,
+      "Cmax_sum": 4162
+    },
+    {
+      "strategy": "BORDA_WS_t075",
+      "baseline": "BORDA",
+      "delta_F": 0.02146546717143945,
+      "wins": 11,
+      "losses": 2,
+      "ties": 8,
+      "same_physical_instances": 4,
+      "Cmax_sum": 4162
+    }
+  ],
+  "operator_mechanism": [
+    {
+      "strategy": "WS_BORDA_t025",
+      "states": 3800,
+      "changed_vs_WS": 2304,
+      "changed_vs_BORDA": 759,
+      "WS_steps": 957,
+      "BORDA_steps": 2843,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 15,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    },
+    {
+      "strategy": "WS_BORDA_t050",
+      "states": 3800,
+      "changed_vs_WS": 1482,
+      "changed_vs_BORDA": 1444,
+      "WS_steps": 1900,
+      "BORDA_steps": 1900,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 17,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    },
+    {
+      "strategy": "WS_BORDA_t075",
+      "states": 3800,
+      "changed_vs_WS": 658,
+      "changed_vs_BORDA": 2090,
+      "WS_steps": 2857,
+      "BORDA_steps": 943,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 11,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    },
+    {
+      "strategy": "BORDA_WS_t025",
+      "states": 3800,
+      "changed_vs_WS": 798,
+      "changed_vs_BORDA": 1933,
+      "WS_steps": 2843,
+      "BORDA_steps": 957,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 20,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    },
+    {
+      "strategy": "BORDA_WS_t050",
+      "states": 3800,
+      "changed_vs_WS": 1658,
+      "changed_vs_BORDA": 1197,
+      "WS_steps": 1900,
+      "BORDA_steps": 1900,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 17,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    },
+    {
+      "strategy": "BORDA_WS_t075",
+      "states": 3800,
+      "changed_vs_WS": 2458,
+      "changed_vs_BORDA": 538,
+      "WS_steps": 943,
+      "BORDA_steps": 2857,
+      "switches": 21,
+      "adjacent_decision_pairs": 3779,
+      "boundary_action_changes": 15,
+      "switch_rate_per_adjacent_decisions": 0.005557025668166181
+    }
+  ],
+  "best_dynamic": {
+    "strategy": "BORDA_WS_t025",
+    "status": "valid",
+    "fitness": -2.0019113105068578,
+    "delta_F_vs_WS": -0.01876701559185623,
+    "delta_F_vs_BORDA": 0.06499340582134883
+  },
+  "dynamic_strategies_better_than_WS": 0,
+  "valid_dynamic_strategies": 6,
+  "physical_groups": [
+    [
+      "FIXED_WS"
+    ],
+    [
+      "FIXED_BORDA"
+    ],
+    [
+      "WS_BORDA_t025"
+    ],
+    [
+      "WS_BORDA_t050"
+    ],
+    [
+      "WS_BORDA_t075"
+    ],
+    [
+      "BORDA_WS_t025"
+    ],
+    [
+      "BORDA_WS_t050"
+    ],
+    [
+      "BORDA_WS_t075"
+    ]
+  ],
+  "costs": {
+    "reserved_evaluations": 126,
+    "first_solves_started": 126,
+    "rechecks_started": 126,
+    "completed_pairs": 126,
+    "API_requests": 0,
+    "additional_H_calls": 0,
+    "additional_diagnostic_solves": 0,
+    "primary_wall_seconds": 152.42168254207354,
+    "recorded_CPU_seconds": 149.457894,
+    "recorded_H_calls": 23837808,
+    "post_result_exit_wait_seconds": 0.18282749992795289,
+    "raw_matrix_bytes": 127174832,
+    "timing_scope": "first pass records states, recheck does not; grace only after final complete row; historical times nonconcurrent"
+  },
+  "scientific_scope": "six predeclared progress-only schedules, single fixed H and train21; no independent generalization or LLM efficacy claim"
+}
