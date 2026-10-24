@@ -1,0 +1,277 @@
+{
+  "train21": [
+    "Behnke1.fjsp",
+    "Behnke2.fjsp",
+    "Behnke3.fjsp",
+    "Behnke4.fjsp",
+    "Behnke13.fjsp",
+    "Behnke14.fjsp",
+    "Behnke19.fjsp",
+    "Behnke25.fjsp",
+    "Behnke21.fjsp",
+    "Behnke29.fjsp",
+    "Behnke27.fjsp",
+    "Behnke33.fjsp",
+    "Behnke34.fjsp",
+    "Behnke36.fjsp",
+    "Behnke43.fjsp",
+    "Behnke44.fjsp",
+    "Behnke47.fjsp",
+    "Behnke46.fjsp",
+    "Behnke51.fjsp",
+    "Behnke53.fjsp",
+    "Behnke57.fjsp"
+  ],
+  "H_search_seed": 7,
+  "metric": "complete-split mean(-makespan/unrounded-V5-LB)",
+  "search_attempts": 22,
+  "attempt_status_counts": {
+    "invalid": 1,
+    "parse_or_constraint_error": 1,
+    "valid": 20
+  },
+  "source_imports": [
+    {
+      "from": "leaf-framework-30pct-20261009-v1",
+      "to": "leaf-framework-30pct-20261009-v2",
+      "count": 6,
+      "source_hashes_match": true
+    },
+    {
+      "from": "leaf-framework-30pct-20261009-v2",
+      "to": "leaf-framework-30pct-20261010-v3",
+      "count": 8,
+      "source_hashes_match": true
+    }
+  ],
+  "current_keys_unique": true,
+  "original_and_baseline_Cmax_match_all210": true,
+  "generation_replay": [
+    {
+      "generation": 1,
+      "valid_children": 10,
+      "survival_ids": [
+        "H/g0000/000009",
+        "H/g0000/000003",
+        "H/g0000/000006",
+        "H/g0000/000008",
+        "H/init/000001",
+        "H/source/H/source/H/init/000001",
+        "H/source/H/init/000001",
+        "H/source/H/source/H/init/000005",
+        "H/g0000/000004",
+        "H/g0000/000007"
+      ],
+      "matches_recorded_order": true
+    },
+    {
+      "generation": 2,
+      "valid_children": 8,
+      "survival_ids": [
+        "H/g0000/000009",
+        "H/g0000/000003",
+        "H/g0001/000009",
+        "H/g0001/000006",
+        "H/g0001/000005",
+        "H/g0000/000008",
+        "H/init/000001",
+        "H/g0001/000008",
+        "H/source/H/source/H/init/000001",
+        "H/g0000/000006"
+      ],
+      "matches_recorded_order": true
+    }
+  ],
+  "parent_replay": [
+    {
+      "id": "H/g0000/000000",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/init/000001",
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000001",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/init/000001",
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000002",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/source/H/source/H/init/000005",
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000003",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/init/000001",
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000004",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/source/H/init/000001",
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000005",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000006",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000007",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/source/H/source/H/init/000002"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000008",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0000/000009",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/source/H/source/H/init/000005"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000000",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/g0000/000009",
+        "H/source/H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000001",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/g0000/000009",
+        "H/source/H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000002",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/g0000/000003",
+        "H/source/H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000003",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/g0000/000009",
+        "H/g0000/000008"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000004",
+      "operator": "E1",
+      "recorded_parents": [
+        "H/g0000/000009",
+        "H/source/H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000005",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/g0000/000003"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000006",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/g0000/000006"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000007",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/g0000/000007"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000008",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/source/H/source/H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    },
+    {
+      "id": "H/g0001/000009",
+      "operator": "M1",
+      "recorded_parents": [
+        "H/init/000001"
+      ],
+      "seed7_replay_matches": true
+    }
+  ],
+  "stage_events": [
+    {
+      "time_unix": 1791597092.102165,
+      "kind": "stage",
+      "stage": "H_REVIEW_REQUIRED"
+    },
+    {
+      "time_unix": 1791597093.720525,
+      "kind": "stage",
+      "stage": "H_REVIEW_REQUIRED",
+      "review_packet": "H_review_packet.md",
+      "automatic_sample_failures": 0
+    },
+    {
+      "time_unix": 1791613131.344107,
+      "kind": "stage",
+      "stage": "H_FROZEN"
+    }
+  ],
+  "scope": "Static record/code-key/selection replay only; no H execution"
+}

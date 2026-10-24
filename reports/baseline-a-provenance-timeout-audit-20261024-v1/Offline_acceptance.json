@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "all_tied_SELECT_uses_lowest_member_index",
+      "passed": true
+    },
+    {
+      "name": "equal_MIX_dominant_is_lowest_active_member_index",
+      "passed": true
+    },
+    {
+      "name": "static_equal_WS_invariant_to_joint_member_column_permutation",
+      "passed": true
+    },
+    {
+      "name": "static_WS_action_tie_keeps_first_legal_action",
+      "passed": true
+    },
+    {
+      "name": "generation_survival_replay_and_seed7_parent_choices",
+      "passed": true
+    },
+    {
+      "name": "raw_responses_match_10_keys_and_210_cached_instance_Cmax",
+      "passed": true
+    }
+  ],
+  "H_executions": 0,
+  "FJSP_solves": 0,
+  "LLM_API_requests": 0,
+  "note": "Named host functions extracted by AST, no scheduler/evaluator imports; synthetic columns only."
+}

@@ -1,0 +1,139 @@
+{
+  "new_strategies": 41,
+  "valid": 35,
+  "timeout": 6,
+  "successful_rows": 841,
+  "affected_strategy_summaries": [
+    {
+      "strategy": "H0_H4_WS",
+      "n": 20,
+      "min": 0.08202758303377777,
+      "median": 0.6815565000870265,
+      "q90": 4.828865720226898,
+      "q95": 7.126767000625844,
+      "max": 11.058623042074032,
+      "sum": 40.70630025211722,
+      "longest_success_instance": "Behnke36.fjsp",
+      "h_scoring_share": 0.8341747796763613,
+      "CPU_to_worker_wall": 0.9981945375950683,
+      "residual_worker_seconds": 0.03238691599108279
+    },
+    {
+      "strategy": "H4_H5_WS",
+      "n": 20,
+      "min": 0.06950025097467005,
+      "median": 0.6790750624495558,
+      "q90": 4.926324933557775,
+      "q95": 7.549205976829402,
+      "max": 12.143092833110131,
+      "sum": 42.30466825014446,
+      "longest_success_instance": "Behnke36.fjsp",
+      "h_scoring_share": 0.8117841547451546,
+      "CPU_to_worker_wall": 0.9930209494257423,
+      "residual_worker_seconds": 0.03424516785889864
+    },
+    {
+      "strategy": "H4_H6_WS",
+      "n": 13,
+      "min": 0.1219804169377312,
+      "median": 0.8289872920140624,
+      "q90": 4.581026558368467,
+      "q95": 6.9156876167980865,
+      "max": 10.398879792075604,
+      "sum": 27.379288168856874,
+      "longest_success_instance": "Behnke19.fjsp",
+      "h_scoring_share": 0.87512570137774,
+      "CPU_to_worker_wall": 0.9979209050746206,
+      "residual_worker_seconds": 0.020454497076570988
+    },
+    {
+      "strategy": "H4_H7_WS",
+      "n": 20,
+      "min": 0.09249533305410296,
+      "median": 0.8148096039658412,
+      "q90": 5.995403837366034,
+      "q95": 8.998810023977425,
+      "max": 13.901579959085211,
+      "sum": 50.47408149763942,
+      "longest_success_instance": "Behnke36.fjsp",
+      "h_scoring_share": 0.8575493847705516,
+      "CPU_to_worker_wall": 0.9974610755058227,
+      "residual_worker_seconds": 0.036988294683396816
+    },
+    {
+      "strategy": "H5_H6_WS",
+      "n": 13,
+      "min": 0.10169783292803913,
+      "median": 0.8216535419924185,
+      "q90": 4.399002149933949,
+      "q95": 6.646869833185329,
+      "max": 10.000533958082087,
+      "sum": 26.352220960659906,
+      "longest_success_instance": "Behnke19.fjsp",
+      "h_scoring_share": 0.8683503648177405,
+      "CPU_to_worker_wall": 0.9971830963942376,
+      "residual_worker_seconds": 0.022778871469199657
+    },
+    {
+      "strategy": "H5_H7_WS",
+      "n": 20,
+      "min": 0.0960017089964822,
+      "median": 0.8305406039580703,
+      "q90": 5.936463883274704,
+      "q95": 8.475608299754098,
+      "max": 13.084190665977076,
+      "sum": 48.338209584122524,
+      "longest_success_instance": "Behnke36.fjsp",
+      "h_scoring_share": 0.8470123235484718,
+      "CPU_to_worker_wall": 0.9892939637196144,
+      "residual_worker_seconds": 0.037128540920093656
+    }
+  ],
+  "heavy_instances": [
+    {
+      "file": "Behnke36.fjsp",
+      "n": 39,
+      "min": 1.728999458020553,
+      "median": 6.653430542093702,
+      "q90": 11.717786266491748,
+      "q95": 12.237202616396827,
+      "max": 13.901579959085211,
+      "sum": 266.65816133946646,
+      "max_strategy": "H4_H7_WS",
+      "timeouts": 2,
+      "not_reached": 0
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "n": 35,
+      "min": 1.7656673759920523,
+      "median": 6.380124166957103,
+      "q90": 13.495652232808062,
+      "q95": 14.210866717656607,
+      "max": 14.845328374998644,
+      "sum": 251.81711963005364,
+      "max_strategy": "H0_H6_WS",
+      "timeouts": 4,
+      "not_reached": 2
+    }
+  ],
+  "global_successful_two_pass_seconds": {
+    "n": 841,
+    "min": 0.02584854094311595,
+    "median": 0.5306266670813784,
+    "q90": 4.725834583048709,
+    "q95": 7.3392935419688,
+    "max": 14.845328374998644,
+    "sum": 1412.2351473581512
+  },
+  "successful_host_residual_seconds": {
+    "n": 841,
+    "min": 0.000720751122571528,
+    "median": 0.001486915978603065,
+    "q90": 0.0031763340812176466,
+    "q95": 0.003578459029085934,
+    "max": 0.00806675001513213,
+    "sum": 1.5183748616836965
+  },
+  "timing_scope": "Completed rows only; first+recheck construct timers, not complete parent/lifecycle wall; censored failures have no first-end timestamp."
+}

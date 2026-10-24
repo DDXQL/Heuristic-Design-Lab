@@ -1,0 +1,86 @@
+{
+  "native_historical_source_comparison": [
+    {
+      "path": "code/fjsp_usage/research/sets.py",
+      "recorded_sha256": "44749411689a7114df6e0bc4a523555af422d45c50974912e1b537185561ff9a",
+      "current_sha256": "44749411689a7114df6e0bc4a523555af422d45c50974912e1b537185561ff9a",
+      "current_matches": true,
+      "path_history_commits_checked": 3,
+      "exact_sha256_found_at_path_commits": [
+        "ee89daecde49bd9b1b4df27b4d0dcdb0e595e1ee",
+        "b107045d35a62f6ba0a15553f3ea1f981ec0307e",
+        "ed3db13d4275dab0483eebe233ad1830bbd506c9"
+      ]
+    },
+    {
+      "path": "code/fjsp_usage/research/evolution.py",
+      "recorded_sha256": "7d1337fd26e5ceedb676a6c57f9aa51e11688de6f601199cc07d85649cc8db52",
+      "current_sha256": "c829b388ddbc582cf267f071d4409a0498d4368798e571f1b1107db1c4b1074d",
+      "current_matches": false,
+      "path_history_commits_checked": 5,
+      "exact_sha256_found_at_path_commits": []
+    },
+    {
+      "path": "code/fjsp_usage/research_real/workflow.py",
+      "recorded_sha256": "ad0c2f15e923ca40c7b8d3f7f948c6d49b12d606bd2fc56a711164ba2db1f51d",
+      "current_sha256": "cd4cdb0cb9a5fdbc38e1d28bc674431f9324667f5e0fbb6f43036be5c971c97b",
+      "current_matches": false,
+      "path_history_commits_checked": 8,
+      "exact_sha256_found_at_path_commits": []
+    },
+    {
+      "path": "code/fjsp_usage/research_real/runtime.py",
+      "recorded_sha256": "28585ee13c48aec080862d3283d5cc6fb5f05bd23a125cb2b22fedc18420f2a0",
+      "current_sha256": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+      "current_matches": false,
+      "path_history_commits_checked": 5,
+      "exact_sha256_found_at_path_commits": []
+    }
+  ],
+  "limitation": "No full historical executable closure recovered; path-touch commit search only, not all unreachable Git objects.",
+  "upstream_head": "b3b67d6522466e66baba5eb57990d3fb2bfeca23",
+  "upstream_population_commit": "b3b67d6",
+  "population_sha256": "242a2b4813d529ff75214dd6a0d2e8a348bf9cfae14e15e277815b1887c3063b",
+  "population_matches_current_file": true,
+  "upstream_profiler_export_present_at_commit": false,
+  "upstream_profiler_export_present_in_dirty_worktree": true,
+  "upstream_dirty_status": [
+    " M README.md",
+    " M code/llm4ad/method/eohs/eohs.py",
+    " M code/llm4ad/method/eohs/profiler.py",
+    " M code/llm4ad/task/optimization/tsp_construct_set/evaluation.py",
+    " M code/setup.py",
+    " M examples/training/cvrp_set/run_eohs.py",
+    " M examples/training/obp_set/run_eohs.py",
+    " M examples/training/tsp_set/run_eohs.py",
+    "?? .codex-build/",
+    "?? .codex-finalizer-rag-cover/",
+    "?? .codex-finalizer-rag-revision/",
+    "?? .codex-finalizer-rag-section2/",
+    "?? .gitignore",
+    "?? config.example.sh",
+    "?? docs/eohs_code_walkthrough.md",
+    "?? docs/eohs_reproduction.md",
+    "?? docs/fjsp_tier1_formal_generation.md",
+    "?? docs/fjsp_tier1_locked_test.md",
+    "?? docs/fjsp_tier1_round1.md",
+    "?? docs/study_01_eohs_problem_set.md",
+    "?? docs/study_02_eoh_prompts.md",
+    "?? docs/study_03_heuristic_use_methods.md",
+    "?? docs/study_04_epsilon_greedy_pilot.md",
+    "?? examples/training/fjsp_set/evaluate_frozen.py",
+    "?? examples/training/fjsp_set/formal_config_v1.json",
+    "?? examples/training/fjsp_set/formal_config_v1.sha256",
+    "?? examples/training/fjsp_set/prepare_formal.py",
+    "?? examples/training/fjsp_set/run_eohs.py",
+    "?? examples/training/fjsp_set/run_formal.py",
+    "?? examples/training/fjsp_set/run_locked_test.py",
+    "?? examples/training/fjsp_set/single_rule_config_v1.json",
+    "?? examples/training/fjsp_set/single_rule_config_v1.sha256",
+    "?? examples/training/fjsp_set/split.json",
+    "?? examples/training/obp_set/run_eohs_smoke.py",
+    "?? experiments/",
+    "?? output/",
+    "?? tmp/"
+  ]
+}
