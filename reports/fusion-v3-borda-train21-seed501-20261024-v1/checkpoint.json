@@ -1,0 +1,19 @@
+{
+  "protocol_sha256": "30999a64612041826188504eacfaaf8ddee8f4cb5d26850e842465eba049c67c",
+  "phase": "running",
+  "strategies": {
+    "H0_H1_BORDA": {
+      "status": "completed",
+      "reserved_evaluations": 21,
+      "reserved_solve_passes": 42,
+      "valid": true,
+      "result_path": "evidence/H0_H1_BORDA/result.json",
+      "result_sha256": "a0f30ca8a764d444b1b4bd5afbc00181df5095637341c03d72da6c15312a4621"
+    },
+    "H0_H5_BORDA": {
+      "status": "reserved",
+      "reserved_evaluations": 21,
+      "reserved_solve_passes": 42
+    }
+  }
+}

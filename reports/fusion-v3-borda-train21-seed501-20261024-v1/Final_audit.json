@@ -1,0 +1,129 @@
+{
+  "protocol_sha256": "30999a64612041826188504eacfaaf8ddee8f4cb5d26850e842465eba049c67c",
+  "analysis_sha256": "16875f95932e4c539d9e94bf566bdb2091fdb79dc14e506b74ec3a84c19d2424",
+  "formal_phase": "stopped_by_boundary",
+  "new_solves_in_report": 0,
+  "new_API_requests": 0,
+  "official_rankings": [
+    {
+      "strategy": "H0_H1_BORDA",
+      "status": "certified_complete21",
+      "official_fitness": -2.0669047163282066,
+      "same_pair_WS_fitness": -1.9831442949150015,
+      "official_delta_F_vs_WS": -0.08376042141320506,
+      "official_delta_F_vs_H0": 0.04490024429784212,
+      "official_delta_F_vs_H01_equal": -0.08376042141320506
+    },
+    {
+      "strategy": "H0_H5_BORDA",
+      "status": "quarantined_unexpected_worker_exit",
+      "official_fitness": null,
+      "same_pair_WS_fitness": null,
+      "official_delta_F_vs_WS": null,
+      "official_delta_F_vs_H0": null,
+      "official_delta_F_vs_H01_equal": null
+    },
+    {
+      "strategy": "H5_H9_BORDA",
+      "status": "not_started_after_stop",
+      "official_fitness": null,
+      "same_pair_WS_fitness": null,
+      "official_delta_F_vs_WS": null,
+      "official_delta_F_vs_H0": null,
+      "official_delta_F_vs_H01_equal": null
+    }
+  ],
+  "comparisons": [
+    {
+      "strategy": "H0_H1_BORDA",
+      "comparison": "H0_H1_WEIGHTED_SUM",
+      "instances": 21,
+      "delta_F": -0.08376042141320506,
+      "wins": 1,
+      "losses": 18,
+      "ties": 2,
+      "same_physical_instances": 0
+    }
+  ],
+  "accepted_state_behavior": [
+    {
+      "strategy": "H0_H1_BORDA",
+      "BORDA_diff_WEIGHTED_SUM": 3100,
+      "WEIGHTED_SUM_tied_states": 176,
+      "BORDA_diff_MAX": 3568,
+      "MAX_tied_states": 3767,
+      "BORDA_diff_MIN": 2916,
+      "MIN_tied_states": 455,
+      "states": 3800,
+      "BORDA_tied_states": 459
+    }
+  ],
+  "sample_order_summary": [
+    {
+      "phase": "V2_reference",
+      "pair": "0/1",
+      "sample_n": 64,
+      "equal_full_weak_order": 0,
+      "mean_spearman": 0.9101264117280272,
+      "spearman_defined_n": 64,
+      "outside_real_WS": 27,
+      "outside_WS_unique_Borda_top": 25
+    },
+    {
+      "phase": "V2_reference",
+      "pair": "0/5",
+      "sample_n": 64,
+      "equal_full_weak_order": 0,
+      "mean_spearman": 0.9907053816155976,
+      "spearman_defined_n": 64,
+      "outside_real_WS": 16,
+      "outside_WS_unique_Borda_top": 10
+    },
+    {
+      "phase": "V2_reference",
+      "pair": "5/9",
+      "sample_n": 64,
+      "equal_full_weak_order": 1,
+      "mean_spearman": 0.9881199880079462,
+      "spearman_defined_n": 64,
+      "outside_real_WS": 8,
+      "outside_WS_unique_Borda_top": 6
+    },
+    {
+      "phase": "accepted_Borda",
+      "pair": "0/1",
+      "sample_n": 64,
+      "equal_full_weak_order": 0,
+      "mean_spearman": 0.8504570569225776,
+      "spearman_defined_n": 64,
+      "outside_real_WS": 50,
+      "outside_WS_unique_Borda_top": 47
+    }
+  ],
+  "costs": {
+    "reserved_evaluations": 42,
+    "reserved_passes": 84,
+    "started_first_solves": 42,
+    "started_rechecks": 42,
+    "result_pairs_recorded": 42,
+    "certified_evaluations": 21,
+    "quarantined_evaluations": 21,
+    "unstarted_evaluations": 21,
+    "API_requests": 0,
+    "extra_diagnostic_solves": 0,
+    "extra_H_calls": 0,
+    "parent_primary_wall_seconds": 80.58371916809119,
+    "recorded_CPU_seconds": 79.316953,
+    "recorded_H_calls": 11927408,
+    "raw_matrix_bytes": 69480966,
+    "boundary": "recorded cost includes quarantined strategy; its quality is NOT certified; no additional budget spent after stop"
+  },
+  "stop": {
+    "error_type": "ValueError",
+    "error": "V3 boundary stop: unexpected_worker_exit",
+    "automatic_retry": false
+  },
+  "source_and_original_asset_check": "PASS",
+  "original_checkpoint_preserved": true,
+  "recommendation": "暂缓纳入主U空间；保留Borda独立机制实现。局部表达能力不同，但唯一认证的H01固定策略不及强等权WS；MAX/MIN亦无新质量证据。"
+}

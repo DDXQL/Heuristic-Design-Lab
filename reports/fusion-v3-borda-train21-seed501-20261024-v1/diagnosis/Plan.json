@@ -1,0 +1,10 @@
+{
+  "source_protocol_sha256": "363a7b3c76cc708630db169398ce0c747471d8872c942deb4f223b1a08b66bfe",
+  "states": "all successful first-pass V2 recorded states; invalid-strategy prefixes only for behavior",
+  "candidate": "equal midrank Borda on RAW finite H scores; final original first-argmax tie",
+  "sampling": "seed501 independent reservoir64 per pair over first-seen deduplicated states",
+  "selection_gate": "retain only if actual same-state differences from WS exist and math is non-equivalent",
+  "new_solves": 0,
+  "API_requests": 0,
+  "source_sha256": "93267fa63c6a56376467afcdf4123098fbb6abdbfefe3d9a7b22c66e2aa1f235"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "terminal",
+  "pid": 782,
+  "deadline_seconds": 15,
+  "started_monotonic": 647721.721049,
+  "trigger": null,
+  "cleanup": [
+    "join_0.05",
+    "terminate"
+  ],
+  "alive": false,
+  "exitcode": -15,
+  "finished_monotonic": 647776.983102875
+}

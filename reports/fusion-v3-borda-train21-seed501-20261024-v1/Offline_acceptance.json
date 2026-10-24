@@ -1,0 +1,16 @@
+{
+  "tests_run": 64,
+  "result": "OK",
+  "command": "PYTHONPATH=code:. .venv/bin/python -B -m unittest tests.test_fusion_v3 tests.test_fusion_v2 tests.test_U_usage_v2 tests.test_fjsp_usage_v2 tests.test_b1_timeout_boundary -q",
+  "tests_sha256": "705cb0a792d42253317a07de723a6454ffa454cbb16af3a42bfc1ce21e2d2c6b",
+  "protocol_sha256": "30999a64612041826188504eacfaaf8ddee8f4cb5d26850e842465eba049c67c",
+  "covers": [
+    "math/midrank ties/numeric boundaries",
+    "V1/V2 schedule-state-action compatibility",
+    "real spawned toy worker with identity and lifecycle",
+    "unknown reservation before instance load",
+    "strict timeout classification and forbidden network/holdout guards"
+  ],
+  "formal_evaluations": 0,
+  "real_LLM_requests": 0
+}
