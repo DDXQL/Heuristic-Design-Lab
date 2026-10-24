@@ -1,0 +1,74 @@
+{
+  "phase": "completed",
+  "supplemental_complete_valid": 9,
+  "six_previously_invalid_complete": 6,
+  "composite_pair_valid": 45,
+  "composite_pair_total": 45,
+  "best_pair": {
+    "strategy": "H0_H1_WS",
+    "valid": true,
+    "fitness": -1.9831442949150015,
+    "source": "Baseline-A-original",
+    "original_Baseline_A_fitness": -1.9831442949150015,
+    "original_Baseline_A_valid": true,
+    "result_path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/tier2-baseline-a-train21-seed501-20261024-v1/cache/H0_H1_WS.json",
+    "result_sha256": "57e4e5c1dc00bbf0942ac3edbe4c8ab7693ca884783871bf48ab7ef024470b08",
+    "delta_vs_H01": 0.0,
+    "delta_vs_B2": -0.0009178066725505918,
+    "rank": 1
+  },
+  "best_single": {
+    "strategy": "H0",
+    "fitness": -2.1118049606260487
+  },
+  "single_H_Oracle_fitness": -2.0329772565314306,
+  "references": {
+    "B1": {
+      "id": "B/g0000/000006",
+      "candidate_key": "14971cef4bfa78dcdde17117ff1d1e3aae6c8c222c585baa8d2fb34fdb0342cd",
+      "fitness": -2.115159624699559,
+      "source_checkpoint": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+      "source_checkpoint_sha256": "535335536b77949a15c3f75e4649f5266e2cf19f47535a4fc6154e853c4bc535",
+      "generations_completed": 1,
+      "phase": "evolution",
+      "logical_attempts": 19,
+      "complete_valid_new_candidates": 14,
+      "not_budget_matched": true,
+      "terminal_receipt": "not reconstructed; historical accepted result"
+    },
+    "B2": {
+      "id": "B/g0001/000000",
+      "candidate_key": "a4788efa1c8d89ef43492f8d489de5ed2276fbe753e2648e9f21173c40be9c53",
+      "fitness": -1.982226488242451,
+      "source_checkpoint": "runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/checkpoint.json",
+      "source_checkpoint_sha256": "2322a9a0069b7b5365c5c2f5aa892bbd98699ba081a95f1da674e24667445390",
+      "generations_completed": 2,
+      "phase": "completed",
+      "logical_attempts": 20,
+      "complete_valid_new_candidates": 19,
+      "not_budget_matched": true,
+      "terminal_receipt": "not reconstructed; historical accepted result"
+    }
+  },
+  "control_instances_compared": 63,
+  "control_scientific_and_hash_matches": true,
+  "old_prefix_instances_compared": 106,
+  "above_H01_pairs": 0,
+  "above_B2_pairs": 0,
+  "above_best_single_pairs": 6,
+  "costs": {
+    "reserved_evaluations": 189,
+    "reserved_solve_passes": 378,
+    "instance_start_markers": 189,
+    "first_start_markers": 189,
+    "recheck_start_markers": 189,
+    "completed_pair_markers": 189,
+    "API_requests": 0,
+    "new_evolution_runs": 0,
+    "cached_new_evaluations": 0,
+    "extra_diagnostic_solves": 0,
+    "primary_wall_seconds": 482.6767729598796
+  },
+  "protocol_sha256": "ea3c8f8d8005c5ceff5fc9c9e44b9c1270e7e88b6209b3ec5b47395eccd78e32",
+  "scope": "train21 descriptive; composite mixed source quality ranking, not full45 concurrent T30; original T15 nulls unchanged; no independent generalization"
+}

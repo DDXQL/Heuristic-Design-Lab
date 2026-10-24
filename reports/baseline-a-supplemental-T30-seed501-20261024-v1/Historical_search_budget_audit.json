@@ -1,0 +1,31 @@
+{
+  "B2_initial_population_count": 5,
+  "B2_initial_ids": [
+    "MANUAL/init/alpha_000",
+    "MANUAL/init/alpha_025",
+    "MANUAL/init/alpha_050",
+    "MANUAL/init/alpha_075",
+    "MANUAL/init/alpha_100"
+  ],
+  "B2_grid_completion": {
+    "references": 21,
+    "new_evaluations": 16,
+    "reused": 5,
+    "no_refinement": true
+  },
+  "B2_plan_caps": {
+    "new_full_evaluation_cap": 36,
+    "endpoint_fallback_cap": 2,
+    "absolute_full_evaluation_cap": 38,
+    "new_model_request_cap": 30,
+    "new_grid_evaluations": 16,
+    "reused_reference_evaluations": 5,
+    "instance_timeout": 15
+  },
+  "sources_sha256": {
+    "runs/h01-state-weight-search-seed501-batch-v3-20261020/Plan.json": "e2b2669512ca6c97e94cbe616dbfd5a84ed24222eb38896f40a810987c51a98a",
+    "runs/h01-state-weight-search-seed501-batch-v3-20261020/Grid_complete.json": "3c6b64cd43e62c685ef6eabaf0a62fdaeb3cf841b99eb4eb3631606921534721",
+    "runs/h01-state-weight-search-seed501-batch-v3-20261020/Initial_population.json": "929f734ac58a6b41ae6ff7aed1f9fbb5e0df18859a5ef17385e298c8f884b478"
+  },
+  "interpretation": "20 logical evolution attempts exclude five manual initial strategies and a completed21-weight reference grid (16 new +5 reused); do not describe20 as total end-to-end evaluation cost. No new solves or searches."
+}

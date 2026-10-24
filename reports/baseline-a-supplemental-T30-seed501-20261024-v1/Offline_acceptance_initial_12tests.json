@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "tests_run": 12,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "code/fjsp_usage/baseline_supplemental/__init__.py": "b277d4f856c49349d0acc20d90a0ecbf3e3f6672058b4a2b50ec752eba4156a2",
+    "code/fjsp_usage/baseline_supplemental/lifecycle.py": "7759cb6ed76265afa3ddd092241df6f9aab46664aaba89bb50fa79472b6045bd",
+    "code/fjsp_usage/baseline_supplemental/validation.py": "ffb4a4cdd9aa376277b16a5e2623af045568c27a6aa5b6f8b7ceaf023b0915d0",
+    "docs/BASELINE_A_SUPPLEMENTAL_T30.md": "8ff271ad98396634d983f0d09706b0dee7adb445d1020dada096c72b9e18867a",
+    "experiments/tier2/baseline_supplemental/run.py": "993438a105e492ac21e77814b01f6dee405996d6b94adf9d831caae252ef2e76",
+    "tests/test_baseline_supplemental.py": "a4d6feb3badc710a30da4e87dfe3e8095005ede6d6ac6c70afed48b1d383066e",
+    "tools/baseline_a_supplemental.py": "c05df67466a0d7936f9ad53992ec2f49e4b889de74f8a8e5b73fe6e86305dd76",
+    "tools/baseline_a_supplemental_report.py": "caa73ab7024b67d7355bb7cda7a0d782afd5ba15b82e28ced90d17b8277533c1"
+  },
+  "mock_receipts": [
+    {
+      "mock": "partial complete-message delay",
+      "budget": 0.03,
+      "timely": false,
+      "reader_stopped": true
+    },
+    {
+      "mock": "simulated audit events only; no real connect/open",
+      "blocked": {
+        "network_attempts_blocked": 1,
+        "nontrain_opens_blocked": 1
+      }
+    },
+    {
+      "mock": "real spawn delayed normal exit",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 83017,
+        "deadline_seconds": 30,
+        "started_monotonic": 664869.279405041,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": null,
+        "cleanup": [
+          "join_exit_grace_2.0"
+        ],
+        "expected_rows": 1,
+        "rows_received": 1,
+        "all_results_received": true,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": true,
+        "results_complete_monotonic": 664869.460181541,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "MOCK",
+            "started": 664869.279444083,
+            "deadline": 664899.279444083,
+            "finished": 664869.46005575,
+            "timely": true
+          }
+        ],
+        "exit_wait_observed_seconds": 0.2414096250431612,
+        "alive": false,
+        "exitcode": 0,
+        "finished_monotonic": 664869.701667666
+      }
+    },
+    {
+      "mock": "toy worker two passes/identity",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 83020,
+        "deadline_seconds": 30,
+        "started_monotonic": 664869.849269375,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": null,
+        "cleanup": [
+          "join_exit_grace_2.0"
+        ],
+        "expected_rows": 1,
+        "rows_received": 1,
+        "all_results_received": true,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": true,
+        "results_complete_monotonic": 664870.136488583,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "toy.fjsp",
+            "started": 664869.849974708,
+            "deadline": 664899.849974708,
+            "finished": 664870.136430083,
+            "timely": true
+          }
+        ],
+        "exit_wait_observed_seconds": 0.012613915954716504,
+        "alive": false,
+        "exitcode": 0,
+        "finished_monotonic": 664870.149123708
+      },
+      "identity": "0980985fda1399225ef2d45920b0d02e917dcafe80e325903883847adf23f616"
+    },
+    {
+      "mock": "confirmed T30 timeout",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 123,
+        "deadline_seconds": 30,
+        "started_monotonic": 664870.151287416,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": "parent_complete_result_timeout",
+        "cleanup": [
+          "join_0.05",
+          "terminate"
+        ],
+        "expected_rows": 1,
+        "rows_received": 0,
+        "all_results_received": false,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": false,
+        "results_complete_monotonic": null,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "MOCK",
+            "started": 0.0,
+            "deadline": 30.0,
+            "finished": null,
+            "timely": false
+          }
+        ],
+        "exit_wait_observed_seconds": 3.3294782042503357e-07,
+        "alive": false,
+        "exitcode": -15,
+        "finished_monotonic": 664870.151294958
+      },
+      "classification": {
+        "decision": "candidate_invalid_continue",
+        "reason": "confirmed_T30_timeout_termination",
+        "fitness": null,
+        "prefix_quality_accepted": false,
+        "end_loaded_identity": "unavailable_for_terminated_worker"
+      }
+    }
+  ],
+  "formal_train_solves": 0,
+  "API_requests": 0,
+  "scope": "Synthetic process messages/toy schedules +recorded H01 matrix V1 replay; no train scheduling"
+}

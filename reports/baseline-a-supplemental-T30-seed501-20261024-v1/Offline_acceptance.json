@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "tests_run": 13,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "code/fjsp_usage/baseline_supplemental/__init__.py": "b277d4f856c49349d0acc20d90a0ecbf3e3f6672058b4a2b50ec752eba4156a2",
+    "code/fjsp_usage/baseline_supplemental/lifecycle.py": "7759cb6ed76265afa3ddd092241df6f9aab46664aaba89bb50fa79472b6045bd",
+    "code/fjsp_usage/baseline_supplemental/validation.py": "ffb4a4cdd9aa376277b16a5e2623af045568c27a6aa5b6f8b7ceaf023b0915d0",
+    "docs/BASELINE_A_SUPPLEMENTAL_T30.md": "8ff271ad98396634d983f0d09706b0dee7adb445d1020dada096c72b9e18867a",
+    "experiments/tier2/baseline_supplemental/run.py": "993438a105e492ac21e77814b01f6dee405996d6b94adf9d831caae252ef2e76",
+    "tests/test_baseline_supplemental.py": "319309fc92332b2b51c7bc12457cc80f593bca279d2f0d415584d150945c572b",
+    "tools/baseline_a_supplemental.py": "c05df67466a0d7936f9ad53992ec2f49e4b889de74f8a8e5b73fe6e86305dd76",
+    "tools/baseline_a_supplemental_report.py": "fd1b89b1dfce9a371514f2abda08cc6d0716cfa458a23eb80d1cfe6832b60693"
+  },
+  "mock_receipts": [
+    {
+      "mock": "partial complete-message delay",
+      "budget": 0.03,
+      "timely": false,
+      "reader_stopped": true
+    },
+    {
+      "mock": "simulated audit events only; no real connect/open",
+      "blocked": {
+        "network_attempts_blocked": 1,
+        "nontrain_opens_blocked": 1
+      }
+    },
+    {
+      "mock": "real spawned no-result 30s timeout; no solves",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 83429,
+        "deadline_seconds": 30,
+        "started_monotonic": 664937.561839,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": "parent_complete_result_timeout",
+        "cleanup": [
+          "join_0.05",
+          "terminate"
+        ],
+        "expected_rows": 1,
+        "rows_received": 0,
+        "all_results_received": false,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": false,
+        "results_complete_monotonic": null,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "MOCK",
+            "started": 664937.561878958,
+            "deadline": 664967.561878958,
+            "finished": null,
+            "timely": false
+          }
+        ],
+        "exit_wait_observed_seconds": 0.05139150004833937,
+        "alive": false,
+        "exitcode": -15,
+        "finished_monotonic": 664967.621221125
+      },
+      "classification": {
+        "decision": "candidate_invalid_continue",
+        "reason": "confirmed_T30_timeout_termination",
+        "fitness": null,
+        "prefix_quality_accepted": false,
+        "end_loaded_identity": "unavailable_for_terminated_worker"
+      }
+    },
+    {
+      "mock": "real spawn delayed normal exit",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 83618,
+        "deadline_seconds": 30,
+        "started_monotonic": 664967.624138208,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": null,
+        "cleanup": [
+          "join_exit_grace_2.0"
+        ],
+        "expected_rows": 1,
+        "rows_received": 1,
+        "all_results_received": true,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": true,
+        "results_complete_monotonic": 664967.901676333,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "MOCK",
+            "started": 664967.624180875,
+            "deadline": 664997.624180875,
+            "finished": 664967.9015715,
+            "timely": true
+          }
+        ],
+        "exit_wait_observed_seconds": 0.22949925006832927,
+        "alive": false,
+        "exitcode": 0,
+        "finished_monotonic": 664968.131240416
+      }
+    },
+    {
+      "mock": "toy worker two passes/identity",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 83625,
+        "deadline_seconds": 30,
+        "started_monotonic": 664968.284719208,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": null,
+        "cleanup": [
+          "join_exit_grace_2.0"
+        ],
+        "expected_rows": 1,
+        "rows_received": 1,
+        "all_results_received": true,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": true,
+        "results_complete_monotonic": 664968.58924875,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "toy.fjsp",
+            "started": 664968.285338291,
+            "deadline": 664998.285338291,
+            "finished": 664968.589179583,
+            "timely": true
+          }
+        ],
+        "exit_wait_observed_seconds": 0.012923958012834191,
+        "alive": false,
+        "exitcode": 0,
+        "finished_monotonic": 664968.602193916
+      },
+      "identity": "f6d8cc0b615877d0552af8b9c1ec4dc68cf3d6d01d75947a7822788bbf0e7621"
+    },
+    {
+      "mock": "confirmed T30 timeout",
+      "lifecycle": {
+        "status": "terminal",
+        "pid": 123,
+        "deadline_seconds": 30,
+        "started_monotonic": 664968.603957041,
+        "deadline_scope": "complete_recv_including_deserialisation",
+        "trigger": "parent_complete_result_timeout",
+        "cleanup": [
+          "join_0.05",
+          "terminate"
+        ],
+        "expected_rows": 1,
+        "rows_received": 0,
+        "all_results_received": false,
+        "exit_grace_seconds": 2.0,
+        "exit_grace_used": false,
+        "results_complete_monotonic": null,
+        "receiver_thread_stopped": true,
+        "instance_receives": [
+          {
+            "file": "MOCK",
+            "started": 0.0,
+            "deadline": 30.0,
+            "finished": null,
+            "timely": false
+          }
+        ],
+        "exit_wait_observed_seconds": 3.7497375160455704e-07,
+        "alive": false,
+        "exitcode": -15,
+        "finished_monotonic": 664968.603965083
+      },
+      "classification": {
+        "decision": "candidate_invalid_continue",
+        "reason": "confirmed_T30_timeout_termination",
+        "fitness": null,
+        "prefix_quality_accepted": false,
+        "end_loaded_identity": "unavailable_for_terminated_worker"
+      }
+    }
+  ],
+  "formal_train_solves": 0,
+  "API_requests": 0,
+  "scope": "Synthetic process messages/toy schedules +recorded H01 matrix V1 replay; no train scheduling"
+}
