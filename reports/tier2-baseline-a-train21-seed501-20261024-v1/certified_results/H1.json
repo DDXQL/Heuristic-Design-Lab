@@ -1,0 +1,219 @@
+{
+  "valid": true,
+  "total_instances": 21,
+  "instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "makespan": 113,
+      "lower_bound": 70.0,
+      "score": -1.6142857142857143,
+      "feasible": true,
+      "single_solve_seconds": 0.00466795900138095,
+      "deterministic_recheck_seconds": 0.004631542018614709,
+      "deterministic_schedule_sha256": "b009b8645a36fcb3c6a8d212b0a8a4987a1a5be155b06093c5cc58d7ea4f98c0"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "makespan": 122,
+      "lower_bound": 75.0,
+      "score": -1.6266666666666667,
+      "feasible": true,
+      "single_solve_seconds": 0.005135292012710124,
+      "deterministic_recheck_seconds": 0.004712916968856007,
+      "deterministic_schedule_sha256": "dda1134553f9cdf709277aafaea34b703b89a56735e2a0ebc69b70426ab1bde3"
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "makespan": 122,
+      "lower_bound": 79.0,
+      "score": -1.5443037974683544,
+      "feasible": true,
+      "single_solve_seconds": 0.004685125022660941,
+      "deterministic_recheck_seconds": 0.005268875043839216,
+      "deterministic_schedule_sha256": "7a26755817eb3ebc0b645cf2851e8500b18de4e8ec5efdd3a9ab23ee03a1b5d7"
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "makespan": 121,
+      "lower_bound": 76.0,
+      "score": -1.5921052631578947,
+      "feasible": true,
+      "single_solve_seconds": 0.004852583981119096,
+      "deterministic_recheck_seconds": 0.004765999969094992,
+      "deterministic_schedule_sha256": "9ba993f0d8f121fc283e4f6566235cec66b71307dcdf74df1209cca1a59f92ed"
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "makespan": 296,
+      "lower_bound": 159.7,
+      "score": -1.8534752661239826,
+      "feasible": true,
+      "single_solve_seconds": 0.10714329098118469,
+      "deterministic_recheck_seconds": 0.1057628330308944,
+      "deterministic_schedule_sha256": "4a14477e35ea26e203aea7a63df7639b758efb26713c6ed0a08d7f9f995c7da1"
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "makespan": 292,
+      "lower_bound": 163.75,
+      "score": -1.783206106870229,
+      "feasible": true,
+      "single_solve_seconds": 0.11065712501294911,
+      "deterministic_recheck_seconds": 0.10586570901796222,
+      "deterministic_schedule_sha256": "905b99f1d3f1dde4341a8e32671ccec137b3567cb960e9f7561af83f8f001009"
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "makespan": 532,
+      "lower_bound": 322.35,
+      "score": -1.6503800217155264,
+      "feasible": true,
+      "single_solve_seconds": 0.48627483402378857,
+      "deterministic_recheck_seconds": 0.5776120410300791,
+      "deterministic_schedule_sha256": "6bb33566e3c76a7eacb8aa4a7df0d736eea78d68daad5a04d11b8c97c7d6c58d"
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "makespan": 103,
+      "lower_bound": 80.0,
+      "score": -1.2875,
+      "feasible": true,
+      "single_solve_seconds": 0.023625207948498428,
+      "deterministic_recheck_seconds": 0.01677212497452274,
+      "deterministic_schedule_sha256": "a1432b689fef4a9f0554c13b35e3d73c5ba1f81ad1390d0bf818df3228e24974"
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "makespan": 103,
+      "lower_bound": 78.0,
+      "score": -1.3205128205128205,
+      "feasible": true,
+      "single_solve_seconds": 0.012466459011193365,
+      "deterministic_recheck_seconds": 0.012173041992355138,
+      "deterministic_schedule_sha256": "47fb29efed7ce95034c9f8a91742a7c94e487d7ec3428c04991a2ee3a95ec626"
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "makespan": 133,
+      "lower_bound": 75.0,
+      "score": -1.7733333333333334,
+      "feasible": true,
+      "single_solve_seconds": 0.029699250007979572,
+      "deterministic_recheck_seconds": 0.030924875056371093,
+      "deterministic_schedule_sha256": "fba9b5a752c48014b4a40b40ae162a7484a567a1cbdb265ea77e2c4376036400"
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "makespan": 154,
+      "lower_bound": 81.0,
+      "score": -1.9012345679012346,
+      "feasible": true,
+      "single_solve_seconds": 0.029128749971278012,
+      "deterministic_recheck_seconds": 0.02991037501487881,
+      "deterministic_schedule_sha256": "f48e9288161bf0296ffc38311ec8f9ab856556996f4a82a76510004a0ec07f12"
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "makespan": 248,
+      "lower_bound": 76.45,
+      "score": -3.2439502943100065,
+      "feasible": true,
+      "single_solve_seconds": 0.13164208398666233,
+      "deterministic_recheck_seconds": 0.1146500000031665,
+      "deterministic_schedule_sha256": "7a8854632b4172d9788b159a0d1bc412ead2e6a189e1a66f34d5053c38142ece"
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "makespan": 255,
+      "lower_bound": 78.0,
+      "score": -3.269230769230769,
+      "feasible": true,
+      "single_solve_seconds": 0.09923270798753947,
+      "deterministic_recheck_seconds": 0.09728508396074176,
+      "deterministic_schedule_sha256": "8244c1868365a813be27cbc7a1f1e86fe45723621eff21592458d254e6d121a6"
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "makespan": 420,
+      "lower_bound": 151.625,
+      "score": -2.7699917559769167,
+      "feasible": true,
+      "single_solve_seconds": 0.5022110409918241,
+      "deterministic_recheck_seconds": 0.49897970899473876,
+      "deterministic_schedule_sha256": "75748fb98e6cd46db7aeee67cce5b2cdb63245fc5e6c847cfa2defd6a135445c"
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "makespan": 101,
+      "lower_bound": 68.0,
+      "score": -1.4852941176470589,
+      "feasible": true,
+      "single_solve_seconds": 0.00826016702922061,
+      "deterministic_recheck_seconds": 0.007417541986797005,
+      "deterministic_schedule_sha256": "9717241feaa5c8f317c5cc2055f6edb2e2d25b339c48cec713feebc8aa171320"
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "makespan": 95,
+      "lower_bound": 68.0,
+      "score": -1.3970588235294117,
+      "feasible": true,
+      "single_solve_seconds": 0.008165916020516306,
+      "deterministic_recheck_seconds": 0.007332250010222197,
+      "deterministic_schedule_sha256": "2daf9bce4a7d75d96c72b152323555a3686b6c533b64f512b4e0eb7f22dc81d9"
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "makespan": 140,
+      "lower_bound": 76.0,
+      "score": -1.8421052631578947,
+      "feasible": true,
+      "single_solve_seconds": 0.022329665953293443,
+      "deterministic_recheck_seconds": 0.021580709028057754,
+      "deterministic_schedule_sha256": "f329ac761ad4b43be2b461088271cb26623fa0bfe78b94fc0c71fdf5c499df5c"
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "makespan": 137,
+      "lower_bound": 73.0,
+      "score": -1.8767123287671232,
+      "feasible": true,
+      "single_solve_seconds": 0.02153337502386421,
+      "deterministic_recheck_seconds": 0.027092000003904104,
+      "deterministic_schedule_sha256": "527a26bb7a907b27ff7c7df09892f88b00a70cf67687abfc500f9141413cab8d"
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "makespan": 240,
+      "lower_bound": 75.0,
+      "score": -3.2,
+      "feasible": true,
+      "single_solve_seconds": 0.11383937497157604,
+      "deterministic_recheck_seconds": 0.11410100001376122,
+      "deterministic_schedule_sha256": "a00bef30fa6d0b71d7a7d8ff6ff542e54377e4d2ed7f61581a74ad86e33f7894"
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "makespan": 235,
+      "lower_bound": 74.0,
+      "score": -3.175675675675676,
+      "feasible": true,
+      "single_solve_seconds": 0.11823583400109783,
+      "deterministic_recheck_seconds": 0.11898254201514646,
+      "deterministic_schedule_sha256": "b4ae039071c7a8f1fe230f9586e9eece2ac47e12d15c104aa01fdf94da14f0e7"
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "makespan": 424,
+      "lower_bound": 98.31666666666666,
+      "score": -4.31259535514494,
+      "feasible": true,
+      "single_solve_seconds": 0.4316581670427695,
+      "deterministic_recheck_seconds": 0.42539270798442885,
+      "deterministic_schedule_sha256": "2f28b8d2f1efd999333c9714f8aaff650b44ee53b453f1b9ec283a544e048765"
+    }
+  ],
+  "fitness": -2.119981806736931,
+  "primary_evaluation_seconds": 5.050961458007805,
+  "elapsed_seconds": 5.051052625000011
+}

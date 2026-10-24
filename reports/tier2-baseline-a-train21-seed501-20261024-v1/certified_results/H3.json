@@ -1,0 +1,219 @@
+{
+  "valid": true,
+  "total_instances": 21,
+  "instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "makespan": 113,
+      "lower_bound": 70.0,
+      "score": -1.6142857142857143,
+      "feasible": true,
+      "single_solve_seconds": 0.006539041991345584,
+      "deterministic_recheck_seconds": 0.005609583982732147,
+      "deterministic_schedule_sha256": "d1d09d277496a2aa9f06c13c3b74cae1f446ef387d826f083644aade326c20fe"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "makespan": 125,
+      "lower_bound": 75.0,
+      "score": -1.6666666666666667,
+      "feasible": true,
+      "single_solve_seconds": 0.006089290953241289,
+      "deterministic_recheck_seconds": 0.006186500017065555,
+      "deterministic_schedule_sha256": "ae933eeef83347f576e1e0281b9edac9d8e9357c8317bd83a5495258aeae2625"
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "makespan": 123,
+      "lower_bound": 79.0,
+      "score": -1.5569620253164558,
+      "feasible": true,
+      "single_solve_seconds": 0.005701041023712605,
+      "deterministic_recheck_seconds": 0.00643208296969533,
+      "deterministic_schedule_sha256": "4cbe4b147c77ab7d41293ab0594d81b1811f595e4bb30503fa4e82611786da19"
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "makespan": 121,
+      "lower_bound": 76.0,
+      "score": -1.5921052631578947,
+      "feasible": true,
+      "single_solve_seconds": 0.0058590410044416785,
+      "deterministic_recheck_seconds": 0.005814541946165264,
+      "deterministic_schedule_sha256": "5e5d1bb41dbad8a284dd547e47d18b4e9195de46df61d410ae2039c0846fa40e"
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "makespan": 318,
+      "lower_bound": 159.7,
+      "score": -1.991233562930495,
+      "feasible": true,
+      "single_solve_seconds": 0.14152937498874962,
+      "deterministic_recheck_seconds": 0.1480832909583114,
+      "deterministic_schedule_sha256": "34d92cdad10953996234706d2a82fe50d283f0cd73f929de5ac43d6cadc22630"
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "makespan": 315,
+      "lower_bound": 163.75,
+      "score": -1.9236641221374047,
+      "feasible": true,
+      "single_solve_seconds": 0.1414743330096826,
+      "deterministic_recheck_seconds": 0.15058466600021347,
+      "deterministic_schedule_sha256": "b576d0d34c4230f290d57f78327ce1d8b1d9f02f1ef13ca2359708f1b9c86e8e"
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "makespan": 537,
+      "lower_bound": 322.35,
+      "score": -1.6658911121451836,
+      "feasible": true,
+      "single_solve_seconds": 0.6256850829813629,
+      "deterministic_recheck_seconds": 0.5495952499913983,
+      "deterministic_schedule_sha256": "a5c5a2ea91fcd6179abdea04b9bb0611c663055e5f9058e156caaf705342132a"
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "makespan": 106,
+      "lower_bound": 80.0,
+      "score": -1.325,
+      "feasible": true,
+      "single_solve_seconds": 0.007721000001765788,
+      "deterministic_recheck_seconds": 0.007143083028495312,
+      "deterministic_schedule_sha256": "55e75fb68077f7fbff28aaa1bd93576b52a5955fda0a25aed38b811246eed861"
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "makespan": 106,
+      "lower_bound": 78.0,
+      "score": -1.358974358974359,
+      "feasible": true,
+      "single_solve_seconds": 0.00825104198884219,
+      "deterministic_recheck_seconds": 0.008093166979961097,
+      "deterministic_schedule_sha256": "3b5371e5c1793b45bbe3581778fc6e174860bc0ca0c85fff8a60fa65dd18cd11"
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "makespan": 144,
+      "lower_bound": 75.0,
+      "score": -1.92,
+      "feasible": true,
+      "single_solve_seconds": 0.023948749992996454,
+      "deterministic_recheck_seconds": 0.024624375044368207,
+      "deterministic_schedule_sha256": "03fbfd4e2f64cc71b988722d277401a160319a3360adf74202890cdbf5ec2de1"
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "makespan": 157,
+      "lower_bound": 81.0,
+      "score": -1.9382716049382716,
+      "feasible": true,
+      "single_solve_seconds": 0.0232079999987036,
+      "deterministic_recheck_seconds": 0.023358042002655566,
+      "deterministic_schedule_sha256": "978fb8660fc09eb860080a510ef361e3ee6dd51ae8d9d8bee336265d674a3b83"
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "makespan": 261,
+      "lower_bound": 76.45,
+      "score": -3.4139960758665793,
+      "feasible": true,
+      "single_solve_seconds": 0.12967304198537022,
+      "deterministic_recheck_seconds": 0.1308398749679327,
+      "deterministic_schedule_sha256": "d3ab00666da8d1b1847583c7a5ffbcb9aae9718926bec39cbb6c27e0e6f33994"
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "makespan": 257,
+      "lower_bound": 78.0,
+      "score": -3.2948717948717947,
+      "feasible": true,
+      "single_solve_seconds": 0.13124274997971952,
+      "deterministic_recheck_seconds": 0.129537166969385,
+      "deterministic_schedule_sha256": "f787aab523b20277289df3ba986f0c2f39bea12716611a7eb12afcfd67f76a8f"
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "makespan": 414,
+      "lower_bound": 151.625,
+      "score": -2.7304204451772467,
+      "feasible": true,
+      "single_solve_seconds": 0.47408479201840237,
+      "deterministic_recheck_seconds": 0.6280994589906186,
+      "deterministic_schedule_sha256": "e627f10664f535c31939e62a8aa4bfa980ecac8e70396fb36886a35d9b0a728f"
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "makespan": 105,
+      "lower_bound": 68.0,
+      "score": -1.5441176470588236,
+      "feasible": true,
+      "single_solve_seconds": 0.009375041991006583,
+      "deterministic_recheck_seconds": 0.008788625011220574,
+      "deterministic_schedule_sha256": "70f071500d4bf869d85b74ab4acfd9f84e2927a4177691dae7c7c7e43e61339c"
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "makespan": 100,
+      "lower_bound": 68.0,
+      "score": -1.4705882352941178,
+      "feasible": true,
+      "single_solve_seconds": 0.009093875007238239,
+      "deterministic_recheck_seconds": 0.009050375025253743,
+      "deterministic_schedule_sha256": "64de4a852140ba3651e11dd84a67c5a35d5c41fc8b87b1cbf5b796dececfc5f0"
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "makespan": 142,
+      "lower_bound": 76.0,
+      "score": -1.868421052631579,
+      "feasible": true,
+      "single_solve_seconds": 0.027575790998525918,
+      "deterministic_recheck_seconds": 0.026829708949662745,
+      "deterministic_schedule_sha256": "6266db3b2731b55f9de46ab9cd100961da5de7dff92b25d6eab8ec2963510809"
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "makespan": 139,
+      "lower_bound": 73.0,
+      "score": -1.904109589041096,
+      "feasible": true,
+      "single_solve_seconds": 0.025769166997633874,
+      "deterministic_recheck_seconds": 0.026474042038898915,
+      "deterministic_schedule_sha256": "ba5434b72d8490d8a1da23d947e871289bb85458b1d65c28b2d6c74c69a4beec"
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "makespan": 241,
+      "lower_bound": 75.0,
+      "score": -3.2133333333333334,
+      "feasible": true,
+      "single_solve_seconds": 0.13704879203578457,
+      "deterministic_recheck_seconds": 0.14235220901900902,
+      "deterministic_schedule_sha256": "ad32bd7a56cc9432fa36b71677fac5579a2e14fe789d8fc97c56d855e32504f5"
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "makespan": 236,
+      "lower_bound": 74.0,
+      "score": -3.189189189189189,
+      "feasible": true,
+      "single_solve_seconds": 0.14550120796775445,
+      "deterministic_recheck_seconds": 0.14290629199240357,
+      "deterministic_schedule_sha256": "6d22698e9dc900691447274b029562bf45e81a5452fc1dddc650bd714ddf786d"
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "makespan": 432,
+      "lower_bound": 98.31666666666666,
+      "score": -4.39396507882692,
+      "feasible": true,
+      "single_solve_seconds": 0.4809835000196472,
+      "deterministic_recheck_seconds": 0.4765622079721652,
+      "deterministic_schedule_sha256": "c96e5c990daa96876b0663a2a5dc6a0b719fb75e66fe541880131f9305b18910"
+    }
+  ],
+  "fitness": -2.1702888986591966,
+  "primary_evaluation_seconds": 5.495090292009991,
+  "elapsed_seconds": 5.495168084045872
+}

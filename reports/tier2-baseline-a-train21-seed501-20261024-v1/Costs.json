@@ -1,0 +1,22 @@
+{
+  "reserved_new_evaluations": 861,
+  "reserved_new_solve_passes": 1722,
+  "recorded_instance_start_markers": 847,
+  "recorded_first_start_markers": 847,
+  "recorded_recheck_start_markers": 847,
+  "certified_new_pairs": 841,
+  "new_strategies": 41,
+  "cached_strategies": 14,
+  "cached_evaluations_avoided": 294,
+  "cached_solve_passes_avoided": 588,
+  "new_API_requests": 0,
+  "new_evolution_runs": 0,
+  "new_primary_wall_seconds": 1523.1800552495988,
+  "new_certified_prefix_first_seconds": 707.0140961551806,
+  "new_certified_prefix_recheck_seconds": 705.2210512029706,
+  "cached_historical_first_seconds": 136.46997004572768,
+  "cached_historical_recheck_seconds": 134.64224475884112,
+  "new_confirmed_timeouts": 6,
+  "failed_instance_internal_cost": "unknown when killed; not zero filled; included in parent wall time",
+  "comparison_scope": "descriptive timing only; legacy caches and modern local evaluations nonconcurrent; no speed claim"
+}

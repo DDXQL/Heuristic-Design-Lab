@@ -1,0 +1,20 @@
+{
+  "status": "terminal",
+  "pid": 39830,
+  "deadline_seconds": 15,
+  "started_monotonic": 657681.9067875,
+  "trigger": null,
+  "cleanup": [
+    "join_exit_grace_2.0"
+  ],
+  "expected_rows": 21,
+  "rows_received": 21,
+  "all_results_received": true,
+  "exit_grace_seconds": 2.0,
+  "exit_grace_used": true,
+  "results_complete_monotonic": 657716.674558791,
+  "exit_wait_observed_seconds": 0.025853291037492454,
+  "alive": false,
+  "exitcode": 0,
+  "finished_monotonic": 657716.700483583
+}

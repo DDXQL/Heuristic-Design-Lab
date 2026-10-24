@@ -1,0 +1,410 @@
+{
+  "B1": {
+    "id": "B/g0000/000006",
+    "candidate_key": "14971cef4bfa78dcdde17117ff1d1e3aae6c8c222c585baa8d2fb34fdb0342cd",
+    "fitness": -2.115159624699559,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 113,
+        "lower_bound": 70.0,
+        "score": -1.6142857142857143,
+        "single_solve_seconds": 0.008886167081072927,
+        "deterministic_recheck_seconds": 0.010582583025097847,
+        "physical_schedule_sha256": "314fa023a337fab9d4cb6ccdd8d4bc89275fd0588262885a743316cf2561d679"
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 122,
+        "lower_bound": 75.0,
+        "score": -1.6266666666666667,
+        "single_solve_seconds": 0.007944874931126833,
+        "deterministic_recheck_seconds": 0.011204125010408461,
+        "physical_schedule_sha256": "a93e32b66f51ca01fa068d825a440b184f86e23e82d89f6e068a71d729f9b0f0"
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 114,
+        "lower_bound": 79.0,
+        "score": -1.4430379746835442,
+        "single_solve_seconds": 0.016608292004093528,
+        "deterministic_recheck_seconds": 0.016404833062551916,
+        "physical_schedule_sha256": "6fef3961bcc709ca6b59bcf0b6bc7e437181f48bc63827c7c4fa560fe9884c58"
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 121,
+        "lower_bound": 76.0,
+        "score": -1.5921052631578947,
+        "single_solve_seconds": 0.00809566699899733,
+        "deterministic_recheck_seconds": 0.007783832959830761,
+        "physical_schedule_sha256": "137fcdc4cd3c2544164418109f09fe8dc277bfb2dba1ec13b664dcf75b668e2c"
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 296,
+        "lower_bound": 159.7,
+        "score": -1.8534752661239826,
+        "single_solve_seconds": 0.12465729098767042,
+        "deterministic_recheck_seconds": 0.12271337502170354,
+        "physical_schedule_sha256": "8769b8df1767537daa04e26150ffe384a4959e92b5791e1851890b54de3d3939"
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 292,
+        "lower_bound": 163.75,
+        "score": -1.783206106870229,
+        "single_solve_seconds": 0.12346845807041973,
+        "deterministic_recheck_seconds": 0.1272881249897182,
+        "physical_schedule_sha256": "25dbf2bdd58ef8786cf17e21bb4eb6029247d24e0df39c6daf50a9741b0f5ef9"
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 532,
+        "lower_bound": 322.35,
+        "score": -1.6503800217155264,
+        "single_solve_seconds": 0.45566866593435407,
+        "deterministic_recheck_seconds": 0.4700933749554679,
+        "physical_schedule_sha256": "a4fcbe84981d91bac68dbba6b3864cfecd757cbadb3da1dcfce47a03f09a9bf3"
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 103,
+        "lower_bound": 80.0,
+        "score": -1.2875,
+        "single_solve_seconds": 0.009131583967246115,
+        "deterministic_recheck_seconds": 0.009155499981716275,
+        "physical_schedule_sha256": "81a15659cc70e473b1135727410edec3605449861067760e7cde482c6f06d6e6"
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 103,
+        "lower_bound": 78.0,
+        "score": -1.3205128205128205,
+        "single_solve_seconds": 0.009369042003527284,
+        "deterministic_recheck_seconds": 0.009299417026340961,
+        "physical_schedule_sha256": "6ac7bd9850879aba5e0e8e0f43a7f9de05781705a378d042a701d75ff488b5d4"
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 133,
+        "lower_bound": 75.0,
+        "score": -1.7733333333333334,
+        "single_solve_seconds": 0.026091584004461765,
+        "deterministic_recheck_seconds": 0.026513249962590635,
+        "physical_schedule_sha256": "197adf617863b6f7b2d1444e5e7ea39abae12ab94f90fae3cbd8ffad587a6914"
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 154,
+        "lower_bound": 81.0,
+        "score": -1.9012345679012346,
+        "single_solve_seconds": 0.025767083978280425,
+        "deterministic_recheck_seconds": 0.025744124897755682,
+        "physical_schedule_sha256": "68643548f8867e12f11e537d2885705a22e49effe4809305fa756cb3a3e471b5"
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 248,
+        "lower_bound": 76.45,
+        "score": -3.2439502943100065,
+        "single_solve_seconds": 0.1269247910240665,
+        "deterministic_recheck_seconds": 0.12798041698988527,
+        "physical_schedule_sha256": "5741e8199d99ea30ed3291dc2efd0ba0a3076cec0054191d44abb70d4d787098"
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 255,
+        "lower_bound": 78.0,
+        "score": -3.269230769230769,
+        "single_solve_seconds": 0.12275150010827929,
+        "deterministic_recheck_seconds": 0.12252345797605813,
+        "physical_schedule_sha256": "42dac490b0e2cff0e69bbdbe7bc394f5d0b669c350e1305bff747d4f3e3c5db2"
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 420,
+        "lower_bound": 151.625,
+        "score": -2.7699917559769167,
+        "single_solve_seconds": 0.44686454196926206,
+        "deterministic_recheck_seconds": 0.4279166659107432,
+        "physical_schedule_sha256": "e4719712efcf48940756ac435bbf806d70700db94f74c4a7416ac2795dd7d8d1"
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 101,
+        "lower_bound": 68.0,
+        "score": -1.4852941176470589,
+        "single_solve_seconds": 0.010146375047042966,
+        "deterministic_recheck_seconds": 0.010155374999158084,
+        "physical_schedule_sha256": "df1017751425ee2ba6377ae83fbae33b03043a4aabec873ba56322b8a5349f5b"
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 95,
+        "lower_bound": 68.0,
+        "score": -1.3970588235294117,
+        "single_solve_seconds": 0.010432666982524097,
+        "deterministic_recheck_seconds": 0.010393708012998104,
+        "physical_schedule_sha256": "001d7392a27ff8541cb3402353a2c26f541a0cbeab047c0379f603e577d0fdf9"
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 140,
+        "lower_bound": 76.0,
+        "score": -1.8421052631578947,
+        "single_solve_seconds": 0.028120542061515152,
+        "deterministic_recheck_seconds": 0.028249291935935616,
+        "physical_schedule_sha256": "8d145fccb1c18146e7505b699d96b12dd63c81c542c0960fbc925c67dc7b09c4"
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 137,
+        "lower_bound": 73.0,
+        "score": -1.8767123287671232,
+        "single_solve_seconds": 0.026813375065103173,
+        "deterministic_recheck_seconds": 0.02675979200284928,
+        "physical_schedule_sha256": "097334dce6aba3510e03a0644025b8c79a2e32698e943b56fe4b19dc08609027"
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 240,
+        "lower_bound": 75.0,
+        "score": -3.2,
+        "single_solve_seconds": 0.12801262503489852,
+        "deterministic_recheck_seconds": 0.1292869580211118,
+        "physical_schedule_sha256": "813778d3bb5426d7ab2021e7a144e5e09c8a2f2c341e5d9fc63b4ef60f0238cc"
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 235,
+        "lower_bound": 74.0,
+        "score": -3.175675675675676,
+        "single_solve_seconds": 0.13538824999704957,
+        "deterministic_recheck_seconds": 0.1356557080289349,
+        "physical_schedule_sha256": "b2e62d1728df9ae70d232f582c949078db3ffa6118a432f3fd6db99c86ba6551"
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 424,
+        "lower_bound": 98.31666666666666,
+        "score": -4.31259535514494,
+        "single_solve_seconds": 0.48124470794573426,
+        "deterministic_recheck_seconds": 0.4548712499672547,
+        "physical_schedule_sha256": "3af51f11e3d4af8d67761795daa201a2b5f0d81d0f33faa7e7ebf45bf09717b9"
+      }
+    ],
+    "source_checkpoint": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_checkpoint_sha256": "535335536b77949a15c3f75e4649f5266e2cf19f47535a4fc6154e853c4bc535",
+    "generations_completed": 1,
+    "phase": "evolution",
+    "logical_attempts": 19,
+    "complete_valid_new_candidates": 14,
+    "not_budget_matched": true,
+    "terminal_receipt": "not reconstructed; historical accepted result"
+  },
+  "B2": {
+    "id": "B/g0001/000000",
+    "candidate_key": "a4788efa1c8d89ef43492f8d489de5ed2276fbe753e2648e9f21173c40be9c53",
+    "fitness": -1.982226488242451,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 100,
+        "lower_bound": 70.0,
+        "score": -1.4285714285714286,
+        "single_solve_seconds": 0.03470566699979827,
+        "deterministic_recheck_seconds": 0.03445137501694262,
+        "physical_schedule_sha256": "46b608eabf72d0b11f1e2267728d12da83faa4dd636c7cba6cbd09f4aa7afff9"
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 105,
+        "lower_bound": 75.0,
+        "score": -1.4,
+        "single_solve_seconds": 0.03801199997542426,
+        "deterministic_recheck_seconds": 0.038109624991193414,
+        "physical_schedule_sha256": "36a7c6a1355e004dab437e40fe2dbd8e5bf1cc11d8c225c026a08d8881c79bcf"
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 97,
+        "lower_bound": 79.0,
+        "score": -1.2278481012658229,
+        "single_solve_seconds": 0.035429334035143256,
+        "deterministic_recheck_seconds": 0.03364179201889783,
+        "physical_schedule_sha256": "cb7ca4d9a6ca45f619c73b47e5984cb7a397cd8d86280df1a25210620cb0b6fa"
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 109,
+        "lower_bound": 76.0,
+        "score": -1.4342105263157894,
+        "single_solve_seconds": 0.032900666003115475,
+        "deterministic_recheck_seconds": 0.03341812500730157,
+        "physical_schedule_sha256": "258ff1fbf828b6c5be4391d0a9916990261f96ae99e77dd31c885b6d62f1ce4b"
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 251,
+        "lower_bound": 159.7,
+        "score": -1.5716969317470257,
+        "single_solve_seconds": 0.6212513750069775,
+        "deterministic_recheck_seconds": 0.540879208012484,
+        "physical_schedule_sha256": "610720cbf27d0289bfd90f4b0d286e02c447d2912c8b7aa413608f4ffeade6be"
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 272,
+        "lower_bound": 163.75,
+        "score": -1.6610687022900763,
+        "single_solve_seconds": 0.4884968749829568,
+        "deterministic_recheck_seconds": 0.6184144159778953,
+        "physical_schedule_sha256": "5f09007ab192fbf4c7000e4f4a60147c9c736aa3f81e369ded03fd2f69fbb68f"
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 438,
+        "lower_bound": 322.35,
+        "score": -1.358771521637971,
+        "single_solve_seconds": 1.8829182910267264,
+        "deterministic_recheck_seconds": 2.2373530420009047,
+        "physical_schedule_sha256": "f5d1526aad596dda98dd1ff0afbca2f80aeb252ff259129fba0e1a37a68053e8"
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 103,
+        "lower_bound": 80.0,
+        "score": -1.2875,
+        "single_solve_seconds": 0.06685566698433831,
+        "deterministic_recheck_seconds": 0.06533670797944069,
+        "physical_schedule_sha256": "bf05964d5b541c518bfd55b69af3ad38cea14c1b187b94ccb3a60b6b21244f5b"
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 92,
+        "lower_bound": 78.0,
+        "score": -1.1794871794871795,
+        "single_solve_seconds": 0.07905770902289078,
+        "deterministic_recheck_seconds": 0.08337037498131394,
+        "physical_schedule_sha256": "0473e955aae7f649e7698d44da1b18dea21569c225d777ec69a78d7310d4ea44"
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 137,
+        "lower_bound": 75.0,
+        "score": -1.8266666666666667,
+        "single_solve_seconds": 0.2531763339648023,
+        "deterministic_recheck_seconds": 0.21966925001470372,
+        "physical_schedule_sha256": "59003f56e855f53876e1cdf0db3b9c151767519e1ae6d00acf29a813b7057156"
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 137,
+        "lower_bound": 81.0,
+        "score": -1.691358024691358,
+        "single_solve_seconds": 0.15905270801158622,
+        "deterministic_recheck_seconds": 0.15199591702548787,
+        "physical_schedule_sha256": "6cac86f44b8d1199384af7a5e5967ecf9beaf2a1467e8296599c8f737506d93a"
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 250,
+        "lower_bound": 76.45,
+        "score": -3.2701111837802483,
+        "single_solve_seconds": 0.704600416996982,
+        "deterministic_recheck_seconds": 0.8754633329808712,
+        "physical_schedule_sha256": "12e71795fa9e44426eb6b588e4896c2eb49283037ce98678d26667bdddcde9da"
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 242,
+        "lower_bound": 78.0,
+        "score": -3.1025641025641026,
+        "single_solve_seconds": 0.6346643330180086,
+        "deterministic_recheck_seconds": 0.6577911670319736,
+        "physical_schedule_sha256": "f8c6b97f9976e66deee752c3ca713dae44ca7e9b1ed82ecc800b99222384e1ff"
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 407,
+        "lower_bound": 151.625,
+        "score": -2.6842539159109644,
+        "single_solve_seconds": 2.329532374977134,
+        "deterministic_recheck_seconds": 2.46580545802135,
+        "physical_schedule_sha256": "f151271ee74df365e38d98a9e6baa2d1a827516e5a172eb1484c7ad8cc8ce670"
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 97,
+        "lower_bound": 68.0,
+        "score": -1.4264705882352942,
+        "single_solve_seconds": 0.11662237503333017,
+        "deterministic_recheck_seconds": 0.11175208300119266,
+        "physical_schedule_sha256": "cef5d62823aa2667f3014e71922b739790b08d7054e50aa683d50c56456dac5a"
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 92,
+        "lower_bound": 68.0,
+        "score": -1.3529411764705883,
+        "single_solve_seconds": 0.10300037497654557,
+        "deterministic_recheck_seconds": 0.10492679104208946,
+        "physical_schedule_sha256": "2234be5e72c59c2ab368e5f405f28d24547ee80c0e7607cd4838debf38e8f815"
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 128,
+        "lower_bound": 76.0,
+        "score": -1.6842105263157894,
+        "single_solve_seconds": 0.30891633295686916,
+        "deterministic_recheck_seconds": 0.25586770800873637,
+        "physical_schedule_sha256": "4e0a99b9ba320ab0e3ab383d75c89bd457de91977a8419b189dfac9be56d3503"
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 122,
+        "lower_bound": 73.0,
+        "score": -1.6712328767123288,
+        "single_solve_seconds": 0.18321666703559458,
+        "deterministic_recheck_seconds": 0.1777557089808397,
+        "physical_schedule_sha256": "24d5936b2315a7c38fc7fad8f427de8e7271b7074dae73af262e6520b847c0d2"
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 234,
+        "lower_bound": 75.0,
+        "score": -3.12,
+        "single_solve_seconds": 0.8087994160014205,
+        "deterministic_recheck_seconds": 0.8103001250419766,
+        "physical_schedule_sha256": "b0c1d4bbd68acab18a971e1e3763558bfb5b01a9d333f3bf105e0f41adfd7ea8"
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 230,
+        "lower_bound": 74.0,
+        "score": -3.108108108108108,
+        "single_solve_seconds": 0.9163299580104649,
+        "deterministic_recheck_seconds": 0.9341481659794226,
+        "physical_schedule_sha256": "887898bdcfe46ebacc245a4b0b67eebe7daba159a7defd5d9a5b543fac5fb475"
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 407,
+        "lower_bound": 98.31666666666666,
+        "score": -4.139684692320732,
+        "single_solve_seconds": 2.536569125019014,
+        "deterministic_recheck_seconds": 2.2953525830525905,
+        "physical_schedule_sha256": "234f09d7ae9e46ab4b18b13916fc26601d8fce2378bec6fb11778bdc924c7bf3"
+      }
+    ],
+    "source_checkpoint": "runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/checkpoint.json",
+    "source_checkpoint_sha256": "2322a9a0069b7b5365c5c2f5aa892bbd98699ba081a95f1da674e24667445390",
+    "generations_completed": 2,
+    "phase": "completed",
+    "logical_attempts": 20,
+    "complete_valid_new_candidates": 19,
+    "not_budget_matched": true,
+    "terminal_receipt": "not reconstructed; historical accepted result"
+  }
+}

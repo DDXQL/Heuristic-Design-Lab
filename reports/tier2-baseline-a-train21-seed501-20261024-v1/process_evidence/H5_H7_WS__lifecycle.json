@@ -1,0 +1,21 @@
+{
+  "status": "terminal",
+  "pid": 36913,
+  "deadline_seconds": 15,
+  "started_monotonic": 657258.29009975,
+  "trigger": "parent_poll_timeout",
+  "cleanup": [
+    "join_0.05",
+    "terminate"
+  ],
+  "expected_rows": 21,
+  "rows_received": 20,
+  "all_results_received": false,
+  "exit_grace_seconds": 2.0,
+  "exit_grace_used": false,
+  "results_complete_monotonic": null,
+  "exit_wait_observed_seconds": 0.05247741693165153,
+  "alive": false,
+  "exitcode": -15,
+  "finished_monotonic": 657321.851466041
+}

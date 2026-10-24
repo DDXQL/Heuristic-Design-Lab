@@ -1,0 +1,8 @@
+{
+  "result": "OK",
+  "tests_run": 90,
+  "elapsed_seconds": 6.619,
+  "tests_sha256": "1860c075cfc65f3620ebe76ababa29f46104f3f2766581f43a6f382b1853808e",
+  "command": "PYTHONPATH=code:. .venv/bin/python -B -m unittest tests.test_baseline_a tests.test_fusion_v4 tests.test_fusion_v3 tests.test_fusion_v2 tests.test_U_usage_v2 tests.test_fjsp_usage_v2 tests.test_b1_timeout_boundary -q",
+  "scope": "synthetic FJSP only, native V1-V4 regression, read-only14-cache audit and3800 recorded-state recombinations; no new train solves or API"
+}
