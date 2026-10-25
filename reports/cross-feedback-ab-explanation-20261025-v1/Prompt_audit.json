@@ -1,0 +1,148 @@
+{
+  "pairs": [
+    {
+      "pair_id": "pair_01",
+      "ordered_parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "parent_1_fitness": -2.115159624699559,
+      "parent_2_fitness": -2.5611498256653267,
+      "delta": -0.4459902009657677,
+      "prompts_match_sent_journal": true,
+      "only_feedback_block_diff": true
+    },
+    {
+      "pair_id": "pair_02",
+      "ordered_parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "parent_1_fitness": -2.115159624699559,
+      "parent_2_fitness": -2.4010715776754177,
+      "delta": -0.2859119529758587,
+      "prompts_match_sent_journal": true,
+      "only_feedback_block_diff": true
+    },
+    {
+      "pair_id": "pair_03",
+      "ordered_parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "parent_1_fitness": -2.5611498256653267,
+      "parent_2_fitness": -2.5270363059129246,
+      "delta": 0.034113519752402066,
+      "prompts_match_sent_journal": true,
+      "only_feedback_block_diff": true
+    },
+    {
+      "pair_id": "pair_04",
+      "ordered_parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "parent_1_fitness": -2.404627600830643,
+      "parent_2_fitness": -2.5611498256653267,
+      "delta": -0.1565222248346836,
+      "prompts_match_sent_journal": true,
+      "only_feedback_block_diff": true
+    },
+    {
+      "pair_id": "pair_05",
+      "ordered_parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "parent_1_fitness": -2.404627600830643,
+      "parent_2_fitness": -2.4010715776754177,
+      "delta": 0.0035560231552254074,
+      "prompts_match_sent_journal": true,
+      "only_feedback_block_diff": true
+    }
+  ],
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "output_token_reservation": 32768,
+    "max_prompt_bytes": 262144,
+    "input_token_reservation": 65536,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "thinking": null,
+    "stream_response": false
+  },
+  "shared_config": {
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "output_token_reservation": 32768,
+      "max_prompt_bytes": 262144,
+      "input_token_reservation": 65536,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "thinking": null,
+      "stream_response": false
+    },
+    "mode": "real",
+    "real_requests_authorized": true,
+    "H_size": 10,
+    "H_generations": 1,
+    "H_attempts": 10,
+    "H_initialization_cap": 50,
+    "H_seed": 7,
+    "population_size": 5,
+    "cross_parents": 2,
+    "mutation_parents": 1,
+    "attempts_per_generation": 10,
+    "generations": 1,
+    "initialization_cap": 5,
+    "seeds": [
+      501
+    ],
+    "instance_timeout": 30,
+    "review_timeout": 3.0,
+    "total_request_cap": 30,
+    "total_token_cap": null,
+    "platform_quota_ceiling": null,
+    "platform_quota_reservation": null,
+    "platform_quota_query_interval": 75.0,
+    "phase_request_caps": null,
+    "cost_cap_estimate": null,
+    "input_price_per_million": null,
+    "output_price_per_million": null,
+    "price_source": null,
+    "analysis": "mean_population_std_and_paired_differences_v1",
+    "purpose": "research",
+    "development_h_source": null,
+    "development_continuation_source": null,
+    "development_acceptance": null,
+    "training_diagnostics": false,
+    "conditional_research": null,
+    "request_budget": {
+      "version": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 30,
+      "api_attempt_cap": 40,
+      "per_candidate_attempt_cap": 2,
+      "retry_backoff_seconds": [
+        2
+      ],
+      "protocol_error_circuit_threshold": 3
+    }
+  },
+  "method": "sent journal == frozen prompts; B minus exact score block == A; source hash match"
+}

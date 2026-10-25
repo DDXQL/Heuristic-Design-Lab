@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "AST_only_invariants": [
+    "local rename invariant",
+    "literal retained by alpha metric",
+    "literal erased by shape metric",
+    "member coordinate retained"
+  ],
+  "evidence_arithmetic_assertions": true,
+  "network_process_guard_enabled": true,
+  "new_API": 0,
+  "new_solves": 0,
+  "candidate_code_execution": false,
+  "analysis_script_sha256": "c793eb2a7f1f3a54da49baaab55ef35c03eeb4765c1425aab574618da71a43d2"
+}

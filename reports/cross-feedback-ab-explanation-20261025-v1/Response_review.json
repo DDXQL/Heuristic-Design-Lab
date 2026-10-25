@@ -1,0 +1,263 @@
+[
+  {
+    "task_id": "pair_03_r2_A",
+    "description": "Parent 0 prioritizes machine and workload dispersion before using workload mean, while Parent 1 adds low-flexibility and late-progress triggers and maps high dispersion to complementary work/efficiency heuristics. This selector combines those ideas with tiered dispersion thresholds, assigning machine imbalance to members 8 or 6, workload imbalance to 6 or 5, and using member 9 for low flexibility or late progress.",
+    "main_logic_change": "首次H8；机器和工作离散分别采用两级门槛；合并两父代候选/晚期/高工作条件。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_03_r2_B",
+    "description": "This combines Parent 0's tighter dispersion thresholds with Parent 1's low-candidate-ratio and late-progress branches. It retains member 8 for balanced states, while using members 6, 5, and 9 for machine imbalance, workload imbalance, and constrained or late scheduling states respectively.",
+    "main_logic_change": "较好父代机器及工作门槛由0.2降到0.125；其余输出和门槛保留。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_03_r1_B",
+    "description": "This combines Parent 0’s use of workload dispersion and mean with Parent 1’s machine-dispersion, sparse-candidate, and late-progress decisions. Where their machine-dispersion choices conflict, it uses member 6 above Parent 1’s threshold and member 8 in the intermediate range; the mappings are hypotheses based on the members’ described scoring behavior, not proven state-level winners.",
+    "main_logic_change": "保留首次H8；机器离散采用0.2/0.125两级；合并稀疏候选与晚期H9；保留高工作H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r1_A",
+    "description": "This inherits Parent 1's stable-state use of member 5, while adopting Parent 0's adaptive member-0/member-9 mixture for states with greater work or machine-readiness dispersion. The mixture emphasizes member 0 as remaining-work dispersion rises and member 9 as progress and readiness dispersion rise, with candidate-pair density used to retain the stable selector when alternatives are plentiful.",
+    "main_logic_change": "早期/高候选/低离散选H5，否则动态H0/H9；previous成员加0.1迟滞。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r1_B",
+    "description": "This hypothesis retains parent 1's member-5 anchor while combining it with parent 0's adaptive use of a processing-efficiency member, here member 9. It increases member 5's weight early and when legal flexibility is low, while increasing member 9's weight with progress and normalized work/readiness dispersion, with categorical hysteresis from the previous member.",
+    "main_logic_change": "由H0/H9改为始终H5/H9；H5权重随早期和低候选增加；previous成员加0.5迟滞。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "称保留parent 1的member-5 anchor；parent 1确为较好父代，但没有说明按其Fitness优先。代码显著改为H5/H9，不能据此证明反馈导致锚定。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r1_A",
+    "description": "This combines Parent 0’s state-dependent choices with Parent 1’s use of member 5 as a baseline: member 5 is selected generally and when remaining-work dispersion is high relative to machine-time dispersion, while other regions select members 1, 4, or 9. The mappings reflect hypotheses about H’s behaviors—member 1 favors low estimated finish plus tail work, member 4 includes a depth term, and member 9 rewards work while penalizing long processing and waiting—not claims of state-level superiority.",
+    "main_logic_change": "保留较好父代输出及阈值；H9晚期判断前移到H4离散判断之前。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r1_B",
+    "description": "This combines PARENT 0's state-dependent routing for constrained alternatives, uneven remaining work, and late machine load with PARENT 1's constant member-5 fallback. The mapping remains a deterministic hypothesis: members 0, 4, and 9 handle the corresponding branches, while member 5 covers all other states.",
+    "main_logic_change": "较好父代分支结构不变；低候选低工作输出H1改H0。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_01_r1_A",
+    "description": "I inherit Parent 1's first-step member 8 and dispersion-based switching, together with Parent 0's low-pair/low-work and late-loaded state distinctions. I combine them by using H3 for sparse low-work states, mixing H8/H9 under machine imbalance, and mixing H4/H5 under workload imbalance because these members respectively emphasize candidate processing efficiency, waiting/completion behavior, and workload/depth efficiency.",
+    "main_logic_change": "继承首次H8；低候选低工作分支改H3；加入H8/H9及H4/H5动态MIX。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_01_r1_B",
+    "description": "This combines parent 0's sparse-candidate/low-work and late-machine-readiness decisions with parent 1's first-step, machine-dispersion, workload-dispersion, and high-workload mappings. The member assignments follow their described behavior as testable hypotheses rather than assumed quality rankings.",
+    "main_logic_change": "继承首次H8；低候选低工作分支由较好父代H1改H0；合并较差父代H8/H5/H6条件；纯SELECT。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_04_r3_A",
+    "description": "This combines Parent 0's dispersion-driven mixture of members 0 and 9 with Parent 1's deterministic dispersion and workload thresholds. High machine-readiness dispersion selects member 8 for its explicit machine-wait modeling, high workload dispersion selects member 5 for efficiency-aware work prioritization, and high mean remaining work selects member 6 for broader criticality and readiness effects.",
+    "main_logic_change": "机器离散分支实际H7；工作H5/均值H6；默认H0/H9融合。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": "说明称机器分支使用member 8/H8，代码对应十维向量第7项，即H7。属于说明与代码偏差，不是执行器重编号。"
+  },
+  {
+    "task_id": "pair_04_r3_B",
+    "description": "This hypothesis combines Parent 0's dispersion-driven mixing of workload-focused member 0 with efficiency-and-wait member 9, while inheriting Parent 1's state-based mapping of high machine dispersion to member 8 and high mean workload to member 6. The first step uses member 8 alone, and later branches use bounded positive weights that favor the corresponding state signal without treating member ids as quality ranks.",
+    "main_logic_change": "首次单H8；机器分支H8/H9、工作分支H0/H9、均值H6/H9；默认单H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r2_A",
+    "description": "This combines Parent 0’s state-dependent selection with Parent 1’s stable use of member 5: when pair availability is low and remaining work is small, it selects member 1, whose estimate favors early completion plus a reduced tail-work estimate; otherwise it selects member 5, which rewards remaining work while accounting for processing time and finish time. The thresholds use the normalized input scales and make no claim that either choice is locally or globally superior.",
+    "main_logic_change": "删去较好父代H4/H9分支，仅低候选低工作选H1，否则H5。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r2_B",
+    "description": "This U combines PARENT 0's state-dependent selection branches with PARENT 1's constant member-5 fallback. It uses member 0 for constrained low-work states, member 4 for uneven remaining work with balanced machine readiness, and member 9 for late loaded states; otherwise it selects member 5. These mappings are hypotheses based on the members' described behavior and must be tested by complete-schedule evaluation.",
+    "main_logic_change": "较好父代H1改H0；放宽低候选/低工作、离散及晚期阈值。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r2_B",
+    "description": "I inherit parent 0's dispersion- and progress-sensitive weighting of the work-focused member 0 and efficiency/waiting-focused member 9. I combine it with parent 1's constant member-5 selector in states with dense candidate availability and low dispersion, as a testable usage hypothesis rather than a performance claim.",
+    "main_logic_change": "高候选且工作/机器绝对离散低时选H5，否则保留自适应H0/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r2_A",
+    "description": "This combines Parent 0's adaptive mixture of members 0 and 9, increasing the efficiency member's weight with progress and machine-readiness dispersion, with Parent 1's constant selection of member 5. The constant member-5 branch is used when alternatives are relatively plentiful and state dispersion is low; otherwise the adaptive mixture emphasizes member 0 under work dispersion and member 9 under progress/readiness pressure.",
+    "main_logic_change": "高候选且工作/机器相对离散低时选H5，否则保留自适应H0/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_03_r3_A",
+    "description": "This U combines Parent 0's workload and machine-dispersion checks with Parent 1's candidate-ratio and late-progress checks. It maps machine imbalance to member 8, workload imbalance to member 6, constrained or late states to member 9, and otherwise uses member 7 for high remaining workload or member 8 as the default based on their scoring behavior. The first step deterministically selects member 8.",
+    "main_logic_change": "首次H8；机器/工作门槛均0.16；保留H9候选/晚期及H6高工作分支。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_03_r3_B",
+    "description": "This combines PARENT 0’s machine-dispersion, work-dispersion, and workload-based choices with PARENT 1’s sparse-pair and late-progress choices. The member mappings are hypotheses informed by the corresponding H behaviors, not claims of state-level superiority.",
+    "main_logic_change": "去掉首次独立分支；保留较差父代机器H8/工作H5/高工作H6；加入候选或晚期H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_04_r2_B",
+    "description": "This hypothesis combines parent 0's workload-dispersion and progress/readiness weighting with parent 1's deterministic dispersion-based member selection. It preserves the first-step handling while mixing member 0 with a state-selected efficiency-oriented member, including parent 1's 8/5/6/9 branches.",
+    "main_logic_change": "始终H0与分支选出的H9/H8/H5/H6融合；H9侧权重加入0.5*candidate_pair_ratio。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_04_r2_A",
+    "description": "This combines Parent 0's dispersion- and progress-dependent weighting with Parent 1's workload/readiness-dispersion state partition. The selected partners reflect H behavior: member 0 emphasizes remaining work, member 9 efficiency and waiting, while members 8, 5, and 6 provide targeted alternatives for machine imbalance, workload dispersion, and high remaining work.",
+    "main_logic_change": "机器H8/H9、工作H0/H5、均值H0/H6、默认H0/H9；新增部分权重项，无首次独立分支。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_01_r2_B",
+    "description": "This combines Parent 0's low-flexibility/late-stage mappings with Parent 1's first-step and machine-dispersion choice. The mapping favors member 8 when machine readiness is uneven, member 4 when job workloads are dispersed, member 1 for constrained low-work states, member 9 late under machine load, and member 6 otherwise as a workload-criticality policy.",
+    "main_logic_change": "首次H8；剩余工作离散>0.2选H4；保留H1/H9；默认由H5改H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_01_r2_A",
+    "description": "I combine Parent 1's first-step and high machine-dispersion choice of member 8 with Parent 0's low-pair/low-work choice of member 1 and late-readiness choice of member 9. For workload dispersion, I select member 4 only when machine readiness is tightly balanced, otherwise retain member 5, while using member 6 for high mean remaining work based on its explicit criticality and completion terms.",
+    "main_logic_change": "首次及机器离散分支实际选H7；保留H1/H4/H9并加入高工作均值H6；重排条件。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": "说明称机器分支使用member 8/H8，代码对应十维向量第7项，即H7。属于说明与代码偏差，不是执行器重编号。"
+  },
+  {
+    "task_id": "pair_01_r3_B",
+    "description": "This combines parent 1's first-step and machine-dispersion preference for member 8 with parent 0's constrained-pair/low-work preference for member 1 and late high-readiness preference for member 9. It also uses member 5 for dispersed remaining work under constrained alternatives and member 6 when normalized workload remains high, matching their workload- and completion-sensitive behavior.",
+    "main_logic_change": "首次H8；H8机器分支限定progress<0.7；调整工作离散门槛；默认H5并保留H1/H6/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_01_r3_A",
+    "description": "This U combines Parent 0's low-flexibility/low-work and late-phase routing with Parent 1's first-step and dispersion-sensitive choices. It maps high machine dispersion or the first step to H8, concentrated work with low machine dispersion to H4, low-ratio low-work states to H1, high-work states to H6, and otherwise uses H5 or H9 for completion-oriented behavior. The altered thresholds and precedence resolve overlaps using H behavior rather than member-id ordering.",
+    "main_logic_change": "首次H8；修改候选/工作/机器及进度阈值；保留H1/H4/H5/H9并加入H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r3_B",
+    "description": "This hypothesis inherits Parent 1's constant selection of member 5 when the early schedule has broad machine flexibility, while otherwise using Parent 0's member-0/member-9 mixture. The mixture increases member 0's weight with remaining-work dispersion and member 9's weight with progress and machine-readiness dispersion.",
+    "main_logic_change": "早期且候选比例高时选H5，否则保留自适应H0/H9；删除离散门槛。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_05_r3_A",
+    "description": "This combines Parent 1's stable-state constant selection of member 5 with Parent 0's adaptive mixture of member 0's remaining-work emphasis and member 9's processing-efficiency and waiting penalties. The mixture increases member 0's weight with remaining-work dispersion and member 9's weight with progress and machine-readiness dispersion, while using the constant baseline when the state is early and relatively uniform.",
+    "main_logic_change": "早期且工作/机器相对离散低时选H5，否则自适应H0/H9；更改局部变量名。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_04_r1_B",
+    "description": "This combines Parent 0's adaptive mixture of members 0 and 9, increasing the member-0 weight with workload dispersion and the member-9 weight with progress and machine-readiness dispersion. It also inherits Parent 1's deterministic dispersion-triggered switching, using members 8, 5, or 6 in strongly dispersed states and preserving member 9 on the first step. This is a testable usage hypothesis rather than evidence of state-level superiority.",
+    "main_logic_change": "首次MIX单H9；机器/工作/均值分支为单H8/H5/H6；默认自适应H0/H9，并加0.01分母。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_04_r1_A",
+    "description": "This combines Parent 1's dispersion-based member gates, including its first-step and machine-readiness handling, with Parent 0's adaptive workload/readiness-dispersion weighting of complementary members. The resulting mixtures retain Parent 1's specialized members while using Parent 0's progress- and dispersion-sensitive balance against member 9.",
+    "main_logic_change": "以H9为MIX伙伴，依状态与H8/H5/H6或H0融合；保留自适应离散权重。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r3_A",
+    "description": "This combines Parent 1’s constant member-5 baseline with Parent 0’s state-conditioned alternatives. When workload dispersion is high but machine-readiness dispersion is low, it selects member 4; otherwise it uses member 1 for low pair availability and low remaining work, member 9 for late progress with elevated mean machine readiness, and member 5 by default. These mappings are hypotheses based on the members’ described scoring behavior, not claims of measured superiority.",
+    "main_logic_change": "H4离散分支先于H1，使用elif/else；成员及门槛沿用较好父代。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  {
+    "task_id": "pair_02_r3_B",
+    "description": "This combines Parent 0's state-dependent selection ideas with Parent 1's member-5 constant baseline. It uses member 1 for constrained low-work states, member 4 for uneven remaining work with balanced machines, member 9 for later congested states, and member 5 otherwise as a testable hypothesis.",
+    "main_logic_change": "保留H1/H4/H9/H5及判断顺序；修改门槛及严格/非严格比较。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  }
+]

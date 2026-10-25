@@ -1,0 +1,205 @@
+{
+  "pair_01_r1_A": {
+    "main_logic_change": "继承首次H8；低候选低工作分支改H3；加入H8/H9及H4/H5动态MIX。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_01_r1_B": {
+    "main_logic_change": "继承首次H8；低候选低工作分支由较好父代H1改H0；合并较差父代H8/H5/H6条件；纯SELECT。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_01_r2_A": {
+    "main_logic_change": "首次及机器离散分支实际选H7；保留H1/H4/H9并加入高工作均值H6；重排条件。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": "说明称机器分支使用member 8/H8，代码对应十维向量第7项，即H7。属于说明与代码偏差，不是执行器重编号。"
+  },
+  "pair_01_r2_B": {
+    "main_logic_change": "首次H8；剩余工作离散>0.2选H4；保留H1/H9；默认由H5改H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_01_r3_A": {
+    "main_logic_change": "首次H8；修改候选/工作/机器及进度阈值；保留H1/H4/H5/H9并加入H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_01_r3_B": {
+    "main_logic_change": "首次H8；H8机器分支限定progress<0.7；调整工作离散门槛；默认H5并保留H1/H6/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r1_A": {
+    "main_logic_change": "保留较好父代输出及阈值；H9晚期判断前移到H4离散判断之前。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r1_B": {
+    "main_logic_change": "较好父代分支结构不变；低候选低工作输出H1改H0。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r2_A": {
+    "main_logic_change": "删去较好父代H4/H9分支，仅低候选低工作选H1，否则H5。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r2_B": {
+    "main_logic_change": "较好父代H1改H0；放宽低候选/低工作、离散及晚期阈值。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r3_A": {
+    "main_logic_change": "H4离散分支先于H1，使用elif/else；成员及门槛沿用较好父代。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_02_r3_B": {
+    "main_logic_change": "保留H1/H4/H9/H5及判断顺序；修改门槛及严格/非严格比较。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_03_r1_B": {
+    "main_logic_change": "保留首次H8；机器离散采用0.2/0.125两级；合并稀疏候选与晚期H9；保留高工作H6。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_03_r2_A": {
+    "main_logic_change": "首次H8；机器和工作离散分别采用两级门槛；合并两父代候选/晚期/高工作条件。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_03_r2_B": {
+    "main_logic_change": "较好父代机器及工作门槛由0.2降到0.125；其余输出和门槛保留。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_03_r3_A": {
+    "main_logic_change": "首次H8；机器/工作门槛均0.16；保留H9候选/晚期及H6高工作分支。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_03_r3_B": {
+    "main_logic_change": "去掉首次独立分支；保留较差父代机器H8/工作H5/高工作H6；加入候选或晚期H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_04_r1_A": {
+    "main_logic_change": "以H9为MIX伙伴，依状态与H8/H5/H6或H0融合；保留自适应离散权重。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_04_r1_B": {
+    "main_logic_change": "首次MIX单H9；机器/工作/均值分支为单H8/H5/H6；默认自适应H0/H9，并加0.01分母。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_04_r2_A": {
+    "main_logic_change": "机器H8/H9、工作H0/H5、均值H0/H6、默认H0/H9；新增部分权重项，无首次独立分支。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_04_r2_B": {
+    "main_logic_change": "始终H0与分支选出的H9/H8/H5/H6融合；H9侧权重加入0.5*candidate_pair_ratio。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_04_r3_A": {
+    "main_logic_change": "机器离散分支实际H7；工作H5/均值H6；默认H0/H9融合。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": "说明称机器分支使用member 8/H8，代码对应十维向量第7项，即H7。属于说明与代码偏差，不是执行器重编号。"
+  },
+  "pair_04_r3_B": {
+    "main_logic_change": "首次单H8；机器分支H8/H9、工作分支H0/H9、均值H6/H9；默认单H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r1_A": {
+    "main_logic_change": "早期/高候选/低离散选H5，否则动态H0/H9；previous成员加0.1迟滞。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r1_B": {
+    "main_logic_change": "由H0/H9改为始终H5/H9；H5权重随早期和低候选增加；previous成员加0.5迟滞。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "称保留parent 1的member-5 anchor；parent 1确为较好父代，但没有说明按其Fitness优先。代码显著改为H5/H9，不能据此证明反馈导致锚定。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r2_A": {
+    "main_logic_change": "高候选且工作/机器相对离散低时选H5，否则保留自适应H0/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r2_B": {
+    "main_logic_change": "高候选且工作/机器绝对离散低时选H5，否则保留自适应H0/H9。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r3_A": {
+    "main_logic_change": "早期且工作/机器相对离散低时选H5，否则自适应H0/H9；更改局部变量名。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  },
+  "pair_05_r3_B": {
+    "main_logic_change": "早期且候选比例高时选H5，否则保留自适应H0/H9；删除离散门槛。",
+    "explicit_numeric_feedback_reference": false,
+    "explicit_better_parent_preference": false,
+    "claim_review": "说明主要解释继承与H语义映射；未声称本次反馈已经证明状态级收益。映射理由未获同状态反事实验证。",
+    "description_code_mismatch": null
+  }
+}
