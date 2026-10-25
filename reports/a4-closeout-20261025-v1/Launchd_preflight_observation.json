@@ -1,0 +1,39 @@
+{
+  "launchctl_returncode": 0,
+  "fields": [
+    "state = not running",
+    "runs = 1",
+    "last exit code = 0"
+  ],
+  "observed_at": {
+    "utc": "2026-10-25T03:21:42.189739+00:00",
+    "wall": 1792898502.19017,
+    "monotonic": 684573.528967958,
+    "CPU": 0.053614
+  },
+  "summary": {
+    "phase": "completed",
+    "completed_queries": 3,
+    "pid": 83022,
+    "self_completion_record": {
+      "utc": "2026-10-25T03:16:34.690382+00:00",
+      "wall": 1792898194.6904151,
+      "monotonic": 684266.026938791,
+      "CPU": 0.259288
+    },
+    "started": {
+      "utc": "2026-10-25T03:16:32.703445+00:00",
+      "wall": 1792898192.7034612,
+      "monotonic": 684264.039969416,
+      "CPU": 0.181797
+    },
+    "formal_FJSP_solves": 0,
+    "API": 0,
+    "exit_intended": 0,
+    "note": "self completion is recorded before OS exit; launchd exit status is a later observation"
+  },
+  "lock_present": false,
+  "Stop_present": false,
+  "cleanup_returncode": 0,
+  "note": "Initial launchd Background preflight eventually completed. Startup getpath file-open delay observed; exact cause not diagnosed. Final implementation uses default process type; final five acceptance tests complete independently."
+}

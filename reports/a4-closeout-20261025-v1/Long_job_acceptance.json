@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "tests_run": 5,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "code/fjsp_usage/long_jobs/local.py": "ada00ac012407d71ca25cba6ccb317d634685252a8137f4eddc63e1c979ba618",
+    "tools/local_long_job.py": "b1770e81294695d4c8b3a1e48817f45cc5ccb06bd5d43a6914d5a742f6e62d2e",
+    "tests/test_local_long_jobs.py": "f62c87a97252f689995b1616710f8b6207003904fbf270849f895bbb516790c6"
+  },
+  "receipts": [
+    {
+      "test": "controller session SIGHUP/closed pipes",
+      "controller_returncode": -1,
+      "run_identity": {
+        "pid": 84408,
+        "ppid": 1,
+        "token": "e90172263e3d4b6394bfb05cbe441613",
+        "source_files": {
+          "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/long_jobs/local.py": "ada00ac012407d71ca25cba6ccb317d634685252a8137f4eddc63e1c979ba618",
+          "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/a4_static/engine.py": "67443596d76e74ad98b53d89a156e6b66340fc11709f9550c09a34b19ee1af02",
+          "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/local_long_job.py": "b1770e81294695d4c8b3a1e48817f45cc5ccb06bd5d43a6914d5a742f6e62d2e"
+        },
+        "process_start": "Sun Oct 25 11:24:38 2026",
+        "utc": "2026-10-25T03:24:38.404634+00:00",
+        "wall": 1792898678.4047968,
+        "monotonic": 684749.74489875,
+        "CPU": 0.086332
+      },
+      "observation": {
+        "launchctl_returncode": 0,
+        "fields": [
+          "state = not running",
+          "runs = 1",
+          "last exit code = 0"
+        ],
+        "observed_at": {
+          "utc": "2026-10-25T03:24:41.205717+00:00",
+          "wall": 1792898681.2057412,
+          "monotonic": 684752.545863541,
+          "CPU": 0.14774
+        },
+        "summary": {
+          "phase": "completed",
+          "completed_queries": 3,
+          "pid": 84408,
+          "self_completion_record": {
+            "utc": "2026-10-25T03:24:41.106146+00:00",
+            "wall": 1792898681.1061609,
+            "monotonic": 684752.446282833,
+            "CPU": 0.159002
+          },
+          "started": {
+            "utc": "2026-10-25T03:24:38.405815+00:00",
+            "wall": 1792898678.405823,
+            "monotonic": 684749.745924208,
+            "CPU": 0.08735
+          },
+          "formal_FJSP_solves": 0,
+          "API": 0,
+          "exit_intended": 0,
+          "note": "self completion is recorded before OS exit; launchd exit status is a later observation"
+        },
+        "lock_present": false,
+        "Stop_present": false
+      },
+      "run_directory": "runs/long-job-acceptance-c64b895ba4/controller-hangup"
+    },
+    {
+      "test": "cooperative boundary pause",
+      "observation": {
+        "launchctl_returncode": 0,
+        "fields": [
+          "state = not running",
+          "runs = 1",
+          "last exit code = 0"
+        ],
+        "observed_at": {
+          "utc": "2026-10-25T03:24:42.451260+00:00",
+          "wall": 1792898682.451276,
+          "monotonic": 684753.791407583,
+          "CPU": 0.174884
+        },
+        "summary": {
+          "phase": "paused_at_candidate_boundary",
+          "completed_queries": 1,
+          "pid": 84462,
+          "self_completion_record": {
+            "utc": "2026-10-25T03:24:42.418707+00:00",
+            "wall": 1792898682.4187279,
+            "monotonic": 684753.758859583,
+            "CPU": 0.122481
+          },
+          "started": {
+            "utc": "2026-10-25T03:24:41.364295+00:00",
+            "wall": 1792898681.3643048,
+            "monotonic": 684752.704428958,
+            "CPU": 0.103539
+          },
+          "formal_FJSP_solves": 0,
+          "API": 0,
+          "exit_intended": 0,
+          "note": "self completion is recorded before OS exit; launchd exit status is a later observation"
+        },
+        "lock_present": false,
+        "Stop_present": false
+      },
+      "ledger": {
+        "protocol_sha256": "ca623085773c0fe66cb6a1572d793bded3b1fe36eff85af7ce45aa9f5fef699a",
+        "phase": "running",
+        "queries": [
+          {
+            "repeat": 0,
+            "slot": 0,
+            "ticket": 4,
+            "status": "completed",
+            "logical_evaluations": 2,
+            "logical_passes": 4,
+            "physical_reserved_evaluations": 2,
+            "physical_reserved_passes": 4,
+            "origin": "new",
+            "result_path": "queries/q0000/result.json",
+            "result_sha256": "e9076b0a8c753881e6314ce2a609ae05ad20a67ac9854f1e983583577009e3de",
+            "provenance_sha256": "61c5b7b8351517fe48f266a664b43604cfca4c82874e04eb9aed8fdd9bb032b2"
+          }
+        ],
+        "run_clock_sha256": "f84f7c141db2fad36c98ea7a7bf91ba95ba13cb7e7d10c7892665185903d9462"
+      },
+      "run_directory": "runs/long-job-acceptance-c64b895ba4/boundary-pause"
+    },
+    {
+      "test": "synthetic os._exit13, unknown reservation not cleared",
+      "observation": {
+        "launchctl_returncode": 0,
+        "fields": [
+          "state = not running",
+          "runs = 1",
+          "last exit code = 13"
+        ],
+        "observed_at": {
+          "utc": "2026-10-25T03:24:42.583975+00:00",
+          "wall": 1792898682.583987,
+          "monotonic": 684753.924119208,
+          "CPU": 0.184035
+        },
+        "summary": null,
+        "lock_present": true,
+        "Stop_present": false
+      },
+      "run_directory": "runs/long-job-acceptance-c64b895ba4/synthetic-crash"
+    },
+    {
+      "test": "synthetic suspend gap and UTC launch deadline",
+      "gap": {
+        "before": {
+          "wall": 0.0,
+          "monotonic": 0.0
+        },
+        "after": {
+          "wall": 800.0,
+          "monotonic": 1.0
+        },
+        "wall_minus_monotonic_seconds": 799.0,
+        "action": "completed result retained; no further launch; manual review",
+        "result_reclassified": false
+      }
+    }
+  ],
+  "formal_solves": 0,
+  "API_calls": 0,
+  "note": "Only synthetic seven-ticket/two-row campaign; no formal865 sampling. No auto restart or unknown-lock cleanup."
+}
