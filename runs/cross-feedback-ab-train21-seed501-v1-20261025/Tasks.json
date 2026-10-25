@@ -1,0 +1,375 @@
+{
+  "pair_seed": 2026102501,
+  "order_seed": 2026102502,
+  "pairs": [
+    {
+      "pair_id": "pair_01",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ]
+    },
+    {
+      "pair_id": "pair_02",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ]
+    },
+    {
+      "pair_id": "pair_03",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ]
+    },
+    {
+      "pair_id": "pair_04",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ]
+    },
+    {
+      "pair_id": "pair_05",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "pair_03_r2_A",
+      "pair_id": "pair_03",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 1
+    },
+    {
+      "task_id": "pair_03_r2_B",
+      "pair_id": "pair_03",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 2
+    },
+    {
+      "task_id": "pair_03_r1_B",
+      "pair_id": "pair_03",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 3
+    },
+    {
+      "task_id": "pair_03_r1_A",
+      "pair_id": "pair_03",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 4
+    },
+    {
+      "task_id": "pair_05_r1_A",
+      "pair_id": "pair_05",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 5
+    },
+    {
+      "task_id": "pair_05_r1_B",
+      "pair_id": "pair_05",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 6
+    },
+    {
+      "task_id": "pair_02_r1_A",
+      "pair_id": "pair_02",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 7
+    },
+    {
+      "task_id": "pair_02_r1_B",
+      "pair_id": "pair_02",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 8
+    },
+    {
+      "task_id": "pair_01_r1_A",
+      "pair_id": "pair_01",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 9
+    },
+    {
+      "task_id": "pair_01_r1_B",
+      "pair_id": "pair_01",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 10
+    },
+    {
+      "task_id": "pair_04_r3_A",
+      "pair_id": "pair_04",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 11
+    },
+    {
+      "task_id": "pair_04_r3_B",
+      "pair_id": "pair_04",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 12
+    },
+    {
+      "task_id": "pair_02_r2_A",
+      "pair_id": "pair_02",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 13
+    },
+    {
+      "task_id": "pair_02_r2_B",
+      "pair_id": "pair_02",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 14
+    },
+    {
+      "task_id": "pair_05_r2_B",
+      "pair_id": "pair_05",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 15
+    },
+    {
+      "task_id": "pair_05_r2_A",
+      "pair_id": "pair_05",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 16
+    },
+    {
+      "task_id": "pair_03_r3_A",
+      "pair_id": "pair_03",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 17
+    },
+    {
+      "task_id": "pair_03_r3_B",
+      "pair_id": "pair_03",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 18
+    },
+    {
+      "task_id": "pair_04_r2_B",
+      "pair_id": "pair_04",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 19
+    },
+    {
+      "task_id": "pair_04_r2_A",
+      "pair_id": "pair_04",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 20
+    },
+    {
+      "task_id": "pair_01_r2_B",
+      "pair_id": "pair_01",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 21
+    },
+    {
+      "task_id": "pair_01_r2_A",
+      "pair_id": "pair_01",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 22
+    },
+    {
+      "task_id": "pair_01_r3_B",
+      "pair_id": "pair_01",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 23
+    },
+    {
+      "task_id": "pair_01_r3_A",
+      "pair_id": "pair_01",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 24
+    },
+    {
+      "task_id": "pair_05_r3_B",
+      "pair_id": "pair_05",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 25
+    },
+    {
+      "task_id": "pair_05_r3_A",
+      "pair_id": "pair_05",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 26
+    },
+    {
+      "task_id": "pair_04_r1_B",
+      "pair_id": "pair_04",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 27
+    },
+    {
+      "task_id": "pair_04_r1_A",
+      "pair_id": "pair_04",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 28
+    },
+    {
+      "task_id": "pair_02_r3_A",
+      "pair_id": "pair_02",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 29
+    },
+    {
+      "task_id": "pair_02_r3_B",
+      "pair_id": "pair_02",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 30
+    }
+  ],
+  "sampling": "uniform without replacement over all unordered pairs; orientation once per pair",
+  "dispatch": "paired adjacent A/B, balanced first arm, shuffled units"
+}

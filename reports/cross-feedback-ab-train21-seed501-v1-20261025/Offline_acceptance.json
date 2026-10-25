@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "tests_run": 12,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "code/fjsp_usage/cross_feedback_ab.py": "4dd9c60ee626c542c595e2660c5ca4f80ac0b688d6b78e317c65914e4b941aaa",
+    "tools/cross_feedback_ab.py": "0780697ed07531b1cafba71bae06f62ce83b33617db573d2b20ca33ca91bbbe4",
+    "tests/test_cross_feedback_ab.py": "385e2699031f8c9519757983eeacbaac17064097c7c2caa1ebf4dee84b3d233f",
+    "tools/b1_usage_prompts.py": "d1b1944cfafa7331757b372ad86960532015fad9d50cdd81c61dd92de0891762",
+    "code/fjsp_usage/usage_v2/prompts.py": "f53d7b0ffa03faf907d894970696737c04c9af01841ede7a8a726f4fd07b29fa",
+    "code/fjsp_usage/research_real/prompts.py": "104291219a6863687feb12afc79fc7096d51835c00e87e2cf53f097916a68486",
+    "code/fjsp_usage/research/candidates.py": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5"
+  },
+  "real_API_calls": 0,
+  "formal_solves": 0,
+  "toy_solves": 0,
+  "scope": "synthetic dictionaries, prompt byte equality and pure cost/plan guards; network/solver patched to fail"
+}

@@ -1,0 +1,1167 @@
+[
+  {
+    "id": "B/init/000006",
+    "candidate": {
+      "description": "Deterministic SELECT policy using bounded state summaries; its member choices are design hypotheses, not performance claims.",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+      "key": "3f6963be06fb56e3a6b4469b78331256e5e2d6881e0536b253e3fe7c8a9afcc7",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    },
+    "fitness": -2.115159624699559,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 113,
+        "lower_bound": 70.0,
+        "score": -1.6142857142857143,
+        "physical_schedule_sha256": "314fa023a337fab9d4cb6ccdd8d4bc89275fd0588262885a743316cf2561d679",
+        "recheck_physical_schedule_sha256": "314fa023a337fab9d4cb6ccdd8d4bc89275fd0588262885a743316cf2561d679",
+        "single_solve_seconds": 0.008379750070162117,
+        "deterministic_recheck_seconds": 0.008291416917927563
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 122,
+        "lower_bound": 75.0,
+        "score": -1.6266666666666667,
+        "physical_schedule_sha256": "a93e32b66f51ca01fa068d825a440b184f86e23e82d89f6e068a71d729f9b0f0",
+        "recheck_physical_schedule_sha256": "a93e32b66f51ca01fa068d825a440b184f86e23e82d89f6e068a71d729f9b0f0",
+        "single_solve_seconds": 0.008034500060603023,
+        "deterministic_recheck_seconds": 0.008018207969143987
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 114,
+        "lower_bound": 79.0,
+        "score": -1.4430379746835442,
+        "physical_schedule_sha256": "6fef3961bcc709ca6b59bcf0b6bc7e437181f48bc63827c7c4fa560fe9884c58",
+        "recheck_physical_schedule_sha256": "6fef3961bcc709ca6b59bcf0b6bc7e437181f48bc63827c7c4fa560fe9884c58",
+        "single_solve_seconds": 0.016562707955017686,
+        "deterministic_recheck_seconds": 0.016500625060871243
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 121,
+        "lower_bound": 76.0,
+        "score": -1.5921052631578947,
+        "physical_schedule_sha256": "137fcdc4cd3c2544164418109f09fe8dc277bfb2dba1ec13b664dcf75b668e2c",
+        "recheck_physical_schedule_sha256": "137fcdc4cd3c2544164418109f09fe8dc277bfb2dba1ec13b664dcf75b668e2c",
+        "single_solve_seconds": 0.007955583045259118,
+        "deterministic_recheck_seconds": 0.008208583109080791
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 296,
+        "lower_bound": 159.7,
+        "score": -1.8534752661239826,
+        "physical_schedule_sha256": "8769b8df1767537daa04e26150ffe384a4959e92b5791e1851890b54de3d3939",
+        "recheck_physical_schedule_sha256": "8769b8df1767537daa04e26150ffe384a4959e92b5791e1851890b54de3d3939",
+        "single_solve_seconds": 0.12563004193361849,
+        "deterministic_recheck_seconds": 0.12634816695936024
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 292,
+        "lower_bound": 163.75,
+        "score": -1.783206106870229,
+        "physical_schedule_sha256": "25dbf2bdd58ef8786cf17e21bb4eb6029247d24e0df39c6daf50a9741b0f5ef9",
+        "recheck_physical_schedule_sha256": "25dbf2bdd58ef8786cf17e21bb4eb6029247d24e0df39c6daf50a9741b0f5ef9",
+        "single_solve_seconds": 0.12686504097655416,
+        "deterministic_recheck_seconds": 0.12681391602382064
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 532,
+        "lower_bound": 322.35,
+        "score": -1.6503800217155264,
+        "physical_schedule_sha256": "a4fcbe84981d91bac68dbba6b3864cfecd757cbadb3da1dcfce47a03f09a9bf3",
+        "recheck_physical_schedule_sha256": "a4fcbe84981d91bac68dbba6b3864cfecd757cbadb3da1dcfce47a03f09a9bf3",
+        "single_solve_seconds": 0.46102287503890693,
+        "deterministic_recheck_seconds": 0.45322862500324845
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 103,
+        "lower_bound": 80.0,
+        "score": -1.2875,
+        "physical_schedule_sha256": "81a15659cc70e473b1135727410edec3605449861067760e7cde482c6f06d6e6",
+        "recheck_physical_schedule_sha256": "81a15659cc70e473b1135727410edec3605449861067760e7cde482c6f06d6e6",
+        "single_solve_seconds": 0.008935125079005957,
+        "deterministic_recheck_seconds": 0.008884000009857118
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 103,
+        "lower_bound": 78.0,
+        "score": -1.3205128205128205,
+        "physical_schedule_sha256": "6ac7bd9850879aba5e0e8e0f43a7f9de05781705a378d042a701d75ff488b5d4",
+        "recheck_physical_schedule_sha256": "6ac7bd9850879aba5e0e8e0f43a7f9de05781705a378d042a701d75ff488b5d4",
+        "single_solve_seconds": 0.009263667045161128,
+        "deterministic_recheck_seconds": 0.009114583022892475
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 133,
+        "lower_bound": 75.0,
+        "score": -1.7733333333333334,
+        "physical_schedule_sha256": "197adf617863b6f7b2d1444e5e7ea39abae12ab94f90fae3cbd8ffad587a6914",
+        "recheck_physical_schedule_sha256": "197adf617863b6f7b2d1444e5e7ea39abae12ab94f90fae3cbd8ffad587a6914",
+        "single_solve_seconds": 0.025551625061780214,
+        "deterministic_recheck_seconds": 0.025778417009860277
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 154,
+        "lower_bound": 81.0,
+        "score": -1.9012345679012346,
+        "physical_schedule_sha256": "68643548f8867e12f11e537d2885705a22e49effe4809305fa756cb3a3e471b5",
+        "recheck_physical_schedule_sha256": "68643548f8867e12f11e537d2885705a22e49effe4809305fa756cb3a3e471b5",
+        "single_solve_seconds": 0.025289625045843422,
+        "deterministic_recheck_seconds": 0.025353542063385248
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 248,
+        "lower_bound": 76.45,
+        "score": -3.2439502943100065,
+        "physical_schedule_sha256": "5741e8199d99ea30ed3291dc2efd0ba0a3076cec0054191d44abb70d4d787098",
+        "recheck_physical_schedule_sha256": "5741e8199d99ea30ed3291dc2efd0ba0a3076cec0054191d44abb70d4d787098",
+        "single_solve_seconds": 0.12454529106616974,
+        "deterministic_recheck_seconds": 0.12999399995896965
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 255,
+        "lower_bound": 78.0,
+        "score": -3.269230769230769,
+        "physical_schedule_sha256": "42dac490b0e2cff0e69bbdbe7bc394f5d0b669c350e1305bff747d4f3e3c5db2",
+        "recheck_physical_schedule_sha256": "42dac490b0e2cff0e69bbdbe7bc394f5d0b669c350e1305bff747d4f3e3c5db2",
+        "single_solve_seconds": 0.12677908304613084,
+        "deterministic_recheck_seconds": 0.12463008402846754
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 420,
+        "lower_bound": 151.625,
+        "score": -2.7699917559769167,
+        "physical_schedule_sha256": "e4719712efcf48940756ac435bbf806d70700db94f74c4a7416ac2795dd7d8d1",
+        "recheck_physical_schedule_sha256": "e4719712efcf48940756ac435bbf806d70700db94f74c4a7416ac2795dd7d8d1",
+        "single_solve_seconds": 0.45462612493429333,
+        "deterministic_recheck_seconds": 0.44575324992183596
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 101,
+        "lower_bound": 68.0,
+        "score": -1.4852941176470589,
+        "physical_schedule_sha256": "df1017751425ee2ba6377ae83fbae33b03043a4aabec873ba56322b8a5349f5b",
+        "recheck_physical_schedule_sha256": "df1017751425ee2ba6377ae83fbae33b03043a4aabec873ba56322b8a5349f5b",
+        "single_solve_seconds": 0.01091187505517155,
+        "deterministic_recheck_seconds": 0.010794500005431473
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 95,
+        "lower_bound": 68.0,
+        "score": -1.3970588235294117,
+        "physical_schedule_sha256": "001d7392a27ff8541cb3402353a2c26f541a0cbeab047c0379f603e577d0fdf9",
+        "recheck_physical_schedule_sha256": "001d7392a27ff8541cb3402353a2c26f541a0cbeab047c0379f603e577d0fdf9",
+        "single_solve_seconds": 0.011297374963760376,
+        "deterministic_recheck_seconds": 0.011299250065349042
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 140,
+        "lower_bound": 76.0,
+        "score": -1.8421052631578947,
+        "physical_schedule_sha256": "8d145fccb1c18146e7505b699d96b12dd63c81c542c0960fbc925c67dc7b09c4",
+        "recheck_physical_schedule_sha256": "8d145fccb1c18146e7505b699d96b12dd63c81c542c0960fbc925c67dc7b09c4",
+        "single_solve_seconds": 0.03168729192111641,
+        "deterministic_recheck_seconds": 0.030200500041246414
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 137,
+        "lower_bound": 73.0,
+        "score": -1.8767123287671232,
+        "physical_schedule_sha256": "097334dce6aba3510e03a0644025b8c79a2e32698e943b56fe4b19dc08609027",
+        "recheck_physical_schedule_sha256": "097334dce6aba3510e03a0644025b8c79a2e32698e943b56fe4b19dc08609027",
+        "single_solve_seconds": 0.029715875047259033,
+        "deterministic_recheck_seconds": 0.029431542032398283
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 240,
+        "lower_bound": 75.0,
+        "score": -3.2,
+        "physical_schedule_sha256": "813778d3bb5426d7ab2021e7a144e5e09c8a2f2c341e5d9fc63b4ef60f0238cc",
+        "recheck_physical_schedule_sha256": "813778d3bb5426d7ab2021e7a144e5e09c8a2f2c341e5d9fc63b4ef60f0238cc",
+        "single_solve_seconds": 0.13644591707270592,
+        "deterministic_recheck_seconds": 0.13057774992194027
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 235,
+        "lower_bound": 74.0,
+        "score": -3.175675675675676,
+        "physical_schedule_sha256": "b2e62d1728df9ae70d232f582c949078db3ffa6118a432f3fd6db99c86ba6551",
+        "recheck_physical_schedule_sha256": "b2e62d1728df9ae70d232f582c949078db3ffa6118a432f3fd6db99c86ba6551",
+        "single_solve_seconds": 0.1400691670132801,
+        "deterministic_recheck_seconds": 0.13782083406113088
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 424,
+        "lower_bound": 98.31666666666666,
+        "score": -4.31259535514494,
+        "physical_schedule_sha256": "3af51f11e3d4af8d67761795daa201a2b5f0d81d0f33faa7e7ebf45bf09717b9",
+        "recheck_physical_schedule_sha256": "3af51f11e3d4af8d67761795daa201a2b5f0d81d0f33faa7e7ebf45bf09717b9",
+        "single_solve_seconds": 0.45487945794593543,
+        "deterministic_recheck_seconds": 0.45466054196003824
+      }
+    ],
+    "source_result_digest": "dd45103e35afc5dd18f5ba6b84fcd062db6269376d9755cf495296823db2306a",
+    "source_result_path": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_result_key": "evaluations.B/init/000006.result",
+    "worker_identity": {
+      "before_sha256": "d20a6bd08b2000bfaf9a03b88a3dfcd486d8f9d2eadb782e41a3418e669ee471",
+      "after_sha256": "b7898b40c0203d98339c7c377229b57e4faa297542e335e6d3b66bcd97d0ea0d",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    "context_sha256": "d04660ef4265ca9b6b550da416a34530c85232f738b1f61832bd20b82dc65049"
+  },
+  {
+    "id": "B/init/000002",
+    "candidate": {
+      "description": "A constant selector is used; this makes no claim about comparative performance.",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+      "key": "3bdfc806d9137a5decb3812f881a9583879ce41af4570a8111c1f9634ff963c8",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    },
+    "fitness": -2.4010715776754177,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 112,
+        "lower_bound": 70.0,
+        "score": -1.6,
+        "physical_schedule_sha256": "e2ba93ac054d5b3fd90a2b5c6bbf0a4b208355c192737eab7eb02bd42d2aa1d4",
+        "recheck_physical_schedule_sha256": "e2ba93ac054d5b3fd90a2b5c6bbf0a4b208355c192737eab7eb02bd42d2aa1d4",
+        "single_solve_seconds": 0.02278237498831004,
+        "deterministic_recheck_seconds": 0.018571750028058887
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 116,
+        "lower_bound": 75.0,
+        "score": -1.5466666666666666,
+        "physical_schedule_sha256": "e95292d50f8361566de6b4ede65b6083b7e9978460058ae6a502c7b511be9ecd",
+        "recheck_physical_schedule_sha256": "e95292d50f8361566de6b4ede65b6083b7e9978460058ae6a502c7b511be9ecd",
+        "single_solve_seconds": 0.018311083898879588,
+        "deterministic_recheck_seconds": 0.023188832914456725
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 120,
+        "lower_bound": 79.0,
+        "score": -1.518987341772152,
+        "physical_schedule_sha256": "7f5529df8747d9375caa71394163328306fdee427c1099bba097383b22f26f08",
+        "recheck_physical_schedule_sha256": "7f5529df8747d9375caa71394163328306fdee427c1099bba097383b22f26f08",
+        "single_solve_seconds": 0.02054470800794661,
+        "deterministic_recheck_seconds": 0.018620082992129028
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 120,
+        "lower_bound": 76.0,
+        "score": -1.5789473684210527,
+        "physical_schedule_sha256": "b1f0957b694dce2291c2ec2b1c7e7f25abef0d875dd5ef54c52ff72ba7ac9a84",
+        "recheck_physical_schedule_sha256": "b1f0957b694dce2291c2ec2b1c7e7f25abef0d875dd5ef54c52ff72ba7ac9a84",
+        "single_solve_seconds": 0.020795708056539297,
+        "deterministic_recheck_seconds": 0.021524582989513874
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 356,
+        "lower_bound": 159.7,
+        "score": -2.229179711959925,
+        "physical_schedule_sha256": "249ef47a69ac1f968651fbdf5c6e158414083a94f09fd5ca170c47cd54eb611d",
+        "recheck_physical_schedule_sha256": "249ef47a69ac1f968651fbdf5c6e158414083a94f09fd5ca170c47cd54eb611d",
+        "single_solve_seconds": 0.3574905840214342,
+        "deterministic_recheck_seconds": 0.33839241601526737
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 391,
+        "lower_bound": 163.75,
+        "score": -2.3877862595419845,
+        "physical_schedule_sha256": "0f68b35ac2817d0120e44755853b01b403e8f88289633cee617903c174eea5f0",
+        "recheck_physical_schedule_sha256": "0f68b35ac2817d0120e44755853b01b403e8f88289633cee617903c174eea5f0",
+        "single_solve_seconds": 0.32978670799639076,
+        "deterministic_recheck_seconds": 0.33078812493477017
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 763,
+        "lower_bound": 322.35,
+        "score": -2.366992399565689,
+        "physical_schedule_sha256": "60d6477687e632f201b37a8b2390f690a19f7eb7188bae6a5783714c04022dcd",
+        "recheck_physical_schedule_sha256": "60d6477687e632f201b37a8b2390f690a19f7eb7188bae6a5783714c04022dcd",
+        "single_solve_seconds": 1.3516224999912083,
+        "deterministic_recheck_seconds": 1.4736979169538245
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 99,
+        "lower_bound": 80.0,
+        "score": -1.2375,
+        "physical_schedule_sha256": "10a79fd27b1af7ba5b3bc34d290b7e82c90b30b4386fcc3235326429af49ef01",
+        "recheck_physical_schedule_sha256": "10a79fd27b1af7ba5b3bc34d290b7e82c90b30b4386fcc3235326429af49ef01",
+        "single_solve_seconds": 0.028261917061172426,
+        "deterministic_recheck_seconds": 0.02855408296454698
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 116,
+        "lower_bound": 78.0,
+        "score": -1.4871794871794872,
+        "physical_schedule_sha256": "e56453619419f6d415fc407baffd5787fca9aa15e481015b0ba121de09f3bf6a",
+        "recheck_physical_schedule_sha256": "e56453619419f6d415fc407baffd5787fca9aa15e481015b0ba121de09f3bf6a",
+        "single_solve_seconds": 0.03484904090873897,
+        "deterministic_recheck_seconds": 0.03873804199974984
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 150,
+        "lower_bound": 75.0,
+        "score": -2.0,
+        "physical_schedule_sha256": "19d42b80813cfd5dae1a9d5ac20acd913ae58a762b86991468ec9f9f0c13823c",
+        "recheck_physical_schedule_sha256": "19d42b80813cfd5dae1a9d5ac20acd913ae58a762b86991468ec9f9f0c13823c",
+        "single_solve_seconds": 0.12303266697563231,
+        "deterministic_recheck_seconds": 0.12034070794470608
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 143,
+        "lower_bound": 81.0,
+        "score": -1.7654320987654322,
+        "physical_schedule_sha256": "3a14c9b0bd2b2812722091051dfe9ec415728029dc5c66a69fc718bae7af76a3",
+        "recheck_physical_schedule_sha256": "3a14c9b0bd2b2812722091051dfe9ec415728029dc5c66a69fc718bae7af76a3",
+        "single_solve_seconds": 0.11213420797139406,
+        "deterministic_recheck_seconds": 0.11118350003380328
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 277,
+        "lower_bound": 76.45,
+        "score": -3.623283191628515,
+        "physical_schedule_sha256": "a249d3a3ea4c089ed79aeabc2b5970ea2a1867d77697ed774b8369a1ac4f03bc",
+        "recheck_physical_schedule_sha256": "a249d3a3ea4c089ed79aeabc2b5970ea2a1867d77697ed774b8369a1ac4f03bc",
+        "single_solve_seconds": 0.6382363330340013,
+        "deterministic_recheck_seconds": 0.6480244579724967
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 304,
+        "lower_bound": 78.0,
+        "score": -3.8974358974358974,
+        "physical_schedule_sha256": "240d6a2ab4f417344e21b75da91693997fc368b2979844f434b868c84f83d982",
+        "recheck_physical_schedule_sha256": "240d6a2ab4f417344e21b75da91693997fc368b2979844f434b868c84f83d982",
+        "single_solve_seconds": 0.6290943750645965,
+        "deterministic_recheck_seconds": 0.6132744159549475
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 607,
+        "lower_bound": 151.625,
+        "score": -4.0032976092333055,
+        "physical_schedule_sha256": "2f9b18f0dada188523d01af119e013dbf3709f5bdf01eb32e337820c263d1799",
+        "recheck_physical_schedule_sha256": "2f9b18f0dada188523d01af119e013dbf3709f5bdf01eb32e337820c263d1799",
+        "single_solve_seconds": 2.663125457940623,
+        "deterministic_recheck_seconds": 2.405156874912791
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 103,
+        "lower_bound": 68.0,
+        "score": -1.5147058823529411,
+        "physical_schedule_sha256": "ca644665c9d9e35ba406f7b98f31470e34126ea13b18033477aa07cadc44bd0b",
+        "recheck_physical_schedule_sha256": "ca644665c9d9e35ba406f7b98f31470e34126ea13b18033477aa07cadc44bd0b",
+        "single_solve_seconds": 0.04592099995352328,
+        "deterministic_recheck_seconds": 0.045903499936684966
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 102,
+        "lower_bound": 68.0,
+        "score": -1.5,
+        "physical_schedule_sha256": "cd7d93439d8397bd56d9e6f28a86a59b6d5ee9fd513f800e26aa14bd352cd82a",
+        "recheck_physical_schedule_sha256": "cd7d93439d8397bd56d9e6f28a86a59b6d5ee9fd513f800e26aa14bd352cd82a",
+        "single_solve_seconds": 0.04507812496740371,
+        "deterministic_recheck_seconds": 0.045045999926514924
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 155,
+        "lower_bound": 76.0,
+        "score": -2.039473684210526,
+        "physical_schedule_sha256": "5e46ef3509bda8967812b2399712c93237c44abbe8c03001ddf16c83fe8b53f5",
+        "recheck_physical_schedule_sha256": "5e46ef3509bda8967812b2399712c93237c44abbe8c03001ddf16c83fe8b53f5",
+        "single_solve_seconds": 0.15771162509918213,
+        "deterministic_recheck_seconds": 0.16222645808011293
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 148,
+        "lower_bound": 73.0,
+        "score": -2.0273972602739727,
+        "physical_schedule_sha256": "9856e07075129550a9d5f34606eb47b21eb59fa826f584bec64dd7b7aae95be0",
+        "recheck_physical_schedule_sha256": "9856e07075129550a9d5f34606eb47b21eb59fa826f584bec64dd7b7aae95be0",
+        "single_solve_seconds": 0.13022645900491625,
+        "deterministic_recheck_seconds": 0.1388944999780506
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 267,
+        "lower_bound": 75.0,
+        "score": -3.56,
+        "physical_schedule_sha256": "a9b547cb3b100c9352385e0e33001adbc2eddb4a8b90b45e611f6d086134c7ed",
+        "recheck_physical_schedule_sha256": "a9b547cb3b100c9352385e0e33001adbc2eddb4a8b90b45e611f6d086134c7ed",
+        "single_solve_seconds": 0.9007597080199048,
+        "deterministic_recheck_seconds": 1.0732565829530358
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 257,
+        "lower_bound": 74.0,
+        "score": -3.472972972972973,
+        "physical_schedule_sha256": "303de3a4097dc5ca4bd828410b6d666c270741f342b66b37464e7c398fa3a6df",
+        "recheck_physical_schedule_sha256": "303de3a4097dc5ca4bd828410b6d666c270741f342b66b37464e7c398fa3a6df",
+        "single_solve_seconds": 1.0575143330497667,
+        "deterministic_recheck_seconds": 0.9384478339925408
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 498,
+        "lower_bound": 98.31666666666666,
+        "score": -5.065265299203255,
+        "physical_schedule_sha256": "3ecbc00adb0d43bc4cc965391843aacf4a8fd5a43d8cda0cf6ad3315ff08b3ce",
+        "recheck_physical_schedule_sha256": "3ecbc00adb0d43bc4cc965391843aacf4a8fd5a43d8cda0cf6ad3315ff08b3ce",
+        "single_solve_seconds": 3.4935361249372363,
+        "deterministic_recheck_seconds": 3.2785591249121353
+      }
+    ],
+    "source_result_digest": "417e07f2fbc954054a7b21da365aef20d0dbb3fa5439d68fefcce5b3d75a080d",
+    "source_result_path": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_result_key": "evaluations.B/init/000002.result",
+    "worker_identity": {
+      "before_sha256": "961dcc05b927136d0e977b044df135939b1f816360b08715f2b20680bbb911cb",
+      "after_sha256": "07bd585ff93ee32fe21b3a91eec89ec02f22797c49a58827e40664f786c63744",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    "context_sha256": "d04660ef4265ca9b6b550da416a34530c85232f738b1f61832bd20b82dc65049"
+  },
+  {
+    "id": "B/init/000008",
+    "candidate": {
+      "description": "U mixes member 0's linear remaining-work emphasis with member 9's processing-efficiency and waiting penalties, increasing their respective weights with relative remaining-work dispersion and with operation-count progress plus relative machine-readiness dispersion. This is an unvalidated design hypothesis, not a claim of superiority; fitness requires evaluation on every training instance.",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+      "key": "8e8288d5e9212d7359ed25b0e5be79a563324ac3e5cab45429022f56e9a5bf85",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    },
+    "fitness": -2.404627600830643,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 104,
+        "lower_bound": 70.0,
+        "score": -1.4857142857142858,
+        "physical_schedule_sha256": "a18871d786144d10f95b07cf6cdc9eaaee825f591b63c670ded3bad157dbe1bf",
+        "recheck_physical_schedule_sha256": "a18871d786144d10f95b07cf6cdc9eaaee825f591b63c670ded3bad157dbe1bf",
+        "single_solve_seconds": 0.03996429196558893,
+        "deterministic_recheck_seconds": 0.03903816710226238
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 109,
+        "lower_bound": 75.0,
+        "score": -1.4533333333333334,
+        "physical_schedule_sha256": "3f6b5aebeac15284ab5f3f29d4d7b52e6053ca3ef5081be0c795e860712b145d",
+        "recheck_physical_schedule_sha256": "3f6b5aebeac15284ab5f3f29d4d7b52e6053ca3ef5081be0c795e860712b145d",
+        "single_solve_seconds": 0.04367241600994021,
+        "deterministic_recheck_seconds": 0.044036459061317146
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 107,
+        "lower_bound": 79.0,
+        "score": -1.3544303797468353,
+        "physical_schedule_sha256": "7eaa322ce2903ebb66d980e0772d01ae9364ee7b181d33b0d0152e6b8b87d1c3",
+        "recheck_physical_schedule_sha256": "7eaa322ce2903ebb66d980e0772d01ae9364ee7b181d33b0d0152e6b8b87d1c3",
+        "single_solve_seconds": 0.0406912089092657,
+        "deterministic_recheck_seconds": 0.04072204104159027
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 119,
+        "lower_bound": 76.0,
+        "score": -1.5657894736842106,
+        "physical_schedule_sha256": "08b33aedb207749103713a7282b344ce7d33c956df7b119f01c8b2afd4b2638a",
+        "recheck_physical_schedule_sha256": "08b33aedb207749103713a7282b344ce7d33c956df7b119f01c8b2afd4b2638a",
+        "single_solve_seconds": 0.04326762503478676,
+        "deterministic_recheck_seconds": 0.043494333047419786
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 370,
+        "lower_bound": 159.7,
+        "score": -2.316844082654978,
+        "physical_schedule_sha256": "d741afaa155a3c5cc9a296e21a84afef3719d9041f3dab3f2125e240d7796413",
+        "recheck_physical_schedule_sha256": "d741afaa155a3c5cc9a296e21a84afef3719d9041f3dab3f2125e240d7796413",
+        "single_solve_seconds": 0.8595964999403805,
+        "deterministic_recheck_seconds": 0.8754238329129294
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 399,
+        "lower_bound": 163.75,
+        "score": -2.4366412213740456,
+        "physical_schedule_sha256": "af15f2eec886ea11d00f807900e51691b2efed4cd667ac0be004cc23ac7d4c71",
+        "recheck_physical_schedule_sha256": "af15f2eec886ea11d00f807900e51691b2efed4cd667ac0be004cc23ac7d4c71",
+        "single_solve_seconds": 0.858329875045456,
+        "deterministic_recheck_seconds": 0.8277599160792306
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 711,
+        "lower_bound": 322.35,
+        "score": -2.2056770590972543,
+        "physical_schedule_sha256": "46ea6d5c8a1f24ea725931296d6df4e2bc44ca1f6b3da8c789e635e11e0e76a8",
+        "recheck_physical_schedule_sha256": "46ea6d5c8a1f24ea725931296d6df4e2bc44ca1f6b3da8c789e635e11e0e76a8",
+        "single_solve_seconds": 3.231470957980491,
+        "deterministic_recheck_seconds": 3.1763633750379086
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 91,
+        "lower_bound": 80.0,
+        "score": -1.1375,
+        "physical_schedule_sha256": "0668d5aa82110ec1429c5b4e9e124e901aedfbff07abfecba2ddc5c4a979249d",
+        "recheck_physical_schedule_sha256": "0668d5aa82110ec1429c5b4e9e124e901aedfbff07abfecba2ddc5c4a979249d",
+        "single_solve_seconds": 0.07323495903983712,
+        "deterministic_recheck_seconds": 0.07307962502818555
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 103,
+        "lower_bound": 78.0,
+        "score": -1.3205128205128205,
+        "physical_schedule_sha256": "9d55f03f064b9c0f0f0eab3db69f45b78c02ee8c4ea0717c0c6c4de6cbe093c5",
+        "recheck_physical_schedule_sha256": "9d55f03f064b9c0f0f0eab3db69f45b78c02ee8c4ea0717c0c6c4de6cbe093c5",
+        "single_solve_seconds": 0.08738387492485344,
+        "deterministic_recheck_seconds": 0.08710608293768018
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 144,
+        "lower_bound": 75.0,
+        "score": -1.92,
+        "physical_schedule_sha256": "3007293069cb28979b395ca587e5819da8c62f781b4ca4412751b80e3ee0ca6d",
+        "recheck_physical_schedule_sha256": "3007293069cb28979b395ca587e5819da8c62f781b4ca4412751b80e3ee0ca6d",
+        "single_solve_seconds": 0.29337887500878423,
+        "deterministic_recheck_seconds": 0.29304700007196516
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 143,
+        "lower_bound": 81.0,
+        "score": -1.7654320987654322,
+        "physical_schedule_sha256": "63a3b22e8229b6159894cdd0459824bd1541f206ec8144d3d78cb66deae626c2",
+        "recheck_physical_schedule_sha256": "63a3b22e8229b6159894cdd0459824bd1541f206ec8144d3d78cb66deae626c2",
+        "single_solve_seconds": 0.2419032499892637,
+        "deterministic_recheck_seconds": 0.24217625008895993
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 295,
+        "lower_bound": 76.45,
+        "score": -3.858731196860693,
+        "physical_schedule_sha256": "49dff52314f7e68bd256fb25ab50b65e1f5d525f38f83e2afa43d709e1da8958",
+        "recheck_physical_schedule_sha256": "49dff52314f7e68bd256fb25ab50b65e1f5d525f38f83e2afa43d709e1da8958",
+        "single_solve_seconds": 1.3286402920493856,
+        "deterministic_recheck_seconds": 1.3542300830595195
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 298,
+        "lower_bound": 78.0,
+        "score": -3.8205128205128207,
+        "physical_schedule_sha256": "07bba2e3bfb50ce64b9e73d09d5ed57a52947ea2952fa598763c1404fef12ee1",
+        "recheck_physical_schedule_sha256": "07bba2e3bfb50ce64b9e73d09d5ed57a52947ea2952fa598763c1404fef12ee1",
+        "single_solve_seconds": 1.2443535829661414,
+        "deterministic_recheck_seconds": 1.2407528329640627
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 565,
+        "lower_bound": 151.625,
+        "score": -3.726298433635614,
+        "physical_schedule_sha256": "a58d00bf833bd9a7e90f1cf5711630a271cef031081eb8dacd5d0a75dbceb636",
+        "recheck_physical_schedule_sha256": "a58d00bf833bd9a7e90f1cf5711630a271cef031081eb8dacd5d0a75dbceb636",
+        "single_solve_seconds": 3.700472249998711,
+        "deterministic_recheck_seconds": 3.7076310829725116
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 101,
+        "lower_bound": 68.0,
+        "score": -1.4852941176470589,
+        "physical_schedule_sha256": "378f9dcaf639d10cb58cdff6c227ff4e2d4d3e82df8ca2c2497dbf38f68b568d",
+        "recheck_physical_schedule_sha256": "378f9dcaf639d10cb58cdff6c227ff4e2d4d3e82df8ca2c2497dbf38f68b568d",
+        "single_solve_seconds": 0.1298913749633357,
+        "deterministic_recheck_seconds": 0.13572562497574836
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 92,
+        "lower_bound": 68.0,
+        "score": -1.3529411764705883,
+        "physical_schedule_sha256": "fbf6d14de5ff55c3f7c3d921be8d852c441969f428b353ce502d04ebca0ced3a",
+        "recheck_physical_schedule_sha256": "fbf6d14de5ff55c3f7c3d921be8d852c441969f428b353ce502d04ebca0ced3a",
+        "single_solve_seconds": 0.11538208299316466,
+        "deterministic_recheck_seconds": 0.13196466595400125
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 143,
+        "lower_bound": 76.0,
+        "score": -1.881578947368421,
+        "physical_schedule_sha256": "094f82d19f8e3c373196c028dca1c2ce4f23dce56ea7709e36216ea27a5455bf",
+        "recheck_physical_schedule_sha256": "094f82d19f8e3c373196c028dca1c2ce4f23dce56ea7709e36216ea27a5455bf",
+        "single_solve_seconds": 0.3927490001078695,
+        "deterministic_recheck_seconds": 0.3830260419053957
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 147,
+        "lower_bound": 73.0,
+        "score": -2.0136986301369864,
+        "physical_schedule_sha256": "c85d686ceadf1c6131c3646fd0d384bfa54df32696d31463b01fea8df1d9857d",
+        "recheck_physical_schedule_sha256": "c85d686ceadf1c6131c3646fd0d384bfa54df32696d31463b01fea8df1d9857d",
+        "single_solve_seconds": 0.3087339169578627,
+        "deterministic_recheck_seconds": 0.3140451250365004
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 292,
+        "lower_bound": 75.0,
+        "score": -3.8933333333333335,
+        "physical_schedule_sha256": "9214f8970f68451e5b8770874bf0f794b74082fe57a5190e4be4b48f617fa160",
+        "recheck_physical_schedule_sha256": "9214f8970f68451e5b8770874bf0f794b74082fe57a5190e4be4b48f617fa160",
+        "single_solve_seconds": 1.5965422079898417,
+        "deterministic_recheck_seconds": 1.6400412500370294
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 290,
+        "lower_bound": 74.0,
+        "score": -3.918918918918919,
+        "physical_schedule_sha256": "27e21d47111e35278523ec706b528be4e2573625e27dd29c95999fb5cb61a9f4",
+        "recheck_physical_schedule_sha256": "27e21d47111e35278523ec706b528be4e2573625e27dd29c95999fb5cb61a9f4",
+        "single_solve_seconds": 1.8081968340557069,
+        "deterministic_recheck_seconds": 1.8079648329876363
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 549,
+        "lower_bound": 98.31666666666666,
+        "score": -5.583997287675878,
+        "physical_schedule_sha256": "293859dc93a4a37d766ab2ef990c884b8bd99e221c9f57f1fa9bf50e6567e71a",
+        "recheck_physical_schedule_sha256": "293859dc93a4a37d766ab2ef990c884b8bd99e221c9f57f1fa9bf50e6567e71a",
+        "single_solve_seconds": 4.35543062502984,
+        "deterministic_recheck_seconds": 4.312034917064011
+      }
+    ],
+    "source_result_digest": "e907f7879ec5e4a9ea518b174fa2cd8122988273aa0f3d86d486ddaef918f45a",
+    "source_result_path": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_result_key": "evaluations.B/init/000008.result",
+    "worker_identity": {
+      "before_sha256": "fe3fad71e250464ab2a6d40d1bf2766df1930e07c269de6ccb3ad054d4a707d3",
+      "after_sha256": "0542cc03cf792789680aad53e2ab4c7206bda779059c42d5cae10e9d55134245",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    "context_sha256": "d04660ef4265ca9b6b550da416a34530c85232f738b1f61832bd20b82dc65049"
+  },
+  {
+    "id": "B/init/000005",
+    "candidate": {
+      "description": "This deterministic selector favors members whose scoring formulas explicitly balance remaining work, processing efficiency, and completion timing, with state-dependent choices based only on the supplied summaries. It handles the first step explicitly and always returns ten finite scalar scores.",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+      "key": "5cd13170c9d72405cfef36d228b8c3f48fad6449745f9b3dbb153cd4764b291f",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    },
+    "fitness": -2.5270363059129246,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 99,
+        "lower_bound": 70.0,
+        "score": -1.4142857142857144,
+        "physical_schedule_sha256": "1bbf87210e03c88166edce771340408774915800658c2d5590e627c84e34112c",
+        "recheck_physical_schedule_sha256": "1bbf87210e03c88166edce771340408774915800658c2d5590e627c84e34112c",
+        "single_solve_seconds": 0.020084875053726137,
+        "deterministic_recheck_seconds": 0.019549082964658737
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 104,
+        "lower_bound": 75.0,
+        "score": -1.3866666666666667,
+        "physical_schedule_sha256": "5172471601e059e770cd28e7312634aa00d50b0d384eb3adfbf65f12ccb8c90d",
+        "recheck_physical_schedule_sha256": "5172471601e059e770cd28e7312634aa00d50b0d384eb3adfbf65f12ccb8c90d",
+        "single_solve_seconds": 0.02217187499627471,
+        "deterministic_recheck_seconds": 0.022204209002666175
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 112,
+        "lower_bound": 79.0,
+        "score": -1.4177215189873418,
+        "physical_schedule_sha256": "a3448b3ac07569280b32a890e34ea4f3539203b564475a9578a60f4bdfaf16f3",
+        "recheck_physical_schedule_sha256": "a3448b3ac07569280b32a890e34ea4f3539203b564475a9578a60f4bdfaf16f3",
+        "single_solve_seconds": 0.019605458015576005,
+        "deterministic_recheck_seconds": 0.02120079204905778
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 115,
+        "lower_bound": 76.0,
+        "score": -1.513157894736842,
+        "physical_schedule_sha256": "26e3ed4dfd4ca6e1049511d5720063370eca8d71f5ef337fccb0f3a45389906d",
+        "recheck_physical_schedule_sha256": "26e3ed4dfd4ca6e1049511d5720063370eca8d71f5ef337fccb0f3a45389906d",
+        "single_solve_seconds": 0.020766125060617924,
+        "deterministic_recheck_seconds": 0.021063416032120585
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 393,
+        "lower_bound": 159.7,
+        "score": -2.460864120225423,
+        "physical_schedule_sha256": "dd27061c83242c0e2e2e35ac856278635e8c7441b7583abd87f1f23588d65ad7",
+        "recheck_physical_schedule_sha256": "dd27061c83242c0e2e2e35ac856278635e8c7441b7583abd87f1f23588d65ad7",
+        "single_solve_seconds": 0.35404145799111575,
+        "deterministic_recheck_seconds": 0.3683619590010494
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 389,
+        "lower_bound": 163.75,
+        "score": -2.3755725190839696,
+        "physical_schedule_sha256": "38318019b8c9c57785604f3a3d85177b5786766643c51a7cbf58b1d82e92fbe7",
+        "recheck_physical_schedule_sha256": "38318019b8c9c57785604f3a3d85177b5786766643c51a7cbf58b1d82e92fbe7",
+        "single_solve_seconds": 0.4992134999483824,
+        "deterministic_recheck_seconds": 0.5429791660280898
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 769,
+        "lower_bound": 322.35,
+        "score": -2.385605708081278,
+        "physical_schedule_sha256": "b893abeb923076917a8f6601b65117eaf56efe565ebb42ae7049aa52b757a37c",
+        "recheck_physical_schedule_sha256": "b893abeb923076917a8f6601b65117eaf56efe565ebb42ae7049aa52b757a37c",
+        "single_solve_seconds": 1.654519832925871,
+        "deterministic_recheck_seconds": 1.425754375057295
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 99,
+        "lower_bound": 80.0,
+        "score": -1.2375,
+        "physical_schedule_sha256": "2d515e78c1889506ff731acd453bbfb6529c7dfd8da88f340812bdab21388daf",
+        "recheck_physical_schedule_sha256": "2d515e78c1889506ff731acd453bbfb6529c7dfd8da88f340812bdab21388daf",
+        "single_solve_seconds": 0.029377541970461607,
+        "deterministic_recheck_seconds": 0.02936325001064688
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 111,
+        "lower_bound": 78.0,
+        "score": -1.4230769230769231,
+        "physical_schedule_sha256": "33526f74bdc984bfac311b0304a2c5950cd83cb2be4c3d3b7238328713953ccd",
+        "recheck_physical_schedule_sha256": "33526f74bdc984bfac311b0304a2c5950cd83cb2be4c3d3b7238328713953ccd",
+        "single_solve_seconds": 0.03608420805539936,
+        "deterministic_recheck_seconds": 0.03720383299514651
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 150,
+        "lower_bound": 75.0,
+        "score": -2.0,
+        "physical_schedule_sha256": "8d321aae2a7928f1194a8aa7aac686d94c99f906853dc48dcc6a53afad28daf4",
+        "recheck_physical_schedule_sha256": "8d321aae2a7928f1194a8aa7aac686d94c99f906853dc48dcc6a53afad28daf4",
+        "single_solve_seconds": 0.12254224997013807,
+        "deterministic_recheck_seconds": 0.11874016700312495
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 144,
+        "lower_bound": 81.0,
+        "score": -1.7777777777777777,
+        "physical_schedule_sha256": "52efc3d166ade81c58daf80d85063b0335ff6fae5c8c685b7b50e03122cc3f65",
+        "recheck_physical_schedule_sha256": "52efc3d166ade81c58daf80d85063b0335ff6fae5c8c685b7b50e03122cc3f65",
+        "single_solve_seconds": 0.11463995790109038,
+        "deterministic_recheck_seconds": 0.1255947919562459
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 307,
+        "lower_bound": 76.45,
+        "score": -4.015696533682145,
+        "physical_schedule_sha256": "ac806df63f99af928f32e424385220191609396b7d45865c04bd0a383217d623",
+        "recheck_physical_schedule_sha256": "ac806df63f99af928f32e424385220191609396b7d45865c04bd0a383217d623",
+        "single_solve_seconds": 0.6403769169701263,
+        "deterministic_recheck_seconds": 0.6553398750256747
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 296,
+        "lower_bound": 78.0,
+        "score": -3.7948717948717947,
+        "physical_schedule_sha256": "ed3cec7fac3b1361e2cda1abbd8e87e98660de1eaca6ea5f9f5a13d628db1f67",
+        "recheck_physical_schedule_sha256": "ed3cec7fac3b1361e2cda1abbd8e87e98660de1eaca6ea5f9f5a13d628db1f67",
+        "single_solve_seconds": 0.6744775000261143,
+        "deterministic_recheck_seconds": 0.7727619169745594
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 620,
+        "lower_bound": 151.625,
+        "score": -4.089035449299258,
+        "physical_schedule_sha256": "1077bec03f2107ffb88de7fb2b973087d2f7322e37f351aca268972faa92b3d8",
+        "recheck_physical_schedule_sha256": "1077bec03f2107ffb88de7fb2b973087d2f7322e37f351aca268972faa92b3d8",
+        "single_solve_seconds": 1.9263155829394236,
+        "deterministic_recheck_seconds": 1.8425081669120118
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 104,
+        "lower_bound": 68.0,
+        "score": -1.5294117647058822,
+        "physical_schedule_sha256": "bdf5c717ff24fc2ce1953596c9f0cfdaf500f5fc2b4a9a06337bbc7cecbe2e7b",
+        "recheck_physical_schedule_sha256": "bdf5c717ff24fc2ce1953596c9f0cfdaf500f5fc2b4a9a06337bbc7cecbe2e7b",
+        "single_solve_seconds": 0.046842249925248325,
+        "deterministic_recheck_seconds": 0.0465035829693079
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 104,
+        "lower_bound": 68.0,
+        "score": -1.5294117647058822,
+        "physical_schedule_sha256": "9b897c91a63e6aa42e40cfb2239440289f43b7b715837dd720ac1b7c8675aeda",
+        "recheck_physical_schedule_sha256": "9b897c91a63e6aa42e40cfb2239440289f43b7b715837dd720ac1b7c8675aeda",
+        "single_solve_seconds": 0.05562745907809585,
+        "deterministic_recheck_seconds": 0.051440667011775076
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 149,
+        "lower_bound": 76.0,
+        "score": -1.9605263157894737,
+        "physical_schedule_sha256": "f77af52fa9e54f8588391515ea00237797eb6cf3342b3f824871805c28057a6c",
+        "recheck_physical_schedule_sha256": "f77af52fa9e54f8588391515ea00237797eb6cf3342b3f824871805c28057a6c",
+        "single_solve_seconds": 0.18723437492735684,
+        "deterministic_recheck_seconds": 0.16897650004830211
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 165,
+        "lower_bound": 73.0,
+        "score": -2.26027397260274,
+        "physical_schedule_sha256": "e8debaf2213a5e75fcfba98ade71e8c229f9869e5a151173d5457366c9094acf",
+        "recheck_physical_schedule_sha256": "e8debaf2213a5e75fcfba98ade71e8c229f9869e5a151173d5457366c9094acf",
+        "single_solve_seconds": 0.13790883298497647,
+        "deterministic_recheck_seconds": 0.13867024995852262
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 310,
+        "lower_bound": 75.0,
+        "score": -4.133333333333334,
+        "physical_schedule_sha256": "f7defe9e263a42694b6e4ed2367c9b1d3b8d420811137ed1c1f02014d52c6f80",
+        "recheck_physical_schedule_sha256": "f7defe9e263a42694b6e4ed2367c9b1d3b8d420811137ed1c1f02014d52c6f80",
+        "single_solve_seconds": 0.6913987919688225,
+        "deterministic_recheck_seconds": 0.7494119160110131
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 313,
+        "lower_bound": 74.0,
+        "score": -4.22972972972973,
+        "physical_schedule_sha256": "5e05ef6d14ad23cb6bf62f204876566233472fd772e8efb018a08bc63953f906",
+        "recheck_physical_schedule_sha256": "5e05ef6d14ad23cb6bf62f204876566233472fd772e8efb018a08bc63953f906",
+        "single_solve_seconds": 0.8551135000307113,
+        "deterministic_recheck_seconds": 0.8445363749051467
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 603,
+        "lower_bound": 98.31666666666666,
+        "score": -6.133242922529242,
+        "physical_schedule_sha256": "8085ba799a94c6e96758d296aba645d72cf4cfd1a999f8ebfa56c7aca0ce5da1",
+        "recheck_physical_schedule_sha256": "8085ba799a94c6e96758d296aba645d72cf4cfd1a999f8ebfa56c7aca0ce5da1",
+        "single_solve_seconds": 1.852359583019279,
+        "deterministic_recheck_seconds": 1.8965238329255953
+      }
+    ],
+    "source_result_digest": "68cc1116b27bfa212605058b69596f46af7901df1e8ebf038369d873de298192",
+    "source_result_path": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_result_key": "evaluations.B/init/000005.result",
+    "worker_identity": {
+      "before_sha256": "283599bf58356eb228c8a339628ee20c409b632c12854db19b34cce3b6aa0719",
+      "after_sha256": "cefd5f169135fccbe2a5b78f5480d1ffefc043149112036035f4f8039db99b88",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    "context_sha256": "d04660ef4265ca9b6b550da416a34530c85232f738b1f61832bd20b82dc65049"
+  },
+  {
+    "id": "B/init/000001",
+    "candidate": {
+      "description": "Selects a single heuristic deterministically using normalized workload and machine-readiness dispersion. The first step and all later states use the same bounded state rules without treating member ids as quality ranks.",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n",
+      "key": "eeecea5872bd67497f31936346f70bb95531832b0da2d552cd7b287fa5150c8d",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    },
+    "fitness": -2.5611498256653267,
+    "instances": [
+      {
+        "file": "Behnke1.fjsp",
+        "makespan": 105,
+        "lower_bound": 70.0,
+        "score": -1.5,
+        "physical_schedule_sha256": "e7a1e108481d80e368f552ca8e3025b9a2abf4f507463600096ca3396d201adc",
+        "recheck_physical_schedule_sha256": "e7a1e108481d80e368f552ca8e3025b9a2abf4f507463600096ca3396d201adc",
+        "single_solve_seconds": 0.022183457971550524,
+        "deterministic_recheck_seconds": 0.021625416935421526
+      },
+      {
+        "file": "Behnke2.fjsp",
+        "makespan": 112,
+        "lower_bound": 75.0,
+        "score": -1.4933333333333334,
+        "physical_schedule_sha256": "cd0b4376eb03f2418ed7a46eea35489228065067d4eadc4938f4d4e4c1863e69",
+        "recheck_physical_schedule_sha256": "cd0b4376eb03f2418ed7a46eea35489228065067d4eadc4938f4d4e4c1863e69",
+        "single_solve_seconds": 0.024350875057280064,
+        "deterministic_recheck_seconds": 0.02460795803926885
+      },
+      {
+        "file": "Behnke3.fjsp",
+        "makespan": 117,
+        "lower_bound": 79.0,
+        "score": -1.481012658227848,
+        "physical_schedule_sha256": "c8cef98ef4f5a0f7cb0c32aff3abcf0ff48dfd321a45e33a83bba84a62bcea74",
+        "recheck_physical_schedule_sha256": "c8cef98ef4f5a0f7cb0c32aff3abcf0ff48dfd321a45e33a83bba84a62bcea74",
+        "single_solve_seconds": 0.021589290932752192,
+        "deterministic_recheck_seconds": 0.02165058406535536
+      },
+      {
+        "file": "Behnke4.fjsp",
+        "makespan": 118,
+        "lower_bound": 76.0,
+        "score": -1.5526315789473684,
+        "physical_schedule_sha256": "b5e12bf6a50d52d41aef7c056c45a7f6a91df847fd77165ed7e2469cedb65b33",
+        "recheck_physical_schedule_sha256": "b5e12bf6a50d52d41aef7c056c45a7f6a91df847fd77165ed7e2469cedb65b33",
+        "single_solve_seconds": 0.02242450008634478,
+        "deterministic_recheck_seconds": 0.02253729198127985
+      },
+      {
+        "file": "Behnke13.fjsp",
+        "makespan": 364,
+        "lower_bound": 159.7,
+        "score": -2.279273638071384,
+        "physical_schedule_sha256": "15c785ef73ce71530ba21190738beeac02594bf2260808a974b4c3f124eff354",
+        "recheck_physical_schedule_sha256": "15c785ef73ce71530ba21190738beeac02594bf2260808a974b4c3f124eff354",
+        "single_solve_seconds": 0.44399774994235486,
+        "deterministic_recheck_seconds": 0.4603966670110822
+      },
+      {
+        "file": "Behnke14.fjsp",
+        "makespan": 410,
+        "lower_bound": 163.75,
+        "score": -2.50381679389313,
+        "physical_schedule_sha256": "476a19b8062a02bc7ccfe3e3b198e6f4318e5f665d7c11c66d388562f51eb61d",
+        "recheck_physical_schedule_sha256": "476a19b8062a02bc7ccfe3e3b198e6f4318e5f665d7c11c66d388562f51eb61d",
+        "single_solve_seconds": 0.5091390409506857,
+        "deterministic_recheck_seconds": 0.44153154210653156
+      },
+      {
+        "file": "Behnke19.fjsp",
+        "makespan": 776,
+        "lower_bound": 322.35,
+        "score": -2.407321234682798,
+        "physical_schedule_sha256": "6b57afd2b6169bce08728510d6f2853d44a2ccd100638b7ac8d5d349b7dfa8a6",
+        "recheck_physical_schedule_sha256": "6b57afd2b6169bce08728510d6f2853d44a2ccd100638b7ac8d5d349b7dfa8a6",
+        "single_solve_seconds": 1.675390375079587,
+        "deterministic_recheck_seconds": 1.6526237500365824
+      },
+      {
+        "file": "Behnke25.fjsp",
+        "makespan": 99,
+        "lower_bound": 80.0,
+        "score": -1.2375,
+        "physical_schedule_sha256": "4bf967e8ccc34c2c51839a4b491fd5fe55545090a98045e1efa9d43b3ed7da38",
+        "recheck_physical_schedule_sha256": "4bf967e8ccc34c2c51839a4b491fd5fe55545090a98045e1efa9d43b3ed7da38",
+        "single_solve_seconds": 0.03740208293311298,
+        "deterministic_recheck_seconds": 0.03768908302299678
+      },
+      {
+        "file": "Behnke21.fjsp",
+        "makespan": 111,
+        "lower_bound": 78.0,
+        "score": -1.4230769230769231,
+        "physical_schedule_sha256": "f5cc940d2ae0691f56bf0f8cf937a9e41aa9905482af5508b78a699b411130fd",
+        "recheck_physical_schedule_sha256": "f5cc940d2ae0691f56bf0f8cf937a9e41aa9905482af5508b78a699b411130fd",
+        "single_solve_seconds": 0.04315441695507616,
+        "deterministic_recheck_seconds": 0.04312383395154029
+      },
+      {
+        "file": "Behnke29.fjsp",
+        "makespan": 160,
+        "lower_bound": 75.0,
+        "score": -2.1333333333333333,
+        "physical_schedule_sha256": "62067d1456bbc193634d2720a6f6f5ee7babef8e4cd0898102bbdd7b2264ea40",
+        "recheck_physical_schedule_sha256": "62067d1456bbc193634d2720a6f6f5ee7babef8e4cd0898102bbdd7b2264ea40",
+        "single_solve_seconds": 0.14718033303506672,
+        "deterministic_recheck_seconds": 0.147470667026937
+      },
+      {
+        "file": "Behnke27.fjsp",
+        "makespan": 144,
+        "lower_bound": 81.0,
+        "score": -1.7777777777777777,
+        "physical_schedule_sha256": "7a15c53a0d29a6185eb48b641ec2d9794ffc6a83ac47d5898f00d82fa7437650",
+        "recheck_physical_schedule_sha256": "7a15c53a0d29a6185eb48b641ec2d9794ffc6a83ac47d5898f00d82fa7437650",
+        "single_solve_seconds": 0.12323133298195899,
+        "deterministic_recheck_seconds": 0.12344262492842972
+      },
+      {
+        "file": "Behnke33.fjsp",
+        "makespan": 325,
+        "lower_bound": 76.45,
+        "score": -4.251144538914323,
+        "physical_schedule_sha256": "850ae1e0e1d3544d8764f39d9a1694f13ef63aa4df411a585070242b89990089",
+        "recheck_physical_schedule_sha256": "850ae1e0e1d3544d8764f39d9a1694f13ef63aa4df411a585070242b89990089",
+        "single_solve_seconds": 0.6233373750001192,
+        "deterministic_recheck_seconds": 0.6303659579716623
+      },
+      {
+        "file": "Behnke34.fjsp",
+        "makespan": 306,
+        "lower_bound": 78.0,
+        "score": -3.923076923076923,
+        "physical_schedule_sha256": "4e79c9f3ce2b495a2a96cfde7cd7a2c51a3e4e5fa383315121dfa00ff469a663",
+        "recheck_physical_schedule_sha256": "4e79c9f3ce2b495a2a96cfde7cd7a2c51a3e4e5fa383315121dfa00ff469a663",
+        "single_solve_seconds": 0.5945133330533281,
+        "deterministic_recheck_seconds": 0.5960359580349177
+      },
+      {
+        "file": "Behnke36.fjsp",
+        "makespan": 620,
+        "lower_bound": 151.625,
+        "score": -4.089035449299258,
+        "physical_schedule_sha256": "1077bec03f2107ffb88de7fb2b973087d2f7322e37f351aca268972faa92b3d8",
+        "recheck_physical_schedule_sha256": "1077bec03f2107ffb88de7fb2b973087d2f7322e37f351aca268972faa92b3d8",
+        "single_solve_seconds": 1.7857229999499395,
+        "deterministic_recheck_seconds": 1.8722424160223454
+      },
+      {
+        "file": "Behnke43.fjsp",
+        "makespan": 101,
+        "lower_bound": 68.0,
+        "score": -1.4852941176470589,
+        "physical_schedule_sha256": "79b307a55a41e90628867cf9ed50398641e250f639fd5115a740445569a7b8c9",
+        "recheck_physical_schedule_sha256": "79b307a55a41e90628867cf9ed50398641e250f639fd5115a740445569a7b8c9",
+        "single_solve_seconds": 0.11971458292100579,
+        "deterministic_recheck_seconds": 0.09166779194492847
+      },
+      {
+        "file": "Behnke44.fjsp",
+        "makespan": 104,
+        "lower_bound": 68.0,
+        "score": -1.5294117647058822,
+        "physical_schedule_sha256": "9b897c91a63e6aa42e40cfb2239440289f43b7b715837dd720ac1b7c8675aeda",
+        "recheck_physical_schedule_sha256": "9b897c91a63e6aa42e40cfb2239440289f43b7b715837dd720ac1b7c8675aeda",
+        "single_solve_seconds": 0.10786754102446139,
+        "deterministic_recheck_seconds": 0.08703437494114041
+      },
+      {
+        "file": "Behnke47.fjsp",
+        "makespan": 149,
+        "lower_bound": 76.0,
+        "score": -1.9605263157894737,
+        "physical_schedule_sha256": "2c5eb7a00d6d07688c5d17ec0d79bde6f835ff5db33bc2fe14ba9d96efc6b8e5",
+        "recheck_physical_schedule_sha256": "2c5eb7a00d6d07688c5d17ec0d79bde6f835ff5db33bc2fe14ba9d96efc6b8e5",
+        "single_solve_seconds": 0.3743943748995662,
+        "deterministic_recheck_seconds": 0.21842154196929187
+      },
+      {
+        "file": "Behnke46.fjsp",
+        "makespan": 165,
+        "lower_bound": 73.0,
+        "score": -2.26027397260274,
+        "physical_schedule_sha256": "11e0d024fc6982c720e4f538129dd78cef83414cca1801853c0fbf2d3db50e74",
+        "recheck_physical_schedule_sha256": "11e0d024fc6982c720e4f538129dd78cef83414cca1801853c0fbf2d3db50e74",
+        "single_solve_seconds": 0.17635995894670486,
+        "deterministic_recheck_seconds": 0.15913175011519343
+      },
+      {
+        "file": "Behnke51.fjsp",
+        "makespan": 310,
+        "lower_bound": 75.0,
+        "score": -4.133333333333334,
+        "physical_schedule_sha256": "f7defe9e263a42694b6e4ed2367c9b1d3b8d420811137ed1c1f02014d52c6f80",
+        "recheck_physical_schedule_sha256": "f7defe9e263a42694b6e4ed2367c9b1d3b8d420811137ed1c1f02014d52c6f80",
+        "single_solve_seconds": 0.7358989579370245,
+        "deterministic_recheck_seconds": 0.8784492909908295
+      },
+      {
+        "file": "Behnke53.fjsp",
+        "makespan": 313,
+        "lower_bound": 74.0,
+        "score": -4.22972972972973,
+        "physical_schedule_sha256": "5e05ef6d14ad23cb6bf62f204876566233472fd772e8efb018a08bc63953f906",
+        "recheck_physical_schedule_sha256": "5e05ef6d14ad23cb6bf62f204876566233472fd772e8efb018a08bc63953f906",
+        "single_solve_seconds": 1.0526531670475379,
+        "deterministic_recheck_seconds": 1.072846833965741
+      },
+      {
+        "file": "Behnke57.fjsp",
+        "makespan": 603,
+        "lower_bound": 98.31666666666666,
+        "score": -6.133242922529242,
+        "physical_schedule_sha256": "8085ba799a94c6e96758d296aba645d72cf4cfd1a999f8ebfa56c7aca0ce5da1",
+        "recheck_physical_schedule_sha256": "8085ba799a94c6e96758d296aba645d72cf4cfd1a999f8ebfa56c7aca0ce5da1",
+        "single_solve_seconds": 1.959842958021909,
+        "deterministic_recheck_seconds": 1.905376625014469
+      }
+    ],
+    "source_result_digest": "35edb56ab8a3dc46a4e4947b2dadb97a2ab1720f26f3d08447a80c7c8096ad26",
+    "source_result_path": "runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json",
+    "source_result_key": "evaluations.B/init/000001.result",
+    "worker_identity": {
+      "before_sha256": "2d8068c50ac3e4ecc474f33738a8d7b2867ab0f4d726d54d7a8af31d3e1dad39",
+      "after_sha256": "85c57e26c5f0b736307eb9fd0ccfc3d0627a74abcb6943ce203d335838c062d4",
+      "loaded_identity": "edf7ef5372229f9fe026281fbf1ac4d8163852b1ecae87dccc30e3f0698c1912"
+    },
+    "context_sha256": "d04660ef4265ca9b6b550da416a34530c85232f738b1f61832bd20b82dc65049"
+  }
+]

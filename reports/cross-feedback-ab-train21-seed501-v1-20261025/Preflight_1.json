@@ -1,0 +1,49 @@
+{
+  "path": "/api/pricing",
+  "http_status": 200,
+  "observed_at": 1792922170.865005,
+  "inference_requests": 0,
+  "body_sha256": "ab223f10d08294ee9b4ba58d3f456b189595a323fe2dfb745d1aa85f73adaa15",
+  "success": true,
+  "models": [
+    {
+      "model_name": "gpt-6.1-sol",
+      "vendor_id": 3,
+      "quota_type": 0,
+      "model_ratio": 37.5,
+      "model_price": 0,
+      "owner_by": "",
+      "completion_ratio": 2,
+      "enable_groups": [
+        "codex-deafult"
+      ],
+      "supported_endpoint_types": [
+        "openai"
+      ],
+      "billing_mode": "tiered_expr",
+      "billing_expr": "len <= 272000 ? tier(\"0_272k\", p * 2 + cr * 0.1 + cc * 2.5 + c * 10) : tier(\"272k_plus\", p * 4 + cr * 0.2 + cc * 5 + c * 15)"
+    }
+  ],
+  "group_ratio": {
+    "cc-aws": 1.8,
+    "cc-default": 1,
+    "cc-normal": 0.25,
+    "cc-ultra": 0.6,
+    "codex-GPT-image2": 1,
+    "codex-deafult": 0.5,
+    "zaid-4.0": 5.5,
+    "zaid-5": 5.5,
+    "zaid-7.5": 7.5,
+    "zaim-test-4.0": 5.5,
+    "国产Kimi K3": 0.7
+  },
+  "extra_keys": [
+    "auto_groups",
+    "group_ratio",
+    "pricing_version",
+    "success",
+    "supported_endpoint",
+    "usable_group",
+    "vendors"
+  ]
+}

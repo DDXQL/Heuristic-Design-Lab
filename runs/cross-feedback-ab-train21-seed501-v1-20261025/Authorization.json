@@ -1,0 +1,18 @@
+{
+  "approved": true,
+  "origin": "human user instruction in this conversation, 2026-10-25",
+  "scope": "CROSS feedback A/B; historical P0; 5 unordered pairs x3 x2; real generation and train21 evaluation allowed after all gates",
+  "caps": {
+    "logical_candidates": 30,
+    "api_attempts": 40,
+    "per_candidate_attempts": 2,
+    "cost_CNY": 20,
+    "program_instances": 630,
+    "solve_passes": 1260,
+    "launch_window_seconds": 21600
+  },
+  "no_C_no_reflection_call": true,
+  "no_A4_no_holdout_no_push": true,
+  "fee_requirement": "reliable <=20 CNY including uncertain requests; stop before real dispatch if absent",
+  "approval_is_not_a_technical_fee_certificate": true
+}

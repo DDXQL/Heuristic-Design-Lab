@@ -1,0 +1,31 @@
+{
+  "status": "STOP_BEFORE_INFERENCE",
+  "permission_missing": false,
+  "planned_pairs": 5,
+  "planned_candidates": 30,
+  "logical_candidates_started": 0,
+  "complete_responses": 0,
+  "API_attempts": 0,
+  "retries": 0,
+  "parse_failures": 0,
+  "generated_duplicates": 0,
+  "certified_children": 0,
+  "evaluation_failures": 0,
+  "timeouts": 0,
+  "program_instance_evaluations": 0,
+  "solve_passes": 0,
+  "new_inference_cost_CNY": 0,
+  "unknown_new_inference_cost_CNY": 0,
+  "wire_input_tokens": 0,
+  "wire_output_tokens": 0,
+  "metadata_GETs": 5,
+  "rates": null,
+  "quality_difference": null,
+  "protocol_sha256": "f5f4d1e15ec61be1433b347c95778bb848869bd72c19101f4e1eb0d771aec635",
+  "evidence": {
+    "fee_gate_sha256": "e614e24a12c941f9ff9ab837e83c1dfabea8ad4dc7780f615ec3e86e77ebfa0b",
+    "parent_audit_sha256": "5f0212cb8ac82a73e06f4141e80f920800535c884b0372a7f082506fb3f50e8b",
+    "offline_acceptance_sha256": "1bc4b2a51d70af2e8b9856bc76bd2991051261941720efeb5e42b546fc06915a"
+  },
+  "qualification": "five free metadata GETs, no model dispatch; old fees/holds untouched; zero generated data is not a negative A/B result"
+}

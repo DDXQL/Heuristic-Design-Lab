@@ -1,0 +1,41 @@
+{
+  "live_model_and_tariff_verified": true,
+  "CNY_conversion_verified": false,
+  "billable_token_upper_bound_verified": false,
+  "other_task_account_encumbrance_verified": false,
+  "monetary_adapter_accepted": false,
+  "currency_evidence": {
+    "quota_per_unit": 500000,
+    "usd_exchange_rate": 7.3,
+    "display_in_currency": true,
+    "custom_currency_symbol": "¤",
+    "custom_currency_exchange_rate": 1,
+    "system_name": "荷叶API",
+    "version": "v0.13.2",
+    "quota_display_type": "USD",
+    "api_info": []
+  },
+  "quota_snapshot": {
+    "available": true,
+    "unit": "raw platform quota; NOT automatically CNY",
+    "total_granted": 100000000,
+    "total_used": 2293865,
+    "total_available": 97706135,
+    "unlimited_quota": false,
+    "model_limits_enabled": false,
+    "expires_at": 0,
+    "allowed_by_explicit_token_limit": null
+  },
+  "existing_risk_policy": "code/fjsp_usage/usage_v2/model_migration.py: certified_provider_upper_bound=False",
+  "evidence_missing": [
+    "actual merchant-debit CNY conversion, not USD display/exchange setting",
+    "provider-backed maximum billable input/output/reasoning/cache counts for configured request",
+    "current account encumbrance/exclusive-caller proof, not merely absence of local processes",
+    "accepted monetary reservation/receipt settlement adapter"
+  ],
+  "inference_requests": 0,
+  "formal_solves": 0,
+  "decision": "STOP_BEFORE_INFERENCE",
+  "reason": "platform_units_to_actual_CNY_not_verified; input_output_reasoning_cache_billing_upper_bound_not_verified; other_task_account_encumbrance_not_verified",
+  "authorization_missing": false
+}
