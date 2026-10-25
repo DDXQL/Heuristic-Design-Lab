@@ -1,0 +1,82 @@
+{
+  "audit_date_Asia_Manila": "2026-10-25T11:06:20.313714+08:00",
+  "reason_for_user_pause": "交互额度与执行成本；不依据成绩",
+  "actual_terminal_reason": "wall_budget_stopped before intervention",
+  "authorized_total_queries": 300,
+  "completed_queries": 93,
+  "valid_complete_train21_results": 93,
+  "unresolved_reservations": 0,
+  "remaining_nominal_query_slots": 207,
+  "remaining_slots_executable_under_original_deadline": 0,
+  "repeats": [
+    {
+      "repeat": 1,
+      "search_seed": 2026102601,
+      "completed_queries": 60,
+      "planned_queries": 60,
+      "status": "complete"
+    },
+    {
+      "repeat": 2,
+      "search_seed": 2026102602,
+      "completed_queries": 33,
+      "planned_queries": 60,
+      "status": "partial"
+    },
+    {
+      "repeat": 3,
+      "search_seed": 2026102603,
+      "completed_queries": 0,
+      "planned_queries": 60,
+      "status": "not_started"
+    },
+    {
+      "repeat": 4,
+      "search_seed": 2026102604,
+      "completed_queries": 0,
+      "planned_queries": 60,
+      "status": "not_started"
+    },
+    {
+      "repeat": 5,
+      "search_seed": 2026102605,
+      "completed_queries": 0,
+      "planned_queries": 60,
+      "status": "not_started"
+    }
+  ],
+  "new_evaluations": 81,
+  "historical_cache_queries": 10,
+  "campaign_cache_queries": 2,
+  "new_program_instance_pairs": 1701,
+  "new_solve_passes": 3402,
+  "new_confirmed_timeouts": 0,
+  "start": "2026-10-24T22:11:37.324514+08:00",
+  "deadline": "2026-10-25T04:11:37.324514+08:00",
+  "last_query_folder_birth": "2026-10-25T02:13:43.177080+08:00",
+  "terminal_checkpoint_mtime": "2026-10-25T04:51:33.704599+08:00",
+  "launches_after_deadline_minus_650_seconds": 0,
+  "Run_clock_SHA_verified": true,
+  "official_check_exitcode": 0,
+  "original_runner_exitcode_observed": 0,
+  "writer_lock_present": false,
+  "Stop_file_present": false,
+  "process_snapshot": "No matching A4 runner found; only the inspection shell/rg matched.",
+  "formal_assets_changed_by_pause_audit": false,
+  "new_solves_after_pause_request": 0,
+  "LLM_API_requests": 0,
+  "seed_or_plan_reset": false,
+  "extra_analysis": "No quality ranking or champion analysis expanded; counts and terminal audit only.",
+  "wall_monotonic_observation": "Last query folder born02:13:43, result saved04:51:30 but process monotonic elapsed85.888s; suspension/scheduling or clock behavior not diagnosed. No new query folder after launch cutoff.",
+  "Codex_cost_evidence": "Visible conversation contains repeated45–50s status polling with per-poll assistant replies, recurring checkpoint/boundary reads and interim postprocessing development. This supports possible substantial interaction overhead; no per-task usage/billing attribution, so cannot establish dominant cause or exact cost.",
+  "independent_process_limit": "Runner progressed beyond last82-query observation to93 without per-query Codex prompts, then exited0. Regular shell child plus redirected log; no nohup/launchd or closed-app/sleep survival test. Independent of continuous reasoning is observed; reliable survival of Codex/app closure is not certified.",
+  "resume_limit": "Expired wall_budget_stopped is terminal; existing run is a no-op on run. Do not edit clock/phase, prepare anew, reset seeds or reuse the207 nominal slots without a separately authorized protocol.",
+  "snapshot_sha256": {
+    "Pause_snapshot/complete_query_ledger.json": "c006fc9706cc75eb9a3537eecedfd784bf8fdbaceff0569b8390e6c5bb0aa7ac",
+    "Pause_snapshot/Run_clock.json": "3eb84822c5d61bf4de3754f1beb3d7053929b7ba7739a55507d8797f59a4874c",
+    "Pause_snapshot/checkpoint.json": "6a90fa564817c279de4ac60561725f3711885fc210130f00fe6835ea6b0b5d90",
+    "Pause_snapshot/partial_query_ledger.json": "53c870547e84c3c94727766c3ad7f454f2cf0ca37ceb69b474cd8df5cdf54cb0",
+    "Pause_snapshot/Protocol.json": "13b90ec7f52beca1ae483256d9bb2618117c53e495a67e7ac0ef0d75413d2f55",
+    "Pause_snapshot/Plans.json": "42e429ccc7bd89bec840dc1d69bc3298090ed45444daf91ac32ad94b2078aa0c"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "approved": true,
+  "version": "A4-Static-RS-grid20-Q60-R5-v1-20261024",
+  "allow_new_FJSP": true,
+  "LLM_API_cap": 0,
+  "queries_per_repeat": 60,
+  "search_seeds": [
+    2026102601,
+    2026102602,
+    2026102603,
+    2026102604,
+    2026102605
+  ],
+  "solve_seed": 501,
+  "new_evaluation_cap": 6300,
+  "new_solve_pass_cap": 12600,
+  "instance_result_seconds": 30,
+  "wall_launch_budget_seconds": 21600,
+  "user_instruction_reference": "本会话用户消息：A4正式运行授权｜按已完成协议自主闭环执行；接续69c4cd2a754641effccdb3945bef83c4596564f1；明确授权prepare→check→run→report及本地提交。",
+  "note": "本次明确授权：固定H0–H9/train21/seed501，865规范策略，5×60查询；6300项/12600遍上限；T30与既有退出清理；首次run起6小时启动预算跨重启持久化；认证缓存仍计预算；失败不补员不重试不加时；API/演化/留出0；不推送/不修改Notion或其他工作树。",
+  "logical_query_cap": 300,
+  "evolution_cap": 0,
+  "holdout_access_cap": 0,
+  "remote_push": false
+}
