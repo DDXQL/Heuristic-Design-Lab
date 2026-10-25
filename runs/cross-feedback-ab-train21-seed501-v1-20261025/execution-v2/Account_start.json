@@ -1,0 +1,17 @@
+{
+  "base_url": "https://leafapi.cc",
+  "requested_model": "gpt-5.6-sol",
+  "inference_requests": 0,
+  "requested_model_listed": null,
+  "quota": {
+    "available": true,
+    "unit": "raw platform quota; NOT automatically CNY",
+    "total_granted": 100000000,
+    "total_used": 2293865,
+    "total_available": 97706135,
+    "unlimited_quota": false,
+    "model_limits_enabled": false,
+    "expires_at": 0,
+    "allowed_by_explicit_token_limit": null
+  }
+}

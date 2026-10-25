@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests_run": 25,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "tools/cross_feedback_ab_execute.py": "4da5583f3178470248df65841bd49f99a92abcefae6d03f944ca5b6e65093ec5",
+    "tools/cross_feedback_ab_execution_report.py": "f671b4c15a5a6817bc88718da936a1cb93f1bfd9f19b5e378593a33c3fa440ae",
+    "tests/test_cross_feedback_ab_execute.py": "0dea96573acd5ff771d9c0488388c7d2c0fb14bc26d3e53a09e0a495d33ef409"
+  },
+  "real_API": 0,
+  "formal_solves": 0,
+  "scope": "mock journal/transport, synthetic T30 lifecycle, same kernel toy and detached launcher"
+}

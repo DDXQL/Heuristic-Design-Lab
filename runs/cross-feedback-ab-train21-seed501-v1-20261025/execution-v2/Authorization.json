@@ -1,0 +1,15 @@
+{
+  "approved": true,
+  "origin": "current human user message continuing a1ad625, 2026-10-25",
+  "authorization_change": "cancel 20 CNY cap AND all currency, billable-token, account-encumbrance and fee-reservation prerequisites",
+  "retained_caps": {
+    "logical_candidates": 30,
+    "API_attempts": 40,
+    "attempts_per_candidate": 2,
+    "program_instances": 630,
+    "solve_passes": 1260,
+    "launch_seconds": 21600
+  },
+  "no_new_sampling_no_A4_no_C_no_push": true,
+  "window": "explicit new <=6h window from this execution first run; historical stop untouched"
+}

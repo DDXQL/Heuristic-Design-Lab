@@ -1,0 +1,1253 @@
+{
+  "binding_sha256": "f90c36f27befa06ccfff1ff3309057cb5653e6907017a3cae573f5e2ab0fe5c0",
+  "phase": "completed",
+  "tasks": {
+    "pair_03_r2_A": {
+      "task_id": "pair_03_r2_A",
+      "pair_id": "pair_03",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 1,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792925596.417774,
+        "monotonic": 710000.211924666,
+        "CPU": 0.633968
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "Parent 0 prioritizes machine and workload dispersion before using workload mean, while Parent 1 adds low-flexibility and late-progress triggers and maps high dispersion to complementary work/efficiency heuristics. This selector combines those ideas with tiered dispersion thresholds, assigning machine imbalance to members 8 or 6, workload imbalance to 6 or 5, and using member 9 for low flexibility or late progress.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "65bfa9c6467bb9ae06a3628625d74069bf2e2424db422e9be3f0e200d2cd2c17",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5270363059129246,
+      "evaluation_key": "65bfa9c6467bb9ae06a3628625d74069bf2e2424db422e9be3f0e200d2cd2c17",
+      "finished": {
+        "wall": 1792925654.597379,
+        "monotonic": 710058.392253541,
+        "CPU": 1.672749
+      }
+    },
+    "pair_03_r2_B": {
+      "task_id": "pair_03_r2_B",
+      "pair_id": "pair_03",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 2,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792925654.7704031,
+        "monotonic": 710058.5652805,
+        "CPU": 1.843977
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's tighter dispersion thresholds with Parent 1's low-candidate-ratio and late-progress branches. It retains member 8 for balanced states, while using members 6, 5, and 9 for machine imbalance, workload imbalance, and constrained or late scheduling states respectively.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "bcf94c3d9250797311c20dec7cc3d466fd597ce218e91d8b018012b75bc1b239",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5270363059129246,
+      "evaluation_key": "bcf94c3d9250797311c20dec7cc3d466fd597ce218e91d8b018012b75bc1b239",
+      "finished": {
+        "wall": 1792925684.653257,
+        "monotonic": 710088.448507083,
+        "CPU": 2.946699
+      }
+    },
+    "pair_03_r1_B": {
+      "task_id": "pair_03_r1_B",
+      "pair_id": "pair_03",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 3,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792925684.817169,
+        "monotonic": 710088.612421166,
+        "CPU": 3.108149
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0’s use of workload dispersion and mean with Parent 1’s machine-dispersion, sparse-candidate, and late-progress decisions. Where their machine-dispersion choices conflict, it uses member 6 above Parent 1’s threshold and member 8 in the intermediate range; the mappings are hypotheses based on the members’ described scoring behavior, not proven state-level winners.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35 or progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "cccc02fa0172eae414e9eb84f0bdec82cd481f47f2699b6e3c99941238cdbb1f",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5270363059129246,
+      "evaluation_key": "cccc02fa0172eae414e9eb84f0bdec82cd481f47f2699b6e3c99941238cdbb1f",
+      "finished": {
+        "wall": 1792925714.9669929,
+        "monotonic": 710118.762620833,
+        "CPU": 4.188759
+      }
+    },
+    "pair_03_r1_A": {
+      "task_id": "pair_03_r1_A",
+      "pair_id": "pair_03",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 4,
+      "status": "transport_failed",
+      "started": {
+        "wall": 1792925715.142273,
+        "monotonic": 710118.937902875,
+        "CPU": 4.361172
+      },
+      "generation_status": "failed",
+      "attempts": 1,
+      "fitness": null,
+      "finished": {
+        "wall": 1792925841.8798091,
+        "monotonic": 710245.677020125,
+        "CPU": 5.168988
+      }
+    },
+    "pair_05_r1_A": {
+      "task_id": "pair_05_r1_A",
+      "pair_id": "pair_05",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 5,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792925842.113277,
+        "monotonic": 710245.910489708,
+        "CPU": 5.344347
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This inherits Parent 1's stable-state use of member 5, while adopting Parent 0's adaptive member-0/member-9 mixture for states with greater work or machine-readiness dispersion. The mixture emphasizes member 0 as remaining-work dispersion rises and member 9 as progress and readiness dispersion rise, with candidate-pair density used to retain the stable selector when alternatives are plentiful.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    instability = work_dispersion + ready_dispersion\n    if progress < 0.2 and candidate_pair_ratio > 0.75 and (instability < 0.35):\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if previous_heuristic == 0:\n        work_weight = work_weight + 0.1\n    if previous_heuristic == 9:\n        efficiency_weight = efficiency_weight + 0.1\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "4dc602823db6482bf171666e7d798c550d767d073e4e0daac6bdf689786fb2c7",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.42912898097657,
+      "evaluation_key": "4dc602823db6482bf171666e7d798c550d767d073e4e0daac6bdf689786fb2c7",
+      "finished": {
+        "wall": 1792925897.020576,
+        "monotonic": 710300.818474375,
+        "CPU": 6.478896
+      }
+    },
+    "pair_05_r1_B": {
+      "task_id": "pair_05_r1_B",
+      "pair_id": "pair_05",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 6,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792925897.1841779,
+        "monotonic": 710300.982078166,
+        "CPU": 6.639455
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This hypothesis retains parent 1's member-5 anchor while combining it with parent 0's adaptive use of a processing-efficiency member, here member 9. It increases member 5's weight early and when legal flexibility is low, while increasing member 9's weight with progress and normalized work/readiness dispersion, with categorical hysteresis from the previous member.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    pair_pressure = 1.0 - candidate_pair_ratio\n    weight5 = 1.0 + (1.0 - progress) + pair_pressure\n    weight9 = 1.0 + progress + work_dispersion + ready_dispersion\n    if previous_heuristic == 5:\n        weight5 = weight5 + 0.5\n    if previous_heuristic == 9:\n        weight9 = weight9 + 0.5\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, weight5, 0.0, 0.0, 0.0, weight9))\n",
+        "key": "b9d663a6de8ab979a223a3df0fc06930273f7d87530961845750eacfe7000ad9",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.566569825230469,
+      "evaluation_key": "b9d663a6de8ab979a223a3df0fc06930273f7d87530961845750eacfe7000ad9",
+      "finished": {
+        "wall": 1792926027.724587,
+        "monotonic": 710431.524114833,
+        "CPU": 7.701689
+      }
+    },
+    "pair_02_r1_A": {
+      "task_id": "pair_02_r1_A",
+      "pair_id": "pair_02",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 7,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926027.8942678,
+        "monotonic": 710431.693797125,
+        "CPU": 7.867184
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0’s state-dependent choices with Parent 1’s use of member 5 as a baseline: member 5 is selected generally and when remaining-work dispersion is high relative to machine-time dispersion, while other regions select members 1, 4, or 9. The mappings reflect hypotheses about H’s behaviors—member 1 favors low estimated finish plus tail work, member 4 includes a depth term, and member 9 rewards work while penalizing long processing and waiting—not claims of state-level superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "43715fdbfb0411760ecacf75157c31079c24c8acdd2362e52bd12a5cdabb13f8",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.115159624699559,
+      "evaluation_key": "43715fdbfb0411760ecacf75157c31079c24c8acdd2362e52bd12a5cdabb13f8",
+      "finished": {
+        "wall": 1792926040.747058,
+        "monotonic": 710444.546747833,
+        "CPU": 8.969984
+      }
+    },
+    "pair_02_r1_B": {
+      "task_id": "pair_02_r1_B",
+      "pair_id": "pair_02",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 8,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926040.916754,
+        "monotonic": 710444.71644625,
+        "CPU": 9.133227
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines PARENT 0's state-dependent routing for constrained alternatives, uneven remaining work, and late machine load with PARENT 1's constant member-5 fallback. The mapping remains a deterministic hypothesis: members 0, 4, and 9 handle the corresponding branches, while member 5 covers all other states.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "f7c78ad76b06e039694b2a8122e2a8215126dbc28f2a1808e9149973acecefad",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1484896092396846,
+      "evaluation_key": "f7c78ad76b06e039694b2a8122e2a8215126dbc28f2a1808e9149973acecefad",
+      "finished": {
+        "wall": 1792926073.9007869,
+        "monotonic": 710477.700889916,
+        "CPU": 10.232698
+      }
+    },
+    "pair_01_r1_A": {
+      "task_id": "pair_01_r1_A",
+      "pair_id": "pair_01",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 9,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926074.076137,
+        "monotonic": 710477.876242625,
+        "CPU": 10.399665
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "I inherit Parent 1's first-step member 8 and dispersion-based switching, together with Parent 0's low-pair/low-work and late-loaded state distinctions. I combine them by using H3 for sparse low-work states, mixing H8/H9 under machine imbalance, and mixing H4/H5 under workload imbalance because these members respectively emphasize candidate processing efficiency, waiting/completion behavior, and workload/depth efficiency.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 + 8.0 * machine_ready_std, 1.0 + 4.0 * (1.0 - machine_ready_std)))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 1.0 + 4.0 * remaining_work_std + progress, 1.0 + 2.0 * (1.0 - progress), 0.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "ff5627d0c801c8b84141742828d351e51c48a23c9815ef0368ed451ba7beffc3",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1603045660523637,
+      "evaluation_key": "ff5627d0c801c8b84141742828d351e51c48a23c9815ef0368ed451ba7beffc3",
+      "finished": {
+        "wall": 1792926101.993214,
+        "monotonic": 710505.793667875,
+        "CPU": 11.542221
+      }
+    },
+    "pair_01_r1_B": {
+      "task_id": "pair_01_r1_B",
+      "pair_id": "pair_01",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 10,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926102.1797838,
+        "monotonic": 710505.980239958,
+        "CPU": 11.716009
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines parent 0's sparse-candidate/low-work and late-machine-readiness decisions with parent 1's first-step, machine-dispersion, workload-dispersion, and high-workload mappings. The member assignments follow their described behavior as testable hypotheses rather than assumed quality rankings.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "e8e8129b87c2f06832faee0e09848df881342b793c0c80509d5840c1cb0ca5c6",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.154049707422863,
+      "evaluation_key": "e8e8129b87c2f06832faee0e09848df881342b793c0c80509d5840c1cb0ca5c6",
+      "finished": {
+        "wall": 1792926137.970068,
+        "monotonic": 710541.770970875,
+        "CPU": 12.905688
+      }
+    },
+    "pair_04_r3_A": {
+      "task_id": "pair_04_r3_A",
+      "pair_id": "pair_04",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 11,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926138.1539571,
+        "monotonic": 710541.954860958,
+        "CPU": 13.078055
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's dispersion-driven mixture of members 0 and 9 with Parent 1's deterministic dispersion and workload thresholds. High machine-readiness dispersion selects member 8 for its explicit machine-wait modeling, high workload dispersion selects member 5 for efficiency-aware work prioritization, and high mean remaining work selects member 6 for broader criticality and readiness effects.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "749a64fd78b211bbb7944a552eb643cbef1e3aa0e57759dd865f706816917fad",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.404627600830643,
+      "evaluation_key": "749a64fd78b211bbb7944a552eb643cbef1e3aa0e57759dd865f706816917fad",
+      "finished": {
+        "wall": 1792926259.260941,
+        "monotonic": 710663.063355666,
+        "CPU": 14.175507
+      }
+    },
+    "pair_04_r3_B": {
+      "task_id": "pair_04_r3_B",
+      "pair_id": "pair_04",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 12,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926259.456861,
+        "monotonic": 710663.259278083,
+        "CPU": 14.361029
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This hypothesis combines Parent 0's dispersion-driven mixing of workload-focused member 0 with efficiency-and-wait member 9, while inheriting Parent 1's state-based mapping of high machine dispersion to member 8 and high mean workload to member 6. The first step uses member 8 alone, and later branches use bounded positive weights that favor the corresponding state signal without treating member ids as quality ranks.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 + machine_ready_std + candidate_pair_ratio, 1.0 + progress + machine_ready_std))\n    if remaining_work_std > 0.125:\n        work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n        ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n        return (1, (1.0 + work_dispersion, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 + progress + ready_dispersion))\n    if remaining_work_mean > 0.25:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 + remaining_work_mean, 0.0, 0.0, 1.0 + candidate_pair_ratio + progress))\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n",
+        "key": "7a94733afaf7652c7d1a59f6df5eb071a6172dfe8051a4a6b614b5fa99efcc75",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5611498256653267,
+      "evaluation_key": "7a94733afaf7652c7d1a59f6df5eb071a6172dfe8051a4a6b614b5fa99efcc75",
+      "finished": {
+        "wall": 1792926295.766933,
+        "monotonic": 710699.569802958,
+        "CPU": 15.451492
+      }
+    },
+    "pair_02_r2_A": {
+      "task_id": "pair_02_r2_A",
+      "pair_id": "pair_02",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 13,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926295.9458282,
+        "monotonic": 710699.748699875,
+        "CPU": 15.619062
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0’s state-dependent selection with Parent 1’s stable use of member 5: when pair availability is low and remaining work is small, it selects member 1, whose estimate favors early completion plus a reduced tail-work estimate; otherwise it selects member 5, which rewards remaining work while accounting for processing time and finish time. The thresholds use the normalized input scales and make no claim that either choice is locally or globally superior.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    else:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "01d1e776eed6e451c2a46eda68d91bd90a275bd44534e6b3354f5bb258841692",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.115159624699559,
+      "evaluation_key": "01d1e776eed6e451c2a46eda68d91bd90a275bd44534e6b3354f5bb258841692",
+      "finished": {
+        "wall": 1792926308.235466,
+        "monotonic": 710712.038490875,
+        "CPU": 16.699528
+      }
+    },
+    "pair_02_r2_B": {
+      "task_id": "pair_02_r2_B",
+      "pair_id": "pair_02",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 14,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926308.430076,
+        "monotonic": 710712.23310325,
+        "CPU": 16.881065
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This U combines PARENT 0's state-dependent selection branches with PARENT 1's constant member-5 fallback. It uses member 0 for constrained low-work states, member 4 for uneven remaining work with balanced machine readiness, and member 9 for late loaded states; otherwise it selects member 5. These mappings are hypotheses based on the members' described behavior and must be tested by complete-schedule evaluation.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.55 and remaining_work_mean < 0.3:\n        return (0, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.18 and machine_ready_std < 0.14:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.7 and machine_ready_mean > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "783aa0f2a0f1491bbffd2c9ec9fb5d587f00c57990578c8b37de83e7de81b9e8",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.136065515374869,
+      "evaluation_key": "783aa0f2a0f1491bbffd2c9ec9fb5d587f00c57990578c8b37de83e7de81b9e8",
+      "finished": {
+        "wall": 1792926340.49765,
+        "monotonic": 710744.298438291,
+        "CPU": 17.95409
+      }
+    },
+    "pair_05_r2_B": {
+      "task_id": "pair_05_r2_B",
+      "pair_id": "pair_05",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 15,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926340.674806,
+        "monotonic": 710744.475232333,
+        "CPU": 18.12161
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "I inherit parent 0's dispersion- and progress-sensitive weighting of the work-focused member 0 and efficiency/waiting-focused member 9. I combine it with parent 1's constant member-5 selector in states with dense candidate availability and low dispersion, as a testable usage hypothesis rather than a performance claim.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if candidate_pair_ratio > 0.85 and remaining_work_std < 0.08 and (machine_ready_std < 0.08):\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    else:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "15e53676508e5ac71ee64318a3de38ae0f04508187b2da903286543a8892c9bd",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.404627600830643,
+      "evaluation_key": "15e53676508e5ac71ee64318a3de38ae0f04508187b2da903286543a8892c9bd",
+      "finished": {
+        "wall": 1792926407.3385441,
+        "monotonic": 710811.107839916,
+        "CPU": 19.244275
+      }
+    },
+    "pair_05_r2_A": {
+      "task_id": "pair_05_r2_A",
+      "pair_id": "pair_05",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 16,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926407.523268,
+        "monotonic": 710811.292561083,
+        "CPU": 19.414548
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's adaptive mixture of members 0 and 9, increasing the efficiency member's weight with progress and machine-readiness dispersion, with Parent 1's constant selection of member 5. The constant member-5 branch is used when alternatives are relatively plentiful and state dispersion is low; otherwise the adaptive mixture emphasizes member 0 under work dispersion and member 9 under progress/readiness pressure.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    if candidate_pair_ratio >= 0.75 and work_dispersion <= 0.2 and (ready_dispersion <= 0.2):\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "22fbf20282e71764584e64b94ab8dde328b036d0dbbe46b1bd147d0db93dd590",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.415230491776051,
+      "evaluation_key": "22fbf20282e71764584e64b94ab8dde328b036d0dbbe46b1bd147d0db93dd590",
+      "finished": {
+        "wall": 1792926460.805686,
+        "monotonic": 710864.574972791,
+        "CPU": 20.520063
+      }
+    },
+    "pair_03_r3_A": {
+      "task_id": "pair_03_r3_A",
+      "pair_id": "pair_03",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 17,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926461.012125,
+        "monotonic": 710864.781413625,
+        "CPU": 20.700512
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This U combines Parent 0's workload and machine-dispersion checks with Parent 1's candidate-ratio and late-progress checks. It maps machine imbalance to member 8, workload imbalance to member 6, constrained or late states to member 9, and otherwise uses member 7 for high remaining workload or member 8 as the default based on their scoring behavior. The first step deterministically selects member 8.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.16:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.16:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "94693058fad44b3de5545e375946402ac011d00172a9ec6c9157e2130c611e00",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5270363059129246,
+      "evaluation_key": "94693058fad44b3de5545e375946402ac011d00172a9ec6c9157e2130c611e00",
+      "finished": {
+        "wall": 1792926501.274382,
+        "monotonic": 710905.04396775,
+        "CPU": 21.869378
+      }
+    },
+    "pair_03_r3_B": {
+      "task_id": "pair_03_r3_B",
+      "pair_id": "pair_03",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000001",
+        "B/init/000005"
+      ],
+      "dispatch_position": 18,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926501.5043662,
+        "monotonic": 710905.273953541,
+        "CPU": 22.071821
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines PARENT 0’s machine-dispersion, work-dispersion, and workload-based choices with PARENT 1’s sparse-pair and late-progress choices. The member mappings are hypotheses informed by the corresponding H behaviors, not claims of state-level superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.35 or progress > 0.75:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n",
+        "key": "bb6497851704f7311d063881dc18d58ba4784f69207e23647eb6259ca6b4db94",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.5270363059129246,
+      "evaluation_key": "bb6497851704f7311d063881dc18d58ba4784f69207e23647eb6259ca6b4db94",
+      "finished": {
+        "wall": 1792926530.083361,
+        "monotonic": 710933.853167708,
+        "CPU": 23.238426
+      }
+    },
+    "pair_04_r2_B": {
+      "task_id": "pair_04_r2_B",
+      "pair_id": "pair_04",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 19,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926530.2717,
+        "monotonic": 710934.041507666,
+        "CPU": 23.411939
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This hypothesis combines parent 0's workload-dispersion and progress/readiness weighting with parent 1's deterministic dispersion-based member selection. It preserves the first-step handling while mixing member 0 with a state-selected efficiency-oriented member, including parent 1's 8/5/6/9 branches.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion + 0.5 * candidate_pair_ratio\n    if previous_heuristic == -1:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n    if machine_ready_std > 0.125:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n    if remaining_work_std > 0.125:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0, 0.0, 0.0))\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "b3a30a12b4ee2528b8fc5a5df6997d84af31a52a49925b92e71dc0c181dc32d5",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.4309821544701333,
+      "evaluation_key": "b3a30a12b4ee2528b8fc5a5df6997d84af31a52a49925b92e71dc0c181dc32d5",
+      "finished": {
+        "wall": 1792926590.5299451,
+        "monotonic": 710994.300216375,
+        "CPU": 24.562748
+      }
+    },
+    "pair_04_r2_A": {
+      "task_id": "pair_04_r2_A",
+      "pair_id": "pair_04",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 20,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926590.71979,
+        "monotonic": 710994.4900635,
+        "CPU": 24.735636
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's dispersion- and progress-dependent weighting with Parent 1's workload/readiness-dispersion state partition. The selected partners reflect H behavior: member 0 emphasizes remaining work, member 9 efficiency and waiting, while members 8, 5, and 6 provide targeted alternatives for machine imbalance, workload dispersion, and high remaining work.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    machine_weight = 1.0 + machine_ready_std + candidate_pair_ratio\n    balanced_weight = 1.0 + remaining_work_mean + machine_ready_std\n    if machine_ready_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, machine_weight, efficiency_weight))\n    if remaining_work_std > 0.125:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, balanced_weight, 0.0, 0.0, 0.0))\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "acf93a9508eea93afe96f03b894b5273db888b79b66dbde79e787570fa8b90ee",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.404627600830643,
+      "evaluation_key": "acf93a9508eea93afe96f03b894b5273db888b79b66dbde79e787570fa8b90ee",
+      "finished": {
+        "wall": 1792926705.6151092,
+        "monotonic": 711109.386266083,
+        "CPU": 25.884863
+      }
+    },
+    "pair_01_r2_B": {
+      "task_id": "pair_01_r2_B",
+      "pair_id": "pair_01",
+      "repeat_id": 2,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 21,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926705.827064,
+        "monotonic": 711109.598223375,
+        "CPU": 26.075782
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's low-flexibility/late-stage mappings with Parent 1's first-step and machine-dispersion choice. The mapping favors member 8 when machine readiness is uneven, member 4 when job workloads are dispersed, member 1 for constrained low-work states, member 9 late under machine load, and member 6 otherwise as a workload-criticality policy.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n",
+        "key": "dd91d894cd881d700d45eb8d20b0331d922426d6acfcf81f25147da4e39402cc",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1155736724614753,
+      "evaluation_key": "dd91d894cd881d700d45eb8d20b0331d922426d6acfcf81f25147da4e39402cc",
+      "finished": {
+        "wall": 1792926723.702243,
+        "monotonic": 711127.473539333,
+        "CPU": 27.22857
+      }
+    },
+    "pair_01_r2_A": {
+      "task_id": "pair_01_r2_A",
+      "pair_id": "pair_01",
+      "repeat_id": 2,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 22,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926723.9209468,
+        "monotonic": 711127.692245125,
+        "CPU": 27.418359
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "I combine Parent 1's first-step and high machine-dispersion choice of member 8 with Parent 0's low-pair/low-work choice of member 1 and late-readiness choice of member 9. For workload dispersion, I select member 4 only when machine readiness is tightly balanced, otherwise retain member 5, while using member 6 for high mean remaining work based on its explicit criticality and completion terms.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    if machine_ready_std > 0.125:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.125 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "df27941540f88e7df777c147b77e19e7d6da436a2cf9dc37c8845db21ff6b0f3",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1137659187732476,
+      "evaluation_key": "df27941540f88e7df777c147b77e19e7d6da436a2cf9dc37c8845db21ff6b0f3",
+      "finished": {
+        "wall": 1792926746.371441,
+        "monotonic": 711150.142912416,
+        "CPU": 28.609306
+      }
+    },
+    "pair_01_r3_B": {
+      "task_id": "pair_01_r3_B",
+      "pair_id": "pair_01",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 23,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926746.5798762,
+        "monotonic": 711150.351348416,
+        "CPU": 28.799798
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines parent 1's first-step and machine-dispersion preference for member 8 with parent 0's constrained-pair/low-work preference for member 1 and late high-readiness preference for member 9. It also uses member 5 for dispersed remaining work under constrained alternatives and member 6 when normalized workload remains high, matching their workload- and completion-sensitive behavior.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.18 and progress < 0.7:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.16 and candidate_pair_ratio < 0.65:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "d2dbdab7e6e91e6c6fba4abb2ad4f12188c43b9b8486694b7e16da798eefb402",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.116779217970818,
+      "evaluation_key": "d2dbdab7e6e91e6c6fba4abb2ad4f12188c43b9b8486694b7e16da798eefb402",
+      "finished": {
+        "wall": 1792926860.8539991,
+        "monotonic": 711264.6263515,
+        "CPU": 29.90819
+      }
+    },
+    "pair_01_r3_A": {
+      "task_id": "pair_01_r3_A",
+      "pair_id": "pair_01",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000001"
+      ],
+      "dispatch_position": 24,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926861.061868,
+        "monotonic": 711264.834221458,
+        "CPU": 30.098169
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This U combines Parent 0's low-flexibility/low-work and late-phase routing with Parent 1's first-step and dispersion-sensitive choices. It maps high machine dispersion or the first step to H8, concentrated work with low machine dispersion to H4, low-ratio low-work states to H1, high-work states to H6, and otherwise uses H5 or H9 for completion-oriented behavior. The altered thresholds and precedence resolve overlaps using H behavior rather than member-id ordering.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1 or machine_ready_std > 0.15:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if candidate_pair_ratio < 0.6 and remaining_work_mean < 0.2:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.15 and machine_ready_std <= 0.15:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.7 and machine_ready_mean > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if remaining_work_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "d3f8ed8d486da9e16271536c0449f45fd9535f13e9e568e86911914da2a43307",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1234097182722045,
+      "evaluation_key": "d3f8ed8d486da9e16271536c0449f45fd9535f13e9e568e86911914da2a43307",
+      "finished": {
+        "wall": 1792926879.080279,
+        "monotonic": 711282.852770958,
+        "CPU": 31.216834
+      }
+    },
+    "pair_05_r3_B": {
+      "task_id": "pair_05_r3_B",
+      "pair_id": "pair_05",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 25,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926879.297729,
+        "monotonic": 711283.070223041,
+        "CPU": 31.411156
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This hypothesis inherits Parent 1's constant selection of member 5 when the early schedule has broad machine flexibility, while otherwise using Parent 0's member-0/member-9 mixture. The mixture increases member 0's weight with remaining-work dispersion and member 9's weight with progress and machine-readiness dispersion.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if progress < 0.35 and candidate_pair_ratio > 0.6:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "49d95e189ea1a504bd0f4e66cc1e1bd25c457e4beabf7af87ff474412f435afe",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.41347366900118,
+      "evaluation_key": "49d95e189ea1a504bd0f4e66cc1e1bd25c457e4beabf7af87ff474412f435afe",
+      "finished": {
+        "wall": 1792926975.840974,
+        "monotonic": 711379.614211041,
+        "CPU": 32.5374
+      }
+    },
+    "pair_05_r3_A": {
+      "task_id": "pair_05_r3_A",
+      "pair_id": "pair_05",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000002"
+      ],
+      "dispatch_position": 26,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792926976.055299,
+        "monotonic": 711379.828537875,
+        "CPU": 32.724275
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 1's stable-state constant selection of member 5 with Parent 0's adaptive mixture of member 0's remaining-work emphasis and member 9's processing-efficiency and waiting penalties. The mixture increases member 0's weight with remaining-work dispersion and member 9's weight with progress and machine-readiness dispersion, while using the constant baseline when the state is early and relatively uniform.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    if progress < 0.5 and work_dispersion < 0.2 and (ready_dispersion < 0.2):\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    else:\n        member_0_weight = 1.0 + work_dispersion\n        member_9_weight = 1.0 + progress + ready_dispersion\n        return (1, (member_0_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, member_9_weight))\n",
+        "key": "70919643bff5c10d5d7d290c209de59fda1d8339d492aa786c73a8caa776b963",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.4452531003529567,
+      "evaluation_key": "70919643bff5c10d5d7d290c209de59fda1d8339d492aa786c73a8caa776b963",
+      "finished": {
+        "wall": 1792927022.150381,
+        "monotonic": 711425.923974791,
+        "CPU": 33.851921
+      }
+    },
+    "pair_04_r1_B": {
+      "task_id": "pair_04_r1_B",
+      "pair_id": "pair_04",
+      "repeat_id": 1,
+      "condition": "B",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 27,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792927022.3513758,
+        "monotonic": 711426.124970791,
+        "CPU": 34.030544
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's adaptive mixture of members 0 and 9, increasing the member-0 weight with workload dispersion and the member-9 weight with progress and machine-readiness dispersion. It also inherits Parent 1's deterministic dispersion-triggered switching, using members 8, 5, or 6 in strongly dispersed states and preserving member 9 on the first step. This is a testable usage hypothesis rather than evidence of state-level superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if machine_ready_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if remaining_work_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_mean > 0.25:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std + 0.01)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "13424bb3964be87113b6bc852dce9fd587ba939a668d84024c1c8ed66d69b77a",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.4270716332695197,
+      "evaluation_key": "13424bb3964be87113b6bc852dce9fd587ba939a668d84024c1c8ed66d69b77a",
+      "finished": {
+        "wall": 1792927078.932987,
+        "monotonic": 711482.707017833,
+        "CPU": 35.221563
+      }
+    },
+    "pair_04_r1_A": {
+      "task_id": "pair_04_r1_A",
+      "pair_id": "pair_04",
+      "repeat_id": 1,
+      "condition": "A",
+      "parents": [
+        "B/init/000008",
+        "B/init/000001"
+      ],
+      "dispatch_position": 28,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792927079.143314,
+        "monotonic": 711482.917345875,
+        "CPU": 35.408507
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 1's dispersion-based member gates, including its first-step and machine-readiness handling, with Parent 0's adaptive workload/readiness-dispersion weighting of complementary members. The resulting mixtures retain Parent 1's specialized members while using Parent 0's progress- and dispersion-sensitive balance against member 9.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if previous_heuristic == -1 or machine_ready_std > 0.125:\n        machine_weight = 1.0 + ready_dispersion\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, machine_weight, efficiency_weight))\n    if remaining_work_std > 0.125:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, work_weight, 0.0, 0.0, 0.0, efficiency_weight))\n    if remaining_work_mean > 0.25:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, work_weight, 0.0, 0.0, efficiency_weight))\n    return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight))\n",
+        "key": "e48992ffac109eb44b825628b8162c30c13d4023e976523e397970c589330e18",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.4008682023344026,
+      "evaluation_key": "e48992ffac109eb44b825628b8162c30c13d4023e976523e397970c589330e18",
+      "finished": {
+        "wall": 1792927136.2344162,
+        "monotonic": 711540.008887416,
+        "CPU": 36.534418
+      }
+    },
+    "pair_02_r3_A": {
+      "task_id": "pair_02_r3_A",
+      "pair_id": "pair_02",
+      "repeat_id": 3,
+      "condition": "A",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 29,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792927136.439561,
+        "monotonic": 711540.214033541,
+        "CPU": 36.715489
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 1’s constant member-5 baseline with Parent 0’s state-conditioned alternatives. When workload dispersion is high but machine-readiness dispersion is low, it selects member 4; otherwise it uses member 1 for low pair availability and low remaining work, member 9 for late progress with elevated mean machine readiness, and member 5 by default. These mappings are hypotheses based on the members’ described scoring behavior, not claims of measured superiority.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    elif candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    elif progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    else:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "414688d44b26642429b3117f46ceb80a439d6a1a9732976980ccc86eacb76a4e",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.115159624699559,
+      "evaluation_key": "414688d44b26642429b3117f46ceb80a439d6a1a9732976980ccc86eacb76a4e",
+      "finished": {
+        "wall": 1792927155.429405,
+        "monotonic": 711559.204024125,
+        "CPU": 37.85616
+      }
+    },
+    "pair_02_r3_B": {
+      "task_id": "pair_02_r3_B",
+      "pair_id": "pair_02",
+      "repeat_id": 3,
+      "condition": "B",
+      "parents": [
+        "B/init/000006",
+        "B/init/000002"
+      ],
+      "dispatch_position": 30,
+      "status": "evaluated",
+      "started": {
+        "wall": 1792927155.644268,
+        "monotonic": 711559.418889125,
+        "CPU": 38.049334
+      },
+      "generation_status": "completed",
+      "attempts": 1,
+      "candidate": {
+        "description": "This combines Parent 0's state-dependent selection ideas with Parent 1's member-5 constant baseline. It uses member 1 for constrained low-work states, member 4 for uneven remaining work with balanced machines, member 9 for later congested states, and member 5 otherwise as a testable hypothesis.",
+        "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio <= 0.45 and remaining_work_mean <= 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std >= 0.16 and machine_ready_std <= 0.12:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress >= 0.7 and machine_ready_mean >= 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+        "key": "529b2f2f4583ab40584798b5714004e1fde6af0d53365c701da05d59b00f7159",
+        "kind": "U",
+        "interface_version": "U-usage-v2-select-or-mix-20261012",
+        "member_count": 10
+      },
+      "valid": true,
+      "fitness": -2.1165201689172464,
+      "evaluation_key": "529b2f2f4583ab40584798b5714004e1fde6af0d53365c701da05d59b00f7159",
+      "finished": {
+        "wall": 1792927172.135247,
+        "monotonic": 711575.909994958,
+        "CPU": 39.201307
+      }
+    }
+  },
+  "evaluations": {
+    "65bfa9c6467bb9ae06a3628625d74069bf2e2424db422e9be3f0e200d2cd2c17": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/65bfa9c6467bb9ae06a3628625d74069bf2e2424db422e9be3f0e200d2cd2c17/result.json",
+      "result_sha256": "8c053ab793ec62f6346dfda510fc72655a11ba63d218ee305392a99b3de2f4c9"
+    },
+    "bcf94c3d9250797311c20dec7cc3d466fd597ce218e91d8b018012b75bc1b239": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/bcf94c3d9250797311c20dec7cc3d466fd597ce218e91d8b018012b75bc1b239/result.json",
+      "result_sha256": "9fea7e0ea034f1cf0fb2da5c1341c91d3c84524ab8b925d00d660641f28a66b4"
+    },
+    "cccc02fa0172eae414e9eb84f0bdec82cd481f47f2699b6e3c99941238cdbb1f": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/cccc02fa0172eae414e9eb84f0bdec82cd481f47f2699b6e3c99941238cdbb1f/result.json",
+      "result_sha256": "4e1750df9d059e3983044e4b69a7949cc15601157d64fe405669791b55b723b6"
+    },
+    "4dc602823db6482bf171666e7d798c550d767d073e4e0daac6bdf689786fb2c7": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/4dc602823db6482bf171666e7d798c550d767d073e4e0daac6bdf689786fb2c7/result.json",
+      "result_sha256": "e4328e8e3842f1aeed0257cca3659b73411060615cf882447010235524f34584"
+    },
+    "b9d663a6de8ab979a223a3df0fc06930273f7d87530961845750eacfe7000ad9": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/b9d663a6de8ab979a223a3df0fc06930273f7d87530961845750eacfe7000ad9/result.json",
+      "result_sha256": "209ea5a3df06b8526688b6521a1fee45aa60351548c7645f169903e36fe92e5a"
+    },
+    "43715fdbfb0411760ecacf75157c31079c24c8acdd2362e52bd12a5cdabb13f8": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/43715fdbfb0411760ecacf75157c31079c24c8acdd2362e52bd12a5cdabb13f8/result.json",
+      "result_sha256": "03e0208718dd52ce1350f8e5b19599483e13128456543cf6d9a491f7b4b10d08"
+    },
+    "f7c78ad76b06e039694b2a8122e2a8215126dbc28f2a1808e9149973acecefad": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/f7c78ad76b06e039694b2a8122e2a8215126dbc28f2a1808e9149973acecefad/result.json",
+      "result_sha256": "87e5e68716bf2bb14a366eda7aca8a4a2233366b900396a22a31507fa4eef9dc"
+    },
+    "ff5627d0c801c8b84141742828d351e51c48a23c9815ef0368ed451ba7beffc3": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/ff5627d0c801c8b84141742828d351e51c48a23c9815ef0368ed451ba7beffc3/result.json",
+      "result_sha256": "31318fb91451da0c9a6887d4b3ec62d76a53cee668bf03d1925c7d6cc0cc7a08"
+    },
+    "e8e8129b87c2f06832faee0e09848df881342b793c0c80509d5840c1cb0ca5c6": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/e8e8129b87c2f06832faee0e09848df881342b793c0c80509d5840c1cb0ca5c6/result.json",
+      "result_sha256": "d7cf532b9dd7299f67b8315bbd16f69490f4e7ee5f0fafa2435c2027e6d29499"
+    },
+    "749a64fd78b211bbb7944a552eb643cbef1e3aa0e57759dd865f706816917fad": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/749a64fd78b211bbb7944a552eb643cbef1e3aa0e57759dd865f706816917fad/result.json",
+      "result_sha256": "805be39a1559fa51114d5b85991b995a1e739aeeaf098c97558266ef70bc88d2"
+    },
+    "7a94733afaf7652c7d1a59f6df5eb071a6172dfe8051a4a6b614b5fa99efcc75": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/7a94733afaf7652c7d1a59f6df5eb071a6172dfe8051a4a6b614b5fa99efcc75/result.json",
+      "result_sha256": "342023713200d39a51e8adb22014cacef252d7f90fa8e8ad689c772d8e684ae8"
+    },
+    "01d1e776eed6e451c2a46eda68d91bd90a275bd44534e6b3354f5bb258841692": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/01d1e776eed6e451c2a46eda68d91bd90a275bd44534e6b3354f5bb258841692/result.json",
+      "result_sha256": "1d92281cbee9735deb2aacee48db0cbf74ac7978a1717d5732964160a637e27b"
+    },
+    "783aa0f2a0f1491bbffd2c9ec9fb5d587f00c57990578c8b37de83e7de81b9e8": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/783aa0f2a0f1491bbffd2c9ec9fb5d587f00c57990578c8b37de83e7de81b9e8/result.json",
+      "result_sha256": "8786acdeacd48c50fb5bfb495bddd5b6b4d797913fc46cbaa83ba3b2bdaa9810"
+    },
+    "15e53676508e5ac71ee64318a3de38ae0f04508187b2da903286543a8892c9bd": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/15e53676508e5ac71ee64318a3de38ae0f04508187b2da903286543a8892c9bd/result.json",
+      "result_sha256": "a2f3b469cf6b7406258ff7ecaeb4807de00d06b2ec8fbec249255c7389e8d144"
+    },
+    "22fbf20282e71764584e64b94ab8dde328b036d0dbbe46b1bd147d0db93dd590": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/22fbf20282e71764584e64b94ab8dde328b036d0dbbe46b1bd147d0db93dd590/result.json",
+      "result_sha256": "5af7fba6d6415a6688cc3952577f094ab5af88db063b6489ca06b9f848048120"
+    },
+    "94693058fad44b3de5545e375946402ac011d00172a9ec6c9157e2130c611e00": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/94693058fad44b3de5545e375946402ac011d00172a9ec6c9157e2130c611e00/result.json",
+      "result_sha256": "7abf3d5c759c99ef0e1aa4ac5b05e6372631b98cb0a227808c33599a7de95b66"
+    },
+    "bb6497851704f7311d063881dc18d58ba4784f69207e23647eb6259ca6b4db94": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/bb6497851704f7311d063881dc18d58ba4784f69207e23647eb6259ca6b4db94/result.json",
+      "result_sha256": "76318cbf8ca20a9e6545bac056c7c97a3e32e22af294cf43f96cf10bef0e6feb"
+    },
+    "b3a30a12b4ee2528b8fc5a5df6997d84af31a52a49925b92e71dc0c181dc32d5": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/b3a30a12b4ee2528b8fc5a5df6997d84af31a52a49925b92e71dc0c181dc32d5/result.json",
+      "result_sha256": "6dc021f98aeb1a2750be893352491823a6c85d0ac631ca73522eb6ddedfef69f"
+    },
+    "acf93a9508eea93afe96f03b894b5273db888b79b66dbde79e787570fa8b90ee": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/acf93a9508eea93afe96f03b894b5273db888b79b66dbde79e787570fa8b90ee/result.json",
+      "result_sha256": "6d8bb516afe3034c3cdd0f59790525a8913cee3dd76f8912a661215a002f4008"
+    },
+    "dd91d894cd881d700d45eb8d20b0331d922426d6acfcf81f25147da4e39402cc": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/dd91d894cd881d700d45eb8d20b0331d922426d6acfcf81f25147da4e39402cc/result.json",
+      "result_sha256": "8fd91b9c215884ed4cbe6ea28a25418cee7d2705a910a8e90898bbdd55d48e1f"
+    },
+    "df27941540f88e7df777c147b77e19e7d6da436a2cf9dc37c8845db21ff6b0f3": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/df27941540f88e7df777c147b77e19e7d6da436a2cf9dc37c8845db21ff6b0f3/result.json",
+      "result_sha256": "ee1deba53920377353b591d44e10ebf00783ee629eb3136f1ba25fdac722f1a5"
+    },
+    "d2dbdab7e6e91e6c6fba4abb2ad4f12188c43b9b8486694b7e16da798eefb402": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/d2dbdab7e6e91e6c6fba4abb2ad4f12188c43b9b8486694b7e16da798eefb402/result.json",
+      "result_sha256": "af8a7e9d35e54c517dba41e62bdc172ba688297349a4c4269a647bd287e5da24"
+    },
+    "d3f8ed8d486da9e16271536c0449f45fd9535f13e9e568e86911914da2a43307": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/d3f8ed8d486da9e16271536c0449f45fd9535f13e9e568e86911914da2a43307/result.json",
+      "result_sha256": "5769c0c0673fa66a152331fe2ba29a1e75c20674cd2fdf29e11e88615976b366"
+    },
+    "49d95e189ea1a504bd0f4e66cc1e1bd25c457e4beabf7af87ff474412f435afe": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/49d95e189ea1a504bd0f4e66cc1e1bd25c457e4beabf7af87ff474412f435afe/result.json",
+      "result_sha256": "238de348c95746a4f30fa7a58209bbe5424343d2968dcb5e3d14cdf7c0c83339"
+    },
+    "70919643bff5c10d5d7d290c209de59fda1d8339d492aa786c73a8caa776b963": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/70919643bff5c10d5d7d290c209de59fda1d8339d492aa786c73a8caa776b963/result.json",
+      "result_sha256": "8ac23dc4e2798ea7e6e2a6e4db5b511ec7cb7fd06eaa2494fd7f0e0e39cdae55"
+    },
+    "13424bb3964be87113b6bc852dce9fd587ba939a668d84024c1c8ed66d69b77a": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/13424bb3964be87113b6bc852dce9fd587ba939a668d84024c1c8ed66d69b77a/result.json",
+      "result_sha256": "1891ce17ce8b5118d490e24ef50954b50f639827503ba618640cab894644c98b"
+    },
+    "e48992ffac109eb44b825628b8162c30c13d4023e976523e397970c589330e18": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/e48992ffac109eb44b825628b8162c30c13d4023e976523e397970c589330e18/result.json",
+      "result_sha256": "751a18fa6b7aa5e858bdc57a5643e98d9cc17ba09eb4c00054b5226f3cc5068d"
+    },
+    "414688d44b26642429b3117f46ceb80a439d6a1a9732976980ccc86eacb76a4e": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/414688d44b26642429b3117f46ceb80a439d6a1a9732976980ccc86eacb76a4e/result.json",
+      "result_sha256": "cd1603295bbe2bed1ce67cb04f98b18ca45134ed075a41fa00b66617f0bc5e72"
+    },
+    "529b2f2f4583ab40584798b5714004e1fde6af0d53365c701da05d59b00f7159": {
+      "status": "completed",
+      "reserved_program_instances": 21,
+      "reserved_solve_passes": 42,
+      "result_path": "evaluations/529b2f2f4583ab40584798b5714004e1fde6af0d53365c701da05d59b00f7159/result.json",
+      "result_sha256": "a65600d13c716a374491bf0b28d8b49d3def524acfd5ccefd84dd967192f9c6a"
+    }
+  },
+  "cursor": 30,
+  "run_clock_sha256": "424c904484b30250ef2a7975cb09bb8bd432dd9da0d6bad02f56685c1c8d383c"
+}

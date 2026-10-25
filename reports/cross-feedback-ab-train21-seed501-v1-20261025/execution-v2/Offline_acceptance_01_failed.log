@@ -1,0 +1,46 @@
+test_A_is_current_template_byte_for_byte (tests.test_cross_feedback_ab.FeedbackTests.test_A_is_current_template_byte_for_byte) ... ok
+test_B_is_only_inserted_fact_block_and_order_unchanged (tests.test_cross_feedback_ab.FeedbackTests.test_B_is_only_inserted_fact_block_and_order_unchanged) ... ok
+test_complete_parent_validation (tests.test_cross_feedback_ab.FeedbackTests.test_complete_parent_validation) ... ok
+test_corrupt_monetary_ledger_fails (tests.test_cross_feedback_ab.FeedbackTests.test_corrupt_monetary_ledger_fails) ... ok
+test_delta_direction_negative_and_equal (tests.test_cross_feedback_ab.FeedbackTests.test_delta_direction_negative_and_equal) ... ok
+test_fee_gate_refuses_engineering_envelope (tests.test_cross_feedback_ab.FeedbackTests.test_fee_gate_refuses_engineering_envelope) ... ok
+test_incomplete_invalid_context_LB_key_and_fitness_fail (tests.test_cross_feedback_ab.FeedbackTests.test_incomplete_invalid_context_LB_key_and_fitness_fail) ... ok
+test_no_fallback_no_init_mutate_no_C (tests.test_cross_feedback_ab.FeedbackTests.test_no_fallback_no_init_mutate_no_C) ... ok
+test_original_init_mutation_unchanged_without_feedback (tests.test_cross_feedback_ab.FeedbackTests.test_original_init_mutation_unchanged_without_feedback) ... ok
+test_plan_five_pairs_three_repeats_and_no_score_input (tests.test_cross_feedback_ab.FeedbackTests.test_plan_five_pairs_three_repeats_and_no_score_input) ... ok
+test_small_pool_shrinks_no_other_source (tests.test_cross_feedback_ab.FeedbackTests.test_small_pool_shrinks_no_other_source) ... ok
+test_unknown_fees_keep_hold_caps_and_no_replay (tests.test_cross_feedback_ab.FeedbackTests.test_unknown_fees_keep_hold_caps_and_no_replay) ... ok
+test_complete_response_never_regenerated_for_bad_source (tests.test_cross_feedback_ab_execute.ExecutionTests.test_complete_response_never_regenerated_for_bad_source) ... ok
+test_deadline_prevents_another_attempt (tests.test_cross_feedback_ab_execute.ExecutionTests.test_deadline_prevents_another_attempt) ... ok
+test_detached_child_survives_launcher_exit (tests.test_cross_feedback_ab_execute.ExecutionTests.test_detached_child_survives_launcher_exit) ... ok
+test_evidenced_transient_retry_only_twice (tests.test_cross_feedback_ab_execute.ExecutionTests.test_evidenced_transient_retry_only_twice) ... ok
+test_formal_worker_uses_same_kernel_two_toy_solves (tests.test_cross_feedback_ab_execute.ExecutionTests.test_formal_worker_uses_same_kernel_two_toy_solves) ... ok
+test_runtime_invalid_requires_normal_exit_identity_not_prefix_score (tests.test_cross_feedback_ab_execute.ExecutionTests.test_runtime_invalid_requires_normal_exit_identity_not_prefix_score) ... ok
+test_same_T30_success_and_identity_protection (tests.test_cross_feedback_ab_execute.ExecutionTests.test_same_T30_success_and_identity_protection) ... ok
+test_two_failures_no_refill_and_global_40_attempt_cap (tests.test_cross_feedback_ab_execute.ExecutionTests.test_two_failures_no_refill_and_global_40_attempt_cap) ... ok
+test_unknown_delivery_preserved_not_resent (tests.test_cross_feedback_ab_execute.ExecutionTests.test_unknown_delivery_preserved_not_resent) ... ok
+test_unknown_evaluation_reservation_stop (tests.test_cross_feedback_ab_execute.ExecutionTests.test_unknown_evaluation_reservation_stop) ... ok
+test_waiver_configuration_keeps_request_caps_no_money_gate (tests.test_cross_feedback_ab_execute.ExecutionTests.test_waiver_configuration_keeps_request_caps_no_money_gate) ... ok
+test_complete_message_wait_includes_blocked_deserialisation (tests.test_baseline_supplemental.T30Tests.test_complete_message_wait_includes_blocked_deserialisation) ... ok
+test_exact_nine_H_identity_and_order (tests.test_baseline_supplemental.T30Tests.test_exact_nine_H_identity_and_order) ... ok
+test_guard_negative_events_without_actual_network_or_data_access (tests.test_baseline_supplemental.T30Tests.test_guard_negative_events_without_actual_network_or_data_access) ... FAIL
+test_historical_inconsistency_and_null_fitness_rejected (tests.test_baseline_supplemental.T30Tests.test_historical_inconsistency_and_null_fitness_rejected) ... ok
+test_identity_terminal_reader_and_late_results_stop (tests.test_baseline_supplemental.T30Tests.test_identity_terminal_reader_and_late_results_stop) ... ok
+test_ledger_reservations_and_no_duplicate_completed_resume (tests.test_baseline_supplemental.T30Tests.test_ledger_reservations_and_no_duplicate_completed_resume) ... ok
+test_real_T30_timeout_termination_and_receiver_unblocks (tests.test_baseline_supplemental.T30Tests.test_real_T30_timeout_termination_and_receiver_unblocks) ... ok
+test_real_spawn_normal_exit_grace (tests.test_baseline_supplemental.T30Tests.test_real_spawn_normal_exit_grace) ... ok
+test_spawn_two_pass_toy_identity_and_frozen_source_detection (tests.test_baseline_supplemental.T30Tests.test_spawn_two_pass_toy_identity_and_frozen_source_detection) ... ok
+test_timeout_cleanup_confirmed_and_no_exit_grace (tests.test_baseline_supplemental.T30Tests.test_timeout_cleanup_confirmed_and_no_exit_grace) ... ok
+
+======================================================================
+FAIL: test_guard_negative_events_without_actual_network_or_data_access (tests.test_baseline_supplemental.T30Tests.test_guard_negative_events_without_actual_network_or_data_access)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tests/test_baseline_supplemental.py", line 150, in test_guard_negative_events_without_actual_network_or_data_access
+    self.assertFalse(any(n in sys.modules for n in ['openai','fjsp_usage.research_real.real_transport']))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 33 tests in 32.267s
+
+FAILED (failures=1)

@@ -1,0 +1,154 @@
+{
+  "phase": "completed",
+  "completed_tasks": 30,
+  "groups": {
+    "A": {
+      "planned": 15,
+      "started": 15,
+      "complete_responses": 14,
+      "code_admissible": 14,
+      "certified_valid": 14,
+      "valid_per_planned": 0.9333333333333333,
+      "valid_per_response": 1.0,
+      "strictly_better_parent": 2,
+      "improvement_per_planned": 0.13333333333333333,
+      "improvement_per_valid": 0.14285714285714285,
+      "quality": {
+        "n": 14,
+        "mean": -2.306911976151686,
+        "median": -2.402747901582523,
+        "min": -2.5270363059129246,
+        "max": -2.1137659187732476
+      },
+      "statuses": {
+        "evaluated": 14,
+        "transport_failed": 1
+      },
+      "best": {
+        "task_id": "pair_01_r2_A",
+        "pair_id": "pair_01",
+        "repeat_id": 2,
+        "condition": "A",
+        "dispatch_position": 22,
+        "parent_1": "B/init/000006",
+        "parent_2": "B/init/000001",
+        "better_parent_fitness": -2.115159624699559,
+        "status": "evaluated",
+        "complete_response": true,
+        "code_admissible": true,
+        "attempts": 1,
+        "candidate_key": "df27941540f88e7df777c147b77e19e7d6da436a2cf9dc37c8845db21ff6b0f3",
+        "certified_valid": true,
+        "fitness": -2.1137659187732476,
+        "delta_vs_better_parent": 0.0013937059263113838,
+        "strictly_better_parent": true,
+        "evaluation_error": null,
+        "clock_quarantined": false
+      }
+    },
+    "B": {
+      "planned": 15,
+      "started": 15,
+      "complete_responses": 15,
+      "code_admissible": 15,
+      "certified_valid": 15,
+      "valid_per_planned": 1.0,
+      "valid_per_response": 1.0,
+      "strictly_better_parent": 0,
+      "improvement_per_planned": 0.0,
+      "improvement_per_valid": 0.0,
+      "quality": {
+        "n": 15,
+        "mean": -2.3448307678395333,
+        "median": -2.41347366900118,
+        "min": -2.566569825230469,
+        "max": -2.1155736724614753
+      },
+      "statuses": {
+        "evaluated": 15
+      },
+      "best": {
+        "task_id": "pair_01_r2_B",
+        "pair_id": "pair_01",
+        "repeat_id": 2,
+        "condition": "B",
+        "dispatch_position": 21,
+        "parent_1": "B/init/000006",
+        "parent_2": "B/init/000001",
+        "better_parent_fitness": -2.115159624699559,
+        "status": "evaluated",
+        "complete_response": true,
+        "code_admissible": true,
+        "attempts": 1,
+        "candidate_key": "dd91d894cd881d700d45eb8d20b0331d922426d6acfcf81f25147da4e39402cc",
+        "certified_valid": true,
+        "fitness": -2.1155736724614753,
+        "delta_vs_better_parent": -0.0004140477619163363,
+        "strictly_better_parent": false,
+        "evaluation_error": null,
+        "clock_quarantined": false
+      }
+    }
+  },
+  "pair_comparisons": [
+    {
+      "pair_id": "pair_01",
+      "A_n": 3,
+      "B_n": 3,
+      "B_minus_A_mean": 0.0036925350808862945,
+      "B_minus_A_median": 0.006630500301386455
+    },
+    {
+      "pair_id": "pair_02",
+      "A_n": 3,
+      "B_n": 3,
+      "B_minus_A_mean": -0.01853213981104096,
+      "B_minus_A_median": -0.0209058906753099
+    },
+    {
+      "pair_id": "pair_03",
+      "A_n": 2,
+      "B_n": 3,
+      "B_minus_A_mean": 0.0,
+      "B_minus_A_median": 0.0
+    },
+    {
+      "pair_id": "pair_04",
+      "A_n": 3,
+      "B_n": 3,
+      "B_minus_A_mean": -0.06969340313643047,
+      "B_minus_A_median": -0.02635455363949024
+    },
+    {
+      "pair_id": "pair_05",
+      "A_n": 3,
+      "B_n": 3,
+      "B_minus_A_mean": -0.031686173985571386,
+      "B_minus_A_median": 0.015655311975390163
+    }
+  ],
+  "cost": {
+    "attempts": 30,
+    "retries": 0,
+    "known_wire_input_tokens": 219576,
+    "known_wire_output_tokens": 34434,
+    "unknown_usage_attempts": 1,
+    "matched_invoice_count": 1,
+    "matched_invoice_points": 0,
+    "unmatched_fee_attempts": 29,
+    "actual_CNY": null,
+    "unmatched_cost_CNY": null,
+    "notice": "monetary uncertainty explicitly authorized; no historical hold released"
+  },
+  "new_unique_evaluations": 29,
+  "new_program_instances_reserved": 609,
+  "solve_passes_reserved": 1218,
+  "solve_passes_started": 1218,
+  "complete_physical_schedule_groups": 21,
+  "certified_solve_recheck_seconds": 690.0136028162669,
+  "evaluation_primary_seconds": 707.7816398363793,
+  "wall_seconds": 1580.0688347816467,
+  "base_protocol_sha256": "f5f4d1e15ec61be1433b347c95778bb848869bd72c19101f4e1eb0d771aec635",
+  "execution_binding_sha256": "f90c36f27befa06ccfff1ff3309057cb5653e6907017a3cae573f5e2ab0fe5c0",
+  "limitations": "5 fixed historical parent contexts; 3 correlated generations per arm/context; no multi-generation or generalization inference"
+}

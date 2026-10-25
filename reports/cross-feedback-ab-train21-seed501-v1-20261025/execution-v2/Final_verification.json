@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "certified_programs": 29,
+  "certified_instances": 609,
+  "solve_passes_started": 1218,
+  "normal_exit0_and_identity_all": true,
+  "pending_requests": 0,
+  "unknown_evaluation_reservations": 0,
+  "clock_quarantines": 0,
+  "original_tasks_and_prompts_unchanged": true,
+  "API_attempts": 30,
+  "retries": 0,
+  "paired_complete_units": 14,
+  "paired_signs": {
+    "B_win": 4,
+    "B_loss": 8,
+    "tie": 2
+  },
+  "paired_mean_B_minus_A": -0.024904110396890618,
+  "raw_points_reconciled": 126555
+}
