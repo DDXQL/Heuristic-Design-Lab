@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "tests": 14,
+  "failures": 0,
+  "errors": 0,
+  "files": {
+    "tools/h01_progress_baseline.py": "0f4e0eb8fe96eb37388a2cede0a77af5111634d0f5177aef671a8809fc912644",
+    "tools/h01_progress_report.py": "3fa1c15889c0e1b65fb957dd357d084b6f7bd490c8baa4248ebd3d48e4d2b114",
+    "tests/test_h01_progress_baseline.py": "2f5e6a42dfb39c8e7118952fdf69b7a9407e65ee16af4e3b47187736e088e760",
+    "docs/H01_PROGRESS_STEP_PROTOCOL_V1.md": "660367323f579f3b39284682a8dafd52f833ffe97b12a9da4dd39375cf47f0b4"
+  },
+  "formal_solves": 0,
+  "API": 0,
+  "scope": "pure output/boundary checks, toy V1 equivalence, existing T30 synthetic lifecycle tests"
+}

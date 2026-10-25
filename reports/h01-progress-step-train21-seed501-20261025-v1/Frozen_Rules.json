@@ -1,0 +1,317 @@
+[
+  {
+    "id": "STATIC_a000",
+    "tau": null,
+    "alpha_before": 0.0,
+    "alpha_after": 0.0,
+    "dynamic": false,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "2816b4549637e07b6d56daf0dc223a3268a183e0ca2e61e16becd2e201c1ad29",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "STATIC_a050",
+    "tau": null,
+    "alpha_before": 0.5,
+    "alpha_after": 0.5,
+    "dynamic": false,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "54d146570761527861b5b491dadc87df3846a3358504c2b856e2eed5f4cddac3",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "STATIC_a100",
+    "tau": null,
+    "alpha_before": 1.0,
+    "alpha_after": 1.0,
+    "dynamic": false,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "292edb8c06cc701d2ebe672f1b4a7ca83b639f9604899b21781984091147e2f0",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a000_b050",
+    "tau": 0.25,
+    "alpha_before": 0.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 0.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "1832cb4756bb664d7a96c6a300dfde606fbd9db0b2583b24662873ffcb9508f7",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a000_b100",
+    "tau": 0.25,
+    "alpha_before": 0.0,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 0.0\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "f7fa52d48090572a9e488cca72c3567051d836731ce68d793e9689c6ff164272",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a050_b000",
+    "tau": 0.25,
+    "alpha_before": 0.5,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 0.5\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "12aff6fefdafc7648060a8ed6dff57c157d66509cf1ab3b44397abb9b4bc302d",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a050_b100",
+    "tau": 0.25,
+    "alpha_before": 0.5,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 0.5\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "3102372ff0470d1d10f9fc0fdaea946edae8924cc61e9eec227e5a9534b3a244",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a100_b000",
+    "tau": 0.25,
+    "alpha_before": 1.0,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 1.0\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "31eafe8acfbf50350a00116df1fe29c53e5200aab2be8a299f6845c6bff29ddc",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T25_a100_b050",
+    "tau": 0.25,
+    "alpha_before": 1.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.25:\n        alpha = 1.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "49b3fee99fbf48129ca040bdde1acdedacfd706cc77aac32dd689e2186468385",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a000_b050",
+    "tau": 0.5,
+    "alpha_before": 0.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 0.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "0d4c3e3c8cf56de5077fa57ade9d0ecdca32c9c54ce9cb7ee2c57fd1014e5aa6",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a000_b100",
+    "tau": 0.5,
+    "alpha_before": 0.0,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 0.0\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "8d420245a3d484c1e68ce10238b4f02d7a10ac895a6234812043b612db9478e8",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a050_b000",
+    "tau": 0.5,
+    "alpha_before": 0.5,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 0.5\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "6797cbece742b656e9da5c219d10abf71193f3a796c3e465effd3b3956d4c1de",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a050_b100",
+    "tau": 0.5,
+    "alpha_before": 0.5,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 0.5\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "344e3fe22f2ed26ff8c08a1f8bf1309dd07494f8c96e8b5d34f15207b456721a",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a100_b000",
+    "tau": 0.5,
+    "alpha_before": 1.0,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 1.0\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "a4a7bce9883f35d6d9891df57ccc7c3b56c7591c755b93ce85ec41923263c8d9",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T50_a100_b050",
+    "tau": 0.5,
+    "alpha_before": 1.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.5:\n        alpha = 1.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "3261553dba09cba26bda81b311a444de17683b7b4c61044a41bdbe93d1864f8d",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a000_b050",
+    "tau": 0.75,
+    "alpha_before": 0.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 0.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "74096cf8e319e10233923464b523a438d0a3bb6e8ab8c95086e6fe244aa5b30f",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a000_b100",
+    "tau": 0.75,
+    "alpha_before": 0.0,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 0.0\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "19e73ea6946126940de7c7bff6d729cb9d63b5e5d77130631b0133e187d9d9d1",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a050_b000",
+    "tau": 0.75,
+    "alpha_before": 0.5,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 0.5\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "b109203e4a41d6a7d134e8b4f74043eac248c8b4d24083327ec54cb06609ea64",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a050_b100",
+    "tau": 0.75,
+    "alpha_before": 0.5,
+    "alpha_after": 1.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 0.5\n    else:\n        alpha = 1.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "78ab94ac7546941f28aad0c122c4fb47410f53ed942b90730c7b67058be0c647",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a100_b000",
+    "tau": 0.75,
+    "alpha_before": 1.0,
+    "alpha_after": 0.0,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 1.0\n    else:\n        alpha = 0.0\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "310bbf7d63dc3b14b51871162b57d89e630d7c3f3651d81c06cde6f85c383812",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  },
+  {
+    "id": "T75_a100_b050",
+    "tau": 0.75,
+    "alpha_before": 1.0,
+    "alpha_after": 0.5,
+    "dynamic": true,
+    "candidate": {
+      "description": "Frozen progress-step baseline",
+      "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if progress < 0.75:\n        alpha = 1.0\n    else:\n        alpha = 0.5\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+      "key": "2e91d27256bb4dae6bd803d478170c92ae7d0905f798b800ff6500ec3c34ee2e",
+      "kind": "U",
+      "interface_version": "U-usage-v2-select-or-mix-20261012",
+      "member_count": 10
+    }
+  }
+]

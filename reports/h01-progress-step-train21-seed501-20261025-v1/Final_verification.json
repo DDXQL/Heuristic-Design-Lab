@@ -1,0 +1,211 @@
+{
+  "passed": true,
+  "phase": "completed",
+  "complete_family": true,
+  "new_count": 19,
+  "reserved_instances": 399,
+  "reserved_solves": 798,
+  "lifecycle": [
+    {
+      "id": "STATIC_a000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.119981806736931
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a000_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.017284898933643
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a000_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0815336091026215
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a050_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.081205925751098
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a050_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0885462748524786
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a100_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0891260041662383
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T25_a100_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0335674374982475
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a000_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0445668509848027
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a000_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0880503182042864
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a050_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0521163818361563
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a050_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0282431748178276
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a100_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.1038592720626323
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T50_a100_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.097330472764433
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a000_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.068718751827991
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a000_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0836001268412656
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a050_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.0213080065368407
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a050_b100",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -1.9909095332825746
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a100_b000",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.131409217182829
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    },
+    {
+      "id": "T75_a100_b050",
+      "boundary": {
+        "decision": "accepted",
+        "reason": "complete_T30_identity_exit0",
+        "fitness": -2.1227368784221876
+      },
+      "normal_exitcode": 0,
+      "receiver_stopped": true
+    }
+  ],
+  "dynamic_instance_behavior_rows": 378,
+  "dynamic_first_U_calls": 68400,
+  "scientific_and_protected_files_unchanged": true,
+  "API": 0,
+  "network_guard": {
+    "network_attempts_blocked": 0,
+    "nontrain_opens_blocked": 0
+  },
+  "cache_H0_and_equal_reused": true,
+  "new_H1_matches_legacy_quality": true,
+  "protocol_sha256": "58037e81870b895a20ec91e9cdc3b06ab5b90b9bcf824820258fbf8a079e45d5"
+}

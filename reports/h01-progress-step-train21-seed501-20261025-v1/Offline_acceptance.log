@@ -1,0 +1,19 @@
+test_actual_worker_observation_is_passive (tests.test_h01_progress_baseline.RuleTests.test_actual_worker_observation_is_passive) ... ok
+test_boundaries_weight_direction_and_legal_endpoints (tests.test_h01_progress_baseline.RuleTests.test_boundaries_weight_direction_and_legal_endpoints) ... ok
+test_detached_launcher_keeps_files_and_no_implicit_relaunch (tests.test_h01_progress_baseline.RuleTests.test_detached_launcher_keeps_files_and_no_implicit_relaunch) ... ok
+test_family_and_aliases (tests.test_h01_progress_baseline.RuleTests.test_family_and_aliases) ... ok
+test_new_worker_identity_observation_and_normal_exit (tests.test_h01_progress_baseline.RuleTests.test_new_worker_identity_observation_and_normal_exit) ... ok
+test_progress_is_committed_operation_fraction (tests.test_h01_progress_baseline.RuleTests.test_progress_is_committed_operation_fraction) ... ok
+test_static_endpoints_and_equal_v1_regression (tests.test_h01_progress_baseline.RuleTests.test_static_endpoints_and_equal_v1_regression) ... ok
+test_unknown_reservation_budget_and_identity_rejected (tests.test_h01_progress_baseline.RuleTests.test_unknown_reservation_budget_and_identity_rejected) ... ok
+test_complete_message_wait_includes_blocked_deserialisation (tests.test_baseline_supplemental.T30Tests.test_complete_message_wait_includes_blocked_deserialisation) ... ok
+test_real_spawn_normal_exit_grace (tests.test_baseline_supplemental.T30Tests.test_real_spawn_normal_exit_grace) ... ok
+test_real_T30_timeout_termination_and_receiver_unblocks (tests.test_baseline_supplemental.T30Tests.test_real_T30_timeout_termination_and_receiver_unblocks) ... ok
+test_timeout_cleanup_confirmed_and_no_exit_grace (tests.test_baseline_supplemental.T30Tests.test_timeout_cleanup_confirmed_and_no_exit_grace) ... ok
+test_identity_terminal_reader_and_late_results_stop (tests.test_baseline_supplemental.T30Tests.test_identity_terminal_reader_and_late_results_stop) ... ok
+test_guard_negative_events_without_actual_network_or_data_access (tests.test_baseline_supplemental.T30Tests.test_guard_negative_events_without_actual_network_or_data_access) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 31.689s
+
+OK

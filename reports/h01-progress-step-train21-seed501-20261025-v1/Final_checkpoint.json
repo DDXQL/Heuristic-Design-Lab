@@ -1,0 +1,175 @@
+{
+  "protocol_sha256": "58037e81870b895a20ec91e9cdc3b06ab5b90b9bcf824820258fbf8a079e45d5",
+  "phase": "completed",
+  "strategies": {
+    "STATIC_a050": {
+      "status": "completed",
+      "origin": "cache",
+      "result_path": "cache/STATIC_a050.json",
+      "result_sha256": "05b4b4bca6dd9107a05e0bd9f1cbc261c7e5fee7faa79bb4e9f7826d2ce07686",
+      "reserved_instances": 0,
+      "reserved_solves": 0
+    },
+    "STATIC_a100": {
+      "status": "completed",
+      "origin": "cache",
+      "result_path": "cache/STATIC_a100.json",
+      "result_sha256": "710c8e9ff21c97b8f304e83cf18a176c1e5c4b37ee483d7331e5517a3d41c085",
+      "reserved_instances": 0,
+      "reserved_solves": 0
+    },
+    "STATIC_a000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/STATIC_a000/result.json",
+      "result_sha256": "e8bbd4400417461ae3bd23e0ebc4c54af559bd7aaa1631492ce8d7b18925ada0"
+    },
+    "T25_a000_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a000_b050/result.json",
+      "result_sha256": "893d0e7963f0dbb7058a8b7f367d9cda4d2c24245c83859184b9278d79db413c"
+    },
+    "T25_a000_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a000_b100/result.json",
+      "result_sha256": "fa7e434daf369ecb55e16ef3b076f4853c3fcb7f863bb231ff4612aa744fd748"
+    },
+    "T25_a050_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a050_b000/result.json",
+      "result_sha256": "d49f66d4878115e5d775af955b5c19e5ccd40515754787302daa992f28884b6e"
+    },
+    "T25_a050_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a050_b100/result.json",
+      "result_sha256": "745e3119099135013259fe92b1fe545ea7adb6b0d13c4fea9568c57bfdedabe8"
+    },
+    "T25_a100_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a100_b000/result.json",
+      "result_sha256": "7942003ce191a33796e1573c16d44b2eac5d2a864748e369a95c75cc1f933256"
+    },
+    "T25_a100_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T25_a100_b050/result.json",
+      "result_sha256": "8ddc78530279fc79b20f810664ba90dec2e9f04a25cc162361a90e4380e421f4"
+    },
+    "T50_a000_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a000_b050/result.json",
+      "result_sha256": "768a8ec5e3b555afd8ef7aa573711ec47aadd565951775a11ac86681f012fd60"
+    },
+    "T50_a000_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a000_b100/result.json",
+      "result_sha256": "5e0aeba7f93f7a7f0e445bf4e129df6f4f9131d874abd85fb97eb02f3c81376c"
+    },
+    "T50_a050_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a050_b000/result.json",
+      "result_sha256": "f8b86f582b4579eb9a8eed4aabfcb8a515e768786eb5f62987d8aedee24f9bf1"
+    },
+    "T50_a050_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a050_b100/result.json",
+      "result_sha256": "9bef6c6f81f57c5d9815e6b03144a90575ca21f817c2433d3bc5bffb94d052f5"
+    },
+    "T50_a100_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a100_b000/result.json",
+      "result_sha256": "a62b0b550679639477710855ce0d42fee854db2edf9ce4bad0fa3d1ebeb1d304"
+    },
+    "T50_a100_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T50_a100_b050/result.json",
+      "result_sha256": "077aa5100d3d929fc3d676977a32d23170b6a9e0605a889e0263af781f97e615"
+    },
+    "T75_a000_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a000_b050/result.json",
+      "result_sha256": "107777aeb44fab88ddae0a7ec0a20288b87f6e875aceb70ae097f40d1149bfe9"
+    },
+    "T75_a000_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a000_b100/result.json",
+      "result_sha256": "537269de37f1256852139ca545775c6adfdaf57186d1175be685c819fb048977"
+    },
+    "T75_a050_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a050_b000/result.json",
+      "result_sha256": "17de3284076bc1c3023a419a78af0c526d7950784d329dc821803071b71d2a83"
+    },
+    "T75_a050_b100": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a050_b100/result.json",
+      "result_sha256": "1c78b930b9603eb35017598d7b9950bc2e046af446df9c3e3685435416635a60"
+    },
+    "T75_a100_b000": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a100_b000/result.json",
+      "result_sha256": "43a52d5554042ee706fa073c489417e6a811c483fc31ac199982a153d5da0b2d"
+    },
+    "T75_a100_b050": {
+      "status": "completed",
+      "origin": "new",
+      "reserved_instances": 21,
+      "reserved_solves": 42,
+      "result_path": "evidence/T75_a100_b050/result.json",
+      "result_sha256": "ec2890f0764218cac7b4733d58f38798260021b565b7e4c12892946f1d98316c"
+    }
+  },
+  "clock_sha256": "5d4d27bb72944af3c994da5a27ae173b377d14b5ffcd95f14bfba5031797b0b7"
+}
