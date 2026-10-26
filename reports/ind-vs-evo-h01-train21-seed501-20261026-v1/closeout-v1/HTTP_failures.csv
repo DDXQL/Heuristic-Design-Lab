@@ -1,0 +1,10 @@
+repeat,arm,task_id,attempt_id,HTTP_status,error_type,at_manila
+1,IND,r1_IND_s18,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s18/attempt/01,503,TransportError,2026-10-26T10:11:17.620957+08:00
+1,IND,r1_IND_s18,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s18/attempt/02,503,TransportError,2026-10-26T10:11:21.468791+08:00
+1,IND,r1_IND_s19,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s19/attempt/01,503,TransportError,2026-10-26T10:11:25.114514+08:00
+1,IND,r1_IND_s19,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s19/attempt/02,503,TransportError,2026-10-26T10:11:29.344435+08:00
+1,EVO,r1_EVO_s19,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_EVO/r1_EVO_s19/attempt/01,503,TransportError,2026-10-26T10:11:05.953012+08:00
+1,EVO,r1_EVO_s19,ind-vs-evo-h01-train21-seed501-20261026-v1/r1_EVO/r1_EVO_s19/attempt/02,503,TransportError,2026-10-26T10:11:09.938445+08:00
+2,IND,r2_IND_s18,ind-vs-evo-h01-train21-seed501-20261026-v1/r2_IND/r2_IND_s18/attempt/01,503,TransportError,2026-10-26T10:28:17.499676+08:00
+2,IND,r2_IND_s18,ind-vs-evo-h01-train21-seed501-20261026-v1/r2_IND/r2_IND_s18/attempt/02,503,TransportError,2026-10-26T10:28:21.906081+08:00
+2,EVO,r2_EVO_s02,ind-vs-evo-h01-train21-seed501-20261026-v1/r2_EVO/r2_EVO_s02/attempt/01,524,TransportError,2026-10-26T00:25:28.287756+08:00

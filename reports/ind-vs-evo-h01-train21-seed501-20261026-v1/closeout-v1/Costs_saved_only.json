@@ -1,0 +1,57 @@
+{
+  "arms": {
+    "IND": {
+      "complete_repeats": 1,
+      "improved_repeats": 0,
+      "complete_responses": 54,
+      "certified_candidates": 54,
+      "novel_valid_admitted": 54,
+      "AST_duplicates": 0,
+      "outcomes": {
+        "valid": 54,
+        "transport_failed": 3,
+        "null": 3
+      },
+      "API_attempts": 60,
+      "known_input_tokens": 107460,
+      "known_output_tokens": 82371,
+      "unknown_usage_attempts": 6,
+      "associated_points": 243494,
+      "unknown_invoice_attempts": 6,
+      "new_physical_evaluations": 53,
+      "physical_solve_starts": 2226,
+      "known_first_seconds": 586.3604878602782,
+      "known_recheck_seconds": 587.4392390610883,
+      "physical_primary_seconds": 1220.344365917379
+    },
+    "EVO": {
+      "complete_repeats": 1,
+      "improved_repeats": 2,
+      "complete_responses": 54,
+      "certified_candidates": 53,
+      "novel_valid_admitted": 53,
+      "AST_duplicates": 0,
+      "outcomes": {
+        "valid": 53,
+        "invalid_evaluation": 1,
+        "transport_failed": 2,
+        "null": 4
+      },
+      "API_attempts": 57,
+      "known_input_tokens": 183451,
+      "known_output_tokens": 58113,
+      "unknown_usage_attempts": 3,
+      "associated_points": 205216,
+      "unknown_invoice_attempts": 2,
+      "new_physical_evaluations": 54,
+      "physical_solve_starts": 2268,
+      "known_first_seconds": 618.8917861084919,
+      "known_recheck_seconds": 620.8019758777227,
+      "physical_primary_seconds": 1317.386220460874
+    }
+  },
+  "association": "Platform points matched by existing token/time heuristic, not verified request-ID invoices.",
+  "CNY": null,
+  "new_account_or_billing_queries": 0,
+  "candidate_active_seconds": 4728.475008964539
+}

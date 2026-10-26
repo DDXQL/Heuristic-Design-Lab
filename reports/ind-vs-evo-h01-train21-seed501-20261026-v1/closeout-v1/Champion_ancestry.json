@@ -1,0 +1,72 @@
+[
+  {
+    "task_id": "r1_EVO_s07",
+    "parents": [
+      "MANUAL/init/alpha_050"
+    ],
+    "repeat": 1,
+    "parent_generated_tasks_in_same_repeat": [],
+    "present_in_saved_populations": [
+      "P1",
+      "P2"
+    ],
+    "used_as_parent_tasks": [
+      {
+        "task_id": "r1_EVO_s10",
+        "operator": "CROSS",
+        "fitness": -2.00392570613351
+      },
+      {
+        "task_id": "r1_EVO_s11",
+        "operator": "CROSS",
+        "fitness": -1.9816667246452457
+      },
+      {
+        "task_id": "r1_EVO_s12",
+        "operator": "CROSS",
+        "fitness": -1.9863534270725056
+      },
+      {
+        "task_id": "r1_EVO_s13",
+        "operator": "CROSS",
+        "fitness": -1.9772146566140276
+      },
+      {
+        "task_id": "r1_EVO_s14",
+        "operator": "CROSS",
+        "fitness": -1.9843155624441542
+      },
+      {
+        "task_id": "r1_EVO_s15",
+        "operator": "MUTATE",
+        "fitness": -1.9767472734126394
+      },
+      {
+        "task_id": "r1_EVO_s18",
+        "operator": "MUTATE",
+        "fitness": -1.9767472734126394
+      }
+    ],
+    "strictly_better_descendants_among_direct_children": [],
+    "generation_update_complete": true
+  },
+  {
+    "task_id": "r2_EVO_s16",
+    "parents": [
+      "B/g0000/000004"
+    ],
+    "repeat": 2,
+    "parent_generated_tasks_in_same_repeat": [
+      {
+        "task_id": "r2_EVO_s04",
+        "source_id": "B/g0000/000004",
+        "AST_key": "81127cfd2860570123e0d408cfcc8db3fce5e0b8930170f099a801f6ebc759ea",
+        "fitness": -2.0109048515811074
+      }
+    ],
+    "present_in_saved_populations": [],
+    "used_as_parent_tasks": [],
+    "strictly_better_descendants_among_direct_children": [],
+    "generation_update_complete": false
+  }
+]

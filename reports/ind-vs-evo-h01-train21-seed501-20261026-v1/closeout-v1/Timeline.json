@@ -1,0 +1,50 @@
+[
+  {
+    "phase": "initial",
+    "start": "2026-10-26T00:09:28.074371+08:00",
+    "deadline": "2026-10-26T06:09:28.074371+08:00",
+    "end_receipt": "2026-10-26T09:47:58.395268+08:00",
+    "end_cursor": 109,
+    "end_phase": "deadline_partial",
+    "stop": null,
+    "notice": null
+  },
+  {
+    "phase": "continuation",
+    "start": "2026-10-26T10:10:59.666604+08:00",
+    "deadline": "2026-10-26T12:10:59.666604+08:00",
+    "end_receipt": "2026-10-26T10:11:35.615929+08:00",
+    "end_cursor": 112,
+    "end_phase": "continuation_stopped",
+    "stop": {
+      "error_type": "BudgetStop",
+      "error": "three consecutive failed logical transports; API unavailable",
+      "at": {
+        "wall": 1792980691.265675,
+        "monotonic": 735244.045353,
+        "CPU": 9.378408
+      },
+      "automatic_retry": false
+    },
+    "notice": null
+  },
+  {
+    "phase": "recovery",
+    "start": "2026-10-26T10:10:59.666604+08:00",
+    "deadline": "2026-10-26T12:10:59.666604+08:00",
+    "end_receipt": "2026-10-26T10:28:29.868037+08:00",
+    "end_cursor": 113,
+    "end_phase": "recovery_stopped",
+    "stop": {
+      "error_type": "BudgetStop",
+      "error": "three consecutive failed logical transports; API unavailable",
+      "at": {
+        "wall": 1792981704.208501,
+        "monotonic": 736257.002423875,
+        "CPU": 4.556993
+      },
+      "automatic_retry": false
+    },
+    "notice": "Recovery uses continuation clock, not a new window"
+  }
+]

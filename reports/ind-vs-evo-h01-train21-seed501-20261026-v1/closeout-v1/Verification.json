@@ -1,0 +1,767 @@
+{
+  "passed": true,
+  "real_API_calls": 0,
+  "new_solves": 0,
+  "unknown_requests": 0,
+  "unknown_evaluations": 0,
+  "original_primary_files_verified_unchanged": 3438,
+  "original_report_files_verified_unchanged": 184,
+  "new_result_certifications_replayed": [
+    {
+      "key": "565764f9ae258bcca6d09623a0c1e25835c55a886fdc2570d4cb7828b1da3aca",
+      "owner": "r2_IND_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "50045412714b37d00ae2a9567a22afbf279257d80c4372a4fd038fd155c4699e",
+      "owner": "r2_IND_s01",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "c61ba629f51d79d9a5eaa03ba3d72c78ae92ec300dd76fe7d7ee16c2d87f31a4",
+      "owner": "r2_EVO_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f077247648c38841c31c3902f2e43007b00fdfde55f81ef9609633016884928e",
+      "owner": "r2_EVO_s01",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "54d146570761527861b5b491dadc87df3846a3358504c2b856e2eed5f4cddac3",
+      "owner": "r1_IND_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "0fc7ce06c234463600d6da3e6a6b0803edd71358b5d13336c80976206e179309",
+      "owner": "r1_IND_s01",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1bb905120e1ffce8ba46044269ff233f0d509cd1e9f469d2d9d70cf1947d76b5",
+      "owner": "r1_EVO_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f0f5760b1d1fa1852c55621673be08650f3a4bae04b48e6f18bd6ec707da6242",
+      "owner": "r1_EVO_s01",
+      "valid": false,
+      "decision": "candidate_invalid_continue",
+      "reason": "confirmed_T30_timeout_termination"
+    },
+    {
+      "key": "5a172e3ec426dceefb2bea63e5b54c3f0cc0ac39c5939208282fcd882bcfb3a4",
+      "owner": "r3_IND_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "05c1f33b2fa9eade7a973129cdcc93be6f3cd89092dad3973f282a7739766a45",
+      "owner": "r3_IND_s01",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "cba47d3b2ce5e36a6cee2da441a37c32696c2168e088bddbad0682490a0f0801",
+      "owner": "r3_EVO_s00",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1374e64fdd28a625c06f428642e62d2b8c254907fc465a37f8ff6522aff91bb3",
+      "owner": "r3_EVO_s01",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "25e61b3e9e0e69585777376dbfcf570a98e954355c42a6cba668be4b3f6ae435",
+      "owner": "r3_IND_s02",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "110e8c11ba476b3f650988c3246d87081173df4b4c45ffff9447685ddac69a65",
+      "owner": "r3_IND_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "45fdecacd5266ab80691ae6f099ec8697d72163b0977554fcd1b3b184ca6b970",
+      "owner": "r3_EVO_s02",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "3d21872b1e7ddd17ed9d5fe55e1e3d309db0539ca6b497193a359483e1840022",
+      "owner": "r3_EVO_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "e96b7ad6c0f2601b2dafc7b7dee6e3aa9f8c04be9ab17a8830a8431609dd6d54",
+      "owner": "r1_IND_s02",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "4a59a15bba2674c5e8133f3fd42c98e3a8a12cea9fd80eb781603dd2be2fa50b",
+      "owner": "r1_IND_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ffe01956450abce1254b25a65211af76978a8f9b751e5817b14ea4c482374f3d",
+      "owner": "r1_EVO_s02",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "4daa14c6a37d469a43c4d0626a74aa37948c540250d0a32b7815c3cbca16cb98",
+      "owner": "r1_EVO_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "df08ca34601bbae237b05c812825ceedfe70970d670d99323fff2333cbe19082",
+      "owner": "r2_EVO_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "349f0ceed223d2e8bd7e5af8cc4a9173f2493604c085554c3eb01dc9aed3eb36",
+      "owner": "r2_IND_s02",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "4a3b1a08f06c36d65c98d50a83ce611c18e91fc415ab8f72b1bbbcc6a288b66e",
+      "owner": "r2_IND_s03",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "81127cfd2860570123e0d408cfcc8db3fce5e0b8930170f099a801f6ebc759ea",
+      "owner": "r2_EVO_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ae546a8e76c76ecc5538f9dfd0566039dbe89a14942b42ff22dd77584d9eeb9b",
+      "owner": "r2_EVO_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "0597059cdd048abdc3968c009257db93d6b51918ddba7a01527d8f1053db2360",
+      "owner": "r2_IND_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "29dec0bfdbd3a9461359d97361749f5d1eed71cf48b17487fd0a7687c935d4e7",
+      "owner": "r2_IND_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6d43b8ca9923e921fb8dccdf341a27894a11f3aae43981adaa15325018edd3e7",
+      "owner": "r1_IND_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6532a61a671aa5e3dc4cdbb7c2b552a9991746040cda1b28b0549a0027116618",
+      "owner": "r1_IND_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "0791e4c0fb86f7ef461afcb0bd42d5a03eedd6986e4281b44a644ef649e14ca1",
+      "owner": "r1_EVO_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ab825956315a6c266a564b75287c2400095f201de1ac750cda4062934ac3a8fb",
+      "owner": "r1_EVO_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "7e47df6423785cca276c7e1dc24ad0087cf98bebbb302795c1dafabd3b8dce44",
+      "owner": "r3_EVO_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "cdaf5507ade15a53087aba6790e45c8d19707e19a56d596380ad52b21c8d5d5f",
+      "owner": "r3_EVO_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "53f87fb2ee042d63c6df1c1ea7408fbd927e5474aaace4c2abc8b4644ee14e4a",
+      "owner": "r3_IND_s04",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "fab78757a45301023e69401ec3bf7b2e5b7e0c9ccf7ab15dc607be8b984c4fee",
+      "owner": "r3_IND_s05",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "d1edf09733d398e0da37ddc722647f3c7300228b5a68a3cf9256be41dab1755d",
+      "owner": "r2_IND_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "8d7585f9779f6d53c22d1ffa06d1252625f5fa72aaad14ea8a45867aaecf1dbc",
+      "owner": "r2_IND_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f0ce00b7e2ab1cd6243b6cbb806a40415c087a23e06ed78564011dce50a8868c",
+      "owner": "r2_EVO_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "d3ced9e0f2c178c3022df39bc40f38e1331c0b0a3d40aebe841c45440bd685d3",
+      "owner": "r2_EVO_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "12705c6c394ed8b32d50e20cb228c6c537f8226dd56703726d46892f31578ee1",
+      "owner": "r3_IND_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "40d87078c242f64a94c15f7f3a595e4b7c5ebbeb6f7c76fe1933ffaa71e0b041",
+      "owner": "r3_IND_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "5fea646f38680108bd9d216834fd2ae99294f29f5ee4bb4162e307baded2750c",
+      "owner": "r3_EVO_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "02c9a1d8186c2110b752c457c8cba6221b6a2c13a8672e7b7ed02448d9e5c70f",
+      "owner": "r3_EVO_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "52c15231fae0927ae428f575f6cbbaf0e76c183eba10cb5ff88b72d9e6627152",
+      "owner": "r1_EVO_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "bc4d4aa8c830b57256324ab7020020d4882c664fd8a9a20376f456a98d9c70ec",
+      "owner": "r1_EVO_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "b67028406c4b2b3576515132838eea265c75b323ac485db5a97e3d74fa4253ca",
+      "owner": "r1_IND_s06",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "82d72578c0fb3fe656f76b5173dcaf0d978e05e7b13c52f8fa2bd1089160c759",
+      "owner": "r1_IND_s07",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1dea557a887cc4d7b33c90e0b61f33a3d05ba9965fe7822aef2b89b912d17d8b",
+      "owner": "r2_IND_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6527d57b9f3a8256b6c5bd8370cad390a8f529585f8caa44d9eae8bbcf0ba8fb",
+      "owner": "r2_IND_s09",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "20a7f555a0d505f701ea7a5088fde8542fdc1a5f0b202c8ee6a3ee9148f389fd",
+      "owner": "r2_EVO_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "270d3f9a0ca953131bdb1fa7447b48357e4f64aa7d53ada2a73144daee8a3954",
+      "owner": "r2_EVO_s09",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "59db0cca5bb817b0b3071cc6f372f07146a26c3b2cc2d9cbe2d08ded88d35f30",
+      "owner": "r3_EVO_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "41b60b86b6495c7025f0fdbc75e0c72a5b48992002e26ff08e79708577fb9725",
+      "owner": "r3_EVO_s09",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "dad393988b02418e42393686f71766266fda78655c675c1d682089c702d28737",
+      "owner": "r3_IND_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "8753356baf624eeddae112b478a7bf1c02f9d1334cab5f981ed9d3014e04a259",
+      "owner": "r1_EVO_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "3e788d9bd43e343b5642de40f1ae7ff858aaeb54882cf0624a82e2fa0f7ffdf9",
+      "owner": "r1_EVO_s09",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "640485bb8bee1b2db55a5ff0f83b4e7c4db277bd98e159314865739b37ea98f3",
+      "owner": "r1_IND_s08",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "36810b2882ecc3ec597c562376bd5097e565590d53957982ea166483bf07afcb",
+      "owner": "r1_IND_s09",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "a1e26b3cf5f0b6db96d2bd1d416b0fe9de95442877da5a6f37ed4038c96e107c",
+      "owner": "r2_EVO_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "16d7ace286c8bebf6b4da1649b11276b2002c923a0d5ba59dc64af8049cb807c",
+      "owner": "r2_EVO_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "918a4ba911ac2789969370a1479738ac24e82d572aa3c18d8c5a0b236e742063",
+      "owner": "r2_IND_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "a055907b1c06d1336bafcb20cf0d4b33fee7b43ed676a4d8b2df5ed1428003ff",
+      "owner": "r2_IND_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6f381a94b7f8ab3e0f730cbb450ec8271df54c3d8341f979e00c3c1cc3aebffc",
+      "owner": "r1_EVO_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "364e48bfbc095935f106a972c1fc490e8c79f82b2a6f38cc15631b591cc5eec0",
+      "owner": "r1_EVO_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "679e9c2bd3125c945075ef9f6b299a60ae7a7cb4ae05ae528237553e24011a85",
+      "owner": "r1_IND_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "23780ae70b845bd9a5e247394fac2ed3e3e0cbef53563e35ccf5358b616a883b",
+      "owner": "r1_IND_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "fe6b48fd37019f6961d21b73ffd811e7817bb75ddcb5de41015f2daccf344ee6",
+      "owner": "r3_EVO_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "074c26b71d522292243702e8b71275aa07ca586bb243f29ec004ccfb09ed456d",
+      "owner": "r3_EVO_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "e97724da08f61dd56190b9a62d8446dd95957084f231e7886fbdaeeed0d8a0f6",
+      "owner": "r3_IND_s10",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1ef12b89c6fefe60ed2568c1687101f19a632042b5999a8a6a247e78e3f55da0",
+      "owner": "r3_IND_s11",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "3659b9d52d12fa4c64363fbda799cae71ee40297a10417349f657c67d5ea0c66",
+      "owner": "r3_IND_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ab2cb0cf7dd6e95b42ca2c40bd9c5212a7a841368b7a4ed031a73d8fef3d2751",
+      "owner": "r3_IND_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "24e648b1bf8ff48f3ce67366db104dfa3f96c86c7916b838bfdcdc1a51c1e41e",
+      "owner": "r3_EVO_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "19cc0b6ef557ce541cf63504a9301b6b7452449c62f5e730331b5f8bccec6040",
+      "owner": "r3_EVO_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "2a1fe63ccf7d0a0d3d61d88b4279e36186c6a5d558c0d33bc69a6b188031ada7",
+      "owner": "r2_EVO_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "3b2106d121d6a2ea6fb15c2debbfec6820a08858043e56734e0ec056c74f15ed",
+      "owner": "r2_EVO_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ad289e970d40672a6e6012a7a1746d8676373a6c2d22ebc36afa7906907597ec",
+      "owner": "r2_IND_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "b0ad3bd3b3286841f75aeee52562e649a046043971fb00e1188c60ddf789cca8",
+      "owner": "r2_IND_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "c9dcceee2ea1de7102bd61be79734e1d451e54c776c78a449835cecc40bacaa1",
+      "owner": "r1_EVO_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "330f6bba166c740c8890f250b812f53bbeb8be0cd91222caf51b9850a6a272be",
+      "owner": "r1_EVO_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "436c4378cd37967444f9c1902c2cb90fd4968fc603053ea3d8f655a4959967a6",
+      "owner": "r1_IND_s12",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "5f89db7973d3165c1b085da6e048f3071a19736e8548b4eeaa74517934b75b44",
+      "owner": "r1_IND_s13",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "a6f0a859a33031dcba02378ac10996345edee7b8cdb6bc28adf926b85f038dbb",
+      "owner": "r2_EVO_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "cf92f12728cbe8e18225ce8437cc61a937da866584229214dbf286fa892d607b",
+      "owner": "r2_EVO_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "fb17da5c925af762280003506a853049c27f989a4cfc0e7269c6fe72a07f2192",
+      "owner": "r2_IND_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "64c7df0fe9dbe8844c06d47717ebd7a0cd87bb26856810b64fa85fd00c345ebd",
+      "owner": "r2_IND_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f721d5a495ced566b07fc6e7c2fe65716893053dcb6ffc31d9e0dbc21282c9fe",
+      "owner": "r3_EVO_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6a4a93bf6118e6451ba1e5453e6360e9511d2136c75e148393b6d4518e3778c4",
+      "owner": "r3_EVO_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6c857cb09087dbd3ea2e73b400d0648cc4e87b87251b27ce623a738611565d89",
+      "owner": "r3_IND_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1036d2ff37113f7a01d3a4e9600679043dce6bd6c3ea805e1c350646d2ea636f",
+      "owner": "r3_IND_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "402aa7cc5ee8383f55d3edeb1827cd5d7700a98b2a456a5a29d6c5ea23526550",
+      "owner": "r1_EVO_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "ecc21eecead5bff9af7e55a84337f6d84dbf71043686686870326fb0efe49244",
+      "owner": "r1_EVO_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "778bbc983577aa44de41cc00f27bca6f32cfbfc817daba5d24668af2bf882795",
+      "owner": "r1_IND_s14",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "916cc24ba8baf56eb70ba579543ccd73df0cc55be135a34cecdfd9e39f66bb8f",
+      "owner": "r1_IND_s15",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "379e570115254ecfce877a2825a0ec76cf2788ac4d1d3423a57049df1a61f908",
+      "owner": "r1_IND_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "2a1b8be8341c959733465ea4ecb5646d1307fcfc22dc214d6f0c92d38063fe89",
+      "owner": "r1_IND_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "588ae3f48be56e10a94a22c13142d31cdde89b66082409baad372fb28e34cba2",
+      "owner": "r1_EVO_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "1876a0618f7155683ff95aacdc92f38025fe3b38d753913a6fcc2fb0ab847b64",
+      "owner": "r1_EVO_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f5992550e506d4708c21b06595ecaa451095f5bf0d83ff9220cd9a88dc4bf215",
+      "owner": "r2_EVO_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "c0b337a014d6cfb7e7ed749b064f87a8dcc906ef139c7dfea4be9f23d917ddf4",
+      "owner": "r2_EVO_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "6046a171a73639fdfc3546b001bb0355074218afc6cbfd71a9452818baaf7dac",
+      "owner": "r2_IND_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "bfe193764028b5da53a8d1db98b433c404994d0a7548cb53a66298a7092bc618",
+      "owner": "r2_IND_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "deacb6821900478be72ebf0ecb036c2264a944af46df6f68ba7b356e9b8a46a1",
+      "owner": "r3_IND_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "da28f7921397dcff88dfa780ff856ffabe2f83a3b74f85363e994b0a6749750d",
+      "owner": "r3_IND_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "f0cd5d626c5a7ba63fce31f66459aecaa82f7a97d9b4a6680f9ef27582a6d333",
+      "owner": "r3_EVO_s16",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "afced80bb87615becd3040080a96afa9f4db7fcab5dec30907fdbbbe1cf3962f",
+      "owner": "r3_EVO_s17",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    },
+    {
+      "key": "623c705ce076af6d115e08619af1ee22a865500b79e1a312c33975f03fe920f9",
+      "owner": "r1_EVO_s18",
+      "valid": true,
+      "decision": "accepted",
+      "reason": "complete_T30_identity_exit0"
+    }
+  ],
+  "wire_attempts_verified": 117,
+  "all_saved_prompts_and_parent_sampling_replayed": true,
+  "candidate_source_ids_scoped_to_repeat": true,
+  "B2_quality_compatible_H_train_LB_scoring": true,
+  "B2_time_wrapper": "T15 historical vs T30 current; not timing or budget fair",
+  "base_commit": "9402247cdcd9602fab1b82c76f4ff606a193b1c9",
+  "analysis_script_sha256": "d6f95d27418cdccfb998bfd5ba55ff7b60e0fb9c3ac0229f902471147727b0ec"
+}

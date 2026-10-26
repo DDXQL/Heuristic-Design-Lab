@@ -1,0 +1,50 @@
+[
+  {
+    "repeat": 1,
+    "completed_generation": 1,
+    "population": [
+      "B/g0000/000007",
+      "B/g0000/000008",
+      "MANUAL/init/alpha_050",
+      "B/g0000/000004",
+      "B/g0000/000009"
+    ],
+    "champion_fitness": -1.9767472734126394
+  },
+  {
+    "repeat": 1,
+    "completed_generation": 2,
+    "population": [
+      "B/g0000/000007",
+      "B/g0001/000005",
+      "B/g0001/000008",
+      "B/g0001/000003",
+      "B/g0000/000008"
+    ],
+    "champion_fitness": -1.9767472734126394
+  },
+  {
+    "repeat": 2,
+    "completed_generation": 1,
+    "population": [
+      "MANUAL/init/alpha_050",
+      "B/g0000/000004",
+      "B/g0000/000007",
+      "B/g0000/000003",
+      "B/g0000/000008"
+    ],
+    "champion_fitness": -1.9831442949150015
+  },
+  {
+    "repeat": 3,
+    "completed_generation": 1,
+    "population": [
+      "MANUAL/init/alpha_050",
+      "B/g0000/000002",
+      "B/g0000/000000",
+      "B/g0000/000003",
+      "MANUAL/init/alpha_075"
+    ],
+    "champion_fitness": -1.9831442949150015
+  }
+]
