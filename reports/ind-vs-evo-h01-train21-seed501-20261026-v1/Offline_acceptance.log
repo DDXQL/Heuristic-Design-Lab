@@ -1,0 +1,16 @@
+test_P0_space_exact_keys_and_select_rejected (tests.test_ind_evo_h01.Tests.test_P0_space_exact_keys_and_select_rejected) ... ok
+test_complete_invalid_response_not_regenerated (tests.test_ind_evo_h01.Tests.test_complete_invalid_response_not_regenerated) ... ok
+test_exact_legacy_EVO_common_and_IND_no_parent_no_feedback (tests.test_ind_evo_h01.Tests.test_exact_legacy_EVO_common_and_IND_no_parent_no_feedback) ... ok
+test_generation_frozen_parent_and_original_survival_with_failures (tests.test_ind_evo_h01.Tests.test_generation_frozen_parent_and_original_survival_with_failures) ... ok
+test_no_money_gate_shared_configuration (tests.test_ind_evo_h01.Tests.test_no_money_gate_shared_configuration) ... ok
+test_plan_120_and_no_feedback_dependent_schedule (tests.test_ind_evo_h01.Tests.test_plan_120_and_no_feedback_dependent_schedule) ... ok
+test_retry_twice_and_30_cap_not_20_valid_refill (tests.test_ind_evo_h01.Tests.test_retry_twice_and_30_cap_not_20_valid_refill) ... ok
+test_same_T30_runtime_invalid_and_exit_stop (tests.test_ind_evo_h01.Tests.test_same_T30_runtime_invalid_and_exit_stop) ... ok
+test_uncommitted_response_boundary_cannot_replay (tests.test_ind_evo_h01.Tests.test_uncommitted_response_boundary_cannot_replay) ... ok
+test_unknown_evaluation_and_pending_task_stop (tests.test_ind_evo_h01.Tests.test_unknown_evaluation_and_pending_task_stop) ... ok
+test_unknown_request_never_resent (tests.test_ind_evo_h01.Tests.test_unknown_request_never_resent) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.156s
+
+OK

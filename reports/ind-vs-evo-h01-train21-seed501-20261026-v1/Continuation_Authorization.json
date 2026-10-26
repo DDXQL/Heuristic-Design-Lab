@@ -1,0 +1,13 @@
+{
+  "origin": "direct human answer to current renewal question",
+  "human_answer": "授权续跑剩余11个，最长2小时",
+  "authorized": true,
+  "scope": "only original Tasks[109:120]",
+  "new_launch_seconds": 7200,
+  "total_logical_cap": 120,
+  "total_API_attempt_cap": 180,
+  "unit_attempt_cap": 30,
+  "candidate_attempt_cap": 2,
+  "fees_no_CNY_gate": true,
+  "no_seed_reset_no_resampling_no_prior_failed_regeneration": true
+}

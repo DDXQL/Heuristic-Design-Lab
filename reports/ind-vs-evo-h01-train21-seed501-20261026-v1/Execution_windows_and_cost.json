@@ -1,0 +1,20 @@
+{
+  "windows": {
+    "initial": {
+      "start": "2026-10-26T00:09:28.074371+08:00",
+      "deadline": "2026-10-26T06:09:28.074371+08:00"
+    },
+    "renewal": {
+      "start": "2026-10-26T10:10:59.666604+08:00",
+      "deadline": "2026-10-26T12:10:59.666604+08:00"
+    },
+    "initial_partial_end": "2026-10-26T09:47:58.395268+08:00",
+    "renewal_end": "2026-10-26T10:11:35.615929+08:00",
+    "recovery_end": "2026-10-26T10:28:29.868037+08:00"
+  },
+  "candidate_active_intervals_sum_seconds": 4728.475008964539,
+  "known_API_seconds": 2035.9991919994354,
+  "notice": "Power loss/sleep confirmed by user. Whole wall span includes suspension and human/engineering wait; not computational cost. No new launch after its applicable deadline.",
+  "original_clock_and_end_preserved": true,
+  "renewal_clock_not_extended_for_recovery": true
+}

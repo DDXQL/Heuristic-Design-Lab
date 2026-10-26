@@ -1,0 +1,14 @@
+{
+  "origin": "current human IND vs EVO full protocol and resume message",
+  "real_API_authorized": true,
+  "repeats": 3,
+  "logical_per_arm_repeat": 20,
+  "logical_total": 120,
+  "API_attempt_per_arm_repeat": 30,
+  "API_attempt_per_candidate": 2,
+  "API_attempt_total": 180,
+  "CNY_gate": false,
+  "fee_information_unknown_allowed": true,
+  "launch_seconds": 21600,
+  "no_A4_no_CROSS_feedback_no_simple_rule_expansion_no_push": true
+}

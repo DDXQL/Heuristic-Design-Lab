@@ -1,0 +1,189 @@
+{
+  "phase": "recovery_stopped",
+  "cursor": 113,
+  "end": {
+    "wall": 1792981709.8680372,
+    "monotonic": 736262.662039458,
+    "CPU": 4.580446
+  },
+  "lock_retained": true,
+  "caffeinate_cleaned": true,
+  "API_summaries": {
+    "r1_IND": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 20,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": true,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 22,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 22,
+      "attempt_statuses": {
+        "completed": 18,
+        "failed": 4
+      },
+      "logical_statuses": {
+        "completed": 18,
+        "failed": 2
+      },
+      "known_input_tokens": 35820,
+      "known_output_tokens": 26108,
+      "unknown_usage_attempts": 4,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "r1_EVO": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 20,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": true,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 21,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 21,
+      "attempt_statuses": {
+        "completed": 19,
+        "failed": 2
+      },
+      "logical_statuses": {
+        "completed": 19,
+        "failed": 1
+      },
+      "known_input_tokens": 70597,
+      "known_output_tokens": 19614,
+      "unknown_usage_attempts": 2,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "r2_IND": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 19,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": false,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 20,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 20,
+      "attempt_statuses": {
+        "completed": 18,
+        "failed": 2
+      },
+      "logical_statuses": {
+        "completed": 18,
+        "failed": 1
+      },
+      "known_input_tokens": 35820,
+      "known_output_tokens": 27658,
+      "unknown_usage_attempts": 2,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "r2_EVO": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 18,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": false,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 18,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 18,
+      "attempt_statuses": {
+        "completed": 17,
+        "failed": 1
+      },
+      "logical_statuses": {
+        "completed": 17,
+        "failed": 1
+      },
+      "known_input_tokens": 54458,
+      "known_output_tokens": 16776,
+      "unknown_usage_attempts": 1,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "r3_IND": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 18,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": false,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 18,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 18,
+      "attempt_statuses": {
+        "completed": 18
+      },
+      "logical_statuses": {
+        "completed": 18
+      },
+      "known_input_tokens": 35820,
+      "known_output_tokens": 28605,
+      "unknown_usage_attempts": 0,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    },
+    "r3_EVO": {
+      "budget_policy": "batch-api-attempts-v2-t1",
+      "logical_candidate_cap": 20,
+      "logical_candidates": 18,
+      "api_attempt_cap": 30,
+      "logical_candidate_cap_reached": false,
+      "api_attempt_cap_exhausted": false,
+      "api_attempts_consumed": 18,
+      "per_candidate_attempt_cap": 2,
+      "confirmed_sends": 18,
+      "attempt_statuses": {
+        "completed": 18
+      },
+      "logical_statuses": {
+        "completed": 18
+      },
+      "known_input_tokens": 58396,
+      "known_output_tokens": 21723,
+      "unknown_usage_attempts": 0,
+      "actual_cost": null,
+      "actual_cost_status": "unknown; no account, tariff or invoice queries",
+      "global_history_gate": false,
+      "cross_worktree_lock_gate": false,
+      "stop_reason": null,
+      "protocol_error_circuit_threshold": 3,
+      "consecutive_protocol_errors": 0,
+      "count_basis": "reserved attempts, conservatively includes uncertain pre-dispatch interruptions"
+    }
+  }
+}

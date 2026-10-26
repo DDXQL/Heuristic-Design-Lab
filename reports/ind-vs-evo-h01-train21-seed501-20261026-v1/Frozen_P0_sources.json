@@ -1,0 +1,81 @@
+[
+  {
+    "id": "MANUAL/init/alpha_000",
+    "alpha": 0.0,
+    "key": "92058eb7dbeaa9301db2998cb5119f9a1d1803093b30bb82c757bbffc61fba6e",
+    "fitness": -2.119981806736931,
+    "source": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_000.json",
+    "source_sha256": "5f6e3a56161eeacabb3260822daffe7cae9c2b6644a2bb57696453e47696deb0",
+    "level": "legacy_single",
+    "endpoint_equivalence": {
+      "kind": "certified single-support MIX/raw-h scheduling equivalence",
+      "source_h": 1,
+      "source_h_code_key": "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+      "source": "runs/v22-gpt61-select-mix-301-20261014-v1/Conditional_H_reassessment.json",
+      "cost_notice": "native fixed-h timing only; U overhead and certified U h-call counts unknown",
+      "proof": "execution.combine_scores one-support bypasses min-max; priority raw, same legal actions/ties/append; constant U ignores previous_heuristic"
+    }
+  },
+  {
+    "id": "MANUAL/init/alpha_025",
+    "alpha": 0.25,
+    "key": "9245ff6a8273a6bd661bdbdbd0171b7339fc611537ccb9d080301ed6e665e16e",
+    "fitness": -2.0864159086984424,
+    "source": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_025.json",
+    "source_sha256": "0b118c274e6a8461af1433a4e4309ea3e95abefb86aec9591e2907d5fc8c6769",
+    "level": "legacy_pair",
+    "endpoint_equivalence": {
+      "kind": "exact candidate/H/data/executor identity",
+      "source_id": "H0_H1_w25_75",
+      "path": "reports/usage-fixed-pair-weight-grid-20261018-v1/results/H0_H1_w25_75.json",
+      "sha256": "493ce3560a9e0aba4e5b180bf8024f647069121b9ca66049b0a4b8c8e3a6307e"
+    }
+  },
+  {
+    "id": "MANUAL/init/alpha_050",
+    "alpha": 0.5,
+    "key": "fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448",
+    "fitness": -1.9831442949150015,
+    "source": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_050.json",
+    "source_sha256": "e3f4d98e7f8813a212826c97d045d4558712fb3829f091c5b897afd6db511a04",
+    "level": "legacy_pair",
+    "endpoint_equivalence": {
+      "kind": "exact candidate/H/data/executor identity",
+      "source_id": "H0_H1_w50_50",
+      "path": "reports/usage-fixed-pair-weight-grid-20261018-v1/results/H0_H1_w50_50.json",
+      "sha256": "5d80bf96bb803a06b65e8219cfa02993cd56cde5cc58b41b1b54dcb06f0a4347"
+    }
+  },
+  {
+    "id": "MANUAL/init/alpha_075",
+    "alpha": 0.75,
+    "key": "efa792aafbed68432ac8f4406649cfc6316273a5710ae5a18d44e4f69752a49c",
+    "fitness": -2.066604642452772,
+    "source": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_075.json",
+    "source_sha256": "e6e4ad0cceb08ffcf528af8454e643a99a0be8d978d59b22a4e452a0f48836e9",
+    "level": "legacy_pair",
+    "endpoint_equivalence": {
+      "kind": "exact candidate/H/data/executor identity",
+      "source_id": "H0_H1_w75_25",
+      "path": "reports/usage-fixed-pair-weight-grid-20261018-v1/results/H0_H1_w75_25.json",
+      "sha256": "b2e4a6ddd635c974fd7c7373563ba3a385164713c95bcd9dfbb1fabe50b8018f"
+    }
+  },
+  {
+    "id": "MANUAL/init/alpha_100",
+    "alpha": 1.0,
+    "key": "767cd1d763a1022e0edac49562f7d0c918355eb7a0e951e39f7f34a94e4508db",
+    "fitness": -2.1118049606260487,
+    "source": "runs/h01-state-weight-search-seed501-batch-v3-20261020/results/alpha_100.json",
+    "source_sha256": "1d494e8f0d1090de183328548add3d5b3f288a6c7fe8c11f8d63a95c6f07620a",
+    "level": "legacy_single",
+    "endpoint_equivalence": {
+      "kind": "certified single-support MIX/raw-h scheduling equivalence",
+      "source_h": 0,
+      "source_h_code_key": "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+      "source": "runs/v22-gpt61-select-mix-301-20261014-v1/Conditional_H_reassessment.json",
+      "cost_notice": "native fixed-h timing only; U overhead and certified U h-call counts unknown",
+      "proof": "execution.combine_scores one-support bypasses min-max; priority raw, same legal actions/ties/append; constant U ignores previous_heuristic"
+    }
+  }
+]

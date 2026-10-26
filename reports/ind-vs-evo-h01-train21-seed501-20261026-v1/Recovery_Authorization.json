@@ -1,0 +1,10 @@
+{
+  "origin": "current direct human request after six HTTP503: 可以再重试一下，或者自行针对并尝试解决",
+  "approved": true,
+  "scope": "one next planned candidate as recovery probe; on full response continue remaining original slots",
+  "remaining_planned_slots": 8,
+  "no_regeneration_of_failed_slots": true,
+  "same_existing_2h_deadline": 1792987859.666604,
+  "no_model_switch_no_recharge_no_budget_reset": true,
+  "preserve_original_503_Stop_and_known_lock_record": true
+}

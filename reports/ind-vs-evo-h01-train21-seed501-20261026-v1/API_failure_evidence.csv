@@ -1,0 +1,10 @@
+attempt_id,task_id,http_status,error_type,retry_reason,elapsed_seconds,usage_known
+ind-vs-evo-h01-train21-seed501-20261026-v1/r2_IND/r2_IND_s18/attempt/01,r2_IND_s18,503,TransportError,temporary_http_503,2.071186065673828,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r2_IND/r2_IND_s18/attempt/02,r2_IND_s18,503,TransportError,temporary_http_503,2.2566230297088623,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r2_EVO/r2_EVO_s02/attempt/01,r2_EVO_s02,524,TransportError,non_retryable_unclassified_error,126.93061780929565,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_EVO/r1_EVO_s19/attempt/01,r1_EVO_s19,503,TransportError,temporary_http_503,1.662938117980957,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_EVO/r1_EVO_s19/attempt/02,r1_EVO_s19,503,TransportError,temporary_http_503,1.8122498989105225,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s18/attempt/01,r1_IND_s18,503,TransportError,temporary_http_503,1.5356731414794922,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s18/attempt/02,r1_IND_s18,503,TransportError,temporary_http_503,1.7606830596923828,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s19/attempt/01,r1_IND_s19,503,TransportError,temporary_http_503,1.9097111225128174,False
+ind-vs-evo-h01-train21-seed501-20261026-v1/r1_IND/r1_IND_s19/attempt/02,r1_IND_s19,503,TransportError,temporary_http_503,1.8933370113372803,False

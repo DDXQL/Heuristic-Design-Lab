@@ -1,0 +1,10 @@
+{
+  "error_type": "BudgetStop",
+  "error": "three consecutive failed logical transports; API unavailable",
+  "at": {
+    "wall": 1792980691.265675,
+    "monotonic": 735244.045353,
+    "CPU": 9.378408
+  },
+  "automatic_retry": false
+}

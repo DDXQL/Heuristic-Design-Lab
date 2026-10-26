@@ -1,0 +1,112 @@
+{
+  "version": "same-plan-continuation-v1",
+  "base_protocol_sha256": "4528fc164fc1dae4cfb5b799e72cb1cfb93698679e5f3165afcd13ffd82dcc0b",
+  "initial_cursor": 109,
+  "remaining_tasks": [
+    {
+      "task_id": "r1_EVO_s19",
+      "repeat": 1,
+      "arm": "EVO",
+      "slot": 19,
+      "position": 110
+    },
+    {
+      "task_id": "r1_IND_s18",
+      "repeat": 1,
+      "arm": "IND",
+      "slot": 18,
+      "position": 111
+    },
+    {
+      "task_id": "r1_IND_s19",
+      "repeat": 1,
+      "arm": "IND",
+      "slot": 19,
+      "position": 112
+    },
+    {
+      "task_id": "r2_IND_s18",
+      "repeat": 2,
+      "arm": "IND",
+      "slot": 18,
+      "position": 113
+    },
+    {
+      "task_id": "r2_IND_s19",
+      "repeat": 2,
+      "arm": "IND",
+      "slot": 19,
+      "position": 114
+    },
+    {
+      "task_id": "r2_EVO_s18",
+      "repeat": 2,
+      "arm": "EVO",
+      "slot": 18,
+      "position": 115
+    },
+    {
+      "task_id": "r2_EVO_s19",
+      "repeat": 2,
+      "arm": "EVO",
+      "slot": 19,
+      "position": 116
+    },
+    {
+      "task_id": "r3_EVO_s18",
+      "repeat": 3,
+      "arm": "EVO",
+      "slot": 18,
+      "position": 117
+    },
+    {
+      "task_id": "r3_EVO_s19",
+      "repeat": 3,
+      "arm": "EVO",
+      "slot": 19,
+      "position": 118
+    },
+    {
+      "task_id": "r3_IND_s18",
+      "repeat": 3,
+      "arm": "IND",
+      "slot": 18,
+      "position": 119
+    },
+    {
+      "task_id": "r3_IND_s19",
+      "repeat": 3,
+      "arm": "IND",
+      "slot": 19,
+      "position": 120
+    }
+  ],
+  "initial_API_attempts": 109,
+  "initial_tasks_digest": "0abe2981096a19640cba1a1493515683977cacf39623b1045a1e401de46df653",
+  "snapshots": {
+    "checkpoint.json": "4a848a4be9bf69f3aee30b66c399478aad714159985fda63e1d841c2ea7db32e",
+    "Run_clock.json": "8b03d1f28416325f0c29bebbe9aa4aa4f1845b8687e70d60e8b939c816d1dced",
+    "End_summary.json": "f36e3abb70767e56b3db16402e084dda81a1a09b3dc0fef67f232bf44a3e99d2",
+    "Events.jsonl": "e157d093d0c43146b783011b2e0c4e0fed3ab137c015065a2850c4ed56cf23f6",
+    "journals/r1_EVO.json": "aeb5e8e42406491037ecd5d569dbc2acd508536e015c657fa9edcda30657952c",
+    "journals/r1_IND.json": "f507b5536f3ccd8f5d49c2bd1a1901469d2a0bb178ec8fad17b21da618ef4001",
+    "journals/r2_EVO.json": "af64402a6dbcf0aee70ba64b1fd99fcae47ce3f3e847675cd7cbd4d67836a822",
+    "journals/r2_IND.json": "4c86ba6ad55e27035c61e26a388925b8fa83a2a0432709bbfd320f41ac2f5392",
+    "journals/r3_EVO.json": "af7fd72941057642b7b6216c54ec12de8c947f449e6582555dc7a851638a8f55",
+    "journals/r3_IND.json": "c64ac3876ed26d9b5dd35a2a006e8b2e4f33c4fa04dd3774ddda98ca9080679e"
+  },
+  "fixed_original_files": {
+    "Protocol.json": "4528fc164fc1dae4cfb5b799e72cb1cfb93698679e5f3165afcd13ffd82dcc0b",
+    "Protocol.sha256": "41a44f9ee79fac84c326e9c11b2fe6d6f991e6e65cef0c362b564c504a56ee75",
+    "Run_clock.json": "8b03d1f28416325f0c29bebbe9aa4aa4f1845b8687e70d60e8b939c816d1dced",
+    "End_summary.json": "f36e3abb70767e56b3db16402e084dda81a1a09b3dc0fef67f232bf44a3e99d2"
+  },
+  "sources": {
+    "tools/ind_evo_h01_continue.py": "2a1fca2ee7974fa7c27bb670bdc455c1ee5888e1b49843d9ecec101094c721d9",
+    "tests/test_ind_evo_h01_continue.py": "b360b3af7596f8ea60b4626a5074cb94defab2ee9bbddc74bc459c512e107188"
+  },
+  "acceptance_sha256": "c3863f7ca3d3fef622130fbb93a7ec47bb0bfb1401c7d79b6c750a121331f24a",
+  "authority_sha256": "34313fbbf46d26060b56c0ff19ad8f6b050bc793064d9bfd680f07ccec452e32",
+  "launch_seconds": 7200,
+  "reserve_seconds": 1294
+}

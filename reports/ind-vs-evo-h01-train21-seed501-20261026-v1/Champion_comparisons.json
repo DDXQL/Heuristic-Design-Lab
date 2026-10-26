@@ -1,0 +1,298 @@
+[
+  {
+    "task_id": "r1_EVO_s07",
+    "reference": "P0_equal",
+    "fitness": -1.9767472734126394,
+    "delta_F": 0.006397021502362099,
+    "W": 7,
+    "L": 3,
+    "T": 11,
+    "sum_Cmax_delta": -19,
+    "top_positive": [
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke43.fjsp",
+        "Cmax": 96,
+        "reference_Cmax": 101,
+        "LB": 68.0,
+        "delta_Cmax": -5,
+        "delta_F_contribution": 0.0035014005602240898
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke14.fjsp",
+        "Cmax": 253,
+        "reference_Cmax": 263,
+        "LB": 163.75,
+        "delta_Cmax": -10,
+        "delta_F_contribution": 0.0029080334423845873
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke57.fjsp",
+        "Cmax": 407,
+        "reference_Cmax": 413,
+        "LB": 98.31666666666666,
+        "delta_Cmax": -6,
+        "delta_F_contribution": 0.002906061560070714
+      }
+    ],
+    "top_negative": [
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke47.fjsp",
+        "Cmax": 135,
+        "reference_Cmax": 130,
+        "LB": 76.0,
+        "delta_Cmax": 5,
+        "delta_F_contribution": -0.003132832080200501
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke51.fjsp",
+        "Cmax": 238,
+        "reference_Cmax": 235,
+        "LB": 75.0,
+        "delta_Cmax": 3,
+        "delta_F_contribution": -0.0019047619047619048
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "P0_equal",
+        "file": "Behnke29.fjsp",
+        "Cmax": 135,
+        "reference_Cmax": 134,
+        "LB": 75.0,
+        "delta_Cmax": 1,
+        "delta_F_contribution": -0.0006349206349206349
+      }
+    ]
+  },
+  {
+    "task_id": "r1_EVO_s07",
+    "reference": "historical_B2",
+    "fitness": -1.9767472734126394,
+    "delta_F": 0.005479214829811507,
+    "W": 8,
+    "L": 8,
+    "T": 5,
+    "sum_Cmax_delta": -22,
+    "top_positive": [
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke33.fjsp",
+        "Cmax": 237,
+        "reference_Cmax": 250,
+        "LB": 76.45,
+        "delta_Cmax": -13,
+        "delta_F_contribution": 0.008097418169360614
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke14.fjsp",
+        "Cmax": 253,
+        "reference_Cmax": 272,
+        "LB": 163.75,
+        "delta_Cmax": -19,
+        "delta_F_contribution": 0.005525263540530716
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke34.fjsp",
+        "Cmax": 237,
+        "reference_Cmax": 242,
+        "LB": 78.0,
+        "delta_Cmax": -5,
+        "delta_F_contribution": 0.0030525030525030525
+      }
+    ],
+    "top_negative": [
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke21.fjsp",
+        "Cmax": 103,
+        "reference_Cmax": 92,
+        "LB": 78.0,
+        "delta_Cmax": 11,
+        "delta_F_contribution": -0.006715506715506716
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke47.fjsp",
+        "Cmax": 135,
+        "reference_Cmax": 128,
+        "LB": 76.0,
+        "delta_Cmax": 7,
+        "delta_F_contribution": -0.0043859649122807015
+      },
+      {
+        "task_id": "r1_EVO_s07",
+        "reference": "historical_B2",
+        "file": "Behnke53.fjsp",
+        "Cmax": 234,
+        "reference_Cmax": 230,
+        "LB": 74.0,
+        "delta_Cmax": 4,
+        "delta_F_contribution": -0.002574002574002574
+      }
+    ]
+  },
+  {
+    "task_id": "r2_EVO_s16",
+    "reference": "P0_equal",
+    "fitness": -1.9754886752145129,
+    "delta_F": 0.0076556197004886695,
+    "W": 11,
+    "L": 8,
+    "T": 2,
+    "sum_Cmax_delta": 23,
+    "top_positive": [
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke43.fjsp",
+        "Cmax": 91,
+        "reference_Cmax": 101,
+        "LB": 68.0,
+        "delta_Cmax": -10,
+        "delta_F_contribution": 0.0070028011204481795
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke51.fjsp",
+        "Cmax": 229,
+        "reference_Cmax": 235,
+        "LB": 75.0,
+        "delta_Cmax": -6,
+        "delta_F_contribution": 0.0038095238095238095
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke21.fjsp",
+        "Cmax": 97,
+        "reference_Cmax": 103,
+        "LB": 78.0,
+        "delta_Cmax": -6,
+        "delta_F_contribution": 0.003663003663003663
+      }
+    ],
+    "top_negative": [
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke2.fjsp",
+        "Cmax": 112,
+        "reference_Cmax": 101,
+        "LB": 75.0,
+        "delta_Cmax": 11,
+        "delta_F_contribution": -0.006984126984126984
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke19.fjsp",
+        "Cmax": 469,
+        "reference_Cmax": 429,
+        "LB": 322.35,
+        "delta_Cmax": 40,
+        "delta_F_contribution": -0.005908986830345602
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "P0_equal",
+        "file": "Behnke3.fjsp",
+        "Cmax": 103,
+        "reference_Cmax": 97,
+        "LB": 79.0,
+        "delta_Cmax": 6,
+        "delta_F_contribution": -0.003616636528028933
+      }
+    ]
+  },
+  {
+    "task_id": "r2_EVO_s16",
+    "reference": "historical_B2",
+    "fitness": -1.9754886752145129,
+    "delta_F": 0.006737813027938078,
+    "W": 11,
+    "L": 7,
+    "T": 3,
+    "sum_Cmax_delta": 20,
+    "top_positive": [
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke33.fjsp",
+        "Cmax": 241,
+        "reference_Cmax": 250,
+        "LB": 76.45,
+        "delta_Cmax": -9,
+        "delta_F_contribution": 0.005605904886480426
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke34.fjsp",
+        "Cmax": 234,
+        "reference_Cmax": 242,
+        "LB": 78.0,
+        "delta_Cmax": -8,
+        "delta_F_contribution": 0.004884004884004884
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke29.fjsp",
+        "Cmax": 130,
+        "reference_Cmax": 137,
+        "LB": 75.0,
+        "delta_Cmax": -7,
+        "delta_F_contribution": 0.0044444444444444444
+      }
+    ],
+    "top_negative": [
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke19.fjsp",
+        "Cmax": 469,
+        "reference_Cmax": 438,
+        "LB": 322.35,
+        "delta_Cmax": 31,
+        "delta_F_contribution": -0.004579464793517841
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke2.fjsp",
+        "Cmax": 112,
+        "reference_Cmax": 105,
+        "LB": 75.0,
+        "delta_Cmax": 7,
+        "delta_F_contribution": -0.0044444444444444444
+      },
+      {
+        "task_id": "r2_EVO_s16",
+        "reference": "historical_B2",
+        "file": "Behnke3.fjsp",
+        "Cmax": 103,
+        "reference_Cmax": 97,
+        "LB": 79.0,
+        "delta_Cmax": 6,
+        "delta_F_contribution": -0.003616636528028933
+      }
+    ]
+  }
+]

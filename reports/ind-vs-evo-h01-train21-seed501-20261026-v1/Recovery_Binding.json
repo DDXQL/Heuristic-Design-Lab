@@ -1,0 +1,69 @@
+{
+  "source_sha256": "700666b391af853ec9b2c1f689166977ca15c4c023552c0bbf2550fe6dfaf0d0",
+  "base_continuation_binding_sha256": "b577b35e290bee3c96536a9f5b4993a6b46a18ce7f026cf3af54a25e0b51c77b",
+  "prior_Stop_sha256": "40df92598864bc6edf05eed495956e09a14e4e0b81f2fc867a351f23f2547950",
+  "prior_end_sha256": "9f630ef9cab9200b7907d3e19cde86a685b5ce4897927ae23c046f16089c3de9",
+  "clock_sha256": "cdde4d8cbf2786dfa1deb3b712631badd97ea9bc4c00133b8563672d314b924a",
+  "authority_sha256": "5483cfac0af916f07976cd7667e2cb545d4ac2330c75e4146542d05c6046878f",
+  "initial_tasks_digest": "d45bceb6830b21d901b58d996bcb1db13826600451c4df395333e9651c4511a1",
+  "remaining_tasks": [
+    {
+      "task_id": "r2_IND_s18",
+      "repeat": 2,
+      "arm": "IND",
+      "slot": 18,
+      "position": 113
+    },
+    {
+      "task_id": "r2_IND_s19",
+      "repeat": 2,
+      "arm": "IND",
+      "slot": 19,
+      "position": 114
+    },
+    {
+      "task_id": "r2_EVO_s18",
+      "repeat": 2,
+      "arm": "EVO",
+      "slot": 18,
+      "position": 115
+    },
+    {
+      "task_id": "r2_EVO_s19",
+      "repeat": 2,
+      "arm": "EVO",
+      "slot": 19,
+      "position": 116
+    },
+    {
+      "task_id": "r3_EVO_s18",
+      "repeat": 3,
+      "arm": "EVO",
+      "slot": 18,
+      "position": 117
+    },
+    {
+      "task_id": "r3_EVO_s19",
+      "repeat": 3,
+      "arm": "EVO",
+      "slot": 19,
+      "position": 118
+    },
+    {
+      "task_id": "r3_IND_s18",
+      "repeat": 3,
+      "arm": "IND",
+      "slot": 18,
+      "position": 119
+    },
+    {
+      "task_id": "r3_IND_s19",
+      "repeat": 3,
+      "arm": "IND",
+      "slot": 19,
+      "position": 120
+    }
+  ],
+  "initial_API_attempts": 115,
+  "offline_assertions": "exact suffix8, inherited20/30/2 limits, known terminal503 only, immutable2h clock"
+}

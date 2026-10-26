@@ -1,0 +1,54 @@
+--- IND frozen
++++ CROSS original H01 P0 example
+@@ -95,8 +95,49 @@
+ 
+ 
+ 
+-There are no parents. Create an independent deterministic H0/H1 weight policy from the given state interface.
+-Member ids do not imply quality. Do not assert that any id is better at a particular stage.
++PARENT 0
++Description: Frozen manual H0/H1 alpha=0.5; not LLM-generated
++Code:
++def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
++    return (1, (0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
++
++
++PARENT 1
++Description: Frozen manual H0/H1 alpha=0.75; not LLM-generated
++Code:
++def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
++    return (1, (0.75, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
++
++
++PARENT 2
++Description: Frozen manual H0/H1 alpha=0.25; not LLM-generated
++Code:
++def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
++    return (1, (0.25, 0.75, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
++
++
++PARENT 3
++Description: Frozen manual H0/H1 alpha=1; not LLM-generated
++Code:
++def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
++    return (1, (1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
++
++
++PARENT 4
++Description: Frozen manual H0/H1 alpha=0; not LLM-generated
++Code:
++def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):
++    return (1, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
++
++
++Compare how the supplied parents map available state information to H0/H1 weights, using H's actual behavior.
++Try to combine the decision ideas of AT LEAST TWO parents into a new weight relationship.
++You may change state conditions, relations between conditions, alpha formulas and parameters, or rewrite the WHOLE function.
++Do not require fixed modules, literal code splicing, or a particular program skeleton.
++Resolve conflicting choices using the available state and H behavior, not simply parent order.
++Different parents do not prove complementarity; whole-instance results do not establish state-level winners.
++In the common at-most-three-sentence explanation, identify which parental decision ideas were inherited and how they were combined.
++Return one complete new U. Its benefit is a hypothesis to be tested by external complete-schedule evaluation.
+ 
+ Output at most three sentences inside {braces}, followed by exactly one ```python code block. No extra text. Use one function with the exact argument names. Only numeric constants, local variables, arithmetic, comparisons, if/while/for, and these builtins are allowed: abs, min, max, int, float, round, range. Only the terminal two-level tuple (mode, (scalar,...)) is permitted; no other containers, indexing, imports, attributes, helper functions, globals, recursion, randomness or resource access. Numeric intermediates must remain finite and <=1e100; power exponents must be literal integers from 0 to 8; round ndigits must be an int in [-100,100]. End the function with return, or an if/else whose branches both end in return. No return annotation. Numeric literals <=1e9; scalar intermediates/output fields finite with absolute value <=1e100.
+ def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):

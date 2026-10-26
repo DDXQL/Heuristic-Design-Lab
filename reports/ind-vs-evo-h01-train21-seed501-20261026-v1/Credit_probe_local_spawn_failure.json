@@ -1,0 +1,17 @@
+{
+  "at": {
+    "wall": 1792981005.372809,
+    "monotonic": 735558.156908458,
+    "CPU": 0.296576
+  },
+  "purpose": "human question: did account quota run out after HTTP503?",
+  "inference_requests": 0,
+  "configured_generation_model": "gpt-6.1-sol",
+  "status": {
+    "base_url": "https://leafapi.cc",
+    "requested_model": "gpt-5.6-sol",
+    "inference_requests": 0,
+    "requested_model_listed": null,
+    "error": "metadata worker exited; no retry"
+  }
+}
