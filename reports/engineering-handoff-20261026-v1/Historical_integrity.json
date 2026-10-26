@@ -1,0 +1,24 @@
+{
+  "mode": "read_only_historical_hash_checks",
+  "manifests": [
+    {
+      "source": "reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Raw_primary_manifest.json",
+      "file_count": 3438,
+      "mismatches": [],
+      "archive": "reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Raw_primary_evidence.tar.gz",
+      "archive_sha256_matched": true
+    },
+    {
+      "source": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/Raw_manifest.json",
+      "file_count": 540,
+      "mismatches": [],
+      "archive": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/Raw_evidence.tar.gz",
+      "archive_sha256_matched": true
+    }
+  ],
+  "README_archive": {
+    "matches_HEAD": true,
+    "source_commit": "ded14d8c272465be5d0e3b0776808e2841e0fc2d",
+    "sha256": "fbd69f68b80d5b7e0538125aac8df22e224f7a6c4f33d4450d224a4fb6771633"
+  }
+}

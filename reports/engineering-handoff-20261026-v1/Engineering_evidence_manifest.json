@@ -1,0 +1,354 @@
+{
+  "archive": "Engineering_smoke_evidence.tar.gz",
+  "archive_sha256": "17d755974870e324dd927c6d20aed0925be2ed291ad5adf8ae71d217544b48b4",
+  "roundtrip_verified": true,
+  "inputs_unchanged": true,
+  "v1_before_namespace_snapshot_matched": true,
+  "v2_current_source_identity": "matched",
+  "files": {
+    "runs/ops-handoff-smoke-20261026-v1/Controller_identity.json": {
+      "sha256": "5b41d1769ec69163f34e971fc0597f7162b9a54f6b9caac2faf7fab2ce02b2f9",
+      "bytes": 1732
+    },
+    "runs/ops-handoff-smoke-20261026-v1/End_summary.json": {
+      "sha256": "2961a65d91d80ae6c3c3e3653bc7f337c4051b58b6df48052687bdac571dc7b3",
+      "bytes": 126
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Events.jsonl": {
+      "sha256": "e51e057c46276c3a2e3fc9e7304e55871bea4b453267f81585ff8b390b968df7",
+      "bytes": 167
+    },
+    "runs/ops-handoff-smoke-20261026-v1/H_frozen.json": {
+      "sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+      "bytes": 149108
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Launch_authorization.json": {
+      "sha256": "20c21d9b5e43c3c77fc8b4b204b473f1244d4ecb256593f206a7021209c1e153",
+      "bytes": 195
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Parents.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Protocol.json": {
+      "sha256": "a3d72b61eb846dea555afcadbccaca0552f4abace7928734777c93d15950e33e",
+      "bytes": 9456
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Protocol.sha256": {
+      "sha256": "0963e0ccc45a9406c92057a4a740a1073dd964f02d6d5972055808f03b8bd4b6",
+      "bytes": 65
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Resolved_config.json": {
+      "sha256": "3d398d73f40c1afb4cb87dd72410a906de88d9dfcbb3ff60b5399b50b4298340",
+      "bytes": 912
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Run_clock.json": {
+      "sha256": "91bd44ff3a3d332dec5f652e634d88b8490290c5570dab02ddef13701a7c09fb",
+      "bytes": 66
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Run_identity.json": {
+      "sha256": "449031b8374e46700eb49132d1f5cfa3b3ada6f2f6d36413155d85f3f41bf913",
+      "bytes": 79
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Solver_identity.json": {
+      "sha256": "587a4c217bccea1d83959cbef1258f694831b932d2f21badbf2a55221fbcbac4",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v1/Tasks.json": {
+      "sha256": "14334d724a6148102124840f0280f3ecfbdeedd65de6b5c764209cf6c23e056e",
+      "bytes": 1057
+    },
+    "runs/ops-handoff-smoke-20261026-v1/checkpoint.json": {
+      "sha256": "d7805a8cc692071c5dc205ad205db87f72f12a8e9cf31a8f7f777ad706ef7a6c",
+      "bytes": 14272
+    },
+    "runs/ops-handoff-smoke-20261026-v1/end_receipts/1792997798635757000.json": {
+      "sha256": "2961a65d91d80ae6c3c3e3653bc7f337c4051b58b6df48052687bdac571dc7b3",
+      "bytes": 126
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/Input_receipt.json": {
+      "sha256": "16bf7cb9e027ae9d0e8dc01ba26dd2ddad31503cf92ad12be185e19167f06622",
+      "bytes": 906
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/after.json": {
+      "sha256": "4121d6c4ab0fdf20bf701a67dea1ca51bf365a1919a375ea014df63a3e8d4c20",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/before.json": {
+      "sha256": "4121d6c4ab0fdf20bf701a67dea1ca51bf365a1919a375ea014df63a3e8d4c20",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/boundary.json": {
+      "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+      "bytes": 106
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/lifecycle.json": {
+      "sha256": "a59047cf8e9cce5507575fcaf2817cbb9db9ce840924fdf88aaa166c98efce84",
+      "bytes": 769
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/raw_result.json": {
+      "sha256": "82c2ad4bf55035a07588b1988493ce864595325f9b2472b5b0a21efafe623918",
+      "bytes": 3137
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/result.json": {
+      "sha256": "b90778ac525d55de57d1c5973d9959402bba553cea38cb2a01b5d3b9abbff149",
+      "bytes": 3266
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.progress.json": {
+      "sha256": "b4b670e817d5397d55c9749f206a7b85832b8f0312333277cc69febfcdbad4d3",
+      "bytes": 344
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.result.json": {
+      "sha256": "6a2f3537a1319cdfd4aeff58ad43efdcd9dfc07cf8db137adf9bf5e13d1b089e",
+      "bytes": 2485
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/Input_receipt.json": {
+      "sha256": "0251c62d049c3c2452cb3b5ea8e124b4c7d319dab63d6766422ee40ea450451a",
+      "bytes": 922
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/after.json": {
+      "sha256": "f52ea16c32d8d524b5ccc7308f0edeb658220be6ab2913d843f32714fb570813",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/before.json": {
+      "sha256": "f52ea16c32d8d524b5ccc7308f0edeb658220be6ab2913d843f32714fb570813",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/boundary.json": {
+      "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+      "bytes": 106
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/lifecycle.json": {
+      "sha256": "7ecaf727305442824d6aa2a1d6b1b882593015d8bed17d669b9d3b1df1a58178",
+      "bytes": 770
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/raw_result.json": {
+      "sha256": "11a3ddaf8c313f6fb323e274e4d7ec046d28bfeb3ed6c87b9244b656212e0d08",
+      "bytes": 3139
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/result.json": {
+      "sha256": "c35dfd5cc196496356048c4e986d592a6903a23f379c31e251fc70bbce3ffa65",
+      "bytes": 3268
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.progress.json": {
+      "sha256": "9adb9011564e3e0b5fef66511ad20bb4da0ed467f94854549d582992799ccf0c",
+      "bytes": 342
+    },
+    "runs/ops-handoff-smoke-20261026-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.result.json": {
+      "sha256": "db16dd9f6d8a4306853e9fcbc57548ea9ee6f02e06101e34d07e1b64f97e021d",
+      "bytes": 2486
+    },
+    "runs/ops-handoff-smoke-20261026-v1/inputs/toy.fjsp": {
+      "sha256": "ae0d4da9c8086258f6dee27323de9f9c7b4a35e801adbc704c67e3841975d8e3",
+      "bytes": 98
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Best_so_far.csv": {
+      "sha256": "6e995be266fd17656811e1de29491c45aaa10ed976114a062de0406032197e2b",
+      "bytes": 137
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Candidates.csv": {
+      "sha256": "d52f61f7a92a5cda5f22f08cc77d8129af2eed53facf9a851ace0f6d60985f0a",
+      "bytes": 269
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Evaluation_costs.csv": {
+      "sha256": "ae0d1edbb1d3f9e799540ef53f71466cba01856384af2b4eedc84ca54348d83a",
+      "bytes": 240
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Per_instance.csv": {
+      "sha256": "ba735e510dece401433c0db4d050b25b255814d8d6a54d36b5f4510460158f59",
+      "bytes": 419
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Summary.json": {
+      "sha256": "f818beec664c5e467a1329969dedbc3993654d7a453cdd9822ae26ceed6ce5ce",
+      "bytes": 4085
+    },
+    "runs/ops-handoff-smoke-20261026-v1/results/Summary.md": {
+      "sha256": "220d48aa245cb9bb07352e063008eae04644dd032be4101aa786a6f49f4c8616",
+      "bytes": 2095
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Controller_identity.json": {
+      "sha256": "e885f83c625b477614058c7baf451af640024b95aaa154a5a6670ef05900dc11",
+      "bytes": 1732
+    },
+    "runs/ops-handoff-smoke-20261026-v2/End_summary.json": {
+      "sha256": "d540fbe43828a5ec12aa4658499864db01234db4e4d711824ea249735ed1e6d3",
+      "bytes": 125
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Events.jsonl": {
+      "sha256": "d64ea6523ba772cbdda4b6d120a9c70dde099317b23f83cbb9513df8c908d5ec",
+      "bytes": 167
+    },
+    "runs/ops-handoff-smoke-20261026-v2/H_frozen.json": {
+      "sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+      "bytes": 149108
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Launch_authorization.json": {
+      "sha256": "980696f15220a4669ba9539f348c7281671dd3808eb392348380e86495b3f8a9",
+      "bytes": 195
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Parents.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Protocol.json": {
+      "sha256": "9f18a19afde461e33cc6b43d15f4d1542c9711c4b57be23e8e65c31ea2f12ff3",
+      "bytes": 9456
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Protocol.sha256": {
+      "sha256": "c5283f22bed989b684ba1351a7f23c8a4153f437fdf8d01217e9778feb020523",
+      "bytes": 65
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Resolved_config.json": {
+      "sha256": "3d398d73f40c1afb4cb87dd72410a906de88d9dfcbb3ff60b5399b50b4298340",
+      "bytes": 912
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Run_clock.json": {
+      "sha256": "985cb6a48f687c6d1a1885308a82e397f5504c56c42cab946c0eb5ed09045f36",
+      "bytes": 66
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Run_identity.json": {
+      "sha256": "c3cfa71c5bbbd516d212b2c3df627e88ff32defea0ee10bb937469646c644a55",
+      "bytes": 78
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Solver_identity.json": {
+      "sha256": "f1a19ea8b3b3275338017b0cd6a9445581b0a666fca33c89ee3e49a72b20a28a",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v2/Tasks.json": {
+      "sha256": "14334d724a6148102124840f0280f3ecfbdeedd65de6b5c764209cf6c23e056e",
+      "bytes": 1057
+    },
+    "runs/ops-handoff-smoke-20261026-v2/checkpoint.json": {
+      "sha256": "5874cee2c6a46b53c05c746484c73693ba40f47b254645e8fe494ca49fdc2493",
+      "bytes": 14272
+    },
+    "runs/ops-handoff-smoke-20261026-v2/end_receipts/1793000557277722000.json": {
+      "sha256": "d540fbe43828a5ec12aa4658499864db01234db4e4d711824ea249735ed1e6d3",
+      "bytes": 125
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/Input_receipt.json": {
+      "sha256": "0b9b0f74c6a503b0453fd60a2056d1f728cc2d6395ac8da8ea75dd8245f7c5b2",
+      "bytes": 906
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/after.json": {
+      "sha256": "c15142716175766211c71b2235689d1ffc67817be22e898c88255d71fe18b727",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/before.json": {
+      "sha256": "c15142716175766211c71b2235689d1ffc67817be22e898c88255d71fe18b727",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/boundary.json": {
+      "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+      "bytes": 106
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/lifecycle.json": {
+      "sha256": "baee522d4f51b29394eba2ac39ad421a4040d695a6a26d098639309c9bfdd841",
+      "bytes": 770
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/raw_result.json": {
+      "sha256": "aab57ef39bed7681d2964d6d7b8ceb178b194e75f00ba52ef02aadcc32eb55ff",
+      "bytes": 3131
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/result.json": {
+      "sha256": "623c583fcebc9e53ac428d2157c22036fbc78fe7775f0256a7da96166ead9673",
+      "bytes": 3260
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.progress.json": {
+      "sha256": "0ee2672e9b4d3b4b2cdd5f3cc09150f9390d82c4f7dd56a699fc04c17a678cd8",
+      "bytes": 343
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.result.json": {
+      "sha256": "594c4471bb4bd958deb9489d728d4ab220dbbb2ef536c848206a87a74079a0d7",
+      "bytes": 2480
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/Input_receipt.json": {
+      "sha256": "0181eeddb0752f173fbee2319823841c835ec435ed37642395c9ef30e4b010c8",
+      "bytes": 922
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/after.json": {
+      "sha256": "566a409e8296c1f4a02caf3edc5bc88456083195c6393ea1e326b87e3dfe9fd9",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/before.json": {
+      "sha256": "566a409e8296c1f4a02caf3edc5bc88456083195c6393ea1e326b87e3dfe9fd9",
+      "bytes": 23999
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/boundary.json": {
+      "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+      "bytes": 106
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/lifecycle.json": {
+      "sha256": "05539d5cf175da83b20dfa7a57b6755349bc09221ba8808a10b84781a44bccc0",
+      "bytes": 770
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/raw_result.json": {
+      "sha256": "a736513decb5a6008a0f879d08415b430326972ed68a4c3ca8b9bfd773be8a34",
+      "bytes": 3136
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/result.json": {
+      "sha256": "9a270caf3c780ac42c398b1162b5b0afc94f15e4c36a3836d3540d1170f57065",
+      "bytes": 3265
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.progress.json": {
+      "sha256": "911bee6e67d3939721e17477612e7b679fdb2bfbaecac7d43582199e100e016c",
+      "bytes": 343
+    },
+    "runs/ops-handoff-smoke-20261026-v2/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.result.json": {
+      "sha256": "a55b3d9adaf180c33b9f94bea8143e704b0d310a875dcf5cb4c05c68481967ca",
+      "bytes": 2483
+    },
+    "runs/ops-handoff-smoke-20261026-v2/inputs/toy.fjsp": {
+      "sha256": "ae0d4da9c8086258f6dee27323de9f9c7b4a35e801adbc704c67e3841975d8e3",
+      "bytes": 98
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Best_so_far.csv": {
+      "sha256": "6e995be266fd17656811e1de29491c45aaa10ed976114a062de0406032197e2b",
+      "bytes": 137
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Candidates.csv": {
+      "sha256": "d52f61f7a92a5cda5f22f08cc77d8129af2eed53facf9a851ace0f6d60985f0a",
+      "bytes": 269
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Evaluation_costs.csv": {
+      "sha256": "c54bc7f40571abbd41e08d2915fd8c661b3d96a67d69686e905ac568e7f00f43",
+      "bytes": 239
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Per_instance.csv": {
+      "sha256": "865f22f3a568a475c00f06234a8d2b2e982719e25c918b9a86cbf2c83c501f6b",
+      "bytes": 417
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Summary.json": {
+      "sha256": "0ba4cb5f0734dc546f321afac87d9ac47a1738d88b57d32e53c1e2425d87efad",
+      "bytes": 4085
+    },
+    "runs/ops-handoff-smoke-20261026-v2/results/Summary.md": {
+      "sha256": "d091c745a188b6f90928a4597aff6d66c31993b07ee5a903be20a9045a0d59c1",
+      "bytes": 2095
+    },
+    "reports/engineering-handoff-20261026-v1/Before_namespace_fix/experiment_ops_run.py": {
+      "sha256": "a28917a0e07352b87d72722b7cd92c5561bf255d47d9edbc088f09cca6c09326",
+      "bytes": 18903
+    },
+    "reports/engineering-handoff-20261026-v1/Before_report_lease_fix/experiment_ops_run.py": {
+      "sha256": "45e2e1b26e6128e99616c1230e03fc776b5f7f757eae674b979a2b39e37005fa",
+      "bytes": 18918
+    }
+  }
+}

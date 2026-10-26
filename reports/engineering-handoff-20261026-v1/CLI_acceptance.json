@@ -1,0 +1,297 @@
+[
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "abef5f2ac05c13635400d4bad18b7a27c5ca5cc7a01b2d151a4f068ff51fd5b3",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "doctor",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "bc70c731937a8918d193e20af25983eed4e478b9006843453154fa270c66a58d",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "types",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "8127c143940d60a0f378db9e7f5e02b4c70444b1d2638db9aed269153dbfaa8d",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "check",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "8f85be53aa95e3d60a194f2407c63ec180fdfad639a095450aa644dac3f7d872",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "6a29428c47abef5904a3c79c9e62c622b83839e2b32c0eb86c8cb6cda1e89e7f",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "prepare",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "75184502dcded1fc7445bb5ce90142207f5cfd8f577da7cea74e3a982c876510",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "run",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "7b8c4998be4bc4cc496d1d72c189366790089039f3a4295c1aa5b5a87f72ff04",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "resume",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "a70ea730da0a5e3faa3d9196a87b6be3ab36f631900906a426f1cf491295fc40",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "status",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "1ecad9c402ba55fc14df9c7c565eced4c6805b30d1f4aa73bb77d97e969ad597",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "stop",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "55c8cfc925ce85ed10254ca25ed83de95ff49d387d21467bb246ac0e2a3f7c82",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "summary",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "0df10c57df2f6ee1df940abf4574eec41654c905d082dd28743ff3804ded7d27",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "_work",
+      "--help"
+    ],
+    "exitcode": 0,
+    "stdout_sha256": "2e0223e04d57b5c43c4e7888574276301789fb8bdd742c28d14abb626f20834c",
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/cross-ab-api.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 2,
+      "manual_or_P0_evaluations": 0,
+      "API_attempts": 3,
+      "max_program_instances": 42,
+      "max_solve_passes": 84
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/evo-api.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 2,
+      "manual_or_P0_evaluations": 5,
+      "API_attempts": 3,
+      "max_program_instances": 7,
+      "max_solve_passes": 14
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/fixed-toy.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 0,
+      "manual_or_P0_evaluations": 2,
+      "API_attempts": 0,
+      "max_program_instances": 2,
+      "max_solve_passes": 4
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/ind-api.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 2,
+      "manual_or_P0_evaluations": 0,
+      "API_attempts": 3,
+      "max_program_instances": 2,
+      "max_solve_passes": 4
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/ind-mock.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 3,
+      "manual_or_P0_evaluations": 0,
+      "API_attempts": 4,
+      "max_program_instances": 3,
+      "max_solve_passes": 6
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/pair-toy.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 0,
+      "manual_or_P0_evaluations": 2,
+      "API_attempts": 0,
+      "max_program_instances": 2,
+      "max_solve_passes": 4
+    },
+    "API": 0,
+    "solves": 0
+  },
+  {
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "experiments/tier2/manage.py",
+      "plan",
+      "--config",
+      "experiments/tier2/ops/configs/rules-toy.json"
+    ],
+    "exitcode": 0,
+    "budgets": {
+      "logical_generation": 0,
+      "manual_or_P0_evaluations": 9,
+      "API_attempts": 0,
+      "max_program_instances": 9,
+      "max_solve_passes": 18
+    },
+    "API": 0,
+    "solves": 0
+  }
+]

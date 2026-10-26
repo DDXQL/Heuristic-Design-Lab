@@ -1,0 +1,138 @@
+{
+  "schema": "operations-facts-v1",
+  "question": "工程示例，toy成绩不作科研结论",
+  "config_identity": "a3d72b61eb846dea555afcadbccaca0552f4abace7928734777c93d15950e33e",
+  "type": "fixed",
+  "space": "ten_h",
+  "search_seed": 17,
+  "solve_seed": 501,
+  "api_mode": "disabled",
+  "phase": "completed",
+  "complete": true,
+  "identity_check": "matched",
+  "planned": {
+    "logical_generation": 0,
+    "manual_or_P0_evaluations": 2,
+    "API_attempts": 0,
+    "max_program_instances": 2,
+    "max_solve_passes": 4
+  },
+  "used": {
+    "committed_tasks": 2,
+    "reserved_tasks": 2,
+    "logical_generation": 0,
+    "API_attempts": 0,
+    "complete_responses": 0,
+    "certified_strategies": 2,
+    "certified_new_generation": 0,
+    "failed_or_uncommitted_tasks": 0,
+    "AST_duplicates": 0,
+    "cache_hits": 0,
+    "new_program_instances_reserved": 2,
+    "first_starts": 2,
+    "recheck_starts": 2
+  },
+  "initial_champion": null,
+  "new_champion": null,
+  "best_so_far": {
+    "id": "H0_SELECT",
+    "stage": "fixed",
+    "condition": null,
+    "status": "completed",
+    "fitness": -1.1666666666666667,
+    "valid": true,
+    "repeat": 0,
+    "pair_index": null,
+    "failure": null,
+    "AST_duplicate": false,
+    "cache_hit": false,
+    "parents": "[]",
+    "error_type": null,
+    "successful_rows": 1
+  },
+  "fixed_evaluation_champion": {
+    "id": "H0_SELECT",
+    "stage": "fixed",
+    "condition": null,
+    "status": "completed",
+    "fitness": -1.1666666666666667,
+    "valid": true,
+    "repeat": 0,
+    "pair_index": null,
+    "failure": null,
+    "AST_duplicate": false,
+    "cache_hit": false,
+    "parents": "[]",
+    "error_type": null,
+    "successful_rows": 1
+  },
+  "strategy_results": [
+    {
+      "id": "H0_SELECT",
+      "stage": "fixed",
+      "condition": null,
+      "status": "completed",
+      "fitness": -1.1666666666666667,
+      "valid": true,
+      "repeat": 0,
+      "pair_index": null,
+      "failure": null,
+      "AST_duplicate": false,
+      "cache_hit": false,
+      "parents": "[]",
+      "error_type": null,
+      "successful_rows": 1
+    },
+    {
+      "id": "equal",
+      "stage": "fixed",
+      "condition": null,
+      "status": "completed",
+      "fitness": -1.1666666666666667,
+      "valid": true,
+      "repeat": 0,
+      "pair_index": null,
+      "failure": null,
+      "AST_duplicate": false,
+      "cache_hit": false,
+      "parents": "[]",
+      "error_type": null,
+      "successful_rows": 1
+    }
+  ],
+  "paired_comparison": null,
+  "new_minus_initial_Fitness": null,
+  "API_usage": {
+    "known_input_tokens": 0,
+    "known_output_tokens": 0,
+    "unknown_usage_attempts": 0,
+    "verified_currency_cost": 0,
+    "platform_points": null,
+    "note": "No fee gate or invoice/account queries; mock tokens are zero, not real generation."
+  },
+  "evaluation_parent_seconds": 0.9325901669999439,
+  "limits": [
+    "Facts only; no generated scientific interpretation.",
+    "Complete Fitness requires all frozen instances; failures never get prefix mean.",
+    "P0 evaluations cost separately; cache hits still occupy logical slots.",
+    "This run is not automatically budget-fair with historical B1/B2."
+  ],
+  "files": {
+    "candidates": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ops-handoff-smoke-20261026-v1/results/Candidates.csv",
+    "per_instance": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ops-handoff-smoke-20261026-v1/results/Per_instance.csv",
+    "raw_responses": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ops-handoff-smoke-20261026-v1/responses",
+    "checkpoint": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ops-handoff-smoke-20261026-v1/checkpoint.json"
+  },
+  "method_groups": [
+    {
+      "method": "fixed",
+      "search_seed": 17,
+      "planned_new_slots": 0,
+      "used_new_slots": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "mean_valid_new": null
+    }
+  ]
+}

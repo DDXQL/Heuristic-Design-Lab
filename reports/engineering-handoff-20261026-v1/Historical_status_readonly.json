@@ -1,0 +1,93 @@
+{
+  "run_dir": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ind-vs-evo-h01-train21-seed501-20261026-v1",
+  "phase": "recovery_stopped",
+  "cursor": 113,
+  "writer_lock_present": true,
+  "persistent_Stop": true,
+  "tasks_total": 120,
+  "known_Stop_records": [
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ind-vs-evo-h01-train21-seed501-20261026-v1/continuation-v1/Stop.json",
+    "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/ind-vs-evo-h01-train21-seed501-20261026-v1/continuation-v1/recovery-v1/Stop.json"
+  ],
+  "writer_owner": {
+    "pid": 94933,
+    "scope": "explicit API recovery probe"
+  },
+  "writer_pid_exists": false,
+  "separate_closeout_record": {
+    "status": "partial_closed_by_current_user_instruction",
+    "planned": 120,
+    "consumed": 113,
+    "unstarted_not_to_resume": [
+      {
+        "task_id": "r2_IND_s19",
+        "repeat": 2,
+        "arm": "IND",
+        "slot": 19,
+        "position": 114
+      },
+      {
+        "task_id": "r2_EVO_s18",
+        "repeat": 2,
+        "arm": "EVO",
+        "slot": 18,
+        "position": 115
+      },
+      {
+        "task_id": "r2_EVO_s19",
+        "repeat": 2,
+        "arm": "EVO",
+        "slot": 19,
+        "position": 116
+      },
+      {
+        "task_id": "r3_EVO_s18",
+        "repeat": 3,
+        "arm": "EVO",
+        "slot": 18,
+        "position": 117
+      },
+      {
+        "task_id": "r3_EVO_s19",
+        "repeat": 3,
+        "arm": "EVO",
+        "slot": 19,
+        "position": 118
+      },
+      {
+        "task_id": "r3_IND_s18",
+        "repeat": 3,
+        "arm": "IND",
+        "slot": 18,
+        "position": 119
+      },
+      {
+        "task_id": "r3_IND_s19",
+        "repeat": 3,
+        "arm": "IND",
+        "slot": 19,
+        "position": 120
+      }
+    ],
+    "API_attempts": 117,
+    "remaining_slots_not_reallocated": true,
+    "old_checkpoint_and_Stop_unchanged": true,
+    "supersedes_previous_report_recommendation_to_complete_remaining7": true,
+    "automatic_restart": false
+  },
+  "unknown_API_attempts": 0,
+  "unknown_evaluations": 0,
+  "deadline": {
+    "start": {
+      "wall": 1792944568.074371,
+      "monotonic": 728965.079349541,
+      "CPU": 0.400788
+    },
+    "deadline": 1792966168.074371,
+    "reserve_seconds": 1294
+  },
+  "deadline_manila": "2026-10-26T06:09:28.074371+08:00",
+  "remaining_window_seconds": 0,
+  "pause_request": null,
+  "read_only": true
+}
