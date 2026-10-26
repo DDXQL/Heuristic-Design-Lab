@@ -1,0 +1,19 @@
+{
+  "final_source_full_mock_completed": true,
+  "logical": 50,
+  "API_attempts": 50,
+  "real_API": 0,
+  "all_stages": [
+    "manual-H",
+    "H",
+    "static",
+    "IND_701",
+    "IND_702",
+    "EVO_801",
+    "EVO_802",
+    "validation",
+    "confirmation",
+    "transfer"
+  ],
+  "source_protocol_sha256": "dee015f9fefe7108f0b7a137d791d612fc96b07b7bc3a18b679a6eed81cd7232"
+}

@@ -73,3 +73,7 @@ SELECT是`(0, 十个有限选择分数)`；MIX是`(1, 十个非负权重)`，恰
 `tools/experiment_ops_run.py`现在是兼容层，调用`heuristic_design.core.execution`，通过`heuristic_design.problems.fjsp.adapter.FjspAdapter`获取提示、准入和原T30评价。通用排名与生存位于`core/search.py`，结构接口在`core/adapter.py`。已有历史research/evolution.py等保持字节不变，避免重写冻结身份。API落盘/重试经`heuristic_design.llm.legacy`桥接原组件；Python包无需整体改名。
 
 FJSP语义回归见[抽取报告](../reports/generic-extraction-20261026-v1/REPORT_ZH.md)，TSP后续严格按[固定协议](TSP_PILOT_PROTOCOL_V1.md)。
+
+## TSP第二问题
+
+[TSP适配与实跑命令](TSP_ADAPTER.md)：`experiments/tsp/manage.py` → `problems/tsp/campaign.py` → 同一`core/execution.py`，由`operations.Adapter`提供提示/准入/评价及全局journal。TSP函数没有FJSP状态、Cmax或LB。低层MIX和T30纯逻辑独立在core，旧FJSP源码保留；跨阶段50/75限额不是每run各75。

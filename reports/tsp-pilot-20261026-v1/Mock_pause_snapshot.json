@@ -1,0 +1,1419 @@
+{
+  "campaign_state": {
+    "phase": "paused",
+    "current_stage": "IND_702",
+    "completed_stages": [
+      "manual-H",
+      "H",
+      "static",
+      "IND_701"
+    ],
+    "started_at": 1793023368.266976,
+    "reason": "stage paused at candidate boundary"
+  },
+  "clock_sha256": "7623d901fe9bf73b90decc08552946b3cce7c5a29269600fb5eaf4ae4a4904aa",
+  "requests": {
+    "H/000": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000",
+      "logical_id": "H/000",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01/response",
+      "elapsed_seconds": 0.005850076675415039
+    },
+    "H/001": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001",
+      "logical_id": "H/001",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.1 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01/response",
+      "elapsed_seconds": 0.0069429874420166016
+    },
+    "H/002": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002",
+      "logical_id": "H/002",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01/response",
+      "elapsed_seconds": 0.006501913070678711
+    },
+    "H/003": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003",
+      "logical_id": "H/003",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01/response",
+      "elapsed_seconds": 0.007174968719482422
+    },
+    "H/004": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004",
+      "logical_id": "H/004",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01/response",
+      "elapsed_seconds": 0.008051872253417969
+    },
+    "H/005": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005",
+      "logical_id": "H/005",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01/response",
+      "elapsed_seconds": 0.007375001907348633
+    },
+    "H/006": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006",
+      "logical_id": "H/006",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01/response",
+      "elapsed_seconds": 0.007941007614135742
+    },
+    "H/007": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007",
+      "logical_id": "H/007",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01/response",
+      "elapsed_seconds": 0.010098934173583984
+    },
+    "H/008": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008",
+      "logical_id": "H/008",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.15 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01/response",
+      "elapsed_seconds": 0.008059263229370117
+    },
+    "H/009": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign one new action-scoring heuristic. Exact signature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\nReturn one finite scalar, larger is preferred. Do not call U or other H.\n",
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "kind": "h",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009",
+      "logical_id": "H/009",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.15 * distance_start\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01/response",
+      "elapsed_seconds": 0.008656740188598633
+    },
+    "IND_701/000": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000",
+      "logical_id": "IND_701/000",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01/response",
+      "elapsed_seconds": 0.008481979370117188
+    },
+    "IND_701/001": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001",
+      "logical_id": "IND_701/001",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1.1 - progress, 0, 0, 0, progress + 0.1))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01/response",
+      "elapsed_seconds": 0.010314226150512695
+    },
+    "IND_701/002": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002",
+      "logical_id": "IND_701/002",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01/response",
+      "elapsed_seconds": 0.009376049041748047
+    },
+    "IND_701/003": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003",
+      "logical_id": "IND_701/003",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01/response",
+      "elapsed_seconds": 0.012289047241210938
+    },
+    "IND_701/004": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004",
+      "logical_id": "IND_701/004",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01/response",
+      "elapsed_seconds": 0.009498119354248047
+    },
+    "IND_701/005": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005",
+      "logical_id": "IND_701/005",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 1, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01/response",
+      "elapsed_seconds": 0.010914087295532227
+    },
+    "IND_701/006": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006",
+      "logical_id": "IND_701/006",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01/response",
+      "elapsed_seconds": 0.010968208312988281
+    },
+    "IND_701/007": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007",
+      "logical_id": "IND_701/007",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (progress + 0.1, 1.1 - progress, 0, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01/response",
+      "elapsed_seconds": 0.011374235153198242
+    },
+    "IND_701/008": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008",
+      "logical_id": "IND_701/008",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 0, 1))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01/response",
+      "elapsed_seconds": 0.011008739471435547
+    },
+    "IND_701/009": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009",
+      "logical_id": "IND_701/009",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0, progress + 0.1, 1.1 - progress, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01/response",
+      "elapsed_seconds": 0.012450933456420898
+    },
+    "IND_702/000": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000",
+      "logical_id": "IND_702/000",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01/response",
+      "elapsed_seconds": 0.010643243789672852
+    },
+    "IND_702/001": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001",
+      "logical_id": "IND_702/001",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01/response",
+      "elapsed_seconds": 0.010891914367675781
+    },
+    "IND_702/002": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002",
+      "logical_id": "IND_702/002",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (progress + 0.1, 1.1 - progress, 0, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01/response",
+      "elapsed_seconds": 0.011749029159545898
+    },
+    "IND_702/003": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003",
+      "logical_id": "IND_702/003",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01/response",
+      "elapsed_seconds": 0.011158943176269531
+    },
+    "IND_702/004": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004",
+      "logical_id": "IND_702/004",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01/response",
+      "elapsed_seconds": 0.011964082717895508
+    },
+    "IND_702/005": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005",
+      "logical_id": "IND_702/005",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 0, 1))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01/response",
+      "elapsed_seconds": 0.012281179428100586
+    },
+    "IND_702/006": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006",
+      "logical_id": "IND_702/006",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 1, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01/response",
+      "elapsed_seconds": 0.012796163558959961
+    },
+    "IND_702/007": {
+      "status": "completed",
+      "prompt": "Constructive symmetric complete Euclidean TSP in [0,1]^2. Start city 0; choose an unvisited city at each step; return to city 0 after the final choice. True float64 Euclidean distances, no rounding and no local search. Higher H score wins; exact action ties choose smallest city ID. Every distance feature is divided by sqrt(2). All fields describe the current partial tour only, no optimum/future payoff is available.\nH action arguments: distance_current=current-to-candidate distance; distance_start=candidate-to-origin-0 distance; mean_remaining_distance and nearest_remaining_distance measure candidate-to-OTHER unvisited cities, excluding the candidate itself (both 0 if no other city remains); progress=(visited_count-1)/(n-1) BEFORE the choice. All five in [0,1].\nU state: progress as above; current_to_start=current-to-origin distance/sqrt(2); mean_distance_current and std_distance_current are mean and population std of distances/sqrt(2) from current to ALL unvisited cities; previous_heuristic is -1 initially, then previous dominant member ID, with weight ties choosing lowest ID. First four fields are in [0,1], std <=0.5. U sees no action features or H scores.\nTraining Fitness is minus arithmetic mean(tour_length / same-instance nearest-neighbor tour_length) over ALL 20 train instances. Nearest neighbor also starts at 0 with city-ID ties and closes to 0. Higher Fitness is better. This is NOT optimality gap or lower bound. Any invalid output/timeout/failed instance invalidates the whole candidate. Solve/recheck must match. No test or validation feedback is available.\nOnly numerical scalar Python is allowed: assignments, if/else, arithmetic, comparisons, abs/min/max/int/float/round; no imports, attributes, subscripts, lists, comprehensions, loops, functions, recursion, external access or randomness. All paths must end with return. Numerical constants <=1e9, intermediate magnitude <=1e100, power exponents literal integers 0..8. No type annotations needed.\nReturn exactly {one short description} followed by one fenced python block, nothing else.\n\nDesign a usage policy. Exact signature: def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\nReturn exactly (mode, (v0, ..., v4)), with exactly 5 numeric components written explicitly. SELECT mode=0 chooses max component, smallest member ID on ties; components may be negative or zero. MIX mode=1 requires nonnegative weights with exactly one or two strictly positive components. Host normalizes positive weights; one member uses original scores; two members each min-max across ALL current legal actions, constant columns become 0, then weighted sum. No automatic top-two truncation. Never use more than two positives. You can use state-dependent SELECT, support, weights or mode; constants are also legal.\n\nH MEMBER 0\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\nH MEMBER 1\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\nH MEMBER 2\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\nH MEMBER 3\nHuman-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n\nH MEMBER 4\nMOCK engineering fixture, not LLM-generated.\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\nCreate an original usage policy independently. No parent/history/fitness feedback is supplied.\n",
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "kind": "U",
+      "global_key": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007",
+      "logical_id": "IND_702/007",
+      "attempt_ids": [
+        "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01"
+      ],
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+      "response_metadata": {
+        "model": "MOCK_OFFLINE_NOT_LLM",
+        "mock": true
+      },
+      "accepted_attempt_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01",
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01/response",
+      "elapsed_seconds": 0.01996588706970215
+    }
+  },
+  "attempts": {
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01",
+      "logical_id": "H/000",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023372.155466,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/000/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.0 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023372.1613162,
+      "elapsed_seconds": 0.005850076675415039
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01",
+      "logical_id": "H/001",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023373.013502,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/001/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.1 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023373.0204449,
+      "elapsed_seconds": 0.0069429874420166016
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01",
+      "logical_id": "H/002",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023373.815664,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/002/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023373.822166,
+      "elapsed_seconds": 0.006501913070678711
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01",
+      "logical_id": "H/003",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023374.661881,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/003/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023374.669056,
+      "elapsed_seconds": 0.007174968719482422
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01",
+      "logical_id": "H/004",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023375.493621,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/004/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023375.501673,
+      "elapsed_seconds": 0.008051872253417969
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01",
+      "logical_id": "H/005",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023376.330213,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/005/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023376.337588,
+      "elapsed_seconds": 0.007375001907348633
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01",
+      "logical_id": "H/006",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023376.36164,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/006/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.05 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023376.369581,
+      "elapsed_seconds": 0.007941007614135742
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01",
+      "logical_id": "H/007",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023376.392382,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/007/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023376.4024808,
+      "elapsed_seconds": 0.010098934173583984
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01",
+      "logical_id": "H/008",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023376.430261,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/008/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.15 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023376.4383202,
+      "elapsed_seconds": 0.008059263229370117
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01",
+      "logical_id": "H/009",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "142aa1b12e7cf5f7e9c360fb1297b7839e48b4cc7adddd03072838a6241a2e80",
+      "started_at": 1793023377.299488,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/H/009/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.15 * distance_start\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023377.3081448,
+      "elapsed_seconds": 0.008656740188598633
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01",
+      "logical_id": "IND_701/000",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023395.981786,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/000/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023395.990268,
+      "elapsed_seconds": 0.008481979370117188
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01",
+      "logical_id": "IND_701/001",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023396.8100219,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/001/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1.1 - progress, 0, 0, 0, progress + 0.1))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023396.820336,
+      "elapsed_seconds": 0.010314226150512695
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01",
+      "logical_id": "IND_701/002",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023397.9121861,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/002/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023397.9215622,
+      "elapsed_seconds": 0.009376049041748047
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01",
+      "logical_id": "IND_701/003",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023398.820719,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/003/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023398.833008,
+      "elapsed_seconds": 0.012289047241210938
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01",
+      "logical_id": "IND_701/004",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023398.86216,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/004/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023398.871658,
+      "elapsed_seconds": 0.009498119354248047
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01",
+      "logical_id": "IND_701/005",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023399.8304489,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/005/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 1, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023399.841363,
+      "elapsed_seconds": 0.010914087295532227
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01",
+      "logical_id": "IND_701/006",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023400.741133,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/006/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023400.7521012,
+      "elapsed_seconds": 0.010968208312988281
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01",
+      "logical_id": "IND_701/007",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023400.782868,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/007/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (progress + 0.1, 1.1 - progress, 0, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023400.7942421,
+      "elapsed_seconds": 0.011374235153198242
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01",
+      "logical_id": "IND_701/008",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023401.753679,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/008/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 0, 1))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023401.7646878,
+      "elapsed_seconds": 0.011008739471435547
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01",
+      "logical_id": "IND_701/009",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023402.6393821,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_701/009/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0, progress + 0.1, 1.1 - progress, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023402.651833,
+      "elapsed_seconds": 0.012450933456420898
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01",
+      "logical_id": "IND_702/000",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023408.1317918,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/000/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023408.142435,
+      "elapsed_seconds": 0.010643243789672852
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01",
+      "logical_id": "IND_702/001",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023409.121509,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/001/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, progress + 0.1, 1.1 - progress, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023409.132401,
+      "elapsed_seconds": 0.010891914367675781
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01",
+      "logical_id": "IND_702/002",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023409.158968,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/002/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (progress + 0.1, 1.1 - progress, 0, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023409.170717,
+      "elapsed_seconds": 0.011749029159545898
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01",
+      "logical_id": "IND_702/003",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023410.1113229,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/003/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023410.1224818,
+      "elapsed_seconds": 0.011158943176269531
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01",
+      "logical_id": "IND_702/004",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023410.922085,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/004/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023410.9340491,
+      "elapsed_seconds": 0.011964082717895508
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01",
+      "logical_id": "IND_702/005",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023410.963604,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/005/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 0, 1))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023410.9758852,
+      "elapsed_seconds": 0.012281179428100586
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01",
+      "logical_id": "IND_702/006",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023411.8172128,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/006/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 1, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023411.830009,
+      "elapsed_seconds": 0.012796163558959961
+    },
+    "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01": {
+      "id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01",
+      "logical_id": "IND_702/007",
+      "number": 1,
+      "status": "completed",
+      "send_confirmed": true,
+      "prompt_key": "e99580ff12f716626caf17e341e1a7d8739a079fdc452016d9e021f5161be843",
+      "started_at": 1793023412.709259,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "response_id": "tsp-pilot/43d116e7a662221153ae996b5f0d36176b156676a5002309ae67a9846fc8fb7b/IND_702/007/attempt/01/response",
+      "reply": {
+        "text": "{MOCK engineering fixture, not LLM-generated.}\n```python\ndef use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n\n```",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "metadata": {
+          "model": "MOCK_OFFLINE_NOT_LLM",
+          "mock": true
+        }
+      },
+      "finished_at": 1793023412.729225,
+      "elapsed_seconds": 0.01996588706970215
+    }
+  }
+}
