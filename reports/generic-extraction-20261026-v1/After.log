@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/verify_fjsp_extraction.py", line 64, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/verify_fjsp_extraction.py", line 58, in main
+    if a.tag!='compare':capture(a.tag);return
+                        ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/verify_fjsp_extraction.py", line 35, in capture
+    if o.read(run/'checkpoint.json')['phase']!='completed':subprocess.run([sys.executable,'-B',str(ROOT/'experiments/tier2/manage.py'),'run','--run-dir',str(run)],check=True,stdout=subprocess.DEVNULL)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python', '-B', '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/experiments/tier2/manage.py', 'run', '--run-dir', '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/fjsp-extraction-after-20261026-v1']' returned non-zero exit status 2.

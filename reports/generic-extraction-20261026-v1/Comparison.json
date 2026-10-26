@@ -1,0 +1,30 @@
+{
+  "equal": true,
+  "strategy_instance_pairs": 4,
+  "compared": [
+    "full action traces",
+    "all U states",
+    "full schedule",
+    "decisions and weights",
+    "Fitness",
+    "first/recheck",
+    "certified hashes and H calls"
+  ],
+  "historical_matches": [
+    {
+      "strategy": "H0",
+      "file": "Behnke1.fjsp",
+      "makespan": 106,
+      "physical_schedule_sha256": "c53aa5d847f2022eb49987250b402198087b74f1a6bd16d60d503000cdffe127",
+      "matched": true
+    },
+    {
+      "strategy": "H0_H1_WS",
+      "file": "Behnke1.fjsp",
+      "makespan": 100,
+      "physical_schedule_sha256": "275b6c7dac115c37fafb564babe267df1fd00d85d3a054b2e5cac5f865307cb5",
+      "matched": true
+    }
+  ],
+  "real_API": 0
+}

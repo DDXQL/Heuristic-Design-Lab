@@ -67,3 +67,9 @@ SELECT是`(0, 十个有限选择分数)`；MIX是`(1, 十个非负权重)`，恰
 先查看`git status --short`，再用`git diff -- experiments/tier2/ops tools/experiment_ops_prompts.py`检查新配置/提示适配；用`git diff -- tools/experiment_ops_run.py`检查控制逻辑。新增未跟踪文件不会显示在普通git diff中，可用`git diff --no-index /dev/null 新文件路径`审阅（返回1表示有差异），或只对自己的文件使用git add -N再git diff。不要`git add .`混入别的任务。
 
 任何会影响候选、提示、种群、H、数据或评价的修改都要新run身份；旧目录不就地改协议。旧H编号有训练排名信息，本封装不重编号。Tier1和其他工作树的运行能力没有在本交接中重新验收。
+
+## 2026-10-26 通用边界抽取
+
+`tools/experiment_ops_run.py`现在是兼容层，调用`heuristic_design.core.execution`，通过`heuristic_design.problems.fjsp.adapter.FjspAdapter`获取提示、准入和原T30评价。通用排名与生存位于`core/search.py`，结构接口在`core/adapter.py`。已有历史research/evolution.py等保持字节不变，避免重写冻结身份。API落盘/重试经`heuristic_design.llm.legacy`桥接原组件；Python包无需整体改名。
+
+FJSP语义回归见[抽取报告](../reports/generic-extraction-20261026-v1/REPORT_ZH.md)，TSP后续严格按[固定协议](TSP_PILOT_PROTOCOL_V1.md)。

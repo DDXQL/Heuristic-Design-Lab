@@ -1,0 +1,18 @@
+test_background_pause_resume_preserves_budget_clock_and_response (tests.test_experiment_ops.Tests.test_background_pause_resume_preserves_budget_clock_and_response) ... ok
+test_config_identity_mismatch_and_unknown_reservation_refuse_resume (tests.test_experiment_ops.Tests.test_config_identity_mismatch_and_unknown_reservation_refuse_resume) ... ok
+test_cross_ab_template_and_authentic_parent_binding_without_solves (tests.test_experiment_ops.Tests.test_cross_ab_template_and_authentic_parent_binding_without_solves) ... ok
+test_expired_deadline_and_unknown_lock_never_cleared (tests.test_experiment_ops.Tests.test_expired_deadline_and_unknown_lock_never_cleared) ... ok
+test_full_rules_and_exact_existing_semantics (tests.test_experiment_ops.Tests.test_full_rules_and_exact_existing_semantics) ... ok
+test_independent_template_no_parents_or_history_and_tenH_support (tests.test_experiment_ops.Tests.test_independent_template_no_parents_or_history_and_tenH_support) ... ok
+test_mock_evolution_two_slots_and_generation_update (tests.test_experiment_ops.Tests.test_mock_evolution_two_slots_and_generation_update) ... ok
+test_no_implicit_fee_or_account_gate (tests.test_experiment_ops.Tests.test_no_implicit_fee_or_account_gate) ... ok
+test_preview_is_readonly_no_provider_or_solver (tests.test_experiment_ops.Tests.test_preview_is_readonly_no_provider_or_solver) ... ok
+test_real_API_gate_fails_before_launch_or_network (tests.test_experiment_ops.Tests.test_real_API_gate_fails_before_launch_or_network) ... ok
+test_unknown_API_attempt_never_released_or_resent (tests.test_experiment_ops.Tests.test_unknown_API_attempt_never_released_or_resent) ... ok
+test_partial_never_gets_full_fitness (tests.test_generic_search.Tests.test_partial_never_gets_full_fitness) ... ok
+test_selection_matches_original_random_stream (tests.test_generic_search.Tests.test_selection_matches_original_random_stream) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 15.640s
+
+OK

@@ -184,7 +184,9 @@ def sources():
         'fjsp_usage.research_real.config','fjsp_usage.research_real.prompts',
         'fjsp_usage.usage_v2.prompts','fjsp_usage.usage_v2.candidates','fjsp_usage.research.prompts',
         'fjsp_usage.research.evolution','fjsp_usage.research.sets','fjsp_usage.research_real.attempt_budget',
-        'fjsp_usage.research_real.budget','fjsp_usage.research_real.real_transport','fjsp_usage.usage_v2.access'])
+        'fjsp_usage.research_real.budget','fjsp_usage.research_real.real_transport','fjsp_usage.usage_v2.access',
+        'heuristic_design.core.execution','heuristic_design.core.search',
+        'heuristic_design.llm.legacy','heuristic_design.problems.fjsp.adapter'])
     return {str(Path(importlib.import_module(n).__file__).resolve().relative_to(ROOT)):sha(Path(importlib.import_module(n).__file__)) for n in sorted(names)}
 
 

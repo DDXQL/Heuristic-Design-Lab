@@ -1,0 +1,30 @@
+{
+  "schema": "experiment-operations-v1",
+  "question": "FJSP extraction regression: toy + certified Behnke1",
+  "space": "ten_h",
+  "H_source": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json",
+  "dataset": {
+    "role": "engineering",
+    "files": [
+      "experiments/tier2/ops/data/toy.fjsp",
+      "runs/baseline-a-supplemental-T30-seed501-20261024-v1/inputs/train/Behnke1.fjsp"
+    ]
+  },
+  "search_seed": 17,
+  "solve_seed": 501,
+  "instance_timeout": 30,
+  "window_seconds": 3600,
+  "api_mode": "disabled",
+  "real_requests_authorized": false,
+  "type": "fixed",
+  "strategies": [
+    {
+      "id": "H0_SELECT",
+      "member": 0
+    },
+    {
+      "id": "equal",
+      "alpha": 0.5
+    }
+  ]
+}

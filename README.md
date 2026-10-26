@@ -166,3 +166,7 @@ stop不是强杀：当前候选生成、完整评价认证、账本提交后才�
 修改前先读[代码地图](docs/EXPERIMENT_CODE_MAP.md)，用`git diff -- 文件路径`审阅局部改动；不改旧协议/提示/账本/认证记录，不把别的任务文件一起提交。新run必须新目录。
 
 [整理前README字节快照](docs/archive/README_PRE_HANDOFF_20261026.md)仅作2026-10-26前的历史材料；其中相对路径原以仓库根为基准，旧批准和旧“当前进度”不作为现在的执行授权。原始runs/reports位置不变。
+
+## 通用化与第二问题
+
+工程方向暂名Heuristic-Design-Lab；GitHub名、远端及本地主目录保持现状。任务执行/排名已抽取到`code/heuristic_design/core`，FJSP经问题适配层复用原求解认证，旧入口保留。[完整行为回归](reports/generic-extraction-20261026-v1/REPORT_ZH.md)比较了toy及已有认证Behnke1的动作轨迹、状态、排程和首解复检。[TSP固定预算协议](docs/TSP_PILOT_PROTOCOL_V1.md)先冻结后执行。
