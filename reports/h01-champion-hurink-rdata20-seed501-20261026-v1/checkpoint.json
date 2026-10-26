@@ -1,0 +1,807 @@
+{
+  "protocol_sha256": "e552a776d906996697ba731ef9bf3296bc584e8e7d6706de4a586a7bcb5be649",
+  "cursor": 40,
+  "phase": "completed",
+  "tasks": {
+    "01_dynamic": {
+      "task_id": "01_dynamic",
+      "instance_index": 0,
+      "policy": "dynamic",
+      "file": "HurinkR_la05.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987643.0058398,
+        "monotonic": 741361.104498208
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987643.526387,
+        "monotonic": 741361.625043208
+      },
+      "result_path": "evaluations/01_dynamic/result.json",
+      "result_sha256": "f000d22871d41a12a19a4aba80acec83a316892c91840d1c632ff96743f6696d"
+    },
+    "01_equal": {
+      "task_id": "01_equal",
+      "instance_index": 0,
+      "policy": "equal",
+      "file": "HurinkR_la05.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987643.7689831,
+        "monotonic": 741361.867638125
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987644.257928,
+        "monotonic": 741362.3565805
+      },
+      "result_path": "evaluations/01_equal/result.json",
+      "result_sha256": "0e9d32d27855f2d670461f86b7c74f1ec8282d0b55a7435cc4cae206e64d14da"
+    },
+    "02_equal": {
+      "task_id": "02_equal",
+      "instance_index": 1,
+      "policy": "equal",
+      "file": "HurinkR_la19.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987644.4977422,
+        "monotonic": 741362.596393833
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987644.983603,
+        "monotonic": 741363.082252625
+      },
+      "result_path": "evaluations/02_equal/result.json",
+      "result_sha256": "9a559e8027ebc39c922feca1715db94f13650ac1dcd58e656fb92bcdc38347b5"
+    },
+    "02_dynamic": {
+      "task_id": "02_dynamic",
+      "instance_index": 1,
+      "policy": "dynamic",
+      "file": "HurinkR_la19.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987645.200619,
+        "monotonic": 741363.29926725
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987645.709677,
+        "monotonic": 741363.808322708
+      },
+      "result_path": "evaluations/02_dynamic/result.json",
+      "result_sha256": "6fdeb7aa9e142868e5db6d2c1cb26d813969e675e40617071968bd6261d0b0b2"
+    },
+    "03_dynamic": {
+      "task_id": "03_dynamic",
+      "instance_index": 2,
+      "policy": "dynamic",
+      "file": "HurinkR_la07.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987645.9447181,
+        "monotonic": 741364.043362208
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987646.449557,
+        "monotonic": 741364.548199416
+      },
+      "result_path": "evaluations/03_dynamic/result.json",
+      "result_sha256": "04163325416e27f75cc9eba9ef54dc93ae3124f479035b547630463fcc3302b0"
+    },
+    "03_equal": {
+      "task_id": "03_equal",
+      "instance_index": 2,
+      "policy": "equal",
+      "file": "HurinkR_la07.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987646.673494,
+        "monotonic": 741364.772135416
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987647.154186,
+        "monotonic": 741365.252824791
+      },
+      "result_path": "evaluations/03_equal/result.json",
+      "result_sha256": "e0f98f74b1bdf3e0890e8a5bfb79356532f7c76a37292ab0fa7147f18c4b56ce"
+    },
+    "04_equal": {
+      "task_id": "04_equal",
+      "instance_index": 3,
+      "policy": "equal",
+      "file": "HurinkR_la11.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987647.3862422,
+        "monotonic": 741365.484879958
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987647.93187,
+        "monotonic": 741366.030505416
+      },
+      "result_path": "evaluations/04_equal/result.json",
+      "result_sha256": "092137689a3a2bc1a8ca0a6063699e65cf19a01d72c2e0fe7b64b39a5746c207"
+    },
+    "04_dynamic": {
+      "task_id": "04_dynamic",
+      "instance_index": 3,
+      "policy": "dynamic",
+      "file": "HurinkR_la11.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987648.1630132,
+        "monotonic": 741366.261646916
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987648.7035708,
+        "monotonic": 741366.802203
+      },
+      "result_path": "evaluations/04_dynamic/result.json",
+      "result_sha256": "ecb27876946f911d7ad56a988c8cadfb36f21298817442d5f0fb0db94e4d24ed"
+    },
+    "05_dynamic": {
+      "task_id": "05_dynamic",
+      "instance_index": 4,
+      "policy": "dynamic",
+      "file": "HurinkR_la04.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987648.946177,
+        "monotonic": 741367.044807708
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987649.4278378,
+        "monotonic": 741367.526465583
+      },
+      "result_path": "evaluations/05_dynamic/result.json",
+      "result_sha256": "f18d00f0fecfbdbbffbaff3fec0e8849589b030f0939310125db9033278d3390"
+    },
+    "05_equal": {
+      "task_id": "05_equal",
+      "instance_index": 4,
+      "policy": "equal",
+      "file": "HurinkR_la04.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987649.662462,
+        "monotonic": 741367.761088416
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987650.14122,
+        "monotonic": 741368.239844833
+      },
+      "result_path": "evaluations/05_equal/result.json",
+      "result_sha256": "0768bca0fbb875eef7f1ac65f956da24d21eb157885b2e471a87d3830df16cf9"
+    },
+    "06_equal": {
+      "task_id": "06_equal",
+      "instance_index": 5,
+      "policy": "equal",
+      "file": "HurinkR_la13.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987650.377184,
+        "monotonic": 741368.4758075
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987650.901215,
+        "monotonic": 741368.999836375
+      },
+      "result_path": "evaluations/06_equal/result.json",
+      "result_sha256": "0038fe8a583fca3e10e185bf0013ee4054d7ea64f1aa953651454ba39705b6eb"
+    },
+    "06_dynamic": {
+      "task_id": "06_dynamic",
+      "instance_index": 5,
+      "policy": "dynamic",
+      "file": "HurinkR_la13.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987651.133066,
+        "monotonic": 741369.231686125
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987651.6616561,
+        "monotonic": 741369.760273666
+      },
+      "result_path": "evaluations/06_dynamic/result.json",
+      "result_sha256": "a50182757eba5820f288cfc12d0effb3e7c14cea18b5af2f231f06603c28ccf5"
+    },
+    "07_dynamic": {
+      "task_id": "07_dynamic",
+      "instance_index": 6,
+      "policy": "dynamic",
+      "file": "HurinkR_la15.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987651.900001,
+        "monotonic": 741369.998617166
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987652.473461,
+        "monotonic": 741370.572074375
+      },
+      "result_path": "evaluations/07_dynamic/result.json",
+      "result_sha256": "5f7bfe784e34086f9c6d895a81c97101d6d7db64a542e2c2e8352fed26431f53"
+    },
+    "07_equal": {
+      "task_id": "07_equal",
+      "instance_index": 6,
+      "policy": "equal",
+      "file": "HurinkR_la15.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987652.709833,
+        "monotonic": 741370.808445291
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987653.2887821,
+        "monotonic": 741371.387391708
+      },
+      "result_path": "evaluations/07_equal/result.json",
+      "result_sha256": "eaf140c22d3ee0203d0a5df832c888f760a07ab4cc8afb510542b0e0cc6cd2c0"
+    },
+    "08_equal": {
+      "task_id": "08_equal",
+      "instance_index": 7,
+      "policy": "equal",
+      "file": "HurinkR_la30.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987653.5246341,
+        "monotonic": 741371.623242208
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987654.118155,
+        "monotonic": 741372.216761041
+      },
+      "result_path": "evaluations/08_equal/result.json",
+      "result_sha256": "0afbf267914f480b2070245bcf30690152da2bbc7d5318e33222ef280dbfe870"
+    },
+    "08_dynamic": {
+      "task_id": "08_dynamic",
+      "instance_index": 7,
+      "policy": "dynamic",
+      "file": "HurinkR_la30.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987654.3576078,
+        "monotonic": 741372.456212166
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987654.9688718,
+        "monotonic": 741373.067473916
+      },
+      "result_path": "evaluations/08_dynamic/result.json",
+      "result_sha256": "506a15b77b73b49d6175817b8a154895030a963276cbcc1ec019cacf32678ad0"
+    },
+    "09_dynamic": {
+      "task_id": "09_dynamic",
+      "instance_index": 8,
+      "policy": "dynamic",
+      "file": "HurinkR_la26.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987655.2150102,
+        "monotonic": 741373.313610416
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987655.857829,
+        "monotonic": 741373.956426083
+      },
+      "result_path": "evaluations/09_dynamic/result.json",
+      "result_sha256": "5651cd59d60648720e13247e278d2d784df2433ffd0efa7217923fb14ffb8928"
+    },
+    "09_equal": {
+      "task_id": "09_equal",
+      "instance_index": 8,
+      "policy": "equal",
+      "file": "HurinkR_la26.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987656.099065,
+        "monotonic": 741374.197661083
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987656.7140439,
+        "monotonic": 741374.812637375
+      },
+      "result_path": "evaluations/09_equal/result.json",
+      "result_sha256": "814cb7daa4d60f777632d9c48478eacdb1ed48368f98fd4666a154cab67c21cd"
+    },
+    "10_equal": {
+      "task_id": "10_equal",
+      "instance_index": 9,
+      "policy": "equal",
+      "file": "HurinkR_la27.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987656.9515252,
+        "monotonic": 741375.050117375
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987657.5472572,
+        "monotonic": 741375.645846291
+      },
+      "result_path": "evaluations/10_equal/result.json",
+      "result_sha256": "c9a0afd5bf1d752e7ea5f4f3c397bb42cf2ef4fa4822ce99b5206ebe6c41fdbd"
+    },
+    "10_dynamic": {
+      "task_id": "10_dynamic",
+      "instance_index": 9,
+      "policy": "dynamic",
+      "file": "HurinkR_la27.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987657.788747,
+        "monotonic": 741375.887335291
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987658.476564,
+        "monotonic": 741376.575149125
+      },
+      "result_path": "evaluations/10_dynamic/result.json",
+      "result_sha256": "e4a6884d09c0726370a88cd98b98a8d54243639714773fd877e708066b7d8cef"
+    },
+    "11_dynamic": {
+      "task_id": "11_dynamic",
+      "instance_index": 10,
+      "policy": "dynamic",
+      "file": "HurinkR_la21.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987658.719856,
+        "monotonic": 741376.818439875
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987659.3592849,
+        "monotonic": 741377.457866291
+      },
+      "result_path": "evaluations/11_dynamic/result.json",
+      "result_sha256": "3aaf850bfbea666dbccda09f1457b5df343a622500f7a3fbe82b8047dcfe1748"
+    },
+    "11_equal": {
+      "task_id": "11_equal",
+      "instance_index": 10,
+      "policy": "equal",
+      "file": "HurinkR_la21.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987659.61054,
+        "monotonic": 741377.709119208
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987660.2307699,
+        "monotonic": 741378.329347
+      },
+      "result_path": "evaluations/11_equal/result.json",
+      "result_sha256": "4c9abad6b42a9d5dc70dfd893c73a632e568d49762654e961c9eed6ca3a8a0c9"
+    },
+    "12_equal": {
+      "task_id": "12_equal",
+      "instance_index": 11,
+      "policy": "equal",
+      "file": "HurinkR_la24.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987660.4778502,
+        "monotonic": 741378.576425166
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987661.06094,
+        "monotonic": 741379.1595125
+      },
+      "result_path": "evaluations/12_equal/result.json",
+      "result_sha256": "c52e616912a4c62ece52fa317dce04c705147b0da25a03dda4d639c5340b2406"
+    },
+    "12_dynamic": {
+      "task_id": "12_dynamic",
+      "instance_index": 11,
+      "policy": "dynamic",
+      "file": "HurinkR_la24.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987661.3133771,
+        "monotonic": 741379.411948583
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987661.8579001,
+        "monotonic": 741379.956468583
+      },
+      "result_path": "evaluations/12_dynamic/result.json",
+      "result_sha256": "fbc583a5a4dea527dc752c796d98c58b2dd35771b7c433fb778296bc8fdfbd4e"
+    },
+    "13_dynamic": {
+      "task_id": "13_dynamic",
+      "instance_index": 12,
+      "policy": "dynamic",
+      "file": "HurinkR_la29.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987662.099632,
+        "monotonic": 741380.198200041
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987662.672833,
+        "monotonic": 741380.771398375
+      },
+      "result_path": "evaluations/13_dynamic/result.json",
+      "result_sha256": "e1e84a92fbf2cc5dbd0ae0489c4775cb63b3e9dc357a0f7eff3686379df33cdd"
+    },
+    "13_equal": {
+      "task_id": "13_equal",
+      "instance_index": 12,
+      "policy": "equal",
+      "file": "HurinkR_la29.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987662.9200609,
+        "monotonic": 741381.018625291
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987663.569379,
+        "monotonic": 741381.66794025
+      },
+      "result_path": "evaluations/13_equal/result.json",
+      "result_sha256": "627bb08e1a4f631b725a0391df8d259c07aad2470b98a5ba0c413c4fb4935d03"
+    },
+    "14_equal": {
+      "task_id": "14_equal",
+      "instance_index": 13,
+      "policy": "equal",
+      "file": "HurinkR_la22.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987663.869626,
+        "monotonic": 741381.968185333
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987664.4411361,
+        "monotonic": 741382.539692583
+      },
+      "result_path": "evaluations/14_equal/result.json",
+      "result_sha256": "c106c03936b86d0b9d9d269a22d8dd2584dbdef4ad3112c30c3cfbad90e01930"
+    },
+    "14_dynamic": {
+      "task_id": "14_dynamic",
+      "instance_index": 13,
+      "policy": "dynamic",
+      "file": "HurinkR_la22.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987664.686653,
+        "monotonic": 741382.785208791
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987665.2590778,
+        "monotonic": 741383.357630583
+      },
+      "result_path": "evaluations/14_dynamic/result.json",
+      "result_sha256": "9ad4037b49716e09fa103fef743c2120e03268a790107919b9b5960581b98d15"
+    },
+    "15_dynamic": {
+      "task_id": "15_dynamic",
+      "instance_index": 14,
+      "policy": "dynamic",
+      "file": "HurinkR_la35.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987665.515084,
+        "monotonic": 741383.613635666
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987666.285258,
+        "monotonic": 741384.383805625
+      },
+      "result_path": "evaluations/15_dynamic/result.json",
+      "result_sha256": "d7f7373fc1ba289bbdcee8e57326dd12b87b579c96fa285c2099e91ffa73e5d6"
+    },
+    "15_equal": {
+      "task_id": "15_equal",
+      "instance_index": 14,
+      "policy": "equal",
+      "file": "HurinkR_la35.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987666.538412,
+        "monotonic": 741384.636958833
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987667.389009,
+        "monotonic": 741385.487552041
+      },
+      "result_path": "evaluations/15_equal/result.json",
+      "result_sha256": "aa3453d297f80c56e9c5e0d8dee8740028ca18a807e2509885914791aebb39d4"
+    },
+    "16_equal": {
+      "task_id": "16_equal",
+      "instance_index": 15,
+      "policy": "equal",
+      "file": "HurinkR_la36.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987667.635037,
+        "monotonic": 741385.733578916
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987668.248555,
+        "monotonic": 741386.347093208
+      },
+      "result_path": "evaluations/16_equal/result.json",
+      "result_sha256": "62966c3b1bce2a06c484e0e30d535444917a7e589f381678b61390f16dbad296"
+    },
+    "16_dynamic": {
+      "task_id": "16_dynamic",
+      "instance_index": 15,
+      "policy": "dynamic",
+      "file": "HurinkR_la36.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987668.503577,
+        "monotonic": 741386.602114666
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987669.0986161,
+        "monotonic": 741387.197150625
+      },
+      "result_path": "evaluations/16_dynamic/result.json",
+      "result_sha256": "cfd5a81d356889c8882ccff15ef7bcfa7fb3625d4d48060062a12fe6377f34fe"
+    },
+    "17_dynamic": {
+      "task_id": "17_dynamic",
+      "instance_index": 16,
+      "policy": "dynamic",
+      "file": "HurinkR_la31.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987669.34918,
+        "monotonic": 741387.447713416
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987670.163759,
+        "monotonic": 741388.26228825
+      },
+      "result_path": "evaluations/17_dynamic/result.json",
+      "result_sha256": "eda52a328427967460a55f9c034589891c22f6bc368be14b7bc126980b25f027"
+    },
+    "17_equal": {
+      "task_id": "17_equal",
+      "instance_index": 16,
+      "policy": "equal",
+      "file": "HurinkR_la31.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987670.469374,
+        "monotonic": 741388.567902208
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987671.252931,
+        "monotonic": 741389.351455541
+      },
+      "result_path": "evaluations/17_equal/result.json",
+      "result_sha256": "1277ca4e048e94e6f5c7d5012474857867fc1b3a9c2726df85cac7431eeb32e3"
+    },
+    "18_equal": {
+      "task_id": "18_equal",
+      "instance_index": 17,
+      "policy": "equal",
+      "file": "HurinkR_la32.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987671.511486,
+        "monotonic": 741389.610009166
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987672.3117719,
+        "monotonic": 741390.410291083
+      },
+      "result_path": "evaluations/18_equal/result.json",
+      "result_sha256": "fa2f54ef69835986d53ded37e3edb68abdf4ac254ba4fffb183a94006b3eb219"
+    },
+    "18_dynamic": {
+      "task_id": "18_dynamic",
+      "instance_index": 17,
+      "policy": "dynamic",
+      "file": "HurinkR_la32.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987672.5682292,
+        "monotonic": 741390.666746625
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987673.3003929,
+        "monotonic": 741391.39890725
+      },
+      "result_path": "evaluations/18_dynamic/result.json",
+      "result_sha256": "8d8b3acb4030dad7dc9eb91f4da7937d6c1f8200be8eeb882c7cd315e1e1d549"
+    },
+    "19_dynamic": {
+      "task_id": "19_dynamic",
+      "instance_index": 18,
+      "policy": "dynamic",
+      "file": "HurinkR_la40.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987673.551569,
+        "monotonic": 741391.650082375
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987674.154612,
+        "monotonic": 741392.253122583
+      },
+      "result_path": "evaluations/19_dynamic/result.json",
+      "result_sha256": "653692a47635ee5533ddf2afa343489bf127e81d2ac15439a6795c091e74ba13"
+    },
+    "19_equal": {
+      "task_id": "19_equal",
+      "instance_index": 18,
+      "policy": "equal",
+      "file": "HurinkR_la40.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987674.412269,
+        "monotonic": 741392.510777875
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987675.016059,
+        "monotonic": 741393.114565166
+      },
+      "result_path": "evaluations/19_equal/result.json",
+      "result_sha256": "9a61f7a762fa27354e8d987c309077e735de0967682e74de43deafc78b114a70"
+    },
+    "20_equal": {
+      "task_id": "20_equal",
+      "instance_index": 19,
+      "policy": "equal",
+      "file": "HurinkR_la38.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987675.272182,
+        "monotonic": 741393.370687625
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987675.9277241,
+        "monotonic": 741394.026226458
+      },
+      "result_path": "evaluations/20_equal/result.json",
+      "result_sha256": "894f759d5a7d08bf4caa8e3d8a3e9daeabca171c6cfba0fef6904bf4cf2fd38c"
+    },
+    "20_dynamic": {
+      "task_id": "20_dynamic",
+      "instance_index": 19,
+      "policy": "dynamic",
+      "file": "HurinkR_la38.fjsp",
+      "status": "completed",
+      "started": {
+        "wall": 1792987676.1820328,
+        "monotonic": 741394.280533666
+      },
+      "reserved_instances": 1,
+      "reserved_solves": 2,
+      "valid": true,
+      "finished": {
+        "wall": 1792987676.7739022,
+        "monotonic": 741394.872400041
+      },
+      "result_path": "evaluations/20_dynamic/result.json",
+      "result_sha256": "d2ebe9ddc1df16993ec6052d55c13fcaf29a62e36e7ad8f47ae15fb840d03c24"
+    }
+  }
+}

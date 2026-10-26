@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "observed_unittest_seconds": 1.021,
+  "command": "PYTHONPATH=code:. .venv/bin/python -B -m unittest tests.test_h01_external_confirm.Tests -q",
+  "real_API": 0,
+  "formal_solves": 0,
+  "isolated_toy_solve_passes": 6,
+  "scope": "source/format/LB/dedup/sampling/task cap/deadline/classification + unchanged certified worker single-instance toy regression",
+  "files": {
+    "tools/h01_external_data.py": "f0d9200d8bc7d7ecd6fc4eb21013415bfd707218f4f2c18a42c4366adc2ff20c",
+    "tools/h01_external_confirm.py": "0ef88380d7e8a7887f579f7043206d207c33528ee8c86b7d116b21b119f7c0fc",
+    "tests/test_h01_external_confirm.py": "9fca259e40bb43828ff934e3d974e87ebea3f7d5592f59667630be5542b08869",
+    "docs/H01_EXTERNAL_CONFIRMATION_SELECTION_V1.md": "932891b865e92a6a45ae6505fbdca77567e16c5303137b32f8c5889b988e4348"
+  }
+}

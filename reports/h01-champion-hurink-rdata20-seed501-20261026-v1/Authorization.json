@@ -1,0 +1,17 @@
+{
+  "origin": "current user fixed champion out-of-training validation instruction",
+  "real_generation_API": false,
+  "new_instances_max": 20,
+  "program_instances_max": 40,
+  "solve_passes_max": 80,
+  "policies": [
+    "r2_EVO_s16",
+    "original_equal_P0"
+  ],
+  "no_policy_changes": true,
+  "no_search": true,
+  "no_old_campaign_resume": true,
+  "no_push": true,
+  "window_seconds_max": 43200,
+  "window_basis": "12h upper bound from preceding user authorization, latest fixed plan narrows method scope"
+}

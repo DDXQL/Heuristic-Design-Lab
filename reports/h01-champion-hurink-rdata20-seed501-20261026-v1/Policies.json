@@ -1,0 +1,18 @@
+{
+  "dynamic": {
+    "description": "The main change is replacing the parent's potentially saturating additive rule with a deliberately damped, scale-aware mapping: workload and progress favor H0, while machine readiness and alternative density favor H1. Dispersion remains a modest risk-sensitive adjustment, and previous-member persistence is retained only as a small categorical tie-break signal.",
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    alpha = 0.5\n    alpha = alpha + 0.28 * remaining_work_mean\n    alpha = alpha + 0.1 * progress\n    alpha = alpha + 0.12 * remaining_work_std / (1.0 + remaining_work_mean)\n    alpha = alpha - 0.2 * machine_ready_mean\n    alpha = alpha - 0.1 * machine_ready_std / (1.0 + machine_ready_mean)\n    alpha = alpha - 0.08 * candidate_pair_ratio\n    if previous_heuristic == 0:\n        alpha = alpha + 0.04\n    if previous_heuristic == 1:\n        alpha = alpha - 0.04\n    return (1, (alpha, 1.0 - alpha, 0, 0, 0, 0, 0, 0, 0, 0))\n",
+    "key": "f5992550e506d4708c21b06595ecaa451095f5bf0d83ff9220cd9a88dc4bf215",
+    "kind": "U",
+    "interface_version": "U-usage-v2-select-or-mix-20261012",
+    "member_count": 10
+  },
+  "equal": {
+    "description": "Frozen manual H0/H1 alpha=0.5; not LLM-generated",
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return (1, (0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n",
+    "key": "fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448",
+    "kind": "U",
+    "interface_version": "U-usage-v2-select-or-mix-20261012",
+    "member_count": 10
+  }
+}

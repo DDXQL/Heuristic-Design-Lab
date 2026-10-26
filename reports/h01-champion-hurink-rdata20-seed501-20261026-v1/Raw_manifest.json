@@ -1,0 +1,2167 @@
+{
+  "files": {
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Authorization.json": {
+      "sha256": "f0bbec60b6b22ad10ee515e943a93c796a958c390478784ebeb77724f9d8b980",
+      "bytes": 509
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Console.log": {
+      "sha256": "c373c97f8767a747d9447c5145a10bc5fc21b0b287c6cc7c89748ea08652b6e7",
+      "bytes": 158
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Data_history.json": {
+      "sha256": "4f20b34dffa424ac3cf54558ed3c2fad2cf85a51eae1c7c3e5b324b01426693c",
+      "bytes": 3311
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Data_manifest.json": {
+      "sha256": "d16ab0a2b9fb576e569960a2640eb33a52c866ea5516b0662bc1daf4957f1b2e",
+      "bytes": 85519
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/End_summary.json": {
+      "sha256": "8dc865c7db67b81681a5b8a3b42c058d560868c009a9ef34f69734b09599c398",
+      "bytes": 199
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Events.jsonl": {
+      "sha256": "980d406e3270466e252a2e7b36434c691b8812f218f12721dd9ca90d299ee1df",
+      "bytes": 5001
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Expected_controller_identity.json": {
+      "sha256": "43fdf6808af04ebaf79ddbdf82ee0da4b8dfc5e5623757feca557c731be01e49",
+      "bytes": 896
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Expected_solver_identity.json": {
+      "sha256": "a5aa9291acc37496f04f0b0e573c0c5e9af09646bce3f660f118e0595245f125",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json": {
+      "sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+      "bytes": 149108
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Launch_identity.json": {
+      "sha256": "05a28209bca7ca03dfd3e812a7e0de65117d59db84602dabd572547ed846e6f5",
+      "bytes": 161
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Policies.json": {
+      "sha256": "1b46372231f57cb2abf653feb4ad3671ac6deceaca051347d6529d40a8240788",
+      "bytes": 1800
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Protocol.json": {
+      "sha256": "e552a776d906996697ba731ef9bf3296bc584e8e7d6706de4a586a7bcb5be649",
+      "bytes": 53279
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Protocol.sha256": {
+      "sha256": "b1c004113077f70848beebb10fdbe28f53cf8f14024228f62ae1a44602d03eb1",
+      "bytes": 65
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Run_clock.json": {
+      "sha256": "fbd81481085ff0ceac6db98cb16f19947acf868b84ac8b470c58accf7c8f9ad7",
+      "bytes": 119
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Run_identity.json": {
+      "sha256": "3fe58e1ccc30b9bbfe93dc5a7df1c21b124bb5c56223353b1dfab34a7e6261cd",
+      "bytes": 129
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Tasks.json": {
+      "sha256": "9e540ef24cdda3becb0637981ef5b8d01d690dff52b65ae7b21576342738a0ed",
+      "bytes": 4743
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/checkpoint.json": {
+      "sha256": "9cc8c51ef8204dc4e48a6cda919f6b6d9d7f7f982750b69335334e6d1d0d8bf6",
+      "bytes": 24340
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/HurinkR_la05.progress.json": {
+      "sha256": "648736f440488d161ef03868893339a3f81cba9dd2b5da6c7d98137d535c998e",
+      "bytes": 356
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/HurinkR_la05.result.json": {
+      "sha256": "413e5cc6f1d6eb9fcae99c584464c75661f0f783066a4c6a23fd800f85569859",
+      "bytes": 18359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/Input_receipt.json": {
+      "sha256": "216fe3b4b87daba916f3b49a012c06377481c260c670b28b29bfe66e52c19c2c",
+      "bytes": 3096
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/after.json": {
+      "sha256": "3ca0f7015eed6c6ed7d6d2e5f762da7400f7d52491968410229b5eec34a4918e",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/before.json": {
+      "sha256": "3ca0f7015eed6c6ed7d6d2e5f762da7400f7d52491968410229b5eec34a4918e",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/boundary.json": {
+      "sha256": "d0249fd9c2ae2eec4dab00a0ac18bfaf359bbd796eaf2a0d1d585d337f07052d",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/lifecycle.json": {
+      "sha256": "5a029672e51053a753871d17ad78f7b5b8f914e9161c8a230b0fdc1af4fde914",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/raw_result.json": {
+      "sha256": "0453f964a96dc40d13e52448864a4c5aee5d95fea128d51b7fa459e0ae10efde",
+      "bytes": 21772
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_dynamic/result.json": {
+      "sha256": "f000d22871d41a12a19a4aba80acec83a316892c91840d1c632ff96743f6696d",
+      "bytes": 21901
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/HurinkR_la05.progress.json": {
+      "sha256": "0b927f0d287e0f560c76a28a10cdb31762abeb425bbaff02f8c65e23b36d1583",
+      "bytes": 356
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/HurinkR_la05.result.json": {
+      "sha256": "11f5c41e52cb835c58fb3a394a28d35783e7a984d630cc6e9c92f1bfce25877f",
+      "bytes": 18365
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/Input_receipt.json": {
+      "sha256": "e1d89aa8be6a4cc3c15e7bd5950f1e135a8e105d59ffe142017cf702e2a1877e",
+      "bytes": 2315
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/after.json": {
+      "sha256": "eaa7de12a196fc311548a769d9cb57de8fb7b10ce4e1599ea38d7a76ac7e9e4a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/before.json": {
+      "sha256": "eaa7de12a196fc311548a769d9cb57de8fb7b10ce4e1599ea38d7a76ac7e9e4a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/boundary.json": {
+      "sha256": "ed24b28a2ce1dcc4b70b85b0c0440e0cf2c14de925d9715528db9b636b21ecd2",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/lifecycle.json": {
+      "sha256": "1a9290a842ba81415f5f4fc74c54f606a50e2807f3189c34e4225d4950bb85d7",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/raw_result.json": {
+      "sha256": "4a252d32a99d1b259dad355b0c007c01cfe8e79a88ace98fd9e0a643795d1274",
+      "bytes": 21778
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/01_equal/result.json": {
+      "sha256": "0e9d32d27855f2d670461f86b7c74f1ec8282d0b55a7435cc4cae206e64d14da",
+      "bytes": 21907
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/HurinkR_la19.progress.json": {
+      "sha256": "8c3080f1e32dd02bd29b4078b207012440c532463405966d60b8052ee1562bb3",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/HurinkR_la19.result.json": {
+      "sha256": "1aafbac98f845eec097907e2223193cd171480607fa2b3e55f77a1ca633aaad2",
+      "bytes": 35597
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/Input_receipt.json": {
+      "sha256": "df19b986e38ba41ff9af96dc4f454669f496fa88da0b8cb913e1d988e25d9ce3",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/after.json": {
+      "sha256": "f3be6fd3d5862a5fc94b9787e193c7fcc1c316c8f0edbe3a8af1301305bfa543",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/before.json": {
+      "sha256": "f3be6fd3d5862a5fc94b9787e193c7fcc1c316c8f0edbe3a8af1301305bfa543",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/boundary.json": {
+      "sha256": "037925fadedb6b4916497edf9cddc716ab09428ddf4720ef87f8ae691a60204e",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/lifecycle.json": {
+      "sha256": "75cda1495c5b50a31abcd5a47be30a1da827703e00a46af607e585cec504740c",
+      "bytes": 784
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/raw_result.json": {
+      "sha256": "9201f9113d82f5caa64e01151fbbe7a5d9077f4b003f1bacad93f09b3204165c",
+      "bytes": 42010
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_dynamic/result.json": {
+      "sha256": "6fdeb7aa9e142868e5db6d2c1cb26d813969e675e40617071968bd6261d0b0b2",
+      "bytes": 42139
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/HurinkR_la19.progress.json": {
+      "sha256": "11830131c0cc2ebab90906cb0c915528bc14fb9488b85a5e40448c12d4d294ab",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/HurinkR_la19.result.json": {
+      "sha256": "6ad06f9861a5eab26a2343beb220ba3901789b40fb5793c740f617d446e51397",
+      "bytes": 35645
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/Input_receipt.json": {
+      "sha256": "f7c806996455c537504bb83e1626d7afb218f943d60ceea7ca159a962b045701",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/after.json": {
+      "sha256": "d180c1410ba73f531ba86453bcac3a107ffc3897d4ad9f64db1579d874d37500",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/before.json": {
+      "sha256": "d180c1410ba73f531ba86453bcac3a107ffc3897d4ad9f64db1579d874d37500",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/boundary.json": {
+      "sha256": "ec39f69db35fefac84a654c3c742189f419925947677086797170e99b5c73e1c",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/lifecycle.json": {
+      "sha256": "d94d455523d7e35318c434a268b5b83ecd401b8a7a36b06c5a1288173a7a0ce4",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/raw_result.json": {
+      "sha256": "3ee456231a193c859051d2cfa50cfc467348a96b8e7c070d453108d5defaf99d",
+      "bytes": 42057
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/02_equal/result.json": {
+      "sha256": "9a559e8027ebc39c922feca1715db94f13650ac1dcd58e656fb92bcdc38347b5",
+      "bytes": 42186
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/HurinkR_la07.progress.json": {
+      "sha256": "76e9cf38b6306c88875a7743e88e3826356c69abdd161bc6ded11ecc3a164846",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/HurinkR_la07.result.json": {
+      "sha256": "87ea34aa282d9bdf0caefb85281e9c9cf2519cba9b611aa297e7d41aede4c119",
+      "bytes": 27033
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/Input_receipt.json": {
+      "sha256": "419f4a26fa5e35daf2c1dd3919ca5d9349282e53fb5f06a699c2fe97145d0d0d",
+      "bytes": 3096
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/after.json": {
+      "sha256": "249afb38a47af14da5cc403b0017848fe126d002e99fdd141116129cd4b1b65f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/before.json": {
+      "sha256": "249afb38a47af14da5cc403b0017848fe126d002e99fdd141116129cd4b1b65f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/boundary.json": {
+      "sha256": "ffa4c246484a542194c4c45a170e8b3e41eede1cda616e04231bd6bb053c62dd",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/lifecycle.json": {
+      "sha256": "e845bf6b58b6516081272b1b00df1bcbc42adf61aeeb01d59ac1aecc1179c831",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/raw_result.json": {
+      "sha256": "ba24e089bb5a4b516e60025ce3f3cb829a9181d4114ff737f5159ea54d42936f",
+      "bytes": 31945
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_dynamic/result.json": {
+      "sha256": "04163325416e27f75cc9eba9ef54dc93ae3124f479035b547630463fcc3302b0",
+      "bytes": 32074
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/HurinkR_la07.progress.json": {
+      "sha256": "851f5993dd4981f06f691745afcd59c25549732967aa3913dc535c8f8a13995f",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/HurinkR_la07.result.json": {
+      "sha256": "65a3c7f48b6ea4d39bb384f024267a092e7cdf58f2a9d01f95c1d1f5f0c9e36f",
+      "bytes": 27024
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/Input_receipt.json": {
+      "sha256": "794a122a0a850166fd3fd9e0ec5dd13a9861e91200b0e1723f33b0cc44f34e2d",
+      "bytes": 2315
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/after.json": {
+      "sha256": "a429608b779b00253097cba94bebc9925e127c0a83ea86398c5943bfbcdff305",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/before.json": {
+      "sha256": "a429608b779b00253097cba94bebc9925e127c0a83ea86398c5943bfbcdff305",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/boundary.json": {
+      "sha256": "8d27c173838969d0eb1d12c07ccfdc0db9225340e168aad584cb232c3d01e7e1",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/lifecycle.json": {
+      "sha256": "9083cfa649980680e675dee0fc52a7d456fa56145afae3887b6c66319d4955a8",
+      "bytes": 787
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/raw_result.json": {
+      "sha256": "44af2f3fb95b2136ea3854685398c4a311e6a6df1f34096172c018f81354ad86",
+      "bytes": 31936
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/03_equal/result.json": {
+      "sha256": "e0f98f74b1bdf3e0890e8a5bfb79356532f7c76a37292ab0fa7147f18c4b56ce",
+      "bytes": 32065
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/HurinkR_la11.progress.json": {
+      "sha256": "86d2b7caca6447e94c5ce63061561ebb9a427f61325e77d77db74536e18146f8",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/HurinkR_la11.result.json": {
+      "sha256": "234b85a1e9d8520ec4db19607fa73f715a7233fa20681ba10c9de9217974c1a4",
+      "bytes": 35691
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/Input_receipt.json": {
+      "sha256": "6c17f368d3e59f433f21ab92d384300e35901c8b7161a5a7a196414c96f2afa0",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/after.json": {
+      "sha256": "f4357d72990648fd5e66e41e3cc194741ba1ef47c285040cd786369c82baa989",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/before.json": {
+      "sha256": "f4357d72990648fd5e66e41e3cc194741ba1ef47c285040cd786369c82baa989",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/boundary.json": {
+      "sha256": "53f8eb5fddff5ffba9bca3d31b3488725258f57122b1125a922f21e5f2ecb6dc",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/lifecycle.json": {
+      "sha256": "1898a4231a16753afcc18a23b67dd204f96ef93842cc72156b59a3b339ae525b",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/raw_result.json": {
+      "sha256": "ec598a4969286c2a5d8f3f32fb0de00dcc23511b537d66af79788df646230a21",
+      "bytes": 42103
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_dynamic/result.json": {
+      "sha256": "ecb27876946f911d7ad56a988c8cadfb36f21298817442d5f0fb0db94e4d24ed",
+      "bytes": 42232
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/HurinkR_la11.progress.json": {
+      "sha256": "177795b7a20d3e18126780acea2780c87340dbd3667ad9a74c566935b5b83de1",
+      "bytes": 357
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/HurinkR_la11.result.json": {
+      "sha256": "80ad21095a125bb37869dacb7ca0d42a76cff242c83b4f4e7c30bd8715055896",
+      "bytes": 35651
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/Input_receipt.json": {
+      "sha256": "84580cacea721dcff2fff36bc26fef3d6199841cdebaf3f838a181b4e5599e54",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/after.json": {
+      "sha256": "294139772b267e0dad38521395588581558ec6078f2dd10851a0c1ddb4a0ef5d",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/before.json": {
+      "sha256": "294139772b267e0dad38521395588581558ec6078f2dd10851a0c1ddb4a0ef5d",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/boundary.json": {
+      "sha256": "a9ef20a0d9af69d87d058d169dba3bc79fbd70546ab2d9d2b17acb515a060c15",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/lifecycle.json": {
+      "sha256": "1f1de4f01bd38b6a7cb7195196b30e164f4e3b7b6caa0b5789104cd215a97202",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/raw_result.json": {
+      "sha256": "fad1282c306796547fe6b274379a8c3c0ce4d3a0b4b9e01b1cb4363c89bb9bdd",
+      "bytes": 42063
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/04_equal/result.json": {
+      "sha256": "092137689a3a2bc1a8ca0a6063699e65cf19a01d72c2e0fe7b64b39a5746c207",
+      "bytes": 42192
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/HurinkR_la04.progress.json": {
+      "sha256": "79d302e031b0dff4343b327e5e5675045ee359c09ad105e7a6fae13487cfc32b",
+      "bytes": 361
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/HurinkR_la04.result.json": {
+      "sha256": "30311b0fe7f5dc62933415c8d463139c978c8becdc69c87395f7cab4bc5967e6",
+      "bytes": 18372
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/Input_receipt.json": {
+      "sha256": "e8caf857ac24a887dc5948b2260475f781ef91f69a357b55d32e65ab7aaea4a1",
+      "bytes": 3096
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/after.json": {
+      "sha256": "19d0f1cac86e8a4ea84e66737cd1a461cfdd895b702481a6c93f84c9a5d016bb",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/before.json": {
+      "sha256": "19d0f1cac86e8a4ea84e66737cd1a461cfdd895b702481a6c93f84c9a5d016bb",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/boundary.json": {
+      "sha256": "b40f68fdcd581fbb60759b815b49730e410aa1e10586abd1b5c1e56d909ef5f3",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/lifecycle.json": {
+      "sha256": "e4342e289e6e7570d43c349d7c86c41e622c58207c9a97200e73a694b08d1d88",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/raw_result.json": {
+      "sha256": "22d31ef5e41bf61630bd574ce6e747355392472464508b73c74d910f2413a6d0",
+      "bytes": 21785
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_dynamic/result.json": {
+      "sha256": "f18d00f0fecfbdbbffbaff3fec0e8849589b030f0939310125db9033278d3390",
+      "bytes": 21914
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/HurinkR_la04.progress.json": {
+      "sha256": "b38487be893a52bd0aaa3e240e59a6a67ffb51a5917c5c5754b46b76b7bd9493",
+      "bytes": 357
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/HurinkR_la04.result.json": {
+      "sha256": "f6610fc660bb6491b8bba8fbf8fac17c0be23d41c34578ddbb18f03dec564c8c",
+      "bytes": 18383
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/Input_receipt.json": {
+      "sha256": "cb7f2697f9e57b955271639abac846630a1a8ea9613e572a97542de8b0be3b61",
+      "bytes": 2315
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/after.json": {
+      "sha256": "7b7b78d5a28d689a26a1a0e57dc0fb4d27bb1c4d64f92f09eec7a9e774362fec",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/before.json": {
+      "sha256": "7b7b78d5a28d689a26a1a0e57dc0fb4d27bb1c4d64f92f09eec7a9e774362fec",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/boundary.json": {
+      "sha256": "198471bbe2f6e6e527130a27f78186c9cc0ded02f6825d78577b52c46c6a9df1",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/lifecycle.json": {
+      "sha256": "0f00ea616639ce9ff9afc4c4caaaad7f71277dfb25f59d2067e40ae9ee3096a0",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/raw_result.json": {
+      "sha256": "e0fe48d16d88014a0778286b4b046ae18f90d439b2cc9673429ac1ff3c74f7eb",
+      "bytes": 21795
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/05_equal/result.json": {
+      "sha256": "0768bca0fbb875eef7f1ac65f956da24d21eb157885b2e471a87d3830df16cf9",
+      "bytes": 21924
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/HurinkR_la13.progress.json": {
+      "sha256": "8ca77f213f48f676823d0f2f7240629f02abf912b52e30628d598a579e4a50c9",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/HurinkR_la13.result.json": {
+      "sha256": "506168c9d4c4c9dd151bb031497401c327409b2df4e651b9bbc862c09411e836",
+      "bytes": 35688
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/Input_receipt.json": {
+      "sha256": "466769f3d44c9e06a49c3ba4b0b265a65c2f720f4a909960c58abaeb12d33cca",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/after.json": {
+      "sha256": "73e828b742aa212cde543bfff958d2edf10488a56fed8457e6a8d0b78cd748a8",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/before.json": {
+      "sha256": "73e828b742aa212cde543bfff958d2edf10488a56fed8457e6a8d0b78cd748a8",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/boundary.json": {
+      "sha256": "bdce4803358ad658ecae5f8eb1449c9be62fcc1bb2a82c9e30d46cb5d25b7c41",
+      "bytes": 105
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/lifecycle.json": {
+      "sha256": "6c1fa390a51e73ea16a2d193911f9c32f677010e96607a3134cfb660aa44c1db",
+      "bytes": 784
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/raw_result.json": {
+      "sha256": "ca43b9b87d7313fa9d9b0d8d533d1a4b4fc883365a31b1f78b69489feac261df",
+      "bytes": 42100
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_dynamic/result.json": {
+      "sha256": "a50182757eba5820f288cfc12d0effb3e7c14cea18b5af2f231f06603c28ccf5",
+      "bytes": 42228
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/HurinkR_la13.progress.json": {
+      "sha256": "b9f89ae82a55a7ccd62bb424932ed125be003a2f8246f8eb4dd00de3aaf7d919",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/HurinkR_la13.result.json": {
+      "sha256": "1294f97167c087e357944a362637cbe2607f994a65dfc8867bb8ac5e027b5069",
+      "bytes": 35671
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/Input_receipt.json": {
+      "sha256": "9e533329077a22af98b9ca4312a1809ae46d5adf99ec63fc9c37e70fa4fe545f",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/after.json": {
+      "sha256": "0a797f581f218c3e2a5e38586b3e4e88f47294ec02b4c6a14f5af1eed5235a5b",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/before.json": {
+      "sha256": "0a797f581f218c3e2a5e38586b3e4e88f47294ec02b4c6a14f5af1eed5235a5b",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/boundary.json": {
+      "sha256": "64d3e676716ed1cb93e673ab4368eed88291d5776fc8132bec47f676c3f1d873",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/lifecycle.json": {
+      "sha256": "c952e7dbed1ad43dd11b5bf4d26fcd9545839aa0c4abccf7b200d5a0aa628535",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/raw_result.json": {
+      "sha256": "7b235db3dc6fb7cf5323c752a813a281857d338f1f51b572ab6a15acd452c6f4",
+      "bytes": 42083
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/06_equal/result.json": {
+      "sha256": "0038fe8a583fca3e10e185bf0013ee4054d7ea64f1aa953651454ba39705b6eb",
+      "bytes": 42212
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/HurinkR_la15.progress.json": {
+      "sha256": "cb4cb638764bb2e6a434b0a7288ad8cba4321cae779e8a2e26de30f345de50ef",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/HurinkR_la15.result.json": {
+      "sha256": "bec290021a45185604aae5cac8b9d65f3b2ff65d6346ed8d66704d2b8247e706",
+      "bytes": 35685
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/Input_receipt.json": {
+      "sha256": "668b2bd771feebeec4065b8e3b1523bafa77cbd8d17912f1d6a9b2001a70296a",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/after.json": {
+      "sha256": "2646496e87697c2ce32d244504cc97c367802b066cc8d7624f0d4b70235e7118",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/before.json": {
+      "sha256": "2646496e87697c2ce32d244504cc97c367802b066cc8d7624f0d4b70235e7118",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/boundary.json": {
+      "sha256": "c1ed6c1df5ecd606008a4d4f5cde54ba949952d6ccbbf591dc3dfe77cf3ea9a0",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/lifecycle.json": {
+      "sha256": "7823faa255349ec05c7375cf7d70d6906270ee7dbe1280752c8dd38970389120",
+      "bytes": 782
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/raw_result.json": {
+      "sha256": "47018a6f46cbc1c40c69c4a40d25b32e0e98b9fc62df2d76d811a6cfb1afe90d",
+      "bytes": 42097
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_dynamic/result.json": {
+      "sha256": "5f7bfe784e34086f9c6d895a81c97101d6d7db64a542e2c2e8352fed26431f53",
+      "bytes": 42226
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/HurinkR_la15.progress.json": {
+      "sha256": "b1e954859509aaeb7c619ca31129d6fa05fd205f0252a871e437d94e88a3e01e",
+      "bytes": 353
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/HurinkR_la15.result.json": {
+      "sha256": "d465ad44fe12869596a16318b9f53e54a77ca942417afedbdfcc4d0ecbb9f6b8",
+      "bytes": 35682
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/Input_receipt.json": {
+      "sha256": "9d01185cb0737bea39b0f16db71fef5ab433fa04ac0785b70ad1ed48ad610ff0",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/after.json": {
+      "sha256": "a9d3f6d0f06b68888c8cabfd06b9b5ac0f766341939a2863e4f54106fea14df4",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/before.json": {
+      "sha256": "a9d3f6d0f06b68888c8cabfd06b9b5ac0f766341939a2863e4f54106fea14df4",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/boundary.json": {
+      "sha256": "e63922d5eb40cd3df979856ed82b3226d0dbf7881cb89759f8fe2b45401f037b",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/lifecycle.json": {
+      "sha256": "ceeff8977bb06ef9d78e8ffc219a1cc826881b7c64356c48d42e7750f27c6b0b",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/raw_result.json": {
+      "sha256": "d0d6361e9521ab34796de507a50f80ef475c88002acba87aaffeeb5ecb75e252",
+      "bytes": 42093
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/07_equal/result.json": {
+      "sha256": "eaf140c22d3ee0203d0a5df832c888f760a07ab4cc8afb510542b0e0cc6cd2c0",
+      "bytes": 42222
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/HurinkR_la30.progress.json": {
+      "sha256": "51d4aa2bb9a7301a9afcc3101cce97916efbbaa8598e31cee8f9fa8dce690c82",
+      "bytes": 356
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/HurinkR_la30.result.json": {
+      "sha256": "43c881557c630260e9463575544f42b58f323d9adc7db45d80648504ae5b5210",
+      "bytes": 70296
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/Input_receipt.json": {
+      "sha256": "25f0eaaa93b5a67ea82aa48439311049722f82be4cd31e46d3851a263cbf2641",
+      "bytes": 3099
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/after.json": {
+      "sha256": "75a5c772ca8af7c73682e83592f379667bc23b3f57ae97c66455eed244574bf0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/before.json": {
+      "sha256": "75a5c772ca8af7c73682e83592f379667bc23b3f57ae97c66455eed244574bf0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/boundary.json": {
+      "sha256": "1092d0ff9a106b01bd8c1195fbee04dde5982ce047df4ba351bf79bea17a6eb0",
+      "bytes": 105
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/lifecycle.json": {
+      "sha256": "f9340f0b4395878d05df7d5cbbbdc435df775b3af273d87de4b7f2d4145e506b",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/raw_result.json": {
+      "sha256": "c068119f207dbfc3748415b365c3bcc395875403bc4368bec899e98f83ba34bb",
+      "bytes": 82707
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_dynamic/result.json": {
+      "sha256": "506a15b77b73b49d6175817b8a154895030a963276cbcc1ec019cacf32678ad0",
+      "bytes": 82835
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/HurinkR_la30.progress.json": {
+      "sha256": "5229b5c31b74ad4eaba9480ab4c3d68f39e8286e0de7a7d2800f5e37686c324a",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/HurinkR_la30.result.json": {
+      "sha256": "5c20fd99d6c63f1f5f489cb4dd3e73ac62d821657fc1708b6013980730ee302b",
+      "bytes": 70192
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/Input_receipt.json": {
+      "sha256": "4f6f2a80ad8eddacbb25e82788910a414d420b8149db3902714cbfc6b105b84f",
+      "bytes": 2318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/after.json": {
+      "sha256": "8e49ea5470d097214ba0d5910ff3271c494d80e46476cb5ba177ce5acb66b98a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/before.json": {
+      "sha256": "8e49ea5470d097214ba0d5910ff3271c494d80e46476cb5ba177ce5acb66b98a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/boundary.json": {
+      "sha256": "acb55243eb9e52d701c3ef3bb4fa6752dbdf06ce4c9b9b50451ed63a10371d51",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/lifecycle.json": {
+      "sha256": "079be16344b1504bf48e9a29a973fc45a7a68ec621c37d727a2ad9245cb24e57",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/raw_result.json": {
+      "sha256": "77fcfcbbfadd2d1478aa1f1ba45a5bfec5588cadfc0ec6d0119b57883423f2f3",
+      "bytes": 82604
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/08_equal/result.json": {
+      "sha256": "0afbf267914f480b2070245bcf30690152da2bbc7d5318e33222ef280dbfe870",
+      "bytes": 82733
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/HurinkR_la26.progress.json": {
+      "sha256": "85dd003f1540afe6c4ed7057f5e3809bd759505f225b37a39fdeaf3eda3938f2",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/HurinkR_la26.result.json": {
+      "sha256": "d7a334b7007504114807f55ae67fe4aae2d452e21751fe49515316f7b7a2018f",
+      "bytes": 70318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/Input_receipt.json": {
+      "sha256": "49b3f824cd6bb7ae88f7325f49e1d4648cc761d68c6199e09278aaaf0cf43eec",
+      "bytes": 3100
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/after.json": {
+      "sha256": "29ca1b183e380c22ad1ad2c6d7826eadb38745d2244c97d49a8b6b7861b66e18",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/before.json": {
+      "sha256": "29ca1b183e380c22ad1ad2c6d7826eadb38745d2244c97d49a8b6b7861b66e18",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/boundary.json": {
+      "sha256": "b8537c40bc874f48f580dd405a26c749859d3cba81fb53fd06175a8dc7d62c60",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/lifecycle.json": {
+      "sha256": "76a4ac0e644f75f361ef8a68ba8332a5d21fa56e7d7c64dc941b0d045c589491",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/raw_result.json": {
+      "sha256": "2e1fe9005c86034a99557624b031cbf1a7f6d8d7664b8f4ade07f1a4d7874eb1",
+      "bytes": 82730
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_dynamic/result.json": {
+      "sha256": "5651cd59d60648720e13247e278d2d784df2433ffd0efa7217923fb14ffb8928",
+      "bytes": 82859
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/HurinkR_la26.progress.json": {
+      "sha256": "78d235d6cc82e17f13f29f491ad41ae80abd50afeb63cdf6d7bb7770d4335e6d",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/HurinkR_la26.result.json": {
+      "sha256": "7207eba3e9986845605bf5ef3e23378cc17ec6f33d196265a70182626ddafc10",
+      "bytes": 70235
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/Input_receipt.json": {
+      "sha256": "6356bf99ad6c80fdd93c443060e553981fbc4b7692dc63bd827f7b19e917ca3b",
+      "bytes": 2319
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/after.json": {
+      "sha256": "f97b330ee266e20b4fdf14dd41f1b9cf11e87f21b0b4d998164b2fe02a4ba794",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/before.json": {
+      "sha256": "f97b330ee266e20b4fdf14dd41f1b9cf11e87f21b0b4d998164b2fe02a4ba794",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/boundary.json": {
+      "sha256": "090ac051d8c32a0ab45219a4c9e192f26ee23f450c421c61ce928f66d6eadfaf",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/lifecycle.json": {
+      "sha256": "ca978575dd6abe2ca1f65c1325cb91d86289ffdb8ea897cbeb8d33ee0f7ba280",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/raw_result.json": {
+      "sha256": "ba9e0dd96bf052babb7d4a60c9ae6d733d6ed9106398a07954e2b6c2083cecf7",
+      "bytes": 82647
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/09_equal/result.json": {
+      "sha256": "814cb7daa4d60f777632d9c48478eacdb1ed48368f98fd4666a154cab67c21cd",
+      "bytes": 82776
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/HurinkR_la27.progress.json": {
+      "sha256": "6ed0253ce8ee6b15f3b9c0e9d28d402b2185573d7d2ba2b0f235c601b54dd1fa",
+      "bytes": 353
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/HurinkR_la27.result.json": {
+      "sha256": "a4925a8a20da00ff912cf092f2c8ff00e2b8235e4596ea72b0007a79ff003058",
+      "bytes": 70280
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/Input_receipt.json": {
+      "sha256": "abd3123793caefbee747419608ba75059fcbffb8a456f514386c2d47bc9a09d5",
+      "bytes": 3099
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/after.json": {
+      "sha256": "1bbdb6d74df3d03a71d231ed4864dc646ff9b36938523bb99c34ba334abea84f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/before.json": {
+      "sha256": "1bbdb6d74df3d03a71d231ed4864dc646ff9b36938523bb99c34ba334abea84f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/boundary.json": {
+      "sha256": "e56fa107a44feef9623d254334c294aeef711104e4b5ce4d08e175394436c4f7",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/lifecycle.json": {
+      "sha256": "1eb59b7d3d05a99560d489cff5bdb6f86f668cfe6bac5658e47992905f2cf675",
+      "bytes": 785
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/raw_result.json": {
+      "sha256": "d23c91f66bcfb15501ba420fb2071b350a989ef17c0d42dcd8ce86770d7517ce",
+      "bytes": 82692
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_dynamic/result.json": {
+      "sha256": "e4a6884d09c0726370a88cd98b98a8d54243639714773fd877e708066b7d8cef",
+      "bytes": 82821
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/HurinkR_la27.progress.json": {
+      "sha256": "5da7f63204185d0439380ecd30c3dcac3ae54e04c1e332559c8a5650c91be677",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/HurinkR_la27.result.json": {
+      "sha256": "c9b1b45f2b0f7ca8a1f8d3edc862a540c2ef2ce3ba691179563fe42eb6a65fac",
+      "bytes": 70221
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/Input_receipt.json": {
+      "sha256": "b0f86679f9b8d5a3dabb6a2c0b382fa75a65ea6599babd1291163543122188bf",
+      "bytes": 2318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/after.json": {
+      "sha256": "bb1bb41e14e698f9d513a396bee96474fb1543938f3ea6ee53462ff94d1b4e5a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/before.json": {
+      "sha256": "bb1bb41e14e698f9d513a396bee96474fb1543938f3ea6ee53462ff94d1b4e5a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/boundary.json": {
+      "sha256": "0b04c9b0b5a8185503bd64a4d6f1613f26e151cb02e120fcbc1118fb947f606f",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/lifecycle.json": {
+      "sha256": "c14a25e7729a4e329dbd320f901d695abd759ee5d6c1aec0b94ff4fc7d713d54",
+      "bytes": 784
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/raw_result.json": {
+      "sha256": "e56b8da5e94063555156a882ab84ef9b807a4897aa34f94ef12178deb9de979d",
+      "bytes": 82633
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/10_equal/result.json": {
+      "sha256": "c9a0afd5bf1d752e7ea5f4f3c397bb42cf2ef4fa4822ce99b5206ebe6c41fdbd",
+      "bytes": 82762
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/HurinkR_la21.progress.json": {
+      "sha256": "b670ad8d36209d93e72a9ce0c836492884566ae5251b8e167c0b63a0d20a6a7d",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/HurinkR_la21.result.json": {
+      "sha256": "3574e7ced828831a1696d8aef65a6bcaaa0cf2777a299dfaaf8cbfc0bb7cd57e",
+      "bytes": 52977
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/Input_receipt.json": {
+      "sha256": "e1e817f7fa57d98ed661796d013ed6f2e0b84ca582e90695629c3da2dea124ce",
+      "bytes": 3112
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/after.json": {
+      "sha256": "4169681c5fc2db8a1587f7a24880f31f71321152515daf55ec74e3c019bdde25",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/before.json": {
+      "sha256": "4169681c5fc2db8a1587f7a24880f31f71321152515daf55ec74e3c019bdde25",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/boundary.json": {
+      "sha256": "8d84ae5f04ac1d9825583e875716164b46bbca5ed0f3c763a9f0493ca3206845",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/lifecycle.json": {
+      "sha256": "dc03e2bee3739897530a4c4c685462386a826e80b1af06f2e3a91e2fa0005bab",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/raw_result.json": {
+      "sha256": "0e1a52a4035d864e52ca8a4e7d5e48314cfb37ab9128adf01b546a5aa86cafeb",
+      "bytes": 62389
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_dynamic/result.json": {
+      "sha256": "3aaf850bfbea666dbccda09f1457b5df343a622500f7a3fbe82b8047dcfe1748",
+      "bytes": 62518
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/HurinkR_la21.progress.json": {
+      "sha256": "74318f1d7660b9929d1bc72cbef62bcff97c07c3244c71af80578aef39d0295f",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/HurinkR_la21.result.json": {
+      "sha256": "3ce2b690b6af03f437772fa39d1f377e615ee010afdb245c4d96de10a1a087ef",
+      "bytes": 52867
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/Input_receipt.json": {
+      "sha256": "594ad613f04bf6fbb4c6a0f92bb1b07d7bab37a9cb1b59caeca883c9a63bbb6c",
+      "bytes": 2331
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/after.json": {
+      "sha256": "dde55db9d72b8a64ba9ef13c47ad950cae9de85c872f514263e0360f6da5fa73",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/before.json": {
+      "sha256": "dde55db9d72b8a64ba9ef13c47ad950cae9de85c872f514263e0360f6da5fa73",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/boundary.json": {
+      "sha256": "da7cc75e3fd57906383d61976fe35d25ee31f8a509d5c9e1f2679465d790667f",
+      "bytes": 105
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/lifecycle.json": {
+      "sha256": "ee80b68934f202b1d14a02324f895e3300b52efc87ea1cad628694e27398389c",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/raw_result.json": {
+      "sha256": "57efe10bfb2f009df3c97b4f2fc5439c9987841c3d8551222c2c06751439d04e",
+      "bytes": 62278
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/11_equal/result.json": {
+      "sha256": "4c9abad6b42a9d5dc70dfd893c73a632e568d49762654e961c9eed6ca3a8a0c9",
+      "bytes": 62406
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/HurinkR_la24.progress.json": {
+      "sha256": "e4eab4ef740bac270ac5c27f4f629f4443e2006a4e08dd747bf3b98329e2a6bc",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/HurinkR_la24.result.json": {
+      "sha256": "addbf41279f37b0585f96af7d78f5f8e35c3ed51ed7f0da04460fc47ab94cb0b",
+      "bytes": 53009
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/Input_receipt.json": {
+      "sha256": "f9a33fc8654c1512910c33b4c57bd8d4eb320fa187e4a92851347f7899dca043",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/after.json": {
+      "sha256": "3cffd116883d90cb1ea84981535073ba1c5b7622d9240091cea0f7bcf8bcb630",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/before.json": {
+      "sha256": "3cffd116883d90cb1ea84981535073ba1c5b7622d9240091cea0f7bcf8bcb630",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/boundary.json": {
+      "sha256": "ce67b5c75676991d0d195bbe0d2aced749cf8ef3008f7ca30aefdfe83245c635",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/lifecycle.json": {
+      "sha256": "2f8feac9f391f8a83dc86a23b01f9aecc2ef9ad9a6bb3d71797162654c14db08",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/raw_result.json": {
+      "sha256": "21f5da84d923e4846552eca52c9d28c6dea5dbc0742998a824c02b5c3a0076b8",
+      "bytes": 62421
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_dynamic/result.json": {
+      "sha256": "fbc583a5a4dea527dc752c796d98c58b2dd35771b7c433fb778296bc8fdfbd4e",
+      "bytes": 62550
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/HurinkR_la24.progress.json": {
+      "sha256": "7df1422180607b18a4ac6608e060b2f51b10d8fd63619b7f77209a1c2c9f02f8",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/HurinkR_la24.result.json": {
+      "sha256": "13b5a97c871ff5566be6ee6309acd2e4e0d62c4e2d89723d5d5124bcf4a7e323",
+      "bytes": 52909
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/Input_receipt.json": {
+      "sha256": "658306a016ae440024954cebfc899782bcd0fb96ede402e597b70a05bff861b1",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/after.json": {
+      "sha256": "8a8cabd6678ceeecea30bfd7b257913c965de968fc88e784d898ddc921dee9cd",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/before.json": {
+      "sha256": "8a8cabd6678ceeecea30bfd7b257913c965de968fc88e784d898ddc921dee9cd",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/boundary.json": {
+      "sha256": "2267551d1a5eef8966eb56c0436102af21ed2b830ca63752894a5927544ad2c3",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/lifecycle.json": {
+      "sha256": "08ee01ec901b5989df42c1c7caed0b2d8cdabc73c19fba535bfc3b23091aa518",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/raw_result.json": {
+      "sha256": "017be55f96c7ddece359fc0789cec4d04885ebc824b7a668ff5e284d474fdc56",
+      "bytes": 62321
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/12_equal/result.json": {
+      "sha256": "c52e616912a4c62ece52fa317dce04c705147b0da25a03dda4d639c5340b2406",
+      "bytes": 62450
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/HurinkR_la29.progress.json": {
+      "sha256": "57feb0fa1b84eb4b6432fc53818a591061eb8a2317168ce8e8d5a870ca2e2587",
+      "bytes": 357
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/HurinkR_la29.result.json": {
+      "sha256": "6c94fe63ecfc53352c1a36dda89e2101cf9676b06771c682856681d9bd34058b",
+      "bytes": 70356
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/Input_receipt.json": {
+      "sha256": "e30a8654f35c3eafdc72ca275236877ce9932412b0473302d587e2e77a16e417",
+      "bytes": 3099
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/after.json": {
+      "sha256": "7397d108752f7213c41a0d2195cc84b4a0947abeedde22100a5623309527b2c0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/before.json": {
+      "sha256": "7397d108752f7213c41a0d2195cc84b4a0947abeedde22100a5623309527b2c0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/boundary.json": {
+      "sha256": "ae67df51fb7a63eeae4848cd95c496bee63a12ce2f70a37719ce4ae5f796f204",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/lifecycle.json": {
+      "sha256": "89290d86bcc88e58b184877624fcf8c86ef51c9b9e0a08e5aa83d550d17726df",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/raw_result.json": {
+      "sha256": "8d5cc3adda33ce5df49d1fd33a2f74c496de77478faef433d3a321295b925f2a",
+      "bytes": 82768
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_dynamic/result.json": {
+      "sha256": "e1e84a92fbf2cc5dbd0ae0489c4775cb63b3e9dc357a0f7eff3686379df33cdd",
+      "bytes": 82897
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/HurinkR_la29.progress.json": {
+      "sha256": "77ac536c647921c336ab4d158ed1ad9d9df14d4fd85a9af686a0e3416419b83e",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/HurinkR_la29.result.json": {
+      "sha256": "2ff9d31dafb755c234bd39090777d8d17f3e5705d3185fed1415867e2bb8af36",
+      "bytes": 70181
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/Input_receipt.json": {
+      "sha256": "5426704859d89460dbcb7de35495de9ba858d3102b78502d0afda0274f8d403f",
+      "bytes": 2318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/after.json": {
+      "sha256": "59b7aea0638c1b1ab0727a2715309fc378f8db740f9fecd89daef3478598d77f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/before.json": {
+      "sha256": "59b7aea0638c1b1ab0727a2715309fc378f8db740f9fecd89daef3478598d77f",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/boundary.json": {
+      "sha256": "40ed775636a88b0a07a0fac3974a1961b3318a82b2ca2c88806f77079c6d7e12",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/lifecycle.json": {
+      "sha256": "b39351fa0703d1670a27ecbe247fc54f2deee2ff57630672c21aba8e6a3d571a",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/raw_result.json": {
+      "sha256": "2f9fcd4c815582c9b2a29d41c2603225a925775237c9dc5282244cec29fe6b66",
+      "bytes": 82593
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/13_equal/result.json": {
+      "sha256": "627bb08e1a4f631b725a0391df8d259c07aad2470b98a5ba0c413c4fb4935d03",
+      "bytes": 82722
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/HurinkR_la22.progress.json": {
+      "sha256": "f7c18f6376da603ed4d8654709d32db4e0463da58cdfc55f17d4c14724040496",
+      "bytes": 357
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/HurinkR_la22.result.json": {
+      "sha256": "4049fc218943c98988633b72a3571b2ed7bac51bb00ea046b9610440b6869257",
+      "bytes": 53002
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/Input_receipt.json": {
+      "sha256": "489e38bec5b68618996b5c3d2106608d946c51f54e53c02061f2934091f07cba",
+      "bytes": 3098
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/after.json": {
+      "sha256": "1be4a3cf7c68f4c04cd521e68ad52815c079ba88c50a374364f7cfa4a91e8a02",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/before.json": {
+      "sha256": "1be4a3cf7c68f4c04cd521e68ad52815c079ba88c50a374364f7cfa4a91e8a02",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/boundary.json": {
+      "sha256": "18feca8534c7cf2874cc18546a55277c31d474ed7b892b6ddb23517327b585e1",
+      "bytes": 105
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/lifecycle.json": {
+      "sha256": "41cc32648e7e9a5f08d822de1b28033a194a641b164311f517f6e0715fa6cadb",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/raw_result.json": {
+      "sha256": "c4bab392686747cedc124faa16ac10c50aa91a05cdff639cfc875f8bb855f522",
+      "bytes": 62413
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_dynamic/result.json": {
+      "sha256": "9ad4037b49716e09fa103fef743c2120e03268a790107919b9b5960581b98d15",
+      "bytes": 62541
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/HurinkR_la22.progress.json": {
+      "sha256": "f44be952b4d8a571f138a2b04fda212e40bbded41964bb345c24c5e658403673",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/HurinkR_la22.result.json": {
+      "sha256": "02fa3556ac0865200b2da6eff28f2311bc2d471ee5a4d823e367eb918e1d1b42",
+      "bytes": 52922
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/Input_receipt.json": {
+      "sha256": "115bfc287d3d3e01bc6a892a9a25641a762934bf21cbd19bbac49458f51ee209",
+      "bytes": 2317
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/after.json": {
+      "sha256": "1e7826802004963226cf46e10d7fefb2e642a4d329502302530d6ef29e07aa9c",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/before.json": {
+      "sha256": "1e7826802004963226cf46e10d7fefb2e642a4d329502302530d6ef29e07aa9c",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/boundary.json": {
+      "sha256": "802c47d271637e4ef8584977b9d978db60dc75160aec9980634a0a2dc867a541",
+      "bytes": 104
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/lifecycle.json": {
+      "sha256": "555d800e4af242de31e5435c0f8dacfd57af393a847fe077932a22163c1eef3a",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/raw_result.json": {
+      "sha256": "1679cd198d5652752e79e48d963f8b293df52470381dc50cff86f35a3c3888c8",
+      "bytes": 62332
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/14_equal/result.json": {
+      "sha256": "c106c03936b86d0b9d9d269a22d8dd2584dbdef4ad3112c30c3cfbad90e01930",
+      "bytes": 62459
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/HurinkR_la35.progress.json": {
+      "sha256": "4696d02ac0fe22720fbb66c2d3355cc47ed5c6c8565d536de3784b9325a8938c",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/HurinkR_la35.result.json": {
+      "sha256": "d0b37737eda42c4f9c13e4f962ac1cace8803c51f1c6e12acf42949d471f3420",
+      "bytes": 104890
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/Input_receipt.json": {
+      "sha256": "fc932dede31b29d64f7e6131399d923fe35c56303956b017afbaddfda94a6096",
+      "bytes": 3113
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/after.json": {
+      "sha256": "47b1f815538253190cc9bd3d870a901db792f839a946cd23f62f0b25c2888aa1",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/before.json": {
+      "sha256": "47b1f815538253190cc9bd3d870a901db792f839a946cd23f62f0b25c2888aa1",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/boundary.json": {
+      "sha256": "4d53a56e55c3c05570f0d86323f8eb3b30f98e862fb9154c8eabe7f99504ea5c",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/lifecycle.json": {
+      "sha256": "d13d5b01c1c7174b51a992b26d41f8fd4bf0eb44f3339a6690e4b86c9f6e4da7",
+      "bytes": 787
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/raw_result.json": {
+      "sha256": "65cc16c78816527abf29838faa57b6180a18d9f766350f9e79223adc083b36ae",
+      "bytes": 123301
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_dynamic/result.json": {
+      "sha256": "d7f7373fc1ba289bbdcee8e57326dd12b87b579c96fa285c2099e91ffa73e5d6",
+      "bytes": 123430
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/HurinkR_la35.progress.json": {
+      "sha256": "45dc21b65c3c7d04687e76161b52a3fa64e773334c8f9c816d5a827186f547bb",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/HurinkR_la35.result.json": {
+      "sha256": "7bcfc6f2121dc1108fc14405d8af80d8cc38b2f77c0858a433c9b04e835d96c6",
+      "bytes": 104622
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/Input_receipt.json": {
+      "sha256": "c425b293d08d788219651c32cda17fcaeedbf3adeec24c1642115461b95c8c1d",
+      "bytes": 2332
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/after.json": {
+      "sha256": "d6a8962b42ce4ba99745d4e1554cdc92fc9759cbbb85c3602fcc86e8cc96a8b0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/before.json": {
+      "sha256": "d6a8962b42ce4ba99745d4e1554cdc92fc9759cbbb85c3602fcc86e8cc96a8b0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/boundary.json": {
+      "sha256": "dae10985bae0de2b346f16a8cfaba33ab0787640dc27c7642b538eae3089a0de",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/lifecycle.json": {
+      "sha256": "e73ea4c849057086a96528cedf775fba581e1c16daafbb711dcbad03d43c2c96",
+      "bytes": 783
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/raw_result.json": {
+      "sha256": "91dd04cbef4267c3deb5eae32712025491ee0f58eb662eea00e19fc4328ef3cd",
+      "bytes": 123034
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/15_equal/result.json": {
+      "sha256": "aa3453d297f80c56e9c5e0d8dee8740028ca18a807e2509885914791aebb39d4",
+      "bytes": 123163
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/HurinkR_la36.progress.json": {
+      "sha256": "f260fe751e5f6663dffb3e6220094aae5e3bfa8f368f946ccdfbf11e8eee52b3",
+      "bytes": 354
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/HurinkR_la36.result.json": {
+      "sha256": "34cee71e4a950f42aea3015f462abca68b7626a7364ad01dde33620637e73372",
+      "bytes": 79215
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/Input_receipt.json": {
+      "sha256": "72cb984ab170d7655ce5931fce442c17c043447914c77b85d8180f50260a0aea",
+      "bytes": 3112
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/after.json": {
+      "sha256": "4e1817336030f8b027a62fb057ea5f38e7a1a6009a87da21ddf56753a04d9955",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/before.json": {
+      "sha256": "4e1817336030f8b027a62fb057ea5f38e7a1a6009a87da21ddf56753a04d9955",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/boundary.json": {
+      "sha256": "82f93d4a6ef63ad000a588159ca6f72d231b5d00a6ec8d76beb344be53576a3a",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/lifecycle.json": {
+      "sha256": "ee7e22722fe1f87ced542acb5e31957609469c907509782797b01e7ea36008dc",
+      "bytes": 789
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/raw_result.json": {
+      "sha256": "408143861366ea3a12b81a748aa822b646162307ed9babca6739e60684226a64",
+      "bytes": 93127
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_dynamic/result.json": {
+      "sha256": "cfd5a81d356889c8882ccff15ef7bcfa7fb3625d4d48060062a12fe6377f34fe",
+      "bytes": 93256
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/HurinkR_la36.progress.json": {
+      "sha256": "4330ea700244a1c9a3ec0fb18f5d31b717f01c412d3fc69d75647b84ea4a58e8",
+      "bytes": 355
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/HurinkR_la36.result.json": {
+      "sha256": "a922502ec13f5fc09340a1b4932a6f010c1d19b2508c62de0363e7790fc837bb",
+      "bytes": 79066
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/Input_receipt.json": {
+      "sha256": "68c9ad45adf2056eb961649aa80e72c798b9ee8594636e8e09a283f639176a7f",
+      "bytes": 2331
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/after.json": {
+      "sha256": "a75c61ded116ce37e5226e7f15264b89a1305b8b4b0c3a40d583c50f204b2af0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/before.json": {
+      "sha256": "a75c61ded116ce37e5226e7f15264b89a1305b8b4b0c3a40d583c50f204b2af0",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/boundary.json": {
+      "sha256": "76883673db38bb4fddd5a3a49b0b2250811fc6e4baa9f602e1d1508aedcee8d7",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/lifecycle.json": {
+      "sha256": "7ad36b0ca6277037cc4008a209c0d1cbca5eace4ccb813cb726e928641a07aff",
+      "bytes": 784
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/raw_result.json": {
+      "sha256": "3b4335698b86433d69b35366bc8ccebe416b6e6237ac7998bbc265884ab8bbe6",
+      "bytes": 92978
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/16_equal/result.json": {
+      "sha256": "62966c3b1bce2a06c484e0e30d535444917a7e589f381678b61390f16dbad296",
+      "bytes": 93107
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/HurinkR_la31.progress.json": {
+      "sha256": "c602ff342ada897708d8dc5e72d53870a21934fabba60324c337e22b1aea28a9",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/HurinkR_la31.result.json": {
+      "sha256": "62cf8a3dad2503c9a3516ab7a5992cc1a95eb8e056929710dd1a8f3c795bd21e",
+      "bytes": 104902
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/Input_receipt.json": {
+      "sha256": "00d94801ed46b60dadb269882ae2f99e513c9b5f81c9eb1f6846a55e5be4370c",
+      "bytes": 3099
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/after.json": {
+      "sha256": "6cf37d91e14c6d1db19e0c927b344d922cc4f52a2fea808d82fb5918281ab743",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/before.json": {
+      "sha256": "6cf37d91e14c6d1db19e0c927b344d922cc4f52a2fea808d82fb5918281ab743",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/boundary.json": {
+      "sha256": "e1026a3e161a3181671d0df695a2a2a36d566b67c37dda17a75d04a007c5e511",
+      "bytes": 104
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/lifecycle.json": {
+      "sha256": "3dc1834fe4902dd44db74b7c33eea7b99564e0d9fc562d0721ed21be0e90d357",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/raw_result.json": {
+      "sha256": "0ee836ef2a238c633238417e35df1ce5fd88fcefc6b130b0c14e6c07ffb90bf0",
+      "bytes": 123312
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_dynamic/result.json": {
+      "sha256": "eda52a328427967460a55f9c034589891c22f6bc368be14b7bc126980b25f027",
+      "bytes": 123439
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/HurinkR_la31.progress.json": {
+      "sha256": "50d16299bdb843764aa6c40562338458cb692d7247d4b527ed8320d497399da3",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/HurinkR_la31.result.json": {
+      "sha256": "a39116f28f3a25209831b62c4b51144cf518244815faa4c07bbd073d1e041191",
+      "bytes": 104817
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/Input_receipt.json": {
+      "sha256": "e35bdb8b7e7faeeae5dd1ac53bb285ad9aa5fc3e20a0c7b0ac61d84eca991375",
+      "bytes": 2318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/after.json": {
+      "sha256": "73cb1ce619d278ffb930c1022003a1728c571a8883671a7a264ec8b50022d3c1",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/before.json": {
+      "sha256": "73cb1ce619d278ffb930c1022003a1728c571a8883671a7a264ec8b50022d3c1",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/boundary.json": {
+      "sha256": "905d45c1fd338e46cba7ab0d1caa445807f4c1e225e984d5aae25353480b6d1a",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/lifecycle.json": {
+      "sha256": "fea5d876a595281b96d97638a2e15f98d8d74298886fb5e5fb70c564dec1a2fc",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/raw_result.json": {
+      "sha256": "f2a82df55ac670bca0841dac1928baef37311f01e84866d4cb5c5ee4159e46bc",
+      "bytes": 123229
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/17_equal/result.json": {
+      "sha256": "1277ca4e048e94e6f5c7d5012474857867fc1b3a9c2726df85cac7431eeb32e3",
+      "bytes": 123358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/HurinkR_la32.progress.json": {
+      "sha256": "b9343a9b9f648144b7f1f0b63c133e33d96d0787ae4a4d0490d3ee7efd7eb568",
+      "bytes": 358
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/HurinkR_la32.result.json": {
+      "sha256": "c9652edd76665a447739107fad0935e5ab7cabe08508e8056e69c1822933c775",
+      "bytes": 104979
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/Input_receipt.json": {
+      "sha256": "ba721c2e8e10b42bd8ee590d662cc70e38568eba216320ce807ad37e4f4bfd9b",
+      "bytes": 3099
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/after.json": {
+      "sha256": "0921123b1dfebdfe20cda0833cc0ad7cdd2fe9d1caa16c08c451705ea308b263",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/before.json": {
+      "sha256": "0921123b1dfebdfe20cda0833cc0ad7cdd2fe9d1caa16c08c451705ea308b263",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/boundary.json": {
+      "sha256": "1fd6029a22ddc981ad398af5ee51281b444ff3cdf3b839eba965b6abe8c96eb9",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/lifecycle.json": {
+      "sha256": "214bcdc77f805bfec4c3c7632b1001126e3ba7262ff1853b653ed47474739513",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/raw_result.json": {
+      "sha256": "3501d402a92f55c2a2a7aca92522665d76b379b20fbdea5fe63ebb3122663345",
+      "bytes": 123390
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_dynamic/result.json": {
+      "sha256": "8d8b3acb4030dad7dc9eb91f4da7937d6c1f8200be8eeb882c7cd315e1e1d549",
+      "bytes": 123519
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/HurinkR_la32.progress.json": {
+      "sha256": "6591a2749c657b85fc781be779b34fcbb914691c8910049fa6b7a3c8042b27e4",
+      "bytes": 355
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/HurinkR_la32.result.json": {
+      "sha256": "03f7f11fd2d15c13d9dbce5dcc514f52aaa4f6c5a5b73632a5b86ff2c57b3eb8",
+      "bytes": 104800
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/Input_receipt.json": {
+      "sha256": "6bd89d7493f5fdd84333629810004525f952d6254e313ab57e6052bf17ad4742",
+      "bytes": 2318
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/after.json": {
+      "sha256": "5fc24e5cb8b5dc67c9fc19683af1d8ccfbd8c51ca5d93b5027301d7aa4cbfd80",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/before.json": {
+      "sha256": "5fc24e5cb8b5dc67c9fc19683af1d8ccfbd8c51ca5d93b5027301d7aa4cbfd80",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/boundary.json": {
+      "sha256": "8aff65887ace1eee6470b54431e63ea3d96506284bc18311a5d1980bb3370be4",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/lifecycle.json": {
+      "sha256": "c14265c2993bdc8674c70459721281ef581c475720ca2d9b00359d23a594e167",
+      "bytes": 785
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/raw_result.json": {
+      "sha256": "210a9bb511880a374edfb9d519be1ce5ef4ebca781aa63a49ff90f7de6e32298",
+      "bytes": 123212
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/18_equal/result.json": {
+      "sha256": "fa2f54ef69835986d53ded37e3edb68abdf4ac254ba4fffb183a94006b3eb219",
+      "bytes": 123341
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/HurinkR_la40.progress.json": {
+      "sha256": "a0c92d014dfecaa41b9ebd3504cd1ff91c37742b6a264ccab7942107cf23834e",
+      "bytes": 356
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/HurinkR_la40.result.json": {
+      "sha256": "8ea6be3ac9ee04b2573d48cdd9880ee8ae97dc7329b62c912bd0938f3ea4cb5f",
+      "bytes": 79176
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/Input_receipt.json": {
+      "sha256": "8c3c8c78023fdfbd895a891c04311830d33b99bb8ad3ec431fedb6ca670d21d2",
+      "bytes": 3112
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/after.json": {
+      "sha256": "7b1e387d3f9b07ed489572e64516cbb6faf8e930fa01ca3024eeb68012363f66",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/before.json": {
+      "sha256": "7b1e387d3f9b07ed489572e64516cbb6faf8e930fa01ca3024eeb68012363f66",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/boundary.json": {
+      "sha256": "4555997f074d49a2f18267bfaa593f4210935fda34119f36993ae43a68d5267f",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/lifecycle.json": {
+      "sha256": "ad3e8463ba0fd56e85934bf01ddace87fbf1bc9bc766adc7336af2bc2c810e1e",
+      "bytes": 786
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/raw_result.json": {
+      "sha256": "50da01908e5d6cb22f5a02ef6bbb19e31bfeaba0f163145e5e08e7f7a0fd4812",
+      "bytes": 93088
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_dynamic/result.json": {
+      "sha256": "653692a47635ee5533ddf2afa343489bf127e81d2ac15439a6795c091e74ba13",
+      "bytes": 93217
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/HurinkR_la40.progress.json": {
+      "sha256": "503449c835f31bf962681a8e554f138ab5296b0ff0549e1b06da9d8c0f0de13a",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/HurinkR_la40.result.json": {
+      "sha256": "62438a9a3060b85c57db1af7125b14afd1531a9bda47e8fb7c10a0308b3a176f",
+      "bytes": 79016
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/Input_receipt.json": {
+      "sha256": "7dbb55d563ccbdbf6bb6bc0d91bcaf8761974f8c7f1aa284f2054608df124053",
+      "bytes": 2331
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/after.json": {
+      "sha256": "90af23a28a9e8f0f733db152d3eda836eeec73144f949ef2dc61f496cc33239d",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/before.json": {
+      "sha256": "90af23a28a9e8f0f733db152d3eda836eeec73144f949ef2dc61f496cc33239d",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/boundary.json": {
+      "sha256": "1f96b7b9403edc226633629dc267ba945ef91f823ebab2132dded2647abb850e",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/lifecycle.json": {
+      "sha256": "5a10268dfc6ba714d0b064178df4db5cca70a4974973e8ae63ce963283c9ffe3",
+      "bytes": 788
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/raw_result.json": {
+      "sha256": "3c17e3ae1d8dc57d3997964592a0f2f06f3bce6973e85fcbe9e51a28b1f08587",
+      "bytes": 92928
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/19_equal/result.json": {
+      "sha256": "9a61f7a762fa27354e8d987c309077e735de0967682e74de43deafc78b114a70",
+      "bytes": 93057
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/HurinkR_la38.progress.json": {
+      "sha256": "ab7eaf036e84d635aadbd2bdbb114c2faeaa449386014b6262b12c55d4a487b3",
+      "bytes": 359
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/HurinkR_la38.result.json": {
+      "sha256": "63ae3369cee6e38f0b267d7a5f943928b6b4c23ef5046f9574aba3a5f086c1f2",
+      "bytes": 79203
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/Input_receipt.json": {
+      "sha256": "f86ceb0be83b2c4d814e01e216805387fb73830edbfa2df6fe882b4171c988ef",
+      "bytes": 3112
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/after.json": {
+      "sha256": "896eb287438fefd9a8b2b9f2463bc8d616dd667f71432a6990d5664d31023918",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/before.json": {
+      "sha256": "896eb287438fefd9a8b2b9f2463bc8d616dd667f71432a6990d5664d31023918",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/boundary.json": {
+      "sha256": "6a2db0b3efdaa7b138d9c1a840c306d599134c6a035eee051671e905d4e18b7a",
+      "bytes": 105
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/lifecycle.json": {
+      "sha256": "80cbc20bfab1b0c25ce3e1aecb6792aef172f362e4553b5384d331a87820b80a",
+      "bytes": 790
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/raw_result.json": {
+      "sha256": "972448b890bd1eeab9b2afe9ce0ff73e6552d581c69e9dec09b81a26c12ac1ea",
+      "bytes": 93114
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_dynamic/result.json": {
+      "sha256": "d2ebe9ddc1df16993ec6052d55c13fcaf29a62e36e7ad8f47ae15fb840d03c24",
+      "bytes": 93242
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/HurinkR_la38.progress.json": {
+      "sha256": "b851d2a35413486865cf4e68306536209349c77e12c769b51c9a91ccdb16dba9",
+      "bytes": 360
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/HurinkR_la38.result.json": {
+      "sha256": "538dc6b4f90ec0ebbdce58650653d56548dd7ee65d3c2fd877b363ca69d63de0",
+      "bytes": 78958
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/Input_receipt.json": {
+      "sha256": "bfb2797c2856f05cdb910e0a25288a905aaf2d41ab2862b04cb2a85130fe1d56",
+      "bytes": 2331
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/after.json": {
+      "sha256": "d655e49c911902c8bd44af294d514cf18de923c89c511a5eff3313eaeb4acd1a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/before.json": {
+      "sha256": "d655e49c911902c8bd44af294d514cf18de923c89c511a5eff3313eaeb4acd1a",
+      "bytes": 23998
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/boundary.json": {
+      "sha256": "ce7994589336bd839da49b68dd084c48c2b026eed166a831c6eda6003f935e3e",
+      "bytes": 106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/lifecycle.json": {
+      "sha256": "822e29dc68cda6977963326349afaddab87876b176b3897950290e135971623a",
+      "bytes": 785
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/network_guard.json": {
+      "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+      "bytes": 67
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/raw_result.json": {
+      "sha256": "760e709a1821bf91072c83255db91d29d8a50b6d345aa563f57a2ec8c24477e6",
+      "bytes": 92870
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/evaluations/20_equal/result.json": {
+      "sha256": "894f759d5a7d08bf4caa8e3d8a3e9daeabca171c6cfba0fef6904bf4cf2fd38c",
+      "bytes": 92999
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la01.fjsp": {
+      "sha256": "d5d564c0172258b4ab9f0fbd3813913330b8f646783218e0549f41ffeb3cde76",
+      "bytes": 663
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la02.fjsp": {
+      "sha256": "107641fd78ffdd083a62c16b82e194c7312378578afde8318302bc6245dbda01",
+      "bytes": 653
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la03.fjsp": {
+      "sha256": "e5434fcadd3cc6ffca8019664b80e968ffba5f83cd13eb6bf7acdf79decc66a0",
+      "bytes": 673
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la04.fjsp": {
+      "sha256": "9423211bff6ce85e37abc5c2a47064bb378c004fddff16a55a52466f2652c166",
+      "bytes": 678
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la05.fjsp": {
+      "sha256": "b8662b431fafeb534f103f144054f78a851f32224d739f39d2e085b098faef46",
+      "bytes": 693
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la06.fjsp": {
+      "sha256": "d578e00ec8e1c30f4b4641e9e0f040464ce6a439d787e546346e2e49cbdebec8",
+      "bytes": 942
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la07.fjsp": {
+      "sha256": "8680e0c5319e5d7dc1f955fed0660dd77369eb29ded746fddd21430716587648",
+      "bytes": 975
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la08.fjsp": {
+      "sha256": "91a6bc826713c13759fb4322ebda5141c5cdb3dcff5658db63eed1939970a9ca",
+      "bytes": 952
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la09.fjsp": {
+      "sha256": "827ae60490ab9176a82c439e5144aeefcfbe70babc6304f14e2f9e349daa2d47",
+      "bytes": 959
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la10.fjsp": {
+      "sha256": "cae7ea5823da4d3ccd5f2c0827b93ef8097260a4e8ce21a58464c70fbc10d04b",
+      "bytes": 967
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la11.fjsp": {
+      "sha256": "8c9f92f9f6a3302b8bea62385ddbde9e8cc6514a6035afe428eb29c8c7fd60f4",
+      "bytes": 1307
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la12.fjsp": {
+      "sha256": "ed3e48bfba8165895d2805fe9f476e9e3db6d25c0a8b924a8bae87f871199fb2",
+      "bytes": 1279
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la13.fjsp": {
+      "sha256": "bba0312c95eb9ad17285c898f689600d5a23e8543fd1831408ea9813c4ffc0c0",
+      "bytes": 1287
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la14.fjsp": {
+      "sha256": "9ec30a2f7cb69ad2fd50688eb9fd7adce412f5b0405e484296fe3fa2a0860857",
+      "bytes": 1272
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la15.fjsp": {
+      "sha256": "67a5fb5d611bcad8f8f63b67735bb072d570e139e0882c284dc2ef764c1518f3",
+      "bytes": 1281
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la16.fjsp": {
+      "sha256": "cd05969f63d999e7afa4d4f22a2e9131c55d9ef3780d239c23568aed9ffae562",
+      "bytes": 1313
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la17.fjsp": {
+      "sha256": "e9a8ad679e2caf000a74a2c892c38b01130bc64ff557ef75ce016112f1eec64d",
+      "bytes": 1261
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la18.fjsp": {
+      "sha256": "72c0b382345d21f335672a876e28c9d6585604e7687155b45d0cfe84017dc7fa",
+      "bytes": 1302
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la19.fjsp": {
+      "sha256": "28456734119abd462693419a46a33baa269e336f892978d85a5cbca8f7008a7e",
+      "bytes": 1275
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la20.fjsp": {
+      "sha256": "e0b60e92d93b43b2e79156edf2e1f60974b9252e2103456eb0de14505de6556f",
+      "bytes": 1295
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la21.fjsp": {
+      "sha256": "4217b1b9499c8d9de23517f27dd8cbedb2b41bd05b6470fe23417d7e4d9fa93d",
+      "bytes": 1942
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la22.fjsp": {
+      "sha256": "112dc8b50e694fd97ead3c0346148e5fd45e4202f958abb7e71d7b94a038f2bc",
+      "bytes": 1944
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la23.fjsp": {
+      "sha256": "a445b0d15ad0cb7e1e82d3bfbe9678a1c5565e235e6da648a321f8c7d7519996",
+      "bytes": 1949
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la24.fjsp": {
+      "sha256": "c881b3a1ecf83a859227c4d437b34a59a1ab4ca933e948b141113b2941da76fb",
+      "bytes": 1908
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la25.fjsp": {
+      "sha256": "43fd2b19199f2385f339bd65c751d15a5771affb8e27d82dda818ff2563dd0ed",
+      "bytes": 1926
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la26.fjsp": {
+      "sha256": "8509b8258fc2bcb9559565142bb8ea95b1c169fdfdd4900dbb6ad8172dba5c1b",
+      "bytes": 2505
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la27.fjsp": {
+      "sha256": "23a7f62f20e02eed4f9d2743a686962c5dd8faa77cb52dd548744effe96ddf21",
+      "bytes": 2511
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la28.fjsp": {
+      "sha256": "6c9c92fc03aa40bb1b5dee69f11989434eb633dccb015d9ab046ef83a85ffec6",
+      "bytes": 2546
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la29.fjsp": {
+      "sha256": "d9748feac4ad6f2cac4849b7c3529bb35df86d03655de4162bef0b323d01c31b",
+      "bytes": 2534
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la30.fjsp": {
+      "sha256": "be090bb6df610fa2f20638691f2f85e877c384476afe94a1a376064cb5c4a446",
+      "bytes": 2498
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la31.fjsp": {
+      "sha256": "f19259533e9e031065cdd2208010989c0c7c92606990ce0fcb36ccd3a82f0b78",
+      "bytes": 3664
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la32.fjsp": {
+      "sha256": "a5168f9afb6baa5359e030e22571bb7999edbc261da85ea6c7fa706743b1403e",
+      "bytes": 3698
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la33.fjsp": {
+      "sha256": "6085fcb23ebeaf7cfb97682a240ce1b89e21076950b9c396644121d03c045cdb",
+      "bytes": 3676
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la34.fjsp": {
+      "sha256": "6861285873af23e965c3fcb287910ce0d0620e063ed8a32a127e539eea2a58c3",
+      "bytes": 3704
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la35.fjsp": {
+      "sha256": "6e171c16aa04b18d1d2f356eb82a1f1ea778ddb1192c05c5341a0553ec455112",
+      "bytes": 3732
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la36.fjsp": {
+      "sha256": "8f949ff8ebcceddb661cba7cc130ad2aef58a060a95eded157f4164418b55e4a",
+      "bytes": 2919
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la37.fjsp": {
+      "sha256": "59f3209d567dfc6592b2bc79a86a3d530b3b15849c9473fd99005f9b44e38c98",
+      "bytes": 2890
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la38.fjsp": {
+      "sha256": "106998e44a362b76950fc0b192618cddc361bcbcbf2ed6fd5b6162049b5e204c",
+      "bytes": 2906
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la39.fjsp": {
+      "sha256": "7d35d2692e1d3c67854f5d1f3b26e8d86bf561b07290b7cf94b616f66153d3c0",
+      "bytes": 2883
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/inputs/HurinkR_la40.fjsp": {
+      "sha256": "1b4ecfa97e0cdea32b96dc4c788ace77eecd19a494e1310bd1f7b177aa51badd",
+      "bytes": 2907
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/LICENSE": {
+      "sha256": "920f816a1ba1efe5de8fdaea9df5d865c268667ebd6596cbdbc5b4c989a85709",
+      "bytes": 1070
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/README.md": {
+      "sha256": "37bf02b332e5da8a8d1f3a27e0ebe79b3e6a238d11fac316f3412dff81d76186",
+      "bytes": 2815
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/SchedulingLab_ac4c340.tar.gz": {
+      "sha256": "7c75a2873db2c9bc5028a3b9f30adb9cf10968f52876ab01a77fef7595447574",
+      "bytes": 1294647
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la01.json": {
+      "sha256": "95d2e760db88b593f9a2a7e159ef581c46d1cf1114d354be857a17b853d13fd1",
+      "bytes": 4942
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la01.txt": {
+      "sha256": "f7c958167b145d32819e3443d87d370a257479fb3b1b8f40b45c2ff4401f9469",
+      "bytes": 605
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la02.json": {
+      "sha256": "c7a315b8e8eeb6c0ccd8a1405fc321e50e6db2a4afa0584e039033004d516b46",
+      "bytes": 4868
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la02.txt": {
+      "sha256": "00a2acb77404b4f1c4fcbe43ae18d12896ae9944a0fef9fce8731881bfc5cd8a",
+      "bytes": 595
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la03.json": {
+      "sha256": "92d5599bf67a16c0992c3c71390498714b4bcc7f8169a06d6b4ae90dcd563da3",
+      "bytes": 5111
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la03.txt": {
+      "sha256": "89970d698a98aaed1f5e4b824fdb3228f63fe2c8a80c7eaf88876ac4e791fa0c",
+      "bytes": 615
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la04.json": {
+      "sha256": "6a5e70ab65914e8c9e9e07b6dc3f4e2bb2448f16378a537e97b1c724dc01c150",
+      "bytes": 5194
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la04.txt": {
+      "sha256": "b9472475260765304a18b15c41c8ecf526498091365f9e1558b35a6efd1c7a82",
+      "bytes": 620
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la05.json": {
+      "sha256": "78d3734a08a1fdd5ef858a3cf1057e54957118e7be262faf0b219fe51a4a1b8b",
+      "bytes": 5301
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la05.txt": {
+      "sha256": "0788b7294e6882d168c29d0211f882860fd0db11d47773a823ce1446ddebd9b0",
+      "bytes": 635
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la06.json": {
+      "sha256": "6e9df736ed45e3f223efc000659db74970f6f28538efb49af8e0e6a9a0b6789f",
+      "bytes": 7250
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la06.txt": {
+      "sha256": "0dd7d23f81394e3dd620454ebc1cd021ff9de27d25c462e433d78b7baa872c88",
+      "bytes": 884
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la07.json": {
+      "sha256": "8c0331314bcccbe766385789772d2e872c401c41b7d5c27fd48eeefbfba42d54",
+      "bytes": 7545
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la07.txt": {
+      "sha256": "5bad3eac9df668a79a3db96f56d9067cdd37122c7d855fc01a83eeebe54f2024",
+      "bytes": 917
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la08.json": {
+      "sha256": "0063b04923e66a64f93da4240c6840e64cfb737106d12a9e38bf619989e7f20e",
+      "bytes": 7416
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la08.txt": {
+      "sha256": "470ecea405d8e3fd0c5d408ed9f8740f45d62191e60f021ede8a7c87803c98f1",
+      "bytes": 894
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la09.json": {
+      "sha256": "09d4723fea49d9cf6a5a40b01ab8239fe9a5210e405a5427be33b9fe3d2e7156",
+      "bytes": 7384
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la09.txt": {
+      "sha256": "1d22e4dc885c2d792939c52eb6a16cebb2073eceba189edb94a6256518558e2e",
+      "bytes": 901
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la10.json": {
+      "sha256": "a63165d3377bbae498d80afe8c3ae98f72b24377e0ff23d3669c311c52e22465",
+      "bytes": 7551
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la10.txt": {
+      "sha256": "424f35d137e1e5e3303d457c29126cd79cbe9cd7e152f6685cefa61f08060f0c",
+      "bytes": 909
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la11.json": {
+      "sha256": "c3dde7399daff8d4e3157e80258f06daa9482782b7b64589cf2303d96dcace6e",
+      "bytes": 10363
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la11.txt": {
+      "sha256": "9039e7961c597030c90208286bc274c1e9caa32e88771d84e5f0b81bc1f64b2d",
+      "bytes": 1249
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la12.json": {
+      "sha256": "296fb4e9678a3b89c521bf537a5b7e8985fdf10d18d09d35a914b17248694997",
+      "bytes": 10151
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la12.txt": {
+      "sha256": "3091d7bdc9ea1aad28fd8d4356bc423e2ab88ee2becf7c5fee9d708899594bad",
+      "bytes": 1221
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la13.json": {
+      "sha256": "86a2ea2d726342514c19d93f4e7916cea74c5ce4712ecf3badcb811f8176e421",
+      "bytes": 10106
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la13.txt": {
+      "sha256": "6153118d7a37ba1ef5c7118c9e2da22639138f9e93e2e222aac34bb8ca59d947",
+      "bytes": 1229
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la14.json": {
+      "sha256": "e7588be06ef682c7904d2ff2790eaf0a52711a2ef022f3756ee0bd0aecc14989",
+      "bytes": 10038
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la14.txt": {
+      "sha256": "c9528a198e1d72977c66311db6df8fafe7d362327d15b6aedba5c1f5e0e15d89",
+      "bytes": 1214
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la15.json": {
+      "sha256": "6bead86bb09061bb27a8c046b940a98139d9d74ba236ae7f1db6d79fd38b5ade",
+      "bytes": 10086
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la15.txt": {
+      "sha256": "9d49694a9529162fbb7e44af897ee68846e33a8c80788f80b382136d20fe671a",
+      "bytes": 1223
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la16.json": {
+      "sha256": "3f9f91d0c025d0cb9d4aba619fdbc26c66342d4ec49e49e6189f09e53636cd62",
+      "bytes": 10146
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la16.txt": {
+      "sha256": "b11b8ed564062e6b544c202ea329c703912153616059d344cb0cfb4b30041254",
+      "bytes": 1234
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la17.json": {
+      "sha256": "c1cfdad816d4ef0b96e428d17f1c5230950b790c530037b25e6ca34c185b6f78",
+      "bytes": 9757
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la17.txt": {
+      "sha256": "ae2594c164ddf5648d90bf63a155d37ed1ae3b42ec79073bdcce40a0bc61c266",
+      "bytes": 1185
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la18.json": {
+      "sha256": "adf6b30ffd78bf2bbfe21b9cef2abb1c0c8d7d2a2c89054cfda75df29bcada1a",
+      "bytes": 10072
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la18.txt": {
+      "sha256": "f9cbc5eefe69e46ed2627758a3792a3b7e2e4b4fd9374e454d0ea98953f71281",
+      "bytes": 1224
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la19.json": {
+      "sha256": "2912d656dc2102505c1ca803dc4fda4970a57c23c609eeb408f3c545a1f809c0",
+      "bytes": 9888
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la19.txt": {
+      "sha256": "0625b02be7397245ef5f40385c1c6de2523f1c92d52501b986099af5241748d8",
+      "bytes": 1199
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la20.json": {
+      "sha256": "fdec01bad6a16f61c9bf72807f83e9a42563c8a8c1db3cb3ea722efbcddc5de7",
+      "bytes": 10023
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la20.txt": {
+      "sha256": "eb66937bdd9eab03c727db8d42330b32409da0ba2c75be63971b48bd1652d864",
+      "bytes": 1217
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la21.json": {
+      "sha256": "967722aae4e7cbbd8b4af7b9b37ee219b353373713bd3b0a6cf015559e17b8d8",
+      "bytes": 15196
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la21.txt": {
+      "sha256": "8e8ad8e4c4778c1f31054dddc59a208e4e03b9e9a5b34e6401b330dcb7d968ed",
+      "bytes": 1849
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la22.json": {
+      "sha256": "ecb73023e7aaeb6f1a5e2887a8a9913393c1ceea799f3a86dce929536a8b2512",
+      "bytes": 15411
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la22.txt": {
+      "sha256": "1343f667665142651540a038f1120ad7a1446171ffcd1a96ac36b93e3a4e9861",
+      "bytes": 1855
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la23.json": {
+      "sha256": "60474ed48bd76a3db292e2dff9ca156092f1d39b108320bb9b8f0a990aab6b3f",
+      "bytes": 15429
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la23.txt": {
+      "sha256": "14272604d3930023fe6c3be0a6555063a8b4d60297c416dde4afbae9436ad31b",
+      "bytes": 1859
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la24.json": {
+      "sha256": "73290ad46f18dfeff6a1d44f7dc31a0b2e5acdfbfc90e856b545034a2b951c00",
+      "bytes": 14979
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la24.txt": {
+      "sha256": "a6ac891d05f25006d431a9e34c7e7da798e2e381d73ad2fbd930bce28bee00bf",
+      "bytes": 1816
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la25.json": {
+      "sha256": "623a27461a41b1fa542a45dfd6982d871b66016efb7455dbe64f0db9caf0a9f5",
+      "bytes": 15208
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la25.txt": {
+      "sha256": "903ee0c921c2b140399f5c9a7ae0873237a54d36285d19f55cb8d2f8b0a83ad6",
+      "bytes": 1836
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la26.json": {
+      "sha256": "04c1647ad931bb50abcf51afa0e43bd59856a185767ca1768160865eee88e1bf",
+      "bytes": 19717
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la26.txt": {
+      "sha256": "f2f4db3ce774d158f748048ad3a5e12c9566d7b36725674bc280fc7a86fd8716",
+      "bytes": 2409
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la27.json": {
+      "sha256": "662416721571702e94a198dffba85d494597ba83c9999ba7c42b876a2fc1eecd",
+      "bytes": 19760
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la27.txt": {
+      "sha256": "c60e6e9214051aed74244565da9d8e25685e3948e4fe05506f3dbe87cc37d741",
+      "bytes": 2413
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la28.json": {
+      "sha256": "d2e24860055016a71965f0a775d0774644271943071fafbad6aa5f57efef8cfc",
+      "bytes": 20241
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la28.txt": {
+      "sha256": "f8554eaf11280ebd6ff6bc64d314bceb4b48fcbf6913f82428b1a800340e4ad6",
+      "bytes": 2448
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la29.json": {
+      "sha256": "8f3c625a23a71e94c886a881add8cb7108e0ca82a2e6d2a2288628b40fe0253a",
+      "bytes": 20100
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la29.txt": {
+      "sha256": "28c02454886f39f1e0f99865cfc853d5236d188ad9bd3b3129129f332839b21f",
+      "bytes": 2438
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la30.json": {
+      "sha256": "59cb7622441cec9e771be75789a7ec2441c0790f31b1ba19f41485c89a2af0b6",
+      "bytes": 19721
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la30.txt": {
+      "sha256": "afa33fd10b2157d287204c09feb641ab5cb4ff816440f359fab3ba33437ac563",
+      "bytes": 2402
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la31.json": {
+      "sha256": "e474537ed5e050b83da7017f6e717fc53d77ccc16dc547ce1a74a3111944c523",
+      "bytes": 29077
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la31.txt": {
+      "sha256": "ca9570463edaff08e2385c309e19a3174ef559f31ec0faf81b8abed6ba13f019",
+      "bytes": 3554
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la32.json": {
+      "sha256": "834247229b250b3748da882a520186e01e6cc179f077c406990941f587ab7c3b",
+      "bytes": 29474
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la32.txt": {
+      "sha256": "3c9d1a4d4ffab2723cb8fdf81601bff35ee3292a7b1a0604edb4c4e07b451e26",
+      "bytes": 3586
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la33.json": {
+      "sha256": "85dda4963db1eeb4351f8450182b43a654bcdedf92a6bfac42c352dc09ac4f23",
+      "bytes": 29279
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la33.txt": {
+      "sha256": "792a65a5b03c311bb109c40947f7ceaffce62e1f9637967f36ca618ff9214010",
+      "bytes": 3561
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la34.json": {
+      "sha256": "2be254e1fdd24d97ae8b41cdfe875ba6a018b81d76d0a9663606f93028493e3f",
+      "bytes": 29462
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la34.txt": {
+      "sha256": "dd3380e7b19fd13af79639c0ec7ea27d975005a4ee57bb37b86d9cbaa70ece1b",
+      "bytes": 3585
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la35.json": {
+      "sha256": "a7c0ff295524af3a90346aaf10f6eec1c8a781eb882f2fc7fc1be0ade238e57f",
+      "bytes": 29834
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la35.txt": {
+      "sha256": "16a32741f7d1e88c496a828c7fd2a7e41c0503a8d8a11e53b4c5f256b9b0aace",
+      "bytes": 3617
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la36.json": {
+      "sha256": "56b6d2153731e51987cd028effdb00601ef3a3e41ce5c3b3544cab2b92c1edbd",
+      "bytes": 22166
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la36.txt": {
+      "sha256": "947e45eb35a5d84feb7f9fdfdb4b5ae82660efdb3f910e3dfe8d84eb51d3cece",
+      "bytes": 2835
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la37.json": {
+      "sha256": "ae6e75c79b9a5d10d2032471cc0c04f247348eff66b8cac104154100a535c6ec",
+      "bytes": 22060
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la37.txt": {
+      "sha256": "fd3d70cf80d77fb48e3e56799523375c4a6e87caf4a26010589f6a8912ea813c",
+      "bytes": 2807
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la38.json": {
+      "sha256": "b7ceb1c10d43bedc2cde471fb0bde8afa6fa3bd85a24be144726a47846301cd0",
+      "bytes": 22403
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la38.txt": {
+      "sha256": "eda0425513294ff429b0d73a4632a53554c564211c9a6a659f037e2dc8b411c0",
+      "bytes": 2821
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la39.json": {
+      "sha256": "afe8b24cba2ce52f5b9fb7cb085fb320c05c9a4e34211d98436a33860ea2c645",
+      "bytes": 21996
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la39.txt": {
+      "sha256": "59107151719875b56ed2533763334ad5c5395c9bbf76486a465c57845987de6b",
+      "bytes": 2796
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la40.json": {
+      "sha256": "2e2614a477df29e33dc0f121f24ccda3c1832acaf7ca22993f9753a049665455",
+      "bytes": 22247
+    },
+    "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/la40.txt": {
+      "sha256": "ee15e16fed807474a90b0f6ab00912fbb94c5044f229ff467b5f4f5913a65fff",
+      "bytes": 2824
+    }
+  },
+  "archive_sha256": "0ce2ca4370982ced043951a205dd871ab35b75a40c5137fb034ca9c7eb2e06ab",
+  "archive_roundtrip_verified": true,
+  "inputs_unchanged_during_pack": true
+}
