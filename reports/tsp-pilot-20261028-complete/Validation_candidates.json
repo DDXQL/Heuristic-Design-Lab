@@ -1,0 +1,38 @@
+{
+  "candidates": [
+    {
+      "id": "static_H0_H1_equal",
+      "candidate": {
+        "description": "Static (0, 1)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+        "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+        "kind": "U"
+      },
+      "train_fitness": -0.9767105276580079,
+      "sources": [
+        "IND_701",
+        "IND_702",
+        "EVO_802",
+        "train_static_reference"
+      ]
+    },
+    {
+      "id": "EVO_801/000",
+      "candidate": {
+        "description": "Combine nearest-neighbor routing with spread-aware detours early, then favor nearest-neighbor late as remaining choices shrink.",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > 0.12:\n        return (1, (0.7, 0, 0.3, 0, 0))\n    return (1, (1, 0, 0, 0, 0))\n",
+        "key": "df0a96d353846c01433c5756e3ff7d37ad4419819c90202a6c309cbb968b69c2",
+        "kind": "U"
+      },
+      "train_fitness": -0.9729656391966077,
+      "sources": [
+        "EVO_801"
+      ]
+    }
+  ],
+  "selection": "validation complete Fitness desc/id asc",
+  "search_closed": true,
+  "H_sha256": "48ae0e9fc4ab9dde906e6b2360c05b942174ecebe2303968893b17b342c67c09",
+  "P0_sha256": "35919297d5076c4ee25749ad7bbcc6fe3e0e3e78b91ef165cc4c37b8cbbd6fe2",
+  "frozen_at": 1793117976.58915
+}

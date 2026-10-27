@@ -77,3 +77,6 @@ FJSP语义回归见[抽取报告](../reports/generic-extraction-20261026-v1/REPO
 ## TSP第二问题
 
 [TSP适配与实跑命令](TSP_ADAPTER.md)：`experiments/tsp/manage.py` → `problems/tsp/campaign.py` → 同一`core/execution.py`，由`operations.Adapter`提供提示/准入/评价及全局journal。TSP函数没有FJSP状态、Cmax或LB。低层MIX和T30纯逻辑独立在core，旧FJSP源码保留；跨阶段50/75限额不是每run各75。
+
+
+[TSP最终实跑报告](../reports/tsp-pilot-20261028-complete/REPORT_ZH.md)包含四条搜索路径、一次validation选择、confirmation/transfer及完整50/50计数。报告与导出是`experiments/tsp/verify_delivery.py`和`report_delivery.py`的只读分析，不修改求解器或重发请求。

@@ -1,0 +1,2457 @@
+{
+  "mode": "real",
+  "state": {
+    "phase": "completed",
+    "current_stage": "transfer",
+    "completed_stages": [
+      "manual-H",
+      "H",
+      "static",
+      "IND_701",
+      "IND_702",
+      "EVO_801",
+      "EVO_802",
+      "validation",
+      "confirmation",
+      "transfer"
+    ],
+    "started_at": 1793117673.646837,
+    "finished_at": 1793117982.03741
+  },
+  "planned": {
+    "logical_cap": 50,
+    "API_attempt_cap": 75,
+    "per_candidate_attempt_cap": 2,
+    "H": 10,
+    "IND_701": 10,
+    "IND_702": 10,
+    "EVO_801": 10,
+    "EVO_802": 10
+  },
+  "used": {
+    "logical": 50,
+    "API_attempts": 50,
+    "complete_responses": 50,
+    "unknown_attempts": 0
+  },
+  "groups": [
+    {
+      "stage": "manual-H",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9900181489498406,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 5
+    },
+    {
+      "stage": "H",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 10,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -1.139248862320581,
+      "new_champion": -1.139248862320581,
+      "phase": "completed",
+      "physical_evaluations": 10
+    },
+    {
+      "stage": "static",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9767105276580079,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 15
+    },
+    {
+      "stage": "IND_701",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 10,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 1,
+      "best_fitness": -0.9767105276580079,
+      "new_champion": -0.9857598779560671,
+      "phase": "completed",
+      "physical_evaluations": 14
+    },
+    {
+      "stage": "IND_702",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 10,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9767105276580079,
+      "new_champion": -0.9784588353554342,
+      "phase": "completed",
+      "physical_evaluations": 15
+    },
+    {
+      "stage": "EVO_801",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 10,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9729656391966077,
+      "new_champion": -0.9729656391966077,
+      "phase": "completed",
+      "physical_evaluations": 15
+    },
+    {
+      "stage": "EVO_802",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 10,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9767105276580079,
+      "new_champion": -0.9776141691891469,
+      "phase": "completed",
+      "physical_evaluations": 15
+    },
+    {
+      "stage": "validation",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9590634896572261,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 2
+    },
+    {
+      "stage": "confirmation",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9880261119562419,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 1
+    },
+    {
+      "stage": "transfer",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9932904866482446,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 1
+    }
+  ],
+  "comparisons": {
+    "confirmation": {
+      "instances": 20,
+      "final_total_length": 134.10470488851414,
+      "static_total_length": 134.10470488851414,
+      "final_fitness": -0.9880261119562419,
+      "static_fitness": -0.9880261119562419,
+      "wins": 0,
+      "losses": 0,
+      "ties": 20,
+      "deltas": {
+        "confirmation_000.json": 0.0,
+        "confirmation_001.json": 0.0,
+        "confirmation_002.json": 0.0,
+        "confirmation_003.json": 0.0,
+        "confirmation_004.json": 0.0,
+        "confirmation_005.json": 0.0,
+        "confirmation_006.json": 0.0,
+        "confirmation_007.json": 0.0,
+        "confirmation_008.json": 0.0,
+        "confirmation_009.json": 0.0,
+        "confirmation_010.json": 0.0,
+        "confirmation_011.json": 0.0,
+        "confirmation_012.json": 0.0,
+        "confirmation_013.json": 0.0,
+        "confirmation_014.json": 0.0,
+        "confirmation_015.json": 0.0,
+        "confirmation_016.json": 0.0,
+        "confirmation_017.json": 0.0,
+        "confirmation_018.json": 0.0,
+        "confirmation_019.json": 0.0
+      }
+    },
+    "transfer": {
+      "instances": 10,
+      "final_total_length": 95.51648311557452,
+      "static_total_length": 95.51648311557452,
+      "final_fitness": -0.9932904866482446,
+      "static_fitness": -0.9932904866482446,
+      "wins": 0,
+      "losses": 0,
+      "ties": 10,
+      "deltas": {
+        "transfer_000.json": 0.0,
+        "transfer_001.json": 0.0,
+        "transfer_002.json": 0.0,
+        "transfer_003.json": 0.0,
+        "transfer_004.json": 0.0,
+        "transfer_005.json": 0.0,
+        "transfer_006.json": 0.0,
+        "transfer_007.json": 0.0,
+        "transfer_008.json": 0.0,
+        "transfer_009.json": 0.0
+      }
+    }
+  },
+  "usage": {
+    "known_input_tokens": 239635,
+    "known_output_tokens": 23086,
+    "unknown_usage_attempts": 0,
+    "platform_points": null,
+    "verified_currency_cost": null
+  },
+  "stage_facts": {
+    "manual-H": {
+      "phase": "completed",
+      "cursor": 5,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 100,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "manual_NN",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_NN: -distance_current",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+            "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_return_bias",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.012481985286656,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_return_bias: -distance_current - 0.25 * (1-progress) * distance_start",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.25 * (1 - progress) * distance_start\n",
+            "key": "52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_far_early",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n",
+            "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_remaining_mean",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0484336305709878,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_remaining_mean: -distance_current - 0.2 * mean_remaining_distance",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.2 * mean_remaining_distance\n",
+            "key": "393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_spread",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0034211042319634,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_spread: -distance_current + 0.15 * (mean_remaining_distance-nearest_remaining_distance)",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * (mean_remaining_distance - nearest_remaining_distance)\n",
+            "key": "4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933",
+            "kind": "h"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "manual_far_early",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9900181489498406,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Human-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start",
+          "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n",
+          "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+          "kind": "h"
+        }
+      },
+      "physical_evaluations": 5,
+      "new_slots_used": 0
+    },
+    "H": {
+      "phase": "completed",
+      "cursor": 10,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 200,
+        "manual_or_P0_evaluations": 0
+      },
+      "records": [
+        {
+          "id": "H/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1584979308887515,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A progress-adaptive lookahead score balancing immediate travel, return-to-origin cost, and candidate continuation quality.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    late = progress * progress\n    continuation = 0.6 * nearest_remaining_distance + 0.4 * mean_remaining_distance\n    return -((1.0 - 0.35 * late) * distance_current + (0.25 + 0.75 * late) * distance_start + (0.35 - 0.2 * late) * continuation)\n",
+            "key": "0e09d8ff98cea4c1b053bddef4bbddabdff85faec46a2ee38ce25354b74660a9",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1664886279602698,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A progress-adaptive one-step lookahead score balancing travel distance, candidate connectivity, and late-tour return cost.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    p = progress\n    q = 1 - p\n    score = distance_current + 0.65 * q * nearest_remaining_distance + 0.2 * q * mean_remaining_distance + (0.2 + 1.4 * p * p) * distance_start\n    return -score\n",
+            "key": "35692fc94e8b9ccd19ed491c70f7774684d16b0affdf441c6893afe62cf6aaaa",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1562900238878469,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A dynamic lookahead heuristic that prioritizes short extensions, nearby continuation options, and increasingly short returns to the origin.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    early = 1 - progress\n    return -(distance_current + progress * progress * distance_start + early * (0.7 * nearest_remaining_distance + 0.3 * mean_remaining_distance))\n",
+            "key": "7ca51eebe4e4545bd925c6c981ff77bb88a16937f42bbce8c766d955cffdb3c8",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.163670033234184,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Balances travel distance, eventual return to city 0, and candidate accessibility to remaining cities, with closure and current progress weighted more heavily later.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    future_access_cost = 0.6 * nearest_remaining_distance + 0.4 * mean_remaining_distance\n    return -(distance_current + progress * distance_start + (1 - progress) * future_access_cost)\n",
+            "key": "2e1fd67cf3aeeb1f3a7bba0b0aae219a7f68a5822908f1caeac1171fcc79c06b",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1716309571627623,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A progress-weighted one-step lookahead heuristic that favors short moves, candidates near remaining cities, and increasingly convenient returns to the origin.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    continuation = 0.7 * nearest_remaining_distance + 0.3 * mean_remaining_distance\n    cost = distance_current + (1.0 - progress) * continuation + progress * distance_start\n    return -cost\n",
+            "key": "9bc3dbaefc2fa37ebf734094571e61fa05dec664867c2296af602c56a74a870d",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.139248862320581,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A phase-adaptive lookahead score combining travel cost, continuation accessibility, and increasingly important return-to-start cost.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    p = progress\n    p2 = p * p\n    p3 = p2 * p\n    continuation_weight = 0.65 - 0.2 * p\n    density_weight = 0.1 * (1.0 - p)\n    return -(distance_current + continuation_weight * nearest_remaining_distance + density_weight * mean_remaining_distance + (0.04 + 0.96 * p3) * distance_start)\n",
+            "key": "5d47697a4069ab5fa7697b67804791cda923f3c106b444f46db50eb062722dab",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1986658258122689,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A progress-weighted lookahead heuristic balancing immediate travel, continuation proximity, and eventual return to city 0.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    return -distance_current - progress * progress * distance_start - remaining * nearest_remaining_distance - 0.2 * remaining * mean_remaining_distance\n",
+            "key": "77d0840a1aac65026d786c1b283beb5e0c93d94890151c5adc2bb7290e094c88",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1574980828263302,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Adaptive lookahead-and-closure action score.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    late = progress * progress * progress\n    score = distance_current\n    score = score + late * distance_start\n    score = score + (0.35 + 0.55 * (1.0 - progress)) * nearest_remaining_distance\n    score = score + 0.22 * (1.0 - progress) * mean_remaining_distance\n    return -score\n",
+            "key": "0283807414cd6a5424af119d5af3cb9858c621300258bbc71bf1a87e0c173c57",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.1560934510486645,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "A progress-adaptive lookahead heuristic balancing immediate travel, onward connectivity, and eventual return to city 0.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -(distance_current + (1.0 - progress) * (0.7 * nearest_remaining_distance + 0.3 * mean_remaining_distance) + (0.2 + 0.8 * progress * progress) * distance_start)\n",
+            "key": "fd7a25cfd8c2b1ac45500032652d48e23abb63919291a9595a6f2b9b2c1d2b0a",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "H/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.2489830766085126,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Progressive lookahead score that favors short current edges, accessible remaining cities, and increasingly short returns to the origin.",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    p = progress\n    lookahead = (0.85 - 0.3 * p) * nearest_remaining_distance + 0.22 * mean_remaining_distance\n    closure = (0.08 + 1.35 * p * p * p) * distance_start\n    return -(distance_current + lookahead + closure)\n",
+            "key": "f34516eb077f4d9c826e585c4cf0c10cf6afb4592841169fa0540b5af9b71451",
+            "kind": "h"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "H/005",
+        "stage": "new",
+        "status": "completed",
+        "valid": true,
+        "fitness": -1.139248862320581,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": "completed",
+        "candidate": {
+          "description": "A phase-adaptive lookahead score combining travel cost, continuation accessibility, and increasingly important return-to-start cost.",
+          "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    p = progress\n    p2 = p * p\n    p3 = p2 * p\n    continuation_weight = 0.65 - 0.2 * p\n    density_weight = 0.1 * (1.0 - p)\n    return -(distance_current + continuation_weight * nearest_remaining_distance + density_weight * mean_remaining_distance + (0.04 + 0.96 * p3) * distance_start)\n",
+          "key": "5d47697a4069ab5fa7697b67804791cda923f3c106b444f46db50eb062722dab",
+          "kind": "h"
+        }
+      },
+      "physical_evaluations": 10,
+      "new_slots_used": 10
+    },
+    "static": {
+      "phase": "completed",
+      "cursor": 15,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 300,
+        "manual_or_P0_evaluations": 15
+      },
+      "records": [
+        {
+          "id": "static_H0",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+            "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "59f5e33262821565bed7c6e9bac19c5f9443f9204448b6d5a585b200dc39f3e4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H2",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0034211042319634,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (2,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 1, 0, 0))\n",
+            "key": "fff0f81077e3c985c02e75becdfe9acb56b70d2855b1a035e7f04c425dddc82a",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H3",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.012481985286656,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (3,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 1, 0))\n",
+            "key": "4cdae93d0ea5863f7eda73df901222e98e78ccd9bac1974b52eba7062e326585",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H4",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0484336305709878,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (4,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 0, 0, 0, 1))\n",
+            "key": "773bf8989f85920daf75c57c4d181212ce2638e2f8ddb4d05a9ecb4b66d8745b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9767105276580079,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H2_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+            "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H3_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9916350731459597,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 0, 1, 0))\n",
+            "key": "25fa1a6f39a207bf13576a89183adef3c2d8412b3def3b6e477c4ecd09647e9b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H4_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.01749666776263,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 4)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 0, 0, 1))\n",
+            "key": "2d9e38d24384d368dab9673af021bc12311c0e5c40bd2b95400a5ce5d6a9f9a4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H2_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9827014577088452,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H3_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9876671781449066,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+            "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H4_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0177631672135337,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 4)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 0, 1))\n",
+            "key": "e817ba58edb9566eef1bf2c7074ee23765ac119c2134269b8a67fefb7bdd567f",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H2_H3_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9935586391762031,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (2, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0, 1, 1, 0))\n",
+            "key": "17eb86e83a6ef47da27c02f20b0236426475b634e14f5a3f69a3bd8fa3845267",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H2_H4_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.017365654833804,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (2, 4)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0, 1, 0, 1))\n",
+            "key": "94826d7d2cb592da72d480bb62ab527efb465c953c07ea2a779d45c28dc1db87",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H3_H4_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.04245428921988,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (3, 4)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0, 0, 1, 1))\n",
+            "key": "bd6cc25577a3eafe0ed123d39552dc91ddaf3180d86bf0a671ab1861ecc140ad",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "static_H0_H1_equal",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9767105276580079,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 15,
+      "new_slots_used": 0
+    },
+    "IND_701": {
+      "phase": "completed",
+      "cursor": 15,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 300,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9767105276580079,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9827014577088452,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+            "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H3_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9876671781449066,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+            "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+            "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9961091646535485,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "State-dependent selection of nearest-neighbor early, then favor spread and return-aware heuristics as the tour progresses.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (0, 1, 0, 0, 0))\n    elif progress < 0.85:\n        return (0, (0, 0, 1, 0, 0))\n    else:\n        return (0, (0, 0, 0, 1, 0))\n",
+            "key": "2ed3a01be6c956e11624a7b6debfe123eecf2d396be59c934cd849a1a218854e",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0082448284039978,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use spread-aware routing early, then transition toward nearest-neighbor selection as the tour progresses; retain a return-biased component near completion.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (0, 0, 0.6, 0, 0.4))\n    if progress < 0.85:\n        return (1, (0, 0.65, 0.35, 0, 0))\n    return (1, (0, 0.6, 0, 0.4, 0))\n",
+            "key": "31dec67b34f651690b12b779ffa36c962edb6a31f86948c1c4d0454100c287a1",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9857598779560671,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "State-dependent mix: favor route spread and early positioning, then nearest-neighbor choices with a late return-to-origin bias.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (0.6, 0, 0.4, 0, 0))\n    return (1, (0, 0.75, 0, 0.25, 0))\n",
+            "key": "1ca32f5578da66576573806f2110b75ce6a750000d86fbeb13c42be9bb243912",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0068936161988877,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use both distance-only members early and let nearest-neighbor lead late.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (0.0, 0.65, 0.0, 0.0, 0.35))\n    else:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0))\n",
+            "key": "2e380dbd7421a084516260e6984a87b22c36e88f32a47f6ef56e7d368393114e",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0077413009989857,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "SELECT the heuristic with the lowest estimated future tour cost",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (0.0, 0.0, 1.0, 0.0, 0.0))\n    else:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0))\n",
+            "key": "410317e93d354b3b33293ef34902aef0c7c8484dee4905b8dab46b27abaec7b7",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0103244272105334,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use a balanced mixture of nearest-neighbor and spread heuristics throughout; the nearest-neighbor score anchors each choice, while the spread score can favor routes that avoid leaving nearby cities clustered for later.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 0.75, 0, 0, 0.25))\n",
+            "key": "4d36e4ad04f92a5a05dad3fd78d4b4eafeed2428788bd4543981dcd6ead1291f",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9969390824154596,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "**Blend nearest-neighbor and spread heuristics**",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.75:\n        return (1, (0, 0.7, 0, 0.3, 0))\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "58d7a22814cd06f7fd1d5657f8ccc07b9e171a1630e38ad4efa906878601e8b6",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9988861669270749,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Adaptive mix of nearest-neighbor and spread scores, shifting toward nearest-neighbor late in the tour.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1 - 0.5 * progress, 0.5 * progress, 0, 0))\n",
+            "key": "cf1c5f7ed7167bfe6cc0d26fbd422efae52ec1f94572892b7cd7032f6024d6a6",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0033256291952575,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Description: Use nearest-neighbor early, then favor spread-aware choices with a small return-to-start bias late in the tour.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (1, 0, 0, 0, 0))\n    if progress < 0.85:\n        return (1, (0, 0, 1, 0, 1))\n    return (1, (0, 0, 0, 1, 1))\n",
+            "key": "834d1433695c60e79ff6d49ebc708681c19dd02eaed63958c3ab4a0861738ff9",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_701/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0077413009989857,
+          "parents": [],
+          "AST_duplicate": true,
+          "cache_hit": true,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use a single heuristic, favoring spread early and nearest-neighbor later.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (0.0, 0.0, 1.0, 0.0, 0.0))\n    else:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0))\n",
+            "key": "410317e93d354b3b33293ef34902aef0c7c8484dee4905b8dab46b27abaec7b7",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "static_H0_H1_equal",
+        "stage": "p0",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9767105276580079,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 14,
+      "new_slots_used": 10
+    },
+    "IND_702": {
+      "phase": "completed",
+      "cursor": 15,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 300,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9767105276580079,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9827014577088452,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+            "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H3_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9876671781449066,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+            "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+            "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0013333625156413,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use far-start bias early, nearest-neighbor selection through the middle, and return bias late.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.3:\n        return (0, (1, 0, 0, 0, 0))\n    if progress < 0.75:\n        return (0, (0, 1, 0, 0, 0))\n    return (0, (0, 0, 0, 1, 0))\n",
+            "key": "fd4ce8c1d559c1e2a47ba2fb18b510e718be46f6423cf4f78f2ba51b63b0abaa",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0042070966507368,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "**Policy:** Select nearest neighbor through the middle of the tour, then use a small mix of nearest neighbor and return-biased selection near the end.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.7:\n        return (0, (0, 1, 0, 0, 0))\n    else:\n        return (1, (0, 1, 0, 0.35, 0))\n",
+            "key": "d951bc5c85597f9dbf1db5be0725ba91281899cfdbe2e110a89c66e6289a6e61",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9987415884552326,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Blend nearest-neighbor with a diminishing spread preference; use only members 1 and 2.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    spread_weight = 0.3 * (1 - progress) * (1 - progress)\n    return (1, (0, 1 - spread_weight, spread_weight, 0, 0))\n",
+            "key": "ad80d6b220fec558d46401f12135071972c27b1545b0297e23c32bc4bd56e1a2",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9988790668752859,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Blend the far-from-origin bias with nearest-neighbor selection early, fading to nearest-neighbor alone as the tour progresses.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0.25 * (1 - progress), 1, 0, 0, 0))\n",
+            "key": "2dda2cfba6194686ccc448c2497ee9043151b22aad4067a67057c6c970b6d59a",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0011430079312047,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Retain nearest-neighbor early, then blend in the spread heuristic",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.65:\n        return (0, (0, 1, 0, 0, 0))\n    return (1, (0, 0.7, 0.3, 0, 0))\n",
+            "key": "9057a9a98bf4b4dd56e35bf795c5a10f4c0ecf08141d4e8e1ab601cba4b7f0f0",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0091393416027772,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use spread-aware routing early, then nearest-neighbor routing late.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.65:\n        return (0, (0, 0, 1, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "06c69504d2d68fa6ac67a0c07b1be5b6ce04c7bb968a1accf94de267e115ce50",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9947995649984476,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use nearest-neighbor early, then favor spread when the remaining choices are well separated",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.65:\n        return (0, (0, 1, 0, 0, 0))\n    if std_distance_current > 0.12:\n        return (0, (0, 0, 1, 0, 0))\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "e444b71baa2c1d4de029a1796417aa5020e55ff69d869faac416e7d57f903406",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.00627904255865,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use nearest-neighbor early, then favor candidates closer to the origin as the tour nears completion.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.75:\n        return (0, (0, 1, 0, 0, 0))\n    else:\n        return (0, (0, 0, 0, 1, 0))\n",
+            "key": "889b4a833cd5a924416c9c63a741592e5f9ae7d9d06c3d9fee3fc8c119c1aa04",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9784588353554342,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Favor nearest-neighbor early, then balance far-early and spread heuristics",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.6:\n        return (1, (0.0, 0.65, 0.35, 0.0, 0.0))\n    return (1, (0.55, 0.0, 0.45, 0.0, 0.0))\n",
+            "key": "320997a605fff464385eb4b8388a05fe593729ea93abcf874e361a6c55dc3c42",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "IND_702/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9909755736007417,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Blend far-from-start with nearest-neighbor early, then use nearest-neighbor alone late.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.6:\n        return (1, (0.25 + 0.5 * (1 - progress), 1, 0, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "a9279ba73cfca52f3e6768949b9475494e609bb0d21603ce99c2a6bb4d944f3a",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "static_H0_H1_equal",
+        "stage": "p0",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9767105276580079,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 15,
+      "new_slots_used": 10
+    },
+    "EVO_801": {
+      "phase": "completed",
+      "cursor": 15,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 300,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9767105276580079,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9827014577088452,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+            "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H3_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9876671781449066,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+            "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+            "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9729656391966077,
+          "parents": [
+            "static_H0_H1_equal",
+            "static_H0_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combine nearest-neighbor routing with spread-aware detours early, then favor nearest-neighbor late as remaining choices shrink.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > 0.12:\n        return (1, (0.7, 0, 0.3, 0, 0))\n    return (1, (1, 0, 0, 0, 0))\n",
+            "key": "df0a96d353846c01433c5756e3ff7d37ad4419819c90202a6c309cbb968b69c2",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.004538939902678,
+          "parents": [
+            "static_H1_H3_equal",
+            "static_H1_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combines Parent 0’s nearest-neighbor and return-bias members with Parent 1’s spread member. It favors spread early, when avoiding nearby clusters may help, and shifts toward nearest-neighbor later as the remaining tour must close.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (0, 0.8, 0.2, 0, 0))\n    else:\n        return (1, (0, 0.8, 0, 0.2, 0))\n",
+            "key": "1c227ba29ca9206a4bd17d089a6ac250b61b140c4749f571e928cc63f19a7f11",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9780337686208661,
+          "parents": [
+            "static_H0_H2_equal",
+            "static_H1_H3_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combines Parent 0’s short-edge-with-spread preference with Parent 1’s nearest-neighbor/return-bias choice. Early in the tour, uses the return-aware pair when the current city is far from the origin; otherwise favors spread, shifting toward nearest-neighbor as progress advances.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and current_to_start > mean_distance_current:\n        return (1, (0, 0.65, 0, 0.35, 0))\n    if progress < 0.5:\n        return (1, (0, 0, 0.7, 0, 0.3))\n    return (1, (0, 0.7, 0, 0.3, 0))\n",
+            "key": "a9154afc81279c8ba1a59bc88c2a15de01bb1358fdca18b7e65ccbf995bf0e3f",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9818289782236338,
+          "parents": [
+            "static_H0_H1_equal",
+            "static_H0_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combine nearest-neighbor and spread selection: use the spread member early when remaining cities are dispersed, then favor nearest-neighbor as the tour approaches completion.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > mean_distance_current * 0.25:\n        return (1, (0.5, 0, 0.5, 0, 0))\n    else:\n        return (1, (0, 1, 0, 0, 0))\n",
+            "key": "a35213b7a59a5f49b9042844d03015d3d0a07c48637b3a6a071cd5edaf9a5513",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9812482167963248,
+          "parents": [
+            "static_H0_H1_equal",
+            "static_H0"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "P0 mixes nearest-neighbor with a return-to-origin bias; P1 selects the far-early heuristic, which adds that bias only early in the tour. Use P0’s two-member mix early, then P1’s far-early selector as its return bias fades, while retaining NN as the late-tour choice.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (1, 1, 0, 0, 0))\n    if progress < 0.8:\n        return (0, (1, 0, 0, 0, 0))\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "e4c7e3ae0461521177b23a0eb8eca728888a6d9dae0d38bd928fa9ce2c1e3011",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0077413009989857,
+          "parents": [
+            "static_H1_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "I change the fixed blend of nearest-neighbor and spread heuristics to a state-dependent choice: favor spread when many cities remain, then use nearest-neighbor later. This reflects H’s actual distinction: member 2 rewards candidates with more dispersed remaining neighbors, while member 1 only minimizes the next edge; the previous heuristic is retained to avoid switching back to spread late in the tour.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (0, 0, 1, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "87197c8b37b682f43263b39e593169cafa65d072147bc5f5e599efdfb205e233",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9940209969073237,
+          "parents": [
+            "static_H0_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use members 0 and 2, min-max normalized by the host, only when early-tour state signals both substantial distance remaining to the start and meaningful spread among current distances. Otherwise use nearest-neighbor member 1; the parent always mixes 0 and 2, while this state-dependent policy reserves that mix for the conditions where their start-distance and spread terms can matter.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and current_to_start > 0.5 and (std_distance_current > 0.1):\n        return (1, (1, 0, 1, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "a0c82e638976076d4111f1c34edcee9d3062203392cb160983bc79db1713d3ab",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [
+            "static_H1_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Use a single nearest-neighbor policy: the parent mixes members 1 and 2, but member 2 adds a spread bonus to the same distance-based score. Select member 1 directly to avoid that extra preference, which depends on remaining-city geometry not represented in U’s state; there is no evaluation evidence that the parent’s choice is worse.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "59f5e33262821565bed7c6e9bac19c5f9443f9204448b6d5a585b200dc39f3e4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [
+            "static_H0_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Blends far-early and spread heuristics to balance return distance with access to dispersed remaining cities; each captures a distinct signal the parent’s static blend leaves unused.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0.5, 0, 0.5, 0, 0))\n",
+            "key": "9ddef05aceced971a97275d739528b6e094f7077a2824c24958e7cef2529cdd4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9931662583863211,
+          "parents": [
+            "static_H0_H1_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Progress-dependent single-member selection: use manual_far_early while the tour is short to include a bounded return-distance incentive, then switch to nearest-neighbor for the rest. This replaces the parent's constant two-member mix, which min-max normalizes both columns across legal actions and can change their relative influence from step to step.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (1, 0, 0, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "aa3541ec998a7dd68fa1a816ca2d81343ff372bb3c6d02eca062fb4496f41968",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "EVO_801/000",
+        "stage": "new",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9729656391966077,
+        "parents": [
+          "static_H0_H1_equal",
+          "static_H0_H2_equal"
+        ],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": "completed",
+        "candidate": {
+          "description": "Combine nearest-neighbor routing with spread-aware detours early, then favor nearest-neighbor late as remaining choices shrink.",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > 0.12:\n        return (1, (0.7, 0, 0.3, 0, 0))\n    return (1, (1, 0, 0, 0, 0))\n",
+          "key": "df0a96d353846c01433c5756e3ff7d37ad4419819c90202a6c309cbb968b69c2",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 15,
+      "new_slots_used": 10
+    },
+    "EVO_802": {
+      "phase": "completed",
+      "cursor": 15,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 300,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9767105276580079,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9827014577088452,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0_H2_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9840874730788352,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 2)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+            "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H1_H3_equal",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9876671781449066,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (1, 3)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+            "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "static_H0",
+          "stage": "p0",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0,)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+            "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0146476824638937,
+          "parents": [
+            "static_H0_H2_equal",
+            "static_H1_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combines parent 0’s far-from-current spread preference with parent 1’s nearest-neighbor preference: use spread early, then shift to nearest-neighbor as the tour progresses or the current city is far from the origin.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and current_to_start < 0.5:\n        return (1, (0, 0, 1, 0, 0))\n    return (1, (0, 1, 0, 0, 0))\n",
+            "key": "f589ba7ff29ad920ea6862ffc60a8b4e7e1010951d2107393aa5e261504ba15d",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9881291646739394,
+          "parents": [
+            "static_H1_H2_equal",
+            "static_H0_H1_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Parent 0 combines nearest-neighbor choice with a spread bonus; Parent 1 combines nearest-neighbor choice with an early return-to-origin bias. Use the return bias early when the origin is relatively far from the current city, then favor spread later, with nearest-neighbor as the shared baseline.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and current_to_start > mean_distance_current:\n        return (1, (1, 1, 0, 0, 0))\n    return (1, (0, 1, 1, 0, 0))\n",
+            "key": "2e3de7b2d8671f58550b8a8debd08cf794e7450b2cc211fc2d5995296e4149bb",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.978863804608751,
+          "parents": [
+            "static_H0_H1_equal",
+            "static_H0"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Combines PARENT 0’s early-tour blend of far-early and nearest-neighbor ideas with PARENT 1’s use of the far-early member alone later. The blend fades with progress, when returning to the start matters more and the far-early bonus is less useful.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (1, (1 - progress, progress, 0, 0, 0))\n    else:\n        return (0, (1, 0, 0, 0, 0))\n",
+            "key": "208b334e0258839bb12050748c1686ed812542f8d419282eacf1f4711d7dd6f1",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9776141691891469,
+          "parents": [
+            "static_H0_H2_equal",
+            "static_H1_H3_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Inherited ideas: combine Parent 0’s nearest-neighbor/spread tradeoff with Parent 1’s nearest-neighbor/return-bias tradeoff. Use spread when a long remaining horizon makes nearby alternatives informative; otherwise favor return bias when the origin is close and the tour is late.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and mean_distance_current > 0.2:\n        return (1, (0, 0.65, 0.35, 0, 0))\n    if current_to_start < mean_distance_current * 0.5:\n        return (1, (0, 0.7, 0, 0.3, 0))\n    return (1, (0, 0.55, 0.45, 0, 0))\n",
+            "key": "0e92c1b875df865490fb7a81af2ef2c78ebf2d10dabc332f99e0d370e83393ab",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9946731159748697,
+          "parents": [
+            "static_H0",
+            "static_H1_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "This policy blends parent 0’s early preference for distant-from-start candidates with parent 1’s nearest-neighbor and spread decisions. It selects the spread member while the tour is early and current-to-start distance is large, then switches to nearest neighbor as the tour progresses.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and current_to_start > mean_distance_current:\n        return (0, (0, 0, 1, 0, 0))\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "722e3a3d33812831cb46eed06dc2c11bdc8aac8d6efc0a2df5f645ebeb653f3d",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9906492848035209,
+          "parents": [
+            "static_H0"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Switch from always selecting member 0 to progress-dependent selection between member 0 and nearest-neighbor member 1. Early in the tour, member 0’s return-distance term can favor cities nearer the start; late in the tour, where that term vanishes, member 1 provides the direct nearest-neighbor rule.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.75:\n        return (0, (1, 0, 0, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "1b19bac33752dbc1eb5b089f9909421de6cad621ed0502d20640fecb382b7e8c",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9863782548531997,
+          "parents": [
+            "static_H0_H2_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Replace the redundant two-member blend with a state-dependent choice between spread and nearest-neighbor. Use the spread heuristic only when the current city has a relatively tight cluster of remaining options; otherwise favor nearest-neighbor, since spread adds no value when distances from the current city are highly variable.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if std_distance_current < 0.12:\n        return (0, (0, 0, 1, 0, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "e257d8c93a23cbd98a67a9956bc1fd643e84b6af2d74943bb31a3f1d2cd62d3e",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0076987724416802,
+          "parents": [
+            "static_H1_H3_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Replace the static blend of nearest-neighbor and return-biased rules with a state-dependent choice between them. Use the return-biased rule early, when its reduced start-distance term may discourage moves that leave the origin far behind, and nearest neighbor near completion, when that term vanishes and direct travel dominates.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5:\n        return (0, (0, 0, 0, 1, 0))\n    else:\n        return (0, (0, 1, 0, 0, 0))\n",
+            "key": "a06dd51bf3b53b767c2b7c60db02dc33330a526b4172c927772e9c693bc8a81a",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [
+            "static_H1_H3_equal"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "I replace the static blend of nearest-neighbor and return-biased heuristics with a single-member policy that uses nearest-neighbor early and return bias only near completion. This keeps selection simple while reducing the influence of return bias when many cities remain; the switch uses only current progress, without assuming an unobserved improvement.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.8:\n        return (0, (0, 1, 0, 0, 0))\n    else:\n        return (0, (0, 0, 0, 1, 0))\n",
+            "key": "38bedddeeb4957d90bc1af7e55aa454a9ca42c2a000e42e4ada9b5247035a124",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_802/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [
+            "static_H0"
+          ],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": "completed",
+          "candidate": {
+            "description": "Static SELECT of nearest-neighbor member 1 only. The parent already uses member 0 for every state, and both members 0 and 1 score candidates by negative distance from the current city; member 0 adds a positive early return-distance term. Keeping member 0 everywhere permits moves farther from the current city to win when they are also far from the origin, while changing to member 1 removes that competing bias and leaves return distance to the required final closure.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n",
+            "key": "59f5e33262821565bed7c6e9bac19c5f9443f9204448b6d5a585b200dc39f3e4",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "static_H0_H1_equal",
+        "stage": "p0",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9767105276580079,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 15,
+      "new_slots_used": 10
+    },
+    "validation": {
+      "phase": "completed",
+      "cursor": 2,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 20,
+        "manual_or_P0_evaluations": 2
+      },
+      "records": [
+        {
+          "id": "static_H0_H1_equal",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9590634896572261,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "EVO_801/000",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9811039011292758,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Combine nearest-neighbor routing with spread-aware detours early, then favor nearest-neighbor late as remaining choices shrink.",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > 0.12:\n        return (1, (0.7, 0, 0.3, 0, 0))\n    return (1, (1, 0, 0, 0, 0))\n",
+            "key": "df0a96d353846c01433c5756e3ff7d37ad4419819c90202a6c309cbb968b69c2",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "static_H0_H1_equal",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9590634896572261,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 2,
+      "new_slots_used": 0
+    },
+    "confirmation": {
+      "phase": "completed",
+      "cursor": 2,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 40,
+        "manual_or_P0_evaluations": 2
+      },
+      "records": [
+        {
+          "id": "final_U",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9880261119562419,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "train_static",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9880261119562419,
+          "parents": [],
+          "AST_duplicate": true,
+          "cache_hit": true,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "final_U",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9880261119562419,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 1,
+      "new_slots_used": 0
+    },
+    "transfer": {
+      "phase": "completed",
+      "cursor": 2,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 20,
+        "manual_or_P0_evaluations": 2
+      },
+      "records": [
+        {
+          "id": "final_U",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9932904866482446,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        },
+        {
+          "id": "train_static",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9932904866482446,
+          "parents": [],
+          "AST_duplicate": true,
+          "cache_hit": true,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Static (0, 1)",
+            "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+            "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+            "kind": "U"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "final_U",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9932904866482446,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Static (0, 1)",
+          "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+          "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+          "kind": "U"
+        }
+      },
+      "physical_evaluations": 1,
+      "new_slots_used": 0
+    }
+  },
+  "limits": [
+    "2 repeats per method; migration pilot, not stable superiority evidence",
+    "static/P0 costs reported separately",
+    "NN-relative metric, not optimality gap",
+    "confirmation and transfer are separate evaluations"
+  ]
+}

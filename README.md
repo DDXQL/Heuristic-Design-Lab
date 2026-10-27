@@ -1,4 +1,15 @@
-# FJSP Tier 2：实验操作与代码入口
+# Heuristic-Design-Lab：FJSP 与构造型 TSP 实验入口
+
+通过问题适配层复用搜索、API记录、预算与任务执行。当前已实跑两个问题的链路：FJSP保留原入口和语义；TSP使用独立H、状态、准入、几何及相对最近邻评分。工程名暂定Heuristic-Design-Lab，远端和本地目录未改名。
+
+- [TSP完整小试交付：50任务/50尝试、冻结验证和证据边界](reports/tsp-pilot-20261028-complete/REPORT_ZH.md)
+- [TSP定义、配置、代码地图及手动操作命令](docs/TSP_ADAPTER.md)
+- [TSP固定预算协议](docs/TSP_PILOT_PROTOCOL_V1.md)、[显式修订和窗口续接](docs/TSP_EXECUTION_REVISION_V2.md)
+
+TSP的训练冠军曾在一条EVO路径超过静态P0，但validation最终选择静态U；冻结H的5个成员均为人工规则。该试验验证工程迁移，不构成演化稳定收益的证据。原始失败和已用预算全部保留，未追加研究。
+
+## FJSP操作说明
+
 
 本工作区研究固定启发式H上的利用程序U。**10H通用空间**允许SELECT或最多两成员的归一化WEIGHTED_SUM；**H0/H1受限空间**只允许alpha与1-alpha权重。两者不能混为一谈。求解时不调用LLM。
 
@@ -86,7 +97,7 @@ check/plan不创建run、不求解；prepare只冻结文件和示例提示，也
 
 ### 真实API：必须由你明确启动
 
-本轮整理**没有发送真实API**。服务可用性、实际费用和候选质量未由Mock保证。真实示例默认只2个新增逻辑候选、最多3次API尝试，最多每候选2次；toy评价不是正式科研。EVO另有5个显式静态P0的评价投入，不能称从零只花2次查询。
+FJSP工程整理批次**没有发送真实API**；TSP真实小试见上方独立交付。服务可用性、实际费用和候选质量未由Mock保证。真实示例默认只2个新增逻辑候选、最多3次API尝试，最多每候选2次；toy评价不是正式科研。EVO另有5个显式静态P0的评价投入，不能称从零只花2次查询。
 
 先复制配置，修改副本；不要在绑定后继续编辑同一文件。两份示例的`api_mode=real`但`real_requests_authorized=false`，因此直接run会拒绝。你准备实际请求时将副本中的该字段改为true，并核对provider模型、endpoint、生成参数、预算和数据。
 

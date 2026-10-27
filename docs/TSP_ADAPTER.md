@@ -96,3 +96,17 @@ campaign根`Protocol.json`、数据Manifest、全局`API_attempts.json`、`wire_
 `results/Summary.md/JSON`、Stages.csv和Per_instance.csv给事实；人工和静态/P0投入单列。逻辑任务、API尝试、完整响应、完整有效任务和AST独立程序数量不同。Token未知单列，平台点数与实际费用无法核实保持null。冻结确认和100城市迁移分别报告，只有两次搜索重复不证明稳定优势。
 
 本轮因说明文字花括号解析发生[显式执行修订v2](TSP_EXECUTION_REVISION_V2.md)。拟用续接目录为`runs/tsp-pilot-20261026-v2`（尚未启动，原窗口已过期）；v1保存前10份响应和**全局**API账本，v2所有新请求继续追加同一账本。本轮真实partial汇总使用v1；若获新时间窗口并正式建立续接，再使用v2。原v1不能直接在新源码下resume。两版解析准入及额外离线评价投入分开披露，不合并成未变更协议。
+
+
+## 2026-10-28 完整实跑结果
+
+真实v2已按获批新窗口完成，50逻辑/50尝试、未知0，未追加预算。H原10响应重用；最终冻结H全部来自人工池。四路径U各10份完整有效任务，一条EVO训练冠军超过P0，但validation选择共同静态参照，最终U与参照同AST，confirmation20/transfer10分别全部平局。完整表、成本、候选、原始归档及限制见[最终报告](../reports/tsp-pilot-20261028-complete/REPORT_ZH.md)。
+
+当前只读查看已结束批次：
+
+```sh
+.venv/bin/python -B experiments/tsp/manage.py status --directory runs/tsp-pilot-20261026-v2
+.venv/bin/python -B experiments/tsp/manage.py summary --directory runs/tsp-pilot-20261026-v2
+```
+
+不要再次run/resume或用剩余25次尝试增加候选。2026-10-27的partial报告保留为当时快照，不代表当前终态。初次操作的Mock目录示例仍可用于独立工程验收，真实生成需要相应新授权。
