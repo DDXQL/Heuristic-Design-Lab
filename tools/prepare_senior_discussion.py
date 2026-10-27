@@ -424,6 +424,7 @@ def build():
 
 历史完整目录/图表不复制，沿原路径引用。本目录补充可访问TSP工作树的实际状态，不修改此前盘点和科研记录。
 ''')
+    subprocess.run([sys.executable,str(ROOT/'tools/discussion_visual_index.py')],check=True)
     save('来源SHA256.json',PINS)
     save('验收记录.json',{'source_count':len(PINS),'checks':CHECKS,'new_generation_API':0,'new_FJSP_TSP_solves':0,'other_worktree_writes':0,
        'FJSP_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'TSP_head':tsp['head'],
