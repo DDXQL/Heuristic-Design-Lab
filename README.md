@@ -9,3 +9,5 @@
 - **当前开发位置**：`/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space`。Documents副本只保留来源，不在两个副本同时开发。
 - **多问题入口与旧路径映射**：[多问题结构与迁移说明](docs/多问题结构与迁移说明.md)。FJSP旧入口兼容，TSP复用独立工作树当前实现；未宣称跨问题质量已验证。
 - **冻结与保存范围**：[Developer迁移说明](reports/迁移至Developer-20261027-v1/迁移说明.md)。有尚未下载资产，Git上传不代表原始runs全部上传。
+
+- **通用状态设计**：[通用状态接口设计V1](docs/通用状态接口设计V1.md)。保留七输入/五输入legacy；共同状态是禁用草案，不是已验证新算法。

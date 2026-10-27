@@ -1,0 +1,11 @@
+{
+  "removed_only_new_migration_copies": [
+    "FJSP-Heuristic-Research/.env.leafapi.local",
+    "FJSP-Heuristic-Research/.env.deepseek.local"
+  ],
+  "original_files_retained": true,
+  "contents_printed": false,
+  "included_in_git": false,
+  "reason": "credentials are not part of project migration deliverables; use explicit environment variables for future API runs",
+  "copy_verification_note": "initial file checksum verification preceded this explicit credential exclusion"
+}

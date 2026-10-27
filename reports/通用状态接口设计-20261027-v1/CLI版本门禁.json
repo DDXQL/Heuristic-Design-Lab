@@ -1,0 +1,65 @@
+[
+  {
+    "args": [
+      "--problem",
+      "fjsp",
+      "--state-schema",
+      "fjsp-seven-v1-legacy",
+      "doctor"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"executable\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python\",\n  \"worktree\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space\",\n  \"dependencies\": {\n    \"numpy\": \"2.5.4\",\n    \"pytz\": \"2026.5\",\n    \"tqdm\": \"4.70.1\"\n  },\n  \"LEAFAPI_API_KEY_present\": false,\n  \"network_queries\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "--problem",
+      "tsp",
+      "--state-schema",
+      "tsp-five-v1-legacy",
+      "doctor"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"root\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space\",\n  \"key_present\": false,\n  \"API\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "--problem",
+      "fjsp",
+      "--state-schema",
+      "constructive-common-v0-draft",
+      "doctor"
+    ],
+    "expected_exit": 2,
+    "actual_exit": 2,
+    "stdout": "",
+    "stderr": "usage: manage.py --problem {fjsp,tsp} [--state-schema STATE_SCHEMA]\nmanage.py: error: unknown or disabled state schema; no fallback to legacy\n"
+  },
+  {
+    "args": [
+      "--problem",
+      "fjsp",
+      "--state-schema",
+      "tsp-five-v1-legacy",
+      "doctor"
+    ],
+    "expected_exit": 2,
+    "actual_exit": 2,
+    "stdout": "",
+    "stderr": "usage: manage.py --problem {fjsp,tsp} [--state-schema STATE_SCHEMA]\nmanage.py: error: problem/state schema mismatch\n"
+  },
+  {
+    "args": [
+      "--problem",
+      "fjsp",
+      "--help"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0,
+    "stdout": "usage: manage.py [-h]\n                 {doctor,types,check,plan,prepare,run,resume,status,stop,summary,_work}\n                 ...\n\nThin configurable operations adapter over existing H/U/API/T30 components. Not\na replacement for frozen campaign controllers or Tier1 workflows.\n\npositional arguments:\n  {doctor,types,check,plan,prepare,run,resume,status,stop,summary,_work}\n    doctor              local environment only; no network\n    types               list supported types and example configs\n\noptions:\n  -h, --help            show this help message and exit\n",
+    "stderr": ""
+  }
+]

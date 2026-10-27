@@ -1,0 +1,16 @@
+{
+  "reference": "fjsp-tier2-legacy-20261027-v1",
+  "unchanged": [
+    "code/fjsp_usage/offline_v2.py",
+    "code/fjsp_usage/usage_v2/execution.py",
+    "code/fjsp_usage/usage_v2/candidates.py",
+    "code/fjsp_usage/research/candidates.py",
+    "code/fjsp_usage/usage_v2/prompts.py",
+    "code/fjsp_usage/research_real/prompts.py",
+    "tools/b1_usage_prompts.py",
+    "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json"
+  ],
+  "real_API_calls": 0,
+  "formal_searches": 0,
+  "common_state_executable": false
+}

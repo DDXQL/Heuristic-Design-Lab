@@ -1,0 +1,44 @@
+{
+  "fjsp-seven-v1-legacy": {
+    "schema_id": "fjsp-seven-v1-legacy",
+    "problem_id": "fjsp",
+    "fields": [
+      "progress",
+      "candidate_pair_ratio",
+      "remaining_work_mean",
+      "remaining_work_std",
+      "machine_ready_mean",
+      "machine_ready_std",
+      "previous_heuristic"
+    ],
+    "phase": "construction",
+    "executable": true,
+    "definition_sha256": "fdddf9c314c92d9878b9b0a07cf144e35241a6813e83fe2c8451938a499f163e"
+  },
+  "tsp-five-v1-legacy": {
+    "schema_id": "tsp-five-v1-legacy",
+    "problem_id": "tsp",
+    "fields": [
+      "progress",
+      "current_to_start",
+      "mean_distance_current",
+      "std_distance_current",
+      "previous_heuristic"
+    ],
+    "phase": "construction",
+    "executable": true,
+    "definition_sha256": "2a2ad6eb54b7dd4497ed88721429b7ae7c565ff12fc203ca62d8c6eed7e8dda5"
+  },
+  "constructive-common-v0-draft": {
+    "schema_id": "constructive-common-v0-draft",
+    "problem_id": "cross-problem-draft",
+    "fields": [
+      "construction_progress",
+      "action_breadth_fraction",
+      "committed_objective_fraction"
+    ],
+    "phase": "construction",
+    "executable": false,
+    "definition_sha256": "cc318bc1e49844f6f1ad529e582a273800b47d1867780cda6541d20ccafcb1db"
+  }
+}

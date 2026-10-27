@@ -1,0 +1,27 @@
+{
+  "skipped_original_loose_object_paths": 225,
+  "logical_objects_present": 209,
+  "original_objects_still_missing": [
+    "03435bc20ae96e1a8973ce093053a6cfb77e7811",
+    "517754d11dbc7fb7fc6eb6a24921655a0f105061",
+    "acd548001fc2f851ea740d5cc93713e49cdcfa18",
+    "f499c40cdf88646b3d47c0f2399abd9de6c475b2",
+    "fc9a44775fde42911b813fd79a7c4492a7654203",
+    "caeafa26874a0018c811d6c19195842758d8a30b",
+    "ec657a4411f707b9b3858c9b31d008dc723fc3df",
+    "ec45acb423c6fd4e198a31c7bebdef4fd9778022",
+    "29a0c635d883ff0d5c517858fb3f06409ff40c71",
+    "8f989848f8bc3d722c6ae4ec4b2b898506d80829",
+    "44d3b2ae7a2f9cbeb1a326497475c47707d85c8c",
+    "6bf0cd0ed51f98e61498a2ce6d4942a859e50374",
+    "5cddb4976774b35dac1462c327c041cfe618e6e8",
+    "dd9ad6c03dc2637ca926f8419dd40d07941ca598",
+    "7649a06edd2719c6d1fe1fbbbceaafb825c1f46f",
+    "1c143be6b8c2c877adabc1f868cad9c0601aff01"
+  ],
+  "fsck_exit": 0,
+  "fsck_scope": "all preserved refs/index/reflogs available in copied Git; missing original reflogs separately listed",
+  "current_common_git": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git",
+  "additional_resident_objects_recovered": [],
+  "missing_objects_scope": "not referenced by preserved refs/index/available reflogs; original missing reflogs mean complete historical object-store backup is not claimed"
+}
