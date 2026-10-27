@@ -80,7 +80,7 @@ def audit(directory,out):
     write(out/'Candidate_index.json',outputs)
     if outputs:
         with (out/'Candidate_index.csv').open('w',newline='') as f:
-            w=csv.DictWriter(f,fieldnames=list(outputs[0]));w.writeheader();w.writerows(outputs)
+            w=csv.DictWriter(f,fieldnames=list(outputs[0]),lineterminator='\n');w.writeheader();w.writerows(outputs)
     result={'campaign':str(directory),'phase':s['phase'],'protocol_sha256':sha(directory/'Protocol.json'),'git_commit':p['git_commit'],
         'budgets':facts['used'],'dataset_unique_sets':60,'all_stage_sources_matched':True,'all_stage_NN_vectors_match':True,
         'H_quality_selection_reproduced':(directory/'H_frozen.json').exists(),'all_candidate_tours_checked_independently':raw_lengths,

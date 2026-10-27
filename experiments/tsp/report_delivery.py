@@ -36,7 +36,7 @@ def report(directory,out):
                 generated.setdefault(row['candidate']['key'],[]).append({'path':name,'id':row['id']})
     write(out/'Generated_U_AST_groups.json',{'scope':'all 40 generated U; reporting only, no cross-path refill or cache','unique_AST_keys':len(generated),'groups':generated})
     with (out/'Search_comparison.csv').open('w',newline='') as stream:
-        w=csv.DictWriter(stream,fieldnames=list(groups[0]));w.writeheader();w.writerows(groups)
+        w=csv.DictWriter(stream,fieldnames=list(groups[0]),lineterminator='\n');w.writeheader();w.writerows(groups)
     static=f['stage_facts']['static']['records'];hrows=h['dispositions'];order=h['selected_ids']
     htable=table(['TSP成员','来源id','来源','train Fitness'],[[i,name,'人工' if name.startswith('manual') else 'LLM',fmt(next(r['fitness'] for r in hrows if r['id']==name))] for i,name in enumerate(order)])
     static_table=table(['静态策略','完整train Fitness'],[[r['id'],fmt(r['fitness'])] for r in sorted(static,key=lambda r: (r['fitness'] is None,-(r['fitness'] or 0),r['id']))])
