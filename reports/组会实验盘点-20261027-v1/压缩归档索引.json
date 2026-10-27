@@ -1,0 +1,238 @@
+[
+  {
+    "path": "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/SchedulingLab_ac4c340.tar.gz",
+    "bytes": 1294647,
+    "mtime_ns": 1792987028181164992,
+    "kind": ".tar.gz",
+    "archive_sha256": "7c75a2873db2c9bc5028a3b9f30adb9cf10968f52876ab01a77fef7595447574",
+    "member_count": 685,
+    "sample": [
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab",
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/LICENSE",
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/README.md",
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/barnes",
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/barnes/mt10c1.json",
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/barnes/mt10c1.txt"
+    ],
+    "top_names": [
+      "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "runs/single-ID-gpt61-paired-training-20261014-v1/code-prompts-config-data-snapshot.tar.gz",
+    "bytes": 458373,
+    "mtime_ns": 1792036063884150570,
+    "kind": ".tar.gz",
+    "archive_sha256": "c3c9084e036f83233ca6e748a7fe6bd629189872f425386890864629aec24cab",
+    "member_count": 166,
+    "sample": [
+      "README.md",
+      "baselines/tier1_single_rule_v1/rules/eohs_heuristic_0_reference.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092002.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092003.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092004.py",
+      "code/fjsp_usage/__init__.py"
+    ],
+    "top_names": [
+      "README.md",
+      "baselines",
+      "code",
+      "data",
+      "experiments",
+      "registration",
+      "requirements.txt",
+      "train"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "runs/single-ID-paired-training-20261013-authorized-v1/code-prompts-config-snapshot.tar.gz",
+    "bytes": 467066,
+    "mtime_ns": 1792036064927642870,
+    "kind": ".tar.gz",
+    "archive_sha256": "d7229927dd3afe7734bd4d111616db8d29e162db5bc7730b72a9822dcd38949a",
+    "member_count": 172,
+    "sample": [
+      "README.md",
+      "baselines/tier1_single_rule_v1/rules/eohs_heuristic_0_reference.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092002.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092003.py",
+      "baselines/tier1_single_rule_v1/rules/selected_rule_seed_2026092004.py",
+      "code/fjsp_usage/__init__.py"
+    ],
+    "top_names": [
+      "README.md",
+      "baselines",
+      "code",
+      "data",
+      "docs",
+      "experiments",
+      "registration",
+      "requirements.txt",
+      "tests"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/baseline-a-supplemental-T30-seed501-20261024-v1/Raw_evidence.tar.gz",
+    "bytes": 1085681,
+    "mtime_ns": 1792840355573087377,
+    "kind": ".tar.gz",
+    "archive_sha256": "818372f76d5b759011070d8a98631df67438a3df02ed429d3ec57580173b42ba",
+    "member_count": 450,
+    "sample": [
+      "evidence/H0/Behnke1.progress.json",
+      "evidence/H0/Behnke1.result.json",
+      "evidence/H0/Behnke13.progress.json",
+      "evidence/H0/Behnke13.result.json",
+      "evidence/H0/Behnke14.progress.json",
+      "evidence/H0/Behnke14.result.json"
+    ],
+    "top_names": [
+      "evidence"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Raw_execution_evidence.tar.gz",
+    "bytes": 17866417,
+    "mtime_ns": 1792927728125785251,
+    "kind": ".tar.gz",
+    "archive_sha256": "bfc944cfa17a8d4b8391f6c580792453534ccfa3547ee9bc3f97704948e5f53b",
+    "member_count": 1501,
+    "sample": [
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/API_attempts.json",
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Account_end.json",
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Account_start.json",
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Authorization.json",
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Console.log",
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/End_summary.json"
+    ],
+    "top_names": [
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/engineering-handoff-20261026-v1/Engineering_smoke_evidence.tar.gz",
+    "bytes": 150262,
+    "mtime_ns": 1793012405351999547,
+    "kind": ".tar.gz",
+    "archive_sha256": "17d755974870e324dd927c6d20aed0925be2ed291ad5adf8ae71d217544b48b4",
+    "member_count": 86,
+    "sample": [
+      "runs/ops-handoff-smoke-20261026-v1/Controller_identity.json",
+      "runs/ops-handoff-smoke-20261026-v1/End_summary.json",
+      "runs/ops-handoff-smoke-20261026-v1/Events.jsonl",
+      "runs/ops-handoff-smoke-20261026-v1/H_frozen.json",
+      "runs/ops-handoff-smoke-20261026-v1/Launch_authorization.json",
+      "runs/ops-handoff-smoke-20261026-v1/Parents.json"
+    ],
+    "top_names": [
+      "reports",
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/Raw_evidence.tar.gz",
+    "bytes": 3071572,
+    "mtime_ns": 1792988028247305970,
+    "kind": ".tar.gz",
+    "archive_sha256": "0ce2ca4370982ced043951a205dd871ab35b75a40c5137fb034ca9c7eb2e06ab",
+    "member_count": 540,
+    "sample": [
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Authorization.json",
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Console.log",
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Data_history.json",
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Data_manifest.json",
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/End_summary.json",
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1/Events.jsonl"
+    ],
+    "top_names": [
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/h01-progress-step-train21-seed501-20261025-v1/Raw_execution_evidence.tar.gz",
+    "bytes": 3485063,
+    "mtime_ns": 1792937426755171929,
+    "kind": ".tar.gz",
+    "archive_sha256": "509a99c7fbd5fca20c4dc105aef9f16f4caa300fe6dddb0df6359a00c20073af",
+    "member_count": 992,
+    "sample": [
+      "runs/h01-progress-step-train21-seed501-20261025-v1/Aliases_27.json",
+      "runs/h01-progress-step-train21-seed501-20261025-v1/Authorization.json",
+      "runs/h01-progress-step-train21-seed501-20261025-v1/Console.log",
+      "runs/h01-progress-step-train21-seed501-20261025-v1/End_summary.json",
+      "runs/h01-progress-step-train21-seed501-20261025-v1/Events.jsonl",
+      "runs/h01-progress-step-train21-seed501-20261025-v1/Expected_loaded_identity.json"
+    ],
+    "top_names": [
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/h01-state-weight-search-seed501-batch-v3-20261020/evidence/B2_1_raw_run_backup.tar.gz",
+    "bytes": 3925045,
+    "mtime_ns": 1792509609136917984,
+    "kind": ".tar.gz",
+    "archive_sha256": "6b8fb14c1a01496b10773eb2b135ab2620c144a1976f161affaeba889348cf28",
+    "member_count": 128,
+    "sample": [
+      "h01-state-weight-search-seed501-batch-v3-20261020",
+      "h01-state-weight-search-seed501-batch-v3-20261020/B2_0_1_readiness.json",
+      "h01-state-weight-search-seed501-batch-v3-20261020/B2_1_authorization.json",
+      "h01-state-weight-search-seed501-batch-v3-20261020/B2_1_execution_scope.json",
+      "h01-state-weight-search-seed501-batch-v3-20261020/Budget_summary.json",
+      "h01-state-weight-search-seed501-batch-v3-20261020/Grid_complete.json"
+    ],
+    "top_names": [
+      "h01-state-weight-search-seed501-batch-v3-20261020"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Partial_109_archive_incomplete_NOT_CERTIFIED.tar.gz",
+    "bytes": 67200428,
+    "mtime_ns": 1792980152295902404,
+    "kind": ".tar.gz",
+    "archive_sha256": "c0c498a2129139a68d8b7f37c031ade33541b19220fb2f6b6dcf0f43916f2aaa",
+    "member_count": 5632,
+    "sample": [
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Authorization.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Console.log",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Controller_expected_identity.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/End_summary.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Events.jsonl",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/External_quality_references.json"
+    ],
+    "top_names": [
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  },
+  {
+    "path": "reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Raw_primary_evidence.tar.gz",
+    "bytes": 45801526,
+    "mtime_ns": 1792982861855546043,
+    "kind": ".tar.gz",
+    "archive_sha256": "fe65259e1a43898f21b47ae79cefc551b600a492eb6276663c77f5ccaf5dd9eb",
+    "member_count": 3438,
+    "sample": [
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/.execution.lock",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Authorization.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Console.log",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Controller_expected_identity.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/End_summary.json",
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1/Events.jsonl"
+    ],
+    "top_names": [
+      "runs"
+    ],
+    "integrity": "目录可读；不等于全部结果认证"
+  }
+]

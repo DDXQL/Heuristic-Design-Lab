@@ -1,0 +1,841 @@
+[
+  {
+    "id": "H01",
+    "name": "Tier 1实际H生成、导入、审阅与冻结",
+    "patterns": [
+      "leaf-framework-30pct-20261009",
+      "leaf-framework-30pct-20261010",
+      "baseline-a-provenance-timeout-audit"
+    ],
+    "classification": "正式完整",
+    "question": "生成有互补性的10H，并追溯编号",
+    "space": "单动作评分H；本项目最小EoH-S适配",
+    "dataset": "train21",
+    "seed": "H搜索7（非501）",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "v1 9尝试、v2 3尝试；v3导入8H后22新尝试（2初始化+20演化）；不能重复加总导入成员",
+    "result": "冻结10H；最好H0=-2.111804960626；按train21单H均值排序编号",
+    "evidence": "reports/baseline-a-provenance-timeout-audit-20261024-v1/H_mapping.csv",
+    "limits": "本卡仅H阶段完整；同目录后续U阶段中断。历史完整源码闭包未全部恢复，非相邻EoH-S全runner复现。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "01",
+    "physical_assets": [
+      "runs/leaf-framework-30pct-20261009-v1",
+      "runs/leaf-framework-30pct-20261009-v2",
+      "runs/leaf-framework-30pct-20261010-v3",
+      "reports/baseline-a-provenance-timeout-audit-20261024-v1"
+    ]
+  },
+  {
+    "id": "U01",
+    "name": "早期单成员P组验收与继承初始化",
+    "patterns": [
+      "leaf-tier2-single-P",
+      "leaf-tier2-small-dev",
+      "leaf-U-continuation"
+    ],
+    "classification": "正式部分完成",
+    "question": "检查U初始化延续与单成员演化",
+    "space": "旧单成员SELECT；P组",
+    "dataset": "train21",
+    "seed": "101",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "继承35初始化槽位；v4新10演化槽位；v1/v2/v3属于恢复/验收链，不能当独立重复",
+    "result": "v4 P组一代完成；冠军−2.076166908582；初始−2.088336727768",
+    "evidence": "runs/leaf-tier2-single-P-acceptance-20261010-v4/r101/P/checkpoint.json",
+    "limits": "整套四组/多代研究未完成；身份和预算继承，不能累加所有副本。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/leaf-U-continuation-v4-offline-20261010",
+      "runs/leaf-U-continuation-v4-offline-20261010-v2",
+      "runs/leaf-tier2-single-P-acceptance-20261010-v1",
+      "runs/leaf-tier2-single-P-acceptance-20261010-v2",
+      "runs/leaf-tier2-single-P-acceptance-20261010-v3",
+      "runs/leaf-tier2-single-P-acceptance-20261010-v4",
+      "runs/leaf-tier2-small-dev-20261010-v1"
+    ]
+  },
+  {
+    "id": "U02",
+    "name": "旧单成员四组gpt-6.1训练",
+    "patterns": [
+      "single-ID-gpt61-paired-training",
+      "single-ID-paired-training"
+    ],
+    "classification": "正式完整",
+    "question": "固定旧H条件下四种单成员流程",
+    "space": "旧SELECT；四组旧名B0/B1/B2/P，不等于后来的自由B1/H01-B2",
+    "dataset": "train21",
+    "seed": "201",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "47正式槽位，32实际正式生成；另1诊断请求。旧模型503阶段单独保留",
+    "result": "四组最终冠军均−2.070427513558，来自共同初始化；新有效共21（含5初始化）",
+    "evidence": "runs/single-ID-gpt61-paired-training-20261014-v1/Reconciled_training_results.json",
+    "limits": "槽位完成但B1实际发送0；四组算法比较被基础设施故障破坏；不能当公平方法证据。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/single-ID-gpt61-paired-training-20261014-v1",
+      "runs/single-ID-paired-training-20261013-authorized-v1"
+    ]
+  },
+  {
+    "id": "U03",
+    "name": "v2.2 SELECT/MIX双组真实试验",
+    "patterns": [
+      "v22-gpt61-select-mix",
+      "real-gpt61-301"
+    ],
+    "classification": "正式完整",
+    "question": "放开最多两成员是否生成有效融合",
+    "space": "10H SELECT/MIX；共享P0，A/B",
+    "dataset": "train21",
+    "seed": "301",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "28槽/28发送：INIT8+两组各10；20完整有效（含5初始化），0源码重复",
+    "result": "A冠军−2.185156683819，B冠军−2.225194303278；未超过固定H0",
+    "evidence": "docs/usage-space/real-gpt61-301/Complete_summary.json",
+    "limits": "单seed；初始化和父代机制与后来的B1/B2不同；不混称新版A/B成绩反馈。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/v22-gpt61-select-mix-301-20261014-v1",
+      "preparations/v22-gpt61-select-mix-20261014-v1",
+      "preparations/v22-gpt61-select-mix-20261014-v2"
+    ]
+  },
+  {
+    "id": "D01",
+    "name": "v2.2机制消融与固定H参照",
+    "patterns": [
+      "usage-v22-mechanism-ablation"
+    ],
+    "classification": "探索性诊断",
+    "question": "拆分已生成U的机制表现",
+    "space": "已有U及equal/dominant等受控变体",
+    "dataset": "train21",
+    "seed": "301",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "固定清单见Ablation_and_fixed_H_summary.csv；API0",
+    "result": "保留所有变体完整/失败，不能把人工变体记成LLM新发现",
+    "evidence": "reports/usage-v22-mechanism-ablation-301-20261017-v1/Ablation_and_fixed_H_summary.csv",
+    "limits": "属训练内诊断，不是新独立搜索重复。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "reports/usage-v22-mechanism-ablation-301-20261017-v1"
+    ]
+  },
+  {
+    "id": "S01",
+    "name": "早期4对×3权重静态扫描",
+    "patterns": [
+      "usage-fixed-pair-weight-grid"
+    ],
+    "classification": "正式完整",
+    "question": "人工选定成员对的静态组合潜力",
+    "space": "4成员对，每对3个固定比例",
+    "dataset": "train21",
+    "seed": "501参照；原配置为准",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "12完整策略；API0",
+    "result": "最好H0/H1等权=-1.983144294915",
+    "evidence": "reports/usage-fixed-pair-weight-grid-20261018-v1/Grid_summary.csv",
+    "limits": "不是45对扫描，不是H01的21点网格；后续复用不算新增评价。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "03/05的历史来源",
+    "physical_assets": [
+      "reports/usage-fixed-pair-weight-grid-20261018-v1"
+    ]
+  },
+  {
+    "id": "D02",
+    "name": "10H同状态动作多样性",
+    "patterns": [
+      "h10-decision-diversity"
+    ],
+    "classification": "探索性诊断",
+    "question": "H是否产生不同首选动作",
+    "space": "10H保存状态的影子评分",
+    "dataset": "train21已有轨迹",
+    "seed": "501参照",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "384状态、364不同物理状态；0新增完整Fitness/0API",
+    "result": "首选动作类别分布已保存；不把动作不同当收益",
+    "evidence": "reports/h10-decision-diversity-v1-20261020/Metrics.json",
+    "limits": "同源轨迹样本有相关性；不是384个独立实例。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "reports/h10-decision-diversity-v1-20261020"
+    ]
+  },
+  {
+    "id": "D03",
+    "name": "已生成U状态使用诊断",
+    "patterns": [
+      "u-state-behavior"
+    ],
+    "classification": "探索性诊断",
+    "question": "状态读取是否改变有效输出/动作",
+    "space": "已有v2.2 U",
+    "dataset": "train21已有记录",
+    "seed": "301",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "已有候选/谓词/同状态记录，不计新搜索",
+    "result": "代码读取、状态输出、动作变化分别保存",
+    "evidence": "reports/u-state-behavior-v1-20261020/Evidence_index.json",
+    "limits": "无行为记录时不得由代码外观推论分支因果。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "reports/u-state-behavior-v1-20261020"
+    ]
+  },
+  {
+    "id": "D04",
+    "name": "Task4A同状态受控续排",
+    "patterns": [
+      "task4a-state-information"
+    ],
+    "classification": "探索性诊断",
+    "question": "局部动作差异能否改变终局",
+    "space": "H0/H1同状态两方向续排",
+    "dataset": "6个已用train实例",
+    "seed": "原Plan固定",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "12/12配对（10分歧+2控制）；不形成新U搜索成绩",
+    "result": "10分歧配对2/2/6，Cmax差范围−4到4",
+    "evidence": "reports/task4a-state-information-v1-20261020/Paired_results.csv",
+    "limits": "局部样本，不能声称可学习的普遍状态收益。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "reports/task4a-state-information-v1-20261020"
+    ]
+  },
+  {
+    "id": "B2",
+    "name": "H01静态21点网格＋历史B2两代演化",
+    "patterns": [
+      "h01-state-weight-search-seed501-batch",
+      "h01-state-weight-search-seed501-local",
+      "h01-state-weight-search-seed501-20261019"
+    ],
+    "classification": "正式完整",
+    "question": "已知成员对上动态权重的增量",
+    "space": "固定H0/H1，静态网格与动态U",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "5手工P0；21网格=16新+5复用；20演化请求/20响应/19新有效+1重复；新增35完整评价=735项/1470遍",
+    "result": "静态最佳α=.5；动态=-1.982226488242，ΔF=+0.000917806673",
+    "evidence": "runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/checkpoint.json",
+    "limits": "原T15/legacy两遍记录，非现代完整退出回执；20不等于从零总成本，副本目录“ 2”不是新重复。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "03/04/05/06",
+    "physical_assets": [
+      "runs/h01-state-weight-search-seed501-20261019-v1",
+      "runs/h01-state-weight-search-seed501-batch-v3-20261020",
+      "runs/h01-state-weight-search-seed501-batch-v3-20261020 2",
+      "runs/h01-state-weight-search-seed501-local-v2-20261020",
+      "reports/h01-state-weight-search-seed501-batch-v3-20261020"
+    ]
+  },
+  {
+    "id": "V01",
+    "name": "历史B2冻结test28配对验证",
+    "patterns": [
+      "v1-h01-frozen-pair-test28"
+    ],
+    "classification": "正式完整",
+    "question": "历史B2训练优势能否延续",
+    "space": "冻结历史B2 vs等权",
+    "dataset": "test28（现已暴露）",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "56程序—实例评价；0API",
+    "result": "动态−2.235473642174，等权−2.242732515531；12胜14负2平",
+    "evidence": "reports/v1-h01-frozen-pair-test28-v1-20261021/V1_report.json",
+    "limits": "微小均值优势不构成稳健普遍优势；不能把test28重新称全新确认集。",
+    "exposed": "test28已访问、已暴露",
+    "figures": "",
+    "physical_assets": [
+      "runs/v1-h01-frozen-pair-test28-v1-20261021",
+      "reports/v1-h01-frozen-pair-test28-v1-20261021"
+    ]
+  },
+  {
+    "id": "B1S",
+    "name": "B1原流式10H自由搜索",
+    "patterns": [
+      "b1-full-h-free-seed501"
+    ],
+    "classification": "正式部分完成",
+    "question": "自由发现SELECT/MIX成员组合",
+    "space": "10H自由U，k=2 CROSS",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "原checkpoint18初始化尝试；后续非流式/Recovery是另声明链",
+    "result": "未形成原计划完整两代；不与Recovery19槽相加充当一次重复",
+    "evidence": "runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/checkpoint.json",
+    "limits": "传输及身份门禁，目录可能只有本地未跟踪报告。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/b1-full-h-free-seed501-k2-v1-20261021",
+      "reports/b1-full-h-free-seed501-k2-v1-20261021"
+    ]
+  },
+  {
+    "id": "B1",
+    "name": "B1非流式与Recovery-B",
+    "patterns": [
+      "b1-ns-full-h-free",
+      "b1-ns-b-full",
+      "b1-ns-recovery-B-v1",
+      "b1-ns-recovery-B-execution"
+    ],
+    "classification": "正式部分完成",
+    "question": "10H自由成员/融合能否发现强组合",
+    "space": "10H SELECT/MIX；k=2交叉",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "19槽/19发送/14完整有效；9初始化+10演化；其中6请求继承、13本恢复新请求；15评价含3次重认证",
+    "result": "P0/P1冠军均-2.115159624700，P1均值改善；未访问H0/H1双成员执行",
+    "evidence": "reports/b1-ns-recovery-B-execution-20261023/Summary.json",
+    "limits": "P2未完成；最后超时无after留证，身份停止不能追认原前缀；旧与恢复不算独立重复。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "04/05",
+    "physical_assets": [
+      "runs/b1-ns-full-h-free-seed501-k2-v1-20261022",
+      "runs/b1-ns-recovery-B-v1-20261022",
+      "reports/b1-ns-b-full-h-free-seed501-k2-v1-20261022",
+      "reports/b1-ns-recovery-B-execution-20261023"
+    ]
+  },
+  {
+    "id": "F2",
+    "name": "Fusion V2固定WS/MAX/MIN",
+    "patterns": [
+      "fusion-v2-train21-seed501"
+    ],
+    "classification": "正式完整",
+    "question": "新算子是否改变动作与完整排程",
+    "space": "3固定成员对×3算子",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "9任务均终结，3完整有效+6超时null；正式之前v1准备版本不计一次运行",
+    "result": "H01 WS最好，MAX−2.073695483437，MIN−2.112728513220",
+    "evidence": "reports/fusion-v2-train21-seed501-20261023-v2/Ranking.csv",
+    "limits": "6个涉及H5/H9的原null保留；机制状态重放不当完整求解。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "07",
+    "physical_assets": [
+      "runs/fusion-v2-train21-seed501-20261023-v1",
+      "runs/fusion-v2-train21-seed501-20261023-v2",
+      "reports/fusion-v2-train21-seed501-20261023-v2"
+    ]
+  },
+  {
+    "id": "F3",
+    "name": "Fusion V3 Borda固定策略",
+    "patterns": [
+      "fusion-v3-borda"
+    ],
+    "classification": "正式部分完成",
+    "question": "秩融合表达与WS区别",
+    "space": "Borda；原3对固定名单",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "H01 21完整；H0/H5回传但异常终态隔离；H5/H9未运行",
+    "result": "仅接受H01 Borda−2.066904716328",
+    "evidence": "reports/fusion-v3-borda-train21-seed501-20261024-v1/Ranking.csv",
+    "limits": "checkpoint running不是仍在正式执行的证明；按Stop及隔离证据解释。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "07",
+    "physical_assets": [
+      "runs/fusion-v3-borda-train21-seed501-20261024-v1",
+      "reports/fusion-v3-borda-train21-seed501-20261024-v1"
+    ]
+  },
+  {
+    "id": "F4",
+    "name": "Fusion V4进度算子切换",
+    "patterns": [
+      "fusion-v4-progress-switch"
+    ],
+    "classification": "正式完整",
+    "question": "简单WS/Borda动态切换可行性",
+    "space": "H01，两个方向×三阈值",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "6/6完整，126项/252遍；0API",
+    "result": "最好−2.001911310507，全部低于WS",
+    "evidence": "reports/fusion-v4-progress-switch-seed501-20261024-v1/Ranking.csv",
+    "limits": "生命周期新版本不追认V3隔离；有限规则族，不代表所有动态策略。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "11",
+    "physical_assets": [
+      "runs/fusion-v4-progress-switch-seed501-20261024-v1",
+      "reports/fusion-v4-progress-switch-seed501-20261024-v1"
+    ]
+  },
+  {
+    "id": "A",
+    "name": "Baseline-A原批",
+    "patterns": [
+      "tier2-baseline-a-train21"
+    ],
+    "classification": "正式完整",
+    "question": "建立单H、45等权对与单H Oracle",
+    "space": "10单H＋45固定WS；事后Oracle",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "10单H有效；45对任务全终结39有效6null；41新策略、14缓存；847首解+847复检启动",
+    "result": "Best Single=-2.111804960626；Best Pair=-1.983144294915",
+    "evidence": "reports/tier2-baseline-a-train21-seed501-20261024-v1/Summary.json",
+    "limits": "正式完整指任务终结，不指55策略全有效；旧6null保留；legacy缓存不是T15同期结果。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "01/02/05",
+    "physical_assets": [
+      "runs/tier2-baseline-a-train21-seed501-20261024-v1",
+      "reports/tier2-baseline-a-train21-seed501-20261024-v1"
+    ]
+  },
+  {
+    "id": "AT30",
+    "name": "Baseline-A独立T30补测",
+    "patterns": [
+      "baseline-a-supplemental-T30"
+    ],
+    "classification": "正式完整",
+    "question": "补齐6对质量，并同期核对强参照",
+    "space": "6原超时对＋H0/H01/H03",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "9/9有效，189项/378遍；全部新评，缓存抵扣0；0API",
+    "result": "综合45对全部有效；H01仍第1，无新对超过B2",
+    "evidence": "reports/baseline-a-supplemental-T30-seed501-20261024-v1/Composite_pairs_45.csv",
+    "limits": "综合表39旧+6新，不是45对同期T30；改变期限同时改变收集机制，不能只归因秒数。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "02/05",
+    "physical_assets": [
+      "runs/baseline-a-supplemental-T30-seed501-20261024-v1",
+      "reports/baseline-a-supplemental-T30-seed501-20261024-v1"
+    ]
+  },
+  {
+    "id": "A4",
+    "name": "A4联合成员与静态权重随机搜索",
+    "patterns": [
+      "a4-static-rs60",
+      "a4-closeout"
+    ],
+    "classification": "正式部分完成",
+    "question": "有限预算下联合选成员/静态权重",
+    "space": "865规范策略，均匀无放回",
+    "dataset": "train21",
+    "seed": "2026102601–05；求解501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "93/300查询，91不同策略；60完整+33partial；81新+10历史缓存+2跨轮复用；3402遍",
+    "result": "首轮冠军H01=.65/.35，−2.022083102801，首次查询52；未超过等权",
+    "evidence": "reports/a4-closeout-20261025-v1/Certified_summary.json",
+    "limits": "查询88/89/90/92/93严格墙钟T30证据隔离；不改质量记录，不计算五轮分布。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "08",
+    "physical_assets": [
+      "runs/a4-static-rs60x5-train21-seed501-v1",
+      "reports/a4-closeout-20261025-v1",
+      "reports/a4-static-rs60x5-train21-seed501-v1"
+    ]
+  },
+  {
+    "id": "AB",
+    "name": "固定父代CROSS成绩反馈A/B",
+    "patterns": [
+      "cross-feedback-ab-train21"
+    ],
+    "classification": "正式完整",
+    "question": "仅增加父代完整成绩是否改善子代",
+    "space": "10H自由历史P0，5配对×3×2",
+    "dataset": "train21",
+    "seed": "冻结抽样/调用顺序，求解501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "30逻辑/30尝试；A14响应B15响应；29完整有效，609项/1218遍",
+    "result": "超过较好父代A2/15，B0/15；5配对B均值1胜1平3负",
+    "evidence": "reports/cross-feedback-ab-train21-seed501-v1-20261025/execution-v2/Candidates.csv",
+    "limits": "一项A HTTP524，非代码失败；非多代反馈试验，不能由合并均值作因果结论。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "12",
+    "physical_assets": [
+      "runs/cross-feedback-ab-train21-seed501-v1-20261025",
+      "reports/cross-feedback-ab-train21-seed501-v1-20261025"
+    ]
+  },
+  {
+    "id": "ABD",
+    "name": "CROSS反馈解释性分析",
+    "patterns": [
+      "cross-feedback-ab-explanation"
+    ],
+    "classification": "探索性诊断",
+    "question": "B偏弱体现在哪些程序/实例",
+    "space": "已有29子代及父代",
+    "dataset": "train21既有结果",
+    "seed": "无新增随机实验",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "新增API0/求解0；不删除异常差子代",
+    "result": "不支持B普遍复制较好父代的简单解释",
+    "evidence": "reports/cross-feedback-ab-explanation-20261025-v1/REPORT_ZH.md",
+    "limits": "结构相似不等于行为相同；无新同状态因果诊断。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "reports/cross-feedback-ab-explanation-20261025-v1"
+    ]
+  },
+  {
+    "id": "RULE",
+    "name": "H01简单分段动态权重族",
+    "patterns": [
+      "h01-progress-step"
+    ],
+    "classification": "正式完整",
+    "question": "简单状态规则能否超过等权/B2",
+    "space": "18动态＋3静态；原27参数规范去重",
+    "dataset": "train21",
+    "seed": "501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "21/21有效；19新+2缓存，399项/798遍；API0",
+    "result": "动态最好−1.990909533283；0/18超过等权",
+    "evidence": "reports/h01-progress-step-train21-seed501-20261025-v1/Ranking.csv",
+    "limits": "全族冠军为静态等权；选择成本需披露，不能说动态全部无价值。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "11",
+    "physical_assets": [
+      "runs/h01-progress-step-train21-seed501-20261025-v1",
+      "reports/h01-progress-step-train21-seed501-20261025-v1"
+    ]
+  },
+  {
+    "id": "IE",
+    "name": "独立生成IND vs完整演化EVO",
+    "patterns": [
+      "ind-vs-evo-h01"
+    ],
+    "classification": "正式部分完成",
+    "question": "同新增候选预算比较完整搜索流程",
+    "space": "H01动态/静态U，共同5静态P0",
+    "dataset": "train21",
+    "seed": "3新搜索重复；求解501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "113/120逻辑，117API尝试；108响应107完整质量认证；仅重复1双方20/20",
+    "result": "EVO两重复突破；最佳r2_EVO_s16 −1.975488675215；IND无突破",
+    "evidence": "reports/ind-vs-evo-h01-train21-seed501-20261026-v1/closeout-v1/Completion.csv",
+    "limits": "断电/续跑、8次503和1次524；7未启动，单次评价失败；不能强推稳定方法优越。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "09/10",
+    "physical_assets": [
+      "runs/ind-vs-evo-h01-train21-seed501-20261026-v1",
+      "reports/ind-vs-evo-h01-train21-seed501-20261026-v1"
+    ]
+  },
+  {
+    "id": "EXT",
+    "name": "新冠军冻结训练外质量验证",
+    "patterns": [
+      "h01-champion-hurink-rdata20"
+    ],
+    "classification": "正式完整",
+    "question": "固定r2_EVO_s16相对等权是否延续优势",
+    "space": "两冻结U，不搜索/调参",
+    "dataset": "Hurink rdata20跨基准/机器尺度迁移",
+    "seed": "抽样2026102617；求解501",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "20实例×2=40项，80遍；0API",
+    "result": "动态−1.635914532450，等权−1.442119623478；ΔF−0.193794908972；2胜18负",
+    "evidence": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/Paired_instance_results.csv",
+    "limits": "支持本次跨基准退化；不是同分布未见验证，也不证明所有动态U或EVO无效。",
+    "exposed": "策略冻结后一次确认；该20实例现已暴露",
+    "figures": "10",
+    "physical_assets": [
+      "runs/h01-champion-hurink-rdata20-seed501-20261026-v1",
+      "reports/h01-champion-hurink-rdata20-seed501-20261026-v1"
+    ]
+  },
+  {
+    "id": "ENG",
+    "name": "通用抽取、操作入口及本地冒烟",
+    "patterns": [
+      "generic-extraction",
+      "fjsp-extraction",
+      "engineering-handoff",
+      "ops-handoff",
+      "learn-fixed",
+      "long-job"
+    ],
+    "classification": "探索性诊断",
+    "question": "工程行为回归、后台/恢复与入口验收",
+    "space": "固定U/toy/合成适配器，不搜索质量",
+    "dataset": "toy；部分已有Behnke1回归",
+    "seed": "原固定种子",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "以各验收清单为准；Mock不当真实生成",
+    "result": "当前工作树可见learn-fixed-01已完成，属于用户工程练习",
+    "evidence": "reports/engineering-handoff-20261026-v1/REPORT_ZH.md",
+    "limits": "不能把演示/Mock成绩混入科研质量图。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/fjsp-extraction-after-20261026-v1",
+      "runs/fjsp-extraction-after-20261026-v2",
+      "runs/fjsp-extraction-before-20261026-v1",
+      "runs/learn-fixed-01",
+      "runs/long-job-acceptance-9323ba22f7",
+      "runs/long-job-acceptance-a2904c583c",
+      "runs/long-job-acceptance-c64b895ba4",
+      "runs/long-job-engineering-20261025-smoke",
+      "runs/ops-handoff-smoke-20261026-v1",
+      "runs/ops-handoff-smoke-20261026-v2",
+      "reports/engineering-handoff-20261026-v1",
+      "reports/generic-extraction-20261026-v1"
+    ]
+  },
+  {
+    "id": "NET",
+    "name": "流式/提示长度/非流式诊断",
+    "patterns": [
+      "t1-",
+      "b1-ns-a-engineering",
+      "b1-ns-timeout-boundary",
+      "b1-ns-recovery-scope"
+    ],
+    "classification": "探索性诊断",
+    "question": "API传输可靠性与留证边界",
+    "space": "冻结提示/接口测试，不重新设计H",
+    "dataset": "无正式质量或只用train证据",
+    "seed": "各诊断协议",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "逐诊断请求见各账本，未统一混加；T1-D1等名称不是Tier 1生成",
+    "result": "保留SSE/503/格式/身份问题；成功响应不等于有效程序",
+    "evidence": "reports/t1-d4b-full-b1-init-nonstream-v1-20261022/Diagnostic_summary.json",
+    "limits": "只作可靠性证据，不作算法收益比较。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/b1-ns-timeout-boundary-preparation-v1-20261023",
+      "runs/t1-d1-stream-interface-v1-20261022",
+      "runs/t1-d1-stream-interface-v1-20261022-final",
+      "runs/t1-d2-b2-b1-prompt-ab-v1-20261022",
+      "runs/t1-d3b-api-pair-20261022",
+      "runs/t1-d4-full-b1-init-nonstream-v1-20261022",
+      "reports/b1-ns-a-engineering-v1-20261022",
+      "reports/b1-ns-recovery-scope-check-20261022",
+      "reports/b1-ns-timeout-boundary-review-20261023",
+      "reports/t1-d1-stream-interface-v1-20261022",
+      "reports/t1-d1a-stream-interface-v1-20261022",
+      "reports/t1-d2a-b2-b1-prompt-ab-v1-20261022",
+      "reports/t1-d2b-b2-b1-prompt-ab-v1-20261022",
+      "reports/t1-d4a-full-b1-init-nonstream-v1-20261022",
+      "reports/t1-d4b-full-b1-init-nonstream-v1-20261022",
+      "reports/t1-stream-reliability-v1-20261022"
+    ]
+  },
+  {
+    "id": "MOCK",
+    "name": "早期离线、合成、玩具验收",
+    "patterns": [
+      "research_v1",
+      "s1-s6",
+      "v5-four-arm-offline",
+      "usage-v2-toy",
+      "usage-v2-examples",
+      "tier2_offline_v2",
+      "formal-readiness-synthetic"
+    ],
+    "classification": "探索性诊断",
+    "question": "流程/状态/选择机制的离线验收",
+    "space": "手写H或合成候选，不是真实LLM搜索",
+    "dataset": "toy或train21离线",
+    "seed": "各配置",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "多目录是修订/副本，不视为独立重复",
+    "result": "即使有train21数值也不是冻结10H的正式真实生成结果",
+    "evidence": "runs/research_v1_train_verified_20261005/protocol.json",
+    "limits": "协议明确offline-mock/handwritten H；不可并入主质量排名。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/formal-readiness-synthetic-20261009-v1",
+      "runs/research_v1_development",
+      "runs/research_v1_tiny_final_20261005",
+      "runs/research_v1_train_20261005",
+      "runs/research_v1_train_final_20261005",
+      "runs/research_v1_train_verified_20261005",
+      "runs/s1-s6-acceptance-20261005",
+      "runs/s1-s6-final-20261005",
+      "runs/tier2_offline_v2",
+      "runs/usage-v2-examples-20261012-v1",
+      "runs/usage-v2-toy-acceptance-20261012-v1",
+      "runs/usage-v2-toy-acceptance-20261012-v2",
+      "runs/usage-v2-toy-acceptance-20261012-v3",
+      "runs/v5-four-arm-offline-20261008"
+    ]
+  },
+  {
+    "id": "DS",
+    "name": "DeepSeek探索性演示",
+    "patterns": [
+      "deepseek-pilot"
+    ],
+    "classification": "探索性诊断",
+    "question": "API与闭合代码接入",
+    "space": "手写EFT/SPT H，不加入正式冻结集合",
+    "dataset": "微型实例/前三个train",
+    "seed": "原配置",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "20/50槽，20确认发送；6个H样例5有效，U阶段13有效",
+    "result": "只作演示记录，不用其−1.284等混合数据均值比较train21",
+    "evidence": "runs/deepseek-pilot-20261008-v1/report.md",
+    "limits": "非论文正式H、非完整train21、非四组比较。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/deepseek-pilot-20261008-v1"
+    ]
+  },
+  {
+    "id": "EARLY",
+    "name": "早期真实配对pilot的H初始化",
+    "patterns": [
+      "leaf-paired-pilot-20261009"
+    ],
+    "classification": "正式部分完成",
+    "question": "完整双层研究前的真实初始化试跑",
+    "space": "原H生成阶段，尚未形成冻结10H",
+    "dataset": "协议声明train21",
+    "seed": "101开发；H阶段以原配置为准",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "计划总请求150；H检查点3初始化尝试，未完成H集合",
+    "result": "不采用仅3候选种群最好值充当正式10H基线",
+    "evidence": "runs/leaf-paired-pilot-20261009-v1/H/checkpoint.json",
+    "limits": "早期部分尝试；不与后续H导入链混当独立完整重复。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/leaf-paired-pilot-20261009-v1"
+    ]
+  },
+  {
+    "id": "API",
+    "name": "早期API、账单与交接接入验收",
+    "patterns": [
+      "leaf-billing-verification",
+      "leaf-handoff-acceptance",
+      "leaf-integration-acceptance",
+      "leaf-status-integration",
+      "leaf-train-timeout-calibration"
+    ],
+    "classification": "探索性诊断",
+    "question": "接口接通、用量/扣点留证与进度显示",
+    "space": "接入探针/接口样例，不是U搜索质量比较",
+    "dataset": "工程或极小数据",
+    "seed": "见探针配置",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "逐探针账本见请求账本范围索引；不按目录相加",
+    "result": "仅接口/计费接入证据，不进入Fitness质量图",
+    "evidence": "runs/leaf-integration-acceptance-20261008-v4/protocol.json",
+    "limits": "价格草案与余额快照不是现时费用，也不回填未知费用为零。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/leaf-billing-verification-20261008-v2",
+      "runs/leaf-handoff-acceptance-20261008-v1",
+      "runs/leaf-integration-acceptance-20261008-v1",
+      "runs/leaf-integration-acceptance-20261008-v2",
+      "runs/leaf-integration-acceptance-20261008-v3",
+      "runs/leaf-integration-acceptance-20261008-v4",
+      "runs/leaf-status-integration-20261008-v1",
+      "runs/leaf-train-timeout-calibration-20261008-v1"
+    ]
+  },
+  {
+    "id": "COND",
+    "name": "条件四组研究准备与既有H重审",
+    "patterns": [
+      "conditional-paired-research"
+    ],
+    "classification": "仅有规划",
+    "question": "先明确既有H范围与U边界再开展四组",
+    "space": "旧单成员U，H适用范围审阅",
+    "dataset": "train21条件重审；协议引用旧split",
+    "seed": "拟用201",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "未见这些目录的新U检查点；计划60请求不当实际生成",
+    "result": "已有H重审/静态库存属于准备性诊断；正式四组另见U02",
+    "evidence": "runs/conditional-paired-research-20261011-v4/Research_readiness.json",
+    "limits": "四个目录为修订，非四次独立实验。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/conditional-paired-research-20261011-v1",
+      "runs/conditional-paired-research-20261011-v2",
+      "runs/conditional-paired-research-20261011-v3",
+      "runs/conditional-paired-research-20261011-v4"
+    ]
+  },
+  {
+    "id": "PLAN",
+    "name": "准备、预检和未执行协议",
+    "patterns": [
+      "preflight",
+      "preparation",
+      "prepared",
+      "a4-evidence-protocol",
+      "h01-alpha-offline-draft",
+      "v22-select-mix",
+      "v22-gpt61-select-mix-20261014"
+    ],
+    "classification": "仅有规划",
+    "question": "正式运行前门禁/协议设计",
+    "space": "见各冻结草案；不把计划候选当生成",
+    "dataset": "配置声明不等于实际访问",
+    "seed": "配置中的拟用seed",
+    "metric": "完整实例均值 −Cmax/LB；具体LB/接口以所引协议为准",
+    "budget": "预算上限为计划，不记成已消费",
+    "result": "有些含离线验证/旧缓存分析，未证明新正式搜索开始",
+    "evidence": "docs/TIER2_A4_STATIC_SEARCH_PROTOCOL_V1.md",
+    "limits": "相关正式结果另列；55策略回放、Random-U/GP-U、C反思仍无本工作树正式结果。",
+    "exposed": "train开发；非独立泛化",
+    "figures": "",
+    "physical_assets": [
+      "runs/formal-readiness-formal-preflight-20261009-v1",
+      "runs/formal-readiness-pilot-preflight-20261009-v1",
+      "runs/formal-readiness-preparation-20261009-v1",
+      "runs/leaf-api-preflight-20261008-v1",
+      "runs/leaf-next-stages-preparation-20261009-v1",
+      "runs/leaf-offline-preparation-20261008-v1",
+      "runs/leaf-usage-v2-AB-preparation-20261012-v1",
+      "runs/leaf-usage-v2-AB-preparation-20261012-v2",
+      "runs/single-ID-gpt61-preflight-20261014-v1",
+      "runs/v5-formal-preflight-20261008",
+      "runs/v5-offline-preparation-20261008",
+      "runs/v5-paired-preflight-20261008",
+      "reports/a4-evidence-protocol-20261024-v1",
+      "reports/b1-ns-recovery-B-preparation-20261022",
+      "preparations/h01-alpha-offline-draft-20261019-v1",
+      "preparations/h01-alpha-offline-draft-20261019-v2",
+      "preparations/v22-select-mix-20261013-v1",
+      "preparations/v22-select-mix-20261013-v2"
+    ]
+  }
+]

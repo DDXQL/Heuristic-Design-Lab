@@ -1,0 +1,7 @@
+﻿method,fitness,source,scope
+H0 单成员,-2.1118049606260487,reports/tier2-baseline-a-train21-seed501-20261024-v1/Single_ranking.csv,单策略；历史缓存
+单H Oracle（事后诊断）,-2.0329772565314306,reports/tier2-baseline-a-train21-seed501-20261024-v1/Oracle.json,实例级事后选择；不可部署
+H0/H3 等权,-1.9936596989827,reports/baseline-a-supplemental-T30-seed501-20261024-v1/Composite_pairs_45.csv,45对综合第2
+H0/H1 等权,-1.9831442949150015,reports/baseline-a-supplemental-T30-seed501-20261024-v1/Composite_pairs_45.csv,45对/21点网格最佳已测
+历史B1：10H自由搜索,-2.115159624699559,reports/b1-ns-recovery-B-execution-20261023/Candidates.csv,19槽/14有效；P1，P2未完成
+历史B2：H01动态权重,-1.982226488242451,reports/h01-state-weight-search-seed501-batch-v3-20261020/Candidates.csv,20演化槽/19新有效；另有P0/网格投入

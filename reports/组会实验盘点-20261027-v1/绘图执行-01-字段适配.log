@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/meeting_results_audit.py", line 490, in <module>
+    main()
+    ~~~~^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/meeting_results_audit.py", line 484, in main
+    build(out)
+    ~~~~~^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/meeting_results_audit.py", line 453, in build
+    d=normalise(out)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/tools/meeting_results_audit.py", line 292, in normalise
+    fit = number(r['fitness']); require(fit is not None, 'accepted H01 fusion result ' + op)
+                 ~^^^^^^^^^^^
+KeyError: 'fitness'

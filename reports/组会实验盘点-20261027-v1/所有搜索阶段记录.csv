@@ -1,0 +1,115 @@
+﻿checkpoint,phase,generation,logical_attempt_records,outcomes,full_valid_result_records,complete_successful_rows,API_attempts,scope
+runs/b1-full-h-free-seed501-k2-v1-20261021/r501/B/checkpoint.json,initialization,0,18,"{""failed"": 15, ""parse_or_constraint_error"": 1, ""valid"": 1, ""duplicate"": 1}",1,21,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/b1-ns-full-h-free-seed501-k2-v1-20261022/r501/B/checkpoint.json,initialization,0,6,"{""parse_or_constraint_error"": 3, ""valid"": 3}",3,63,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/b1-ns-recovery-B-v1-20261022/inherited/r501/B/checkpoint.json,initialization,0,6,"{""parse_or_constraint_error"": 3, ""valid"": 3}",3,63,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/b1-ns-recovery-B-v1-20261022/r501/B/checkpoint.json,evolution,1,19,"{""parse_or_constraint_error"": 4, ""valid"": 14, ""invalid"": 1}",14,294,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/deepseek-pilot-20261008-v1/P/checkpoint.json,completed,1,13,"{""valid"": 13}",13,52,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/H/checkpoint.json,completed,1,13,"{""valid"": 13}",13,26,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r101/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r101/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r101/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r101/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r101/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r102/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r102/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r102/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r102/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/formal-readiness-synthetic-20261009-v1/r102/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/h01-state-weight-search-seed501-batch-v3-20261020/r501/B/checkpoint.json,completed,2,20,"{""valid"": 19, ""duplicate"": 1}",19,399,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-U-continuation-v4-offline-20261010/r101/INIT/checkpoint.json,initialization,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-U-continuation-v4-offline-20261010-v2/r101/INIT/checkpoint.json,initialization,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-framework-30pct-20261009-v1/H/checkpoint.json,initialization,0,9,"{""valid"": 6, ""failed"": 3}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-framework-30pct-20261009-v2/H/checkpoint.json,initialization,0,3,"{""valid"": 2, ""failed"": 1}",2,42,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-framework-30pct-20261010-v3/H/checkpoint.json,completed,2,22,"{""valid"": 20, ""parse_or_constraint_error"": 1, ""invalid"": 1}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-framework-30pct-20261010-v3/r101/INIT/checkpoint.json,initialization,0,34,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-paired-pilot-20261009-v1/H/checkpoint.json,initialization,0,3,"{""failed"": 2, ""valid"": 1}",1,21,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v1/r101/INIT/checkpoint.json,evolution,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v1/r101/P/checkpoint.json,evolution,0,2,"{""valid"": 1, ""failed"": 1}",1,21,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v2/r101/INIT/checkpoint.json,evolution,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v2/r101/P/checkpoint.json,evolution,0,4,"{""valid"": 2, ""failed"": 2}",2,42,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v3/r101/INIT/checkpoint.json,evolution,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v3/r101/P/checkpoint.json,evolution,0,8,"{""valid"": 5, ""failed"": 3}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v4/r101/INIT/checkpoint.json,evolution,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-single-P-acceptance-20261010-v4/r101/P/checkpoint.json,completed,1,10,"{""valid"": 7, ""failed"": 3}",7,147,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/leaf-tier2-small-dev-20261010-v1/r101/INIT/checkpoint.json,evolution,0,35,"{""valid"": 6, ""duplicate"": 27, ""parse_or_constraint_error"": 1, ""interrupted"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/B0/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/B1/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/B2/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/H_adapter/checkpoint.json,completed,2,22,"{""valid"": 22}",22,22,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/P/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_development/shared_initial/checkpoint.json,evolution,0,5,"{""valid"": 5}",5,5,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/B0/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/B1/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/B2/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/H_adapter/checkpoint.json,completed,2,22,"{""valid"": 22}",22,22,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/P/checkpoint.json,completed,2,20,"{""valid"": 20}",20,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_tiny_final_20261005/shared_initial/checkpoint.json,evolution,0,5,"{""valid"": 5}",5,5,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/B0/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/B1/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/B2/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/H_adapter/checkpoint.json,completed,2,22,"{""valid"": 22}",22,462,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/P/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_20261005/shared_initial/checkpoint.json,evolution,0,5,"{""valid"": 5}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/B0/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/B1/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/B2/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/H_adapter/checkpoint.json,completed,2,22,"{""valid"": 22}",22,462,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/P/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_final_20261005/shared_initial/checkpoint.json,evolution,0,5,"{""valid"": 5}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/B0/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/B1/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/B2/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/H_adapter/checkpoint.json,completed,2,22,"{""valid"": 22}",22,462,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/P/checkpoint.json,completed,2,20,"{""valid"": 20}",20,420,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/research_v1_train_verified_20261005/shared_initial/checkpoint.json,evolution,0,5,"{""valid"": 5}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/H/checkpoint.json,completed,1,13,"{""valid"": 13}",13,26,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r101/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r101/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r101/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r101/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r101/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r102/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r102/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r102/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r102/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-acceptance-20261005/r102/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/H/checkpoint.json,completed,1,13,"{""valid"": 13}",13,26,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r101/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r101/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r101/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r101/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r101/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r102/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r102/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r102/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r102/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/s1-s6-final-20261005/r102/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-gpt61-paired-training-20261014-v1/r201/B0/checkpoint.json,completed,1,10,"{""valid"": 4, ""failed"": 6}",4,84,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-gpt61-paired-training-20261014-v1/r201/B1/checkpoint.json,completed,1,10,"{""failed"": 10}",0,0,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-gpt61-paired-training-20261014-v1/r201/B2/checkpoint.json,completed,1,10,"{""valid"": 6, ""failed"": 3, ""parse_or_constraint_error"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-gpt61-paired-training-20261014-v1/r201/INIT/checkpoint.json,evolution,0,7,"{""valid"": 5, ""failed"": 2}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-gpt61-paired-training-20261014-v1/r201/P/checkpoint.json,completed,1,10,"{""valid"": 6, ""failed"": 4}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/single-ID-paired-training-20261013-authorized-v1/r201/INIT/checkpoint.json,initialization,0,1,"{""failed"": 1}",0,0,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v1/r301/A/checkpoint.json,completed,1,10,"{""valid"": 8, ""failed"": 1, ""invalid"": 1}",8,16,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v1/r301/B/checkpoint.json,completed,1,10,"{""valid"": 9, ""parse_or_constraint_error"": 1}",9,18,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v1/r301/INIT/checkpoint.json,evolution,0,6,"{""valid"": 5, ""duplicate"": 1}",5,10,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v2/r301/A/checkpoint.json,completed,1,10,"{""valid"": 8, ""failed"": 1, ""invalid"": 1}",8,16,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v2/r301/B/checkpoint.json,completed,1,10,"{""valid"": 9, ""parse_or_constraint_error"": 1}",9,18,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v2/r301/INIT/checkpoint.json,evolution,0,6,"{""valid"": 5, ""duplicate"": 1}",5,10,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v3/r301/A/checkpoint.json,completed,1,10,"{""valid"": 8, ""failed"": 1, ""invalid"": 1}",8,16,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v3/r301/B/checkpoint.json,completed,1,10,"{""valid"": 9, ""parse_or_constraint_error"": 1}",9,18,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/usage-v2-toy-acceptance-20261012-v3/r301/INIT/checkpoint.json,evolution,0,6,"{""valid"": 5, ""duplicate"": 1}",5,10,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v22-gpt61-select-mix-301-20261014-v1/r301/A/checkpoint.json,completed,1,10,"{""valid"": 9, ""failed"": 1}",9,189,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v22-gpt61-select-mix-301-20261014-v1/r301/B/checkpoint.json,completed,1,10,"{""invalid"": 3, ""valid"": 6, ""failed"": 1}",6,126,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v22-gpt61-select-mix-301-20261014-v1/r301/INIT/checkpoint.json,evolution,0,8,"{""failed"": 3, ""valid"": 5}",5,105,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/H/checkpoint.json,completed,1,13,"{""valid"": 13}",13,26,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r101/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r101/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r101/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r101/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r101/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r102/B0/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r102/B1/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r102/B2/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r102/INIT/checkpoint.json,evolution,0,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
+runs/v5-four-arm-offline-20261008/r102/P/checkpoint.json,completed,1,10,"{""valid"": 10}",10,20,未由此字段推定；见请求账本,快照含继承/副本，不跨目录求和；阶段名B1/B2须与run一起识别
