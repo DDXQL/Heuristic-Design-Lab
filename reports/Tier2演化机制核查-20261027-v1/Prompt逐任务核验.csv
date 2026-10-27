@@ -1,0 +1,193 @@
+experiment,id,bytes_equal,H_blocks,parent_blocks
+B1,B/init/000000,True,10,0
+B1,B/init/000001,True,10,0
+B1,B/init/000002,True,10,0
+B1,B/init/000003,True,10,0
+B1,B/init/000004,True,10,0
+B1,B/init/000005,True,10,0
+B1,B/init/000006,True,10,0
+B1,B/init/000007,True,10,0
+B1,B/init/000008,True,10,0
+B1,B/g0000/000000,True,10,2
+B1,B/g0000/000001,True,10,2
+B1,B/g0000/000002,True,10,2
+B1,B/g0000/000003,True,10,2
+B1,B/g0000/000004,True,10,2
+B1,B/g0000/000005,True,10,1
+B1,B/g0000/000006,True,10,1
+B1,B/g0000/000007,True,10,1
+B1,B/g0000/000008,True,10,1
+B1,B/g0000/000009,True,10,1
+B1,B/g0001/000000,True,10,2
+B1,B/g0001/000001,True,10,2
+B1,B/g0001/000002,True,10,2
+B1,B/g0001/000003,True,10,2
+B1,B/g0001/000004,True,10,2
+B1,B/g0001/000005,True,10,1
+B1,B/g0001/000006,True,10,1
+B1,B/g0001/000007,True,10,1
+B1,B/g0001/000008,True,10,1
+B1,B/g0001/000009,True,10,1
+B2,B/g0000/000000,True,2,5
+B2,B/g0000/000001,True,2,5
+B2,B/g0000/000002,True,2,5
+B2,B/g0000/000003,True,2,5
+B2,B/g0000/000004,True,2,5
+B2,B/g0000/000005,True,2,1
+B2,B/g0000/000006,True,2,1
+B2,B/g0000/000007,True,2,1
+B2,B/g0000/000008,True,2,1
+B2,B/g0000/000009,True,2,1
+B2,B/g0001/000000,True,2,5
+B2,B/g0001/000001,True,2,5
+B2,B/g0001/000002,True,2,5
+B2,B/g0001/000003,True,2,5
+B2,B/g0001/000004,True,2,5
+B2,B/g0001/000005,True,2,1
+B2,B/g0001/000006,True,2,1
+B2,B/g0001/000007,True,2,1
+B2,B/g0001/000008,True,2,1
+B2,B/g0001/000009,True,2,1
+IND,r2_IND_s00,True,2,0
+IND,r2_IND_s01,True,2,0
+EVO,r2_EVO_s00,True,2,5
+EVO,r2_EVO_s01,True,2,5
+IND,r1_IND_s00,True,2,0
+IND,r1_IND_s01,True,2,0
+EVO,r1_EVO_s00,True,2,5
+EVO,r1_EVO_s01,True,2,5
+IND,r3_IND_s00,True,2,0
+IND,r3_IND_s01,True,2,0
+EVO,r3_EVO_s00,True,2,5
+EVO,r3_EVO_s01,True,2,5
+IND,r3_IND_s02,True,2,0
+IND,r3_IND_s03,True,2,0
+EVO,r3_EVO_s02,True,2,5
+EVO,r3_EVO_s03,True,2,5
+IND,r1_IND_s02,True,2,0
+IND,r1_IND_s03,True,2,0
+EVO,r1_EVO_s02,True,2,5
+EVO,r1_EVO_s03,True,2,5
+EVO,r2_EVO_s02,True,2,5
+EVO,r2_EVO_s03,True,2,5
+IND,r2_IND_s02,True,2,0
+IND,r2_IND_s03,True,2,0
+EVO,r2_EVO_s04,True,2,5
+EVO,r2_EVO_s05,True,2,1
+IND,r2_IND_s04,True,2,0
+IND,r2_IND_s05,True,2,0
+IND,r1_IND_s04,True,2,0
+IND,r1_IND_s05,True,2,0
+EVO,r1_EVO_s04,True,2,5
+EVO,r1_EVO_s05,True,2,1
+EVO,r3_EVO_s04,True,2,5
+EVO,r3_EVO_s05,True,2,1
+IND,r3_IND_s04,True,2,0
+IND,r3_IND_s05,True,2,0
+IND,r2_IND_s06,True,2,0
+IND,r2_IND_s07,True,2,0
+EVO,r2_EVO_s06,True,2,1
+EVO,r2_EVO_s07,True,2,1
+IND,r3_IND_s06,True,2,0
+IND,r3_IND_s07,True,2,0
+EVO,r3_EVO_s06,True,2,1
+EVO,r3_EVO_s07,True,2,1
+EVO,r1_EVO_s06,True,2,1
+EVO,r1_EVO_s07,True,2,1
+IND,r1_IND_s06,True,2,0
+IND,r1_IND_s07,True,2,0
+IND,r2_IND_s08,True,2,0
+IND,r2_IND_s09,True,2,0
+EVO,r2_EVO_s08,True,2,1
+EVO,r2_EVO_s09,True,2,1
+EVO,r3_EVO_s08,True,2,1
+EVO,r3_EVO_s09,True,2,1
+IND,r3_IND_s08,True,2,0
+IND,r3_IND_s09,True,2,0
+EVO,r1_EVO_s08,True,2,1
+EVO,r1_EVO_s09,True,2,1
+IND,r1_IND_s08,True,2,0
+IND,r1_IND_s09,True,2,0
+EVO,r2_EVO_s10,True,2,5
+EVO,r2_EVO_s11,True,2,5
+IND,r2_IND_s10,True,2,0
+IND,r2_IND_s11,True,2,0
+EVO,r1_EVO_s10,True,2,5
+EVO,r1_EVO_s11,True,2,5
+IND,r1_IND_s10,True,2,0
+IND,r1_IND_s11,True,2,0
+EVO,r3_EVO_s10,True,2,5
+EVO,r3_EVO_s11,True,2,5
+IND,r3_IND_s10,True,2,0
+IND,r3_IND_s11,True,2,0
+IND,r3_IND_s12,True,2,0
+IND,r3_IND_s13,True,2,0
+EVO,r3_EVO_s12,True,2,5
+EVO,r3_EVO_s13,True,2,5
+EVO,r2_EVO_s12,True,2,5
+EVO,r2_EVO_s13,True,2,5
+IND,r2_IND_s12,True,2,0
+IND,r2_IND_s13,True,2,0
+EVO,r1_EVO_s12,True,2,5
+EVO,r1_EVO_s13,True,2,5
+IND,r1_IND_s12,True,2,0
+IND,r1_IND_s13,True,2,0
+EVO,r2_EVO_s14,True,2,5
+EVO,r2_EVO_s15,True,2,1
+IND,r2_IND_s14,True,2,0
+IND,r2_IND_s15,True,2,0
+EVO,r3_EVO_s14,True,2,5
+EVO,r3_EVO_s15,True,2,1
+IND,r3_IND_s14,True,2,0
+IND,r3_IND_s15,True,2,0
+EVO,r1_EVO_s14,True,2,5
+EVO,r1_EVO_s15,True,2,1
+IND,r1_IND_s14,True,2,0
+IND,r1_IND_s15,True,2,0
+IND,r1_IND_s16,True,2,0
+IND,r1_IND_s17,True,2,0
+EVO,r1_EVO_s16,True,2,1
+EVO,r1_EVO_s17,True,2,1
+EVO,r2_EVO_s16,True,2,1
+EVO,r2_EVO_s17,True,2,1
+IND,r2_IND_s16,True,2,0
+IND,r2_IND_s17,True,2,0
+IND,r3_IND_s16,True,2,0
+IND,r3_IND_s17,True,2,0
+EVO,r3_EVO_s16,True,2,1
+EVO,r3_EVO_s17,True,2,1
+EVO,r1_EVO_s18,True,2,1
+EVO,r1_EVO_s19,True,2,1
+IND,r1_IND_s18,True,2,0
+IND,r1_IND_s19,True,2,0
+IND,r2_IND_s18,True,2,0
+CROSS A,pair_03_r2_A,True,10,2
+CROSS B,pair_03_r2_B,True,10,2
+CROSS B,pair_03_r1_B,True,10,2
+CROSS A,pair_03_r1_A,True,10,2
+CROSS A,pair_05_r1_A,True,10,2
+CROSS B,pair_05_r1_B,True,10,2
+CROSS A,pair_02_r1_A,True,10,2
+CROSS B,pair_02_r1_B,True,10,2
+CROSS A,pair_01_r1_A,True,10,2
+CROSS B,pair_01_r1_B,True,10,2
+CROSS A,pair_04_r3_A,True,10,2
+CROSS B,pair_04_r3_B,True,10,2
+CROSS A,pair_02_r2_A,True,10,2
+CROSS B,pair_02_r2_B,True,10,2
+CROSS B,pair_05_r2_B,True,10,2
+CROSS A,pair_05_r2_A,True,10,2
+CROSS A,pair_03_r3_A,True,10,2
+CROSS B,pair_03_r3_B,True,10,2
+CROSS B,pair_04_r2_B,True,10,2
+CROSS A,pair_04_r2_A,True,10,2
+CROSS B,pair_01_r2_B,True,10,2
+CROSS A,pair_01_r2_A,True,10,2
+CROSS B,pair_01_r3_B,True,10,2
+CROSS A,pair_01_r3_A,True,10,2
+CROSS B,pair_05_r3_B,True,10,2
+CROSS A,pair_05_r3_A,True,10,2
+CROSS B,pair_04_r1_B,True,10,2
+CROSS A,pair_04_r1_A,True,10,2
+CROSS A,pair_02_r3_A,True,10,2
+CROSS B,pair_02_r3_B,True,10,2

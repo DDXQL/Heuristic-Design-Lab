@@ -1,0 +1,27 @@
+{
+  "valid": true,
+  "type": "fixed",
+  "space": "ten_h",
+  "budgets": {
+    "logical_generation": 0,
+    "manual_or_P0_evaluations": 2,
+    "API_attempts": 0,
+    "max_program_instances": 2,
+    "max_solve_passes": 4
+  },
+  "instances": [
+    "toy.fjsp"
+  ],
+  "API_calls": 0,
+  "solves": 0,
+  "tasks": [
+    {
+      "id": "H0_SELECT",
+      "stage": "fixed"
+    },
+    {
+      "id": "equal",
+      "stage": "fixed"
+    }
+  ]
+}

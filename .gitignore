@@ -12,3 +12,6 @@ preparations/
 logs/
 data/fjsp/*.fjsp
 !data/fjsp/.gitkeep
+
+# Local scientific backups: paths and SHA are committed, large bytes stay local.
+archives/

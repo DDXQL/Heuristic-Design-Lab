@@ -1,0 +1,101 @@
+{
+  "status": "COPY_COMPLETE_PENDING_OBJECT_AND_CONTENT_VALIDATION",
+  "source_root": "/Users/DDXQL/Documents/大学/硕士/代码",
+  "destination_root": "/Users/DDXQL/Developer",
+  "stats": {
+    "FJSP-Heuristic-Research": {
+      "copied_files": 6492,
+      "copied_bytes": 292636583
+    },
+    "FJSP-Heuristic-Research-h-usage-space": {
+      "copied_files": 21895,
+      "copied_bytes": 4482450009
+    },
+    "FJSP-Heuristic-Research-tsp-pilot": {
+      "copied_files": 7254,
+      "copied_bytes": 40370746
+    },
+    "FJSP-Heuristic-Research-u-single-experiments": {
+      "copied_files": 3273,
+      "copied_bytes": 1206462205
+    }
+  },
+  "missing_count": 4904,
+  "symlink_rebindings": [
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/.venv/bin/python3",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/.venv/bin/python",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/.venv/bin/python3.12",
+      "original_target": "/opt/homebrew/opt/python@3.12/bin/python3.12",
+      "new_target": "/opt/homebrew/opt/python@3.12/bin/python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/.venv",
+      "original_target": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv",
+      "new_target": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python3",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python3.12",
+      "original_target": "/opt/homebrew/opt/python@3.12/bin/python3.12",
+      "new_target": "/opt/homebrew/opt/python@3.12/bin/python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot/.venv",
+      "original_target": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/.venv",
+      "new_target": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/.venv/bin/python3",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/.venv/bin/python",
+      "original_target": "python3.12",
+      "new_target": "python3.12"
+    },
+    {
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments/.venv/bin/python3.12",
+      "original_target": "/opt/homebrew/opt/python@3.12/bin/python3.12",
+      "new_target": "/opt/homebrew/opt/python@3.12/bin/python3.12"
+    }
+  ],
+  "worktree_bindings": [
+    {
+      "worktree": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space",
+      "gitdir": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git/worktrees/FJSP-Heuristic-Research-h-usage-space",
+      "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git"
+    },
+    {
+      "worktree": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-pilot",
+      "gitdir": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git/worktrees/FJSP-Heuristic-Research-tsp-pilot",
+      "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git"
+    },
+    {
+      "worktree": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-u-single-experiments",
+      "gitdir": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git/worktrees/FJSP-Heuristic-Research-u-single-experiments",
+      "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git"
+    }
+  ],
+  "originals_deleted": false,
+  "original_worktree_pointers_modified": false,
+  "elapsed_seconds": 49.400030851364136
+}
