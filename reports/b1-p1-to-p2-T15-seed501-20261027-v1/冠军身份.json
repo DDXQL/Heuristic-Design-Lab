@@ -1,0 +1,35 @@
+{
+  "id": "B/g0001/000001",
+  "candidate": {
+    "description": "This U inherits Parent 0's dispersion-weighted initial 0/8 and later 8/9 mixtures, while incorporating Parent 1's low-availability, workload-dispersion, late-progress, machine-dispersion, and default member mappings. Conflicts are resolved by prioritizing the workload/availability exceptions, then late-progress behavior, before applying the Parent 0 transition or machine-dispersion fallback.",
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    work_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    ready_dispersion = machine_ready_std / (0.05 + machine_ready_mean + machine_ready_std)\n    transition = progress + 0.5 * (1.0 - candidate_pair_ratio)\n    work_weight = 1.0 + work_dispersion\n    efficiency_weight = 1.0 + progress + ready_dispersion\n    if previous_heuristic == -1:\n        return (1, (work_weight, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, efficiency_weight, 0.0))\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    if transition >= 0.75:\n        return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, work_weight, efficiency_weight))\n    if machine_ready_std > 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+    "key": "4f6a5972281738be697446f9a87e3cb67d04711b4321cec0c21667255af100cd",
+    "kind": "U",
+    "interface_version": "U-usage-v2-select-or-mix-20261012",
+    "member_count": 10
+  },
+  "fitness": -2.092337613385191,
+  "scores": [
+    -1.6,
+    -1.5333333333333334,
+    -1.4430379746835442,
+    -1.4342105263157894,
+    -1.9160926737633064,
+    -1.850381679389313,
+    -1.653482239801458,
+    -1.1875,
+    -1.3205128205128205,
+    -1.7733333333333334,
+    -1.7407407407407407,
+    -3.3747547416612163,
+    -3.230769230769231,
+    -2.7502061005770817,
+    -1.5,
+    -1.3970588235294117,
+    -1.8289473684210527,
+    -1.7945205479452055,
+    -3.2133333333333334,
+    -3.135135135135135,
+    -4.261739277843702
+  ]
+}

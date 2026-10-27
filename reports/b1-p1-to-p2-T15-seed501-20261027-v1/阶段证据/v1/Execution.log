@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/tools/b1_p1_resume.py", line 415, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/tools/b1_p1_resume.py", line 412, in main
+    else: run(d)
+          ^^^^^^
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/tools/b1_p1_resume.py", line 346, in run
+    engine.run()
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/tools/b1_usage_local.py", line 123, in run
+    super().run(**kwargs)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/code/fjsp_usage/research/evolution.py", line 228, in run
+    self._attempt()
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v1/source_snapshot/tools/b1_p1_resume.py", line 290, in _attempt
+    raise BudgetStop('candidate recorded; persistent safety stop')
+fjsp_usage.research_real.budget.BudgetStop: candidate recorded; persistent safety stop

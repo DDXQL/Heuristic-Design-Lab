@@ -1,0 +1,36 @@
+test_exit_grace_changes_cleanup_only_not_result_wait (test_b1_p1_resume.P1ResumeTests.test_exit_grace_changes_cleanup_only_not_result_wait) ... ok
+test_migration_keeps_all_science_rng_and_old_budget (test_b1_p1_resume.P1ResumeTests.test_migration_keeps_all_science_rng_and_old_budget) ... ok
+test_remaining_six_slots_keep_partial_children_and_budget (test_b1_p1_resume.P1ResumeTests.test_remaining_six_slots_keep_partial_children_and_budget) ... ok
+test_ten_synthetic_slots_preserve_first_parent_rng_and_survival (test_b1_p1_resume.P1ResumeTests.test_ten_synthetic_slots_preserve_first_parent_rng_and_survival) ... ok
+test_unknown_boundary_does_not_migrate (test_b1_p1_resume.P1ResumeTests.test_unknown_boundary_does_not_migrate) ... ERROR
+test_changed_or_incomplete_manifest_stops (test_b1_timeout_boundary.BoundaryTests.test_changed_or_incomplete_manifest_stops) ... ok
+test_collector_records_termination_and_does_not_repeat (test_b1_timeout_boundary.BoundaryTests.test_collector_records_termination_and_does_not_repeat) ... ok
+test_complete_matching_identity_delegates_original_result_check (test_b1_timeout_boundary.BoundaryTests.test_complete_matching_identity_delegates_original_result_check) ... ok
+test_confirmed_timeout_is_invalid_never_prefix_fitness (test_b1_timeout_boundary.BoundaryTests.test_confirmed_timeout_is_invalid_never_prefix_fitness) ... ok
+test_eof_is_not_timeout (test_b1_timeout_boundary.BoundaryTests.test_eof_is_not_timeout) ... ok
+test_historical_missing_lifecycle_still_stops (test_b1_timeout_boundary.BoundaryTests.test_historical_missing_lifecycle_still_stops) ... ok
+test_identity_mismatch_stops_even_if_timeout (test_b1_timeout_boundary.BoundaryTests.test_identity_mismatch_stops_even_if_timeout) ... ok
+test_kill_escalation_preserves_unknown_if_still_alive (test_b1_timeout_boundary.BoundaryTests.test_kill_escalation_preserves_unknown_if_still_alive) ... ok
+test_live_wrong_pid_unknown_exit_and_started_receipt_stop (test_b1_timeout_boundary.BoundaryTests.test_live_wrong_pid_unknown_exit_and_started_receipt_stop) ... ok
+test_normal_completion_missing_after_stops (test_b1_timeout_boundary.BoundaryTests.test_normal_completion_missing_after_stops) ... ok
+test_persistence_failure_does_not_leave_worker_unmanaged (test_b1_timeout_boundary.BoundaryTests.test_persistence_failure_does_not_leave_worker_unmanaged) ... ok
+test_unexpected_exit_or_timeout_without_termination_stops (test_b1_timeout_boundary.BoundaryTests.test_unexpected_exit_or_timeout_without_termination_stops) ... ok
+test_worker_failure_and_forged_before_stop (test_b1_timeout_boundary.BoundaryTests.test_worker_failure_and_forged_before_stop) ... ok
+
+======================================================================
+ERROR: test_unknown_boundary_does_not_migrate (test_b1_p1_resume.P1ResumeTests.test_unknown_boundary_does_not_migrate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v2/source_snapshot/tests/test_b1_p1_resume.py", line 49, in test_unknown_boundary_does_not_migrate
+    resume.migrate(c,self.j,self.config,'T','C',self.target,self.p['H_order'],self.p['request_phase'])
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v2/source_snapshot/tools/b1_p1_resume.py", line 64, in migrate
+    frozen_state(c, j)
+  File "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-p1-to-p2-T15-seed501-20261027-v2/source_snapshot/tools/b1_p1_resume.py", line 49, in frozen_state
+    if ([x['id'] for x in c['children']]!=expected_children or len(c['population']) != 5 or len(c['attempts']) != inherited):
+         ~^^^^^^
+KeyError: 'id'
+
+----------------------------------------------------------------------
+Ran 18 tests in 8.567s
+
+FAILED (errors=1)

@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "new_logical_slots": 10,
+  "new_API_attempts": 10,
+  "complete_responses": 10,
+  "new_valid": 8,
+  "new_duplicates": 1,
+  "new_quarantined": 1,
+  "new_evaluations_total": 9,
+  "received_instance_pairs": 189,
+  "observed_completed_solves_including_quarantine": 378,
+  "quality_certified_solves": 336,
+  "new_API_input_tokens": 215891,
+  "new_API_output_tokens": 10645,
+  "new_API_seconds": 201.15768265724182,
+  "new_native_evaluation_seconds": 152.73727258400322,
+  "P1_champion": "B/g0000/000006",
+  "P2_champion": "B/g0001/000001",
+  "champion_key": "4f6a5972281738be697446f9a87e3cb67d04711b4321cec0c21667255af100cd",
+  "champion_code_sha256": "df716e06ede2dcdf9897677687a5224e955c940c92028c9ab788deeb1bdfca88",
+  "delta_Fitness": 0.022822011314367785,
+  "relative_mean_ratio_reduction_percent": 1.0789734754704134,
+  "wins_losses_ties": [
+    11,
+    6,
+    4
+  ],
+  "P1_total_Cmax": 4378,
+  "P2_total_Cmax": 4350,
+  "physical_schedule_groups": {
+    "P0": 5,
+    "P1": 3,
+    "P2": 2
+  },
+  "same_parent_rng_and_original_request_records": true,
+  "same_persisted_deadline": true,
+  "monetary_cost": null,
+  "new_requests_unknown": 0,
+  "remaining_unexecuted_generation2_slots": 0,
+  "protocol_sha256": "5a292bbca92c9df6d3940de78640ce3d254c8ca424ee698f3fb3e82d8f762a97"
+}
