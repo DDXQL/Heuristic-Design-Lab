@@ -1,0 +1,33 @@
+{
+  "worktree": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot",
+  "head": "7056f180a1d7f21c6b0d8d1144958c95f863b708",
+  "branch": "codex/tsp-pilot",
+  "dirty_status": " M README.md\n M code/heuristic_design/problems/tsp/campaign.py\n M code/heuristic_design/problems/tsp/candidates.py\n M code/heuristic_design/problems/tsp/operations.py\n M docs/TSP_ADAPTER.md\n M experiments/tsp/manage.py\n M tests/test_tsp_adapter.py\n?? .venv\n?? docs/TSP_EXECUTION_REVISION_V2.md\n?? experiments/tsp/verify_delivery.py\n?? reports/tsp-pilot-20261026-v1/Correctness_revision_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_continuation_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_v2_source_snapshot.tar.gz\n?? reports/tsp-pilot-20261026-v1/Pre_repair_receipt.json\n?? reports/tsp-pilot-20261026-v1/Real_pre_repair_source_snapshot.tar.gz\n",
+  "state": {
+    "phase": "paused",
+    "current_stage": "H",
+    "completed_stages": [
+      "manual-H",
+      "H"
+    ],
+    "started_at": 1793023766.187142,
+    "reason": "campaign paused before stage static"
+  },
+  "logical": 10,
+  "API_attempts": 10,
+  "full_responses": 10,
+  "H_valid": 0,
+  "H_task_count": 10,
+  "manual_H_valid": 5,
+  "real_U_requests": 0,
+  "mock_all_stages": true,
+  "revision2_tests_recorded_passed": true,
+  "v2_real_directory_exists": false,
+  "real_stage_directories": [
+    "tsp-pilot-20261026-v1--manual-H",
+    "tsp-pilot-20261026-v1--H",
+    "tsp-pilot-20261026-v1"
+  ],
+  "distribution": "合成二维单位正方形欧氏TSP，50城市；非TSPLIB四实例",
+  "limits": "脏工作树；旧v1实际执行与未提交v2修订身份分开，不运行或宣称v2真实续接已完成。"
+}

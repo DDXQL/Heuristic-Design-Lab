@@ -1,0 +1,58 @@
+{
+  "validation11_exposure": {
+    "audit": "runs/conditional-paired-research-20261011-v4/Dataset_usage_audit.json",
+    "audit_sha256": "53f5e6cc9526d12ef0e6ff7337152d30145fc7224c1824f226736f89fe031c12",
+    "validation11_already_evaluated": true,
+    "sources": [
+      {
+        "path": "/Users/DDXQL/Documents/大学/硕士/代码/EoH-S/logs/fjsp_tier1_formal/run03/validation_evaluation.json",
+        "sha256": "89aae4bcc7902bfedea9cb8e14f16cbfccd8076df23b2fb0231c8d54bc057c3e",
+        "partition": "validation",
+        "selection_criterion": null,
+        "scope": "Only historical metadata/selection rule used; no holdout instance or strategy score comparison"
+      },
+      {
+        "path": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/baselines/tier1_single_rule_v1/records/2026092002/evaluation_result.json",
+        "sha256": "72708bb3e10bb90083d02fd2f643db87bd3adce0ec9247852be4547134639750",
+        "partition": null,
+        "selection_criterion": "highest arithmetic mean normalized score on all 11 validation instances",
+        "scope": "Only historical metadata/selection rule used; no holdout instance or strategy score comparison"
+      }
+    ],
+    "test28": "Already exposed per current user/current protocols; older 20261021 negative scan is time-bounded, not current cleanliness proof.",
+    "influence_limit": "Historical single-rule validation selection is explicit; extent of influence on later H/U design cannot be quantified from these records."
+  },
+  "validation_audit_source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/conditional-paired-research-20261011-v4/Dataset_usage_audit.json",
+  "validation_audit_top_keys": [
+    "validation11_already_evaluated",
+    "sources",
+    "test28_prior_numeric_results_found_in_scanned_records",
+    "limitations",
+    "this_run_holdout_access"
+  ],
+  "Brandimarte_archive": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/h01-champion-hurink-rdata20-seed501-20261026-v1/source/SchedulingLab_ac4c340.tar.gz",
+  "Mk01_Mk10_archived_paths": [
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk01.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk01.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk02.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk02.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk03.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk03.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk04.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk04.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk05.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk05.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk06.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk06.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk07.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk07.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk08.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk08.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk09.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk09.txt",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk10.json",
+    "fjsp-instances-ac4c3402312bfbeafcf4472d78be567d4e6b46ab/brandimarte/mk10.txt"
+  ],
+  "Mk_result_paths_in_existing_index": [],
+  "notes": "归档有数据不等于开展过评价；未重跑、未取出Mk实例。"
+}

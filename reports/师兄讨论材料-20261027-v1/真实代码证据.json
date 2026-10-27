@@ -1,0 +1,300 @@
+[
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/single-ID-gpt61-paired-training-20261014-v1/candidate_exports/INIT_init_000003.py",
+    "source_sha256": "f6e6fef78d41e1e874cd33e0fe18c0c5d579b0414234d2d4fb347b3d62e91831",
+    "function": "select_heuristic",
+    "start_line": 1,
+    "end_line": 2,
+    "code": "def select_heuristic(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    return 2\n",
+    "code_sha256": "f6e6fef78d41e1e874cd33e0fe18c0c5d579b0414234d2d4fb347b3d62e91831",
+    "label": "A_早期单成员索引",
+    "id": "INIT/init/000003",
+    "experiment": "single-ID-gpt61-paired-training-20261014-v1 / seed201",
+    "response": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/single-ID-gpt61-paired-training-20261014-v1/candidate_exports/INIT_init_000003.response.txt",
+    "fitness": -2.142188696710061,
+    "observed": "21完整实例；函数常量返回2，选择H2；不根据状态变化。",
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/A_早期单成员索引.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/U_sources/B_init_000006.py",
+    "source_sha256": "c023c3893595a902b87833f7ee46bc43c44fbdd46829ffabc720557e166f1143",
+    "function": "use_heuristics",
+    "start_line": 1,
+    "end_line": 8,
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if candidate_pair_ratio < 0.5 and remaining_work_mean < 0.25:\n        return (0, (0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2 and machine_ready_std < 0.1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))\n    if progress > 0.75 and machine_ready_mean > 0.25:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0))\n    return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n",
+    "code_sha256": "c023c3893595a902b87833f7ee46bc43c44fbdd46829ffabc720557e166f1143",
+    "label": "B_动态SELECT",
+    "id": "B/init/000006",
+    "experiment": "B1-NS Recovery-B / train21 / seed501",
+    "response": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_init_000006.txt",
+    "fitness": -2.115159624699559,
+    "observed": {
+      "scope": "complete_train",
+      "SELECT_steps": 3800,
+      "MIX_steps": 0,
+      "dual_member_steps": 0,
+      "support_counts": {
+        "1": 3762,
+        "5": 38
+      },
+      "active_members": [
+        1,
+        5
+      ],
+      "dominant_counts": {
+        "1": 3762,
+        "5": 38
+      },
+      "dominant_switches": 2,
+      "distinct_raw_outputs": 2,
+      "distinct_normalized_support_weights": 2,
+      "within_instance_output_changes": 2,
+      "raw_output_dynamic_observed": true,
+      "effective_usage_dynamic_observed": true,
+      "within_instance_support_or_weight_changes": 2,
+      "support_changes": 2,
+      "mode_changes": 0,
+      "same_pair_MIX_weight_changes": 0,
+      "H01_H0_weight_min": null,
+      "H01_H0_weight_max": null,
+      "observed_normalized_weight_ranges_by_support": {
+        "1": {
+          "1": {
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "5": {
+          "5": {
+            "min": 1.0,
+            "max": 1.0
+          }
+        }
+      },
+      "not_same_state_counterfactual": true
+    },
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/B_动态SELECT.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/U_sources/B_g0000_000004.py",
+    "source_sha256": "8bbff4ecb5d24e732f0a40887e12d5298ca35c5b01e2701d80a6b364b9f337f9",
+    "function": "use_heuristics",
+    "start_line": 1,
+    "end_line": 6,
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    readiness_dispersion = machine_ready_std / (machine_ready_mean + machine_ready_std + remaining_work_mean)\n    workload_dispersion = remaining_work_std / (remaining_work_mean + remaining_work_std)\n    weight_8 = 0.15 + 0.55 * readiness_dispersion - 0.1 * workload_dispersion\n    weight_5 = 1.0 - weight_8\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, weight_5, 0.0, 0.0, weight_8, 0.0))\n",
+    "code_sha256": "8bbff4ecb5d24e732f0a40887e12d5298ca35c5b01e2701d80a6b364b9f337f9",
+    "label": "C_动态双成员MIX",
+    "id": "B/g0000/000004",
+    "experiment": "B1-NS Recovery-B / train21 / seed501",
+    "response": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000004.txt",
+    "fitness": -2.4663142737207355,
+    "observed": {
+      "scope": "complete_train",
+      "SELECT_steps": 0,
+      "MIX_steps": 3800,
+      "dual_member_steps": 3800,
+      "support_counts": {
+        "5,8": 3800
+      },
+      "active_members": [
+        5,
+        8
+      ],
+      "dominant_counts": {
+        "5": 3800
+      },
+      "dominant_switches": 0,
+      "distinct_raw_outputs": 3800,
+      "distinct_normalized_support_weights": 3800,
+      "within_instance_output_changes": 3779,
+      "raw_output_dynamic_observed": true,
+      "effective_usage_dynamic_observed": true,
+      "within_instance_support_or_weight_changes": 3779,
+      "support_changes": 0,
+      "mode_changes": 0,
+      "same_pair_MIX_weight_changes": 3779,
+      "H01_H0_weight_min": null,
+      "H01_H0_weight_max": null,
+      "observed_normalized_weight_ranges_by_support": {
+        "5,8": {
+          "5": {
+            "min": 0.6032964001428209,
+            "max": 0.8614843196853897
+          },
+          "8": {
+            "min": 0.13851568031461026,
+            "max": 0.3967035998571791
+          }
+        }
+      },
+      "not_same_state_counterfactual": true
+    },
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/C_动态双成员MIX.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/U_sources/B_g0000_000007.py",
+    "source_sha256": "2566367002798159e9148c39f9f41cc6473ba44ed5ce1ec1de02e732f7019126",
+    "function": "use_heuristics",
+    "start_line": 1,
+    "end_line": 10,
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    if previous_heuristic == -1:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0))\n    if machine_ready_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0))\n    if remaining_work_std > 0.2:\n        return (0, (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0))\n    weight_9 = min(1.0, max(progress / 0.75, (1.0 - candidate_pair_ratio) / 0.65))\n    weight_8 = 1.0 - weight_9\n    return (1, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, weight_8, weight_9))\n",
+    "code_sha256": "2566367002798159e9148c39f9f41cc6473ba44ed5ce1ec1de02e732f7019126",
+    "label": "D_SELECT_MIX切换",
+    "id": "B/g0000/000007",
+    "experiment": "B1-NS Recovery-B / train21 / seed501",
+    "response": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000007.txt",
+    "fitness": -2.549881652451567,
+    "observed": {
+      "scope": "complete_train",
+      "SELECT_steps": 21,
+      "MIX_steps": 3779,
+      "dual_member_steps": 1316,
+      "support_counts": {
+        "8": 21,
+        "8,9": 1316,
+        "9": 2463
+      },
+      "active_members": [
+        8,
+        9
+      ],
+      "dominant_counts": {
+        "8": 21,
+        "9": 3779
+      },
+      "dominant_switches": 21,
+      "distinct_raw_outputs": 325,
+      "distinct_normalized_support_weights": 325,
+      "within_instance_output_changes": 1110,
+      "raw_output_dynamic_observed": true,
+      "effective_usage_dynamic_observed": true,
+      "within_instance_support_or_weight_changes": 1110,
+      "support_changes": 77,
+      "mode_changes": 21,
+      "same_pair_MIX_weight_changes": 1033,
+      "H01_H0_weight_min": null,
+      "H01_H0_weight_max": null,
+      "observed_normalized_weight_ranges_by_support": {
+        "8": {
+          "8": {
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "8,9": {
+          "8": {
+            "min": 0.0013495276653171517,
+            "max": 0.4933333333333333
+          },
+          "9": {
+            "min": 0.5066666666666667,
+            "max": 0.9986504723346827
+          }
+        },
+        "9": {
+          "9": {
+            "min": 1.0,
+            "max": 1.0
+          }
+        }
+      },
+      "not_same_state_counterfactual": true
+    },
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/D_SELECT_MIX切换.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/docs/usage-space/real-gpt61-301/INIT__init__000005.py",
+    "source_sha256": "a2c7f69e5cb98029133dfae5f0ab571291c8c42e9801c60f2dc37cbee01ab45f",
+    "function": "use_heuristics",
+    "start_line": 1,
+    "end_line": 36,
+    "code": "def use_heuristics(progress, candidate_pair_ratio, remaining_work_mean, remaining_work_std, machine_ready_mean, machine_ready_std, previous_heuristic):\n    gap = remaining_work_mean - machine_ready_mean\n    spread = remaining_work_std + machine_ready_std\n    flexibility = candidate_pair_ratio * (1.0 - progress)\n    phase = progress * candidate_pair_ratio\n    s0 = 0.31 + gap - spread + flexibility - phase\n    s1 = 0.27 - gap + spread - flexibility + phase\n    s2 = 0.22 + gap + spread - 0.5 * flexibility - phase\n    s3 = 0.19 - gap - spread + 0.5 * flexibility + phase\n    s4 = 0.16 + 0.5 * gap - 0.5 * spread + flexibility + phase\n    s5 = 0.14 - 0.5 * gap + 0.5 * spread - flexibility - phase\n    s6 = 0.12 + gap - 0.5 * spread + 0.5 * flexibility - phase\n    s7 = 0.1 - gap + 0.5 * spread + 0.5 * flexibility + phase\n    s8 = 0.08 + 0.5 * gap + spread - 0.5 * flexibility - phase\n    s9 = 0.06 - 0.5 * gap - spread + 0.5 * flexibility + phase\n    if previous_heuristic == 0:\n        s0 = s0 + 0.025\n    if previous_heuristic == 1:\n        s1 = s1 + 0.025\n    if previous_heuristic == 2:\n        s2 = s2 + 0.025\n    if previous_heuristic == 3:\n        s3 = s3 + 0.025\n    if previous_heuristic == 4:\n        s4 = s4 + 0.025\n    if previous_heuristic == 5:\n        s5 = s5 + 0.025\n    if previous_heuristic == 6:\n        s6 = s6 + 0.025\n    if previous_heuristic == 7:\n        s7 = s7 + 0.025\n    if previous_heuristic == 8:\n        s8 = s8 + 0.025\n    if previous_heuristic == 9:\n        s9 = s9 + 0.025\n    return (0, (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9))\n",
+    "code_sha256": "a2c7f69e5cb98029133dfae5f0ab571291c8c42e9801c60f2dc37cbee01ab45f",
+    "label": "B补充_连续成员打分",
+    "id": "INIT/init/000005",
+    "experiment": "v22-gpt61-select-mix-301-20261014-v1 / seed301",
+    "response": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/docs/usage-space/real-gpt61-301/Actual_responses/INIT__init__000005.txt",
+    "fitness": -2.225194303277998,
+    "observed": {
+      "member_step_counts": [
+        919,
+        689,
+        0,
+        157,
+        2035,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "steps": 3800,
+      "complete_instances": 21
+    },
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/B补充_连续成员打分.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/fusion_v2/execution.py",
+    "source_sha256": "42ad3ea2edc17ee19ff651d1332d265bb42217ccfeaf6200594609f077b0bd42",
+    "function": "fixed_policy",
+    "start_line": 69,
+    "end_line": 75,
+    "code": "def fixed_policy(pair, operator, size=10):\n    if (type(pair) is not tuple or len(pair) != 2 or pair[0] >= pair[1]\n            or any(type(i) is not int or not 0 <= i < size for i in pair)\n            or operator not in OPERATORS):\n        raise ValueError('ordered distinct in-range fixed pair and fusion operator required')\n    vector = tuple(.5 if i in pair else 0. for i in range(size))\n    return lambda *state: (operator, vector)\n",
+    "code_sha256": "1a63bc482608701e9ee436beb8ce16f3ca9f910372070a48cf26a2b63412a10b",
+    "label": "E1_MAX_MIN固定策略",
+    "id": "H0_H1_MAX / H0_H1_MIN",
+    "experiment": "独立Fusion V2/V3机制实验；人工固定策略，非LLM搜索",
+    "response": null,
+    "fitness": null,
+    "observed": "对应H01固定策略均完整train21；同状态机制记录见既有图07。",
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/E1_MAX_MIN固定策略.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/fusion_v2/execution.py",
+    "source_sha256": "42ad3ea2edc17ee19ff651d1332d265bb42217ccfeaf6200594609f077b0bd42",
+    "function": "fuse_scores",
+    "start_line": 37,
+    "end_line": 66,
+    "code": "def fuse_scores(columns, weights, support, operator):\n    if operator not in ('SELECT',) + OPERATORS:\n        raise UsageOutputError('unknown fusion operator')\n    if not support or len(support) > 2 or any(i not in columns for i in support):\n        raise UsageOutputError('one/two available member columns required')\n    length = len(columns[support[0]])\n    if not length or any(len(columns[i]) != length for i in support):\n        raise NormalizationError('nonempty aligned action columns required')\n    if any(isinstance(v, bool) or not isinstance(v, numbers.Real) or not math.isfinite(v)\n           for i in support for v in columns[i]):\n        raise NormalizationError('finite real H columns required')\n    if (operator == 'SELECT' and len(support) != 1 or\n            operator in ('MAX', 'MIN') and len(support) != 2):\n        raise UsageOutputError('operator/support mismatch')\n    if operator == 'SELECT':\n        return combine_scores(columns, weights, support)\n    if any(type(w) not in (int, float) or not math.isfinite(w) or w < 0 for w in weights):\n        raise UsageOutputError('finite nonnegative normalized weights required')\n    if (any(i >= len(weights) or weights[i] <= 0 for i in support)\n            or any(w != 0 for i, w in enumerate(weights) if i not in support)\n            or not math.isclose(math.fsum(weights), 1, rel_tol=0, abs_tol=1e-15)):\n        raise NormalizationError('weights must retain support and unit sum')\n    scores, info = combine_scores(columns, weights, support)\n    if operator in ('MAX', 'MIN'):\n        if weights[support[0]] != weights[support[1]]:\n            raise UsageOutputError('unweighted extrema require equal indicators')\n        operation = max if operator == 'MAX' else min\n        scores = tuple(operation(info['normalized'][i][a] for i in support)\n                       for a in range(length))\n    return scores, info\n",
+    "code_sha256": "98cb8e7c1c5fbe9d00a42859d8021925eb99b74c224fe0acb23859d58c6178d8",
+    "label": "E2_MAX_MIN动作融合",
+    "id": "H0_H1_MAX / H0_H1_MIN",
+    "experiment": "独立Fusion V2/V3机制实验；人工固定策略，非LLM搜索",
+    "response": null,
+    "fitness": null,
+    "observed": "对应H01固定策略均完整train21；同状态机制记录见既有图07。",
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/E2_MAX_MIN动作融合.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/fusion_v3/execution.py",
+    "source_sha256": "0f608be57687cccc28e0a46893f158e1d41990803cd616b1790a960c7589518d",
+    "function": "fixed_borda",
+    "start_line": 40,
+    "end_line": 45,
+    "code": "def fixed_borda(pair,size=10):\n    if (type(pair) is not tuple or len(pair)!=2 or any(type(i) is not int or not 0<=i<size for i in pair)\n            or pair[0]>=pair[1]):\n        raise ValueError('ordered distinct frozen member pair required')\n    vector=tuple(.5 if i in pair else 0. for i in range(size))\n    return lambda *state:('BORDA',vector)\n",
+    "code_sha256": "7b1c6896c5bc2143050e4ae448cfebcd5c26a18fb43e0c9c8efb905d9509be0b",
+    "label": "E3_Borda固定策略",
+    "id": "H0_H1_BORDA",
+    "experiment": "独立Fusion V2/V3机制实验；人工固定策略，非LLM搜索",
+    "response": null,
+    "fitness": null,
+    "observed": "对应H01固定策略均完整train21；同状态机制记录见既有图07。",
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/E3_Borda固定策略.py"
+  },
+  {
+    "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/code/fjsp_usage/fusion_v3/ranking.py",
+    "source_sha256": "0ca2e66b9e4436f9d8dcf1a345e6faa2aa9fefaff1b6d201aa8000a995329c70",
+    "function": "borda_scores",
+    "start_line": 30,
+    "end_line": 37,
+    "code": "def borda_scores(columns, support):\n    if len(support) != 2 or len(set(support)) != 2:\n        raise ValueError('exactly two distinct members required')\n    ranks = {i: borda_twice(columns[i]) for i in support}\n    n = len(ranks[support[0]])\n    if any(len(ranks[i]) != n for i in support):\n        raise ValueError('aligned action columns required')\n    return tuple(sum(ranks[i][a] for i in support) for a in range(n)), ranks\n",
+    "code_sha256": "22dca28fb00929ba8cbc0229d79a727fed8bfb4d835f02ea704aedcf44a84e4f",
+    "label": "E4_Borda秩融合",
+    "id": "H0_H1_BORDA",
+    "experiment": "独立Fusion V2/V3机制实验；人工固定策略，非LLM搜索",
+    "response": null,
+    "fitness": null,
+    "observed": "对应H01固定策略均完整train21；同状态机制记录见既有图07。",
+    "local_copy": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/师兄讨论材料-20261027-v1/真实代码/E4_Borda秩融合.py"
+  }
+]

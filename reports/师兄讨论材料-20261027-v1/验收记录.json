@@ -1,0 +1,27 @@
+{
+  "source_count": 34,
+  "checks": [
+    "one Python block: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/single-ID-gpt61-paired-training-20261014-v1/candidate_exports/INIT_init_000003.response.txt",
+    "export matches raw response AST: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/single-ID-gpt61-paired-training-20261014-v1/candidate_exports/INIT_init_000003.response.txt",
+    "early SELECT complete21",
+    "one Python block: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_init_000006.txt",
+    "export matches raw response AST: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_init_000006.txt",
+    "B1 example full-valid B/init/000006",
+    "one Python block: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000004.txt",
+    "export matches raw response AST: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000004.txt",
+    "B1 example full-valid B/g0000/000004",
+    "one Python block: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000007.txt",
+    "export matches raw response AST: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/reports/b1-ns-recovery-B-execution-20261023/responses/B_g0000_000007.txt",
+    "B1 example full-valid B/g0000/000007",
+    "one Python block: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/docs/usage-space/real-gpt61-301/Actual_responses/INIT__init__000005.txt",
+    "export matches raw response AST: /Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/docs/usage-space/real-gpt61-301/Actual_responses/INIT__init__000005.txt",
+    "TSP bounded journal10 H responses / zero real U"
+  ],
+  "new_generation_API": 0,
+  "new_FJSP_TSP_solves": 0,
+  "other_worktree_writes": 0,
+  "FJSP_head": "5f66f08cc8030c6b1506b74f6ec77b2ee242daca",
+  "TSP_head": "7056f180a1d7f21c6b0d8d1144958c95f863b708",
+  "scope": "增量读取既有索引、代表性源码/响应/完整结果和可访问TSP阶段，不重扫全部历史。",
+  "Notion": "复用既有7页只读快照；本轮不重新调用Notion。"
+}
