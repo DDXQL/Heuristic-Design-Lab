@@ -65,7 +65,7 @@ class Adapter:
         return MockTransport(config) if p['config']['api_mode']=='mock' else JsonCandidateTransport(config)
     def journal(self,directory,state,p,deadline):
         campaign=Path(p['campaign']);protocol=read(campaign/'Protocol.json');origin=Path(protocol.get('request_origin',{}).get('directory',str(campaign)))
-        clock=read(origin/'Run_clock.json');deadline=min(deadline,clock['deadline'])
+        clock=read((campaign if 'window_renewal' in protocol else origin)/'Run_clock.json');deadline=min(deadline,clock['deadline'])
         wire=WireRecorder(self.transport(p),origin/'wire_responses',verify=lambda:self.check_run(directory))
         return AttemptJournal(origin/'API_attempts.json',config=self.client_config(p),context=sha(origin/'Protocol.json'),phase='tsp-pilot/'+sha(origin/'Protocol.json'),transport=DeadlineTransport(wire,deadline))
     def summary(self,directory,write_files=False):

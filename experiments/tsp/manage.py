@@ -29,7 +29,9 @@ def main():
     for name in ['doctor','test']:sp.add_parser(name)
     for name in ['check','plan','prepare']:
         q=sp.add_parser(name);q.add_argument('--config',required=True)
-        if name=='prepare':q.add_argument('--directory',required=True);q.add_argument('--continue-from')
+        if name=='prepare':
+            q.add_argument('--directory',required=True);q.add_argument('--continue-from')
+            q.add_argument('--renew-window-seconds',type=int);q.add_argument('--window-authorization')
     for name in ['run','resume','status','summary','stop','_campaign']:
         q=sp.add_parser(name);q.add_argument('--directory',required=True)
         if name in ['run','resume','_campaign']:
@@ -45,7 +47,7 @@ def main():
         if not result.wasSuccessful():raise SystemExit(2)
     elif a.command in ['check','plan']:
         config=c.load_config(a.config);r={'valid':True,'config':config,'API':0,'solves':0,'stages':{'H':10,'IND_701':10,'IND_702':10,'EVO_801':10,'EVO_802':10},'global_API_attempt_cap':75}
-    elif a.command=='prepare':r=c.prepare(a.config,Path(a.directory),continue_from=a.continue_from)
+    elif a.command=='prepare':r=c.prepare(a.config,Path(a.directory),continue_from=a.continue_from,renew_window_seconds=a.renew_window_seconds,window_authorization=a.window_authorization)
     elif a.command=='_work':r=execution.work(Path(a.run_dir).resolve(),adapter=Adapter())
     else:
         directory=Path(a.directory).resolve()
