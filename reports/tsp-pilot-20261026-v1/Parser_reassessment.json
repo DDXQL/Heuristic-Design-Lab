@@ -1,0 +1,108 @@
+{
+  "scope": "offline reparse of FIRST responses only; NO requests and NO solver evaluation",
+  "records": [
+    {
+      "logical_id": "H/000",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00000.json",
+      "response_sha256": "d2eedded8726a839332508f7347999733d72e88d2f775dc6405f67e1384c499a",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "0e09d8ff98cea4c1b053bddef4bbddabdff85faec46a2ee38ce25354b74660a9",
+      "raw_python_sha256": "73a18aa990e3a517ff92d006371107693fce462ea084fcc9e5b9c068486a3695"
+    },
+    {
+      "logical_id": "H/001",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00001.json",
+      "response_sha256": "e6e2940ed059e9f6ebd0618c1aa0ae7a271861a25b0449c692b7c95211747c54",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "35692fc94e8b9ccd19ed491c70f7774684d16b0affdf441c6893afe62cf6aaaa",
+      "raw_python_sha256": "bf5ad6af7256f95416dffad15abc6403ab740e774d4d146ad849bb59a55566d1"
+    },
+    {
+      "logical_id": "H/002",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00002.json",
+      "response_sha256": "61c656c30a8c410e1a850504d36d2c1261016f41d165612646bf0345237f4c55",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "7ca51eebe4e4545bd925c6c981ff77bb88a16937f42bbce8c766d955cffdb3c8",
+      "raw_python_sha256": "0670961acd5f07ee7b83e2e2e0ee80775ef365ba0d181db8df9f8021e6538e70"
+    },
+    {
+      "logical_id": "H/003",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00003.json",
+      "response_sha256": "24f30c6ae82644f5997a8a29ae2e2a24a6b0645e4ee64cf6152d347fc823f001",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "2e1fd67cf3aeeb1f3a7bba0b0aae219a7f68a5822908f1caeac1171fcc79c06b",
+      "raw_python_sha256": "38efc32284c0468b96f93f61bb35fdf0c93ed93e0b54f90586869c4c6054a58f"
+    },
+    {
+      "logical_id": "H/004",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00004.json",
+      "response_sha256": "17d9e83ffacfdb92ba832d6ad8901b924067b6f8ea9384c16627d7a5b1286eb0",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "9bc3dbaefc2fa37ebf734094571e61fa05dec664867c2296af602c56a74a870d",
+      "raw_python_sha256": "1bce837266adbd206b3884f12f9a181aaf4473beb05528508002bcf038b5d22c"
+    },
+    {
+      "logical_id": "H/005",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00005.json",
+      "response_sha256": "0c1ba88804ceba186f347b9650ab10bac369d842c7ff1a2e5de3213b47a6663f",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "5d47697a4069ab5fa7697b67804791cda923f3c106b444f46db50eb062722dab",
+      "raw_python_sha256": "23e710e4c7671d0dd01ec4c440b70584c1b00d74e3b05d981717b940862aa4b7"
+    },
+    {
+      "logical_id": "H/006",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00006.json",
+      "response_sha256": "116670aac505b85c6af1abeac3f55a0547dda930023349faa510298b65c69def",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "77d0840a1aac65026d786c1b283beb5e0c93d94890151c5adc2bb7290e094c88",
+      "raw_python_sha256": "83f4d6f5cbd8eb4e58253dbe1bbd752ebddf7970668d16000d56b91927f11ce7"
+    },
+    {
+      "logical_id": "H/007",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00007.json",
+      "response_sha256": "680043a77a58efd67da0db38b9138531eb7d3969fc1821bffed89273ab795470",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "0283807414cd6a5424af119d5af3cb9858c621300258bbc71bf1a87e0c173c57",
+      "raw_python_sha256": "f442eefcb31ad1bb341c33fc17e8ece4b74c159f984ac4f842c9744636a4c66b"
+    },
+    {
+      "logical_id": "H/008",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00008.json",
+      "response_sha256": "f60d9d882cec5f2b99df87be86044ebce11c7ae411c2a4304bee3a3ce4758d85",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "fd7a25cfd8c2b1ac45500032652d48e23abb63919291a9595a6f2b9b2c1d2b0a",
+      "raw_python_sha256": "2b1afc7b07ab20ec42112fb702e0d7cfaad57f6d2138ea610449bc42900d2be4"
+    },
+    {
+      "logical_id": "H/009",
+      "response_file": "runs/tsp-pilot-20261026-v1--H/responses/00009.json",
+      "response_sha256": "04343a64b6cba399c2f39abfaaee35f9fde76b29012bde47216d139be601de5b",
+      "original_status": "parse_or_constraint_error",
+      "v2_ast_valid": true,
+      "train_fitness": null,
+      "canonical_key": "f34516eb077f4d9c826e585c4cf0c10cf6afb4592841169fa0540b5af9b71451",
+      "raw_python_sha256": "4a665940c821f32b86eb439115de1608acd6eb5e65adc01fcde56a83946c09b0"
+    }
+  ],
+  "AST_valid": 10,
+  "complete_evaluations": 0,
+  "additional_API_attempts": 0
+}

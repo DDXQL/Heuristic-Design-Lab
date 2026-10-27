@@ -45,11 +45,23 @@ def load_config(path):
     return c
 
 
-def prepare(config,directory):
+def prepare(config,directory,continue_from=None):
     directory=Path(directory).resolve()
     if directory.parent!=ROOT/'runs' or directory.exists():raise ValueError('new direct runs child required')
     c=load_config(config);directory.mkdir(parents=True)
-    manifest=data.generate(directory/'data')
+    if continue_from is None:manifest=data.generate(directory/'data')
+    else:
+        import shutil
+        origin=Path(continue_from).resolve();old=read(origin/'Protocol.json');journal=read(origin/'API_attempts.json')
+        if sha(origin/'Protocol.json')!=(origin/'Protocol.sha256').read_text().strip():raise ValueError('origin protocol changed')
+        if any(a['status'] not in ('completed','failed') for a in journal['api_attempts'].values()):raise ValueError('unknown request; no continuation replay')
+        if (origin/'.campaign.lock').exists():raise ValueError('origin still has writer lock')
+        for run in (ROOT/'runs').glob(origin.name+'--*'):
+            if (run/'.execution.lock').exists():raise ValueError('origin stage lock present')
+        if old['config']!=c:raise ValueError('continuation cannot alter provider, budget or parameters')
+        shutil.copytree(origin/'data',directory/'data');manifest=old['data']
+        (directory/'Run_clock.json').write_bytes((origin/'Run_clock.json').read_bytes())
+        write(directory/'Inherited_budget.json',{'origin':str(origin),'requests':journal['requests'],'api_attempts':journal['api_attempts'],'no_reset':True})
     p={'version':VERSION,'config':c,'source_files':sources(),'config_file':str(Path(config).resolve()),'config_sha256':sha(config),
         'data_manifest_sha256':sha(directory/'data/Manifest.json'),'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'data':manifest,'budgets':{'logical_cap':50,'API_attempt_cap':75,'per_candidate_attempt_cap':2,'H':10,'IND_701':10,'IND_702':10,'EVO_801':10,'EVO_802':10},
@@ -64,6 +76,9 @@ def prepare(config,directory):
         'confirmation_transfer':'only frozen final U and train-static reference; no return to tuning',
         'cost':'no fee gate; unknown usage/points/currency null; static and P0 costs separate',
         'resume':'one global journal, no count resets; unknown reservations stop; new source/config requires explicit evidence preservation'}
+    if continue_from is not None:
+        p['request_origin']={'directory':str(origin),'protocol_sha256':sha(origin/'Protocol.json'),'clock_sha256':sha(origin/'Run_clock.json')}
+        p['execution_revision']={'version':'description-wrapper-compatible-v2','change':'accept plain or braced description; unchanged candidate code/AST/geometry/prompt/selection','inherited_logical':len(journal['requests']),'inherited_attempts':len(journal['api_attempts']),'no_extra_budget':True,'origin_H_selection_superseded_before_any_U':not any(k.startswith(('IND_','EVO_')) for k in journal['requests'])}
     write(directory/'Protocol.json',p);(directory/'Protocol.sha256').write_text(sha(directory/'Protocol.json')+'\n')
     write(directory/'Campaign_state.json',{'phase':'prepared','current_stage':None,'completed_stages':[],'started_at':None})
     (directory/'wire_responses').mkdir()
@@ -83,6 +98,11 @@ def check(directory):
     for rows in p['data'].values():
         for row in rows:
             if sha(directory/'data'/row['path'])!=row['sha256']:raise ValueError('data changed')
+    if 'request_origin' in p:
+        origin=Path(p['request_origin']['directory'])
+        if sha(origin/'Protocol.json')!=p['request_origin']['protocol_sha256'] or sha(origin/'Run_clock.json')!=p['request_origin']['clock_sha256'] or sha(directory/'Run_clock.json')!=p['request_origin']['clock_sha256']:raise ValueError('origin identity/deadline changed')
+        inherited=read(directory/'Inherited_budget.json');current=read(origin/'API_attempts.json')
+        if any(current['requests'].get(k)!=v for k,v in inherited['requests'].items()) or any(current['api_attempts'].get(k)!=v for k,v in inherited['api_attempts'].items()):raise ValueError('inherited request or attempt record changed')
     for name in ['H_frozen.json','P0.json','Validation_candidates.json','Final_frozen.json']:
         if (directory/name).exists():
             receipt=read(directory/'Frozen_artifacts'/(name+'.receipt.json'))
@@ -243,7 +263,7 @@ def stop(directory):
 
 def summary(directory,write_files=False):
     p=read(directory/'Protocol.json');s=read(directory/'Campaign_state.json');path=directory/'API_attempts.json'
-    j=read(path) if path.exists() else {'requests':{},'api_attempts':{}}
+    j=read(Path(p.get('request_origin',{}).get('directory',str(directory)))/'API_attempts.json') if (Path(p.get('request_origin',{}).get('directory',str(directory)))/'API_attempts.json').exists() else {'requests':{},'api_attempts':{}}
     attempts=list(j['api_attempts'].values());req=j['requests'];groups=[];stagefacts={};allrows=[]
     stages=['manual-H','H','static','IND_701','IND_702','EVO_801','EVO_802','validation','confirmation','transfer']
     for label in stages:

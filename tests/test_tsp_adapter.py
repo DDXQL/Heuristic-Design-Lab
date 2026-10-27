@@ -121,3 +121,11 @@ class Tests(unittest.TestCase):
                 with self.assertRaises(ValueError):camp.check(run)
                 self.assertFalse((run/'API_attempts.json').exists())
             finally:shutil.rmtree(run)
+
+    def test_description_wrapper_compatibility_never_changes_code(self):
+        code=manual_pool()[0]['candidate']['code']
+        a=c.parse('{A numeric rule.}\n```python\n'+code+'```','h',1)
+        b=c.parse('A numeric rule.\n\n```python\n'+code+'```','h',1)
+        self.assertEqual(a,b);self.assertEqual(a.code,c.validate(code,'A numeric rule.','h',1).code)
+        for text in ['```python\n'+code+'```','A rule.\n```python\n'+code+'```\nextra text','A rule.\n```python\n'+code+'```\n```python\n'+code+'```']:
+            with self.assertRaises(c.CandidateError):c.parse(text,'h',1)

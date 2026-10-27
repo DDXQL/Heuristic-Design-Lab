@@ -172,3 +172,5 @@ stop不是强杀：当前候选生成、完整评价认证、账本提交后才�
 工程方向暂名Heuristic-Design-Lab；GitHub名、远端及本地主目录保持现状。任务执行/排名已抽取到`code/heuristic_design/core`，FJSP经问题适配层复用原求解认证，旧入口保留。[完整行为回归](reports/generic-extraction-20261026-v1/REPORT_ZH.md)比较了toy及已有认证Behnke1的动作轨迹、状态、排程和首解复检。[TSP固定预算协议](docs/TSP_PILOT_PROTOCOL_V1.md)先冻结后执行。
 
 构造型TSP入口已接入同一执行器，使用独立H、5维动作特征和5维U状态，城市0起止、未取整欧氏距离、完整相对NN Fitness。见[TSP定义、代码地图和实际命令](docs/TSP_ADAPTER.md)。真实固定小试与工程Mock分别记录，不把Mock当LLM结果。
+
+TSP真实批次的说明文字包装兼容修订和继承账本命令见[执行修订v2](docs/TSP_EXECUTION_REVISION_V2.md)，没有追加H/U逻辑任务或API预算。

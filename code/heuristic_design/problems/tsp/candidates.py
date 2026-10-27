@@ -62,12 +62,15 @@ def validate(code,description='',kind='U',member_count=5):
 
 
 def parse(text,kind,member_count):
+    # v2 accepts either literal braced or plain description, never repairs code.
     if not isinstance(text,str) or len(text.encode())>32768:raise CandidateError('response max 32KiB')
-    match=re.fullmatch(r'\s*\{([^{}]+)\}\s*```python\s*\n(.*?)\n```\s*',text,re.S)
-    if not match:raise CandidateError('one {description} followed by one python block')
-    description,code=match.groups()
-    if len(description)>1000:raise CandidateError('description too long')
-    return validate(code,description.strip(),kind,member_count)
+    if text.count('```')!=2:raise CandidateError('exactly one fenced python block')
+    match=re.fullmatch(r'\s*(.*?)\s*```python\s*\n(.*?)\n```\s*',text,re.S)
+    if not match:raise CandidateError('description followed by one python block')
+    description,code=match.groups();description=description.strip()
+    if description.startswith('{') and description.endswith('}'):description=description[1:-1].strip()
+    if not description or len(description)>1000:raise CandidateError('nonempty description max 1000 characters')
+    return validate(code,description,kind,member_count)
 
 
 def compile_candidate(c,member_count):

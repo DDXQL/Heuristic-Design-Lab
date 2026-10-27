@@ -94,3 +94,5 @@ run按固定顺序完成：人工H train评价→生成H10→仅train筛5H→全
 campaign根`Protocol.json`、数据Manifest、全局`API_attempts.json`、`wire_responses`、`H_frozen.json`、`P0.json`、`Validation_candidates.json`、`Final_frozen.json`及Frozen_artifacts回执。每阶段位于同级`runs/<campaign>--<stage>`，各自任务/锁/checkpoint/实际prompts/responses/evaluations，所有阶段共用一个API账本。
 
 `results/Summary.md/JSON`、Stages.csv和Per_instance.csv给事实；人工和静态/P0投入单列。逻辑任务、API尝试、完整响应、完整有效任务和AST独立程序数量不同。Token未知单列，平台点数与实际费用无法核实保持null。冻结确认和100城市迁移分别报告，只有两次搜索重复不证明稳定优势。
+
+本轮因说明文字花括号解析发生[显式执行修订v2](TSP_EXECUTION_REVISION_V2.md)。拟用续接目录为`runs/tsp-pilot-20261026-v2`（尚未启动，原窗口已过期）；v1保存前10份响应和**全局**API账本，v2所有新请求继续追加同一账本。本轮真实partial汇总使用v1；若获新时间窗口并正式建立续接，再使用v2。原v1不能直接在新源码下resume。两版解析准入及额外离线评价投入分开披露，不合并成未变更协议。
