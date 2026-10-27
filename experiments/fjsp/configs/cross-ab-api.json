@@ -1,0 +1,41 @@
+{
+  "schema": "experiment-operations-v1",
+  "question": "工程示例，toy成绩不作科研结论",
+  "space": "ten_h",
+  "H_source": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json",
+  "dataset": {
+    "role": "train",
+    "protocol": "runs/baseline-a-supplemental-T30-seed501-20261024-v1/Protocol.json"
+  },
+  "search_seed": 17,
+  "solve_seed": 501,
+  "instance_timeout": 30,
+  "window_seconds": 3600,
+  "api_mode": "real",
+  "real_requests_authorized": false,
+  "type": "cross_ab",
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "parent_pairs": [
+    [
+      "B/init/000006",
+      "B/init/000002"
+    ]
+  ],
+  "repeats": 1,
+  "api_attempt_cap": 3,
+  "per_candidate_attempt_cap": 2
+}

@@ -1,0 +1,97 @@
+{
+  "source_worktree": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-pilot",
+  "source_head": "7056f180a1d7f21c6b0d8d1144958c95f863b708",
+  "files": [
+    {
+      "path": "code/heuristic_design/problems/tsp/solver.py",
+      "source_sha256": "a2d514ec58585520d06e01c34b10ea81c29134d9ef1f9cd13821491bb73683a0",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/evaluation.py",
+      "source_sha256": "b74f8bbbe0a68c90b850e86c5e3f05b1cc647b631a87fd4fa54fab84e218d96e",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/__init__.py",
+      "source_sha256": "cb702c19dbfdb959d0e8336e35bd22ac67351592ddc57ba7b1de39e65000eb74",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/prompts.py",
+      "source_sha256": "e4b4e73a6fb0e892c347bfd57b4be5e7940558e0b95c5266be7490a7506e8774",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/campaign.py",
+      "source_sha256": "f8b138de62b7caaa110b1060b2be20a36c6fdd5848fe3d7cf7526b752e78dbcb",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/operations.py",
+      "source_sha256": "9077576b55c6f6131d965ea35199317fc9c62f3624c9668749f9abc759a6b62f",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/candidates.py",
+      "source_sha256": "3a1bb56c5d85018f047f5ef26dc3ed2d0a7681e5f338de8923b98e16330585fc",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/data.py",
+      "source_sha256": "ddd2ff79d7860baf11ada11b75a36fcea1d877e76f743578c49a2587c8242c6f",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "experiments/tsp/configs/pilot-real.json",
+      "source_sha256": "9984144e3214e064bf55d31b45d4701376cefa5fa631f344ccaa087590d7c407",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "experiments/tsp/configs/pilot-mock.json",
+      "source_sha256": "df23972ea9c856d5210dd47e95f0a68ecb90694ee4b209b96c97afd181dba1e0",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "experiments/tsp/manage.py",
+      "source_sha256": "ce2fdc4166921f2e5b432cb74a59947f4c21a2ffea45cedebd9dfb824950b3e7",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "tests/test_tsp_adapter.py",
+      "source_sha256": "9bc39f0744e0b20b25613896e8830eb4259142178c98c91d7fc0e3ab335a894c",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "docs/TSP_ADAPTER.md",
+      "source_sha256": "6ce874cfb98b386c32b0f40e7ed7f8e40dbc16610c7d4b4b0655ff758aff3e43",
+      "source_dirty_in_tsp": true
+    },
+    {
+      "path": "docs/TSP_EXECUTION_REVISION_V2.md",
+      "source_sha256": "21c2b15f1bc8cea9408c993e725946629c57d9ed2fe2ddbc85803cd5e31c12b0",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/core/mixing.py",
+      "source_sha256": "98cdd97e7c79d30cc0344be0fca2844d2565f672b2ca38f6932921a45a97e829",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/core/operators.py",
+      "source_sha256": "3e2da96fc8a58a38a3654472d04bb9585ccabd1043c02ab7c7ee444d45ae0b08",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/core/lifecycle.py",
+      "source_sha256": "be29289735b53a106f8956fe8a99ec0bba4f907f7ca20e61be925fb8f3d53666",
+      "source_dirty_in_tsp": false
+    },
+    {
+      "path": "code/heuristic_design/core/execution.py",
+      "source_sha256": "a40cc949314974eaef162da459a01fa7b666540624e47e67bd3c2e5b1b9ad80c",
+      "source_dirty_in_tsp": false
+    }
+  ],
+  "new_example_only_delta": "pilot-real real_requests_authorized=false; source worktree unchanged"
+}

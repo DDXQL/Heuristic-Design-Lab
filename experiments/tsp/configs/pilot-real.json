@@ -1,0 +1,24 @@
+{
+  "schema": "tsp-fixed-pilot-v1-20261026",
+  "api_mode": "real",
+  "real_requests_authorized": false,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "window_seconds": 43200,
+  "api_attempt_cap": 75,
+  "per_candidate_attempt_cap": 2,
+  "mock_delay_seconds": 0
+}

@@ -1,0 +1,162 @@
+{
+  "passed": true,
+  "FJSP_pairs": 4,
+  "FJSP_trace_passes": 8,
+  "FJSP_certified_passes": 8,
+  "TSP_toy_passes": 4,
+  "API_calls": 0,
+  "formal_searches": 0,
+  "compared": [
+    "all U inputs",
+    "all legal actions and scores",
+    "chosen actions",
+    "complete schedules/tours",
+    "Fitness",
+    "primary/recheck fingerprints and H calls"
+  ],
+  "certified": {
+    "H0_SELECT": {
+      "fitness": -1.3404761904761906,
+      "rows": [
+        {
+          "file": "toy.fjsp",
+          "makespan": 7,
+          "lower_bound": 6.0,
+          "score": -1.1666666666666667,
+          "physical_schedule_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+          "recheck_physical_schedule_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+          "commit_sequence_sha256": "9747a8fd8167dc46061676533e472b22dd384cd7cab58650871c100d4399304a",
+          "single_h_calls": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "recheck_h_calls": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "file": "Behnke1.fjsp",
+          "makespan": 106,
+          "lower_bound": 70.0,
+          "score": -1.5142857142857142,
+          "physical_schedule_sha256": "c53aa5d847f2022eb49987250b402198087b74f1a6bd16d60d503000cdffe127",
+          "recheck_physical_schedule_sha256": "c53aa5d847f2022eb49987250b402198087b74f1a6bd16d60d503000cdffe127",
+          "commit_sequence_sha256": "b8f505ea7525430cd4c26ce9dfb3dd82426db1999de803ca6cc206a18f40c981",
+          "single_h_calls": [
+            2880,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "recheck_h_calls": [
+            2880,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "equal": {
+      "fitness": -1.2976190476190477,
+      "rows": [
+        {
+          "file": "toy.fjsp",
+          "makespan": 7,
+          "lower_bound": 6.0,
+          "score": -1.1666666666666667,
+          "physical_schedule_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+          "recheck_physical_schedule_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+          "commit_sequence_sha256": "d41d45dbff29eb519f8f82f3063423960b4f8a39f8d10453ad6acc34be9f277f",
+          "single_h_calls": [
+            8,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "recheck_h_calls": [
+            8,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "file": "Behnke1.fjsp",
+          "makespan": 100,
+          "lower_bound": 70.0,
+          "score": -1.4285714285714286,
+          "physical_schedule_sha256": "275b6c7dac115c37fafb564babe267df1fd00d85d3a054b2e5cac5f865307cb5",
+          "recheck_physical_schedule_sha256": "275b6c7dac115c37fafb564babe267df1fd00d85d3a054b2e5cac5f865307cb5",
+          "commit_sequence_sha256": "fe006ced27c2c860582f0f38df7ca354f9dbd3af74965525d25407d5e5f76ca7",
+          "single_h_calls": [
+            2732,
+            2732,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "recheck_h_calls": [
+            2732,
+            2732,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "run": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/runs/multi-problem-layout-regression-20261027-v1"
+}

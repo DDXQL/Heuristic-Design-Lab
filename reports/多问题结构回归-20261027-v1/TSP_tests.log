@@ -1,0 +1,17 @@
+test_NN_rule_and_recheck (test_tsp_adapter.Tests.test_NN_rule_and_recheck) ... ok
+test_bound_config_change_is_rejected (test_tsp_adapter.Tests.test_bound_config_change_is_rejected) ... ok
+test_data (test_tsp_adapter.Tests.test_data) ... ok
+test_description_wrapper_compatibility_never_changes_code (test_tsp_adapter.Tests.test_description_wrapper_compatibility_never_changes_code) ... ok
+test_global_50_75_budget_survives_journal_reopen (test_tsp_adapter.Tests.test_global_50_75_budget_survives_journal_reopen) ... ok
+test_language (test_tsp_adapter.Tests.test_language) ... ok
+test_mixture_parity_and_invalid_outputs (test_tsp_adapter.Tests.test_mixture_parity_and_invalid_outputs) ... ok
+test_no_prefix_fitness (test_tsp_adapter.Tests.test_no_prefix_fitness) ... ok
+test_original_operator_instructions_and_independent_context (test_tsp_adapter.Tests.test_original_operator_instructions_and_independent_context) ... ok
+test_preview_never_calls_transport_or_solver (test_tsp_adapter.Tests.test_preview_never_calls_transport_or_solver) ... ok
+test_states_and_remaining_excludes_candidate (test_tsp_adapter.Tests.test_states_and_remaining_excludes_candidate) ... ok
+test_triangle_closing_edge_and_square_ties (test_tsp_adapter.Tests.test_triangle_closing_edge_and_square_ties) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 1.909s
+
+OK

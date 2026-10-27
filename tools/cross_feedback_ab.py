@@ -87,7 +87,11 @@ def parents_audit():
             if sha(path) != wi[when+'_sha256'] or witness['identity'] != digest(witness['modules']) or witness['identity'] != wi['loaded_identity']:
                 raise ValueError('parent child attestation mismatch')
             for module in witness['modules'].values():
-                source = Path(module['file']); relative = str(source.relative_to(ORIGIN/'source_snapshot'))
+                # Preserve the hash-bound historical path in the witness;
+                # read its pinned relative counterpart in this migrated tree.
+                from heuristic_design.problems.fjsp.provenance import relocated_snapshot_source
+                source, relative = relocated_snapshot_source(
+                    module['file'], p['source_snapshot'], ORIGIN/'source_snapshot')
                 if sha(source) != module['source_sha256'] or module['source_sha256'] != p['snapshot_files'][relative]:
                     raise ValueError('parent attested source changed')
                 files[str(source.relative_to(ROOT))] = sha(source)

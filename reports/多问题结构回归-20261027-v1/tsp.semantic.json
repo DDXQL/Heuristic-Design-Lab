@@ -1,0 +1,712 @@
+{
+  "select": [
+    {
+      "tour": [
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "length": 3.582411363459805,
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "progress": 0.0,
+            "current_to_start": 0.0,
+            "mean_distance_current": 0.7219594604305802,
+            "std_distance_current": 0.02100486042448836,
+            "previous_heuristic": -1
+          },
+          "remaining": [
+            1,
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 1,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.8020761493398643,
+              "nearest_remaining_distance": 0.6041522986797286,
+              "progress": 0.0
+            },
+            {
+              "city": 2,
+              "distance_current": 0.7516648189186454,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5594669028645393,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            },
+            {
+              "city": 3,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.7573907535246749,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.7071067811865475,
+              -0.7516648189186454,
+              -0.7071067811865475
+            ]
+          },
+          "scores": [
+            -0.7071067811865475,
+            -0.7516648189186454,
+            -0.7071067811865475
+          ],
+          "chosen": 1
+        },
+        {
+          "step": 1,
+          "state": {
+            "progress": 0.3333333333333333,
+            "current_to_start": 0.7071067811865475,
+            "mean_distance_current": 0.8020761493398643,
+            "std_distance_current": 0.19792385066013568,
+            "previous_heuristic": 0
+          },
+          "remaining": [
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 2,
+              "distance_current": 0.6041522986797286,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            },
+            {
+              "city": 3,
+              "distance_current": 1.0,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.6041522986797286,
+              -1.0
+            ]
+          },
+          "scores": [
+            -0.6041522986797286,
+            -1.0
+          ],
+          "chosen": 2
+        },
+        {
+          "step": 2,
+          "state": {
+            "progress": 0.6666666666666666,
+            "current_to_start": 0.7516648189186454,
+            "mean_distance_current": 0.5147815070493499,
+            "std_distance_current": 0.0,
+            "previous_heuristic": 0
+          },
+          "remaining": [
+            3
+          ],
+          "action_features": [
+            {
+              "city": 3,
+              "distance_current": 0.5147815070493499,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.0,
+              "nearest_remaining_distance": 0.0,
+              "progress": 0.6666666666666666
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.5147815070493499
+            ]
+          },
+          "scores": [
+            -0.5147815070493499
+          ],
+          "chosen": 3
+        }
+      ],
+      "h_calls": [
+        6,
+        0
+      ]
+    },
+    {
+      "tour": [
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "length": 3.582411363459805,
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "progress": 0.0,
+            "current_to_start": 0.0,
+            "mean_distance_current": 0.7219594604305802,
+            "std_distance_current": 0.02100486042448836,
+            "previous_heuristic": -1
+          },
+          "remaining": [
+            1,
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 1,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.8020761493398643,
+              "nearest_remaining_distance": 0.6041522986797286,
+              "progress": 0.0
+            },
+            {
+              "city": 2,
+              "distance_current": 0.7516648189186454,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5594669028645393,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            },
+            {
+              "city": 3,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.7573907535246749,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.7071067811865475,
+              -0.7516648189186454,
+              -0.7071067811865475
+            ]
+          },
+          "scores": [
+            -0.7071067811865475,
+            -0.7516648189186454,
+            -0.7071067811865475
+          ],
+          "chosen": 1
+        },
+        {
+          "step": 1,
+          "state": {
+            "progress": 0.3333333333333333,
+            "current_to_start": 0.7071067811865475,
+            "mean_distance_current": 0.8020761493398643,
+            "std_distance_current": 0.19792385066013568,
+            "previous_heuristic": 0
+          },
+          "remaining": [
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 2,
+              "distance_current": 0.6041522986797286,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            },
+            {
+              "city": 3,
+              "distance_current": 1.0,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.6041522986797286,
+              -1.0
+            ]
+          },
+          "scores": [
+            -0.6041522986797286,
+            -1.0
+          ],
+          "chosen": 2
+        },
+        {
+          "step": 2,
+          "state": {
+            "progress": 0.6666666666666666,
+            "current_to_start": 0.7516648189186454,
+            "mean_distance_current": 0.5147815070493499,
+            "std_distance_current": 0.0,
+            "previous_heuristic": 0
+          },
+          "remaining": [
+            3
+          ],
+          "action_features": [
+            {
+              "city": 3,
+              "distance_current": 0.5147815070493499,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.0,
+              "nearest_remaining_distance": 0.0,
+              "progress": 0.6666666666666666
+            }
+          ],
+          "mode": 0,
+          "support": [
+            0
+          ],
+          "weights": [
+            1.0,
+            0.0
+          ],
+          "raw_scores": {
+            "0": [
+              -0.5147815070493499
+            ]
+          },
+          "scores": [
+            -0.5147815070493499
+          ],
+          "chosen": 3
+        }
+      ],
+      "h_calls": [
+        6,
+        0
+      ]
+    }
+  ],
+  "ws": [
+    {
+      "tour": [
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "length": 3.582411363459805,
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "progress": 0.0,
+            "current_to_start": 0.0,
+            "mean_distance_current": 0.7219594604305802,
+            "std_distance_current": 0.02100486042448836,
+            "previous_heuristic": -1
+          },
+          "remaining": [
+            1,
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 1,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.8020761493398643,
+              "nearest_remaining_distance": 0.6041522986797286,
+              "progress": 0.0
+            },
+            {
+              "city": 2,
+              "distance_current": 0.7516648189186454,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5594669028645393,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            },
+            {
+              "city": 3,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.7573907535246749,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.7071067811865475,
+              -0.7516648189186454,
+              -0.7071067811865475
+            ],
+            "1": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "scores": [
+            0.4,
+            0.0,
+            0.4
+          ],
+          "chosen": 1
+        },
+        {
+          "step": 1,
+          "state": {
+            "progress": 0.3333333333333333,
+            "current_to_start": 0.7071067811865475,
+            "mean_distance_current": 0.8020761493398643,
+            "std_distance_current": 0.19792385066013568,
+            "previous_heuristic": 1
+          },
+          "remaining": [
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 2,
+              "distance_current": 0.6041522986797286,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            },
+            {
+              "city": 3,
+              "distance_current": 1.0,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.6041522986797286,
+              -1.0
+            ],
+            "1": [
+              0.1475125202389168,
+              -0.29289321881345254
+            ]
+          },
+          "scores": [
+            1.0,
+            0.0
+          ],
+          "chosen": 2
+        },
+        {
+          "step": 2,
+          "state": {
+            "progress": 0.6666666666666666,
+            "current_to_start": 0.7516648189186454,
+            "mean_distance_current": 0.5147815070493499,
+            "std_distance_current": 0.0,
+            "previous_heuristic": 1
+          },
+          "remaining": [
+            3
+          ],
+          "action_features": [
+            {
+              "city": 3,
+              "distance_current": 0.5147815070493499,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.0,
+              "nearest_remaining_distance": 0.0,
+              "progress": 0.6666666666666666
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.5147815070493499
+            ],
+            "1": [
+              0.19232527413719758
+            ]
+          },
+          "scores": [
+            0.0
+          ],
+          "chosen": 3
+        }
+      ],
+      "h_calls": [
+        6,
+        6
+      ]
+    },
+    {
+      "tour": [
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "length": 3.582411363459805,
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "progress": 0.0,
+            "current_to_start": 0.0,
+            "mean_distance_current": 0.7219594604305802,
+            "std_distance_current": 0.02100486042448836,
+            "previous_heuristic": -1
+          },
+          "remaining": [
+            1,
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 1,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.8020761493398643,
+              "nearest_remaining_distance": 0.6041522986797286,
+              "progress": 0.0
+            },
+            {
+              "city": 2,
+              "distance_current": 0.7516648189186454,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5594669028645393,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            },
+            {
+              "city": 3,
+              "distance_current": 0.7071067811865475,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.7573907535246749,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.0
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.7071067811865475,
+              -0.7516648189186454,
+              -0.7071067811865475
+            ],
+            "1": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "scores": [
+            0.4,
+            0.0,
+            0.4
+          ],
+          "chosen": 1
+        },
+        {
+          "step": 1,
+          "state": {
+            "progress": 0.3333333333333333,
+            "current_to_start": 0.7071067811865475,
+            "mean_distance_current": 0.8020761493398643,
+            "std_distance_current": 0.19792385066013568,
+            "previous_heuristic": 1
+          },
+          "remaining": [
+            2,
+            3
+          ],
+          "action_features": [
+            {
+              "city": 2,
+              "distance_current": 0.6041522986797286,
+              "distance_start": 0.7516648189186454,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            },
+            {
+              "city": 3,
+              "distance_current": 1.0,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.5147815070493499,
+              "nearest_remaining_distance": 0.5147815070493499,
+              "progress": 0.3333333333333333
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.6041522986797286,
+              -1.0
+            ],
+            "1": [
+              0.1475125202389168,
+              -0.29289321881345254
+            ]
+          },
+          "scores": [
+            1.0,
+            0.0
+          ],
+          "chosen": 2
+        },
+        {
+          "step": 2,
+          "state": {
+            "progress": 0.6666666666666666,
+            "current_to_start": 0.7516648189186454,
+            "mean_distance_current": 0.5147815070493499,
+            "std_distance_current": 0.0,
+            "previous_heuristic": 1
+          },
+          "remaining": [
+            3
+          ],
+          "action_features": [
+            {
+              "city": 3,
+              "distance_current": 0.5147815070493499,
+              "distance_start": 0.7071067811865475,
+              "mean_remaining_distance": 0.0,
+              "nearest_remaining_distance": 0.0,
+              "progress": 0.6666666666666666
+            }
+          ],
+          "mode": 1,
+          "support": [
+            0,
+            1
+          ],
+          "weights": [
+            0.4,
+            0.6
+          ],
+          "raw_scores": {
+            "0": [
+              -0.5147815070493499
+            ],
+            "1": [
+              0.19232527413719758
+            ]
+          },
+          "scores": [
+            0.0
+          ],
+          "chosen": 3
+        }
+      ],
+      "h_calls": [
+        6,
+        6
+      ]
+    }
+  ]
+}

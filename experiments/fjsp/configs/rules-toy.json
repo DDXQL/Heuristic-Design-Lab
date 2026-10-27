@@ -1,0 +1,34 @@
+{
+  "schema": "experiment-operations-v1",
+  "question": "工程示例，toy成绩不作科研结论",
+  "space": "h01",
+  "H_source": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json",
+  "dataset": {
+    "role": "engineering",
+    "files": [
+      "experiments/tier2/ops/data/toy.fjsp"
+    ]
+  },
+  "search_seed": 17,
+  "solve_seed": 501,
+  "instance_timeout": 30,
+  "window_seconds": 3600,
+  "api_mode": "disabled",
+  "real_requests_authorized": false,
+  "type": "rules",
+  "rule_filter": {
+    "tau": [
+      0.5
+    ],
+    "alpha_before": [
+      0,
+      0.5,
+      1
+    ],
+    "alpha_after": [
+      0,
+      0.5,
+      1
+    ]
+  }
+}

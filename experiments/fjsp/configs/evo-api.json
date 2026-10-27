@@ -1,0 +1,64 @@
+{
+  "schema": "experiment-operations-v1",
+  "question": "工程示例，toy成绩不作科研结论",
+  "space": "h01",
+  "H_source": "reports/h01-champion-hurink-rdata20-seed501-20261026-v1/H_frozen.json",
+  "dataset": {
+    "role": "engineering",
+    "files": [
+      "experiments/tier2/ops/data/toy.fjsp"
+    ]
+  },
+  "search_seed": 17,
+  "solve_seed": 501,
+  "instance_timeout": 30,
+  "window_seconds": 3600,
+  "api_mode": "real",
+  "real_requests_authorized": false,
+  "type": "evo",
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "p0": [
+    {
+      "id": "P0/a000",
+      "alpha": 0
+    },
+    {
+      "id": "P0/a025",
+      "alpha": 0.25
+    },
+    {
+      "id": "P0/a050",
+      "alpha": 0.5
+    },
+    {
+      "id": "P0/a075",
+      "alpha": 0.75
+    },
+    {
+      "id": "P0/a100",
+      "alpha": 1
+    }
+  ],
+  "population_size": 5,
+  "generations": 1,
+  "cross_per_generation": 1,
+  "mutate_per_generation": 1,
+  "cross_parents": 5,
+  "api_attempt_cap": 3,
+  "per_candidate_attempt_cap": 2,
+  "prompt_overrides": {}
+}

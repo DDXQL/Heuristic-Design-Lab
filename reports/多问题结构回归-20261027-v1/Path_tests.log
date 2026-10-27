@@ -1,0 +1,15 @@
+test_fjsp_surface_is_same_implementation (test_problem_layout.Tests.test_fjsp_surface_is_same_implementation) ... ok
+test_relocation_is_relative_not_fallback_to_old_directory (test_problem_layout.Tests.test_relocation_is_relative_not_fallback_to_old_directory) ... FAIL
+
+======================================================================
+FAIL: test_relocation_is_relative_not_fallback_to_old_directory (test_problem_layout.Tests.test_relocation_is_relative_not_fallback_to_old_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/tests/test_problem_layout.py", line 16, in test_relocation_is_relative_not_fallback_to_old_directory
+    self.assertEqual(path, expected)
+AssertionError: PosixPath('/private/var/folders/y3/1mhk00ms01b0bb25v5[39 chars].py') != PosixPath('/var/folders/y3/1mhk00ms01b0bb25v5rvmmf400[31 chars].py')
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.091s
+
+FAILED (failures=1)

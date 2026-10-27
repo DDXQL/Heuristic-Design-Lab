@@ -1,0 +1,77 @@
+[
+  {
+    "command": [
+      "experiments/manage.py",
+      "--help"
+    ],
+    "exit": 0,
+    "stdout": "usage: manage.py --problem {fjsp,tsp}\n\nProblem router only. Subcommand help/preview is supplied by each real CLI.\n\noptions:\n  --problem {fjsp,tsp}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/manage.py",
+      "--problem",
+      "fjsp",
+      "--help"
+    ],
+    "exit": 0,
+    "stdout": "usage: manage.py [-h]\n                 {doctor,types,check,plan,prepare,run,resume,status,stop,summary,_work}\n                 ...\n\nThin configurable operations adapter over existing H/U/API/T30 components. Not\na replacement for frozen campaign controllers or Tier1 workflows.\n\npositional arguments:\n  {doctor,types,check,plan,prepare,run,resume,status,stop,summary,_work}\n    doctor              local environment only; no network\n    types               list supported types and example configs\n\noptions:\n  -h, --help            show this help message and exit\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/manage.py",
+      "--problem",
+      "tsp",
+      "--help"
+    ],
+    "exit": 0,
+    "stdout": "usage: manage.py [-h]\n                 {doctor,test,check,plan,prepare,run,resume,status,summary,stop,_campaign,_work}\n                 ...\n\nConstructive TSP pilot; help/check/plan do not call API or solve.\n\npositional arguments:\n  {doctor,test,check,plan,prepare,run,resume,status,summary,stop,_campaign,_work}\n\noptions:\n  -h, --help            show this help message and exit\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/manage.py",
+      "--problem",
+      "fjsp",
+      "doctor"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"executable\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python\",\n  \"worktree\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space\",\n  \"dependencies\": {\n    \"numpy\": \"2.5.4\",\n    \"pytz\": \"2026.5\",\n    \"tqdm\": \"4.70.1\"\n  },\n  \"LEAFAPI_API_KEY_present\": false,\n  \"network_queries\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/manage.py",
+      "--problem",
+      "tsp",
+      "doctor"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"root\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space\",\n  \"key_present\": false,\n  \"API\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/fjsp/manage.py",
+      "plan",
+      "--config",
+      "experiments/fjsp/configs/fixed-toy.json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"type\": \"fixed\",\n  \"space\": \"ten_h\",\n  \"budgets\": {\n    \"logical_generation\": 0,\n    \"manual_or_P0_evaluations\": 2,\n    \"API_attempts\": 0,\n    \"max_program_instances\": 2,\n    \"max_solve_passes\": 4\n  },\n  \"instances\": [\n    \"toy.fjsp\"\n  ],\n  \"API_calls\": 0,\n  \"solves\": 0,\n  \"tasks\": [\n    {\n      \"id\": \"H0_SELECT\",\n      \"stage\": \"fixed\"\n    },\n    {\n      \"id\": \"equal\",\n      \"stage\": \"fixed\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "experiments/tsp/manage.py",
+      "plan",
+      "--config",
+      "experiments/tsp/configs/pilot-mock.json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"config\": {\n    \"schema\": \"tsp-fixed-pilot-v1-20261026\",\n    \"api_mode\": \"mock\",\n    \"real_requests_authorized\": false,\n    \"provider\": {\n      \"endpoint\": \"https://leafapi.cc/v1/chat/completions\",\n      \"model\": \"gpt-6.1-sol\",\n      \"protocol\": \"openai-chat-v1\",\n      \"api_key_env\": \"LEAFAPI_API_KEY\",\n      \"connect_timeout\": 10,\n      \"read_timeout\": 240,\n      \"total_timeout\": 300,\n      \"max_output_tokens\": 8192,\n      \"max_prompt_bytes\": 262144,\n      \"temperature\": null,\n      \"reasoning_effort\": null,\n      \"expected_response_model\": \"gpt-6.1-sol\",\n      \"stream_response\": false\n    },\n    \"window_seconds\": 43200,\n    \"api_attempt_cap\": 75,\n    \"per_candidate_attempt_cap\": 2,\n    \"mock_delay_seconds\": 0\n  },\n  \"API\": 0,\n  \"solves\": 0,\n  \"stages\": {\n    \"H\": 10,\n    \"IND_701\": 10,\n    \"IND_702\": 10,\n    \"EVO_801\": 10,\n    \"EVO_802\": 10\n  },\n  \"global_API_attempt_cap\": 75\n}\n",
+    "stderr": ""
+  }
+]

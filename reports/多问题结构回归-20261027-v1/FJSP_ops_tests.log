@@ -1,0 +1,33 @@
+test_background_pause_resume_preserves_budget_clock_and_response (test_experiment_ops.Tests.test_background_pause_resume_preserves_budget_clock_and_response) ... ok
+test_config_identity_mismatch_and_unknown_reservation_refuse_resume (test_experiment_ops.Tests.test_config_identity_mismatch_and_unknown_reservation_refuse_resume) ... ok
+test_cross_ab_template_and_authentic_parent_binding_without_solves (test_experiment_ops.Tests.test_cross_ab_template_and_authentic_parent_binding_without_solves) ... ERROR
+test_expired_deadline_and_unknown_lock_never_cleared (test_experiment_ops.Tests.test_expired_deadline_and_unknown_lock_never_cleared) ... ok
+test_full_rules_and_exact_existing_semantics (test_experiment_ops.Tests.test_full_rules_and_exact_existing_semantics) ... ok
+test_independent_template_no_parents_or_history_and_tenH_support (test_experiment_ops.Tests.test_independent_template_no_parents_or_history_and_tenH_support) ... ok
+test_mock_evolution_two_slots_and_generation_update (test_experiment_ops.Tests.test_mock_evolution_two_slots_and_generation_update) ... ok
+test_no_implicit_fee_or_account_gate (test_experiment_ops.Tests.test_no_implicit_fee_or_account_gate) ... ok
+test_preview_is_readonly_no_provider_or_solver (test_experiment_ops.Tests.test_preview_is_readonly_no_provider_or_solver) ... ok
+test_real_API_gate_fails_before_launch_or_network (test_experiment_ops.Tests.test_real_API_gate_fails_before_launch_or_network) ... ok
+test_unknown_API_attempt_never_released_or_resent (test_experiment_ops.Tests.test_unknown_API_attempt_never_released_or_resent) ... ok
+
+======================================================================
+ERROR: test_cross_ab_template_and_authentic_parent_binding_without_solves (test_experiment_ops.Tests.test_cross_ab_template_and_authentic_parent_binding_without_solves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/tests/test_experiment_ops.py", line 130, in test_cross_ab_template_and_authentic_parent_binding_without_solves
+    c=self.config('cross-ab-api');d=o.describe(c)
+                                    ^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/tools/experiment_ops.py", line 140, in describe
+    parents,source_h,science,pins,_=parents_audit()
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/tools/cross_feedback_ab.py", line 90, in parents_audit
+    source = Path(module['file']); relative = str(source.relative_to(ORIGIN/'source_snapshot'))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot/tools/b1_ns_recovery.py' is not in the subpath of '/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/runs/b1-ns-recovery-B-v1-20261022/source_snapshot'
+
+----------------------------------------------------------------------
+Ran 11 tests in 14.389s
+
+FAILED (errors=1)

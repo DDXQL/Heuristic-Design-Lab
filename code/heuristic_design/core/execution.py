@@ -101,10 +101,13 @@ def work(directory,*,adapter):
         o.write(directory/'Run_identity.json',{'pid':os.getpid(),'ppid':os.getppid(),'sid':os.getsid(0),'at':time.time()})
         journal=None
         if p['budgets']['logical_generation']:
-            inner=o.transport(p)
-            wire=WireRecorder(inner,directory/'wire_responses',verify=lambda:o.check_run(directory))
-            journal=AttemptJournal(directory/'API_attempts.json',config=o.client_config(p),context=s['identity'],phase='operations/'+s['identity'],
-                transport=DeadlineTransport(wire,clock['deadline']))
+            if hasattr(o,'journal'):
+                journal=o.journal(directory,s,p,clock['deadline'])
+            else:
+                inner=o.transport(p)
+                wire=WireRecorder(inner,directory/'wire_responses',verify=lambda:o.check_run(directory))
+                journal=AttemptJournal(directory/'API_attempts.json',config=o.client_config(p),context=s['identity'],phase='operations/'+s['identity'],
+                    transport=DeadlineTransport(wire,clock['deadline']))
         members=o.members(directory)
         plan=o.read(directory/'Tasks.json');rng=random.Random(p['config']['search_seed'])
         if s.get('rng'):rng.setstate(_tuple_tree(s['rng']))
@@ -127,7 +130,7 @@ def work(directory,*,adapter):
                 record['parents']=[r['id'] for r in parents];record['parent_keys']=[r['candidate']['key'] for r in parents]
                 prompt=o.build_prompt(p['config'],task,parents,members);record['prompt']=prompt
                 (directory/'prompts').mkdir(exist_ok=True);o.write(directory/'prompts'/(f'{index:05d}.json'),{'id':tid,'prompt':prompt})
-                reply=journal.request(tid,prompt,kind='U');record['generation_status']=reply['status']
+                reply=journal.request(tid,prompt,kind=p['config'].get('candidate_kind','U'));record['generation_status']=reply['status']
                 if journal.data['halt_reason']:raise ValueError('API Stop: '+journal.data['halt_reason'])
                 if reply['status']=='completed':
                     s['transport_failure_streak']=0
