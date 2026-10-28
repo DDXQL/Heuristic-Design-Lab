@@ -15,3 +15,6 @@ data/fjsp/*.fjsp
 
 # Local scientific backups: paths and SHA are committed, large bytes stay local.
 archives/
+
+# Local environment symlink is not a distributable project asset.
+/.venv

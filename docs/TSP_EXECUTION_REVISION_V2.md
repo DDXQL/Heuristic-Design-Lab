@@ -12,7 +12,7 @@
 
 修复通过12项检查。额外用已经完成50任务的Mock账本做全流程重放：必须不增加任何Mock尝试、沿用原响应并保持原时窗。原Mock源快照和两版验收日志保留。
 
-本轮实际续接命令（已有目录不得重新prepare）：
+原窗口内的续接命令模板（真实v2尚未创建；2026-10-27原窗口已过期，不能直接执行run或重置时钟）：
 
 ```sh
 .venv/bin/python -B experiments/tsp/manage.py prepare --config experiments/tsp/configs/pilot-real.json --directory runs/tsp-pilot-20261026-v2 --continue-from runs/tsp-pilot-20261026-v1
@@ -22,3 +22,16 @@
 ```
 
 安全暂停后的resume仍指向v2，不能直接恢复绑定旧源码的v1。`--continue-from`只用于有完整已知账本、无活跃writer的显式工程续接，不能消除未知状态，不能改变provider/预算/数据/原截止。本轮后不得将剩余额度用于追加研究。
+
+## 已获新窗口授权（2026-10-27回复，下一次实际启动起算）
+
+用户明确回复“允许新窗口，预算不变”。新增窗口最多43200秒，首次启动持久化，后续暂停恢复不重置。原v1 Protocol、Run_clock和前10条请求/尝试不变；v2保存Original_clock及新窗口授权/时钟回执，全部请求仍使用v1原账本。授权记录位于`reports/tsp-pilot-20261027-continuation/Window_authorization.json`。
+
+实际续接命令：
+
+```sh
+.venv/bin/python -B experiments/tsp/manage.py prepare --config experiments/tsp/configs/pilot-real.json --directory runs/tsp-pilot-20261026-v2 --continue-from runs/tsp-pilot-20261026-v1 --renew-window-seconds 43200 --window-authorization reports/tsp-pilot-20261027-continuation/Window_authorization.json
+.venv/bin/python -B experiments/tsp/manage.py run --directory runs/tsp-pilot-20261026-v2 --allow-api --env-file '/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research/.env.leafapi.local' --background
+```
+
+新窗口不增加H任务，不重发旧完整响应，不增加总50/75限额。13项测试包括原时钟保留、新窗口仅首次启动计时、恢复不重置和时钟篡改拒绝。

@@ -1,0 +1,43 @@
+{
+  "status": "PARTIAL_WINDOW_EXPIRED_AFTER_FORMAT_REPAIR",
+  "raw_campaign_phase": "paused",
+  "original_protocol_sha256": "edb0aa4f282968481ad24f5255912286aee11a3776978069f2aaf83231f7b49c",
+  "planned_logical": 50,
+  "used_logical": 10,
+  "planned_API_attempts": 75,
+  "used_API_attempts": 10,
+  "complete_responses": 10,
+  "unknown_attempts": 0,
+  "H_requests": 10,
+  "U_requests": 0,
+  "H_v1_parse_failures": 10,
+  "H_v2_offline_AST_valid": 10,
+  "physical_program_instances": 100,
+  "captured_solve_passes": 200,
+  "known_input_tokens": 22550,
+  "known_output_tokens": 15398,
+  "unknown_usage_attempts": 0,
+  "platform_points": null,
+  "verified_currency_cost": null,
+  "original_deadline_epoch": 1793066966.186833,
+  "window_expired": true,
+  "new_real_continuation_started": false,
+  "not_completed": [
+    "LLM H train re-admission/evaluation and final H freeze",
+    "static U baselines and common P0",
+    "2 IND/2 EVO searches",
+    "validation selection",
+    "confirmation/transfer"
+  ],
+  "completed": [
+    "generic extraction commit and full FJSP regression",
+    "TSP implementation and geometry/AST/MIX tests",
+    "full Mock and safe pause/resume",
+    "global 50/75/2 guard tests",
+    "12 tests after description wrapper repair",
+    "full Mock ledger continuation with zero extra dispatches"
+  ],
+  "no_budget_reset": true,
+  "no_push": true,
+  "no_remote_or_main_directory_rename": true
+}

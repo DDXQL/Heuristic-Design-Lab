@@ -1,0 +1,17 @@
+test_NN_rule_and_recheck (test_tsp_adapter.Tests.test_NN_rule_and_recheck) ... ok
+test_data (test_tsp_adapter.Tests.test_data) ... ok
+test_language (test_tsp_adapter.Tests.test_language) ... ok
+test_mixture_parity_and_invalid_outputs (test_tsp_adapter.Tests.test_mixture_parity_and_invalid_outputs) ... ok
+test_no_prefix_fitness (test_tsp_adapter.Tests.test_no_prefix_fitness) ... ok
+test_states_and_remaining_excludes_candidate (test_tsp_adapter.Tests.test_states_and_remaining_excludes_candidate) ... ok
+test_triangle_closing_edge_and_square_ties (test_tsp_adapter.Tests.test_triangle_closing_edge_and_square_ties) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.256s
+
+OK
+{
+  "passed": true,
+  "tests": 7,
+  "real_API": 0
+}

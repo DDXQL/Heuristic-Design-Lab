@@ -1,0 +1,131 @@
+{
+  "role": "independent engineering toys; no original train/validation/confirmation/transfer instances",
+  "H": [
+    {
+      "description": "Human-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n",
+      "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+      "kind": "h"
+    },
+    {
+      "description": "Human-designed manual_NN: -distance_current",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+      "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+      "kind": "h"
+    },
+    {
+      "description": "Human-designed manual_spread: -distance_current + 0.15 * (mean_remaining_distance-nearest_remaining_distance)",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * (mean_remaining_distance - nearest_remaining_distance)\n",
+      "key": "4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933",
+      "kind": "h"
+    },
+    {
+      "description": "Human-designed manual_return_bias: -distance_current - 0.25 * (1-progress) * distance_start",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.25 * (1 - progress) * distance_start\n",
+      "key": "52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4",
+      "kind": "h"
+    },
+    {
+      "description": "Human-designed manual_remaining_mean: -distance_current - 0.2 * mean_remaining_distance",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.2 * mean_remaining_distance\n",
+      "key": "393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc",
+      "kind": "h"
+    }
+  ],
+  "policies": {
+    "SELECT_NN": {
+      "description": "toy fixture",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (0, 1, 0, 0, 0))\n",
+      "key": "59f5e33262821565bed7c6e9bac19c5f9443f9204448b6d5a585b200dc39f3e4",
+      "kind": "U"
+    },
+    "equal_pair": {
+      "description": "toy fixture",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+      "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+      "kind": "U"
+    },
+    "frozen_generated_dynamic": {
+      "description": "frozen train champion on independent toy",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    if progress < 0.5 and std_distance_current > 0.12:\n        return (1, (0.7, 0, 0.3, 0, 0))\n    return (1, (1, 0, 0, 0, 0))\n",
+      "key": "df0a96d353846c01433c5756e3ff7d37ad4419819c90202a6c309cbb968b69c2",
+      "kind": "U"
+    },
+    "frozen_final": {
+      "description": "Static (0, 1)",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+      "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+      "kind": "U"
+    }
+  },
+  "coordinates": {
+    "triangle": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "square": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "seven": [
+      [
+        0.02,
+        0.1
+      ],
+      [
+        0.9,
+        0.13
+      ],
+      [
+        0.2,
+        0.8
+      ],
+      [
+        0.52,
+        0.48
+      ],
+      [
+        0.75,
+        0.9
+      ],
+      [
+        0.11,
+        0.42
+      ],
+      [
+        0.96,
+        0.65
+      ]
+    ]
+  },
+  "fixture_runtime": {
+    "python_major_minor": [
+      3,
+      12
+    ]
+  }
+}

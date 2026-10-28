@@ -1,0 +1,26 @@
+test_archive_maps_names_without_old_filesystem_fallback (tests.test_tsp_integration.Tests.test_archive_maps_names_without_old_filesystem_fallback) ... ok
+test_foreign_archive_is_rejected_before_any_old_path_read_or_write (tests.test_tsp_integration.Tests.test_foreign_archive_is_rejected_before_any_old_path_read_or_write) ... ok
+test_real_api_default_gate_is_preserved (tests.test_tsp_integration.Tests.test_real_api_default_gate_is_preserved) ... ok
+test_shared_core_pause_resume_keeps_clock_budget_and_first_response (tests.test_tsp_integration.Tests.test_shared_core_pause_resume_keeps_clock_budget_and_first_response) ... ok
+test_source_identity_and_unknown_attempt_are_not_replayed (tests.test_tsp_integration.Tests.test_source_identity_and_unknown_attempt_are_not_replayed) ... ok
+test_cache_identity_binds_policy_member_order_and_science (tests.test_state_contracts.Tests.test_cache_identity_binds_policy_member_order_and_science) ... ok
+test_draft_unknown_and_cross_problem_never_execute (tests.test_state_contracts.Tests.test_draft_unknown_and_cross_problem_never_execute) ... ok
+test_explicit_legacy_packet_no_online_input_change (tests.test_state_contracts.Tests.test_explicit_legacy_packet_no_online_input_change) ... ok
+test_missing_terminal_nonfinite_and_wrong_id_rejected (tests.test_state_contracts.Tests.test_missing_terminal_nonfinite_and_wrong_id_rejected) ... ok
+test_names_match_real_legacy_signatures (tests.test_state_contracts.Tests.test_names_match_real_legacy_signatures) ... ok
+test_old_cache_and_tampered_binding_never_auto_upgrade (tests.test_state_contracts.Tests.test_old_cache_and_tampered_binding_never_auto_upgrade) ... ok
+test_router_rejects_draft_before_problem_entry (tests.test_state_contracts.Tests.test_router_rejects_draft_before_problem_entry) ... ok
+test_fjsp_surface_is_same_implementation (tests.test_problem_layout.Tests.test_fjsp_surface_is_same_implementation) ... ok
+test_relocation_is_relative_not_fallback_to_old_directory (tests.test_problem_layout.Tests.test_relocation_is_relative_not_fallback_to_old_directory) ... ok
+test_triangle_closing_edge_and_square_ties (tests.test_tsp_adapter.Tests.test_triangle_closing_edge_and_square_ties) ... ok
+test_states_and_remaining_excludes_candidate (tests.test_tsp_adapter.Tests.test_states_and_remaining_excludes_candidate) ... ok
+test_mixture_parity_and_invalid_outputs (tests.test_tsp_adapter.Tests.test_mixture_parity_and_invalid_outputs) ... ok
+test_language (tests.test_tsp_adapter.Tests.test_language) ... ok
+test_description_wrapper_compatibility_never_changes_code (tests.test_tsp_adapter.Tests.test_description_wrapper_compatibility_never_changes_code) ... ok
+test_preview_never_calls_transport_or_solver (tests.test_tsp_adapter.Tests.test_preview_never_calls_transport_or_solver) ... ok
+test_global_50_75_budget_survives_journal_reopen (tests.test_tsp_adapter.Tests.test_global_50_75_budget_survives_journal_reopen) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.602s
+
+OK

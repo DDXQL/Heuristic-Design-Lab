@@ -1,0 +1,17 @@
+{
+  "original_state": {
+    "phase": "paused",
+    "current_stage": "H",
+    "completed_stages": [
+      "manual-H",
+      "H"
+    ],
+    "started_at": 1793023766.187142,
+    "reason": "campaign paused before stage static"
+  },
+  "logical": 10,
+  "API_attempts": 10,
+  "all_complete": true,
+  "new_U_requests": 0,
+  "repair": "description wrapper only; source code unmodified; old run preserved"
+}

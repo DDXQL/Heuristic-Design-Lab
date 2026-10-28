@@ -1,0 +1,111 @@
+{
+  "report": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot/reports/tsp-pilot-20261028-complete/REPORT_ZH.md",
+  "frozen_H_manual": 5,
+  "final_same_AST_as_static": true,
+  "search": [
+    {
+      "method": "IND_701",
+      "P0_best": -0.9767105276580079,
+      "valid_new": 10,
+      "AST_duplicates": 1,
+      "best_new": -0.9857598779560671,
+      "best_so_far": -0.9767105276580079,
+      "champion_id": "static_H0_H1_equal",
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "failed": 0
+    },
+    {
+      "method": "IND_702",
+      "P0_best": -0.9767105276580079,
+      "valid_new": 10,
+      "AST_duplicates": 0,
+      "best_new": -0.9784588353554342,
+      "best_so_far": -0.9767105276580079,
+      "champion_id": "static_H0_H1_equal",
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "failed": 0
+    },
+    {
+      "method": "EVO_801",
+      "P0_best": -0.9767105276580079,
+      "valid_new": 10,
+      "AST_duplicates": 0,
+      "best_new": -0.9729656391966077,
+      "best_so_far": -0.9729656391966077,
+      "champion_id": "EVO_801/000",
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "failed": 0
+    },
+    {
+      "method": "EVO_802",
+      "P0_best": -0.9767105276580079,
+      "valid_new": 10,
+      "AST_duplicates": 0,
+      "best_new": -0.9776141691891469,
+      "best_so_far": -0.9767105276580079,
+      "champion_id": "static_H0_H1_equal",
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "failed": 0
+    }
+  ],
+  "comparisons": {
+    "confirmation": {
+      "instances": 20,
+      "final_total_length": 134.10470488851414,
+      "static_total_length": 134.10470488851414,
+      "final_fitness": -0.9880261119562419,
+      "static_fitness": -0.9880261119562419,
+      "wins": 0,
+      "losses": 0,
+      "ties": 20,
+      "deltas": {
+        "confirmation_000.json": 0.0,
+        "confirmation_001.json": 0.0,
+        "confirmation_002.json": 0.0,
+        "confirmation_003.json": 0.0,
+        "confirmation_004.json": 0.0,
+        "confirmation_005.json": 0.0,
+        "confirmation_006.json": 0.0,
+        "confirmation_007.json": 0.0,
+        "confirmation_008.json": 0.0,
+        "confirmation_009.json": 0.0,
+        "confirmation_010.json": 0.0,
+        "confirmation_011.json": 0.0,
+        "confirmation_012.json": 0.0,
+        "confirmation_013.json": 0.0,
+        "confirmation_014.json": 0.0,
+        "confirmation_015.json": 0.0,
+        "confirmation_016.json": 0.0,
+        "confirmation_017.json": 0.0,
+        "confirmation_018.json": 0.0,
+        "confirmation_019.json": 0.0
+      }
+    },
+    "transfer": {
+      "instances": 10,
+      "final_total_length": 95.51648311557452,
+      "static_total_length": 95.51648311557452,
+      "final_fitness": -0.9932904866482446,
+      "static_fitness": -0.9932904866482446,
+      "wins": 0,
+      "losses": 0,
+      "ties": 10,
+      "deltas": {
+        "transfer_000.json": 0.0,
+        "transfer_001.json": 0.0,
+        "transfer_002.json": 0.0,
+        "transfer_003.json": 0.0,
+        "transfer_004.json": 0.0,
+        "transfer_005.json": 0.0,
+        "transfer_006.json": 0.0,
+        "transfer_007.json": 0.0,
+        "transfer_008.json": 0.0,
+        "transfer_009.json": 0.0
+      }
+    }
+  }
+}

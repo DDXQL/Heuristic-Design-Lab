@@ -1,0 +1,44 @@
+{
+  "final": {
+    "id": "static_H0_H1_equal",
+    "stage": "fixed",
+    "status": "completed",
+    "valid": true,
+    "fitness": -0.9590634896572261,
+    "parents": [],
+    "AST_duplicate": false,
+    "cache_hit": false,
+    "failure": null,
+    "error": null,
+    "generation_status": null,
+    "candidate": {
+      "description": "Static (0, 1)",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+      "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+      "kind": "U"
+    }
+  },
+  "static_reference": {
+    "id": "static_H0_H1_equal",
+    "stage": "fixed",
+    "status": "completed",
+    "valid": true,
+    "fitness": -0.9767105276580079,
+    "parents": [],
+    "AST_duplicate": false,
+    "cache_hit": false,
+    "failure": null,
+    "error": null,
+    "generation_status": null,
+    "candidate": {
+      "description": "Static (0, 1)",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+      "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+      "kind": "U"
+    }
+  },
+  "candidate_list_sha256": "9e16cc3a1df96bd40ebf6805f86ed84e9c30e0b7f6d1413ba57639c9e2b4b725",
+  "validation_stage_sha256": "5b199dd7c836cf69dc54888ec976d23fb6a6d021701d4a811a17b3c1d139af75",
+  "frozen_at": 1793117977.737749,
+  "no_more_generation": true
+}

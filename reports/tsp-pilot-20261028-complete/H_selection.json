@@ -1,0 +1,146 @@
+{
+  "ordered_members": [
+    "manual_far_early",
+    "manual_NN",
+    "manual_spread",
+    "manual_return_bias",
+    "manual_remaining_mean"
+  ],
+  "dispositions": [
+    {
+      "id": "manual_NN",
+      "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+      "fitness": -1.0,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "manual",
+      "final_disposition": "selected"
+    },
+    {
+      "id": "manual_return_bias",
+      "key": "52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4",
+      "fitness": -1.012481985286656,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "manual",
+      "final_disposition": "selected"
+    },
+    {
+      "id": "manual_far_early",
+      "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+      "fitness": -0.9900181489498406,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "manual",
+      "final_disposition": "selected"
+    },
+    {
+      "id": "manual_remaining_mean",
+      "key": "393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc",
+      "fitness": -1.0484336305709878,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "manual",
+      "final_disposition": "selected"
+    },
+    {
+      "id": "manual_spread",
+      "key": "4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933",
+      "fitness": -1.0034211042319634,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "manual",
+      "final_disposition": "selected"
+    },
+    {
+      "id": "H/000",
+      "key": "0e09d8ff98cea4c1b053bddef4bbddabdff85faec46a2ee38ce25354b74660a9",
+      "fitness": -1.1584979308887515,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/001",
+      "key": "35692fc94e8b9ccd19ed491c70f7774684d16b0affdf441c6893afe62cf6aaaa",
+      "fitness": -1.1664886279602698,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/002",
+      "key": "7ca51eebe4e4545bd925c6c981ff77bb88a16937f42bbce8c766d955cffdb3c8",
+      "fitness": -1.1562900238878469,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/003",
+      "key": "2e1fd67cf3aeeb1f3a7bba0b0aae219a7f68a5822908f1caeac1171fcc79c06b",
+      "fitness": -1.163670033234184,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/004",
+      "key": "9bc3dbaefc2fa37ebf734094571e61fa05dec664867c2296af602c56a74a870d",
+      "fitness": -1.1716309571627623,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/005",
+      "key": "5d47697a4069ab5fa7697b67804791cda923f3c106b444f46db50eb062722dab",
+      "fitness": -1.139248862320581,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/006",
+      "key": "77d0840a1aac65026d786c1b283beb5e0c93d94890151c5adc2bb7290e094c88",
+      "fitness": -1.1986658258122689,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/007",
+      "key": "0283807414cd6a5424af119d5af3cb9858c621300258bbc71bf1a87e0c173c57",
+      "fitness": -1.1574980828263302,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/008",
+      "key": "fd7a25cfd8c2b1ac45500032652d48e23abb63919291a9595a6f2b9b2c1d2b0a",
+      "fitness": -1.1560934510486645,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    },
+    {
+      "id": "H/009",
+      "key": "f34516eb077f4d9c826e585c4cf0c10cf6afb4592841169fa0540b5af9b71451",
+      "fitness": -1.2489830766085126,
+      "valid": true,
+      "reason": "eligible",
+      "origin": "LLM generated pool",
+      "final_disposition": "below_quality_cutoff"
+    }
+  ]
+}

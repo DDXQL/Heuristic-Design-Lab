@@ -1,0 +1,15 @@
+{
+  "source_commit": "c3b74b7ad5686e798e626514c7680951e7c2d943",
+  "developer_base": "864c116d46c193b4e0a5aba2ed1fe56e391337ca",
+  "old_developer_tsp": "7056f180a1d7f21c6b0d8d1144958c95f863b708",
+  "import_ref": "refs/tsp-imports/latest-20261028",
+  "new_commits_after_old_tsp": [
+    "b4a078b9748af99f30901fab441d8e609101f17b Preserve TSP partial evidence and add budget-preserving parser continuation",
+    "4c5b00cf7e98f910958e457c917e252754b7330e Support explicitly authorized TSP time-window renewal without resetting budget",
+    "9ddc6a30e09ecdbd29b6140369bd4fef8242cc5e Deliver completed TSP pilot, frozen validation results and audited raw evidence",
+    "c3b74b7ad5686e798e626514c7680951e7c2d943 Normalize derived TSP CSV line endings"
+  ],
+  "connectivity_exitcode": 0,
+  "strategy": "local-path fetch plus two-parent integration merge; no branch reset, no push",
+  "credentials_tracked": false
+}

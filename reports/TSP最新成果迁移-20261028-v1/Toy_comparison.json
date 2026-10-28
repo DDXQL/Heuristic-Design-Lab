@@ -1,0 +1,18 @@
+{
+  "exact_equal": true,
+  "toy_policy_pairs": 12,
+  "compared": [
+    "five U inputs and H features",
+    "all states and legal actions/raw and combined scores",
+    "weights, modes, support and chosen cities",
+    "closed tours and lengths",
+    "NN ratio Fitness",
+    "complete first/recheck traces and H calls"
+  ],
+  "common_runtime": {
+    "python": "3.12.10",
+    "numpy": "2.5.4"
+  },
+  "real_API": 0,
+  "formal_instances": 0
+}

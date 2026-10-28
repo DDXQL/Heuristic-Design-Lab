@@ -1,0 +1,1043 @@
+{
+  "archive": "Partial_raw_evidence.tar.gz",
+  "archive_sha256": "102082593f682e1178abb0eb2a6ba24092f24c32a95021a44e3c8176b4f1da00",
+  "roundtrip_verified": true,
+  "files": {
+    "runs/tsp-pilot-20261026-v1/API_attempts.json": {
+      "sha256": "dd1b6ef16f44ded8fc6e3d2b287707cc4e18455bced373d60b4bc00b03c1601a",
+      "bytes": 64933
+    },
+    "runs/tsp-pilot-20261026-v1/Authorization.json": {
+      "sha256": "92dd5a0bc5b0671df034b2b6ea800d7d8330b38a658b9c67ff4ca2933bbfc1ea",
+      "bytes": 328
+    },
+    "runs/tsp-pilot-20261026-v1/Campaign_state.json": {
+      "sha256": "fe5ca662a49fcf15b9edb0bf9624870dfb0f58b52a2b46dd12632a981f0a9d62",
+      "bytes": 187
+    },
+    "runs/tsp-pilot-20261026-v1/Console.log": {
+      "sha256": "fe5ca662a49fcf15b9edb0bf9624870dfb0f58b52a2b46dd12632a981f0a9d62",
+      "bytes": 187
+    },
+    "runs/tsp-pilot-20261026-v1/Frozen_artifacts/H_frozen.json.receipt.json": {
+      "sha256": "79008d8cc67a41f9d84bb5d38ae19b06e3eb8bfb3d0aefcf9da4b0d04215bd79",
+      "bytes": 192
+    },
+    "runs/tsp-pilot-20261026-v1/H_frozen.json": {
+      "sha256": "1fab9ce3fbcfc7252e94b3e32775651d41a10429a55f8ae595b2a3709ac09bd1",
+      "bytes": 5285
+    },
+    "runs/tsp-pilot-20261026-v1/Launch.json": {
+      "sha256": "a10ed3a64334c1cccaa1389ead6a4fcb867c9d6983bd564916e81d96590194e6",
+      "bytes": 170
+    },
+    "runs/tsp-pilot-20261026-v1/NN/train.json": {
+      "sha256": "9be2fca1d41ab575473b173bc03b75425a27dc8525d9ccd6dd5638c49ff6338a",
+      "bytes": 23022
+    },
+    "runs/tsp-pilot-20261026-v1/Pause_request.json": {
+      "sha256": "40526f4baa979bef1fa54a4ca9ec87646d50a2606564489eaf10765d2f486275",
+      "bytes": 71
+    },
+    "runs/tsp-pilot-20261026-v1/Protocol.json": {
+      "sha256": "edb0aa4f282968481ad24f5255912286aee11a3776978069f2aaf83231f7b49c",
+      "bytes": 31867
+    },
+    "runs/tsp-pilot-20261026-v1/Protocol.sha256": {
+      "sha256": "1eae8baa55846b762fb11d729e8248f19daeef2fd2f53c04e45ea0b206883180",
+      "bytes": 65
+    },
+    "runs/tsp-pilot-20261026-v1/Run_clock.json": {
+      "sha256": "0037a7c928c2f4d1306c823b3ee7aee572da0e8468ad0d0a4c1d3f500b8f74c6",
+      "bytes": 66
+    },
+    "runs/tsp-pilot-20261026-v1/data/Manifest.json": {
+      "sha256": "e2c008f51ab763cb777e7dd4ec05c80fde694c18c8891b8068912fbe609ed59e",
+      "bytes": 21494
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_000.json": {
+      "sha256": "b1ee387fafd4c7cb57530d9c5e12775c73b20a0c9a9a013a9d75999dfbd3f582",
+      "bytes": 3243
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_001.json": {
+      "sha256": "b011c2d97df2e062250027c39ef762de19e42439a1f7d0db3d4494cd72e721af",
+      "bytes": 3248
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_002.json": {
+      "sha256": "266481d707e539cb7cfb25e7f57f0c0bf5726450270f035a6d15d929de5a3289",
+      "bytes": 3258
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_003.json": {
+      "sha256": "a852333430f0acb87bb494b2888ef16613176471ee58da67268175b9c275b429",
+      "bytes": 3256
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_004.json": {
+      "sha256": "c9274766dbcfddc39a15835438c309f4e8d91b08bf3b09346c43fd99d035e7cd",
+      "bytes": 3259
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_005.json": {
+      "sha256": "d06621aa109bee422037f299707158f31e89ad7c988d8a2ea05d3a64cf017107",
+      "bytes": 3251
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_006.json": {
+      "sha256": "880c5415cbe2439c01a2aeef26b98546f27d209dcd7ccf30cb397e1ec8b74b9c",
+      "bytes": 3249
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_007.json": {
+      "sha256": "e37f415df1c6ed4c662bab8f405ecaea9015f71e00d724ca25e25044ea3f2af8",
+      "bytes": 3257
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_008.json": {
+      "sha256": "154486b7c88b6537e6194d5b44253a9e4bfc6e437bd733be82b9ee8cecd8bd22",
+      "bytes": 3250
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_009.json": {
+      "sha256": "cd09c1ddffd57703ed5af3cac74f3c1cc23c7e7bbd6814b851270ac68e1404ab",
+      "bytes": 3257
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_010.json": {
+      "sha256": "d6e3e56235ca473b256e09ac5bdbdd6ae8fec93e61be2629369bb2dafd5aa00b",
+      "bytes": 3251
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_011.json": {
+      "sha256": "068cb747d39e2d8cbb8e7f5b82e0ae3772a3dbfcffc469fa4e1f2a53c4e18f6a",
+      "bytes": 3254
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_012.json": {
+      "sha256": "5dc0b8a68b9526a2120e3c148f506e19f2fc8329e67452fc977832dfbef5b112",
+      "bytes": 3247
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_013.json": {
+      "sha256": "c02d0edb66a1fb5a07d6698133074f0f1acf706851e880df51de6cabbfec893b",
+      "bytes": 3246
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_014.json": {
+      "sha256": "c5070732c78f0a0180db0cb0b1e2af4592ba4777e997f238f07a09f0ad423358",
+      "bytes": 3250
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_015.json": {
+      "sha256": "2310c546e9a8cf21c1a3ce07f18f83d03a295aa94e716380fd8971b7177a7eb3",
+      "bytes": 3250
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_016.json": {
+      "sha256": "3b9f94ebd3a22e9259d4536238ecf7773a6d6ef0171f95c11be0df3bd348eae2",
+      "bytes": 3261
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_017.json": {
+      "sha256": "a8c76a0c6e151aed7f18860873fbb23099bb852e3d5fd3132fb88b96040d4498",
+      "bytes": 3252
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_018.json": {
+      "sha256": "d20904700002cb3357307a48e2438ce5db35c50b94e07f18a8d1bfdfe083302d",
+      "bytes": 3247
+    },
+    "runs/tsp-pilot-20261026-v1/data/confirmation/confirmation_019.json": {
+      "sha256": "693a14eb93dd006b9f4800a1af1d67289ade9db0b1815c71fc3a534696474e08",
+      "bytes": 3246
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_000.json": {
+      "sha256": "fe781badd16bbca6d4b9977e17c77c8c79f1305b43e56529eb2b093d00bf2679",
+      "bytes": 3257
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_001.json": {
+      "sha256": "78fba18924f96a171c803aa3c14dc29ea67a45c2ecbbfff731dcab13f43e27a7",
+      "bytes": 3256
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_002.json": {
+      "sha256": "9d7fabe1d3cf85bb6c08e4dc1400bb563867c102c16d980929bcbe09ddccd66e",
+      "bytes": 3249
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_003.json": {
+      "sha256": "cc11eab07c6581c91e82c9d64bef9d97a96761d15e24e1fd54eaa9a08eed90b6",
+      "bytes": 3258
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_004.json": {
+      "sha256": "a3ec5321646c95e171943c1a8a5d312fce1f83d71b210654d0d23604c4edbfad",
+      "bytes": 3247
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_005.json": {
+      "sha256": "9ea6e4f83973e00a92ab3db7228750aa015eb575106c54789c2baf1f4c6c6483",
+      "bytes": 3261
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_006.json": {
+      "sha256": "f83cecdec17fd8b5364f41e0f8e54e621b139c06fff0d6c56287d0bbb6e34ddc",
+      "bytes": 3246
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_007.json": {
+      "sha256": "0bef495ddc8752e788f3e307a7ce16085b424a254da0e8d65d1cd0b16bc28a90",
+      "bytes": 3254
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_008.json": {
+      "sha256": "40c46e6c2552b9a3926c22a43303d98c2975a02893a35845069a9af3a41f94ae",
+      "bytes": 3259
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_009.json": {
+      "sha256": "81a7420db197515881fa55ebe651cf65d0c190b8e5c2ec9b037fd426b72f03fb",
+      "bytes": 3260
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_010.json": {
+      "sha256": "6cf0a4bb04905e07f482b80f2d8c51a80edb7692c137a29d8cc6a6f899933c67",
+      "bytes": 3254
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_011.json": {
+      "sha256": "7ba83527ec84cc30ed5c50abd3c03374ead1900693bdf798080ff82f7e0875c6",
+      "bytes": 3259
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_012.json": {
+      "sha256": "213b8441e31abbe4dafaaa17b33c76e7a179d3c53bcde813d4bb7b75574008ee",
+      "bytes": 3247
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_013.json": {
+      "sha256": "d9c4cfbea9abb7460a0b9b29774c7958749688df29c387651ee254e44b974ea7",
+      "bytes": 3254
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_014.json": {
+      "sha256": "b099be553d048ab1030e2d336fceaa0a079e76a1176bed6f224bc5ff7ef34906",
+      "bytes": 3265
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_015.json": {
+      "sha256": "f6583a05bf459cf457e774f748516980c79d9466baa40be1e75592e1636ce9d0",
+      "bytes": 3251
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_016.json": {
+      "sha256": "f9ba60fdda8f3f9047edcf6007c3314e18bf2dc654c4a0a15b8f3e027e2705f0",
+      "bytes": 3258
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_017.json": {
+      "sha256": "e6f0fd9c64088c78135a6e62ba1064abcd75307d8150865d03304c008e8e84a0",
+      "bytes": 3253
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_018.json": {
+      "sha256": "d1c4659770705951631f5940149f12832b0e74ad21c3722e945bf24cb56857a6",
+      "bytes": 3249
+    },
+    "runs/tsp-pilot-20261026-v1/data/train/train_019.json": {
+      "sha256": "3d9efc117e1bfbc5aef21087fbec2422f04f0bad93d1262deb6db62fc5efacca",
+      "bytes": 3255
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_000.json": {
+      "sha256": "d744e8a04a2f903a5365228b22d87e0f8a9029f07ae41c73110a3b4717ff802c",
+      "bytes": 6472
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_001.json": {
+      "sha256": "fd710ac706ab036e94262e29453c84016281446050e9f1f8a8d60501a6bceeb4",
+      "bytes": 6466
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_002.json": {
+      "sha256": "8fc3ba4187f158632bf68e2d70bc2159c9cb769715b0eae2f8893add4b0e05de",
+      "bytes": 6479
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_003.json": {
+      "sha256": "7c1c206c16b22d0a0620598bc0b6cf7b7e91496ae7facd483402bf6fac8a44b1",
+      "bytes": 6478
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_004.json": {
+      "sha256": "0a9e43cf5954b2a855a0d4aabe0825aacd6693224702beb19dcf483b66ff3dcb",
+      "bytes": 6474
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_005.json": {
+      "sha256": "80de58abeb4497b9d38036236c92f2631588cc2e25ce9b47ca1e0c4a0fc62888",
+      "bytes": 6485
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_006.json": {
+      "sha256": "65b0cd2ca31587140d84d93fbeb5f04da2e8923542127c4f04f250992d4b14fa",
+      "bytes": 6488
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_007.json": {
+      "sha256": "82802f45b77f3856efd6d6cfafca3550de28b8d735095fee40a9d307bd128bde",
+      "bytes": 6493
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_008.json": {
+      "sha256": "ee89eaa2ff0e7a8492f72800992cd7637c5d0259d8ba14b377fc25f991bf3480",
+      "bytes": 6498
+    },
+    "runs/tsp-pilot-20261026-v1/data/transfer/transfer_009.json": {
+      "sha256": "ffcebc8f4a78b1acc8871fac7e063f54bdbe933a3d45692f9ee3583bc91cf6a4",
+      "bytes": 6481
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_000.json": {
+      "sha256": "e2841620e027992f1af9038cad874e79344980cb0c3436ebdf7260cf5e39cff8",
+      "bytes": 3256
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_001.json": {
+      "sha256": "7c4379a3c8b77ba9170a874cd40e694da5578b3930a212d8042dd723ac6d2b63",
+      "bytes": 3244
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_002.json": {
+      "sha256": "9ed8b5028811658c94370f7693673d839dcd8937163b8f25281e04666067d74f",
+      "bytes": 3256
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_003.json": {
+      "sha256": "bb23e6f374e9076527f7c856f8ecd477a17ceee68cafd560fa5b0db877a6e095",
+      "bytes": 3239
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_004.json": {
+      "sha256": "174d59b32ce63c356260f666cf8037c47a4d79c688a2697b3ff35b1e2247da04",
+      "bytes": 3250
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_005.json": {
+      "sha256": "a15012337af8dfed9bee6b39e90e0cb9303cf63af6c4ff40314aeffb1c2fbfee",
+      "bytes": 3259
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_006.json": {
+      "sha256": "f62925afe5163758eca3b4f88460ba654bebbf246e0bc13a5fbaa4f32d35285a",
+      "bytes": 3251
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_007.json": {
+      "sha256": "1add768f045cf56a3880b9f488abcf4e509fe4101473bc025fa6cb76d9914306",
+      "bytes": 3254
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_008.json": {
+      "sha256": "c65695e5cfc8b33079347a6d197db8a1cbd812720855f94b64d47d5f010ee834",
+      "bytes": 3258
+    },
+    "runs/tsp-pilot-20261026-v1/data/validation/validation_009.json": {
+      "sha256": "6b8b20a7ceff69210f0697214656a4a7d968bc45d321ee9d4f0a0532d5a2f0ea",
+      "bytes": 3246
+    },
+    "runs/tsp-pilot-20261026-v1/prompts/H_I1.txt": {
+      "sha256": "ecd34d4a6c641e5c7dd3e75128541adf4148dfa28163cc89af645216eb39ab28",
+      "bytes": 2316
+    },
+    "runs/tsp-pilot-20261026-v1/results/Per_instance.csv": {
+      "sha256": "87891775443c6b2d2db927f0619ae854130d118ead622acd803b2a1a290f0bc6",
+      "bytes": 65546
+    },
+    "runs/tsp-pilot-20261026-v1/results/Stages.csv": {
+      "sha256": "38de48723da2c9b3f7b01f4cfba1ec01fe117206d95abaf70a7ef2b9ffb1efb5",
+      "bytes": 282
+    },
+    "runs/tsp-pilot-20261026-v1/results/Summary.json": {
+      "sha256": "33375eea65d5eaaefa2697baae39df3068b299f6c212d65d31b21d73cd2bb3d4",
+      "bytes": 11708
+    },
+    "runs/tsp-pilot-20261026-v1/results/Summary.md": {
+      "sha256": "83dd5d2c1485d42c166eb0e930652e07ce8d0647bc746f4440c142aeeea63e41",
+      "bytes": 1280
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/0c455707d7839ae679d72ff1336df78ba4119595821764c235dd860b221b5e9e.json": {
+      "sha256": "f46680602469e6716dba0b336eda4ff8b79f208214a7e76735e3466e783ac9f0",
+      "bytes": 1556
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/2fac5f8d1f621e045e9bc73dada7b4265bcb4fcc619cff96eea39f3141157b7d.json": {
+      "sha256": "ffc3c9651f4b65a5c2faf38d6d96cd37a17ec9a47f69de37e1938aa31ade7e22",
+      "bytes": 1537
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/3b5e9c0245d75f4d88ae9553070d41175d5c9802c120d11e79a0c02b6d97045b.json": {
+      "sha256": "03724915e6f819101a3c345f34037912ed0bd767b4463eeaa30bbdc2824e6f83",
+      "bytes": 1506
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/5cca9105921bec670eb5c90eb9c5b7cf89143fd1998131e534e1a7dc052b74b2.json": {
+      "sha256": "84ff09b01200e6a06a71eb65f68076cd23421a6c28611968cfd98da0dc2db5cd",
+      "bytes": 1510
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/6a24b82ec4016509eed37d2ecb5e2aa895410517f4c533f3b7c08fc74e1f97a1.json": {
+      "sha256": "998bc305c54bec77cfd93e859a5721db5a6b5aab8b9cfa2f0b4550ba5b2c3e1d",
+      "bytes": 1492
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/8df33d1bf290de05ce4f11fdfd444d9e9ef1d27251d4bb5c545be4d4f566cdaf.json": {
+      "sha256": "efb986e4a5ba2c571ed97e083df57b6b843bd3acd36029d4e7f44c4e2feb0d3e",
+      "bytes": 1516
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/ac7d81d0776098200abe281d95fe26496136aa35bb98ae9f8c66a50fed414cc2.json": {
+      "sha256": "b38899b9c9e5deab43b4d46e68bc141f4c2ae09ee4093e9e0ebad9d078fa88a6",
+      "bytes": 1604
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/b017c9a49bcf845d488718390051b760edf9bfeefccabd0d8311b38ec39cf74d.json": {
+      "sha256": "62de905105eaca07072db5af2e96b5c4b3a918ec224d5c392d3e3f1589e75777",
+      "bytes": 1467
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/dde5f42f2ffa597a68f36f6099d6a47887465e877ceb03f52290b44550707999.json": {
+      "sha256": "10ebc3646bcb0db14c4e32f577f8ec85717e853d7f26dc658ee4e9c44ad2f2cf",
+      "bytes": 1527
+    },
+    "runs/tsp-pilot-20261026-v1/wire_responses/ec2a2739a2a24e9bc4eb37446b26e39c7084a333d0ab6ab751de2d4cf56423eb.json": {
+      "sha256": "8a5d09db04810a9b8bd6db6ae18374dc7befc3be25c75d4303d55a11930dd52a",
+      "bytes": 1573
+    },
+    "runs/tsp-pilot-20261026-v1--H/End_summary.json": {
+      "sha256": "69e2ea982b1fe147308a553d727a8ad5de55e3e6c86788b7e36d28b225a2f92a",
+      "bytes": 126
+    },
+    "runs/tsp-pilot-20261026-v1--H/Events.jsonl": {
+      "sha256": "10c76285c91ec034d7c315485dbbc62f25a2a2047e47377d28399c9b8d416e1d",
+      "bytes": 815
+    },
+    "runs/tsp-pilot-20261026-v1--H/Launch_authorization.json": {
+      "sha256": "838debc65e66650baa9445ab106be12fbaa31e65de3be508a02af5cb3b5c30fa",
+      "bytes": 191
+    },
+    "runs/tsp-pilot-20261026-v1--H/Members.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "runs/tsp-pilot-20261026-v1--H/Pause_request.json": {
+      "sha256": "357541b2f9657d363059a13798a89809241c9138d24faf822167dd75d31cf30e",
+      "bytes": 101
+    },
+    "runs/tsp-pilot-20261026-v1--H/Protocol.json": {
+      "sha256": "9670a7c4248ada4063e18d7e0ded3e13b665756800404205c31f5584a2256502",
+      "bytes": 32226
+    },
+    "runs/tsp-pilot-20261026-v1--H/Protocol.sha256": {
+      "sha256": "5888185fc75d3526a920649201afe23dab00e36446c1eedcf449829852e7c40f",
+      "bytes": 65
+    },
+    "runs/tsp-pilot-20261026-v1--H/Run_clock.json": {
+      "sha256": "022c82b6e95b4a0aecb563578402305769be8be58a8f7a1232276d6a810ee2ad",
+      "bytes": 68
+    },
+    "runs/tsp-pilot-20261026-v1--H/Run_identity.json": {
+      "sha256": "42a38a27feaeaf9006ba1f959cecf721270a47f8b3d5e6f4cebb1ebdfdfa633e",
+      "bytes": 75
+    },
+    "runs/tsp-pilot-20261026-v1--H/Tasks.json": {
+      "sha256": "5802ea1d17232d0185bdc003f9140b9ba49454476f8d0f5b8da34028e2726155",
+      "bytes": 693
+    },
+    "runs/tsp-pilot-20261026-v1--H/checkpoint.json": {
+      "sha256": "a0d34029cc9eb63fdd89f8c5bf1a496533adeb6a6e0b17b82be4d10868c5f80f",
+      "bytes": 40532
+    },
+    "runs/tsp-pilot-20261026-v1--H/control/pause_0001.json": {
+      "sha256": "357541b2f9657d363059a13798a89809241c9138d24faf822167dd75d31cf30e",
+      "bytes": 101
+    },
+    "runs/tsp-pilot-20261026-v1--H/end_receipts/1793024034189295000.json": {
+      "sha256": "69e2ea982b1fe147308a553d727a8ad5de55e3e6c86788b7e36d28b225a2f92a",
+      "bytes": 126
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00000.json": {
+      "sha256": "b0c4d75030dac2048e83cf718de61b471a9c3773184d3468abcdcf14aa586fa9",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00001.json": {
+      "sha256": "11c687d95b8738139fa862ba31b4c16fd3b19dfc47cf0f6059771c7e3ee7d3c5",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00002.json": {
+      "sha256": "f919fa5a553ce86b9e2107b3db99a2e0fda7e9dd76ef7f89be0d14fdcdf979a1",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00003.json": {
+      "sha256": "ba601e6bfdd609adaa8e9cc197dd7e2034112760f42afa7e909c377e5c7529f6",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00004.json": {
+      "sha256": "96005ff45a53d35b23c845adad33f1c4c88260489617ec169b1c68354037b07a",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00005.json": {
+      "sha256": "019f640fc798953fd3bb23f883d59d03ac9cf7762a14ab1f7bec900ee207f731",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00006.json": {
+      "sha256": "330995861e6fd1ba2a17b3f661bef4f50da8c2da77c0c49a650430334ee08bd2",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00007.json": {
+      "sha256": "bf5c5a1fad55b86a5c424d41c06a0df8911910786724e402a1ae0e92bc6e4073",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00008.json": {
+      "sha256": "6098ac1a26a76314a8fed8240aca7543efbdaa88463a13eef77f4b042b7f4048",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/prompts/00009.json": {
+      "sha256": "f9a8a2c54405f02b7c6ed88c17586192ab8f600e4792c5f5f6879ed3ca953fc6",
+      "bytes": 2361
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00000.json": {
+      "sha256": "d2eedded8726a839332508f7347999733d72e88d2f775dc6405f67e1384c499a",
+      "bytes": 4245
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00001.json": {
+      "sha256": "e6e2940ed059e9f6ebd0618c1aa0ae7a271861a25b0449c692b7c95211747c54",
+      "bytes": 4167
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00002.json": {
+      "sha256": "61c656c30a8c410e1a850504d36d2c1261016f41d165612646bf0345237f4c55",
+      "bytes": 4189
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00003.json": {
+      "sha256": "24f30c6ae82644f5997a8a29ae2e2a24a6b0645e4ee64cf6152d347fc823f001",
+      "bytes": 4228
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00004.json": {
+      "sha256": "17d9e83ffacfdb92ba832d6ad8901b924067b6f8ea9384c16627d7a5b1286eb0",
+      "bytes": 4200
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00005.json": {
+      "sha256": "0c1ba88804ceba186f347b9650ab10bac369d842c7ff1a2e5de3213b47a6663f",
+      "bytes": 4278
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00006.json": {
+      "sha256": "116670aac505b85c6af1abeac3f55a0547dda930023349faa510298b65c69def",
+      "bytes": 4183
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00007.json": {
+      "sha256": "680043a77a58efd67da0db38b9138531eb7d3969fc1821bffed89273ab795470",
+      "bytes": 4181
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00008.json": {
+      "sha256": "f60d9d882cec5f2b99df87be86044ebce11c7ae411c2a4304bee3a3ce4758d85",
+      "bytes": 4142
+    },
+    "runs/tsp-pilot-20261026-v1--H/responses/00009.json": {
+      "sha256": "04343a64b6cba399c2f39abfaaee35f9fde76b29012bde47216d139be601de5b",
+      "bytes": 4211
+    },
+    "runs/tsp-pilot-20261026-v1--H/results/Summary.json": {
+      "sha256": "54605d170c9b7b28650a3f133098914ba9aabe149f348e74d0a61a42ccc2d7fc",
+      "bytes": 4056
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/End_summary.json": {
+      "sha256": "7371894326ec7e4d651307f607684e5cb4e02e4c0734abd4b9ef910859534f31",
+      "bytes": 125
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Events.jsonl": {
+      "sha256": "48e4b4f37b14ddb142169f28a017253cb579e2618827c660f448866ff5deead2",
+      "bytes": 459
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Launch_authorization.json": {
+      "sha256": "301f2475e011a724a71b5d2e18cdeff19589804a7cc08682ab169fb1e1d004a9",
+      "bytes": 190
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Members.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Protocol.json": {
+      "sha256": "8eb3b7265cb08baf343b69dc3d6dac7a6edd31418520513f0e820dfa624059b8",
+      "bytes": 32241
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Protocol.sha256": {
+      "sha256": "274033255508f6bbb03d018f2f3f70a9930aef551d6d9a9a6e8e8cbe5f4b134e",
+      "bytes": 65
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Run_clock.json": {
+      "sha256": "be0e77f64d4d042779fef1d61e5e834e8965a7d2e518d2f170f760c990bc82b2",
+      "bytes": 66
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Run_identity.json": {
+      "sha256": "3819cf540a1bf928966e6a2670a188d9989e1c946f0765c742088d29661ccd59",
+      "bytes": 75
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/Tasks.json": {
+      "sha256": "56eeff10139ccb29f475840fc45134c98b10b8300fbc2ba7fa444ec0c157e071",
+      "bytes": 2447
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/checkpoint.json": {
+      "sha256": "2ee20fa63d18f725077c3f7fb58815c7bfec85b07dff0790290b53852f3cf75c",
+      "bytes": 18320
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/end_receipts/1793023770042877000.json": {
+      "sha256": "7371894326ec7e4d651307f607684e5cb4e02e4c0734abd4b9ef910859534f31",
+      "bytes": 125
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/Input_receipt.json": {
+      "sha256": "c4041d97c973075c65113ac8f8b8de4171f9bee4d71ef1f89e63918e272d20da",
+      "bytes": 31248
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/after.json": {
+      "sha256": "8a68ced1a9062fad401d39eb8b1deffcb58a9bf52039b2467c65118097a0ab6c",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/before.json": {
+      "sha256": "8a68ced1a9062fad401d39eb8b1deffcb58a9bf52039b2467c65118097a0ab6c",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/lifecycle.json": {
+      "sha256": "ea4201824607b4728f1fdb60ed65ad3d582585068afcc474d23c2325ea1b74f9",
+      "bytes": 4008
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/result.json": {
+      "sha256": "e714f781775e337c91159e8ce5a9482143d8dd9fe77eb4ce3d19ad6388c307d5",
+      "bytes": 31941
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_000.json": {
+      "sha256": "f3ab9a8d07854c533e261daf7a5f8f5657d6c9f19a52a5855a5376e2d863feb6",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_001.json": {
+      "sha256": "0877e541160acc286ddc82c4d7cbf65910359b9135dd7439af0b6890bcf03214",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_002.json": {
+      "sha256": "d45b5b8abcca7ab39b1fb0812aedd6020a8cff8329499aaa860c955fd96664e2",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_003.json": {
+      "sha256": "28cf6fecbc5bed1aaa3f463c9326bc0af7a1e0e994c088801c57f4612f3ff503",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_004.json": {
+      "sha256": "b7690b7dbdb800765b2de3abe982d17e8b4a231054e9bea8f001eee2513ec9df",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_005.json": {
+      "sha256": "802d39b58e3ccc6b8ed9c01d899dea83c40ef0c8dc2868460cc93d2a8ca5c22f",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_006.json": {
+      "sha256": "94949d2a3811d9aecb07512a9e034754dc1445747b7661b3b4522c404c20b22f",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_007.json": {
+      "sha256": "6eb32e4a0802a4badf0b3860e9a312ec6b8bbbb95c3ed326750e49ebc5e6c4b4",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_008.json": {
+      "sha256": "01f08a6ce6f69b3067a2342cfdad7dd8016ade3de8e1a974cfe2ba9f759ae4e3",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_009.json": {
+      "sha256": "d710e28611b0565d18ba5f2fcb25225bd505cf0318e3419a12807259d9a742b1",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_010.json": {
+      "sha256": "3a203b3d1c6de00d08b12bb22882fe104455caf8366522ff22bc2bb95c6dc295",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_011.json": {
+      "sha256": "e5158298d2796748de4d9e2173355226e8fc5778f5a68211f6bf53fd9b56263a",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_012.json": {
+      "sha256": "924f2c2079242c8b525b8e56301ba873bf172b856e47197a9979f11916ee934e",
+      "bytes": 1267
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_013.json": {
+      "sha256": "5a60f618dd5088962d45f94da1ca2285ccbfd10bdb550963561220543a8f0114",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_014.json": {
+      "sha256": "58d1ad1a61ba06554cda4defd31dba103d54c2303e6a29c32d812fa3ac0ff69b",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_015.json": {
+      "sha256": "f8ba3809bd19fca6e9b2305b96c2419bced2aea886064f04c9e074d777b68f38",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_016.json": {
+      "sha256": "0e1f57ce200f73f782cd7ee7db8fb90b918143828b6f013ec420f7e0416ea167",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_017.json": {
+      "sha256": "e373c7b1704a55904d06a650b4b51fe6af5364f7d2c1f3e09cfdaa403dc5c5af",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_018.json": {
+      "sha256": "b654504608f79a9920888d1334a0953b567dbe3ea3e07e70bf106c929ef0d28a",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc/train_019.json": {
+      "sha256": "a7cc78feaa2d14395b27aa63aa8dfbbe8e9b461ab8bc9226624d39d4b3bb34b4",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/Input_receipt.json": {
+      "sha256": "88f6c43bb6c06a09773c9eb64dc022b7bd37f584348d18ef461f4f1a3fa20186",
+      "bytes": 31172
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/after.json": {
+      "sha256": "7f3b9b5305c457e421678f7f4301541efd10541d3d221f8dabe0e662786218b9",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/before.json": {
+      "sha256": "7f3b9b5305c457e421678f7f4301541efd10541d3d221f8dabe0e662786218b9",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/lifecycle.json": {
+      "sha256": "3f7f5a7a1a811a3d64ee0c6424cfb438d1acdf81f54d2822466eaf23c3a751fa",
+      "bytes": 3986
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/result.json": {
+      "sha256": "9964f2695e4393f185ec374e585bd7262dd48957b070626e9c8c570964ecbeb2",
+      "bytes": 31340
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_000.json": {
+      "sha256": "c3f0eb381ee577117735b409255bb0111652fa4f3df5a06de3c60ebf80e88644",
+      "bytes": 1232
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_001.json": {
+      "sha256": "a307f11e4b0206620f7e5c1e32441defca34c743f1a5d030ca3744da2c0c9667",
+      "bytes": 1234
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_002.json": {
+      "sha256": "6a7afbec4a9c93e47fd2e1d36cd8d5764cf211be09db043387ef7ac5b3ab2d52",
+      "bytes": 1234
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_003.json": {
+      "sha256": "760d50b819ef7b71d7bd15ba98a469e1e3c40b1119fe6dc9e53a1ece3373874f",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_004.json": {
+      "sha256": "44a80df527c2e35f0a962a90ddae0fadcb72ab86c45b5a5c19b827b7f77e95af",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_005.json": {
+      "sha256": "44cbbb6ffa0b85cad6815c7546efe69cfaa8212c30507ec34f7dd4a7997f1f10",
+      "bytes": 1234
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_006.json": {
+      "sha256": "bde9db82007e1634d991a18097fb3fbd6b5ef7bf15be3a4901e0b817f245a612",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_007.json": {
+      "sha256": "87037c0327229734b14b25ed59abb5b6c195bf90d22669aa7f610a1931efd934",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_008.json": {
+      "sha256": "8308d7e89707119e10777d717bb012eee01db03379841f96f3491659efd2350e",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_009.json": {
+      "sha256": "c8dfe79ea00c197c2b84707ce28dba09a970f455f7ee8a94dc02de6290247938",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_010.json": {
+      "sha256": "2a35d71011d2d23d76f52a6e870d1f8efb6692e3d290d92afd127de714972296",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_011.json": {
+      "sha256": "ff880082f0f59aed01ec0eb0e444124e1bdfd9bfba2bad8617bd0f0d4669c89c",
+      "bytes": 1232
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_012.json": {
+      "sha256": "7a1826a848f02f348038c178ced7f45e339c2cdbeba1a5aa9e597a027559d8d9",
+      "bytes": 1237
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_013.json": {
+      "sha256": "d504e4b16cfa8db87ff59aa377d519e740ea48f5ab6ce00ca64ac51bafd2d126",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_014.json": {
+      "sha256": "cdacde71a5c8d18e61757f90ded6fb41c196249e328396c7481921f1cd0185bf",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_015.json": {
+      "sha256": "2d0e0a6717d98c7d8dd18c0f3c7ac1161d4e5cb726babbc201f9f0b5a092df8c",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_016.json": {
+      "sha256": "6fcf009e4b1ef7c8ca900be4754abca69a51dc169a0dc1511358b4b5061e6ee4",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_017.json": {
+      "sha256": "eda2b85dbe42feee744c5290eeda2fbb1da90a519caa7cb30d1bb662de177e0c",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_018.json": {
+      "sha256": "7f5229afbf6f755d0683fb10e231d893789589f85418fa4ad93af9d06c14c644",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d/train_019.json": {
+      "sha256": "d8a533fef4e12ddbab06fe0858e741884d7193ab2f950189e186d6c743ee4f34",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/Input_receipt.json": {
+      "sha256": "d31faf37235502f3db60fddb9e387727a00a06d981a7b9cb13e079b1c4810f20",
+      "bytes": 31302
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/after.json": {
+      "sha256": "448fc033ea5b0f073dc178b501650a2831242cfd84e946bb792cf28da01ef59d",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/before.json": {
+      "sha256": "448fc033ea5b0f073dc178b501650a2831242cfd84e946bb792cf28da01ef59d",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/lifecycle.json": {
+      "sha256": "484d7b1ee87a3bf0ec3ed2a9d8e053407bbe8a45a039fd28086aaa7d5d388300",
+      "bytes": 3996
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/result.json": {
+      "sha256": "9d1f3db9c54374bd8c900169f44ebba7b097b758cfa9fb727f2dcc1d9c7aec86",
+      "bytes": 31866
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_000.json": {
+      "sha256": "0fd6b146f17a0e8a38c0852e4595eff823ea82460994fc07aaea04eb657af620",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_001.json": {
+      "sha256": "449471ca1723093203ccf8cddae6abe72dcba39b544acc7e93267235ff867a6b",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_002.json": {
+      "sha256": "131eef0149b370aacb2bc768d73c5bc4c3f970ffac1934fc0cac3f79b85dd901",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_003.json": {
+      "sha256": "3651ce36df3895079b974d62b0ce2da694582e0e8ab5b06528ebd86c7e1c9b34",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_004.json": {
+      "sha256": "909c64204ea817d30ff1d386ee02159e90e1bdfd5bbd11126d21aabcac06515b",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_005.json": {
+      "sha256": "eb726e45ad03cfc2b273066875d3685f8e8ffb6ff26af103c544f91a470fa6f3",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_006.json": {
+      "sha256": "c9545369c87dc1fbb009de00b786b9fb5f24ad45bcd4f3f1776a021053e99495",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_007.json": {
+      "sha256": "75436aab5196e3e32056ad9c82e41ecadd54cc710427366c06223dd1f46c1c03",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_008.json": {
+      "sha256": "4e73032663396da055994d4116fa2172cb5b56a624133b706eec2733afa3a2de",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_009.json": {
+      "sha256": "fa0f9f7a2891d3a67a7dd2c7209c83bd52194e0e67665c65bbe0182c7c47a1a5",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_010.json": {
+      "sha256": "477f614b267dacafd82a5a36dcc9f4b5b0baae2e3735c9375da513a34799b683",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_011.json": {
+      "sha256": "d51250418f593d53e3351a136ed495cc9523a0bca8184bbdbab9b1290951348d",
+      "bytes": 1259
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_012.json": {
+      "sha256": "2955ccc2a221186e4761e6a2cdf4fde873e09ccdca899da7ba32ad01eab84ef5",
+      "bytes": 1267
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_013.json": {
+      "sha256": "81f656840867298eb69a43c1f65fd5d792e128c5a88d78edb7b4d267560c3d26",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_014.json": {
+      "sha256": "b8537e132c59473d9f91a7e9f276fd5efe591e0a4eed80426aa3073a142a1ffb",
+      "bytes": 1267
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_015.json": {
+      "sha256": "b4b84d4cdeeb426550ab4abab29d6f140d83ec9cd7c6e0a443f978a7e90dc131",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_016.json": {
+      "sha256": "a83ae306dadc836779016017a97f43e2b2b10736c97ea68b235e0bd581afc63a",
+      "bytes": 1235
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_017.json": {
+      "sha256": "e31658dae440b623a0dfcae6fd36cb55cb4249385a39471300460509ea9a5c46",
+      "bytes": 1236
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_018.json": {
+      "sha256": "9fe3bd8e106dfd1203114cfd2f372c867548c6b1df11ad14f186e66c7e98560e",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933/train_019.json": {
+      "sha256": "416d3060a5bd9e2cb6e50af2b4d1971ffb2daf5bb7e54c6d57fff05688121420",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/Input_receipt.json": {
+      "sha256": "d72e508f6c2e8730c5675023f9532697bdfdde46ac1b898ad104d870b58734f4",
+      "bytes": 31261
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/after.json": {
+      "sha256": "ed18a9dbec0be05fa2489d386edd2340f8699f0035171d6bbffb6f728e1cebdd",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/before.json": {
+      "sha256": "ed18a9dbec0be05fa2489d386edd2340f8699f0035171d6bbffb6f728e1cebdd",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/lifecycle.json": {
+      "sha256": "b46dd057a5bb8ffbeed2154b9933ed707227538d50baf8ee666a8c8e82731986",
+      "bytes": 3993
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/result.json": {
+      "sha256": "ec928c4296b714802ced41e6a0ec201c8f9259d2e02a2cf51b5b8cc7bdf4d5ef",
+      "bytes": 31951
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_000.json": {
+      "sha256": "7a403d12fbb1f63360010c7f7a1f75b66a9c9f24d3b9085107b1416fbe1f1c12",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_001.json": {
+      "sha256": "4fe4b81bf9adccc966b46aca0f219c7b0d9aceba84c46253ca065d3a333340cb",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_002.json": {
+      "sha256": "1d8e0b176cc392a1867ebd2c9ebb735fe4e55df382dba941ca9f04ae0e3b6255",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_003.json": {
+      "sha256": "0d7b2ec2edaa097bf6fbf28120e457180496872ff964604ae4c82ab377303136",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_004.json": {
+      "sha256": "8588d75e507447b6d55bfbf613d09e5ff30530802c6fc673ca8ce4a021400244",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_005.json": {
+      "sha256": "7d8ebd7502351928e7d1029a209bfd623058a499fc041fff29b67842c1dea477",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_006.json": {
+      "sha256": "27307b74fb45439cb349dbf3e79e562c93d25e5f1ac7d1206a9aeb1db8437da1",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_007.json": {
+      "sha256": "24576c77d591fccc252dd67d7599c1650cd07f42051deacd2b88d75a2e0a55ed",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_008.json": {
+      "sha256": "96bfa12db43724605a52f74e84ce2fccb4507f5e8c921b09c041959727477afe",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_009.json": {
+      "sha256": "5e6c906e1095d53dfa251030d10257320ce2bcfd639c72b7b061adde5fbc939f",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_010.json": {
+      "sha256": "f7486206d934c30747cc5505fc8f36372db6dea5535908cc78f4fe48c269ddc3",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_011.json": {
+      "sha256": "4bf533834fc4fc76a38ee60a1ea82473910b7760e18b4efe3ca4b6a0e886308b",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_012.json": {
+      "sha256": "792b6f088798e3db99d13c45e7191fe698552f577bb1a2e75f645521abfb32e5",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_013.json": {
+      "sha256": "85525a91a24858baff406bd9783f8a6f5378d434b50e28297e521eea232b683e",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_014.json": {
+      "sha256": "908baa9ecebe1f16dccefefb8c215bf6cb4627c0cc683d20bcb050925e83385b",
+      "bytes": 1267
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_015.json": {
+      "sha256": "ab8ed7338ef5342955228ca51c36bed1fc9923b9f4f7486d1ff7ac83cc65dd45",
+      "bytes": 1261
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_016.json": {
+      "sha256": "9a8c2881d87afa2816e6ca24ef8a2a8d0c118f0a0cf76d883fb7f0b02b7f1079",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_017.json": {
+      "sha256": "a70ae048db5d7f567c4532f86d889b7fa103d99ba5d97600a4c20e46afef3124",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_018.json": {
+      "sha256": "9ced55e41c7657d0548a9be14275055ca9790b6ecf2fdf57977f26f5a43c940b",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4/train_019.json": {
+      "sha256": "f00d1690d44784e0c9b1e06c77d4acc0f27f77ebfc943a1d1d258f3303411610",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/Input_receipt.json": {
+      "sha256": "830398c2fe10e27174236ba04e9c4dd598406d6339b3cea750086afca01c05e3",
+      "bytes": 31259
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/after.json": {
+      "sha256": "c84bb3d6ace1d2c271b8fc06de67d8341cc21879abf4c590926183f774ecc4ad",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/before.json": {
+      "sha256": "c84bb3d6ace1d2c271b8fc06de67d8341cc21879abf4c590926183f774ecc4ad",
+      "bytes": 7909
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/lifecycle.json": {
+      "sha256": "17471e830a762cf4a9d23f1c8f1d675249d2c20310b6fb98fa27e255c2663d47",
+      "bytes": 3999
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/result.json": {
+      "sha256": "18c9c6e4ffa109662f3e192a2b2ab80691339ba65ef624e9746e941313b63045",
+      "bytes": 31947
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_000.json": {
+      "sha256": "28811d7a70641215d1aeb7dff6eb8ff5047336948e15cdf668cea0b4b4dac515",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_001.json": {
+      "sha256": "d4ed393c8174505aae70b1a28fb11caf4313ac8097cf1a1ba7ab3940b46e3f26",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_002.json": {
+      "sha256": "8900e2ec8408a47d4eb8810561310abf5fb0a3bbaedd9e32cb41af3b1e672ffd",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_003.json": {
+      "sha256": "5e0ed6299c0840428aed6a9d718c25764684f9ead644a619c077fc983e8d8900",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_004.json": {
+      "sha256": "55bbd827ddb9b58bf025a4a21e1bcdbed0000437be55b595bdd38794ce75a585",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_005.json": {
+      "sha256": "7915c5f0497dbf692c3ee59fd0a49bf22536bae657d1f7d5698004f0ee444b33",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_006.json": {
+      "sha256": "b9b6a7a0f84654007a5697548eb250c4d11cd82291489fd77edc4b277d39900e",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_007.json": {
+      "sha256": "b9632c1e742c3c6803f22d3d48c987ab254aaa303fa4efd11ab97e41a550aaa0",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_008.json": {
+      "sha256": "fb313a8d5222e8a9d86c71b6dd852a04e18e5ff1dfcd2725fdd25ebfb7da2673",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_009.json": {
+      "sha256": "6f0b83a5d39635f9ed5ad081750370a6021d3efec95d3b03e2600f2069813d11",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_010.json": {
+      "sha256": "070d58e3a3efe40d1860bf7ed39b5fa1570cd28ff8e9c5bbb6d7c63b8e79dfef",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_011.json": {
+      "sha256": "ea274847c1182a5a96f7d25fb6b45a188f799cbf6f014c2afaac179be584a022",
+      "bytes": 1263
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_012.json": {
+      "sha256": "15edf63a9e3d6ca902f85d1eb19ff5d6ee01dc955458df40aedc26a9a7b80659",
+      "bytes": 1267
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_013.json": {
+      "sha256": "edc5d7466b513664c8cd9d5ba2ff667923859ecd2f76907a8401cb14f13e9eec",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_014.json": {
+      "sha256": "365228d0eb1f8c7940655199b89684a1a8f51a32c821fba2126af7fd51975484",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_015.json": {
+      "sha256": "49eba7fbce2f98084007c9e5b12b94e190bf6a6966e8653d161bd503640774f4",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_016.json": {
+      "sha256": "c8d8f5afc5d3a772618e3c79a25dc08aa72fae62e2052ce64effe6c09254c74c",
+      "bytes": 1265
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_017.json": {
+      "sha256": "9dfccb4f2be4042b6b194271b15f998d1cc9bad597b40cc078776bf7853f8a12",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_018.json": {
+      "sha256": "ad8cba0f6e7731586352625ae013857991c045a6e9e907559fd16e7cc0420bbf",
+      "bytes": 1266
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/evaluations/874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197/train_019.json": {
+      "sha256": "b20cfa549c2d3b3f14a951d3182b7cca7b4607e654dae53df077202b8ab810b1",
+      "bytes": 1264
+    },
+    "runs/tsp-pilot-20261026-v1--manual-H/results/Summary.json": {
+      "sha256": "9c3fb2f0a3cf0f2f54cf0b7d2a7977070ea50186768549efce8cf7fd92db8528",
+      "bytes": 4707
+    }
+  }
+}

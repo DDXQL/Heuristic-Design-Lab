@@ -1,0 +1,76 @@
+{
+  "members": [
+    {
+      "id": "static_H0_H1_equal",
+      "candidate": {
+        "description": "Static (0, 1)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+        "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+        "kind": "U"
+      },
+      "train_fitness": -0.9767105276580079
+    },
+    {
+      "id": "static_H1_H2_equal",
+      "candidate": {
+        "description": "Static (1, 2)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 1, 0, 0))\n",
+        "key": "2ae227c68ba91c50b26b56f41cf20f1251c31dbc07be4cba65f79434a9851ed4",
+        "kind": "U"
+      },
+      "train_fitness": -0.9827014577088452
+    },
+    {
+      "id": "static_H0_H2_equal",
+      "candidate": {
+        "description": "Static (0, 2)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 0, 1, 0, 0))\n",
+        "key": "2dfec46eff39074c3eabe901fd24357efc448b51f39401c1b07a39e9c30f74c4",
+        "kind": "U"
+      },
+      "train_fitness": -0.9840874730788352
+    },
+    {
+      "id": "static_H1_H3_equal",
+      "candidate": {
+        "description": "Static (1, 3)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (0, 1, 0, 1, 0))\n",
+        "key": "741309dafae2ab7d4fd34ebfd7fe6462e04e308662075556ea4de99701ff8549",
+        "kind": "U"
+      },
+      "train_fitness": -0.9876671781449066
+    },
+    {
+      "id": "static_H0",
+      "candidate": {
+        "description": "Static (0,)",
+        "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (0, (1, 0, 0, 0, 0))\n",
+        "key": "7eb457feff95bdb06d71c818a8b2a456557cd855d85de3027205d3db62fdae5b",
+        "kind": "U"
+      },
+      "train_fitness": -0.9900181489498406
+    }
+  ],
+  "static_reference": {
+    "id": "static_H0_H1_equal",
+    "stage": "fixed",
+    "status": "completed",
+    "valid": true,
+    "fitness": -0.9767105276580079,
+    "parents": [],
+    "AST_duplicate": false,
+    "cache_hit": false,
+    "failure": null,
+    "error": null,
+    "generation_status": null,
+    "candidate": {
+      "description": "Static (0, 1)",
+      "code": "def use_heuristics(progress, current_to_start, mean_distance_current, std_distance_current, previous_heuristic):\n    return (1, (1, 1, 0, 0, 0))\n",
+      "key": "ccde046826b999ccb8898dcc14efc0095bb6c7d249100b396ba7d13cf4fad423",
+      "kind": "U"
+    }
+  },
+  "source": "all frozen H singles/equal pairs train evaluation",
+  "static_costs_separate": true,
+  "key": "21411a14869a76629474f97c7e5f4182a0f399c30a52d4522a1c521eecb31793"
+}

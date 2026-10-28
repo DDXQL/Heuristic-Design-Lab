@@ -1,0 +1,26 @@
+{
+  "phase": "completed",
+  "policies": [
+    {
+      "id": "H0_SELECT",
+      "Cmax": 7,
+      "LB": 6.0,
+      "fitness": -1.1666666666666667,
+      "physical_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+      "captured_solves": 2,
+      "historical_toy_matched": true
+    },
+    {
+      "id": "equal",
+      "Cmax": 7,
+      "LB": 6.0,
+      "fitness": -1.1666666666666667,
+      "physical_sha256": "824283df98842152bbb6fc97d134ff1bf4c5327a15517f8eb201a2d00ee6a83a",
+      "captured_solves": 2,
+      "historical_toy_matched": true
+    }
+  ],
+  "API_calls": 0,
+  "formal_instances": 0,
+  "toy_solve_passes": 4
+}

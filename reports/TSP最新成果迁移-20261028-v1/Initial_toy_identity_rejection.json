@@ -1,0 +1,6 @@
+{
+  "source_and_target_both_rejected": true,
+  "error": "CandidateError: canonical identity mismatch",
+  "cause": "new toy fixture keys created by system Python3.13 while controlled comparison uses Python3.12",
+  "fix": "recreate only engineering fixture keys in the common 3.12 runtime; frozen final U and all historical keys unchanged"
+}

@@ -1,0 +1,23 @@
+{
+  "campaign": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot/runs/tsp-pilot-20261026-v2",
+  "phase": "completed",
+  "protocol_sha256": "1968b24064e8cfc1fe6de27eb51fe2b806f21894642a8828a5fec4ed976bf95d",
+  "git_commit": "4c5b00cf7e98f910958e457c917e252754b7330e",
+  "budgets": {
+    "logical": 50,
+    "API_attempts": 50,
+    "complete_responses": 50,
+    "unknown_attempts": 0
+  },
+  "dataset_unique_sets": 60,
+  "all_stage_sources_matched": true,
+  "all_stage_NN_vectors_match": true,
+  "H_quality_selection_reproduced": true,
+  "all_candidate_tours_checked_independently": 1830,
+  "physical_program_instances_reserved": 1830,
+  "captured_solve_passes": 3660,
+  "valid_unique_evaluations": 93,
+  "recorded_solve_recheck_seconds": 48.730379151704255,
+  "candidate_exports": 96,
+  "currency_cost": null
+}

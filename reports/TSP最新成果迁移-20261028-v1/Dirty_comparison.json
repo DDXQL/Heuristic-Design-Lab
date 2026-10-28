@@ -1,0 +1,157 @@
+[
+  {
+    "path": ".venv",
+    "classification": "local_symlink_not_distributed",
+    "target": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv"
+  },
+  {
+    "path": "README.md",
+    "bytes": 12775,
+    "sha256": "ad403ca8293904a68996dabcf7272217497006a435a629ae10b731fa83da18fd",
+    "git_blob": "e7fb00f85f500e4dad762cd6326442a66c6e2cc9",
+    "tracked_modified": true,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "code/heuristic_design/problems/tsp/campaign.py",
+    "bytes": 25349,
+    "sha256": "f8b138de62b7caaa110b1060b2be20a36c6fdd5848fe3d7cf7526b752e78dbcb",
+    "git_blob": "00f695c6aa863798d315afd19a0dec5bd058b227",
+    "tracked_modified": true,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "code/heuristic_design/problems/tsp/candidates.py",
+    "bytes": 6232,
+    "sha256": "3a1bb56c5d85018f047f5ef26dc3ed2d0a7681e5f338de8923b98e16330585fc",
+    "git_blob": "0a25bec32fd7c68caaaa41404425f66224f9151a",
+    "tracked_modified": true,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "code/heuristic_design/problems/tsp/operations.py",
+    "bytes": 5485,
+    "sha256": "9077576b55c6f6131d965ea35199317fc9c62f3624c9668749f9abc759a6b62f",
+    "git_blob": "97735c088797322c1c2e2d69dc68b6b9f92cd93f",
+    "tracked_modified": true,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "docs/TSP_ADAPTER.md",
+    "bytes": 8604,
+    "sha256": "6ce874cfb98b386c32b0f40e7ed7f8e40dbc16610c7d4b4b0655ff758aff3e43",
+    "git_blob": "49e5805734082f2387118a8f7dc91fe1ccd45624",
+    "tracked_modified": true,
+    "classification": "unique_preserved_snapshot",
+    "matching_source_commits": []
+  },
+  {
+    "path": "docs/TSP_EXECUTION_REVISION_V2.md",
+    "bytes": 2773,
+    "sha256": "21c2b15f1bc8cea9408c993e725946629c57d9ed2fe2ddbc85803cd5e31c12b0",
+    "git_blob": "58ac96049a8da725810f7b8eb58b1bdb7d0fe21b",
+    "tracked_modified": false,
+    "classification": "unique_preserved_snapshot",
+    "matching_source_commits": []
+  },
+  {
+    "path": "experiments/tsp/manage.py",
+    "bytes": 4703,
+    "sha256": "ce2fdc4166921f2e5b432cb74a59947f4c21a2ffea45cedebd9dfb824950b3e7",
+    "git_blob": "d0ba0e150c4cfacbf93ae169c0a16e36290bd4ef",
+    "tracked_modified": true,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "experiments/tsp/verify_delivery.py",
+    "bytes": 7864,
+    "sha256": "c2d305a68baa33a3bd19f36a8cfac8add3c8280c0756c9b6af4ec26146d25a3c",
+    "git_blob": "025ae048fcb6cae1611b7e83792a551f4f6d3eff",
+    "tracked_modified": false,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "reports/tsp-pilot-20261026-v1/Correctness_revision_v2.log",
+    "bytes": 1434,
+    "sha256": "89ec0a5f86e644d2d99a3a1275a78f82c1160875ee0b61a5f54927bffd831dd1",
+    "git_blob": "b0e0e0d1ab66148b1ca2fcdf3f8dd8ad4314efa4",
+    "tracked_modified": false,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "reports/tsp-pilot-20261026-v1/Mock_continuation_v2.log",
+    "bytes": 309,
+    "sha256": "c9b3bf930744c5d9e41120a863712177ff5928738bc92115c0abfec7027362d6",
+    "git_blob": "84769a2a4857f18b6f5944810bdea96d609e771d",
+    "tracked_modified": false,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "reports/tsp-pilot-20261026-v1/Mock_v2_source_snapshot.tar.gz",
+    "bytes": 140857,
+    "sha256": "1c85389d3dae9aaa84f1c1d143f40f0155844746e450cf29f230380f2a8b6e3f",
+    "git_blob": "5f8b28d70bba02afa3ba4a51bd64bfc7f3a42f79",
+    "tracked_modified": false,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "reports/tsp-pilot-20261026-v1/Pre_repair_receipt.json",
+    "bytes": 398,
+    "sha256": "1c4fc640f54d95242b060ea75eb20c9711f26f7392ca9718912ebb4a71432ab2",
+    "git_blob": "9a5704e544eed89c11b54766b8aa3b79c8833399",
+    "tracked_modified": false,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "reports/tsp-pilot-20261026-v1/Real_pre_repair_source_snapshot.tar.gz",
+    "bytes": 140865,
+    "sha256": "4ea2a5cb564762f6d52f3c69b6ce434c47eed9cd3936ca73c1d2d047a3a5629d",
+    "git_blob": "92f0b03b9f0a251e95fff94bb019af1aad2d3427",
+    "tracked_modified": false,
+    "classification": "included_in_latest",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  },
+  {
+    "path": "tests/test_tsp_adapter.py",
+    "bytes": 8819,
+    "sha256": "9bc39f0744e0b20b25613896e8830eb4259142178c98c91d7fc0e3ab335a894c",
+    "git_blob": "f601a0728982a76134e065da2bbc75d2181a9e0f",
+    "tracked_modified": true,
+    "classification": "included_in_ancestor_superseded",
+    "matching_source_commits": [
+      "b4a078b9748af99f30901fab441d8e609101f17b"
+    ]
+  }
+]

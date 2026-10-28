@@ -129,3 +129,31 @@ class Tests(unittest.TestCase):
         self.assertEqual(a,b);self.assertEqual(a.code,c.validate(code,'A numeric rule.','h',1).code)
         for text in ['```python\n'+code+'```','A rule.\n```python\n'+code+'```\nextra text','A rule.\n```python\n'+code+'```\n```python\n'+code+'```']:
             with self.assertRaises(c.CandidateError):c.parse(text,'h',1)
+
+    def test_authorized_new_window_preserves_origin_and_does_not_reset_on_resume(self):
+        import shutil,time
+        from unittest.mock import patch
+        from heuristic_design.problems.tsp import campaign as camp
+        from heuristic_design.core.storage import write,sha
+        with tempfile.TemporaryDirectory(dir=camp.ROOT/'runs',prefix='tsp-window-test-') as t:
+            folder=Path(t);config=folder/'config.json';shutil.copyfile(camp.ROOT/'experiments/tsp/configs/pilot-mock.json',config)
+            origin=folder.with_name(folder.name+'-origin');new=folder.with_name(folder.name+'-new')
+            try:
+                camp.prepare(config,origin);write(origin/'API_attempts.json',{'requests':{},'api_attempts':{}})
+                write(origin/'Run_clock.json',{'start':time.time()-90000,'deadline':time.time()-46800})
+                old_clock=sha(origin/'Run_clock.json')
+                authority=folder/'authority.json';write(authority,{'user_text':'允许新窗口，预算不变','logical_cap':50,'API_attempt_cap':75})
+                camp.prepare(config,new,continue_from=origin,renew_window_seconds=43200,window_authorization=authority)
+                self.assertFalse((new/'Run_clock.json').exists());camp.check(new)
+                with patch.object(camp,'stage',side_effect=camp.Paused('MOCK boundary')):camp.run(new)
+                receipt=sha(new/'Run_clock.json');clock=read(new/'Run_clock.json')
+                self.assertEqual(clock['deadline']-clock['start'],43200)
+                self.assertEqual(sha(origin/'Run_clock.json'),old_clock)
+                with patch.object(camp,'stage',side_effect=camp.Paused('MOCK boundary')):camp.run(new,resume=True)
+                self.assertEqual(sha(new/'Run_clock.json'),receipt);camp.check(new)
+                clock['deadline']+=1;write(new/'Run_clock.json',clock)
+                with self.assertRaises(ValueError):camp.check(new)
+                self.assertEqual(read(origin/'API_attempts.json'),{'requests':{},'api_attempts':{}})
+            finally:
+                for p in [origin,new]:
+                    if p.exists():shutil.rmtree(p)

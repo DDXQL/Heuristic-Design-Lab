@@ -1,0 +1,170 @@
+{
+  "runs/integration-fjsp-toy-20261028-v1/Run_clock.json": {
+    "sha256": "c7315754e0ca3ef3326249131cf765678470035210467c14beb466c519a1354d",
+    "bytes": 68
+  },
+  "runs/integration-fjsp-toy-20261028-v1/checkpoint.json": {
+    "sha256": "0f20e18ebd1bc828177e6bf6a45f79ecaa2596f0a7519788e5159984390ca513",
+    "bytes": 14271
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Launch_authorization.json": {
+    "sha256": "3be550afd7b7c43e023c0be3e2b7051be000789ece6045bab65c473ae02c04ee",
+    "bytes": 194
+  },
+  "runs/integration-fjsp-toy-20261028-v1/H_frozen.json": {
+    "sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+    "bytes": 149108
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Protocol.sha256": {
+    "sha256": "eab79ea77bbd12b1e114bef2b71ac1559aa5e6a1afb726794211fcfaf28c82b4",
+    "bytes": 65
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Parents.json": {
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "bytes": 3
+  },
+  "runs/integration-fjsp-toy-20261028-v1/End_summary.json": {
+    "sha256": "cd802b2cc4577d40cf1cb889490b0db7ef5b3179a2ad4441f13629f41eee0f12",
+    "bytes": 126
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Events.jsonl": {
+    "sha256": "4238692d56497dc6c485cf88fa26724d49b7eb798d736d9ab6f59de456fd6698",
+    "bytes": 166
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Protocol.json": {
+    "sha256": "4045d0f57e102e82f13ec3bd4f206660f865fe680c776a6138f96a7b50da4357",
+    "bytes": 10032
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Run_identity.json": {
+    "sha256": "e030830a52b8559954cfad05c67dd1fc68bbf709ab2021f767f7ecb202ce0a85",
+    "bytes": 78
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Tasks.json": {
+    "sha256": "14334d724a6148102124840f0280f3ecfbdeedd65de6b5c764209cf6c23e056e",
+    "bytes": 1057
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Controller_identity.json": {
+    "sha256": "aaf22e6bc2f1c7aca49eac5cbd1d1681383208661f79b5c01669e7d55b3c0e06",
+    "bytes": 635
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Solver_identity.json": {
+    "sha256": "37ff44c67648b8c61d6f00415988fe781b23bebeb629618bfe07bf965152916f",
+    "bytes": 23315
+  },
+  "runs/integration-fjsp-toy-20261028-v1/Resolved_config.json": {
+    "sha256": "3d398d73f40c1afb4cb87dd72410a906de88d9dfcbb3ff60b5399b50b4298340",
+    "bytes": 912
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Summary.json": {
+    "sha256": "7539f3faec89a6677cbc5a0b342defef4c98b1f001cc31e0cf015426465d640b",
+    "bytes": 4021
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Summary.md": {
+    "sha256": "273bf91481e31d5d9b85b952148e9f4ff256bb416a99b48dd2f3e5e029e76e2a",
+    "bytes": 2079
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Best_so_far.csv": {
+    "sha256": "6e995be266fd17656811e1de29491c45aaa10ed976114a062de0406032197e2b",
+    "bytes": 137
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Candidates.csv": {
+    "sha256": "d52f61f7a92a5cda5f22f08cc77d8129af2eed53facf9a851ace0f6d60985f0a",
+    "bytes": 269
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Evaluation_costs.csv": {
+    "sha256": "4d799968df0bc844b585c504ff90026fa2322fa19a770af8e87d3e7a6879efe3",
+    "bytes": 241
+  },
+  "runs/integration-fjsp-toy-20261028-v1/results/Per_instance.csv": {
+    "sha256": "b18fa5529ab1612481d9cf7255951c4a197df07db27f868b1e5c4b0faf3a9d03",
+    "bytes": 418
+  },
+  "runs/integration-fjsp-toy-20261028-v1/end_receipts/1793120301854585000.json": {
+    "sha256": "cd802b2cc4577d40cf1cb889490b0db7ef5b3179a2ad4441f13629f41eee0f12",
+    "bytes": 126
+  },
+  "runs/integration-fjsp-toy-20261028-v1/inputs/toy.fjsp": {
+    "sha256": "ae0d4da9c8086258f6dee27323de9f9c7b4a35e801adbc704c67e3841975d8e3",
+    "bytes": 98
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/before.json": {
+    "sha256": "5ea84d3e0d95e843d1947eea81a752d76f9f28ad2bc0a774837806ff3932999e",
+    "bytes": 23315
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/raw_result.json": {
+    "sha256": "6d41079733599a5992c800e64455ec8243578b853bf96818117f12775f7cfe10",
+    "bytes": 3137
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/Input_receipt.json": {
+    "sha256": "061559750ef8adb79d9fa508d3d93d97f1be8cf4927b11a58b6f3e17049b963d",
+    "bytes": 903
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/result.json": {
+    "sha256": "7065d2ffdbce87238605eff61d5664b934f6fccb990e1bfcd9d09e1550933c61",
+    "bytes": 3266
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.progress.json": {
+    "sha256": "a582d1e369b96303072c8ebb47c7e24cb30b1bc8a7a3e2b586bd7f11bfdfdce1",
+    "bytes": 348
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/lifecycle.json": {
+    "sha256": "5b7d56fdc56f647ba3c0563c87d8cbacf5fbd557fd91dcdad9a4a4b78c3f2f0c",
+    "bytes": 774
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/after.json": {
+    "sha256": "5ea84d3e0d95e843d1947eea81a752d76f9f28ad2bc0a774837806ff3932999e",
+    "bytes": 23315
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/toy.result.json": {
+    "sha256": "1656a48558993b5f9f8b99c1e6b546d783def72659474d162b5d251295b817ff",
+    "bytes": 2484
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/boundary.json": {
+    "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+    "bytes": 106
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/fbf69e29a67dc6377214f4f29507c5e4f942485b5b6e8ecfab8f9503700fb448/network_guard.json": {
+    "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+    "bytes": 67
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/before.json": {
+    "sha256": "bf272fb52b2fcc023dfe924472ddd3ddd426e1c448f965796b036d1ead7c2d9f",
+    "bytes": 23315
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/raw_result.json": {
+    "sha256": "f290bff5e897026dbbdcc2550eb9d971ca395405e230abf9a4880af9662c7644",
+    "bytes": 3137
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/Input_receipt.json": {
+    "sha256": "35bcd2db61c1a590d481c402ef67c7e004f350377d77576f34480a402785a785",
+    "bytes": 887
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/result.json": {
+    "sha256": "70a09a37d2dbab938af36f7abc57b217b013be83292dd7c4a4b126f6279a603a",
+    "bytes": 3266
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.progress.json": {
+    "sha256": "57a6d9ce16da5f5fb5e509f6194ee9b5eeb291352351dba1a31e711f9146a8f3",
+    "bytes": 348
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/lifecycle.json": {
+    "sha256": "51e0cb7eed0b905c0b9448d997124b0907710cebb90127659a36e45ee72f953b",
+    "bytes": 776
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/after.json": {
+    "sha256": "bf272fb52b2fcc023dfe924472ddd3ddd426e1c448f965796b036d1ead7c2d9f",
+    "bytes": 23315
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/toy.result.json": {
+    "sha256": "cbd03c45008e7a1f0ca7fdcf3fc4d56b1eaa9958fd73ecb893b686e40f37dc7e",
+    "bytes": 2484
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/boundary.json": {
+    "sha256": "912f257901940be56bb011cca70e4ee5f3fb207729dd9654fdef5408722e616c",
+    "bytes": 106
+  },
+  "runs/integration-fjsp-toy-20261028-v1/evaluations/a8c3a64010ad3e1ca0eb31464b766b2b951ce3a9b61472f0ac4b9e4ba5987d73/network_guard.json": {
+    "sha256": "5d47fb11b3c11c9d76911dcb01721caeab311292a8a6dd76cfe5873e5e566ee1",
+    "bytes": 67
+  }
+}

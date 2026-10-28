@@ -1,0 +1,358 @@
+{
+  "mode": "real",
+  "state": {
+    "phase": "paused",
+    "current_stage": "H",
+    "completed_stages": [
+      "manual-H",
+      "H"
+    ],
+    "started_at": 1793023766.187142,
+    "reason": "campaign paused before stage static"
+  },
+  "planned": {
+    "logical_cap": 50,
+    "API_attempt_cap": 75,
+    "per_candidate_attempt_cap": 2,
+    "H": 10,
+    "IND_701": 10,
+    "IND_702": 10,
+    "EVO_801": 10,
+    "EVO_802": 10
+  },
+  "used": {
+    "logical": 10,
+    "API_attempts": 10,
+    "complete_responses": 10,
+    "unknown_attempts": 0
+  },
+  "groups": [
+    {
+      "stage": "manual-H",
+      "planned_new": 0,
+      "used_new": 0,
+      "API_attempts": 0,
+      "complete_responses": 0,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 0,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": -0.9900181489498406,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 5
+    },
+    {
+      "stage": "H",
+      "planned_new": 10,
+      "used_new": 10,
+      "API_attempts": 10,
+      "complete_responses": 10,
+      "certified_new": 0,
+      "failed_or_uncommitted_new": 10,
+      "unknown_API_attempts": 0,
+      "duplicates": 0,
+      "best_fitness": null,
+      "new_champion": null,
+      "phase": "completed",
+      "physical_evaluations": 0
+    }
+  ],
+  "comparisons": {},
+  "usage": {
+    "known_input_tokens": 22550,
+    "known_output_tokens": 15398,
+    "unknown_usage_attempts": 0,
+    "platform_points": null,
+    "verified_currency_cost": null
+  },
+  "stage_facts": {
+    "manual-H": {
+      "phase": "completed",
+      "cursor": 5,
+      "planned": {
+        "logical_generation": 0,
+        "max_program_instances": 100,
+        "manual_or_P0_evaluations": 5
+      },
+      "records": [
+        {
+          "id": "manual_NN",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_NN: -distance_current",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+            "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_return_bias",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.012481985286656,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_return_bias: -distance_current - 0.25 * (1-progress) * distance_start",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.25 * (1 - progress) * distance_start\n",
+            "key": "52b7e8584070a8a7b0bf6b68f60e88f99205c8b01ef6cc7e952d182042b764a4",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_far_early",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -0.9900181489498406,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n",
+            "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_remaining_mean",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0484336305709878,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_remaining_mean: -distance_current - 0.2 * mean_remaining_distance",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current - 0.2 * mean_remaining_distance\n",
+            "key": "393becd553ab54870b8e8c37036d0a74629797d60d59208a664eb11757ad23bc",
+            "kind": "h"
+          }
+        },
+        {
+          "id": "manual_spread",
+          "stage": "fixed",
+          "status": "completed",
+          "valid": true,
+          "fitness": -1.0034211042319634,
+          "parents": [],
+          "AST_duplicate": false,
+          "cache_hit": false,
+          "failure": null,
+          "error": null,
+          "generation_status": null,
+          "candidate": {
+            "description": "Human-designed manual_spread: -distance_current + 0.15 * (mean_remaining_distance-nearest_remaining_distance)",
+            "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.15 * (mean_remaining_distance - nearest_remaining_distance)\n",
+            "key": "4c0f90baabb44019c390ba929d95afe7b2179a210087741d475080bf4bd52933",
+            "kind": "h"
+          }
+        }
+      ],
+      "best_so_far": {
+        "id": "manual_far_early",
+        "stage": "fixed",
+        "status": "completed",
+        "valid": true,
+        "fitness": -0.9900181489498406,
+        "parents": [],
+        "AST_duplicate": false,
+        "cache_hit": false,
+        "failure": null,
+        "error": null,
+        "generation_status": null,
+        "candidate": {
+          "description": "Human-designed manual_far_early: -distance_current + 0.25 * (1-progress) * distance_start",
+          "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.25 * (1 - progress) * distance_start\n",
+          "key": "874df4ae15f9c122661b7bb0bd8941f5f54e30f4245e5b42662b793c566e1197",
+          "kind": "h"
+        }
+      },
+      "physical_evaluations": 5,
+      "new_slots_used": 0
+    },
+    "H": {
+      "phase": "completed",
+      "cursor": 10,
+      "planned": {
+        "logical_generation": 10,
+        "max_program_instances": 200,
+        "manual_or_P0_evaluations": 0
+      },
+      "records": [
+        {
+          "id": "H/000",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/001",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/002",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/003",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/004",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/005",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/006",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/007",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/008",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        },
+        {
+          "id": "H/009",
+          "stage": "new",
+          "status": "completed",
+          "valid": false,
+          "fitness": null,
+          "parents": [],
+          "AST_duplicate": null,
+          "cache_hit": null,
+          "failure": "parse_or_constraint_error",
+          "error": "one {description} followed by one python block",
+          "generation_status": "completed",
+          "candidate": null
+        }
+      ],
+      "best_so_far": null,
+      "physical_evaluations": 0,
+      "new_slots_used": 10
+    }
+  },
+  "limits": [
+    "2 repeats per method; migration pilot, not stable superiority evidence",
+    "static/P0 costs reported separately",
+    "NN-relative metric, not optimality gap",
+    "confirmation and transfer are separate evaluations"
+  ]
+}

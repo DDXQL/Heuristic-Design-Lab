@@ -45,14 +45,23 @@ def load_config(path):
     return c
 
 
-def prepare(config,directory,continue_from=None):
+def prepare(config,directory,continue_from=None,renew_window_seconds=None,window_authorization=None):
     directory=Path(directory).resolve()
     if directory.parent!=ROOT/'runs' or directory.exists():raise ValueError('new direct runs child required')
-    c=load_config(config);directory.mkdir(parents=True)
+    c=load_config(config)
+    if renew_window_seconds is not None:
+        if continue_from is None or type(renew_window_seconds) is not int or not 1<=renew_window_seconds<=43200 or not window_authorization:
+            raise ValueError('renewal requires continuation, explicit authorization and <=12 hours')
+        authority=read(window_authorization)
+        if authority.get('user_text')!='允许新窗口，预算不变' or authority.get('logical_cap')!=50 or authority.get('API_attempt_cap')!=75:
+            raise ValueError('window authorization must preserve original total budget')
+    directory.mkdir(parents=True)
     if continue_from is None:manifest=data.generate(directory/'data')
     else:
         import shutil
-        origin=Path(continue_from).resolve();old=read(origin/'Protocol.json');journal=read(origin/'API_attempts.json')
+        origin=Path(continue_from).resolve()
+        if origin.parent!=ROOT/'runs':raise ValueError('foreign historical campaign: inspect the preserved archive; do not resume/rebind it')
+        old=read(origin/'Protocol.json');journal=read(origin/'API_attempts.json')
         if sha(origin/'Protocol.json')!=(origin/'Protocol.sha256').read_text().strip():raise ValueError('origin protocol changed')
         if any(a['status'] not in ('completed','failed') for a in journal['api_attempts'].values()):raise ValueError('unknown request; no continuation replay')
         if (origin/'.campaign.lock').exists():raise ValueError('origin still has writer lock')
@@ -60,7 +69,8 @@ def prepare(config,directory,continue_from=None):
             if (run/'.execution.lock').exists():raise ValueError('origin stage lock present')
         if old['config']!=c:raise ValueError('continuation cannot alter provider, budget or parameters')
         shutil.copytree(origin/'data',directory/'data');manifest=old['data']
-        (directory/'Run_clock.json').write_bytes((origin/'Run_clock.json').read_bytes())
+        if renew_window_seconds is None:(directory/'Run_clock.json').write_bytes((origin/'Run_clock.json').read_bytes())
+        else:(directory/'Original_clock.json').write_bytes((origin/'Run_clock.json').read_bytes())
         write(directory/'Inherited_budget.json',{'origin':str(origin),'requests':journal['requests'],'api_attempts':journal['api_attempts'],'no_reset':True})
     p={'version':VERSION,'config':c,'source_files':sources(),'config_file':str(Path(config).resolve()),'config_sha256':sha(config),
         'data_manifest_sha256':sha(directory/'data/Manifest.json'),'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
@@ -79,6 +89,8 @@ def prepare(config,directory,continue_from=None):
     if continue_from is not None:
         p['request_origin']={'directory':str(origin),'protocol_sha256':sha(origin/'Protocol.json'),'clock_sha256':sha(origin/'Run_clock.json')}
         p['execution_revision']={'version':'description-wrapper-compatible-v2','change':'accept plain or braced description; unchanged candidate code/AST/geometry/prompt/selection','inherited_logical':len(journal['requests']),'inherited_attempts':len(journal['api_attempts']),'no_extra_budget':True,'origin_H_selection_superseded_before_any_U':not any(k.startswith(('IND_','EVO_')) for k in journal['requests'])}
+    if renew_window_seconds is not None:
+        p['window_renewal']={'seconds':renew_window_seconds,'authorization':authority,'from':'first start of this continuation','original_clock_sha256':sha(directory/'Original_clock.json'),'budget_reset':False}
     write(directory/'Protocol.json',p);(directory/'Protocol.sha256').write_text(sha(directory/'Protocol.json')+'\n')
     write(directory/'Campaign_state.json',{'phase':'prepared','current_stage':None,'completed_stages':[],'started_at':None})
     (directory/'wire_responses').mkdir()
@@ -89,7 +101,10 @@ def prepare(config,directory,continue_from=None):
 
 
 def check(directory):
+    directory=Path(directory).resolve()
+    if directory.parent!=ROOT/'runs':raise ValueError('historical evidence outside current runs; use inspect_archive.py, not run/resume')
     p=read(directory/'Protocol.json')
+    if not Path(p['config_file']).resolve().is_relative_to(ROOT):raise ValueError('historical absolute configuration path preserved; migration does not rebind execution identity')
     if p['version']!=VERSION or sha(directory/'Protocol.json')!=(directory/'Protocol.sha256').read_text().strip():raise ValueError('campaign identity changed')
     if sha(p['config_file'])!=p['config_sha256'] or sha(ROOT/'docs/TSP_PILOT_PROTOCOL_V1.md')!=p['science_protocol_sha256']:raise ValueError('bound config/science protocol changed')
     for name,value in p['source_files'].items():
@@ -100,7 +115,13 @@ def check(directory):
             if sha(directory/'data'/row['path'])!=row['sha256']:raise ValueError('data changed')
     if 'request_origin' in p:
         origin=Path(p['request_origin']['directory'])
-        if sha(origin/'Protocol.json')!=p['request_origin']['protocol_sha256'] or sha(origin/'Run_clock.json')!=p['request_origin']['clock_sha256'] or sha(directory/'Run_clock.json')!=p['request_origin']['clock_sha256']:raise ValueError('origin identity/deadline changed')
+        if sha(origin/'Protocol.json')!=p['request_origin']['protocol_sha256'] or sha(origin/'Run_clock.json')!=p['request_origin']['clock_sha256']:raise ValueError('origin identity/deadline changed')
+        if 'window_renewal' in p:
+            if sha(directory/'Original_clock.json')!=p['window_renewal']['original_clock_sha256']:raise ValueError('original clock copy changed')
+            if (directory/'Run_clock.json').exists():
+                clock=read(directory/'Run_clock.json');receipt=read(directory/'Window_renewal_receipt.json')
+                if receipt['clock_sha256']!=sha(directory/'Run_clock.json') or receipt['protocol']!=sha(directory/'Protocol.json') or clock['deadline']!=clock['start']+p['window_renewal']['seconds']:raise ValueError('renewed clock changed')
+        elif sha(directory/'Run_clock.json')!=p['request_origin']['clock_sha256']:raise ValueError('original deadline changed')
         inherited=read(directory/'Inherited_budget.json');current=read(origin/'API_attempts.json')
         if any(current['requests'].get(k)!=v for k,v in inherited['requests'].items()) or any(current['api_attempts'].get(k)!=v for k,v in inherited['api_attempts'].items()):raise ValueError('inherited request or attempt record changed')
     for name in ['H_frozen.json','P0.json','Validation_candidates.json','Final_frozen.json']:
@@ -191,7 +212,8 @@ def run(directory,allow_api=False,resume=False):
         if resume and (directory/'Pause_request.json').exists():
             ack=directory/'control'/('pause_ack_'+str(time.time_ns())+'.json');ack.parent.mkdir(exist_ok=True);(directory/'Pause_request.json').replace(ack)
         if not (directory/'Run_clock.json').exists():
-            t=time.time();write(directory/'Run_clock.json',{'start':t,'deadline':t+43200})
+            t=time.time();write(directory/'Run_clock.json',{'start':t,'deadline':t+p.get('window_renewal',{}).get('seconds',43200)})
+            if 'window_renewal' in p:write(directory/'Window_renewal_receipt.json',{'protocol':sha(directory/'Protocol.json'),'clock_sha256':sha(directory/'Run_clock.json'),'authorization':p['window_renewal']['authorization'],'original_clock_sha256':p['request_origin']['clock_sha256']})
         if time.time()>=read(directory/'Run_clock.json')['deadline']:raise RuntimeError('original campaign window expired')
         s.pop('reason',None);s['phase']='running';s['started_at']=s['started_at'] or time.time();write(directory/'Campaign_state.json',s)
         a,_=stage(directory,'manual-H',kind='h',split='train',manual=manual_pool(),allow_api=allow_api)
@@ -252,6 +274,7 @@ def run(directory,allow_api=False,resume=False):
 
 
 def stop(directory):
+    check(directory)  # Never write a pause request into a preserved historical archive.
     write(directory/'Pause_request.json',{'requested_at':time.time(),'candidate_boundary':True})
     s=read(directory/'Campaign_state.json');label=s.get('current_stage')
     if label:
@@ -262,7 +285,9 @@ def stop(directory):
 
 
 def summary(directory,write_files=False):
+    if Path(directory).resolve().parent!=ROOT/'runs':raise ValueError('historical evidence outside current runs; use inspect_archive.py')
     p=read(directory/'Protocol.json');s=read(directory/'Campaign_state.json');path=directory/'API_attempts.json'
+    if not Path(p['config_file']).resolve().is_relative_to(ROOT):raise ValueError('historical absolute configuration path preserved; use inspect_archive.py')
     j=read(Path(p.get('request_origin',{}).get('directory',str(directory)))/'API_attempts.json') if (Path(p.get('request_origin',{}).get('directory',str(directory)))/'API_attempts.json').exists() else {'requests':{},'api_attempts':{}}
     attempts=list(j['api_attempts'].values());req=j['requests'];groups=[];stagefacts={};allrows=[]
     stages=['manual-H','H','static','IND_701','IND_702','EVO_801','EVO_802','validation','confirmation','transfer']
