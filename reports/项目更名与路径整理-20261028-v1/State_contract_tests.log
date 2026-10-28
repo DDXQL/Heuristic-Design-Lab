@@ -1,0 +1,12 @@
+test_cache_identity_binds_policy_member_order_and_science (test_state_contracts.Tests.test_cache_identity_binds_policy_member_order_and_science) ... ok
+test_draft_unknown_and_cross_problem_never_execute (test_state_contracts.Tests.test_draft_unknown_and_cross_problem_never_execute) ... ok
+test_explicit_legacy_packet_no_online_input_change (test_state_contracts.Tests.test_explicit_legacy_packet_no_online_input_change) ... ok
+test_missing_terminal_nonfinite_and_wrong_id_rejected (test_state_contracts.Tests.test_missing_terminal_nonfinite_and_wrong_id_rejected) ... ok
+test_names_match_real_legacy_signatures (test_state_contracts.Tests.test_names_match_real_legacy_signatures) ... ok
+test_old_cache_and_tampered_binding_never_auto_upgrade (test_state_contracts.Tests.test_old_cache_and_tampered_binding_never_auto_upgrade) ... ok
+test_router_rejects_draft_before_problem_entry (test_state_contracts.Tests.test_router_rejects_draft_before_problem_entry) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.028s
+
+OK

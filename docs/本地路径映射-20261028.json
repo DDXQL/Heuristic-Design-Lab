@@ -1,0 +1,8 @@
+{
+  "schema": "historical-path-interpretation-v1",
+  "from": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration",
+  "to": "/Users/DDXQL/Developer/Heuristic-Design-Lab",
+  "scope": "read-only interpretation of this worktree path; never rewrite frozen receipts or rebind checkpoints",
+  "automatic_fallback": false,
+  "TSP_archive_viewer": "pass --vault archives/tsp-c3b74b7-20261028-v1 explicitly; original receipt and Manifest SHA are still validated"
+}

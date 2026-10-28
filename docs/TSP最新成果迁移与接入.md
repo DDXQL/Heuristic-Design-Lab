@@ -1,5 +1,7 @@
 # TSP最新成果迁移与多问题接入（2026-10-28）
 
+> 当前开发工作树已更名为 `/Users/DDXQL/Developer/Heuristic-Design-Lab`。下文“独立集成工作树”是当时来源位置；历史回执与协议不改写。当前命令显式指定新vault位置，详见[本地工作区更名说明](本地工作区更名说明.md)。
+
 本轮仅工程迁移与接入：真实API=0，正式实例求解/搜索续跑/已完成实验重评=0。独立toy、Mock与纯离线核验已执行。没有改变TSP算法或启用共同状态草案。
 
 ## 工作位置、提交与分支
@@ -55,7 +57,7 @@ partial包SHA256：`102082593f682e1178abb0eb2a6ba24092f24c32a95021a44e3c8176b4f1
 当前执行入口只接受当前工作树`runs/`的运行，并拒绝外国配置绝对路径；暂停请求也先通过此门禁。归档不能直接run/resume/stop，不能因搬家重置账本/截止或继续已结束campaign。新路径保护只约束I/O和身份，不修改问题状态、动作、评分、候选语言或提示。
 
 ```sh
-cd '/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration'
+cd '/Users/DDXQL/Developer/Heuristic-Design-Lab'
 .venv/bin/python -B experiments/manage.py --problem tsp --help
 .venv/bin/python -B experiments/manage.py --problem tsp doctor
 .venv/bin/python -B experiments/manage.py --problem tsp check --config experiments/tsp/configs/pilot-real.json
@@ -63,7 +65,7 @@ cd '/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration'
 
 # 历史结果只读查看和全部迁入文件核验：无API、无求解
 .venv/bin/python -B experiments/tsp/inspect_archive.py \
-  --receipt reports/TSP最新成果迁移-20261028-v1/Asset_copy_result.json --verify-all
+  --receipt reports/TSP最新成果迁移-20261028-v1/Asset_copy_result.json --vault archives/tsp-c3b74b7-20261028-v1 --verify-all
 ```
 
 TSP直接旧入口的help/check/plan同样保留；FJSP仍通过`experiments/fjsp/manage.py`或原`experiments/tier2/manage.py`调用原组件。新旧CLI预览共10条实际入口检查，在网络、模型客户端和两问题求解器被禁止的条件下通过。上述命令没有启动新实验。

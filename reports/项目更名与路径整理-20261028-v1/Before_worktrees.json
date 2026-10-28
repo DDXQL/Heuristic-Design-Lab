@@ -1,0 +1,32 @@
+{
+  "/Users/DDXQL/Developer/FJSP-Heuristic-Research": {
+    "head": "243ad401bfd5ff64da338277112933323621de1f\n",
+    "branch": "codex/tier2-prd-s1-s6\n",
+    "status": "",
+    "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git\n"
+  },
+  "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space": {
+    "head": "864c116d46c193b4e0a5aba2ed1fe56e391337ca\n",
+    "branch": "codex/multi-problem-state-v1\n",
+    "status": "?? experiments/tier2/ops/learn-ind-01.json\n?? reports/a4-static-rs60x5-train21-seed501-v1/Run_console.log\n?? reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Partial_109_archive_incomplete_NOT_CERTIFIED.tar.gz\n",
+    "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git\n"
+  },
+  "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration": {
+    "head": "e7acc749abef9d3f8af1ffe1144e982e39a03ae3\n",
+    "branch": "codex/tsp-integration-20261028\n",
+    "status": "",
+    "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git\n"
+  },
+  "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-pilot": {
+    "head": "7056f180a1d7f21c6b0d8d1144958c95f863b708\n",
+    "branch": "codex/tsp-pilot\n",
+    "status": " M README.md\n M code/heuristic_design/problems/tsp/campaign.py\n M code/heuristic_design/problems/tsp/candidates.py\n M code/heuristic_design/problems/tsp/operations.py\n M docs/TSP_ADAPTER.md\n M experiments/tsp/manage.py\n M tests/test_tsp_adapter.py\n?? .venv\n?? docs/TSP_EXECUTION_REVISION_V2.md\n?? experiments/tsp/verify_delivery.py\n?? reports/tsp-pilot-20261026-v1/Correctness_revision_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_continuation_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_v2_source_snapshot.tar.gz\n?? reports/tsp-pilot-20261026-v1/Pre_repair_receipt.json\n?? reports/tsp-pilot-20261026-v1/Real_pre_repair_source_snapshot.tar.gz\n",
+    "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git\n"
+  },
+  "/Users/DDXQL/Developer/FJSP-Heuristic-Research-u-single-experiments": {
+    "head": "375623e906f7fe245826a52d986faebaf11c72fe\n",
+    "branch": "codex/u-single-experiments\n",
+    "status": " M tools/report_single_fair.py\n",
+    "common": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git\n"
+  }
+}
