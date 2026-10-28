@@ -1,0 +1,63 @@
+{
+  "state": "completed",
+  "mode": "recoverable move out of iCloud; no permanent purge",
+  "started_epoch": 1793175625.008734,
+  "source_root": "/Users/DDXQL/Documents/大学/硕士/代码",
+  "retired_root": "/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees",
+  "moves": [
+    {
+      "name": "FJSP-Heuristic-Research-h-usage-space",
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space",
+      "destination": "/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees/FJSP-Heuristic-Research-h-usage-space",
+      "method": "git worktree move"
+    },
+    {
+      "name": "FJSP-Heuristic-Research-tsp-pilot",
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot",
+      "destination": "/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees/FJSP-Heuristic-Research-tsp-pilot",
+      "method": "git worktree move"
+    },
+    {
+      "name": "FJSP-Heuristic-Research-u-single-experiments",
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-u-single-experiments",
+      "destination": "/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees/FJSP-Heuristic-Research-u-single-experiments",
+      "method": "git worktree move"
+    },
+    {
+      "name": "FJSP-Heuristic-Research",
+      "source": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research",
+      "destination": "/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees/FJSP-Heuristic-Research",
+      "method": "same-device primary directory rename"
+    }
+  ],
+  "developer_states": {
+    "/Users/DDXQL/Developer/FJSP-Heuristic-Research": {
+      "head": "243ad401bfd5ff64da338277112933323621de1f\n",
+      "status": ""
+    },
+    "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space": {
+      "head": "864c116d46c193b4e0a5aba2ed1fe56e391337ca\n",
+      "status": "?? experiments/tier2/ops/learn-ind-01.json\n?? reports/a4-static-rs60x5-train21-seed501-v1/Run_console.log\n?? reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Partial_109_archive_incomplete_NOT_CERTIFIED.tar.gz\n"
+    },
+    "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration": {
+      "head": "5e36a6c998928f360326d2c5415a4533560aa6d2\n",
+      "status": ""
+    },
+    "/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-pilot": {
+      "head": "7056f180a1d7f21c6b0d8d1144958c95f863b708\n",
+      "status": " M README.md\n M code/heuristic_design/problems/tsp/campaign.py\n M code/heuristic_design/problems/tsp/candidates.py\n M code/heuristic_design/problems/tsp/operations.py\n M docs/TSP_ADAPTER.md\n M experiments/tsp/manage.py\n M tests/test_tsp_adapter.py\n?? .venv\n?? docs/TSP_EXECUTION_REVISION_V2.md\n?? experiments/tsp/verify_delivery.py\n?? reports/tsp-pilot-20261026-v1/Correctness_revision_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_continuation_v2.log\n?? reports/tsp-pilot-20261026-v1/Mock_v2_source_snapshot.tar.gz\n?? reports/tsp-pilot-20261026-v1/Pre_repair_receipt.json\n?? reports/tsp-pilot-20261026-v1/Real_pre_repair_source_snapshot.tar.gz\n"
+    },
+    "/Users/DDXQL/Developer/FJSP-Heuristic-Research-u-single-experiments": {
+      "head": "375623e906f7fe245826a52d986faebaf11c72fe\n",
+      "status": " M tools/report_single_fair.py\n"
+    }
+  },
+  "scientific_files_verified": 36504,
+  "credentials_values_logged": false,
+  "git_repair_output": "",
+  "finished_epoch": 1793175685.562054,
+  "original_icloud_project_paths_remaining": 0,
+  "permanent_deletions": 0,
+  "git_worktree_relations_repaired": true,
+  "private_credentials_verified": true
+}

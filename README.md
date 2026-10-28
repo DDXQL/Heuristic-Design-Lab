@@ -26,3 +26,9 @@
 此前缺失的科研文件与旧Git对象已补齐：四个原目录36,504个源码/数据/实验文件均有内容一致的Developer保存位置。当前结论与查找工具见[删除前验收报告](reports/迁移删除前验收-20261028-v1/REPORT_ZH.md)。本轮没有删除原目录、没有推送；两份凭据由用户另行安全保存/决定处理。早期报告中的缺失清单是当时快照，不代表本次尚有同样缺口。
 
 后续开发使用本集成目录；Developer主项目公共Git和h-usage虚拟环境仍是其依赖，不要仅保留集成文件夹。
+
+## 2026-10-28：已上传并移出旧iCloud项目
+
+最新集成分支`codex/tsp-integration-20261028`已上传GitHub。四个旧Documents项目已可恢复地移到`/Users/DDXQL/Backups/Heuristic-Design-Lab/legacy-20261028-v1/retired-worktrees/`；原始资产另有逐成员校验的独立归档及Git bundle。这些ignored原始资产仅本机保存，并非已上传GitHub。
+
+[上传、备份与清理报告](reports/上传备份与iCloud清理-20261028-v1/REPORT_ZH.md)给出范围、SHA和复查结果。后续使用本集成目录；私有凭据在`/Users/DDXQL/.config/heuristic-design-lab/`。Developer主仓库公共Git及h-usage环境依赖继续保留。

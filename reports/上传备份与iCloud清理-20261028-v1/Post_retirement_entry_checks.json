@@ -1,0 +1,57 @@
+[
+  {
+    "args": [
+      "experiments/manage.py",
+      "--problem",
+      "fjsp",
+      "doctor"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"executable\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python\",\n  \"worktree\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration\",\n  \"dependencies\": {\n    \"numpy\": \"2.5.4\",\n    \"pytz\": \"2026.5\",\n    \"tqdm\": \"4.70.1\"\n  },\n  \"LEAFAPI_API_KEY_present\": false,\n  \"network_queries\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "experiments/manage.py",
+      "--problem",
+      "tsp",
+      "doctor"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"python\": \"3.12.10\",\n  \"root\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration\",\n  \"key_present\": false,\n  \"API\": 0,\n  \"solves\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "experiments/fjsp/manage.py",
+      "plan",
+      "--config",
+      "experiments/fjsp/configs/fixed-toy.json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"type\": \"fixed\",\n  \"space\": \"ten_h\",\n  \"budgets\": {\n    \"logical_generation\": 0,\n    \"manual_or_P0_evaluations\": 2,\n    \"API_attempts\": 0,\n    \"max_program_instances\": 2,\n    \"max_solve_passes\": 4\n  },\n  \"instances\": [\n    \"toy.fjsp\"\n  ],\n  \"API_calls\": 0,\n  \"solves\": 0,\n  \"tasks\": [\n    {\n      \"id\": \"H0_SELECT\",\n      \"stage\": \"fixed\"\n    },\n    {\n      \"id\": \"equal\",\n      \"stage\": \"fixed\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "experiments/tsp/manage.py",
+      "plan",
+      "--config",
+      "experiments/tsp/configs/pilot-mock.json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"config\": {\n    \"schema\": \"tsp-fixed-pilot-v1-20261026\",\n    \"api_mode\": \"mock\",\n    \"real_requests_authorized\": false,\n    \"provider\": {\n      \"endpoint\": \"https://leafapi.cc/v1/chat/completions\",\n      \"model\": \"gpt-6.1-sol\",\n      \"protocol\": \"openai-chat-v1\",\n      \"api_key_env\": \"LEAFAPI_API_KEY\",\n      \"connect_timeout\": 10,\n      \"read_timeout\": 240,\n      \"total_timeout\": 300,\n      \"max_output_tokens\": 8192,\n      \"max_prompt_bytes\": 262144,\n      \"temperature\": null,\n      \"reasoning_effort\": null,\n      \"expected_response_model\": \"gpt-6.1-sol\",\n      \"stream_response\": false\n    },\n    \"window_seconds\": 43200,\n    \"api_attempt_cap\": 75,\n    \"per_candidate_attempt_cap\": 2,\n    \"mock_delay_seconds\": 0\n  },\n  \"API\": 0,\n  \"solves\": 0,\n  \"stages\": {\n    \"H\": 10,\n    \"IND_701\": 10,\n    \"IND_702\": 10,\n    \"EVO_801\": 10,\n    \"EVO_802\": 10\n  },\n  \"global_API_attempt_cap\": 75\n}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "experiments/tsp/inspect_archive.py",
+      "--receipt",
+      "reports/TSP最新成果迁移-20261028-v1/Asset_copy_result.json",
+      "--verify-all"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"view\": \"historical-evidence-only; not rebound to current execution identity\",\n  \"source_commit\": \"c3b74b7ad5686e798e626514c7680951e7c2d943\",\n  \"source_root\": \"/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-tsp-pilot\",\n  \"vault\": \"/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration/archives/tsp-c3b74b7-20261028-v1\",\n  \"campaign\": \"tsp-pilot-20261026-v2\",\n  \"phase\": \"completed\",\n  \"historical_protocol_sha256\": \"1968b24064e8cfc1fe6de27eb51fe2b806f21894642a8828a5fec4ed976bf95d\",\n  \"logical_tasks\": 50,\n  \"API_attempts\": 50,\n  \"unknown_API_attempts\": 0,\n  \"stages\": [\n    {\n      \"stage\": \"EVO_801\",\n      \"phase\": \"completed\",\n      \"cursor\": 15,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"EVO_802\",\n      \"phase\": \"completed\",\n      \"cursor\": 15,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"H\",\n      \"phase\": \"completed\",\n      \"cursor\": 10,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"IND_701\",\n      \"phase\": \"completed\",\n      \"cursor\": 15,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"IND_702\",\n      \"phase\": \"completed\",\n      \"cursor\": 15,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"confirmation\",\n      \"phase\": \"completed\",\n      \"cursor\": 2,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"manual-H\",\n      \"phase\": \"completed\",\n      \"cursor\": 5,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"static\",\n      \"phase\": \"completed\",\n      \"cursor\": 15,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"transfer\",\n      \"phase\": \"completed\",\n      \"cursor\": 2,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    },\n    {\n      \"stage\": \"validation\",\n      \"phase\": \"completed\",\n      \"cursor\": 2,\n      \"unknown_evaluations\": 0,\n      \"uncommitted_tasks\": 0,\n      \"writer_lock_in_snapshot\": false\n    }\n  ],\n  \"H_order\": [\n    \"manual_far_early\",\n    \"manual_NN\",\n    \"manual_spread\",\n    \"manual_return_bias\",\n    \"manual_remaining_mean\"\n  ],\n  \"original_absolute_paths_unchanged\": true,\n  \"API_calls\": 0,\n  \"solves\": 0,\n  \"resume_supported\": false,\n  \"verified_assets\": {\n    \"files\": 9491,\n    \"bytes\": 50278240\n  }\n}\n",
+    "stderr": ""
+  }
+]

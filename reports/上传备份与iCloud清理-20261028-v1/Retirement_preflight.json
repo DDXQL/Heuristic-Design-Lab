@@ -1,0 +1,39 @@
+{
+  "scientific_files": 36504,
+  "added": [],
+  "missing": [],
+  "changed": [],
+  "cloud_files": [],
+  "git_locks": [],
+  "open_old_paths": [],
+  "credential_paths": [
+    "FJSP-Heuristic-Research/.env.leafapi.local",
+    "FJSP-Heuristic-Research/.env.deepseek.local"
+  ],
+  "private_credentials_match": true,
+  "source_device": 16777229,
+  "backup_device": 16777229,
+  "old_states": {
+    "FJSP-Heuristic-Research": {
+      "head": "243ad401bfd5ff64da338277112933323621de1f\n",
+      "branch": "codex/tier2-prd-s1-s6\n",
+      "status": ""
+    },
+    "FJSP-Heuristic-Research-h-usage-space": {
+      "head": "530bfe2e68dad347af26d4676ad2c4a8445f5998\n",
+      "branch": "codex/h-usage-space\n",
+      "status": " M .gitignore\n?? experiments/tier2/ops/learn-ind-01.json\n?? reports/Tier2演化机制核查-20261027-v1/B1真实交叉Prompt_第二代第2槽.txt\n?? reports/Tier2演化机制核查-20261027-v1/B1种群物理排程分组.csv\n?? reports/Tier2演化机制核查-20261027-v1/B1进度分段记录可提取性示例.csv\n?? reports/Tier2演化机制核查-20261027-v1/P2实际利用行为核验.json\n?? reports/Tier2演化机制核查-20261027-v1/Prompt逐任务核验.csv\n?? reports/Tier2演化机制核查-20261027-v1/核查报告.md\n?? reports/Tier2演化机制核查-20261027-v1/证据核验.json\n?? reports/a4-static-rs60x5-train21-seed501-v1/Analysis_smoke.json\n?? reports/a4-static-rs60x5-train21-seed501-v1/Run_console.log\n?? reports/b1-full-h-free-seed501-k2-v1-20261021/analyze_saved.py\n?? reports/ind-vs-evo-h01-train21-seed501-20261026-v1/Partial_109_archive_incomplete_NOT_CERTIFIED.tar.gz\n?? reports/历史冻结-20261027-v1/Git云端可读性尝试.json\n?? reports/历史冻结-20261027-v1/Git同内容对象恢复.json\n?? reports/历史冻结-20261027-v1/TSP未提交修改.patch\n?? reports/历史冻结-20261027-v1/历史快照说明.md\n?? reports/历史冻结-20261027-v1/归档成员SHA256.json\n?? reports/历史冻结-20261027-v1/归档首次失败.json\n?? reports/历史冻结-20261027-v1/本地大文件归档.json\n?? reports/历史冻结-20261027-v1/现场与TSP状态.json\n"
+    },
+    "FJSP-Heuristic-Research-tsp-pilot": {
+      "head": "c3b74b7ad5686e798e626514c7680951e7c2d943\n",
+      "branch": "codex/tsp-pilot\n",
+      "status": "?? .venv\n"
+    },
+    "FJSP-Heuristic-Research-u-single-experiments": {
+      "head": "375623e906f7fe245826a52d986faebaf11c72fe\n",
+      "branch": "codex/u-single-experiments\n",
+      "status": " M tools/report_single_fair.py\n"
+    }
+  },
+  "passed": true
+}

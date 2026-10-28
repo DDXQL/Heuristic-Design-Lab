@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "counts": {
+    "tracked_text": 266,
+    "archive_text_members": 3288,
+    "archives": 6
+  },
+  "findings_paths_only": [],
+  "credential_values_printed": false,
+  "scope": "new tracked files since remote historical freeze; common patterns and exact locally configured secret values; archive text members inspected",
+  "unverified_nested_archives": "not expanded recursively; primary archive contents previously audited"
+}
