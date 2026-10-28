@@ -6,9 +6,9 @@
 
 正文已使用中文文件名。保留本文件作为GitHub及编辑器的标准首页；旧英文文档路径仅保留导航，避免历史链接失效。命令、配置字段和代码标识保持原名。
 
-- **当前开发位置**：`/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space`。Documents副本只保留来源，不在两个副本同时开发。
+- **当前开发位置**：`/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration`。Documents副本只保留来源，不在两个副本同时开发。
 - **多问题入口与旧路径映射**：[多问题结构与迁移说明](docs/多问题结构与迁移说明.md)。FJSP旧入口兼容，TSP复用独立工作树当前实现；未宣称跨问题质量已验证。
-- **冻结与保存范围**：[Developer迁移说明](reports/迁移至Developer-20261027-v1/迁移说明.md)。有尚未下载资产，Git上传不代表原始runs全部上传。
+- **冻结与保存范围**：[Developer迁移说明](reports/迁移至Developer-20261027-v1/迁移说明.md)。早期缺口已由下方2026-10-28验收补齐；Git上传仍不代表原始runs全部上传。
 
 - **通用状态设计**：[通用状态接口设计V1](docs/通用状态接口设计V1.md)。保留七输入/五输入legacy；共同状态是禁用草案，不是已验证新算法。
 
@@ -20,3 +20,9 @@
 - [TSP问题定义与既有入口](docs/TSP_ADAPTER.md)：保留五输入、几何游程、SELECT/MIX和相对NN指标；共同状态草案仍禁用。
 
 当前集成工作树为`/Users/DDXQL/Developer/FJSP-Heuristic-Research-tsp-integration`。原Developer整理分支和旧TSP树保持原样，历史运行禁止直接从迁移位置续跑；新示例真实请求仍默认未授权。本轮无API或正式求解。
+
+## 2026-10-28：旧目录删除前验收
+
+此前缺失的科研文件与旧Git对象已补齐：四个原目录36,504个源码/数据/实验文件均有内容一致的Developer保存位置。当前结论与查找工具见[删除前验收报告](reports/迁移删除前验收-20261028-v1/REPORT_ZH.md)。本轮没有删除原目录、没有推送；两份凭据由用户另行安全保存/决定处理。早期报告中的缺失清单是当时快照，不代表本次尚有同样缺口。
+
+后续开发使用本集成目录；Developer主项目公共Git和h-usage虚拟环境仍是其依赖，不要仅保留集成文件夹。
