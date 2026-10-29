@@ -1,0 +1,30 @@
+# 共同构造状态与纯路由 V1
+
+日期：2026-10-29。来源：Notion《Heuristic-Design-Lab 改进执行清单》。
+本实现接续 `aa83cac`，不覆盖历史协议或启用旧 common-v0 草案。
+
+## 冻结定义
+
+规范源为 `core/constructive_state.py::SPEC`，包含13个数值字段和历史元信息。
+FJSP：D=工序数，B=各工序最大加工时间之和，C=各job最大可选机器数之和。
+TSP：D=n−1，B=n×Dmax，C=n−1。闭合回0是强制边，不调用U，也不写可选决策历史。
+所有动作增量均为 `[C(s+a)−C(s)]/B`；它不是质量奖励。
+FJSP只用已有ready时间规则算动作起止，不复制排程、不续排、不调用H。
+
+历史默认W=10，动作提交后更新；最近窗口不足就用已有记录，单样本总体标准差=0。
+首步历史字段为None，availability=false；单动作best_gap不可用，少于两条历史switch不可用。
+可关action_cost/trajectory/usage组；关组字段仍在packet内但None+mask+原因，不填真实0。
+construction组在本版本必须保留。类别编号仅在本问题冻结H顺序内有意义。
+零尺度、空/非法实例预检拒绝，拒绝规则不依赖U或成绩。终态没有观察或U调用。
+
+## 实现决策
+
+V1.1实现细化：U签名为`use_heuristics(state)`，返回内置int的H编号。
+state为递归只读映射、usage_fraction为不可变向量。AST只允许命名字面字段、
+availability的命名字面字段及usage_fraction的范围内字面索引；无循环/属性/导入/任意容器访问。
+元数据和missing_reason用于trace，不向U开放。缺失值由U先检查mask再使用，运行时错误按无效候选处理。
+H评分和动作同分顺序沿用问题旧入口，旧SELECT/MIX及历史状态保持原样。
+
+新入口、缓存和检查点独立版本化，不把common请求转交legacy求解器。
+新评价身份须包含规范、特征组、W、H有序身份、数据、评价器源码、种子、超时、并发和机器。
+具体运行证据及限制见本轮reports；Mock指标不得解释为算法收益。
