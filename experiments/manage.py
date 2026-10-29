@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__, add_help=False)
     parser.add_argument('--problem', choices=['fjsp', 'tsp'], required=True)
-    parser.add_argument('--state-schema', help='explicit legacy schema; common draft is disabled')
+    parser.add_argument('--state-schema', help='legacy or constructive-common-v1-{problem}; v0 draft disabled')
     if '--problem' not in sys.argv[1:]:
         parser.print_help()
         return
@@ -21,8 +21,9 @@ def main():
         require_executable_schema(args.problem, args.state_schema)
     except ValueError as exc:
         parser.error(str(exc))
-    entry = ROOT / 'experiments' / args.problem / 'manage.py'
-    sys.argv = [str(entry), *rest]
+    common = args.state_schema == 'constructive-common-v1-' + args.problem
+    entry = ROOT / 'experiments' / ('common' if common else args.problem) / 'manage.py'
+    sys.argv = [str(entry), *(['--problem', args.problem] if common else []), *rest]
     runpy.run_path(str(entry), run_name='__main__')
 
 if __name__ == '__main__':

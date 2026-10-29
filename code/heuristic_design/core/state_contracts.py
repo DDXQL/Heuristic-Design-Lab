@@ -16,7 +16,10 @@ class StateSchema:
 
     @property
     def definition_sha256(self):
-        return _digest(asdict(self))
+        payload = asdict(self)
+        if not payload['sensor_spec_sha256']:
+            del payload['sensor_spec_sha256']  # preserve pre-v1 legacy identities
+        return _digest(payload)
 
 FJSP_LEGACY = StateSchema('fjsp-seven-v1-legacy', 'fjsp', (
     'progress', 'candidate_pair_ratio', 'remaining_work_mean',
