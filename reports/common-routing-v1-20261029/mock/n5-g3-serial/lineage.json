@@ -1,0 +1,512 @@
+[
+  {
+    "child": "G001-000-CROSS",
+    "generation": 1,
+    "operator": "CROSS",
+    "subject": "INIT-0003",
+    "parents": [
+      "INIT-0003",
+      "INIT-0000"
+    ],
+    "parent_keys": [
+      "8ef81a650a785c7b9ac52010f20fb4fcd1f7ad875210778e1fdc912a1e57e453",
+      "365c0cddf19869d2b2b1390d5fbbd1d08d3f1b7ecd1e236b7ea150d58f8c0770"
+    ],
+    "candidate_key": "44828ca4a4b3a8b10da047cd7a1d29c79881295b5997fde1cea00f59821f5bb2",
+    "valid": true,
+    "prompt_path": "prompts/G001-000-CROSS.txt",
+    "response_path": "responses/G001-000-CROSS.json"
+  },
+  {
+    "child": "G001-000-MUTATE",
+    "generation": 1,
+    "operator": "MUTATE",
+    "subject": "INIT-0003",
+    "parents": [
+      "INIT-0003"
+    ],
+    "parent_keys": [
+      "8ef81a650a785c7b9ac52010f20fb4fcd1f7ad875210778e1fdc912a1e57e453"
+    ],
+    "candidate_key": "f94355aabbd0ec02f5badc2300f1ada2f0a817c530324a3f80c694670557cc8b",
+    "valid": true,
+    "prompt_path": "prompts/G001-000-MUTATE.txt",
+    "response_path": "responses/G001-000-MUTATE.json"
+  },
+  {
+    "child": "G001-001-CROSS",
+    "generation": 1,
+    "operator": "CROSS",
+    "subject": "INIT-0001",
+    "parents": [
+      "INIT-0001",
+      "INIT-0000"
+    ],
+    "parent_keys": [
+      "affeda2b46ea70df587bbcbeee0802c3ade48a6da9d5bbc4b7e23502cb8150fd",
+      "365c0cddf19869d2b2b1390d5fbbd1d08d3f1b7ecd1e236b7ea150d58f8c0770"
+    ],
+    "candidate_key": "1d2a6660df06b74832f8fee737f0a5b3af29f99c7e61eb8bb370e6cb09e8f5a6",
+    "valid": true,
+    "prompt_path": "prompts/G001-001-CROSS.txt",
+    "response_path": "responses/G001-001-CROSS.json"
+  },
+  {
+    "child": "G001-001-MUTATE",
+    "generation": 1,
+    "operator": "MUTATE",
+    "subject": "INIT-0001",
+    "parents": [
+      "INIT-0001"
+    ],
+    "parent_keys": [
+      "affeda2b46ea70df587bbcbeee0802c3ade48a6da9d5bbc4b7e23502cb8150fd"
+    ],
+    "candidate_key": "0d369435349adacea42e03f452fe470ac094a8ea23bb0c9488f60c869ae01826",
+    "valid": true,
+    "prompt_path": "prompts/G001-001-MUTATE.txt",
+    "response_path": "responses/G001-001-MUTATE.json"
+  },
+  {
+    "child": "G001-002-CROSS",
+    "generation": 1,
+    "operator": "CROSS",
+    "subject": "INIT-0004",
+    "parents": [
+      "INIT-0004",
+      "INIT-0001"
+    ],
+    "parent_keys": [
+      "c726459713227bd1c113ed4cf0a48cc45b08072a0e4ee28910f56a0bd015ef81",
+      "affeda2b46ea70df587bbcbeee0802c3ade48a6da9d5bbc4b7e23502cb8150fd"
+    ],
+    "candidate_key": "4616e184e551757d15f51cce7730df29c050baff62478f1cbdf8ce9c84442353",
+    "valid": true,
+    "prompt_path": "prompts/G001-002-CROSS.txt",
+    "response_path": "responses/G001-002-CROSS.json"
+  },
+  {
+    "child": "G001-002-MUTATE",
+    "generation": 1,
+    "operator": "MUTATE",
+    "subject": "INIT-0004",
+    "parents": [
+      "INIT-0004"
+    ],
+    "parent_keys": [
+      "c726459713227bd1c113ed4cf0a48cc45b08072a0e4ee28910f56a0bd015ef81"
+    ],
+    "candidate_key": "56ca46d048f82a309382dfed4ecf9154a86926ff5af2ee7fc11c03f473eb9030",
+    "valid": true,
+    "prompt_path": "prompts/G001-002-MUTATE.txt",
+    "response_path": "responses/G001-002-MUTATE.json"
+  },
+  {
+    "child": "G001-003-CROSS",
+    "generation": 1,
+    "operator": "CROSS",
+    "subject": "INIT-0000",
+    "parents": [
+      "INIT-0000",
+      "INIT-0004"
+    ],
+    "parent_keys": [
+      "365c0cddf19869d2b2b1390d5fbbd1d08d3f1b7ecd1e236b7ea150d58f8c0770",
+      "c726459713227bd1c113ed4cf0a48cc45b08072a0e4ee28910f56a0bd015ef81"
+    ],
+    "candidate_key": "93afaea8ae3941170ddd755676b10fbcf0f254b1a5b9786b42971c7de4eb0519",
+    "valid": true,
+    "prompt_path": "prompts/G001-003-CROSS.txt",
+    "response_path": "responses/G001-003-CROSS.json"
+  },
+  {
+    "child": "G001-003-MUTATE",
+    "generation": 1,
+    "operator": "MUTATE",
+    "subject": "INIT-0000",
+    "parents": [
+      "INIT-0000"
+    ],
+    "parent_keys": [
+      "365c0cddf19869d2b2b1390d5fbbd1d08d3f1b7ecd1e236b7ea150d58f8c0770"
+    ],
+    "candidate_key": "a6972e1233b8b5e67282ee8b4cd551ee32707ed080853d22ed71b209389d2a77",
+    "valid": true,
+    "prompt_path": "prompts/G001-003-MUTATE.txt",
+    "response_path": "responses/G001-003-MUTATE.json"
+  },
+  {
+    "child": "G001-004-CROSS",
+    "generation": 1,
+    "operator": "CROSS",
+    "subject": "INIT-0002",
+    "parents": [
+      "INIT-0002",
+      "INIT-0004"
+    ],
+    "parent_keys": [
+      "bc803fd847e57a6b9a44a692f9e02c1af7aed112292973c20dd454cc08244983",
+      "c726459713227bd1c113ed4cf0a48cc45b08072a0e4ee28910f56a0bd015ef81"
+    ],
+    "candidate_key": "14d19ab64cb11b157790f0272bebee8ac79e34452db59590b0fe961f4a52ed65",
+    "valid": true,
+    "prompt_path": "prompts/G001-004-CROSS.txt",
+    "response_path": "responses/G001-004-CROSS.json"
+  },
+  {
+    "child": "G001-004-MUTATE",
+    "generation": 1,
+    "operator": "MUTATE",
+    "subject": "INIT-0002",
+    "parents": [
+      "INIT-0002"
+    ],
+    "parent_keys": [
+      "bc803fd847e57a6b9a44a692f9e02c1af7aed112292973c20dd454cc08244983"
+    ],
+    "candidate_key": "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a",
+    "valid": true,
+    "prompt_path": "prompts/G001-004-MUTATE.txt",
+    "response_path": "responses/G001-004-MUTATE.json"
+  },
+  {
+    "child": "G002-000-CROSS",
+    "generation": 2,
+    "operator": "CROSS",
+    "subject": "G001-003-CROSS",
+    "parents": [
+      "G001-003-CROSS",
+      "G001-004-MUTATE"
+    ],
+    "parent_keys": [
+      "93afaea8ae3941170ddd755676b10fbcf0f254b1a5b9786b42971c7de4eb0519",
+      "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a"
+    ],
+    "candidate_key": "807731252d31796d715485f7bccd30b19a1478d16dd4d438aa33fc1863db95c3",
+    "valid": true,
+    "prompt_path": "prompts/G002-000-CROSS.txt",
+    "response_path": "responses/G002-000-CROSS.json"
+  },
+  {
+    "child": "G002-000-MUTATE",
+    "generation": 2,
+    "operator": "MUTATE",
+    "subject": "G001-003-CROSS",
+    "parents": [
+      "G001-003-CROSS"
+    ],
+    "parent_keys": [
+      "93afaea8ae3941170ddd755676b10fbcf0f254b1a5b9786b42971c7de4eb0519"
+    ],
+    "candidate_key": "cb2e67ccf9e96442324a9702aa7eef583885ae0f56203e8e212fc9c700354913",
+    "valid": true,
+    "prompt_path": "prompts/G002-000-MUTATE.txt",
+    "response_path": "responses/G002-000-MUTATE.json"
+  },
+  {
+    "child": "G002-001-CROSS",
+    "generation": 2,
+    "operator": "CROSS",
+    "subject": "G001-002-CROSS",
+    "parents": [
+      "G001-002-CROSS",
+      "G001-000-MUTATE"
+    ],
+    "parent_keys": [
+      "4616e184e551757d15f51cce7730df29c050baff62478f1cbdf8ce9c84442353",
+      "f94355aabbd0ec02f5badc2300f1ada2f0a817c530324a3f80c694670557cc8b"
+    ],
+    "candidate_key": "46efe49852fe9a2cbfddc5be6e5c6169b11d3f7d7b6386ca1a987d979d26414b",
+    "valid": true,
+    "prompt_path": "prompts/G002-001-CROSS.txt",
+    "response_path": "responses/G002-001-CROSS.json"
+  },
+  {
+    "child": "G002-001-MUTATE",
+    "generation": 2,
+    "operator": "MUTATE",
+    "subject": "G001-002-CROSS",
+    "parents": [
+      "G001-002-CROSS"
+    ],
+    "parent_keys": [
+      "4616e184e551757d15f51cce7730df29c050baff62478f1cbdf8ce9c84442353"
+    ],
+    "candidate_key": "83fc8729b18eb21a93a7c5f69c0beb3e2ecdb65d4ba84971987a294860a934f0",
+    "valid": true,
+    "prompt_path": "prompts/G002-001-MUTATE.txt",
+    "response_path": "responses/G002-001-MUTATE.json"
+  },
+  {
+    "child": "G002-002-CROSS",
+    "generation": 2,
+    "operator": "CROSS",
+    "subject": "G001-000-MUTATE",
+    "parents": [
+      "G001-000-MUTATE",
+      "G001-004-MUTATE"
+    ],
+    "parent_keys": [
+      "f94355aabbd0ec02f5badc2300f1ada2f0a817c530324a3f80c694670557cc8b",
+      "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a"
+    ],
+    "candidate_key": "f72b87c2cc6d1fedf29e6c4b475c10a6014b0a251d5eeafc211e4fb73f784fbf",
+    "valid": true,
+    "prompt_path": "prompts/G002-002-CROSS.txt",
+    "response_path": "responses/G002-002-CROSS.json"
+  },
+  {
+    "child": "G002-002-MUTATE",
+    "generation": 2,
+    "operator": "MUTATE",
+    "subject": "G001-000-MUTATE",
+    "parents": [
+      "G001-000-MUTATE"
+    ],
+    "parent_keys": [
+      "f94355aabbd0ec02f5badc2300f1ada2f0a817c530324a3f80c694670557cc8b"
+    ],
+    "candidate_key": "255d67394e63210e6e1f3b238286b8474c027c8f74b38ca40553bf31b8d2816f",
+    "valid": true,
+    "prompt_path": "prompts/G002-002-MUTATE.txt",
+    "response_path": "responses/G002-002-MUTATE.json"
+  },
+  {
+    "child": "G002-003-CROSS",
+    "generation": 2,
+    "operator": "CROSS",
+    "subject": "G001-004-MUTATE",
+    "parents": [
+      "G001-004-MUTATE",
+      "G001-000-MUTATE"
+    ],
+    "parent_keys": [
+      "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a",
+      "f94355aabbd0ec02f5badc2300f1ada2f0a817c530324a3f80c694670557cc8b"
+    ],
+    "candidate_key": "64b6387613138651af7d9477ed9b7d2213d9cbcd1b4d62b8606928214834bd97",
+    "valid": true,
+    "prompt_path": "prompts/G002-003-CROSS.txt",
+    "response_path": "responses/G002-003-CROSS.json"
+  },
+  {
+    "child": "G002-003-MUTATE",
+    "generation": 2,
+    "operator": "MUTATE",
+    "subject": "G001-004-MUTATE",
+    "parents": [
+      "G001-004-MUTATE"
+    ],
+    "parent_keys": [
+      "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a"
+    ],
+    "candidate_key": "937830032a9c5463a4f4b5fb5a679c93e60ce180df0ea4d5afee60c09c3fb7f4",
+    "valid": true,
+    "prompt_path": "prompts/G002-003-MUTATE.txt",
+    "response_path": "responses/G002-003-MUTATE.json"
+  },
+  {
+    "child": "G002-004-CROSS",
+    "generation": 2,
+    "operator": "CROSS",
+    "subject": "G001-002-MUTATE",
+    "parents": [
+      "G001-002-MUTATE",
+      "G001-004-MUTATE"
+    ],
+    "parent_keys": [
+      "56ca46d048f82a309382dfed4ecf9154a86926ff5af2ee7fc11c03f473eb9030",
+      "891f5c62e4ba1b96db54a77b1e70bf481fbd7f8159de74f64bbf44d6e42b965a"
+    ],
+    "candidate_key": "c127113598760ecca8bec70fa62f8c51c608362f068689abfe1f5fe1efba344d",
+    "valid": true,
+    "prompt_path": "prompts/G002-004-CROSS.txt",
+    "response_path": "responses/G002-004-CROSS.json"
+  },
+  {
+    "child": "G002-004-MUTATE",
+    "generation": 2,
+    "operator": "MUTATE",
+    "subject": "G001-002-MUTATE",
+    "parents": [
+      "G001-002-MUTATE"
+    ],
+    "parent_keys": [
+      "56ca46d048f82a309382dfed4ecf9154a86926ff5af2ee7fc11c03f473eb9030"
+    ],
+    "candidate_key": "90314904de3b5d34f259cd2ce08ff7f58afb2391485072136936b7bd738dfb66",
+    "valid": true,
+    "prompt_path": "prompts/G002-004-MUTATE.txt",
+    "response_path": "responses/G002-004-MUTATE.json"
+  },
+  {
+    "child": "G003-000-CROSS",
+    "generation": 3,
+    "operator": "CROSS",
+    "subject": "G002-001-CROSS",
+    "parents": [
+      "G002-001-CROSS",
+      "G002-000-MUTATE"
+    ],
+    "parent_keys": [
+      "46efe49852fe9a2cbfddc5be6e5c6169b11d3f7d7b6386ca1a987d979d26414b",
+      "cb2e67ccf9e96442324a9702aa7eef583885ae0f56203e8e212fc9c700354913"
+    ],
+    "candidate_key": "2877a6f56784a017ac00f28c7b3db9ad9c6719eac5bc71ea09b0c664c652c535",
+    "valid": true,
+    "prompt_path": "prompts/G003-000-CROSS.txt",
+    "response_path": "responses/G003-000-CROSS.json"
+  },
+  {
+    "child": "G003-000-MUTATE",
+    "generation": 3,
+    "operator": "MUTATE",
+    "subject": "G002-001-CROSS",
+    "parents": [
+      "G002-001-CROSS"
+    ],
+    "parent_keys": [
+      "46efe49852fe9a2cbfddc5be6e5c6169b11d3f7d7b6386ca1a987d979d26414b"
+    ],
+    "candidate_key": "8c48b747dc4570ecb53f67ba71db5c27e7a1dc3e1a7b8f4abc4a87a5cea04ff2",
+    "valid": true,
+    "prompt_path": "prompts/G003-000-MUTATE.txt",
+    "response_path": "responses/G003-000-MUTATE.json"
+  },
+  {
+    "child": "G003-001-CROSS",
+    "generation": 3,
+    "operator": "CROSS",
+    "subject": "G002-003-MUTATE",
+    "parents": [
+      "G002-003-MUTATE",
+      "G002-001-CROSS"
+    ],
+    "parent_keys": [
+      "937830032a9c5463a4f4b5fb5a679c93e60ce180df0ea4d5afee60c09c3fb7f4",
+      "46efe49852fe9a2cbfddc5be6e5c6169b11d3f7d7b6386ca1a987d979d26414b"
+    ],
+    "candidate_key": "025fa3841d9fc3828b6046a38bd9a086fb57143a3d20504b2b5caee5e00f732c",
+    "valid": true,
+    "prompt_path": "prompts/G003-001-CROSS.txt",
+    "response_path": "responses/G003-001-CROSS.json"
+  },
+  {
+    "child": "G003-001-MUTATE",
+    "generation": 3,
+    "operator": "MUTATE",
+    "subject": "G002-003-MUTATE",
+    "parents": [
+      "G002-003-MUTATE"
+    ],
+    "parent_keys": [
+      "937830032a9c5463a4f4b5fb5a679c93e60ce180df0ea4d5afee60c09c3fb7f4"
+    ],
+    "candidate_key": "4b46a514cc84da2de7193e1a3f2af7827a04512d66f3f4ad960471de5cbb2447",
+    "valid": true,
+    "prompt_path": "prompts/G003-001-MUTATE.txt",
+    "response_path": "responses/G003-001-MUTATE.json"
+  },
+  {
+    "child": "G003-002-CROSS",
+    "generation": 3,
+    "operator": "CROSS",
+    "subject": "G002-000-CROSS",
+    "parents": [
+      "G002-000-CROSS",
+      "G002-004-MUTATE"
+    ],
+    "parent_keys": [
+      "807731252d31796d715485f7bccd30b19a1478d16dd4d438aa33fc1863db95c3",
+      "90314904de3b5d34f259cd2ce08ff7f58afb2391485072136936b7bd738dfb66"
+    ],
+    "candidate_key": "9e6cc61dd75d825bc0b1f1c4d0250d0e48ef7c957ebde27abddaa612123ed75a",
+    "valid": true,
+    "prompt_path": "prompts/G003-002-CROSS.txt",
+    "response_path": "responses/G003-002-CROSS.json"
+  },
+  {
+    "child": "G003-002-MUTATE",
+    "generation": 3,
+    "operator": "MUTATE",
+    "subject": "G002-000-CROSS",
+    "parents": [
+      "G002-000-CROSS"
+    ],
+    "parent_keys": [
+      "807731252d31796d715485f7bccd30b19a1478d16dd4d438aa33fc1863db95c3"
+    ],
+    "candidate_key": "2cabe11f4e8f07d269e422e8546150c7a1d4ccdb43700dd493e44b3dcc58b857",
+    "valid": true,
+    "prompt_path": "prompts/G003-002-MUTATE.txt",
+    "response_path": "responses/G003-002-MUTATE.json"
+  },
+  {
+    "child": "G003-003-CROSS",
+    "generation": 3,
+    "operator": "CROSS",
+    "subject": "G002-004-MUTATE",
+    "parents": [
+      "G002-004-MUTATE",
+      "G002-000-MUTATE"
+    ],
+    "parent_keys": [
+      "90314904de3b5d34f259cd2ce08ff7f58afb2391485072136936b7bd738dfb66",
+      "cb2e67ccf9e96442324a9702aa7eef583885ae0f56203e8e212fc9c700354913"
+    ],
+    "candidate_key": "6d754b3e8f17cf2c8458f865f152a7aceda72444589aa5d7f5e031b68a027d07",
+    "valid": true,
+    "prompt_path": "prompts/G003-003-CROSS.txt",
+    "response_path": "responses/G003-003-CROSS.json"
+  },
+  {
+    "child": "G003-003-MUTATE",
+    "generation": 3,
+    "operator": "MUTATE",
+    "subject": "G002-004-MUTATE",
+    "parents": [
+      "G002-004-MUTATE"
+    ],
+    "parent_keys": [
+      "90314904de3b5d34f259cd2ce08ff7f58afb2391485072136936b7bd738dfb66"
+    ],
+    "candidate_key": "4cffc72f6ab9c2e18b302509b94aa849afd54f32731fc63e808f6bc8f5f6d726",
+    "valid": true,
+    "prompt_path": "prompts/G003-003-MUTATE.txt",
+    "response_path": "responses/G003-003-MUTATE.json"
+  },
+  {
+    "child": "G003-004-CROSS",
+    "generation": 3,
+    "operator": "CROSS",
+    "subject": "G002-000-MUTATE",
+    "parents": [
+      "G002-000-MUTATE",
+      "G002-001-CROSS"
+    ],
+    "parent_keys": [
+      "cb2e67ccf9e96442324a9702aa7eef583885ae0f56203e8e212fc9c700354913",
+      "46efe49852fe9a2cbfddc5be6e5c6169b11d3f7d7b6386ca1a987d979d26414b"
+    ],
+    "candidate_key": "e6c19ba37a348ac3d9c7230dd7dc5e9d72ad64387862ab5dc831b41b409b37e4",
+    "valid": true,
+    "prompt_path": "prompts/G003-004-CROSS.txt",
+    "response_path": "responses/G003-004-CROSS.json"
+  },
+  {
+    "child": "G003-004-MUTATE",
+    "generation": 3,
+    "operator": "MUTATE",
+    "subject": "G002-000-MUTATE",
+    "parents": [
+      "G002-000-MUTATE"
+    ],
+    "parent_keys": [
+      "cb2e67ccf9e96442324a9702aa7eef583885ae0f56203e8e212fc9c700354913"
+    ],
+    "candidate_key": "7f63aea04ae2b7faa0dcd8d831d1d2af505890804bb8f553c9240b01bfca333a",
+    "valid": true,
+    "prompt_path": "prompts/G003-004-MUTATE.txt",
+    "response_path": "responses/G003-004-MUTATE.json"
+  }
+]

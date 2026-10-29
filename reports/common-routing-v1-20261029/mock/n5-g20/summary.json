@@ -1,0 +1,511 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "protocol_sha256": "7105ecfc24c12426f24dc8596ae4a1eddbf3054efa4368d669616b7c1c871f83",
+  "phase": "completed",
+  "evaluation_mode": "mock",
+  "generation_transport": "MOCK_OFFLINE_NOT_LLM",
+  "quality_claim": false,
+  "real_API_calls": 0,
+  "generation": 20,
+  "initialization_requests": 5,
+  "generation_requests": 200,
+  "planned_evolution_candidates": 200,
+  "valid_unique_evaluations": 205,
+  "failed_or_duplicate_tasks": 0,
+  "generations": [
+    {
+      "generation": 1,
+      "planned_candidates": 10,
+      "generation_requests": 10,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G001-000-MUTATE",
+        "G001-002-CROSS",
+        "G001-002-MUTATE",
+        "G001-003-CROSS",
+        "G001-004-MUTATE"
+      ],
+      "best_fitness": 1.7913323044776917,
+      "population_mean": 1.6268857717514038,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G001-003-CROSS",
+        "G001-002-CROSS",
+        "G001-000-MUTATE",
+        "G001-004-MUTATE",
+        "G001-002-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 2,
+      "planned_candidates": 10,
+      "generation_requests": 20,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G002-000-CROSS",
+        "G002-000-MUTATE",
+        "G002-001-CROSS",
+        "G002-003-MUTATE",
+        "G002-004-MUTATE"
+      ],
+      "best_fitness": 2.9988627433776855,
+      "population_mean": 2.6558587193489074,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G002-001-CROSS",
+        "G002-003-MUTATE",
+        "G002-000-CROSS",
+        "G002-004-MUTATE",
+        "G002-000-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 3,
+      "planned_candidates": 10,
+      "generation_requests": 30,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G003-000-CROSS",
+        "G003-000-MUTATE",
+        "G003-001-CROSS",
+        "G003-003-MUTATE",
+        "G003-004-MUTATE"
+      ],
+      "best_fitness": 3.9678696990013123,
+      "population_mean": 3.8069169878959657,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G003-004-MUTATE",
+        "G003-001-CROSS",
+        "G003-000-MUTATE",
+        "G003-000-CROSS",
+        "G003-003-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 4,
+      "planned_candidates": 10,
+      "generation_requests": 40,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G004-001-CROSS",
+        "G004-002-CROSS",
+        "G004-002-MUTATE",
+        "G004-003-MUTATE",
+        "G004-004-CROSS"
+      ],
+      "best_fitness": 4.98803848028183,
+      "population_mean": 4.698148655891418,
+      "behavior_groups": 3,
+      "population_ids": [
+        "G004-004-CROSS",
+        "G004-001-CROSS",
+        "G004-002-CROSS",
+        "G004-003-MUTATE",
+        "G004-002-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 5,
+      "planned_candidates": 10,
+      "generation_requests": 50,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G005-000-MUTATE",
+        "G005-002-CROSS",
+        "G005-003-CROSS",
+        "G005-003-MUTATE",
+        "G005-004-MUTATE"
+      ],
+      "best_fitness": 5.868417203426361,
+      "population_mean": 5.675203418731689,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G005-002-CROSS",
+        "G005-003-MUTATE",
+        "G005-003-CROSS",
+        "G005-004-MUTATE",
+        "G005-000-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 6,
+      "planned_candidates": 10,
+      "generation_requests": 60,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G006-000-CROSS",
+        "G006-001-CROSS",
+        "G006-001-MUTATE",
+        "G006-002-MUTATE",
+        "G006-004-MUTATE"
+      ],
+      "best_fitness": 6.992114722728729,
+      "population_mean": 6.7993112921714784,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G006-002-MUTATE",
+        "G006-001-CROSS",
+        "G006-000-CROSS",
+        "G006-004-MUTATE",
+        "G006-001-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 7,
+      "planned_candidates": 10,
+      "generation_requests": 70,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G007-000-CROSS",
+        "G007-000-MUTATE",
+        "G007-001-CROSS",
+        "G007-002-MUTATE",
+        "G007-003-CROSS"
+      ],
+      "best_fitness": 7.9925636649131775,
+      "population_mean": 7.841052067279816,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G007-000-MUTATE",
+        "G007-001-CROSS",
+        "G007-002-MUTATE",
+        "G007-003-CROSS",
+        "G007-000-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 8,
+      "planned_candidates": 10,
+      "generation_requests": 80,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G008-000-MUTATE",
+        "G008-001-CROSS",
+        "G008-002-CROSS",
+        "G008-003-CROSS",
+        "G008-003-MUTATE"
+      ],
+      "best_fitness": 8.995384931564331,
+      "population_mean": 8.678709208965302,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G008-002-CROSS",
+        "G008-000-MUTATE",
+        "G008-003-CROSS",
+        "G008-003-MUTATE",
+        "G008-001-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 9,
+      "planned_candidates": 10,
+      "generation_requests": 90,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G009-000-MUTATE",
+        "G009-002-CROSS",
+        "G009-003-CROSS",
+        "G009-004-CROSS",
+        "G009-004-MUTATE"
+      ],
+      "best_fitness": 9.902801930904388,
+      "population_mean": 9.714041948318481,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G009-004-MUTATE",
+        "G009-000-MUTATE",
+        "G009-002-CROSS",
+        "G009-004-CROSS",
+        "G009-003-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 10,
+      "planned_candidates": 10,
+      "generation_requests": 100,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G010-001-CROSS",
+        "G010-001-MUTATE",
+        "G010-002-CROSS",
+        "G010-002-MUTATE",
+        "G010-003-CROSS"
+      ],
+      "best_fitness": 10.838160455226898,
+      "population_mean": 10.63768812417984,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G010-003-CROSS",
+        "G010-002-MUTATE",
+        "G010-001-CROSS",
+        "G010-002-CROSS",
+        "G010-001-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 11,
+      "planned_candidates": 10,
+      "generation_requests": 110,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G011-001-MUTATE",
+        "G011-002-MUTATE",
+        "G011-003-CROSS",
+        "G011-003-MUTATE",
+        "G011-004-MUTATE"
+      ],
+      "best_fitness": 11.9493910074234,
+      "population_mean": 11.678187954425812,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G011-004-MUTATE",
+        "G011-002-MUTATE",
+        "G011-003-CROSS",
+        "G011-001-MUTATE",
+        "G011-003-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 12,
+      "planned_candidates": 10,
+      "generation_requests": 120,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G012-000-MUTATE",
+        "G012-001-CROSS",
+        "G012-001-MUTATE",
+        "G012-002-CROSS",
+        "G012-003-MUTATE"
+      ],
+      "best_fitness": 12.929092824459076,
+      "population_mean": 12.729430282115937,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G012-000-MUTATE",
+        "G012-001-CROSS",
+        "G012-002-CROSS",
+        "G012-003-MUTATE",
+        "G012-001-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 13,
+      "planned_candidates": 10,
+      "generation_requests": 130,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G013-000-MUTATE",
+        "G013-001-CROSS",
+        "G013-002-MUTATE",
+        "G013-003-MUTATE",
+        "G013-004-CROSS"
+      ],
+      "best_fitness": 13.65092945098877,
+      "population_mean": 13.51114605665207,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G013-001-CROSS",
+        "G013-003-MUTATE",
+        "G013-002-MUTATE",
+        "G013-000-MUTATE",
+        "G013-004-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 14,
+      "planned_candidates": 10,
+      "generation_requests": 140,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G014-000-CROSS",
+        "G014-002-CROSS",
+        "G014-003-CROSS",
+        "G014-003-MUTATE",
+        "G014-004-MUTATE"
+      ],
+      "best_fitness": 14.871344983577728,
+      "population_mean": 14.747515332698821,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G014-002-CROSS",
+        "G014-000-CROSS",
+        "G014-004-MUTATE",
+        "G014-003-MUTATE",
+        "G014-003-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 15,
+      "planned_candidates": 10,
+      "generation_requests": 150,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G015-000-CROSS",
+        "G015-001-CROSS",
+        "G015-002-CROSS",
+        "G015-003-CROSS",
+        "G015-004-MUTATE"
+      ],
+      "best_fitness": 15.811997413635254,
+      "population_mean": 15.683440482616424,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G015-003-CROSS",
+        "G015-002-CROSS",
+        "G015-001-CROSS",
+        "G015-000-CROSS",
+        "G015-004-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 16,
+      "planned_candidates": 10,
+      "generation_requests": 160,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G016-000-CROSS",
+        "G016-000-MUTATE",
+        "G016-001-CROSS",
+        "G016-001-MUTATE",
+        "G016-002-CROSS"
+      ],
+      "best_fitness": 16.957630395889282,
+      "population_mean": 16.89817932844162,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G016-002-CROSS",
+        "G016-000-CROSS",
+        "G016-001-MUTATE",
+        "G016-001-CROSS",
+        "G016-000-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 17,
+      "planned_candidates": 10,
+      "generation_requests": 170,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G017-001-MUTATE",
+        "G017-002-MUTATE",
+        "G017-003-MUTATE",
+        "G017-004-CROSS",
+        "G017-004-MUTATE"
+      ],
+      "best_fitness": 17.91713535785675,
+      "population_mean": 17.810033249855042,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G017-001-MUTATE",
+        "G017-004-MUTATE",
+        "G017-002-MUTATE",
+        "G017-003-MUTATE",
+        "G017-004-CROSS"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 18,
+      "planned_candidates": 10,
+      "generation_requests": 180,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G018-000-CROSS",
+        "G018-001-CROSS",
+        "G018-001-MUTATE",
+        "G018-004-CROSS",
+        "G018-004-MUTATE"
+      ],
+      "best_fitness": 18.91183179616928,
+      "population_mean": 18.62173056602478,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G018-000-CROSS",
+        "G018-001-CROSS",
+        "G018-004-MUTATE",
+        "G018-004-CROSS",
+        "G018-001-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 19,
+      "planned_candidates": 10,
+      "generation_requests": 190,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G019-000-MUTATE",
+        "G019-001-CROSS",
+        "G019-002-MUTATE",
+        "G019-003-CROSS",
+        "G019-004-MUTATE"
+      ],
+      "best_fitness": 19.969386994838715,
+      "population_mean": 19.827945160865784,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G019-003-CROSS",
+        "G019-001-CROSS",
+        "G019-004-MUTATE",
+        "G019-002-MUTATE",
+        "G019-000-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 20,
+      "planned_candidates": 10,
+      "generation_requests": 200,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G020-000-CROSS",
+        "G020-000-MUTATE",
+        "G020-001-MUTATE",
+        "G020-003-CROSS",
+        "G020-004-MUTATE"
+      ],
+      "best_fitness": 20.994274854660034,
+      "population_mean": 20.83534185886383,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G020-003-CROSS",
+        "G020-000-MUTATE",
+        "G020-000-CROSS",
+        "G020-004-MUTATE",
+        "G020-001-MUTATE"
+      ],
+      "mock": true
+    }
+  ],
+  "champion": {
+    "id": "G020-003-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 266898629\n    return 2 if state['construction_progress'] < 0.05 else 0\n",
+      "key": "afca53a2307e979cd2a6ae7616018280e69055049b6d4628d379de8f76c5a78b",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.994274854660034,
+    "behavior_sha256": "b0602145c6e6177b5039dc51a98dd2ac6fbc8352e21ecc7d727fb6eacfd2f7dd"
+  },
+  "H_order_source": "explicit frozen declaration order; no implicit performance-rank prior",
+  "timing_note": "per-task batch times are shared; do not sum them as wall time",
+  "behavior_note": "mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances"
+}

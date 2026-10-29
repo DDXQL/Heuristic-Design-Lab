@@ -1,0 +1,57 @@
+[
+  {
+    "id": "G003-004-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 259810550\n    return 2 if state['construction_progress'] < 0.64 else 0\n",
+      "key": "7f63aea04ae2b7faa0dcd8d831d1d2af505890804bb8f553c9240b01bfca333a",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.9678696990013123,
+    "behavior_sha256": "ea924b33a47f65a61f3f873629111143e76ae247a63c826f632652a58187758c"
+  },
+  {
+    "id": "G003-001-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 243939610\n    return 1 if state['construction_progress'] < 0.49 else 2\n",
+      "key": "025fa3841d9fc3828b6046a38bd9a086fb57143a3d20504b2b5caee5e00f732c",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.90874582529068,
+    "behavior_sha256": "e57373da9232971f04f8e39506f757c8f8dbf192c7eca418c0d8270a2334435a"
+  },
+  {
+    "id": "G003-000-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 235999966\n    return 1 if state['construction_progress'] < 0.06 else 2\n",
+      "key": "8c48b747dc4570ecb53f67ba71db5c27e7a1dc3e1a7b8f4abc4a87a5cea04ff2",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.8791683316230774,
+    "behavior_sha256": "d433f3ce36f90e706ab11f2a8b4e221fc801da80377b4c9df5ec81495c96c79e"
+  },
+  {
+    "id": "G003-000-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 174181227\n    return 0 if state['construction_progress'] < 0.44 else 1\n",
+      "key": "2877a6f56784a017ac00f28c7b3db9ad9c6719eac5bc71ea09b0c664c652c535",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.648875594139099,
+    "behavior_sha256": "6e37c2f65c1af37c0e254c2f64cab7646cadb50b761fe0cec6f631dfeffe5313"
+  },
+  {
+    "id": "G003-003-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 169094349\n    return 0 if state['construction_progress'] < 0.5 else 1\n",
+      "key": "4cffc72f6ab9c2e18b302509b94aa849afd54f32731fc63e808f6bc8f5f6d726",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.629925489425659,
+    "behavior_sha256": "6e37c2f65c1af37c0e254c2f64cab7646cadb50b761fe0cec6f631dfeffe5313"
+  }
+]

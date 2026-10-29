@@ -1,0 +1,34 @@
+{
+  "config": {
+    "version": "parent-coverage-routing-v1",
+    "api_mode": "mock",
+    "real_requests_authorized": false,
+    "problem": "tsp",
+    "population_size": 10,
+    "generations": 20,
+    "search_seed": 501,
+    "solve_seed": 501,
+    "initialization": "llm",
+    "initialization_candidate_cap": 40,
+    "initialization_request_cap": 40,
+    "generation_request_cap": 400,
+    "api_concurrency": 1,
+    "evaluation_concurrency": 1,
+    "evaluation_mode": "mock",
+    "window": 10,
+    "enabled_groups": [
+      "construction",
+      "action_cost",
+      "trajectory",
+      "usage"
+    ],
+    "instance_timeout_seconds": 30,
+    "mock_reverse_delay": false,
+    "mock_faults": {},
+    "mock_delay_seconds": 0.0
+  },
+  "evolution_candidates": 400,
+  "initialization_budget_separate": true,
+  "requests_sent": 0,
+  "solves": 0
+}

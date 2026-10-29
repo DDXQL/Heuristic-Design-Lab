@@ -1,0 +1,112 @@
+[
+  {
+    "id": "G020-003-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 266898629\n    return 2 if state['construction_progress'] < 0.05 else 0\n",
+      "key": "afca53a2307e979cd2a6ae7616018280e69055049b6d4628d379de8f76c5a78b",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.994274854660034,
+    "behavior_sha256": "b0602145c6e6177b5039dc51a98dd2ac6fbc8352e21ecc7d727fb6eacfd2f7dd"
+  },
+  {
+    "id": "G020-000-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 252409912\n    return 1 if state['construction_progress'] < 0.43 else 2\n",
+      "key": "4445a9b18d0d51d0d809420b0b7fdf278d0dd5f8f1b8e9c7ff644efca329e8cb",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.940300166606903,
+    "behavior_sha256": "e57373da9232971f04f8e39506f757c8f8dbf192c7eca418c0d8270a2334435a"
+  },
+  {
+    "id": "G020-000-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 211065396\n    return 0 if state['construction_progress'] < 0.32 else 1\n",
+      "key": "e00a6fe0c1b5ab7eeb5a9b017f32c2195d0edf1c1b584bd2aa86b9c2d10accbd",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.78627985715866,
+    "behavior_sha256": "6e37c2f65c1af37c0e254c2f64cab7646cadb50b761fe0cec6f631dfeffe5313"
+  },
+  {
+    "id": "G020-004-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 198744463\n    return 1 if state['construction_progress'] < 0.81 else 2\n",
+      "key": "7b74236b67b1c2f3301eae60923a8a7c5c9b21ce888f6d17605347d98af9afea",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.74038076400757,
+    "behavior_sha256": "d39d0d91c6dafa578814a8c310a49b84aecdf368174ddaf8149e7c9de2c03d92"
+  },
+  {
+    "id": "G020-001-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 192058498\n    return 1 if state['construction_progress'] < 0.63 else 2\n",
+      "key": "585d87b760a21843c1a2f99362a1ba80d5d8cc4f54d6ad18c1f953c87d95a613",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.715473651885986,
+    "behavior_sha256": "2856f3f8d2489e8061a1bb84ed51987f21fed0396406283521d74853f1949f28"
+  },
+  {
+    "id": "G020-007-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 189288362\n    return 2 if state['construction_progress'] < 0.52 else 0\n",
+      "key": "3237401e48cb3675edaa79848b6287b8ea6949d44443436b443ee572601ad67f",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.705154061317444,
+    "behavior_sha256": "ea924b33a47f65a61f3f873629111143e76ae247a63c826f632652a58187758c"
+  },
+  {
+    "id": "G020-002-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 159649577\n    return 2 if state['construction_progress'] < 0.47 else 0\n",
+      "key": "d8f61dddbe422b248fea3e700247345bdf9628bdb91de61b7abacb349277c0c3",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.594740986824036,
+    "behavior_sha256": "0eb567d4fd53059a01a936e28601b1c5ec8422d6a1101f397df381b5f7aa2837"
+  },
+  {
+    "id": "G020-002-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 150404914\n    return 1 if state['construction_progress'] < 0.81 else 2\n",
+      "key": "570a02d201a81f3586930267dd48ef163527aeaeb629374ac7a90481cade4fc3",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.560301959514618,
+    "behavior_sha256": "d39d0d91c6dafa578814a8c310a49b84aecdf368174ddaf8149e7c9de2c03d92"
+  },
+  {
+    "id": "G020-001-CROSS",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 145042218\n    return 0 if state['construction_progress'] < 0.8 else 1\n",
+      "key": "27ac2e8b45b9850b0ae657315c1cab2c8920a32618a9f5b8f6993116e24f7468",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.540324330329895,
+    "behavior_sha256": "37a7287b6804c9dab4f4d17889653406f5092e9a128ff86f108b33a0cc5ab98b"
+  },
+  {
+    "id": "G020-006-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 139303150\n    return 1 if state['construction_progress'] < 0.88 else 2\n",
+      "key": "24514ffecba9b8ac4120cf0de9dcce65a7d09b6155944009ed8f32cbdc8c44ad",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 20.51894462108612,
+    "behavior_sha256": "d39d0d91c6dafa578814a8c310a49b84aecdf368174ddaf8149e7c9de2c03d92"
+  }
+]

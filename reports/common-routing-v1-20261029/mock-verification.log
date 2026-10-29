@@ -1,0 +1,78 @@
+{
+  "label": "MOCK_OFFLINE_ENGINEERING_ONLY",
+  "real_API_calls": 0,
+  "cases": {
+    "n5-g3-serial": {
+      "phase": "completed",
+      "generation": 3,
+      "completed_tasks": 35,
+      "initialization_requests": 5,
+      "generation_requests": 30,
+      "real_API_calls": 0,
+      "wall_seconds": 0.36320937500568107,
+      "source_files_sha256": "ef5e65d5fddbdc6647d41b4b46d3c7334bb881118fa50bd8aa4c3c070e3d0f0e",
+      "protocol_sha256": "cefdd409b5defea4c5c2d4cb50ac40d93d79338eba4214b20fd12cc2d09412ca",
+      "run_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/common-routing-v1-20261029-acceptance-final/n5-g3-serial",
+      "planned_evolution_candidates": 30
+    },
+    "n5-g3-resume": {
+      "phase": "completed",
+      "generation": 3,
+      "completed_tasks": 35,
+      "initialization_requests": 5,
+      "generation_requests": 30,
+      "real_API_calls": 0,
+      "wall_seconds": 0.3976111670199316,
+      "source_files_sha256": "ef5e65d5fddbdc6647d41b4b46d3c7334bb881118fa50bd8aa4c3c070e3d0f0e",
+      "protocol_sha256": "cefdd409b5defea4c5c2d4cb50ac40d93d79338eba4214b20fd12cc2d09412ca",
+      "run_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/common-routing-v1-20261029-acceptance-final/n5-g3-resume",
+      "planned_evolution_candidates": 30
+    },
+    "n5-g3-reordered": {
+      "phase": "completed",
+      "generation": 3,
+      "completed_tasks": 35,
+      "initialization_requests": 5,
+      "generation_requests": 30,
+      "real_API_calls": 0,
+      "wall_seconds": 0.31356116698589176,
+      "source_files_sha256": "ef5e65d5fddbdc6647d41b4b46d3c7334bb881118fa50bd8aa4c3c070e3d0f0e",
+      "protocol_sha256": "1793de28fe59f4a4ba540637384d849249d324fd1507c37a190002d09c2f5516",
+      "run_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/common-routing-v1-20261029-acceptance-final/n5-g3-reordered",
+      "planned_evolution_candidates": 30
+    },
+    "n5-g20": {
+      "phase": "completed",
+      "generation": 20,
+      "completed_tasks": 205,
+      "initialization_requests": 5,
+      "generation_requests": 200,
+      "real_API_calls": 0,
+      "wall_seconds": 2.257287540996913,
+      "source_files_sha256": "ef5e65d5fddbdc6647d41b4b46d3c7334bb881118fa50bd8aa4c3c070e3d0f0e",
+      "protocol_sha256": "7105ecfc24c12426f24dc8596ae4a1eddbf3054efa4368d669616b7c1c871f83",
+      "run_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/common-routing-v1-20261029-acceptance-final/n5-g20",
+      "planned_evolution_candidates": 200
+    },
+    "n10-g20": {
+      "phase": "completed",
+      "generation": 20,
+      "completed_tasks": 410,
+      "initialization_requests": 10,
+      "generation_requests": 400,
+      "real_API_calls": 0,
+      "wall_seconds": 5.704884958016919,
+      "source_files_sha256": "ef5e65d5fddbdc6647d41b4b46d3c7334bb881118fa50bd8aa4c3c070e3d0f0e",
+      "protocol_sha256": "5d42dad7df58d0abc37bb5168e3bd03fe685f31980896378f05576097c0eb588",
+      "run_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/common-routing-v1-20261029-acceptance-final/n10-g20",
+      "planned_evolution_candidates": 400
+    }
+  },
+  "assertions": {
+    "pause_resume_semantics_equal": true,
+    "out_of_order_semantics_equal": true,
+    "generation_2_children_enter_generation_3_parents": true,
+    "response_order_actually_different": true,
+    "20_generations_n5_n10_complete": true
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "summary": {
+    "evaluation_concurrency": 4,
+    "candidate_evaluations": 8,
+    "physical_solves": 32,
+    "wall_seconds": 0.9515513340011239,
+    "candidate_throughput_per_second": 8.40732361370485,
+    "physical_solve_throughput_per_second": 33.6292944548194,
+    "api_wait_seconds": 0,
+    "summed_worker_solve_seconds": 0.8838610789680388,
+    "summed_observation_seconds": 0.3565353289595805,
+    "observation_share_of_worker_solve": 0.4033838998498011,
+    "max_worker_peak_rss_bytes": 39698432,
+    "worker_memory_envelope_bytes": 158793728,
+    "memory_note": "per-worker measured peak; width*peak is an envelope, not measured aggregate peak",
+    "memory_before": {
+      "vm_stat": {
+        "returncode": 0,
+        "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                3528.\nPages active:                             75697.\nPages inactive:                           67713.\nPages speculative:                         7300.\nPages throttled:                              0.\nPages wired down:                        105820.\nPages purgeable:                              2.\n\"Translation faults\":                2742795527.\nPages copy-on-write:                   42870732.\nPages zero filled:                    508694251.\nPages reactivated:                   1104421761.\nPages purged:                          44584439.\nFile-backed pages:                        57776.\nAnonymous pages:                          92934.\nPages stored in compressor:             1354264.\nPages occupied by compressor:            228462.\nDecompressions:                      1283497428.\nCompressions:                        1332951101.\nPageins:                               83900290.\nPageouts:                               2116620.\nSwapins:                               38774855.\nSwapouts:                              40468089.",
+        "stderr": ""
+      },
+      "swap": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+      }
+    },
+    "memory_after": {
+      "vm_stat": {
+        "returncode": 0,
+        "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                7344.\nPages active:                             74040.\nPages inactive:                           66063.\nPages speculative:                         7385.\nPages throttled:                              0.\nPages wired down:                        105216.\nPages purgeable:                              2.\n\"Translation faults\":                2742888439.\nPages copy-on-write:                   42876172.\nPages zero filled:                    508719560.\nPages reactivated:                   1104455744.\nPages purged:                          44584834.\nFile-backed pages:                        57027.\nAnonymous pages:                          90461.\nPages stored in compressor:             1359517.\nPages occupied by compressor:            228559.\nDecompressions:                      1283523627.\nCompressions:                        1332983399.\nPageins:                               83901835.\nPageouts:                               2116635.\nSwapins:                               38775071.\nSwapouts:                              40471329.",
+        "stderr": ""
+      },
+      "swap": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+      }
+    },
+    "timeouts": 0,
+    "invalid_candidates": 0,
+    "same_semantics_as_serial": true,
+    "result_semantics_sha256": "6d16935e351868ec1d034feb98174d28f9747ed0aab4bfee2802430dd493baf3",
+    "per_problem": {
+      "fjsp": {
+        "evaluation_seconds_sum": 1.329687789984746,
+        "fitness": [
+          -1.7311429076134959,
+          -2.2430665960077727,
+          -2.1934287228404874,
+          -1.4859565447800742
+        ],
+        "valid": true
+      },
+      "tsp": {
+        "evaluation_seconds_sum": 1.6706693749583792,
+        "fitness": [
+          -5.30741268284824,
+          -4.310854050609999,
+          -0.9594111844119548,
+          -1.5270079038544682
+        ],
+        "valid": true
+      }
+    }
+  },
+  "semantic_results": [
+    {
+      "id": "fjsp-handwritten-0",
+      "valid": true,
+      "fitness": -1.7311429076134959,
+      "rows": [
+        {
+          "file": "synthetic-fjsp-61029-0",
+          "score": -1.8887122416534181,
+          "semantic_sha256": "6201e3f5dad85b1385f116d48c45195ca07179c97a50b3e467f97a9a43154ead",
+          "recheck_semantic_sha256": "6201e3f5dad85b1385f116d48c45195ca07179c97a50b3e467f97a9a43154ead",
+          "h_calls": [
+            1068,
+            2358,
+            0
+          ]
+        },
+        {
+          "file": "synthetic-fjsp-61029-1",
+          "score": -1.5735735735735736,
+          "semantic_sha256": "43ebbcfbaacdcf1162bd5ba5d942a29909026020077fb8982d1060c26a584302",
+          "recheck_semantic_sha256": "43ebbcfbaacdcf1162bd5ba5d942a29909026020077fb8982d1060c26a584302",
+          "h_calls": [
+            1060,
+            2392,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fjsp-handwritten-1",
+      "valid": true,
+      "fitness": -2.2430665960077727,
+      "rows": [
+        {
+          "file": "synthetic-fjsp-61029-0",
+          "score": -2.588235294117647,
+          "semantic_sha256": "636a4fc0c74ebe914b47538676b81967ab8faa5897b58dad82a2aa4bb4987333",
+          "recheck_semantic_sha256": "636a4fc0c74ebe914b47538676b81967ab8faa5897b58dad82a2aa4bb4987333",
+          "h_calls": [
+            0,
+            2072,
+            1860
+          ]
+        },
+        {
+          "file": "synthetic-fjsp-61029-1",
+          "score": -1.897897897897898,
+          "semantic_sha256": "7fc0e3de6113c2c7fcbae6e44047803d048bf0c7ca4b55d5b60126c5def6d827",
+          "recheck_semantic_sha256": "7fc0e3de6113c2c7fcbae6e44047803d048bf0c7ca4b55d5b60126c5def6d827",
+          "h_calls": [
+            0,
+            1966,
+            1876
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fjsp-handwritten-2",
+      "valid": true,
+      "fitness": -2.1934287228404874,
+      "rows": [
+        {
+          "file": "synthetic-fjsp-61029-0",
+          "score": -2.639109697933227,
+          "semantic_sha256": "1f888ca66821424f600ba4fcc5a75cea852a1dd77faa859eb52879f5b1d82d3b",
+          "recheck_semantic_sha256": "1f888ca66821424f600ba4fcc5a75cea852a1dd77faa859eb52879f5b1d82d3b",
+          "h_calls": [
+            998,
+            0,
+            3026
+          ]
+        },
+        {
+          "file": "synthetic-fjsp-61029-1",
+          "score": -1.7477477477477477,
+          "semantic_sha256": "08c7740098b978fb823d5283f8b30b476f5be37a9d14489cb4477ca33c9a8ee9",
+          "recheck_semantic_sha256": "08c7740098b978fb823d5283f8b30b476f5be37a9d14489cb4477ca33c9a8ee9",
+          "h_calls": [
+            928,
+            0,
+            3124
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fjsp-handwritten-3",
+      "valid": true,
+      "fitness": -1.4859565447800742,
+      "rows": [
+        {
+          "file": "synthetic-fjsp-61029-0",
+          "score": -1.602543720190779,
+          "semantic_sha256": "422f500e84e76d26d4fb175209401f2ca09bd0590f118387d21050abc9eb40db",
+          "recheck_semantic_sha256": "422f500e84e76d26d4fb175209401f2ca09bd0590f118387d21050abc9eb40db",
+          "h_calls": [
+            3274,
+            200,
+            0
+          ]
+        },
+        {
+          "file": "synthetic-fjsp-61029-1",
+          "score": -1.3693693693693694,
+          "semantic_sha256": "43961c86f51148c4a5629d0005009143adaab9228ef20265c67b991924a76c94",
+          "recheck_semantic_sha256": "43961c86f51148c4a5629d0005009143adaab9228ef20265c67b991924a76c94",
+          "h_calls": [
+            3256,
+            188,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tsp-handwritten-0",
+      "valid": true,
+      "fitness": -5.30741268284824,
+      "rows": [
+        {
+          "file": "synthetic-tsp-61029-0",
+          "score": -5.663913497858202,
+          "semantic_sha256": "f8219a47ab39a568c4e3ac59d33de5cb944f139925650aaded226cf1e54921d9",
+          "recheck_semantic_sha256": "f8219a47ab39a568c4e3ac59d33de5cb944f139925650aaded226cf1e54921d9",
+          "h_calls": [
+            875,
+            1540,
+            0
+          ]
+        },
+        {
+          "file": "synthetic-tsp-61029-1",
+          "score": -4.950911867838279,
+          "semantic_sha256": "bac2f8bd53fc8bfc7e9bd7be7d98edd1eb01963bb8397be23db61f48710ceb55",
+          "recheck_semantic_sha256": "bac2f8bd53fc8bfc7e9bd7be7d98edd1eb01963bb8397be23db61f48710ceb55",
+          "h_calls": [
+            875,
+            1540,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tsp-handwritten-1",
+      "valid": true,
+      "fitness": -4.310854050609999,
+      "rows": [
+        {
+          "file": "synthetic-tsp-61029-0",
+          "score": -4.324957965428722,
+          "semantic_sha256": "2809b7f3e80c2f6317fbbcda4122435ce4d0480f221fdf6fd076efbc5568fd33",
+          "recheck_semantic_sha256": "2809b7f3e80c2f6317fbbcda4122435ce4d0480f221fdf6fd076efbc5568fd33",
+          "h_calls": [
+            0,
+            1554,
+            861
+          ]
+        },
+        {
+          "file": "synthetic-tsp-61029-1",
+          "score": -4.296750135791275,
+          "semantic_sha256": "a80996b563ce6ee66f5fbf61e7fc2271b756e9ffb44ab25b0951c70e19c8676c",
+          "recheck_semantic_sha256": "a80996b563ce6ee66f5fbf61e7fc2271b756e9ffb44ab25b0951c70e19c8676c",
+          "h_calls": [
+            0,
+            1554,
+            861
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tsp-handwritten-2",
+      "valid": true,
+      "fitness": -0.9594111844119548,
+      "rows": [
+        {
+          "file": "synthetic-tsp-61029-0",
+          "score": -0.9616247730835751,
+          "semantic_sha256": "a3b20fa6482e2155751095d7ed90aa6cab013445a14ee8e05db6029b38119841",
+          "recheck_semantic_sha256": "a3b20fa6482e2155751095d7ed90aa6cab013445a14ee8e05db6029b38119841",
+          "h_calls": [
+            378,
+            0,
+            2037
+          ]
+        },
+        {
+          "file": "synthetic-tsp-61029-1",
+          "score": -0.9571975957403347,
+          "semantic_sha256": "37687149e68ab436e8b368c90002753314f597cfbd07f23a855f6a5ab8ffd0e1",
+          "recheck_semantic_sha256": "37687149e68ab436e8b368c90002753314f597cfbd07f23a855f6a5ab8ffd0e1",
+          "h_calls": [
+            378,
+            0,
+            2037
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tsp-handwritten-3",
+      "valid": true,
+      "fitness": -1.5270079038544682,
+      "rows": [
+        {
+          "file": "synthetic-tsp-61029-0",
+          "score": -1.4461218313120707,
+          "semantic_sha256": "4581dcb91b21752292fecc17d1163761470ec7eb1ebfba093243a8bef8e0b82e",
+          "recheck_semantic_sha256": "4581dcb91b21752292fecc17d1163761470ec7eb1ebfba093243a8bef8e0b82e",
+          "h_calls": [
+            2324,
+            91,
+            0
+          ]
+        },
+        {
+          "file": "synthetic-tsp-61029-1",
+          "score": -1.6078939763968656,
+          "semantic_sha256": "8c61dc7040ecc2f112e9b5f99a28f7820765000491367e99b999c532dc9d403f",
+          "recheck_semantic_sha256": "8c61dc7040ecc2f112e9b5f99a28f7820765000491367e99b999c532dc9d403f",
+          "h_calls": [
+            2324,
+            91,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

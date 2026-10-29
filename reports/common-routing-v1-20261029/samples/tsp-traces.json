@@ -1,0 +1,2954 @@
+{
+  "H": [
+    {
+      "description": "Handwritten synthetic fixture: -distance_current",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+      "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+      "kind": "h"
+    },
+    {
+      "description": "Handwritten synthetic fixture: distance_current",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return distance_current\n",
+      "key": "2e8b9f93472564386fbbfb32c073c9a6bbe26e69b5fcf159158f12671dd71375",
+      "kind": "h"
+    },
+    {
+      "description": "Handwritten synthetic fixture: -distance_current + 0.3 * distance_start",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.3 * distance_start\n",
+      "key": "3d4317c626b1461a26c280ca1ff0bbc343b0c0ae0194ce2817f4810e683e0d9f",
+      "kind": "h"
+    }
+  ],
+  "H_order_source": "handwritten declaration order, not performance sorted",
+  "U": {
+    "description": "Handwritten progress router; no learned quality claim",
+    "code": "def use_heuristics(state):\n    if state['availability']['previous_h_token']:\n        if state['construction_progress'] > 0.6:\n            return 1\n    return 0\n",
+    "key": "abd6a953cdc250fd8b50b1b52ec9df47e20619579e5783134d899afb6f8923f1",
+    "abi": "pure-routing-state-v1"
+  },
+  "instances": [
+    {
+      "file": "synthetic-tsp-501-0",
+      "split": "synthetic-development",
+      "value": {
+        "coordinates": [
+          [
+            0.9964263585627207,
+            0.6395665089208508
+          ],
+          [
+            0.41891135891179276,
+            0.5593368499572348
+          ],
+          [
+            0.8613189695769824,
+            0.9933855965367219
+          ],
+          [
+            0.07328868268864219,
+            0.828882668203215
+          ],
+          [
+            0.15211456441767646,
+            0.7255806229547304
+          ],
+          [
+            0.4596954690509142,
+            0.8495329560239454
+          ],
+          [
+            0.31325488527571566,
+            0.38805652862843676
+          ],
+          [
+            0.20328361606588852,
+            0.5690333919056927
+          ],
+          [
+            0.7807088741719925,
+            0.8785814655877843
+          ],
+          [
+            0.7148779224872538,
+            0.1482014316147373
+          ],
+          [
+            0.8071220345634633,
+            0.42913570357573616
+          ],
+          [
+            0.6986070719428908,
+            0.8957181859613955
+          ]
+        ]
+      },
+      "sha256": "4d58813a899066a7925b84907bf7395615d92c0b623c5673d8e2f71eb167a91a"
+    },
+    {
+      "file": "synthetic-tsp-501-1",
+      "split": "synthetic-development",
+      "value": {
+        "coordinates": [
+          [
+            0.9153329902080676,
+            0.37379625135312744
+          ],
+          [
+            0.2032682092710435,
+            0.4122498779543703
+          ],
+          [
+            0.6175174937879557,
+            0.5487356240526122
+          ],
+          [
+            0.524794089077236,
+            0.4001120562984638
+          ],
+          [
+            0.08157499003175839,
+            0.18069868860667937
+          ],
+          [
+            0.07061584723246428,
+            0.9228777174670991
+          ],
+          [
+            0.07952379280819644,
+            0.671459511643483
+          ],
+          [
+            0.7499220273422449,
+            0.9964817720303389
+          ],
+          [
+            0.27686787390474343,
+            0.32870228566856763
+          ],
+          [
+            0.09658769443634563,
+            0.9269977897227109
+          ],
+          [
+            0.3353773978308212,
+            0.5754736427345932
+          ],
+          [
+            0.77482870280533,
+            0.7307888839529658
+          ]
+        ]
+      },
+      "sha256": "fd438b1f7b15d0b79816075d9bad383745facc266f6a9b8f6aec8f50daf23ca5"
+    }
+  ],
+  "results": [
+    {
+      "file": "synthetic-tsp-501-0",
+      "score": -1.2665819934656373,
+      "solution": {
+        "tour": [
+          0,
+          10,
+          9,
+          6,
+          1,
+          7,
+          4,
+          3,
+          2,
+          5,
+          8,
+          11,
+          0
+        ],
+        "length": 3.7889120826104024
+      },
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "construction_progress": 0.0,
+            "action_breadth_fraction": 1.0,
+            "committed_objective_fraction": 0.0,
+            "action_delta_min": 0.025030497193655955,
+            "action_delta_mean": 0.051592403638146295,
+            "action_delta_std": 0.0189016350895127,
+            "action_delta_max": 0.08333333333333333,
+            "action_delta_best_gap": 0.0034414147059212315,
+            "last_action_delta": null,
+            "recent_delta_mean": null,
+            "recent_delta_std": null,
+            "current_h_run_fraction": null,
+            "recent_h_switch_fraction": null,
+            "previous_h_token": null,
+            "usage_fraction": null,
+            "has_history": false,
+            "history_count": 0,
+            "recent_history_count": 0,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": false,
+              "recent_delta_mean": false,
+              "recent_delta_std": false,
+              "current_h_run_fraction": false,
+              "recent_h_switch_fraction": false,
+              "previous_h_token": false,
+              "usage_fraction": false,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "last_action_delta": "no_history",
+              "recent_delta_mean": "no_history",
+              "recent_delta_std": "no_history",
+              "current_h_run_fraction": "no_history",
+              "recent_h_switch_fraction": "insufficient_adjacent_history",
+              "previous_h_token": "no_history",
+              "usage_fraction": "no_history"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.4122865344631264,
+              0.4122865344631264,
+              0.27708699979504675,
+              0.14230291440393508,
+              0.0
+            ],
+            [
+              0.2678077233015051,
+              0.2678077233015051,
+              0.4216998103418109,
+              0.09919167294723477,
+              0.0
+            ],
+            [
+              0.6663421706539444,
+              0.6663421706539444,
+              0.40034745019024615,
+              0.09188262126996503,
+              0.0
+            ],
+            [
+              0.6001086708028208,
+              0.6001086708028208,
+              0.34063151347393456,
+              0.09188262126996503,
+              0.0
+            ],
+            [
+              0.4075327941805614,
+              0.4075327941805614,
+              0.2941405446299167,
+              0.17206369381829026,
+              0.0
+            ],
+            [
+              0.5147720525144248,
+              0.5147720525144248,
+              0.34421816951526424,
+              0.14230291440393508,
+              0.0
+            ],
+            [
+              0.5630498781508038,
+              0.5630498781508038,
+              0.3236207655138826,
+              0.11645880687113828,
+              0.0
+            ],
+            [
+              0.2276644269339856,
+              0.2276644269339856,
+              0.3465819836110863,
+              0.059305872872886155,
+              0.0
+            ],
+            [
+              0.4004429803683566,
+              0.4004429803683566,
+              0.47795470579663846,
+              0.20908496045266475,
+              0.0
+            ],
+            [
+              0.2001465099908181,
+              0.2001465099908181,
+              0.38301556719673097,
+              0.20908496045266475,
+              0.0
+            ],
+            [
+              0.277767896933238,
+              0.277767896933238,
+              0.32619756005461353,
+              0.059305872872886155,
+              0.0
+            ]
+          ],
+          "raw_scores": [
+            -0.4122865344631264,
+            -0.2678077233015051,
+            -0.6663421706539444,
+            -0.6001086708028208,
+            -0.4075327941805614,
+            -0.5147720525144248,
+            -0.5630498781508038,
+            -0.2276644269339856,
+            -0.4004429803683566,
+            -0.2001465099908181,
+            -0.277767896933238
+          ],
+          "chosen": 10,
+          "committed_delta": 0.025030497193655955,
+          "h_calls": {
+            "0": 11
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "construction_progress": 0.09090909090909091,
+            "action_breadth_fraction": 0.9090909090909091,
+            "committed_objective_fraction": 0.025030497193655955,
+            "action_delta_min": 0.02614834760839039,
+            "action_delta_mean": 0.04790026106517738,
+            "action_delta_std": 0.013027070982067861,
+            "action_delta_max": 0.07389759152169138,
+            "action_delta_best_gap": 0.010061026321161334,
+            "last_action_delta": 0.025030497193655955,
+            "recent_delta_mean": 0.025030497193655955,
+            "recent_delta_std": 0.0,
+            "current_h_run_fraction": 0.09090909090909091,
+            "recent_h_switch_fraction": null,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 1,
+            "recent_history_count": 1,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": false,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "recent_h_switch_fraction": "insufficient_adjacent_history"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.2895339938668541,
+              0.4122865344631264,
+              0.2757040004537348,
+              0.14230291440393508,
+              0.09090909090909091
+            ],
+            [
+              0.40082118798246147,
+              0.2678077233015051,
+              0.42401965727062746,
+              0.09919167294723477,
+              0.09090909090909091
+            ],
+            [
+              0.5908929784879483,
+              0.6663421706539444,
+              0.3791757248238348,
+              0.09188262126996503,
+              0.09090909090909091
+            ],
+            [
+              0.5083868488525259,
+              0.6001086708028208,
+              0.3219920317652022,
+              0.09188262126996503,
+              0.09090909090909091
+            ],
+            [
+              0.3856417173296018,
+              0.4075327941805614,
+              0.283973747663285,
+              0.17206369381829026,
+              0.09090909090909091
+            ],
+            [
+              0.35042278732978915,
+              0.5147720525144248,
+              0.3435287675358725,
+              0.14230291440393508,
+              0.09090909090909091
+            ],
+            [
+              0.43828769025248576,
+              0.5630498781508038,
+              0.3108799960984822,
+              0.11645880687113828,
+              0.09090909090909091
+            ],
+            [
+              0.3183544785553174,
+              0.2276644269339856,
+              0.34971837306172726,
+              0.059305872872886155,
+              0.09090909090909091
+            ],
+            [
+              0.20908496045266475,
+              0.4004429803683566,
+              0.5078291219459689,
+              0.33078054022453596,
+              0.09090909090909091
+            ],
+            [
+              0.33872902885766104,
+              0.277767896933238,
+              0.32480517463205266,
+              0.059305872872886155,
+              0.09090909090909091
+            ]
+          ],
+          "raw_scores": [
+            -0.2895339938668541,
+            -0.40082118798246147,
+            -0.5908929784879483,
+            -0.5083868488525259,
+            -0.3856417173296018,
+            -0.35042278732978915,
+            -0.43828769025248576,
+            -0.3183544785553174,
+            -0.20908496045266475,
+            -0.33872902885766104
+          ],
+          "chosen": 9,
+          "committed_delta": 0.02614834760839039,
+          "h_calls": {
+            "0": 10
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "construction_progress": 0.18181818181818182,
+            "action_breadth_fraction": 0.8181818181818182,
+            "committed_objective_fraction": 0.051178844802046354,
+            "action_delta_min": 0.04136770301009037,
+            "action_delta_mean": 0.06350955313839088,
+            "action_delta_std": 0.012743323602459868,
+            "action_delta_max": 0.0827182759929577,
+            "action_delta_best_gap": 0.0034303286764776897,
+            "last_action_delta": 0.02614834760839039,
+            "recent_delta_mean": 0.025589422401023174,
+            "recent_delta_std": 0.0005589252073672172,
+            "current_h_run_fraction": 0.18181818181818182,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 2,
+            "recent_history_count": 2,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.35820981210062336,
+              0.4122865344631264,
+              0.2653907739978737,
+              0.14230291440393508,
+              0.18181818181818182
+            ],
+            [
+              0.6065398803490206,
+              0.2678077233015051,
+              0.40120462938582835,
+              0.09919167294723477,
+              0.18181818181818182
+            ],
+            [
+              0.6614241069347939,
+              0.6663421706539444,
+              0.3438946770599649,
+              0.09188262126996503,
+              0.18181818181818182
+            ],
+            [
+              0.5701181139808538,
+              0.6001086708028208,
+              0.29097627148824573,
+              0.09188262126996503,
+              0.18181818181818182
+            ],
+            [
+              0.5277234084593619,
+              0.4075327941805614,
+              0.2535050400637754,
+              0.17206369381829026,
+              0.18181818181818182
+            ],
+            [
+              0.33078054022453596,
+              0.5147720525144248,
+              0.3451222959497896,
+              0.14230291440393508,
+              0.18181818181818182
+            ],
+            [
+              0.46841662714141885,
+              0.5630498781508038,
+              0.2911879172181151,
+              0.11645880687113828,
+              0.18181818181818182
+            ],
+            [
+              0.518550242612125,
+              0.2276644269339856,
+              0.32861438936792753,
+              0.059305872872886155,
+              0.18181818181818182
+            ],
+            [
+              0.5286993657109866,
+              0.277767896933238,
+              0.29931840074718596,
+              0.059305872872886155,
+              0.18181818181818182
+            ]
+          ],
+          "raw_scores": [
+            -0.35820981210062336,
+            -0.6065398803490206,
+            -0.6614241069347939,
+            -0.5701181139808538,
+            -0.5277234084593619,
+            -0.33078054022453596,
+            -0.46841662714141885,
+            -0.518550242612125,
+            -0.5286993657109866
+          ],
+          "chosen": 6,
+          "committed_delta": 0.04136770301009037,
+          "h_calls": {
+            "0": 9
+          }
+        },
+        {
+          "step": 3,
+          "state": {
+            "construction_progress": 0.2727272727272727,
+            "action_breadth_fraction": 0.7272727272727273,
+            "committed_objective_fraction": 0.09254654781213674,
+            "action_delta_min": 0.017796526653400885,
+            "action_delta_mean": 0.04316129549616235,
+            "action_delta_std": 0.018175388825334697,
+            "action_delta_max": 0.07221101427665401,
+            "action_delta_best_gap": 0.0009305414755641957,
+            "last_action_delta": 0.04136770301009037,
+            "recent_delta_mean": 0.03084884927071224,
+            "recent_delta_std": 0.007451939809215338,
+            "current_h_run_fraction": 0.2727272727272727,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 3,
+            "recent_history_count": 3,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.14230291440393508,
+              0.4122865344631264,
+              0.28297475393986493,
+              0.1526259257311444,
+              0.2727272727272727
+            ],
+            [
+              0.5774069279787432,
+              0.2678077233015051,
+              0.37603287244398337,
+              0.09919167294723477,
+              0.2727272727272727
+            ],
+            [
+              0.35490242582748166,
+              0.6663421706539444,
+              0.3423221415217483,
+              0.09188262126996503,
+              0.2727272727272727
+            ],
+            [
+              0.2644699578941024,
+              0.6001086708028208,
+              0.2947628877159805,
+              0.09188262126996503,
+              0.2727272727272727
+            ],
+            [
+              0.3423487531875522,
+              0.4075327941805614,
+              0.24081308104609297,
+              0.17206369381829026,
+              0.2727272727272727
+            ],
+            [
+              0.14974362272446673,
+              0.5630498781508038,
+              0.311394245002922,
+              0.11645880687113828,
+              0.2727272727272727
+            ],
+            [
+              0.47912834685187033,
+              0.2276644269339856,
+              0.30711239544165003,
+              0.059305872872886155,
+              0.2727272727272727
+            ],
+            [
+              0.4506754187301654,
+              0.277767896933238,
+              0.2776959696067603,
+              0.059305872872886155,
+              0.2727272727272727
+            ]
+          ],
+          "raw_scores": [
+            -0.14230291440393508,
+            -0.5774069279787432,
+            -0.35490242582748166,
+            -0.2644699578941024,
+            -0.3423487531875522,
+            -0.14974362272446673,
+            -0.47912834685187033,
+            -0.4506754187301654
+          ],
+          "chosen": 1,
+          "committed_delta": 0.017796526653400885,
+          "h_calls": {
+            "0": 8
+          }
+        },
+        {
+          "step": 4,
+          "state": {
+            "construction_progress": 0.36363636363636365,
+            "action_breadth_fraction": 0.6363636363636364,
+            "committed_objective_fraction": 0.11034307446553764,
+            "action_delta_min": 0.01908753145816938,
+            "action_delta_mean": 0.03538906966048128,
+            "action_delta_std": 0.01111904421595324,
+            "action_delta_max": 0.054807690819310376,
+            "action_delta_best_gap": 0.006827109831539547,
+            "last_action_delta": 0.017796526653400885,
+            "recent_delta_mean": 0.0275857686163844,
+            "recent_delta_std": 0.008578557061655067,
+            "current_h_run_fraction": 0.36363636363636365,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 4,
+            "recent_history_count": 4,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.4382481080288344,
+              0.2678077233015051,
+              0.3656636665131749,
+              0.09919167294723477,
+              0.36363636363636365
+            ],
+            [
+              0.30992739670247593,
+              0.6663421706539444,
+              0.3477212656582936,
+              0.09188262126996503,
+              0.36363636363636365
+            ],
+            [
+              0.2222808152009284,
+              0.6001086708028208,
+              0.3068432331351559,
+              0.09188262126996503,
+              0.36363636363636365
+            ],
+            [
+              0.20721621994443576,
+              0.4075327941805614,
+              0.24641255789636918,
+              0.17206369381829026,
+              0.36363636363636365
+            ],
+            [
+              0.1526259257311444,
+              0.5630498781508038,
+              0.33785563154821835,
+              0.11645880687113828,
+              0.36363636363636365
+            ],
+            [
+              0.3411851159250296,
+              0.2276644269339856,
+              0.3014336086944201,
+              0.059305872872886155,
+              0.36363636363636365
+            ],
+            [
+              0.3093396960462062,
+              0.277767896933238,
+              0.272422015200186,
+              0.059305872872886155,
+              0.36363636363636365
+            ]
+          ],
+          "raw_scores": [
+            -0.4382481080288344,
+            -0.30992739670247593,
+            -0.2222808152009284,
+            -0.20721621994443576,
+            -0.1526259257311444,
+            -0.3411851159250296,
+            -0.3093396960462062
+          ],
+          "chosen": 7,
+          "committed_delta": 0.01908753145816938,
+          "h_calls": {
+            "0": 7
+          }
+        },
+        {
+          "step": 5,
+          "state": {
+            "construction_progress": 0.45454545454545453,
+            "action_breadth_fraction": 0.5454545454545454,
+            "committed_objective_fraction": 0.129430605923707,
+            "action_delta_min": 0.014564440012959892,
+            "action_delta_mean": 0.04225252010497959,
+            "action_delta_std": 0.019124130410698076,
+            "action_delta_max": 0.06924157142469035,
+            "action_delta_best_gap": 0.011129456897065577,
+            "last_action_delta": 0.01908753145816938,
+            "recent_delta_mean": 0.025886121184741394,
+            "recent_delta_std": 0.008392170075470365,
+            "current_h_run_fraction": 0.45454545454545453,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 5,
+            "recent_history_count": 5,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            2,
+            3,
+            4,
+            5,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.5536629480314197,
+              0.2678077233015051,
+              0.3280638102095259,
+              0.09919167294723477,
+              0.45454545454545453
+            ],
+            [
+              0.20545112447502056,
+              0.6663421706539444,
+              0.37617529389494825,
+              0.09188262126996503,
+              0.45454545454545453
+            ],
+            [
+              0.11645880687113828,
+              0.6001086708028208,
+              0.3449201183879594,
+              0.09188262126996503,
+              0.45454545454545453
+            ],
+            [
+              0.26872573734361965,
+              0.4075327941805614,
+              0.2419499220069191,
+              0.17206369381829026,
+              0.45454545454545453
+            ],
+            [
+              0.4632709458940817,
+              0.2276644269339856,
+              0.26906614125448775,
+              0.059305872872886155,
+              0.45454545454545453
+            ],
+            [
+              0.4195642266740299,
+              0.277767896933238,
+              0.2429935729054172,
+              0.059305872872886155,
+              0.45454545454545453
+            ]
+          ],
+          "raw_scores": [
+            -0.5536629480314197,
+            -0.20545112447502056,
+            -0.11645880687113828,
+            -0.26872573734361965,
+            -0.4632709458940817,
+            -0.4195642266740299
+          ],
+          "chosen": 4,
+          "committed_delta": 0.014564440012959892,
+          "h_calls": {
+            "0": 6
+          }
+        },
+        {
+          "step": 6,
+          "state": {
+            "construction_progress": 0.5454545454545454,
+            "action_breadth_fraction": 0.45454545454545453,
+            "committed_objective_fraction": 0.1439950459366669,
+            "action_delta_min": 0.011490920795716706,
+            "action_delta_mean": 0.043136010993853294,
+            "action_delta_std": 0.02008726212718272,
+            "action_delta_max": 0.06703836676245979,
+            "action_delta_best_gap": 0.017834479703676735,
+            "last_action_delta": 0.014564440012959892,
+            "recent_delta_mean": 0.023999174322777813,
+            "recent_delta_std": 0.008746043359469545,
+            "current_h_run_fraction": 0.5454545454545454,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 6,
+            "recent_history_count": 6,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            2,
+            3,
+            5,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.5360458899071123,
+              0.2678077233015051,
+              0.2760682902851293,
+              0.09919167294723477,
+              0.5454545454545454
+            ],
+            [
+              0.09188262126996503,
+              0.6663421706539444,
+              0.44724846205119406,
+              0.2736207584722854,
+              0.5454545454545454
+            ],
+            [
+              0.2344890122887451,
+              0.4075327941805614,
+              0.2438151494364626,
+              0.17206369381829026,
+              0.5454545454545454
+            ],
+            [
+              0.4574604158295718,
+              0.2276644269339856,
+              0.22196757261071673,
+              0.059305872872886155,
+              0.5454545454545454
+            ],
+            [
+              0.40472265264440255,
+              0.277767896933238,
+              0.20256130297067085,
+              0.059305872872886155,
+              0.5454545454545454
+            ]
+          ],
+          "raw_scores": [
+            -0.5360458899071123,
+            -0.09188262126996503,
+            -0.2344890122887451,
+            -0.4574604158295718,
+            -0.40472265264440255
+          ],
+          "chosen": 3,
+          "committed_delta": 0.011490920795716706,
+          "h_calls": {
+            "0": 5
+          }
+        },
+        {
+          "step": 7,
+          "state": {
+            "construction_progress": 0.6363636363636364,
+            "action_breadth_fraction": 0.36363636363636365,
+            "committed_objective_fraction": 0.1554859667323836,
+            "action_delta_min": 0.03421925082471212,
+            "action_delta_mean": 0.055933282947341574,
+            "action_delta_std": 0.013695697542666254,
+            "action_delta_max": 0.07118880481595227,
+            "action_delta_best_gap": 0.02139348381396089,
+            "last_action_delta": 0.011490920795716706,
+            "recent_delta_mean": 0.022212280961769082,
+            "recent_delta_std": 0.009204541874114142,
+            "current_h_run_fraction": 0.6363636363636364,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 7,
+            "recent_history_count": 7,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            2,
+            5,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.5692332327278593,
+              0.2678077233015051,
+              0.1783466428042193,
+              0.09919167294723477,
+              0.6363636363636364
+            ],
+            [
+              0.2736207584722854,
+              0.4075327941805614,
+              0.23387994642452167,
+              0.17206369381829026,
+              0.6363636363636364
+            ],
+            [
+              0.5014545332230095,
+              0.2276644269339856,
+              0.12880525240661916,
+              0.059305872872886155,
+              0.6363636363636364
+            ],
+            [
+              0.44468532378162207,
+              0.277767896933238,
+              0.12185329603368712,
+              0.059305872872886155,
+              0.6363636363636364
+            ]
+          ],
+          "raw_scores": [
+            0.5692332327278593,
+            0.2736207584722854,
+            0.5014545332230095,
+            0.44468532378162207
+          ],
+          "chosen": 2,
+          "committed_delta": 0.07118880481595227,
+          "h_calls": {
+            "1": 4
+          }
+        },
+        {
+          "step": 8,
+          "state": {
+            "construction_progress": 0.7272727272727273,
+            "action_breadth_fraction": 0.2727272727272727,
+            "committed_objective_fraction": 0.22667477154833587,
+            "action_delta_min": 0.012404997176586796,
+            "action_delta_mean": 0.022304186780043117,
+            "action_delta_std": 0.0110500238518994,
+            "action_delta_max": 0.037725604469283996,
+            "action_delta_best_gap": 0.00437696151767176,
+            "last_action_delta": 0.07118880481595227,
+            "recent_delta_mean": 0.02833434644354198,
+            "recent_delta_std": 0.018343689448011468,
+            "current_h_run_fraction": 0.09090909090909091,
+            "recent_h_switch_fraction": 0.14285714285714285,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.875,
+              0.125,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 8,
+            "recent_history_count": 8,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            5,
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.30165793405553815,
+              0.4075327941805614,
+              0.1999909526090134,
+              0.17206369381829026,
+              0.7272727272727273
+            ],
+            [
+              0.09919167294723477,
+              0.2276644269339856,
+              0.14361204213631135,
+              0.059305872872886155,
+              0.7272727272727273
+            ],
+            [
+              0.13419032140988496,
+              0.277767896933238,
+              0.11568478334558821,
+              0.059305872872886155,
+              0.7272727272727273
+            ]
+          ],
+          "raw_scores": [
+            0.30165793405553815,
+            0.09919167294723477,
+            0.13419032140988496
+          ],
+          "chosen": 5,
+          "committed_delta": 0.037725604469283996,
+          "h_calls": {
+            "1": 3
+          }
+        },
+        {
+          "step": 9,
+          "state": {
+            "construction_progress": 0.8181818181818182,
+            "action_breadth_fraction": 0.18181818181818182,
+            "committed_objective_fraction": 0.2644003760176199,
+            "action_delta_min": 0.021518435697161907,
+            "action_delta_mean": 0.025011043051743148,
+            "action_delta_std": 0.003492607354581241,
+            "action_delta_max": 0.02850365040632439,
+            "action_delta_best_gap": 0.006985214709162482,
+            "last_action_delta": 0.037725604469283996,
+            "recent_delta_mean": 0.029377819557513316,
+            "recent_delta_std": 0.017544621659485952,
+            "current_h_run_fraction": 0.18181818181818182,
+            "recent_h_switch_fraction": 0.125,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.7777777777777778,
+              0.2222222222222222,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 9,
+            "recent_history_count": 9,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            8,
+            11
+          ],
+          "action_features": [
+            [
+              0.22791821139973656,
+              0.2276644269339856,
+              0.059305872872886155,
+              0.059305872872886155,
+              0.8181818181818182
+            ],
+            [
+              0.17206369381829026,
+              0.277767896933238,
+              0.059305872872886155,
+              0.059305872872886155,
+              0.8181818181818182
+            ]
+          ],
+          "raw_scores": [
+            0.22791821139973656,
+            0.17206369381829026
+          ],
+          "chosen": 8,
+          "committed_delta": 0.02850365040632439,
+          "h_calls": {
+            "1": 2
+          }
+        },
+        {
+          "step": 10,
+          "state": {
+            "construction_progress": 0.9090909090909091,
+            "action_breadth_fraction": 0.09090909090909091,
+            "committed_objective_fraction": 0.29290402642394425,
+            "action_delta_min": 0.007416844213672248,
+            "action_delta_mean": 0.007416844213672248,
+            "action_delta_std": 0.0,
+            "action_delta_max": 0.007416844213672248,
+            "action_delta_best_gap": null,
+            "last_action_delta": 0.02850365040632439,
+            "recent_delta_mean": 0.029290402642394426,
+            "recent_delta_std": 0.016646355448280366,
+            "current_h_run_fraction": 0.2727272727272727,
+            "recent_h_switch_fraction": 0.1111111111111111,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.7,
+              0.3,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 10,
+            "recent_history_count": 10,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": false,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "action_delta_best_gap": "singleton_action"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            11
+          ],
+          "action_features": [
+            [
+              0.059305872872886155,
+              0.277767896933238,
+              0.0,
+              0.0,
+              0.9090909090909091
+            ]
+          ],
+          "raw_scores": [
+            0.059305872872886155
+          ],
+          "chosen": 11,
+          "committed_delta": 0.007416844213672248,
+          "h_calls": {
+            "1": 1
+          }
+        }
+      ],
+      "h_calls": [
+        56,
+        10,
+        0
+      ],
+      "solve_seconds": 0.0013180000241845846,
+      "observation_seconds": 0.0007835009892005473
+    },
+    {
+      "file": "synthetic-tsp-501-1",
+      "score": -1.197555284825416,
+      "solution": {
+        "tour": [
+          0,
+          2,
+          3,
+          8,
+          1,
+          10,
+          6,
+          5,
+          4,
+          7,
+          9,
+          11,
+          0
+        ],
+        "length": 5.168330203671232
+      },
+      "trace": [
+        {
+          "step": 0,
+          "state": {
+            "construction_progress": 0.0,
+            "action_breadth_fraction": 1.0,
+            "committed_objective_fraction": 0.0,
+            "action_delta_min": 0.027292644322137925,
+            "action_delta_mean": 0.05366507419397006,
+            "action_delta_std": 0.017946726180720216,
+            "action_delta_max": 0.07961049882625182,
+            "action_delta_best_gap": 0.0030226202496195995,
+            "last_action_delta": null,
+            "recent_delta_mean": null,
+            "recent_delta_std": null,
+            "current_h_run_fraction": null,
+            "recent_h_switch_fraction": null,
+            "previous_h_token": null,
+            "usage_fraction": null,
+            "has_history": false,
+            "history_count": 0,
+            "recent_history_count": 0,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": false,
+              "recent_delta_mean": false,
+              "recent_delta_std": false,
+              "current_h_run_fraction": false,
+              "recent_h_switch_fraction": false,
+              "previous_h_token": false,
+              "usage_fraction": false,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "last_action_delta": "no_history",
+              "recent_delta_mean": "no_history",
+              "recent_delta_std": "no_history",
+              "current_h_run_fraction": "no_history",
+              "recent_h_switch_fraction": "insufficient_adjacent_history",
+              "previous_h_token": "no_history",
+              "usage_fraction": "no_history"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.5042394935195378,
+              0.5042394935195378,
+              0.2924414011197468,
+              0.078730905021306,
+              0.0
+            ],
+            [
+              0.24423129818723774,
+              0.24423129818723774,
+              0.319340205902631,
+              0.12386806423190737,
+              0.0
+            ],
+            [
+              0.27677893244103535,
+              0.27677893244103535,
+              0.3148407293342347,
+              0.12386806423190737,
+              0.0
+            ],
+            [
+              0.6051607520306553,
+              0.6051607520306553,
+              0.4270717738541416,
+              0.17326911905282633,
+              0.0
+            ],
+            [
+              0.712403505068137,
+              0.712403505068137,
+              0.38055204580555135,
+              0.01859451320380855,
+              0.0
+            ],
+            [
+              0.6273676876381588,
+              0.6273676876381588,
+              0.3161169479146614,
+              0.17789107020020195,
+              0.0
+            ],
+            [
+              0.45557548457815883,
+              0.45557548457815883,
+              0.4752078957510569,
+              0.18869691738011907,
+              0.0
+            ],
+            [
+              0.4525876547572732,
+              0.4525876547572732,
+              0.30980125722756646,
+              0.078730905021306,
+              0.0
+            ],
+            [
+              0.6987044444551637,
+              0.6987044444551637,
+              0.3740708939634213,
+              0.01859451320380855,
+              0.0
+            ],
+            [
+              0.43417868402541115,
+              0.43417868402541115,
+              0.25925405529526063,
+              0.14848372821786304,
+              0.0
+            ],
+            [
+              0.2712795555410638,
+              0.2712795555410638,
+              0.40314194722749946,
+              0.1701326040517421,
+              0.0
+            ]
+          ],
+          "raw_scores": [
+            -0.5042394935195378,
+            -0.24423129818723774,
+            -0.27677893244103535,
+            -0.6051607520306553,
+            -0.712403505068137,
+            -0.6273676876381588,
+            -0.45557548457815883,
+            -0.4525876547572732,
+            -0.6987044444551637,
+            -0.43417868402541115,
+            -0.2712795555410638
+          ],
+          "chosen": 2,
+          "committed_delta": 0.027292644322137925,
+          "h_calls": {
+            "0": 11
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "construction_progress": 0.09090909090909091,
+            "action_breadth_fraction": 0.9090909090909091,
+            "committed_objective_fraction": 0.027292644322137925,
+            "action_delta_min": 0.013842153094405653,
+            "action_delta_mean": 0.03568600225339274,
+            "action_delta_std": 0.013286981137992428,
+            "action_delta_max": 0.052360401226874576,
+            "action_delta_best_gap": 0.005170023823327152,
+            "last_action_delta": 0.027292644322137925,
+            "recent_delta_mean": 0.027292644322137925,
+            "recent_delta_std": 0.0,
+            "current_h_run_fraction": 0.09090909090909091,
+            "recent_h_switch_fraction": null,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 1,
+            "recent_history_count": 1,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": false,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "recent_h_switch_fraction": "insufficient_adjacent_history"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.3084078700444976,
+              0.5042394935195378,
+              0.2906673490169968,
+              0.078730905021306,
+              0.09090909090909091
+            ],
+            [
+              0.12386806423190737,
+              0.27677893244103535,
+              0.3360599143456044,
+              0.18243733651746213,
+              0.09090909090909091
+            ],
+            [
+              0.45972032431952325,
+              0.6051607520306553,
+              0.4234441571357659,
+              0.17326911905282633,
+              0.09090909090909091
+            ],
+            [
+              0.46855294101610456,
+              0.712403505068137,
+              0.37077416855993434,
+              0.01859451320380855,
+              0.09090909090909091
+            ],
+            [
+              0.3901912190704163,
+              0.6273676876381588,
+              0.30788647334179975,
+              0.17789107020020195,
+              0.09090909090909091
+            ],
+            [
+              0.33015721522830693,
+              0.45557548457815883,
+              0.4913246380313624,
+              0.18869691738011907,
+              0.09090909090909091
+            ],
+            [
+              0.28675497687660495,
+              0.4525876547572732,
+              0.31236195504433995,
+              0.078730905021306,
+              0.09090909090909091
+            ],
+            [
+              0.4552197940720185,
+              0.6987044444551637,
+              0.3650543495069105,
+              0.01859451320380855,
+              0.09090909090909091
+            ],
+            [
+              0.20039705011518885,
+              0.43417868402541115,
+              0.2657937225374909,
+              0.14848372821786304,
+              0.09090909090909091
+            ],
+            [
+              0.1701326040517421,
+              0.2712795555410638,
+              0.42903187424702804,
+              0.18869691738011907,
+              0.09090909090909091
+            ]
+          ],
+          "raw_scores": [
+            -0.3084078700444976,
+            -0.12386806423190737,
+            -0.45972032431952325,
+            -0.46855294101610456,
+            -0.3901912190704163,
+            -0.33015721522830693,
+            -0.28675497687660495,
+            -0.4552197940720185,
+            -0.20039705011518885,
+            -0.1701326040517421
+          ],
+          "chosen": 3,
+          "committed_delta": 0.013842153094405653,
+          "h_calls": {
+            "0": 10
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "construction_progress": 0.18181818181818182,
+            "action_breadth_fraction": 0.8181818181818182,
+            "committed_objective_fraction": 0.041134797416543585,
+            "action_delta_min": 0.020387220530728303,
+            "action_delta_mean": 0.03755441575768522,
+            "action_delta_std": 0.012879089275729403,
+            "action_delta_max": 0.054720693901523766,
+            "action_delta_best_gap": 9.737801694362919e-06,
+            "last_action_delta": 0.013842153094405653,
+            "recent_delta_mean": 0.02056739870827179,
+            "recent_delta_std": 0.006725245613866136,
+            "current_h_run_fraction": 0.18181818181818182,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 2,
+            "recent_history_count": 2,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.22751507433541268,
+              0.5042394935195378,
+              0.2985613833521948,
+              0.078730905021306,
+              0.18181818181818182
+            ],
+            [
+              0.3497037286622314,
+              0.6051607520306553,
+              0.43266171069495774,
+              0.17326911905282633,
+              0.18181818181818182
+            ],
+            [
+              0.4896742855522885,
+              0.712403505068137,
+              0.3559116539358901,
+              0.01859451320380855,
+              0.18181818181818182
+            ],
+            [
+              0.36871064417896554,
+              0.6273676876381588,
+              0.300283451987154,
+              0.17789107020020195,
+              0.18181818181818182
+            ],
+            [
+              0.4507435115614927,
+              0.45557548457815883,
+              0.49639727884009616,
+              0.18869691738011907,
+              0.18181818181818182
+            ],
+            [
+              0.18243733651746213,
+              0.4525876547572732,
+              0.32860253236019965,
+              0.078730905021306,
+              0.18181818181818182
+            ],
+            [
+              0.4800881650787471,
+              0.6987044444551637,
+              0.350675122560431,
+              0.01859451320380855,
+              0.18181818181818182
+            ],
+            [
+              0.182524476331444,
+              0.43417868402541115,
+              0.27620237831324673,
+              0.14848372821786304,
+              0.18181818181818182
+            ],
+            [
+              0.2931420068923954,
+              0.2712795555410638,
+              0.44601810766635713,
+              0.18869691738011907,
+              0.18181818181818182
+            ]
+          ],
+          "raw_scores": [
+            -0.22751507433541268,
+            -0.3497037286622314,
+            -0.4896742855522885,
+            -0.36871064417896554,
+            -0.4507435115614927,
+            -0.18243733651746213,
+            -0.4800881650787471,
+            -0.182524476331444,
+            -0.2931420068923954
+          ],
+          "chosen": 8,
+          "committed_delta": 0.020387220530728303,
+          "h_calls": {
+            "0": 9
+          }
+        },
+        {
+          "step": 3,
+          "state": {
+            "construction_progress": 0.2727272727272727,
+            "action_breadth_fraction": 0.7272727272727273,
+            "committed_objective_fraction": 0.06152201794727189,
+            "action_delta_min": 0.008798113115949574,
+            "action_delta_mean": 0.03672105952688005,
+            "action_delta_std": 0.018338981075460548,
+            "action_delta_max": 0.06466549198741312,
+            "action_delta_best_gap": 0.010564566742933773,
+            "last_action_delta": 0.020387220530728303,
+            "recent_delta_mean": 0.020507339315757295,
+            "recent_delta_std": 0.005491796910466454,
+            "current_h_run_fraction": 0.2727272727272727,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 3,
+            "recent_history_count": 3,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.078730905021306,
+              0.5042394935195378,
+              0.3299657373994646,
+              0.14848372821786304,
+              0.2727272727272727
+            ],
+            [
+              0.17326911905282633,
+              0.6051607520306553,
+              0.4697177952152622,
+              0.1849664738501966,
+              0.2727272727272727
+            ],
+            [
+              0.44473831758652965,
+              0.712403505068137,
+              0.3432221305572272,
+              0.01859451320380855,
+              0.2727272727272727
+            ],
+            [
+              0.27966694683306764,
+              0.6273676876381588,
+              0.3032286670091664,
+              0.17789107020020195,
+              0.2727272727272727
+            ],
+            [
+              0.5786664300311806,
+              0.45557548457815883,
+              0.4846445429556555,
+              0.18869691738011907,
+              0.2727272727272727
+            ],
+            [
+              0.4418475151455301,
+              0.6987044444551637,
+              0.33765049504827394,
+              0.01859451320380855,
+              0.2727272727272727
+            ],
+            [
+              0.17933135121648996,
+              0.43417868402541115,
+              0.29004109646992626,
+              0.14848372821786304,
+              0.2727272727272727
+            ],
+            [
+              0.45256967399466697,
+              0.2712795555410638,
+              0.4450821696194557,
+              0.18869691738011907,
+              0.2727272727272727
+            ]
+          ],
+          "raw_scores": [
+            -0.078730905021306,
+            -0.17326911905282633,
+            -0.44473831758652965,
+            -0.27966694683306764,
+            -0.5786664300311806,
+            -0.4418475151455301,
+            -0.17933135121648996,
+            -0.45256967399466697
+          ],
+          "chosen": 1,
+          "committed_delta": 0.008798113115949574,
+          "h_calls": {
+            "0": 8
+          }
+        },
+        {
+          "step": 4,
+          "state": {
+            "construction_progress": 0.36363636363636365,
+            "action_breadth_fraction": 0.6363636363636364,
+            "committed_objective_fraction": 0.07032013106322146,
+            "action_delta_min": 0.01659293305957989,
+            "action_delta_mean": 0.0368733965555531,
+            "action_delta_std": 0.016186508248483618,
+            "action_delta_max": 0.06322264365222206,
+            "action_delta_best_gap": 0.00407691646332305,
+            "last_action_delta": 0.008798113115949574,
+            "recent_delta_mean": 0.017580032765805362,
+            "recent_delta_std": 0.006951780052010498,
+            "current_h_run_fraction": 0.36363636363636365,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 4,
+            "recent_history_count": 4,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "action_features": [
+            [
+              0.1849664738501966,
+              0.6051607520306553,
+              0.5171763487761064,
+              0.3318606082463677,
+              0.36363636363636365
+            ],
+            [
+              0.3730532399268578,
+              0.712403505068137,
+              0.33825027899562216,
+              0.01859451320380855,
+              0.36363636363636365
+            ],
+            [
+              0.20310380942140713,
+              0.6273676876381588,
+              0.3199161432737929,
+              0.17789107020020195,
+              0.36363636363636365
+            ],
+            [
+              0.5657549393807428,
+              0.45557548457815883,
+              0.47112614355147425,
+              0.18869691738011907,
+              0.36363636363636365
+            ],
+            [
+              0.3717163871254962,
+              0.6987044444551637,
+              0.33197284636873686,
+              0.01859451320380855,
+              0.36363636363636365
+            ],
+            [
+              0.14848372821786304,
+              0.43417868402541115,
+              0.31363399117860347,
+              0.19322830309412217,
+              0.36363636363636365
+            ],
+            [
+              0.4626815838736887,
+              0.2712795555410638,
+              0.4421489339104168,
+              0.18869691738011907,
+              0.36363636363636365
+            ]
+          ],
+          "raw_scores": [
+            -0.1849664738501966,
+            -0.3730532399268578,
+            -0.20310380942140713,
+            -0.5657549393807428,
+            -0.3717163871254962,
+            -0.14848372821786304,
+            -0.4626815838736887
+          ],
+          "chosen": 10,
+          "committed_delta": 0.01659293305957989,
+          "h_calls": {
+            "0": 7
+          }
+        },
+        {
+          "step": 5,
+          "state": {
+            "construction_progress": 0.45454545454545453,
+            "action_breadth_fraction": 0.5454545454545454,
+            "committed_objective_fraction": 0.08691306412280135,
+            "action_delta_min": 0.021593102065383514,
+            "action_delta_mean": 0.0350483375067179,
+            "action_delta_std": 0.007374266981981593,
+            "action_delta_max": 0.04668755953980739,
+            "action_delta_best_gap": 0.011986523269619631,
+            "last_action_delta": 0.01659293305957989,
+            "recent_delta_mean": 0.01738261282456027,
+            "recent_delta_std": 0.006230384839320098,
+            "current_h_run_fraction": 0.45454545454545453,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 5,
+            "recent_history_count": 5,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            4,
+            5,
+            6,
+            7,
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.3318606082463677,
+              0.6051607520306553,
+              0.5542394968820542,
+              0.3470233369946543,
+              0.45454545454545453
+            ],
+            [
+              0.3088594096154388,
+              0.712403505068137,
+              0.34412845287165883,
+              0.01859451320380855,
+              0.45454545454545453
+            ],
+            [
+              0.19322830309412217,
+              0.6273676876381588,
+              0.34525371130972704,
+              0.17789107020020195,
+              0.45454545454545453
+            ],
+            [
+              0.41778887897469624,
+              0.45557548457815883,
+              0.48179359646682995,
+              0.18869691738011907,
+              0.45454545454545453
+            ],
+            [
+              0.30049105507730617,
+              0.6987044444551637,
+              0.33826920462702303,
+              0.01859451320380855,
+              0.45454545454545453
+            ],
+            [
+              0.32957569206368964,
+              0.2712795555410638,
+              0.46466358227976234,
+              0.18869691738011907,
+              0.45454545454545453
+            ]
+          ],
+          "raw_scores": [
+            -0.3318606082463677,
+            -0.3088594096154388,
+            -0.19322830309412217,
+            -0.41778887897469624,
+            -0.30049105507730617,
+            -0.32957569206368964
+          ],
+          "chosen": 6,
+          "committed_delta": 0.021593102065383514,
+          "h_calls": {
+            "0": 6
+          }
+        },
+        {
+          "step": 6,
+          "state": {
+            "construction_progress": 0.5454545454545454,
+            "action_breadth_fraction": 0.45454545454545453,
+            "committed_objective_fraction": 0.10850616618818487,
+            "action_delta_min": 0.019879179053195913,
+            "action_delta_mean": 0.03858181491731047,
+            "action_delta_std": 0.016566517319591457,
+            "action_delta_max": 0.05887141222051679,
+            "action_delta_best_gap": 0.00035806583878597933,
+            "last_action_delta": 0.021593102065383514,
+            "recent_delta_mean": 0.018084361031364144,
+            "recent_delta_std": 0.00590002814403912,
+            "current_h_run_fraction": 0.5454545454545454,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 6,
+            "recent_history_count": 6,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 0,
+          "remaining": [
+            4,
+            5,
+            7,
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.3470233369946543,
+              0.6051607520306553,
+              0.6060435368539042,
+              0.5248570346728197,
+              0.5454545454545454
+            ],
+            [
+              0.17789107020020195,
+              0.712403505068137,
+              0.38568779853952306,
+              0.01859451320380855,
+              0.5454545454545454
+            ],
+            [
+              0.5268174553929236,
+              0.45557548457815883,
+              0.4705376317353065,
+              0.18869691738011907,
+              0.5454545454545454
+            ],
+            [
+              0.18109526264161618,
+              0.6987044444551637,
+              0.37756269012337473,
+              0.01859451320380855,
+              0.5454545454545454
+            ],
+            [
+              0.4934414313192393,
+              0.2712795555410638,
+              0.4574691200198931,
+              0.18869691738011907,
+              0.5454545454545454
+            ]
+          ],
+          "raw_scores": [
+            -0.3470233369946543,
+            -0.17789107020020195,
+            -0.5268174553929236,
+            -0.18109526264161618,
+            -0.4934414313192393
+          ],
+          "chosen": 5,
+          "committed_delta": 0.019879179053195913,
+          "h_calls": {
+            "0": 5
+          }
+        },
+        {
+          "step": 7,
+          "state": {
+            "construction_progress": 0.6363636363636364,
+            "action_breadth_fraction": 0.36363636363636365,
+            "committed_objective_fraction": 0.1283853452413808,
+            "action_delta_min": 0.0020779213760956173,
+            "action_delta_mean": 0.0431002905158273,
+            "action_delta_std": 0.023747980315335333,
+            "action_delta_max": 0.058652336836515336,
+            "action_delta_best_gap": 0.051914070571408365,
+            "last_action_delta": 0.019879179053195913,
+            "recent_delta_mean": 0.018340763605911536,
+            "recent_delta_std": 0.005498352589283612,
+            "current_h_run_fraction": 0.6363636363636364,
+            "recent_h_switch_fraction": 0.0,
+            "previous_h_token": 0,
+            "usage_fraction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 7,
+            "recent_history_count": 7,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            4,
+            7,
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.5248570346728197,
+              0.6051607520306553,
+              0.633105704247599,
+              0.5278199170266957,
+              0.6363636363636364
+            ],
+            [
+              0.4831534141364883,
+              0.45557548457815883,
+              0.46633237093491253,
+              0.18869691738011907,
+              0.6363636363636364
+            ],
+            [
+              0.01859451320380855,
+              0.6987044444551637,
+              0.49721874909656344,
+              0.46458248694441934,
+              0.6363636363636364
+            ],
+            [
+              0.5161462321449757,
+              0.2712795555410638,
+              0.4379100826448656,
+              0.18869691738011907,
+              0.6363636363636364
+            ]
+          ],
+          "raw_scores": [
+            0.5248570346728197,
+            0.4831534141364883,
+            0.01859451320380855,
+            0.5161462321449757
+          ],
+          "chosen": 4,
+          "committed_delta": 0.058652336836515336,
+          "h_calls": {
+            "1": 4
+          }
+        },
+        {
+          "step": 8,
+          "state": {
+            "construction_progress": 0.7272727272727273,
+            "action_breadth_fraction": 0.2727272727272727,
+            "committed_objective_fraction": 0.18703768207789612,
+            "action_delta_min": 0.058983436473838156,
+            "action_delta_mean": 0.07074903557651108,
+            "action_delta_std": 0.009957645969529909,
+            "action_delta_max": 0.08333333333333334,
+            "action_delta_best_gap": 0.010946900448523568,
+            "last_action_delta": 0.058652336836515336,
+            "recent_delta_mean": 0.023379710259737015,
+            "recent_delta_std": 0.014289498931287416,
+            "current_h_run_fraction": 0.09090909090909091,
+            "recent_h_switch_fraction": 0.14285714285714285,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.875,
+              0.125,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 8,
+            "recent_history_count": 8,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            7,
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.7457177084801991,
+              0.45557548457815883,
+              0.32663970216226923,
+              0.18869691738011907,
+              0.7272727272727273
+            ],
+            [
+              0.5278199170266957,
+              0.6987044444551637,
+              0.4819181651314974,
+              0.46458248694441934,
+              0.7272727272727273
+            ],
+            [
+              0.6257794872359022,
+              0.2712795555410638,
+              0.34397538034934727,
+              0.18869691738011907,
+              0.7272727272727273
+            ]
+          ],
+          "raw_scores": [
+            0.7457177084801991,
+            0.5278199170266957,
+            0.6257794872359022
+          ],
+          "chosen": 7,
+          "committed_delta": 0.08333333333333334,
+          "h_calls": {
+            "1": 3
+          }
+        },
+        {
+          "step": 9,
+          "state": {
+            "construction_progress": 0.8181818181818182,
+            "action_breadth_fraction": 0.18181818181818182,
+            "committed_objective_fraction": 0.2703710154112295,
+            "action_delta_min": 0.021086723482881403,
+            "action_delta_mean": 0.03650171488573664,
+            "action_delta_std": 0.015414991402855238,
+            "action_delta_max": 0.05191670628859188,
+            "action_delta_best_gap": 0.030829982805710476,
+            "last_action_delta": 0.08333333333333334,
+            "recent_delta_mean": 0.030041223934581047,
+            "recent_delta_std": 0.023162645400029977,
+            "current_h_run_fraction": 0.18181818181818182,
+            "recent_h_switch_fraction": 0.125,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.7777777777777778,
+              0.2222222222222222,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 9,
+            "recent_history_count": 9,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": true,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {},
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            9,
+            11
+          ],
+          "action_features": [
+            [
+              0.46458248694441934,
+              0.6987044444551637,
+              0.4992538433185754,
+              0.4992538433185754,
+              0.8181818181818182
+            ],
+            [
+              0.18869691738011907,
+              0.2712795555410638,
+              0.4992538433185754,
+              0.4992538433185754,
+              0.8181818181818182
+            ]
+          ],
+          "raw_scores": [
+            0.46458248694441934,
+            0.18869691738011907
+          ],
+          "chosen": 9,
+          "committed_delta": 0.05191670628859188,
+          "h_calls": {
+            "1": 2
+          }
+        },
+        {
+          "step": 10,
+          "state": {
+            "construction_progress": 0.9090909090909091,
+            "action_breadth_fraction": 0.09090909090909091,
+            "committed_objective_fraction": 0.32228772169982134,
+            "action_delta_min": 0.05579120150975915,
+            "action_delta_mean": 0.05579120150975915,
+            "action_delta_std": 0.0,
+            "action_delta_max": 0.05579120150975915,
+            "action_delta_best_gap": null,
+            "last_action_delta": 0.05191670628859188,
+            "recent_delta_mean": 0.032228772169982135,
+            "recent_delta_std": 0.022933068553393252,
+            "current_h_run_fraction": 0.2727272727272727,
+            "recent_h_switch_fraction": 0.1111111111111111,
+            "previous_h_token": 1,
+            "usage_fraction": [
+              0.7,
+              0.3,
+              0.0
+            ],
+            "has_history": true,
+            "history_count": 10,
+            "recent_history_count": 10,
+            "availability": {
+              "construction_progress": true,
+              "action_breadth_fraction": true,
+              "committed_objective_fraction": true,
+              "action_delta_min": true,
+              "action_delta_mean": true,
+              "action_delta_std": true,
+              "action_delta_max": true,
+              "action_delta_best_gap": false,
+              "last_action_delta": true,
+              "recent_delta_mean": true,
+              "recent_delta_std": true,
+              "current_h_run_fraction": true,
+              "recent_h_switch_fraction": true,
+              "previous_h_token": true,
+              "usage_fraction": true,
+              "has_history": true,
+              "history_count": true,
+              "recent_history_count": true
+            },
+            "missing_reason": {
+              "action_delta_best_gap": "singleton_action"
+            },
+            "problem_id": "tsp",
+            "schema_id": "constructive-common-v1-tsp",
+            "spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+            "window": 10,
+            "enabled_groups": [
+              "construction",
+              "action_cost",
+              "trajectory",
+              "usage"
+            ]
+          },
+          "member_id": 1,
+          "remaining": [
+            11
+          ],
+          "action_features": [
+            [
+              0.4992538433185754,
+              0.2712795555410638,
+              0.0,
+              0.0,
+              0.9090909090909091
+            ]
+          ],
+          "raw_scores": [
+            0.4992538433185754
+          ],
+          "chosen": 11,
+          "committed_delta": 0.05579120150975915,
+          "h_calls": {
+            "1": 1
+          }
+        }
+      ],
+      "h_calls": [
+        56,
+        10,
+        0
+      ],
+      "solve_seconds": 0.0011739170004148036,
+      "observation_seconds": 0.0007504959648940712
+    }
+  ],
+  "recheck_semantics_sha256": "07cc1dcad38968829af82674820f1a1b394ac9325532db9e600d86526d1b7398"
+}

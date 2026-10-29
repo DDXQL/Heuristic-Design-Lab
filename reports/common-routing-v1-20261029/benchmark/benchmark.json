@@ -1,0 +1,234 @@
+{
+  "type": "REAL_SYNTHETIC_FIXED_WORKLOAD_NOT_SEARCH",
+  "real_API_calls": 0,
+  "hardware": {
+    "hardware": [
+      {
+        "chip_type": "Apple M1",
+        "machine_model": "MacBookAir10,1",
+        "machine_name": "MacBook Air",
+        "number_processors": "proc 8:4:4",
+        "physical_memory": "8 GB"
+      }
+    ],
+    "os": "macOS-15.3.2-arm64-arm-64bit",
+    "python": "3.12.10",
+    "logical_cpus": 8,
+    "process_inventory": "ps unavailable under sandbox; not certified idle",
+    "BLAS_threads": {
+      "OPENBLAS_NUM_THREADS": null,
+      "OMP_NUM_THREADS": null,
+      "VECLIB_MAXIMUM_THREADS": null
+    },
+    "note": "system_profiler output filtered; identifiers excluded"
+  },
+  "rows": [
+    {
+      "evaluation_concurrency": 1,
+      "candidate_evaluations": 8,
+      "physical_solves": 32,
+      "wall_seconds": 2.699641791987233,
+      "candidate_throughput_per_second": 2.963356110334594,
+      "physical_solve_throughput_per_second": 11.853424441338376,
+      "api_wait_seconds": 0,
+      "summed_worker_solve_seconds": 0.7618284980999306,
+      "summed_observation_seconds": 0.30746527839801274,
+      "observation_share_of_worker_solve": 0.40358857559786626,
+      "max_worker_peak_rss_bytes": 40779776,
+      "worker_memory_envelope_bytes": 40779776,
+      "memory_note": "per-worker measured peak; width*peak is an envelope, not measured aggregate peak",
+      "memory_before": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                3668.\nPages active:                             78071.\nPages inactive:                           70167.\nPages speculative:                         7077.\nPages throttled:                              0.\nPages wired down:                        104810.\nPages purgeable:                              2.\n\"Translation faults\":                2742471960.\nPages copy-on-write:                   42856473.\nPages zero filled:                    508621519.\nPages reactivated:                   1104310997.\nPages purged:                          44582071.\nFile-backed pages:                        55965.\nAnonymous pages:                          99350.\nPages stored in compressor:             1343944.\nPages occupied by compressor:            224724.\nDecompressions:                      1283385253.\nCompressions:                        1332823068.\nPageins:                               83889812.\nPageouts:                               2116593.\nSwapins:                               38770116.\nSwapouts:                              40460625.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "memory_after": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                5178.\nPages active:                             76269.\nPages inactive:                           68584.\nPages speculative:                         6972.\nPages throttled:                              0.\nPages wired down:                        106811.\nPages purgeable:                             62.\n\"Translation faults\":                2742647655.\nPages copy-on-write:                   42863262.\nPages zero filled:                    508661920.\nPages reactivated:                   1104370584.\nPages purged:                          44582843.\nFile-backed pages:                        55784.\nAnonymous pages:                          96041.\nPages stored in compressor:             1346172.\nPages occupied by compressor:            224733.\nDecompressions:                      1283450649.\nCompressions:                        1332894418.\nPageins:                               83894339.\nPageouts:                               2116603.\nSwapins:                               38772491.\nSwapouts:                              40465337.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "timeouts": 0,
+      "invalid_candidates": 0,
+      "same_semantics_as_serial": true,
+      "result_semantics_sha256": "6d16935e351868ec1d034feb98174d28f9747ed0aab4bfee2802430dd493baf3",
+      "per_problem": {
+        "fjsp": {
+          "evaluation_seconds_sum": 0.9942003749602009,
+          "fitness": [
+            -1.7311429076134959,
+            -2.2430665960077727,
+            -2.1934287228404874,
+            -1.4859565447800742
+          ],
+          "valid": true
+        },
+        "tsp": {
+          "evaluation_seconds_sum": 1.406242500001099,
+          "fitness": [
+            -5.30741268284824,
+            -4.310854050609999,
+            -0.9594111844119548,
+            -1.5270079038544682
+          ],
+          "valid": true
+        }
+      },
+      "speedup_vs_serial": 1.0
+    },
+    {
+      "evaluation_concurrency": 2,
+      "candidate_evaluations": 8,
+      "physical_solves": 32,
+      "wall_seconds": 1.5481773749925196,
+      "candidate_throughput_per_second": 5.167366562270459,
+      "physical_solve_throughput_per_second": 20.669466249081836,
+      "api_wait_seconds": 0,
+      "summed_worker_solve_seconds": 0.808822461985983,
+      "summed_observation_seconds": 0.32975287520093843,
+      "observation_share_of_worker_solve": 0.4076950019306624,
+      "max_worker_peak_rss_bytes": 38207488,
+      "worker_memory_envelope_bytes": 76414976,
+      "memory_note": "per-worker measured peak; width*peak is an envelope, not measured aggregate peak",
+      "memory_before": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                4727.\nPages active:                             76360.\nPages inactive:                           68920.\nPages speculative:                         7003.\nPages throttled:                              0.\nPages wired down:                        106815.\nPages purgeable:                             68.\n\"Translation faults\":                2742649763.\nPages copy-on-write:                   42863690.\nPages zero filled:                    508662242.\nPages reactivated:                   1104370584.\nPages purged:                          44582843.\nFile-backed pages:                        55835.\nAnonymous pages:                          96448.\nPages stored in compressor:             1345929.\nPages occupied by compressor:            224663.\nDecompressions:                      1283450895.\nCompressions:                        1332894418.\nPageins:                               83894391.\nPageouts:                               2116603.\nSwapins:                               38772510.\nSwapouts:                              40465337.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "memory_after": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                4000.\nPages active:                             75438.\nPages inactive:                           67491.\nPages speculative:                         7287.\nPages throttled:                              0.\nPages wired down:                        105820.\nPages purgeable:                              2.\n\"Translation faults\":                2742793238.\nPages copy-on-write:                   42870421.\nPages zero filled:                    508694153.\nPages reactivated:                   1104421761.\nPages purged:                          44584439.\nFile-backed pages:                        57601.\nAnonymous pages:                          92615.\nPages stored in compressor:             1354577.\nPages occupied by compressor:            228574.\nDecompressions:                      1283497112.\nCompressions:                        1332951101.\nPageins:                               83900199.\nPageouts:                               2116620.\nSwapins:                               38774855.\nSwapouts:                              40468089.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "timeouts": 0,
+      "invalid_candidates": 0,
+      "same_semantics_as_serial": true,
+      "result_semantics_sha256": "6d16935e351868ec1d034feb98174d28f9747ed0aab4bfee2802430dd493baf3",
+      "per_problem": {
+        "fjsp": {
+          "evaluation_seconds_sum": 1.0998319149657618,
+          "fitness": [
+            -1.7311429076134959,
+            -2.2430665960077727,
+            -2.1934287228404874,
+            -1.4859565447800742
+          ],
+          "valid": true
+        },
+        "tsp": {
+          "evaluation_seconds_sum": 1.6027457079617307,
+          "fitness": [
+            -5.30741268284824,
+            -4.310854050609999,
+            -0.9594111844119548,
+            -1.5270079038544682
+          ],
+          "valid": true
+        }
+      },
+      "speedup_vs_serial": 1.7437548407528414
+    },
+    {
+      "evaluation_concurrency": 4,
+      "candidate_evaluations": 8,
+      "physical_solves": 32,
+      "wall_seconds": 0.9515513340011239,
+      "candidate_throughput_per_second": 8.40732361370485,
+      "physical_solve_throughput_per_second": 33.6292944548194,
+      "api_wait_seconds": 0,
+      "summed_worker_solve_seconds": 0.8838610789680388,
+      "summed_observation_seconds": 0.3565353289595805,
+      "observation_share_of_worker_solve": 0.4033838998498011,
+      "max_worker_peak_rss_bytes": 39698432,
+      "worker_memory_envelope_bytes": 158793728,
+      "memory_note": "per-worker measured peak; width*peak is an envelope, not measured aggregate peak",
+      "memory_before": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                3528.\nPages active:                             75697.\nPages inactive:                           67713.\nPages speculative:                         7300.\nPages throttled:                              0.\nPages wired down:                        105820.\nPages purgeable:                              2.\n\"Translation faults\":                2742795527.\nPages copy-on-write:                   42870732.\nPages zero filled:                    508694251.\nPages reactivated:                   1104421761.\nPages purged:                          44584439.\nFile-backed pages:                        57776.\nAnonymous pages:                          92934.\nPages stored in compressor:             1354264.\nPages occupied by compressor:            228462.\nDecompressions:                      1283497428.\nCompressions:                        1332951101.\nPageins:                               83900290.\nPageouts:                               2116620.\nSwapins:                               38774855.\nSwapouts:                              40468089.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "memory_after": {
+        "vm_stat": {
+          "returncode": 0,
+          "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                7344.\nPages active:                             74040.\nPages inactive:                           66063.\nPages speculative:                         7385.\nPages throttled:                              0.\nPages wired down:                        105216.\nPages purgeable:                              2.\n\"Translation faults\":                2742888439.\nPages copy-on-write:                   42876172.\nPages zero filled:                    508719560.\nPages reactivated:                   1104455744.\nPages purged:                          44584834.\nFile-backed pages:                        57027.\nAnonymous pages:                          90461.\nPages stored in compressor:             1359517.\nPages occupied by compressor:            228559.\nDecompressions:                      1283523627.\nCompressions:                        1332983399.\nPageins:                               83901835.\nPageouts:                               2116635.\nSwapins:                               38775071.\nSwapouts:                              40471329.",
+          "stderr": ""
+        },
+        "swap": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted"
+        }
+      },
+      "timeouts": 0,
+      "invalid_candidates": 0,
+      "same_semantics_as_serial": true,
+      "result_semantics_sha256": "6d16935e351868ec1d034feb98174d28f9747ed0aab4bfee2802430dd493baf3",
+      "per_problem": {
+        "fjsp": {
+          "evaluation_seconds_sum": 1.329687789984746,
+          "fitness": [
+            -1.7311429076134959,
+            -2.2430665960077727,
+            -2.1934287228404874,
+            -1.4859565447800742
+          ],
+          "valid": true
+        },
+        "tsp": {
+          "evaluation_seconds_sum": 1.6706693749583792,
+          "fitness": [
+            -5.30741268284824,
+            -4.310854050609999,
+            -0.9594111844119548,
+            -1.5270079038544682
+          ],
+          "valid": true
+        }
+      },
+      "speedup_vs_serial": 2.8370952732898425
+    }
+  ],
+  "fastest_measured_width": 4,
+  "workload": {
+    "candidate_evaluations_per_width": 8,
+    "instance_count_per_problem": 2,
+    "size_fjsp": 90,
+    "size_tsp": 70,
+    "input_identity": "6af4f5ef424eae42b00feeb794c7ab99e4379768248d9cdf56bd527f308b9147"
+  },
+  "limitation": "one fixed workload and one width order; startup/system contention included, not confidence intervals or quality evidence"
+}

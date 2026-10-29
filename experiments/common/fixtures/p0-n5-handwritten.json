@@ -1,0 +1,47 @@
+[
+  {
+    "source": "Handwritten engineering P0 v1, default three-H fixture, declaration 0",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 0 if state['construction_progress'] < 0.16666666666666666 else 1\n",
+      "key": "946a8318dc5a47697f72460ee21e33d6011d2a38593aceb90aca63162c49a975",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "Handwritten engineering P0 v1, default three-H fixture, declaration 1",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 1 if state['construction_progress'] < 0.3333333333333333 else 2\n",
+      "key": "dac90b4d436788f4574f37fb74cecb1acc6bb4aea1506c5395c568b0a88f5238",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "Handwritten engineering P0 v1, default three-H fixture, declaration 2",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 2 if state['construction_progress'] < 0.5 else 0\n",
+      "key": "927df5725bdd83a01d529deded4bc7290052059d01465e1dbc83278f480250d8",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "Handwritten engineering P0 v1, default three-H fixture, declaration 3",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 0 if state['construction_progress'] < 0.6666666666666666 else 1\n",
+      "key": "f9fbe200a3f8d21c7f2cc697836ae9c5e75ff126ef470fd8587fd282da5e7804",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "Handwritten engineering P0 v1, default three-H fixture, declaration 4",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 1 if state['construction_progress'] < 0.8333333333333334 else 2\n",
+      "key": "bad9859782da690bda87d48a55cfbd1a3b494b3fa4568fd60d60570f1cc35115",
+      "abi": "pure-routing-state-v1"
+    }
+  }
+]

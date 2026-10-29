@@ -1,0 +1,307 @@
+[
+  {
+    "tasks": [
+      "INIT-0000",
+      "INIT-0001",
+      "INIT-0002",
+      "INIT-0003"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "INIT-0003",
+      "INIT-0002",
+      "INIT-0000",
+      "INIT-0001"
+    ],
+    "evaluation_completion_order": [
+      "INIT-0000",
+      "INIT-0001",
+      "INIT-0002",
+      "INIT-0003"
+    ],
+    "api_batch_seconds": 0.006876416999148205,
+    "evaluation_batch_seconds": 0.002025833004154265,
+    "semantics_commit_order": [
+      "INIT-0000",
+      "INIT-0001",
+      "INIT-0002",
+      "INIT-0003"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "INIT-0004"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "INIT-0004"
+    ],
+    "evaluation_completion_order": [
+      "INIT-0004"
+    ],
+    "api_batch_seconds": 0.004826749995118007,
+    "evaluation_batch_seconds": 0.000548749987501651,
+    "semantics_commit_order": [
+      "INIT-0004"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G001-002-CROSS",
+      "G001-002-MUTATE",
+      "G001-003-CROSS",
+      "G001-003-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G001-002-CROSS",
+      "G001-003-CROSS",
+      "G001-003-MUTATE",
+      "G001-002-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G001-003-CROSS",
+      "G001-002-MUTATE",
+      "G001-002-CROSS",
+      "G001-003-MUTATE"
+    ],
+    "api_batch_seconds": 0.012752957991324365,
+    "evaluation_batch_seconds": 0.00192529201740399,
+    "semantics_commit_order": [
+      "G001-002-CROSS",
+      "G001-002-MUTATE",
+      "G001-003-CROSS",
+      "G001-003-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G003-000-CROSS",
+      "G003-000-MUTATE",
+      "G003-001-CROSS",
+      "G003-001-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G003-001-CROSS",
+      "G003-001-MUTATE",
+      "G003-000-CROSS",
+      "G003-000-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G003-001-CROSS",
+      "G003-000-CROSS",
+      "G003-000-MUTATE",
+      "G003-001-MUTATE"
+    ],
+    "api_batch_seconds": 0.011960000003455207,
+    "evaluation_batch_seconds": 0.0021121249883435667,
+    "semantics_commit_order": [
+      "G003-000-CROSS",
+      "G003-000-MUTATE",
+      "G003-001-CROSS",
+      "G003-001-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G001-000-CROSS",
+      "G001-000-MUTATE",
+      "G001-001-CROSS",
+      "G001-001-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G001-000-CROSS",
+      "G001-001-CROSS",
+      "G001-001-MUTATE",
+      "G001-000-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G001-000-MUTATE",
+      "G001-001-CROSS",
+      "G001-000-CROSS",
+      "G001-001-MUTATE"
+    ],
+    "api_batch_seconds": 0.0121060419769492,
+    "evaluation_batch_seconds": 0.002059917023871094,
+    "semantics_commit_order": [
+      "G001-000-CROSS",
+      "G001-000-MUTATE",
+      "G001-001-CROSS",
+      "G001-001-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G003-002-CROSS",
+      "G003-002-MUTATE",
+      "G003-003-CROSS",
+      "G003-003-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G003-003-MUTATE",
+      "G003-002-CROSS",
+      "G003-003-CROSS",
+      "G003-002-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G003-003-CROSS",
+      "G003-002-MUTATE",
+      "G003-002-CROSS",
+      "G003-003-MUTATE"
+    ],
+    "api_batch_seconds": 0.012227458006236702,
+    "evaluation_batch_seconds": 0.0021511669910978526,
+    "semantics_commit_order": [
+      "G003-002-CROSS",
+      "G003-002-MUTATE",
+      "G003-003-CROSS",
+      "G003-003-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G002-004-CROSS",
+      "G002-004-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G002-004-MUTATE",
+      "G002-004-CROSS"
+    ],
+    "evaluation_completion_order": [
+      "G002-004-CROSS",
+      "G002-004-MUTATE"
+    ],
+    "api_batch_seconds": 0.012046833988279104,
+    "evaluation_batch_seconds": 0.0011506669980008155,
+    "semantics_commit_order": [
+      "G002-004-CROSS",
+      "G002-004-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G002-000-CROSS",
+      "G002-000-MUTATE",
+      "G002-001-CROSS",
+      "G002-001-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G002-001-MUTATE",
+      "G002-001-CROSS",
+      "G002-000-MUTATE",
+      "G002-000-CROSS"
+    ],
+    "evaluation_completion_order": [
+      "G002-001-CROSS",
+      "G002-000-CROSS",
+      "G002-000-MUTATE",
+      "G002-001-MUTATE"
+    ],
+    "api_batch_seconds": 0.01439337499323301,
+    "evaluation_batch_seconds": 0.0018484999891370535,
+    "semantics_commit_order": [
+      "G002-000-CROSS",
+      "G002-000-MUTATE",
+      "G002-001-CROSS",
+      "G002-001-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G003-004-CROSS",
+      "G003-004-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G003-004-CROSS",
+      "G003-004-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G003-004-CROSS",
+      "G003-004-MUTATE"
+    ],
+    "api_batch_seconds": 0.012370792013825849,
+    "evaluation_batch_seconds": 0.003482041007373482,
+    "semantics_commit_order": [
+      "G003-004-CROSS",
+      "G003-004-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G002-002-CROSS",
+      "G002-002-MUTATE",
+      "G002-003-CROSS",
+      "G002-003-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G002-003-MUTATE",
+      "G002-002-CROSS",
+      "G002-002-MUTATE",
+      "G002-003-CROSS"
+    ],
+    "evaluation_completion_order": [
+      "G002-003-CROSS",
+      "G002-002-CROSS",
+      "G002-002-MUTATE",
+      "G002-003-MUTATE"
+    ],
+    "api_batch_seconds": 0.014716000005137175,
+    "evaluation_batch_seconds": 0.0019504170049913228,
+    "semantics_commit_order": [
+      "G002-002-CROSS",
+      "G002-002-MUTATE",
+      "G002-003-CROSS",
+      "G002-003-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  },
+  {
+    "tasks": [
+      "G001-004-CROSS",
+      "G001-004-MUTATE"
+    ],
+    "api_concurrency": 4,
+    "evaluation_concurrency": 2,
+    "response_completion_order": [
+      "G001-004-CROSS",
+      "G001-004-MUTATE"
+    ],
+    "evaluation_completion_order": [
+      "G001-004-CROSS",
+      "G001-004-MUTATE"
+    ],
+    "api_batch_seconds": 0.010288249992299825,
+    "evaluation_batch_seconds": 0.0011321670026518404,
+    "semantics_commit_order": [
+      "G001-004-CROSS",
+      "G001-004-MUTATE"
+    ],
+    "note": "generation and evaluation have independently bounded pools; bounded waves run in stages"
+  }
+]
