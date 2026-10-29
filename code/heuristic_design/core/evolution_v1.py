@@ -1,7 +1,7 @@
 """Versioned parent-coverage search with a single durable coordinator.
 
-This entry is deliberately offline-only. LLM initialization uses the same
-request/parse/evaluate path with a Mock transport; no paid client is imported.
+Mock, fixed evaluation and gated real transports share the same coordinator.
+Real dispatch requires frozen configuration authorization and an explicit CLI gate.
 Unknown in-flight requests after a crash are never resent. Safe pause drains
 one bounded batch. Old B1 and the generic legacy executor are unchanged.
 """
@@ -27,20 +27,35 @@ DEFAULTS = dict(version=VERSION, api_mode='mock', real_requests_authorized=False
     generation_request_cap=200, api_concurrency=1, evaluation_concurrency=1,
     evaluation_mode='mock', window=10, enabled_groups=list(GROUPS),
     instance_timeout_seconds=30, mock_reverse_delay=False, mock_faults={},
-    mock_delay_seconds=0.0)
+    mock_delay_seconds=0.0, provider=None, api_attempt_cap=None,
+    data_manifest=None, h_file=None, p0_file=None, state_schema=None)
 
 
 def config(value):
     if not isinstance(value,dict) or set(value)-set(DEFAULTS):
         raise ValueError('unknown configuration fields')
     c = {**DEFAULTS, **value}
-    if c['version'] != VERSION or c['api_mode'] != 'mock' or c['real_requests_authorized'] is not False:
-        raise ValueError('this prototype permits only offline Mock generation; real API disabled')
+    if c['version'] != VERSION or c['api_mode'] not in ('mock','fixed','real') or type(c['real_requests_authorized']) is not bool:
+        raise ValueError('invalid version/mode/authorization')
+    if c['state_schema'] not in (None,schema_id(c['problem'])):raise ValueError('state schema/problem mismatch')
+    if c['api_mode']!='real' and c['real_requests_authorized']:raise ValueError('offline modes cannot authorize requests')
+    if c['api_mode']=='real':
+        from fjsp_usage.research_real.config import ProviderConfig
+        if not isinstance(c['provider'],dict):raise ValueError('real mode requires explicit provider')
+        provider=ProviderConfig(**c['provider'])
+        if not provider.api_key_env:raise ValueError('real mode requires environment credential name')
+        if not c['data_manifest'] or not c['h_file'] or c['evaluation_mode']!='solve':
+            raise ValueError('real search requires explicit dataset/H and real solve evaluation')
+        expected=c['generation_request_cap']+(c['initialization_request_cap'] if c['initialization']=='llm' else 0)
+        if type(c['api_attempt_cap']) is not int or c['api_attempt_cap']<expected:
+            raise ValueError('explicit total attempt cap must cover initialization plus evolution')
+    if c['api_mode']=='fixed' and (c['generations']!=0 or c['initialization']!='import' or c['evaluation_mode']!='solve'):
+        raise ValueError('fixed evaluation requires G=0, imported policies and solve mode')
     if c['problem'] not in ('fjsp','tsp') or c['evaluation_mode'] not in ('mock','solve') or c['initialization'] not in ('llm','import'):
         raise ValueError('explicit problem, evaluation and initialization mode required')
     for k in ('population_size','generations','search_seed','solve_seed','initialization_candidate_cap',
               'initialization_request_cap','generation_request_cap','api_concurrency','evaluation_concurrency','window'):
-        if type(c[k]) is not int or c[k] < (0 if k in ('search_seed','solve_seed','generation_request_cap') else 1):
+        if type(c[k]) is not int or c[k] < (0 if k in ('search_seed','solve_seed','generation_request_cap','generations') else 1):
             raise ValueError('invalid nonnegative/positive integer: '+k)
     if c['population_size'] < 2:
         raise ValueError('N>=2 required; odd N supported')
@@ -61,6 +76,9 @@ def config(value):
 def source_identity():
     paths = set((ROOT/'code/heuristic_design/core').glob('*.py'))
     paths.update((ROOT/'code/heuristic_design/problems').rglob('*.py'))
+    paths.update((ROOT/'code/heuristic_design/llm').glob('*.py'))
+    paths.update((ROOT/'code/fjsp_usage/research_real').glob('*.py'))
+    paths.add(ROOT/'experiments/common/manage.py')
     paths.update((ROOT/'code/llm4ad/task/optimization/fjsp_set').glob('*.py'))
     paths.update([ROOT/'code/fjsp_usage/offline_v2.py', ROOT/'code/fjsp_usage/research/candidates.py'])
     return {str(p.relative_to(ROOT)): sha(p) for p in sorted(paths)}
@@ -75,13 +93,18 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
     from heuristic_design.problems import routing_fixtures as fixtures
     import platform
     c = config(settings)
+    from .terminal_ops import inputs
+    loaded_h,loaded_data,provenance=inputs(c)
+    if h_members is None:h_members=loaded_h
+    if instances is None:instances=loaded_data
+    if imports is None and c['p0_file']:imports=read(c['p0_file'])
     directory = Path(directory).resolve()
     if directory.exists():
         raise ValueError('new run directory required; never overwrite evidence')
     hs = fixtures.members(c['problem']) if h_members is None else h_members
     data = fixtures.instances(c['problem'],seed=c['solve_seed']) if instances is None else instances
-    if len(hs) < 2 or not data or any(r.get('split') != 'synthetic-development' for r in data):
-        raise ValueError('nonempty synthetic development set and >=2 frozen H required')
+    if len(hs) < 2 or not data or any(r.get('split') not in ('synthetic-development','train') for r in data):
+        raise ValueError('nonempty train/development set and >=2 frozen H required')
     fixtures.compile_members(c['problem'],hs)
     references = fixtures.precheck_instances(c['problem'],data)
     if c['initialization'] == 'import':
@@ -98,7 +121,7 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
         raise ValueError('LLM initialization cannot borrow imported P0')
     protocol = {'version':VERSION,'config':c,'state_schema':schema_id(c['problem']),
         'state_spec_sha256':SPEC_SHA256,'u_abi':ABI,'members':hs,'instances':data,'references':references,'imports':imports,
-        'source_files':source_identity(),'machine':{'system':platform.system(),'machine':platform.machine(),
+        'input_provenance':provenance,'source_files':source_identity(),'machine':{'system':platform.system(),'machine':platform.machine(),
             'python':platform.python_version(),'cpu_count':os.cpu_count()},
         'selection':'fitness descending, id ascending; parent+valid unique child elitism at generation end',
         'H_order_source':'explicit frozen declaration order; no implicit performance-rank prior',
@@ -235,10 +258,12 @@ def request_pause(directory):
     return {'requested':True,'sequence':sequence}
 
 
-def run(directory, *, max_tasks=None, evaluate=None):
+def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
     """Only this coordinator writes checkpoint, budgets, plans and responses."""
     directory = Path(directory).resolve()
     p,s = check(directory)
+    from heuristic_design.llm.routing_transport import preflight
+    preflight(p['config'],allow_api)
     if s['phase'] in ('completed','initialization_incomplete'):
         return {'phase':s['phase'],'generation':s['generation']}
     lock = directory/'.coordinator.lock'
@@ -263,7 +288,7 @@ def run(directory, *, max_tasks=None, evaluate=None):
     if (directory/'Pause.json').exists(): s['pause_ack'] = read(directory/'Pause.json')['sequence']
     normal = False
     try:
-        s['phase']='running';save(directory,s)
+        s['phase']='running';save(directory,s);log_progress(directory,s,p)
         while True:
             if (stopped[0] or max_tasks is not None and s['completed_tasks']-started_count >= max_tasks
                     or (directory/'Pause.json').exists() and read(directory/'Pause.json')['sequence'] > s['pause_ack']):
@@ -323,11 +348,13 @@ def run(directory, *, max_tasks=None, evaluate=None):
                            'population_ids':[r['id'] for r in s['population']], 'mock':c['evaluation_mode']=='mock'}
                     s['generations'].append(row)
                     write(directory/f'populations/P{g:03d}.json',s['population'])
+                    log_progress(directory,s,p)
                     save(directory,s)
                     continue
             _execute_batch(directory,s,p,batch,evaluate)
             if s['phase'] == 'blocked':break
         save(directory,s)
+        log_progress(directory,s,p)
         normal=True
     except BaseException:
         # Leave lock and all reservations intact. Resuming must not replay an
@@ -339,7 +366,7 @@ def run(directory, *, max_tasks=None, evaluate=None):
         if normal:lock.unlink()
     return {'phase':s['phase'],'generation':s['generation'],'completed_tasks':s['completed_tasks'],
             'initialization_requests':s['initialization_requests'],'generation_requests':s['generation_requests'],
-            'real_API_calls':0}
+            'api_attempts_reserved':s['initialization_requests']+s['generation_requests'] if c['api_mode']=='real' else 0}
 
 
 def _individual(t,s):
@@ -355,22 +382,28 @@ def _execute_batch(directory,s,p,batch,evaluate):
         counter,cap = ('initialization_requests','initialization_request_cap') if task['stage']=='initialization' else ('generation_requests','generation_request_cap')
         if s[counter] >= c[cap]:raise ValueError('predeclared request cap exhausted')
         s[counter] += 1
+        if c['api_mode']=='real' and s['initialization_requests']+s['generation_requests']>c['api_attempt_cap']:raise ValueError('total API attempt cap exhausted')
+        task['request_key']=s['identity']+'/'+task['id']
         prompt = build_prompt(c['problem'],task,task['parent_records'],p['members'],window=c['window'],enabled_groups=c['enabled_groups'])
         path=directory/'prompts'/(task['id']+'.txt');path.parent.mkdir(parents=True,exist_ok=True);path.write_text(prompt)
         task.update(status='request_reserved',prompt_path=str(path.relative_to(directory)),prompt_sha256=sha(path))
     save(directory,s)  # all sends reserved before dispatch; workers never touch ledger
     api_started = time.perf_counter()
-    responses = _batch(lambda task:mock_generate(task,(directory/task['prompt_path']).read_text(),c,len(p['members'])),needed,c['api_concurrency']) if needed else {}
+    from heuristic_design.llm.routing_transport import generate as real_generate
+    generator=real_generate if c['api_mode']=='real' else mock_generate
+    responses = _batch(lambda task:generator(task,(directory/task['prompt_path']).read_text(),c,len(p['members'])),needed,c['api_concurrency']) if needed else {}
     api_seconds=time.perf_counter()-api_started
     for task in needed:
         reply=responses[task['id']]
-        path=directory/'responses'/(task['id']+'.json');write(path,{**reply,'mock':True})
+        if c['api_mode']=='real':task['sent_confirmed']=bool(reply.get('ok') and reply['value'].get('sent'))
+        path=directory/'responses'/(task['id']+'.json');write(path,{**reply,'mock':c['api_mode']=='mock'})
         task.update(response_path=str(path.relative_to(directory)),response_sha256=sha(path),
                     status='response_saved',api_batch_seconds=api_seconds)
-        if reply['ok']:
-            try:task.update(candidate=asdict(parse(reply['value'],len(p['members']))),status='parsed')
+        if reply['ok'] and (c['api_mode']!='real' or reply['value'].get('text') is not None):
+            text=reply['value']['text'] if c['api_mode']=='real' else reply['value']
+            try:task.update(candidate=asdict(parse(text,len(p['members']))),status='parsed')
             except CandidateError as exc:task.update(status='completed',failure='parse_or_constraint',error=str(exc))
-        else:task.update(status='completed',failure='mock_transport',error=reply['error'])
+        else:task.update(status='completed',failure='mock_transport' if c['api_mode']=='mock' else 'real_transport',error='request failed; see redacted response receipt')
     save(directory,s)
     evaluate_tasks=[]
     for task in batch:
@@ -417,6 +450,15 @@ def _execute_batch(directory,s,p,batch,evaluate):
     if any(sha(ROOT/k)!=v for k,v in p['source_files'].items()):
         raise ValueError('source changed during batch')
     save(directory,s)
+    log_progress(directory,s,p)
+
+
+def log_progress(directory,s,p):
+    import json
+    from .terminal_ops import progress
+    row={**progress(s,p),'at':time.time()}
+    print(json.dumps(row,ensure_ascii=False),flush=True)
+    with (directory/'Events.jsonl').open('a') as f:f.write(json.dumps(row,ensure_ascii=False)+'\n')
 
 
 def _validate_result(result,p):

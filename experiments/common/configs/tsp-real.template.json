@@ -1,0 +1,28 @@
+{
+  "problem": "tsp",
+  "api_mode": "real",
+  "evaluation_mode": "solve",
+  "population_size": 5,
+  "generations": 20,
+  "generation_request_cap": 200,
+  "initialization": "llm",
+  "evaluation_concurrency": 2,
+  "h_file": "../fixtures/tsp-H-handwritten.json",
+  "data_manifest": "../../../data/common/tsp-train-manifest.json",
+  "p0_file": null,
+  "initialization_candidate_cap": 20,
+  "initialization_request_cap": 20,
+  "api_attempt_cap": 220,
+  "real_requests_authorized": false,
+  "provider": {
+    "endpoint": "https://example.invalid/v1/chat/completions",
+    "model": "REPLACE_WITH_YOUR_MODEL",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "HEURISTIC_API_KEY",
+    "total_timeout": 120,
+    "connect_timeout": 10,
+    "read_timeout": 90,
+    "max_output_tokens": 2048,
+    "temperature": null
+  }
+}

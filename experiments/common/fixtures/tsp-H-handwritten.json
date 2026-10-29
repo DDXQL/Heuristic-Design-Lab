@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Handwritten synthetic fixture: -distance_current",
+    "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+    "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+    "kind": "h"
+  },
+  {
+    "description": "Handwritten synthetic fixture: distance_current",
+    "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return distance_current\n",
+    "key": "2e8b9f93472564386fbbfb32c073c9a6bbe26e69b5fcf159158f12671dd71375",
+    "kind": "h"
+  },
+  {
+    "description": "Handwritten synthetic fixture: -distance_current + 0.3 * distance_start",
+    "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + 0.3 * distance_start\n",
+    "key": "3d4317c626b1461a26c280ca1ff0bbc343b0c0ae0194ce2817f4810e683e0d9f",
+    "kind": "h"
+  }
+]

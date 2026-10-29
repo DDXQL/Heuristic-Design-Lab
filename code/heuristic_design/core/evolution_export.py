@@ -36,8 +36,11 @@ def export(directory,output=None):
              for t in s['tasks'].values() if t['stage']=='evolution']
     write(output/'lineage.json',lineage)
     result={'version':p['version'],'protocol_sha256':s['identity'],'phase':s['phase'],
-        'evaluation_mode':p['config']['evaluation_mode'],'generation_transport':'MOCK_OFFLINE_NOT_LLM',
-        'quality_claim':False,'real_API_calls':0,'generation':s['generation'],
+        'evaluation_mode':p['config']['evaluation_mode'],
+        'generation_transport':'MOCK_OFFLINE_NOT_LLM' if p['config']['api_mode']=='mock' else p['config']['api_mode'],
+        'quality_claim':False,'real_API_calls':sum(t.get('sent_confirmed',False) for t in s['tasks'].values()),
+        'api_attempts_reserved':(s['initialization_requests']+s['generation_requests']) if p['config']['api_mode']=='real' else 0,
+        'generation':s['generation'],
         'initialization_requests':s['initialization_requests'],'generation_requests':s['generation_requests'],
         'planned_evolution_candidates':2*p['config']['population_size']*p['config']['generations'],
         'valid_unique_evaluations':sum(r['valid'] for r in s['evaluations'].values()),

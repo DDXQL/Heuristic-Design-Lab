@@ -1,7 +1,7 @@
 """Handwritten H, synthetic development instances and real offline route solves.
 
-These are engineering fixtures, not the frozen research H0-H9 or a quality test.
-No validation/confirmation/test files are opened by this module.
+Default fixtures are engineering examples, not the frozen research H0-H9.
+Explicit train snapshots may also be decoded; no held-out split routing is offered.
 """
 from dataclasses import asdict
 import time
@@ -83,7 +83,7 @@ def decode_instance(problem,instance):
     from .tsp.solver import distances
     from llm4ad.task.optimization.fjsp_set.instances import FJSPInstance, Operation
     spec=instance['value']
-    if instance['sha256'] != digest(spec) or instance['split'] != 'synthetic-development':
+    if instance['sha256'] != digest(spec) or instance['split'] not in ('synthetic-development','train'):
         raise ValueError('synthetic fixture identity/split mismatch')
     if problem=='fjsp':
         # Do not silently round or coerce incompatible processing times/IDs.

@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Handwritten synthetic fixture: -earliest_finish",
+    "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return -earliest_finish\n",
+    "key": "97495fff0a331e4aaef12273ed31423bdf75553181296bed65e32a0f02c58cfc",
+    "kind": "h"
+  },
+  {
+    "description": "Handwritten synthetic fixture: -processing_time",
+    "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return -processing_time\n",
+    "key": "c2fba6b63db457a95352d58380b04ea84fc674fa62df939122cd1f2ead5aec2e",
+    "kind": "h"
+  },
+  {
+    "description": "Handwritten synthetic fixture: remaining_work",
+    "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return remaining_work\n",
+    "key": "667c954369b077a2e9c425024cf0fd43e04c7949f8b989cdbbc627328ad71847",
+    "kind": "h"
+  }
+]
