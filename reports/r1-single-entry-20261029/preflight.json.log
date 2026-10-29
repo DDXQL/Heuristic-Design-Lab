@@ -1,0 +1,14 @@
+{
+  "mode": "R1_FIXED_TRAIN_REAL_SOLVES",
+  "candidates": 12,
+  "H_count": 10,
+  "train_instances": 21,
+  "planned_program_instances": 252,
+  "max_solve_passes": 504,
+  "API_requests": 0,
+  "API_cost": 0,
+  "evaluation_concurrency": 2,
+  "api_concurrency_registered": 2,
+  "timeout": "T30 complete solve/recheck row; candidate worker exit grace 2s"
+}
+检查通过：未创建运行、未求解、未请求API。

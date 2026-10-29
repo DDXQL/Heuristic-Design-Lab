@@ -1,0 +1,11 @@
+test_actual_train_check_only_has_no_network_solver_or_output_directory (test_r1_single_entry.Tests.test_actual_train_check_only_has_no_network_solver_or_output_directory) ... ok
+test_api_switch_and_unknown_parameter_rejected (test_r1_single_entry.Tests.test_api_switch_and_unknown_parameter_rejected) ... ok
+test_existing_completed_directory_is_never_resumed_or_overwritten (test_r1_single_entry.Tests.test_existing_completed_directory_is_never_resumed_or_overwritten) ... ok
+test_failure_keeps_lock_and_log_without_export_or_retry (test_r1_single_entry.Tests.test_failure_keeps_lock_and_log_without_export_or_retry) ... ok
+test_orchestration_freezes_parameters_logs_then_exports_with_api_disabled (test_r1_single_entry.Tests.test_orchestration_freezes_parameters_logs_then_exports_with_api_disabled) ... ok
+test_top_parameters_reach_effective_config_and_wrong_candidate_count_rejected (test_r1_single_entry.Tests.test_top_parameters_reach_effective_config_and_wrong_candidate_count_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.363s
+
+OK
