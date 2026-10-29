@@ -54,8 +54,8 @@
     },
     {
       "path": "mock/n10-g20/candidates.csv",
-      "sha256": "1cba3ef6803ac6d5a1309774e7f46359be2320b0a1033bb245a6119dc7552def",
-      "bytes": 71855
+      "sha256": "7f7ffba77279896c85a61521e6d771a45d7a9cc16a2bb1c517d00fbcbe07f4cf",
+      "bytes": 71444
     },
     {
       "path": "mock/n10-g20/final-population.json",
@@ -64,8 +64,8 @@
     },
     {
       "path": "mock/n10-g20/generations.csv",
-      "sha256": "da521a668fc5a230fe36bc4044e45eee7aa5fdc28fe3cc5f11574aa60402daed",
-      "bytes": 8818
+      "sha256": "ef5c42b480b1f8f4fa1a51f4797780f9b31c1aec4e7e521ec8a23f12dbc44d54",
+      "bytes": 8797
     },
     {
       "path": "mock/n10-g20/lineage.json",
@@ -184,8 +184,8 @@
     },
     {
       "path": "mock/n5-g20/candidates.csv",
-      "sha256": "8bb86f6c62a2dc59e7516ce8a78a7d1dfab1de473f9cf2d5264c5593614a233d",
-      "bytes": 35949
+      "sha256": "81cb4453d3f7d9196f02f9ed51f51d09674df4e237eadb632b11a8edd7084502",
+      "bytes": 35743
     },
     {
       "path": "mock/n5-g20/final-population.json",
@@ -194,8 +194,8 @@
     },
     {
       "path": "mock/n5-g20/generations.csv",
-      "sha256": "bbdeaa48d9ab71f24f5a10d91e8a57aa4007670f4bab156969432fb6a9759b04",
-      "bytes": 5121
+      "sha256": "acf00e24f5f93890d87e4dde8105bc59b5985866e38395cda9404794626d0827",
+      "bytes": 5100
     },
     {
       "path": "mock/n5-g20/lineage.json",
@@ -314,8 +314,8 @@
     },
     {
       "path": "mock/n5-g3-reordered/candidates.csv",
-      "sha256": "d14da72c33e99142cc353c1d62a101768a6971074964f511dcc4b7eea2398f95",
-      "bytes": 5922
+      "sha256": "3aa2c565a8f21c11c541d03aa3135a228511162d0f367e30911533e6dcf45264",
+      "bytes": 5886
     },
     {
       "path": "mock/n5-g3-reordered/final-population.json",
@@ -324,8 +324,8 @@
     },
     {
       "path": "mock/n5-g3-reordered/generations.csv",
-      "sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322",
-      "bytes": 903
+      "sha256": "28ee4b0387c120f1ce9334a2d72e5c7aa0be43333cb122a1bccbf5fd0f125c3b",
+      "bytes": 899
     },
     {
       "path": "mock/n5-g3-reordered/lineage.json",
@@ -359,8 +359,8 @@
     },
     {
       "path": "mock/n5-g3-resume/candidates.csv",
-      "sha256": "180fc1d9d6d4407f3e05d5e53382168cbb7422fad1af408454237f9be38e07ec",
-      "bytes": 6002
+      "sha256": "56158cf27074c3d8c78810740dcb0a9fc1ac2aa2d8d7a59cff4d1f1f6793f9d5",
+      "bytes": 5966
     },
     {
       "path": "mock/n5-g3-resume/final-population.json",
@@ -369,8 +369,8 @@
     },
     {
       "path": "mock/n5-g3-resume/generations.csv",
-      "sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322",
-      "bytes": 903
+      "sha256": "28ee4b0387c120f1ce9334a2d72e5c7aa0be43333cb122a1bccbf5fd0f125c3b",
+      "bytes": 899
     },
     {
       "path": "mock/n5-g3-resume/lineage.json",
@@ -404,8 +404,8 @@
     },
     {
       "path": "mock/n5-g3-serial/candidates.csv",
-      "sha256": "d13cd59b26a0db0d65359b5b382fd6d9a3bb110ee1a3791f6e2223db8c44055b",
-      "bytes": 6006
+      "sha256": "a3c4ebfd292620657db95941845343cb89180e6615a1e97983e2ed880f28902b",
+      "bytes": 5970
     },
     {
       "path": "mock/n5-g3-serial/final-population.json",
@@ -414,8 +414,8 @@
     },
     {
       "path": "mock/n5-g3-serial/generations.csv",
-      "sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322",
-      "bytes": 903
+      "sha256": "28ee4b0387c120f1ce9334a2d72e5c7aa0be43333cb122a1bccbf5fd0f125c3b",
+      "bytes": 899
     },
     {
       "path": "mock/n5-g3-serial/lineage.json",
@@ -725,5 +725,50 @@
       "bytes": 1562383
     }
   ],
-  "raw_note": "preserved locally, excluded from git; not uploaded"
+  "raw_note": "preserved locally, excluded from git; not uploaded",
+  "csv_normalization": {
+    "change": "CRLF to LF in derived report CSV only; original run exports preserved",
+    "files": [
+      {
+        "path": "mock/n10-g20/generations.csv",
+        "original_sha256": "da521a668fc5a230fe36bc4044e45eee7aa5fdc28fe3cc5f11574aa60402daed"
+      },
+      {
+        "path": "mock/n10-g20/candidates.csv",
+        "original_sha256": "1cba3ef6803ac6d5a1309774e7f46359be2320b0a1033bb245a6119dc7552def"
+      },
+      {
+        "path": "mock/n5-g3-resume/generations.csv",
+        "original_sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322"
+      },
+      {
+        "path": "mock/n5-g3-resume/candidates.csv",
+        "original_sha256": "180fc1d9d6d4407f3e05d5e53382168cbb7422fad1af408454237f9be38e07ec"
+      },
+      {
+        "path": "mock/n5-g3-reordered/generations.csv",
+        "original_sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322"
+      },
+      {
+        "path": "mock/n5-g3-reordered/candidates.csv",
+        "original_sha256": "d14da72c33e99142cc353c1d62a101768a6971074964f511dcc4b7eea2398f95"
+      },
+      {
+        "path": "mock/n5-g20/generations.csv",
+        "original_sha256": "bbdeaa48d9ab71f24f5a10d91e8a57aa4007670f4bab156969432fb6a9759b04"
+      },
+      {
+        "path": "mock/n5-g20/candidates.csv",
+        "original_sha256": "8bb86f6c62a2dc59e7516ce8a78a7d1dfab1de473f9cf2d5264c5593614a233d"
+      },
+      {
+        "path": "mock/n5-g3-serial/generations.csv",
+        "original_sha256": "88263f52a879c6ba0d441f6a9449592d6849398b8c3a06b059cf2a3ff0d39322"
+      },
+      {
+        "path": "mock/n5-g3-serial/candidates.csv",
+        "original_sha256": "d13cd59b26a0db0d65359b5b382fd6d9a3bb110ee1a3791f6e2223db8c44055b"
+      }
+    ]
+  }
 }
