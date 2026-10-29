@@ -1,0 +1,27 @@
+{
+  "problem": "fjsp",
+  "state_schema": "constructive-common-v1-fjsp",
+  "state_spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+  "abi": "pure-routing-state-v1",
+  "real_transport_available": true,
+  "network_requests_sent": 0,
+  "configured_mode": "fixed",
+  "config_authorized": false,
+  "credential_present": false,
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/fjsp-H-handwritten.json",
+      "sha256": "5e9375d51ea07ff511f38bdbc42645a0ee57cece12ccbab3ed2dc6b4a4af2f83",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/fjsp-development-manifest.json",
+      "sha256": "f8230494780f6e603df65f4d735782b7b73e2551297b11cefdfc9b3cc97ad17e",
+      "split": "synthetic-development"
+    }
+  },
+  "default_concurrency": {
+    "api": 1,
+    "evaluation": 1
+  }
+}

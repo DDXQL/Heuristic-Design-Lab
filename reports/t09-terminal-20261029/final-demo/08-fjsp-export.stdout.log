@@ -1,0 +1,104 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "protocol_sha256": "2473f68d130203af84405d1ceacc832708c976617245a8388bdb7f030e3f5780",
+  "phase": "completed",
+  "evaluation_mode": "mock",
+  "generation_transport": "MOCK_OFFLINE_NOT_LLM",
+  "quality_claim": false,
+  "real_API_calls": 0,
+  "api_attempts_reserved": 0,
+  "generation": 3,
+  "initialization_requests": 5,
+  "generation_requests": 30,
+  "planned_evolution_candidates": 30,
+  "valid_unique_evaluations": 35,
+  "failed_or_duplicate_tasks": 0,
+  "generations": [
+    {
+      "generation": 1,
+      "planned_candidates": 10,
+      "generation_requests": 10,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G001-000-MUTATE",
+        "G001-002-CROSS",
+        "G001-002-MUTATE",
+        "G001-003-CROSS",
+        "G001-004-MUTATE"
+      ],
+      "best_fitness": 1.7913323044776917,
+      "population_mean": 1.6268857717514038,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G001-003-CROSS",
+        "G001-002-CROSS",
+        "G001-000-MUTATE",
+        "G001-004-MUTATE",
+        "G001-002-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 2,
+      "planned_candidates": 10,
+      "generation_requests": 20,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G002-000-CROSS",
+        "G002-000-MUTATE",
+        "G002-001-CROSS",
+        "G002-003-MUTATE",
+        "G002-004-MUTATE"
+      ],
+      "best_fitness": 2.9988627433776855,
+      "population_mean": 2.6558587193489074,
+      "behavior_groups": 5,
+      "population_ids": [
+        "G002-001-CROSS",
+        "G002-003-MUTATE",
+        "G002-000-CROSS",
+        "G002-004-MUTATE",
+        "G002-000-MUTATE"
+      ],
+      "mock": true
+    },
+    {
+      "generation": 3,
+      "planned_candidates": 10,
+      "generation_requests": 30,
+      "valid_unique_children": 10,
+      "children_selected": [
+        "G003-000-CROSS",
+        "G003-000-MUTATE",
+        "G003-001-CROSS",
+        "G003-003-MUTATE",
+        "G003-004-MUTATE"
+      ],
+      "best_fitness": 3.9678696990013123,
+      "population_mean": 3.8069169878959657,
+      "behavior_groups": 4,
+      "population_ids": [
+        "G003-004-MUTATE",
+        "G003-001-CROSS",
+        "G003-000-MUTATE",
+        "G003-000-CROSS",
+        "G003-003-MUTATE"
+      ],
+      "mock": true
+    }
+  ],
+  "champion": {
+    "id": "G003-004-MUTATE",
+    "candidate": {
+      "description": "MOCK engineering response, not an LLM or quality claim.",
+      "code": "def use_heuristics(state):\n    fixture_tag = 259810550\n    return 2 if state['construction_progress'] < 0.64 else 0\n",
+      "key": "7f63aea04ae2b7faa0dcd8d831d1d2af505890804bb8f553c9240b01bfca333a",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": 3.9678696990013123,
+    "behavior_sha256": "ea924b33a47f65a61f3f873629111143e76ae247a63c826f632652a58187758c"
+  },
+  "H_order_source": "explicit frozen declaration order; no implicit performance-rank prior",
+  "timing_note": "per-task batch times are shared; do not sum them as wall time",
+  "behavior_note": "mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances"
+}

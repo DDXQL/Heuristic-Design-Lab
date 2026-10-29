@@ -1,0 +1,6 @@
+usage: manage.py [-h] --problem {fjsp,tsp} [--config CONFIG]
+                 [--run-dir RUN_DIR] [--p0-file P0_FILE]
+                 [--max-tasks MAX_TASKS] [--output OUTPUT] [--allow-api]
+                 [--wait] [--wait-seconds WAIT_SECONDS]
+                 {doctor,preview,prepare,run,resume,status,pause,export}
+manage.py: error: real search requires config authorization AND --allow-api; no request sent

@@ -1,0 +1,16 @@
+{
+  "problem": "fjsp",
+  "state_schema": "constructive-common-v1-fjsp",
+  "state_spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+  "abi": "pure-routing-state-v1",
+  "real_transport_available": true,
+  "network_requests_sent": 0,
+  "configured_mode": "mock",
+  "config_authorized": false,
+  "credential_present": false,
+  "input_provenance": {},
+  "default_concurrency": {
+    "api": 1,
+    "evaluation": 1
+  }
+}

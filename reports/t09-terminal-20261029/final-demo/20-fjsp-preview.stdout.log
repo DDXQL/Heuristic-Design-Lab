@@ -1,0 +1,50 @@
+{
+  "config": {
+    "version": "parent-coverage-routing-v1",
+    "api_mode": "real",
+    "real_requests_authorized": false,
+    "problem": "fjsp",
+    "population_size": 5,
+    "generations": 20,
+    "search_seed": 501,
+    "solve_seed": 501,
+    "initialization": "llm",
+    "initialization_candidate_cap": 20,
+    "initialization_request_cap": 20,
+    "generation_request_cap": 200,
+    "api_concurrency": 1,
+    "evaluation_concurrency": 2,
+    "evaluation_mode": "solve",
+    "window": 10,
+    "enabled_groups": [
+      "construction",
+      "action_cost",
+      "trajectory",
+      "usage"
+    ],
+    "instance_timeout_seconds": 30,
+    "mock_reverse_delay": false,
+    "mock_faults": {},
+    "mock_delay_seconds": 0.0,
+    "provider": {
+      "endpoint": "https://example.invalid/v1/chat/completions",
+      "model": "REPLACE_WITH_YOUR_MODEL",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "HEURISTIC_API_KEY",
+      "total_timeout": 120,
+      "connect_timeout": 10,
+      "read_timeout": 90,
+      "max_output_tokens": 2048,
+      "temperature": null
+    },
+    "api_attempt_cap": 220,
+    "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/fjsp-development-manifest.json",
+    "h_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/fjsp-H-handwritten.json",
+    "p0_file": null,
+    "state_schema": null
+  },
+  "evolution_candidates": 200,
+  "initialization_budget_separate": true,
+  "requests_sent": 0,
+  "solves": 0
+}

@@ -1,0 +1,31 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "protocol_sha256": "10dda52e3f7d89d8ebc43a11a5d1b12e20d45099d2f606853ecda131fe9a7367",
+  "phase": "completed",
+  "evaluation_mode": "solve",
+  "generation_transport": "fixed",
+  "quality_claim": false,
+  "real_API_calls": 0,
+  "api_attempts_reserved": 0,
+  "generation": 0,
+  "initialization_requests": 0,
+  "generation_requests": 0,
+  "planned_evolution_candidates": 0,
+  "valid_unique_evaluations": 5,
+  "failed_or_duplicate_tasks": 0,
+  "generations": [],
+  "champion": {
+    "id": "INIT-0002",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 2 if state['construction_progress'] < 0.5 else 0\n",
+      "key": "927df5725bdd83a01d529deded4bc7290052059d01465e1dbc83278f480250d8",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": -0.9311893873436023,
+    "behavior_sha256": "536c4bef55a56fb15626bd941c1d5d35010201d824433146ef8d241981f6ee98"
+  },
+  "H_order_source": "explicit frozen declaration order; no implicit performance-rank prior",
+  "timing_note": "per-task batch times are shared; do not sum them as wall time",
+  "behavior_note": "mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances"
+}

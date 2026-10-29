@@ -1,0 +1,22 @@
+{
+  "phase": "completed",
+  "problem": "fjsp",
+  "generation_transport": "mock",
+  "evaluation_mode": "mock",
+  "data_split": [
+    "synthetic-development"
+  ],
+  "generation": 3,
+  "target_generations": 3,
+  "completed_candidates": 35,
+  "best_evaluated_fitness": 3.9678696990013123,
+  "score_is_mock": true,
+  "initialization_requests": 5,
+  "initialization_request_cap": 20,
+  "generation_requests": 30,
+  "generation_request_cap": 30,
+  "api_attempts_reserved": 0,
+  "api_attempt_cap": null,
+  "inflight": [],
+  "writer_lock": false
+}

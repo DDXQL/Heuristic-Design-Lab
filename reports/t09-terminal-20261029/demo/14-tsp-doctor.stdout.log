@@ -1,0 +1,27 @@
+{
+  "problem": "tsp",
+  "state_schema": "constructive-common-v1-tsp",
+  "state_spec_sha256": "6ef3acc46874c08304b5dea8d9e623ea6abb443398ff128b02b96034c8835e9e",
+  "abi": "pure-routing-state-v1",
+  "real_transport_available": true,
+  "network_requests_sent": 0,
+  "configured_mode": "fixed",
+  "config_authorized": false,
+  "credential_present": false,
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/tsp-H-handwritten.json",
+      "sha256": "858b9012a4c0cf5abfc0eab7d4167c838f06399cb84f74cbd00f042c32e6d216",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/fixtures/tsp-development-manifest.json",
+      "sha256": "e4d951c061994b4963f2e24781b415e79b3c530f0a5fa54e075b04ffad62b5ec",
+      "split": "synthetic-development"
+    }
+  },
+  "default_concurrency": {
+    "api": 1,
+    "evaluation": 1
+  }
+}

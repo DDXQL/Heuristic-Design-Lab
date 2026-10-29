@@ -1,0 +1,26 @@
+{
+  "requested": true,
+  "sequence": 1,
+  "status": {
+    "phase": "paused",
+    "problem": "fjsp",
+    "generation_transport": "mock",
+    "evaluation_mode": "mock",
+    "data_split": [
+      "synthetic-development"
+    ],
+    "generation": 0,
+    "target_generations": 3,
+    "completed_candidates": 9,
+    "best_evaluated_fitness": 1.5738800168037415,
+    "score_is_mock": true,
+    "initialization_requests": 5,
+    "initialization_request_cap": 20,
+    "generation_requests": 4,
+    "generation_request_cap": 30,
+    "api_attempts_reserved": 0,
+    "api_attempt_cap": null,
+    "inflight": [],
+    "writer_lock": false
+  }
+}

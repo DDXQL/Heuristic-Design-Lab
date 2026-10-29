@@ -1,0 +1,428 @@
+{
+  "actual_network_API_calls": 0,
+  "label": "Mock CLI plus handwritten fixed synthetic solves; no real search",
+  "live": {
+    "phase": "running",
+    "problem": "fjsp",
+    "generation_transport": "mock",
+    "evaluation_mode": "mock",
+    "data_split": [
+      "synthetic-development"
+    ],
+    "generation": 0,
+    "target_generations": 3,
+    "completed_candidates": 7,
+    "best_evaluated_fitness": 1.5738800168037415,
+    "score_is_mock": true,
+    "initialization_requests": 5,
+    "initialization_request_cap": 20,
+    "generation_requests": 4,
+    "generation_request_cap": 30,
+    "api_attempts_reserved": 0,
+    "api_attempt_cap": null,
+    "inflight": [
+      "G001-001-CROSS",
+      "G001-001-MUTATE"
+    ],
+    "writer_lock": true
+  },
+  "paused": {
+    "phase": "paused",
+    "problem": "fjsp",
+    "generation_transport": "mock",
+    "evaluation_mode": "mock",
+    "data_split": [
+      "synthetic-development"
+    ],
+    "generation": 0,
+    "target_generations": 3,
+    "completed_candidates": 9,
+    "best_evaluated_fitness": 1.5738800168037415,
+    "score_is_mock": true,
+    "initialization_requests": 5,
+    "initialization_request_cap": 20,
+    "generation_requests": 4,
+    "generation_request_cap": 30,
+    "api_attempts_reserved": 0,
+    "api_attempt_cap": null,
+    "inflight": [],
+    "writer_lock": false
+  },
+  "completed": {
+    "phase": "completed",
+    "problem": "fjsp",
+    "generation_transport": "mock",
+    "evaluation_mode": "mock",
+    "data_split": [
+      "synthetic-development"
+    ],
+    "generation": 3,
+    "target_generations": 3,
+    "completed_candidates": 35,
+    "best_evaluated_fitness": 3.9678696990013123,
+    "score_is_mock": true,
+    "initialization_requests": 5,
+    "initialization_request_cap": 20,
+    "generation_requests": 30,
+    "generation_request_cap": 30,
+    "api_attempts_reserved": 0,
+    "api_attempt_cap": null,
+    "inflight": [],
+    "writer_lock": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "doctor"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "preview",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/terminal-demo.mock.json"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "prepare",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/terminal-demo.mock.json",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "status",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "pause",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock",
+        "--wait",
+        "--wait-seconds",
+        "30"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "status",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "resume",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "status",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "export",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/mock",
+        "--output",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/reports/t09-terminal-20261029/demo/mock-exports"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "doctor",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/fjsp-fixed-development.json"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "prepare",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/fjsp-fixed-development.json",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/fjsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "run",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/fjsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "status",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/fjsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "export",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/fjsp-fixed",
+        "--output",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/reports/t09-terminal-20261029/demo/fjsp-fixed-exports"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "tsp",
+        "doctor",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/tsp-fixed-development.json"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "tsp",
+        "prepare",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/configs/tsp-fixed-development.json",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/tsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "tsp",
+        "run",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/tsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "tsp",
+        "status",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/tsp-fixed"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "tsp",
+        "export",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/tsp-fixed",
+        "--output",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/reports/t09-terminal-20261029/demo/tsp-fixed-exports"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "doctor",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-guard.config.json"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "preview",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-guard.config.json"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "prepare",
+        "--config",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-guard.config.json",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-blocked"
+      ],
+      "exitcode": 0,
+      "expected": 0
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "run",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-blocked"
+      ],
+      "exitcode": 2,
+      "expected": 2
+    },
+    {
+      "argv": [
+        "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/.venv/bin/python",
+        "-B",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/experiments/common/manage.py",
+        "--problem",
+        "fjsp",
+        "run",
+        "--run-dir",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/t09-terminal-demo-20261029/real-blocked",
+        "--allow-api"
+      ],
+      "exitcode": 2,
+      "expected": 2
+    }
+  ],
+  "real_guard_checkpoint_phase": "prepared"
+}

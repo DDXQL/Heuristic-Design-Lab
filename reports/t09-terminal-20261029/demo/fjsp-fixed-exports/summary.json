@@ -1,0 +1,31 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "protocol_sha256": "028e325d4643170b1a2be9bd59d86d0a72970e5dc03f92f26b49bbfd81175f3e",
+  "phase": "completed",
+  "evaluation_mode": "solve",
+  "generation_transport": "fixed",
+  "quality_claim": false,
+  "real_API_calls": 0,
+  "api_attempts_reserved": 0,
+  "generation": 0,
+  "initialization_requests": 0,
+  "generation_requests": 0,
+  "planned_evolution_candidates": 0,
+  "valid_unique_evaluations": 5,
+  "failed_or_duplicate_tasks": 0,
+  "generations": [],
+  "champion": {
+    "id": "INIT-0003",
+    "candidate": {
+      "description": "Handwritten progress threshold, not learned",
+      "code": "def use_heuristics(state):\n    return 0 if state['construction_progress'] < 0.6666666666666666 else 1\n",
+      "key": "f9fbe200a3f8d21c7f2cc697836ae9c5e75ff126ef470fd8587fd282da5e7804",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": -1.4814814814814814,
+    "behavior_sha256": "75d57b8ffd7979f2eaf3094f86c662dc3b4aebd6b303f7d3984c74db067b60d5"
+  },
+  "H_order_source": "explicit frozen declaration order; no implicit performance-rank prior",
+  "timing_note": "per-task batch times are shared; do not sum them as wall time",
+  "behavior_note": "mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances"
+}
