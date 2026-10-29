@@ -83,6 +83,7 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
     if len(hs) < 2 or not data or any(r.get('split') != 'synthetic-development' for r in data):
         raise ValueError('nonempty synthetic development set and >=2 frozen H required')
     fixtures.compile_members(c['problem'],hs)
+    references = fixtures.precheck_instances(c['problem'],data)
     if c['initialization'] == 'import':
         if not isinstance(imports,list) or len(imports) != c['population_size']:
             raise ValueError('import mode requires exactly N declared sources')
@@ -96,7 +97,7 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
     elif imports is not None:
         raise ValueError('LLM initialization cannot borrow imported P0')
     protocol = {'version':VERSION,'config':c,'state_schema':schema_id(c['problem']),
-        'state_spec_sha256':SPEC_SHA256,'u_abi':ABI,'members':hs,'instances':data,'imports':imports,
+        'state_spec_sha256':SPEC_SHA256,'u_abi':ABI,'members':hs,'instances':data,'references':references,'imports':imports,
         'source_files':source_identity(),'machine':{'system':platform.system(),'machine':platform.machine(),
             'python':platform.python_version(),'cpu_count':os.cpu_count()},
         'selection':'fitness descending, id ascending; parent+valid unique child elitism at generation end',

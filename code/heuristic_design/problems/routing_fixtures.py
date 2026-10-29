@@ -62,26 +62,55 @@ def solve(problem, instance, h_rows, candidate, *, window=10, enabled_groups=Non
     from heuristic_design.core.constructive_state import GROUPS
     from .fjsp.routing import construct as fjsp
     from .tsp.routing import construct as tsp
-    from .tsp.solver import distances
-    from llm4ad.task.optimization.fjsp_set.instances import FJSPInstance, Operation
     hs = compile_members(problem, h_rows)
     u = routing.compile_candidate(routing.checked(candidate,len(hs)),len(hs))
-    spec = instance['value']
-    if instance['sha256'] != digest(spec) or instance['split'] != 'synthetic-development':
-        raise ValueError('synthetic fixture identity/split mismatch')
+    obj = decode_instance(problem,instance)
     started = time.perf_counter()
     kwargs = dict(window=window, enabled_groups=tuple(GROUPS) if enabled_groups is None else enabled_groups, trace=trace)
     if problem == 'fjsp':
-        obj = FJSPInstance(instance['file'], spec['machines'], tuple(tuple(Operation(tuple((int(m),int(p)) for m,p in op)) for op in job) for job in spec['jobs']))
         result = fjsp(obj, hs, u, **kwargs)
         solution = asdict(result.schedule)
     else:
-        result = tsp(distances(spec['coordinates']),hs,u,**kwargs)
+        result = tsp(obj,hs,u,**kwargs)
         solution = {'tour': list(result.tour), 'length': result.length}
     elapsed = time.perf_counter() - started
     return {'file': instance['file'], 'score': result.score, 'solution': solution,
             'trace': list(result.trace), 'h_calls': list(result.h_calls),
             'solve_seconds': elapsed, 'observation_seconds': result.observation_seconds}
+
+
+def decode_instance(problem,instance):
+    from .tsp.solver import distances
+    from llm4ad.task.optimization.fjsp_set.instances import FJSPInstance, Operation
+    spec=instance['value']
+    if instance['sha256'] != digest(spec) or instance['split'] != 'synthetic-development':
+        raise ValueError('synthetic fixture identity/split mismatch')
+    if problem=='fjsp':
+        # Do not silently round or coerce incompatible processing times/IDs.
+        return FJSPInstance(instance['file'],spec['machines'],tuple(tuple(
+            Operation(tuple((m,p) for m,p in op)) for op in job) for job in spec['jobs']))
+    if problem=='tsp':return distances(spec['coordinates'])
+    raise ValueError('unknown instance problem')
+
+
+def precheck_instances(problem,data):
+    """Policy-independent compatibility and objective references, before P0."""
+    from .fjsp.common_state import precheck as fjsp_check
+    from .tsp.common_state import precheck as tsp_check
+    from .tsp.solver import nearest_neighbor
+    from fjsp_usage.offline_v2 import lower_bound_v5
+    references=[]
+    names=set()
+    for spec in data:
+        if spec['file'] in names:raise ValueError('duplicate instance name')
+        names.add(spec['file'])
+        obj=decode_instance(problem,spec)
+        if problem=='fjsp':
+            fjsp_check(obj);value=lower_bound_v5(obj)
+        else:
+            tsp_check(obj);value=nearest_neighbor(obj)[1]
+        references.append({'file':spec['file'],'reference':value,'rule':'LB_v5' if problem=='fjsp' else 'NN'})
+    return references
 
 
 def sample_policy(members_count):
