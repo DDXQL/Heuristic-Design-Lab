@@ -35,4 +35,8 @@
 
 ## 本地工作区更名
 
-当前目录为`/Users/DDXQL/Developer/Heuristic-Design-Lab`，由Git工作树移动完成；分支仍为`codex/tsp-integration-20261028`。GitHub仓库仍为`DDXQL/fjsp-heuristic-research`，本轮未执行远端更名。见[更名与路径说明](docs/本地工作区更名说明.md)。
+当前目录为`/Users/DDXQL/Developer/Heuristic-Design-Lab`，由Git工作树移动完成；分支仍为`codex/tsp-integration-20261028`。见[更名与路径说明](docs/本地工作区更名说明.md)。
+
+2026-10-29已核验GitHub更名为[DDXQL/Heuristic-Design-Lab](https://github.com/DDXQL/Heuristic-Design-Lab)，默认分支为`codex/tsp-integration-20261028`，首页展示最新集成版本；原`main`和历史标签保留，没有合并或改写历史分支。更名提交`a86cfd5`已推送。
+
+Developer下五个关联工作树共享的`origin`现为`git@github.com:DDXQL/Heuristic-Design-Lab.git`。仓库ID和公开可见性未变；历史报告中的旧仓库名和路径保留为当时记录。本地备份及未跟踪资产不因仓库更名而自动上传。
