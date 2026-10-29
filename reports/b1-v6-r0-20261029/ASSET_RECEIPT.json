@@ -1,0 +1,190 @@
+{
+  "status": "inputs_verified_and_copied_no_evaluation",
+  "base_HEAD": "a457a24adbbcfa23ca50a8bb396c9a2b52689b37",
+  "H_source": "docs/usage-space/v1-0-prepared-20261021/sources/H_frozen.json",
+  "H_sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+  "H_member_keys": [
+    "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+    "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+    "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+    "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+    "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+    "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+    "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+    "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+    "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+    "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03"
+  ],
+  "H_original_source": {
+    "version": "usage-frozen-H-source-v1",
+    "directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v22-gpt61-select-mix-301-20261014-v1",
+    "files_sha256": {
+      "protocol.json": "19e2e83106532c1e7ef2a5dd54891247c23bafe0232dd5cdd3340eb84777eeb9",
+      "H_frozen.json": "2c11510d3ced58aa7aeb3b15103f12b4c1f4d0ba9a2f2b06ad14af0ac0e823e1",
+      "Conditional_H_reassessment.json": "b70626ac9da769e0bbf329c3dd7ebe33a0879d3100e2502425b3c474941cb4ab"
+    }
+  },
+  "train_source_protocol": "/Users/DDXQL/Developer/FJSP-Heuristic-Research-h-usage-space/runs/baseline-a-supplemental-T30-seed501-20261024-v1/Protocol.json",
+  "train_source_protocol_sha256": "ea3c8f8d8005c5ceff5fc9c9e44b9c1270e7e88b6209b3ec5b47395eccd78e32",
+  "train_order": [
+    "Behnke1.fjsp",
+    "Behnke2.fjsp",
+    "Behnke3.fjsp",
+    "Behnke4.fjsp",
+    "Behnke13.fjsp",
+    "Behnke14.fjsp",
+    "Behnke19.fjsp",
+    "Behnke25.fjsp",
+    "Behnke21.fjsp",
+    "Behnke29.fjsp",
+    "Behnke27.fjsp",
+    "Behnke33.fjsp",
+    "Behnke34.fjsp",
+    "Behnke36.fjsp",
+    "Behnke43.fjsp",
+    "Behnke44.fjsp",
+    "Behnke47.fjsp",
+    "Behnke46.fjsp",
+    "Behnke51.fjsp",
+    "Behnke53.fjsp",
+    "Behnke57.fjsp"
+  ],
+  "train_files": [
+    {
+      "file": "Behnke1.fjsp",
+      "path": "train21/Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "path": "train21/Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d"
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "path": "train21/Behnke3.fjsp",
+      "sha256": "ab1b801d6511a5e6cfe2ddbbceab456a8f168bab8f41b8602647ac84e7f0bd06"
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "path": "train21/Behnke4.fjsp",
+      "sha256": "5fedca81cc5b4d08885f0c3beb1476ada6e8d269a74ca61dcca4f64a4b4828f4"
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "path": "train21/Behnke13.fjsp",
+      "sha256": "a22c9aa60791db298ddb90b977b448b86e7a125eb298c41cafae74be55de7824"
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "path": "train21/Behnke14.fjsp",
+      "sha256": "94c35ae8933d2201e6b328aa61b60190e9746f43e37dcbd7c33d78974a99dac2"
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "path": "train21/Behnke19.fjsp",
+      "sha256": "4cb39580b22bed47bbd714a3337d6af1e5cea4fb3d218b36b94a2f8403f86dd1"
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "path": "train21/Behnke25.fjsp",
+      "sha256": "a303bb6c188c429442d51315f0fec921479892126ff62fe228a43033a4ccf2ac"
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "path": "train21/Behnke21.fjsp",
+      "sha256": "1a4315457ab6f43dfb4f9fc7a6588b292ee6e3811af52ce19516aa70bc3b90ff"
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "path": "train21/Behnke29.fjsp",
+      "sha256": "e9ff0b55cc48abc20f0e37160246ce506511b85a461e1fe8f32cf1bccdfbcf35"
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "path": "train21/Behnke27.fjsp",
+      "sha256": "137ba364379386ab3a6d94ad29025d1664d67b17bbc236e2b6364ebc613b24cb"
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "path": "train21/Behnke33.fjsp",
+      "sha256": "d5215fd5c53e107d81e8cf669f7889e98d3ea2599341e08afa882ff86302b377"
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "path": "train21/Behnke34.fjsp",
+      "sha256": "0eaf0b922ac3172882a4b85904b4bec1293e9002557b45056979be15b6fcf67c"
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "path": "train21/Behnke36.fjsp",
+      "sha256": "b7be4d581ad0eb3193637d793679a279fb4871a7f959c3f049017966df5a96a7"
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "path": "train21/Behnke43.fjsp",
+      "sha256": "292143a27f269e91e3318933b4494573d60c915840c477d47a3d4a5724eff9c3"
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "path": "train21/Behnke44.fjsp",
+      "sha256": "ef047696b1546ace09b2c4685438657526821acf772cd2f60d81e772a82cdab7"
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "path": "train21/Behnke47.fjsp",
+      "sha256": "5a2081d61f7a36f4c1939ad0bf9f46addb08fa4ad50bb06de4682bf2ef653f53"
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "path": "train21/Behnke46.fjsp",
+      "sha256": "2e430a4c56f0f03eb469ce3cbba1414948afac832dcf84208d5b8403ee57d674"
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "path": "train21/Behnke51.fjsp",
+      "sha256": "0876f4655f170c54232adfbb3e4b8d0982e87cc82c65b35ac2fc239c6c4b50af"
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "path": "train21/Behnke53.fjsp",
+      "sha256": "52c6e7e9d6dd772c6bd2bf4a1bd63dfb780c47aea92799b9a51559901a5d1ab0"
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "path": "train21/Behnke57.fjsp",
+      "sha256": "a429b93686d367db841e01e83df5de39c7fcb22b066ef5c173475ba14ca4e6d0"
+    }
+  ],
+  "assets_location": "preparations/b1-v6-20261029",
+  "formal_solves": 0,
+  "inference_requests": 0,
+  "holdout_contents_read": false,
+  "data_assets_ignored_by_git": true,
+  "configuration_sha256": {
+    "experiments/common/configs/b1-v6-20261029/r1-legacy-baselines.fixed.json": "7d878a85928a77860a8befef7a863078019684de78dd152fb5b6bc6f7b90e35a",
+    "experiments/common/configs/b1-v6-20261029/r3-online-acceptance.pending.json": "fccd78ac0f0e59b3d05d09d4106d8ff605fa31a32947f8f31809a115cd0ef68d",
+    "experiments/common/configs/b1-v6-20261029/r1-calibration.fixed.json": "23fa4b0c98951c3c15e5b45c5f1cd530d615f00f2eb69c7fb804c087e948ef1f",
+    "experiments/common/configs/b1-v6-20261029/r2-search.pending.json": "ab52e5d77490291f39af9aa55004a30c2fd648673de5631f4a35762377e250e3"
+  },
+  "prompt_previews": [
+    {
+      "operator": "INIT",
+      "bytes": 15603,
+      "sha256": "9a2fed4d1743d5caf0de3cefa552f1c455616432aa55355323053b7d7f121073",
+      "notice": "example handwritten parents only; real search uses actual frozen LLM parents"
+    },
+    {
+      "operator": "CROSS",
+      "bytes": 16988,
+      "sha256": "9d99f3e57b4702691675a5d1fbc3546a62b797ba4b2f36a240109a2b820cad65",
+      "notice": "example handwritten parents only; real search uses actual frozen LLM parents"
+    },
+    {
+      "operator": "MUTATE",
+      "bytes": 16794,
+      "sha256": "80e6fb96c6b7a17312fd8791fa5fe628ccecb90312a8d98bf066dbad48ea49c2",
+      "notice": "example handwritten parents only; real search uses actual frozen LLM parents"
+    }
+  ]
+}

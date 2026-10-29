@@ -4,6 +4,7 @@ The coordinator reserves all attempts before dispatch and persists the first
 complete response. Crash-ambiguous reservations are never automatically resent.
 """
 import os
+import time
 from .legacy import ClientConfig, JsonCandidateTransport
 
 
@@ -21,10 +22,16 @@ def generate(task,prompt,c,members):
                          'budgets':{'logical_generation':cap}})
     transport=JsonCandidateTransport(client)
     sent=[False]
+    send_time=[None]
+    def on_sent():
+        sent[0]=True
+        send_time[0]=time.time()
     try:
         transport.preflight(prompt)
-        value=transport.dispatch(task['request_key'],prompt,kind='U',on_sent=lambda:sent.__setitem__(0,True))
-        return {**value,'sent':sent[0]}
+        value=transport.dispatch(task['request_key'],prompt,kind='U',on_sent=on_sent)
+        return {**value,'sent':sent[0],'wire_send_confirmed_at_unix':send_time[0]}
     except Exception as exc:
         return {'text':None,'sent':sent[0],'error':transport.redact(str(exc))[:500],
-                'error_type':type(exc).__name__}
+                'error_type':type(exc).__name__,'wire_send_confirmed_at_unix':send_time[0],
+                'usage':getattr(exc,'usage',None),
+                'metadata':transport.redact_metadata(getattr(exc,'metadata',{}))}

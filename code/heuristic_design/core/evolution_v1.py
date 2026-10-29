@@ -238,15 +238,22 @@ def mock_evaluate(task, p):
 
 def _batch(function, items, width, *args):
     """Workers return values only. Coordinator persists in stable task order."""
+    def timed(item):
+        started = time.time()
+        monotonic = time.monotonic()
+        try:
+            result = {'ok':True,'value':function(item,*args)}
+        except Exception as exc:
+            result = {'ok':False,'error_type':type(exc).__name__,'error':str(exc)[:500]}
+        return {**result,'timing':{'started_at_unix':started,'finished_at_unix':time.time(),
+                'started_monotonic':monotonic,'finished_monotonic':time.monotonic(),
+                'scope':'candidate function in bounded task pool; not provider-side execution'}}
     values = {}
     with ThreadPoolExecutor(max_workers=width) as pool:
-        pending = {pool.submit(function,item,*args):item['id'] for item in items}
+        pending = {pool.submit(timed,item):item['id'] for item in items}
         for future in as_completed(pending):
             key = pending[future]
-            try:
-                values[key] = {'ok':True,'value':future.result()}
-            except Exception as exc:
-                values[key] = {'ok':False,'error_type':type(exc).__name__,'error':str(exc)[:500]}
+            values[key] = future.result()
     return values
 
 
@@ -398,7 +405,9 @@ def _execute_batch(directory,s,p,batch,evaluate):
         if c['api_mode']=='real':task['sent_confirmed']=bool(reply.get('ok') and reply['value'].get('sent'))
         path=directory/'responses'/(task['id']+'.json');write(path,{**reply,'mock':c['api_mode']=='mock'})
         task.update(response_path=str(path.relative_to(directory)),response_sha256=sha(path),
-                    status='response_saved',api_batch_seconds=api_seconds)
+                    status='response_saved',api_batch_seconds=api_seconds,generation_timing=reply['timing'])
+        if c['api_mode']=='real' and reply.get('ok'):
+            task['wire_send_confirmed_at_unix']=reply['value'].get('wire_send_confirmed_at_unix')
         if reply['ok'] and (c['api_mode']!='real' or reply['value'].get('text') is not None):
             text=reply['value']['text'] if c['api_mode']=='real' else reply['value']
             try:task.update(candidate=asdict(parse(text,len(p['members']))),status='parsed')
@@ -421,6 +430,7 @@ def _execute_batch(directory,s,p,batch,evaluate):
     eval_seconds=time.perf_counter()-eval_started
     for task in evaluate_tasks:
         response=evaluations[task['id']]
+        task['evaluation_timing']=response['timing']
         if response['ok']:
             result=response['value']
             _validate_result(result,p)
@@ -434,7 +444,8 @@ def _execute_batch(directory,s,p,batch,evaluate):
         s['evaluations'][key]={'path':str(path.relative_to(directory)),'sha256':sha(path),
             'binding':digest({'protocol':s['identity'],'candidate':key}),
             'behavior_sha256':result.get('behavior_sha256'),'valid':result['valid']}
-        task.update(status='completed',valid=result['valid'],fitness=result['fitness'],evaluation_batch_seconds=eval_seconds)
+        task.update(status='completed',valid=result['valid'],fitness=result['fitness'],evaluation_batch_seconds=eval_seconds,
+                    evaluation_timing=response['timing'])
         if not result['valid']:task['failure']='evaluation_invalid'
         if task['stage']=='initialization' and task['valid']:s['population'].append(_individual(task,s))
     s['completed_tasks'] += len(batch)
@@ -442,6 +453,8 @@ def _execute_batch(directory,s,p,batch,evaluate):
         'tasks':[t['id'] for t in batch],
         'api_concurrency':c['api_concurrency'],'evaluation_concurrency':c['evaluation_concurrency'],
         'response_completion_order':list(responses),'evaluation_completion_order':list(evaluations),
+        'generation_task_timings':{k:r['timing'] for k,r in responses.items()},
+        'evaluation_task_timings':{k:r['timing'] for k,r in evaluations.items()},
         'api_batch_seconds':api_seconds,'evaluation_batch_seconds':eval_seconds,
         'semantics_commit_order':[t['id'] for t in batch],
         'note':'generation and evaluation have independently bounded pools; bounded waves run in stages'})

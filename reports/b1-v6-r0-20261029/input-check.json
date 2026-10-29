@@ -1,0 +1,48 @@
+{
+  "input_preflight_passed": true,
+  "frozen_H_count": 10,
+  "train_count": 21,
+  "calibration_candidate_count": 12,
+  "common_and_legacy_order_LB_match": true,
+  "legacy_budgets": {
+    "logical_generation": 0,
+    "manual_or_P0_evaluations": 2,
+    "API_attempts": 0,
+    "max_program_instances": 42,
+    "max_solve_passes": 84
+  },
+  "configs": [
+    {
+      "file": "r1-calibration.fixed.json",
+      "mode": "fixed",
+      "N": 12,
+      "G": 0,
+      "generation_cap": 0,
+      "initialization_cap": 12,
+      "total_API_attempt_cap": null,
+      "authorized": false
+    },
+    {
+      "file": "r2-search.pending.json",
+      "mode": "real",
+      "N": 5,
+      "G": 20,
+      "generation_cap": 200,
+      "initialization_cap": 20,
+      "total_API_attempt_cap": 220,
+      "authorized": false
+    },
+    {
+      "file": "r3-online-acceptance.pending.json",
+      "mode": "real",
+      "N": 2,
+      "G": 1,
+      "generation_cap": 4,
+      "initialization_cap": 4,
+      "total_API_attempt_cap": 8,
+      "authorized": false
+    }
+  ],
+  "formal_solves": 0,
+  "inference_requests": 0
+}

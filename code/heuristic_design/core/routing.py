@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import math
 import re
 
-from .constructive_state import FIELDS, DEFINITIONS, SPEC_SHA256
+from .constructive_state import FIELDS, DEFINITIONS, SPEC, SPEC_SHA256
 from .storage import digest
 
 ABI = 'pure-routing-state-v1'
@@ -159,8 +159,32 @@ def build_prompt(problem, task, parents, members, *, window=10, enabled_groups=N
     operation = task['operator']
     instruction = {'CROSS': CROSS, 'MUTATE': MUTATE,
                    'INIT': 'Design one new state-dependent pure routing program.'}[operation]
+    task_definition = ''
+    if problem == 'fjsp':
+        task_definition = (
+            'Task: constructive flexible job shop scheduling (FJSP). Each job has ordered operations; '
+            'each operation has eligible machines and positive processing times. Minimize final makespan Cmax. '
+            'A legal action chooses a job next operation and one eligible machine. Append without insertion: '
+            'start=max(job_ready_time,machine_ready_time); finish=start+processing_time. '
+            'U selects exactly one H; only that H scores all current legal actions. Select the largest raw '
+            'priority; exact ties use first enumeration order (job order, then frozen machine-alternative order). '
+            'H arguments: processing_time is duration on this machine; remaining_work is the sum of shortest '
+            'eligible durations for this and later operations of this job; remaining_operations includes '
+            'the current operation; job_ready_time and machine_ready_time are the last committed finish times; '
+            'earliest_start and earliest_finish are this action start and finish. '
+            'Partial objective C(s)=max(machine_ready_time); action delta is '
+            '(max(C(s),earliest_finish)-C(s))/B, not a quality reward or prediction. '
+            'All training instances must solve and recheck successfully. Fitness is the arithmetic mean '
+            'of -Cmax/LB over the complete declared training set, maximized. '
+            'LB=max(max_j w_j,sum_j w_j/M), w_j=sum_o min_m processing_time; no rounding. '
+            'LB is an evaluation reference, not a state field. State scales: '+SPEC['scales']['fjsp']+'. '
+            'Observe before routing, commit one action, then update history; no terminal U call. '
+            'Do not use old seven-argument U signatures or MIX outputs. '
+            'Use the exact unannotated signature def use_heuristics(state):; no type annotations.'
+        )
     return '\n'.join([
         f'Problem: {problem}. ABI: {ABI}. State spec: {SPEC_SHA256}.',
+        task_definition,
         'Return a short description and exactly one fenced python function use_heuristics(state).',
         f'Return one built-in integer H token 0..{len(members)-1}. No MIX, vectors, tools or LLM calls at execution.',
         'Only numeric locals, if/else, scalar arithmetic, comparisons and numeric builtins abs/min/max/int/float.',

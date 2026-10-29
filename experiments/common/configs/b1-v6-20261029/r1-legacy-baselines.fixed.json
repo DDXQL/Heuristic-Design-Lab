@@ -1,0 +1,49 @@
+{
+  "schema": "experiment-operations-v1",
+  "question": "R1 frozen train21 parity H0 and external static H0/H1 equal baseline; zero API",
+  "type": "fixed",
+  "space": "ten_h",
+  "H_source": "preparations/b1-v6-20261029/H_frozen.json",
+  "dataset": {
+    "role": "train",
+    "files": [
+      "preparations/b1-v6-20261029/train21/Behnke1.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke2.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke3.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke4.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke13.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke14.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke19.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke25.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke21.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke29.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke27.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke33.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke34.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke36.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke43.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke44.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke47.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke46.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke51.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke53.fjsp",
+      "preparations/b1-v6-20261029/train21/Behnke57.fjsp"
+    ]
+  },
+  "strategies": [
+    {
+      "id": "H0_SELECT",
+      "member": 0
+    },
+    {
+      "id": "H0_H1_EQUAL",
+      "alpha": 0.5
+    }
+  ],
+  "search_seed": 501,
+  "solve_seed": 501,
+  "instance_timeout": 30,
+  "window_seconds": 43200,
+  "api_mode": "disabled",
+  "real_requests_authorized": false
+}
