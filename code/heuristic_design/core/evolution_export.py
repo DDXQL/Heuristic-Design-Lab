@@ -3,6 +3,7 @@ import csv
 from pathlib import Path
 from .storage import read, write
 from .evolution_v1 import check
+from .search import ranked
 
 
 def export(directory,output=None):
@@ -41,7 +42,7 @@ def export(directory,output=None):
         'planned_evolution_candidates':2*p['config']['population_size']*p['config']['generations'],
         'valid_unique_evaluations':sum(r['valid'] for r in s['evaluations'].values()),
         'failed_or_duplicate_tasks':sum(t['status']=='completed' and not t['valid'] for t in s['tasks'].values()),
-        'generations':s['generations'],'champion':s['population'][0] if s['population'] else None,
+        'generations':s['generations'],'champion':ranked(s['population'])[0] if s['population'] else None,
         'H_order_source':p['H_order_source'],
         'timing_note':'per-task batch times are shared; do not sum them as wall time',
         'behavior_note':'mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances'}

@@ -111,6 +111,17 @@ class Tests(unittest.TestCase):
             receipts=[read(x) for x in (a/'batch-receipts').glob('*.json')]
             self.assertTrue(any(len(r['evaluation_completion_order'])==4 for r in receipts))
 
+    def test_partial_initialization_export_reports_actual_best_valid_candidate(self):
+        from heuristic_design.core.evolution_export import export
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'partial'
+            e.prepare(a,settings(api_concurrency=4))
+            self.assertEqual(e.run(a,max_tasks=4)['phase'],'paused')
+            s=e.check(a)[1]
+            result=export(a)
+            self.assertEqual(result['champion'],e.ranked(s['population'])[0])
+            self.assertEqual(result['generation'],0)
+
     def test_legacy_or_changed_identity_and_ambiguous_send_are_not_replayed(self):
         with tempfile.TemporaryDirectory() as t:
             a=Path(t)/'unknown';e.prepare(a,settings())
