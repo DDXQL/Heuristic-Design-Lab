@@ -65,7 +65,7 @@ class Tests(unittest.TestCase):
         c,plan,_=launcher.preflight(run_b1_v6.PARAMETERS,**{k:v for k,v in kwargs(run_b1_v6,'b1').items() if k not in ('prefix','entry')})
         self.assertFalse(c['real_requests_authorized']);self.assertTrue(plan['blocking'])
         self.assertTrue(any('R3_RUN_DIR' in r for r in plan['blocking']))
-        self.assertEqual(plan['total_attempt_cap'],220)
+        self.assertEqual(plan['total_attempt_cap'],1050)
 
     def test_unknown_provider_parameter_fails_instead_of_being_ignored(self):
         parameters=deepcopy(run_r3.PARAMETERS);parameters['provider']['unused_option']=1

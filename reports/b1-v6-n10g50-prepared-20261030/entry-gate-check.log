@@ -1,14 +1,6 @@
-test_full_run_has_storage_and_pilot_gates_before_paid_start (test_real_single_entry.Tests.test_full_run_has_storage_and_pilot_gates_before_paid_start) ... FAIL
-
-======================================================================
-FAIL: test_full_run_has_storage_and_pilot_gates_before_paid_start (test_real_single_entry.Tests.test_full_run_has_storage_and_pilot_gates_before_paid_start)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/Users/DDXQL/Developer/Heuristic-Design-Lab/tests/test_real_single_entry.py", line 68, in test_full_run_has_storage_and_pilot_gates_before_paid_start
-    self.assertEqual(plan['total_attempt_cap'],220)
-AssertionError: 1050 != 220
+test_full_run_has_storage_and_pilot_gates_before_paid_start (test_real_single_entry.Tests.test_full_run_has_storage_and_pilot_gates_before_paid_start) ... ok
 
 ----------------------------------------------------------------------
-Ran 1 test in 4.964s
+Ran 1 test in 4.366s
 
-FAILED (failures=1)
+OK

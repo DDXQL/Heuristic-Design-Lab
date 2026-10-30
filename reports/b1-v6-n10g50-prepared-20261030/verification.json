@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "tests": 13,
+  "tests": 14,
   "checks_log_sha256": "74180b87e1625e7db6add2a00fae910c02943df3f472a7093e2dec4d001447c9",
   "scope": "Offline budget/config, full-vs-compact parity on tiny unit inputs using frozen H and saved R3 candidates, two-pass worker, baseline reuse/comparison, checkpoint helpers. No train21 solve or LLM call.",
   "formal_runs_started": 0,
@@ -88,5 +88,6 @@
     "code/llm4ad/task/optimization/fjsp_set/scheduler.py": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
     "code/llm4ad/task/optimization/fjsp_set/template.py": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77",
     "experiments/common/manage.py": "0f8fe9aaf8f7cd3bf7aa1c51b5914e72ff900d2e03c418c43bd5c0fa9972a5f1"
-  }
+  },
+  "entry_gate_check_sha256": "adfadcd867c070d49f557f595ea64d47358c0257027e44f8e64dfe37a512aae0"
 }

@@ -173,6 +173,6 @@
     "code/heuristic_design/problems/routing_fixtures.py"
   ],
   "verification_path": "reports/b1-v6-n10g50-prepared-20261030/verification.json",
-  "verification_sha256": "5a0c8e01893bae9fb7f697c214e35f3be15a271b97c7501d70659b5ebd3ab887",
+  "verification_sha256": "c7b1fc713541ca5068fe2361e0460da7e303e8dab6382c807a0c23a193b43508",
   "scope": "Recording-mode config, omission of action/state trace serialization, explicit selected-H sequence, hardlinked result copies, milestone snapshots. Routing state, H scores, objective, operators, transport and batch pools unchanged. Does not retroactively alter R3."
 }
