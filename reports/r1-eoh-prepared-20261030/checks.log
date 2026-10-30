@@ -1,0 +1,10 @@
+test_native_scheduler_matches_common_fixed_H0_on_small_parity_case (test_r1_eoh_baseline.Tests.test_native_scheduler_matches_common_fixed_H0_on_small_parity_case) ... ok
+test_native_worker_uses_existing_T30_and_modern_two_pass_validation (test_r1_eoh_baseline.Tests.test_native_worker_uses_existing_T30_and_modern_two_pass_validation) ... ok
+test_real_input_preflight_pins_original_rule_without_solving_or_network (test_r1_eoh_baseline.Tests.test_real_input_preflight_pins_original_rule_without_solving_or_network) ... ok
+test_reject_api_unknown_fields_other_seed_and_timeout_change (test_r1_eoh_baseline.Tests.test_reject_api_unknown_fields_other_seed_and_timeout_change) ... ok
+test_resume_reads_frozen_run_and_ignores_modified_top_parameters (test_r1_eoh_baseline.Tests.test_resume_reads_frozen_run_and_ignores_modified_top_parameters) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.433s
+
+OK

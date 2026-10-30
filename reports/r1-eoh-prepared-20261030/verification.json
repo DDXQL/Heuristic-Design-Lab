@@ -1,0 +1,11 @@
+{
+  "all_81_existing_executor_sources_unchanged": true,
+  "targeted_tests": 5,
+  "formal_train_evaluations_started": 0,
+  "inference_requests": 0,
+  "new_sources": {
+    "tools/r1_eoh_baseline.py": "a2788da633d9e7bd5e01f04e32220283d39e9b6e2b0f1ca14de6b1c07ceba4b0",
+    "experiments/common/run_r1_eoh.py": "036c2d0b73bf8c628b3bd0c180aed2361bcd1cf1ce01555e508ea1bdc04f8339"
+  },
+  "initial_source_pin_check": "Rejected translated source SHA; original pinned Git blob recovered without changing existing files."
+}
