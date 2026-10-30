@@ -1,0 +1,3154 @@
+{
+  "started_at": "2026-10-30T15:27:36.477475+08:00",
+  "git_head": "242683d",
+  "free_before_bytes": 15144239104,
+  "allocated_before_bytes": 11542667264,
+  "runs": [
+    "runs/b1-v6-r1-train21-20261029-01",
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd",
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84"
+  ],
+  "action": "Replace only verified duplicate worker result copies with hardlinks to same-run canonical files",
+  "pairs": [
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/c0f098c9298bea9b66519df498566e25c100931d83bf91c97641e5e88d94af4b/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0000/result.json",
+      "sha256": "7fb8ece2fc80485e7fdc4d57f29d6bef292d3036ba7706ce88cb7d0bab9c5cf4",
+      "source_metadata": {
+        "size": 265200168,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73378362,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281887452963821
+      },
+      "alias_metadata": {
+        "size": 265200168,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73378350,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281880567035432
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/f0c5a317b59e4befbbaf2d9e812992bd8278a852a4fde40ce0182db8f2ea66a8/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0001/result.json",
+      "sha256": "45bb0872034521b1a2338adca521b063bcce564424566a5a64b9fd3bcf6147ff",
+      "source_metadata": {
+        "size": 95780634,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73378370,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281889740043306
+      },
+      "alias_metadata": {
+        "size": 95780634,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73378279,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281852725236143
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/bbc7415a4c35b6c0dc99a3fea3a7ece1a36ec30b0bc46c7653c3659eca32f9b6/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0002/result.json",
+      "sha256": "564b8c90f758374b7f9edf579dc2f25c4d60671586788d1755aded0811c5d082",
+      "source_metadata": {
+        "size": 87068191,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73378415,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281902450124512
+      },
+      "alias_metadata": {
+        "size": 87068191,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73378403,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281897937824573
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/e085a7f53f8f9c6c91480471ce7ab8d3b4001197f9fa9d5f1969b1cc0f23fe2d/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0003/result.json",
+      "sha256": "edc09e77382f8a8bf27da14bb0dd2c2ee7167155b5da5ea5c37e378698587d55",
+      "source_metadata": {
+        "size": 96080767,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73378423,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281904652409750
+      },
+      "alias_metadata": {
+        "size": 96080767,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73378411,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281900533731096
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/563a5f333c4cf4e6c44c510898b07d0637348b33dfccaeb205486485a22b60b3/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0004/result.json",
+      "sha256": "610d5aa48fc47bbeab07f0d135cc7dcf260df679ece8896626f7a1663b328956",
+      "source_metadata": {
+        "size": 362618505,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73378556,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281963178791979
+      },
+      "alias_metadata": {
+        "size": 362618505,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73378548,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281954440876441
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/1cdfdd91a75bcc352cb7c91e416d2385a0913f2fad515588407563e000e158ac/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0005/result.json",
+      "sha256": "eaa34104c80aefeb423368ee625dff3992286b5734a5cc95346901a41ef6161b",
+      "source_metadata": {
+        "size": 361803713,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73378563,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281972110569616
+      },
+      "alias_metadata": {
+        "size": 361803713,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73378542,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281948681071647
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/5652287a155cc0b52f1d6804799e83a3990ead7678354ceb34484199c7532f2c/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0006/result.json",
+      "sha256": "3a56427a0a412e2848a3e270d3b21cf06b2bebc1a00e8292ad1d8e3ea01206e2",
+      "source_metadata": {
+        "size": 235718680,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73378716,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282028070959150
+      },
+      "alias_metadata": {
+        "size": 235718680,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73378710,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282022427564373
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/2c9982b939198b6edcafdbab6394ffb7267e7b34728cf8bbf8497e9323e8ee67/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0007/result.json",
+      "sha256": "36a4d47f34d08047caddc43ca161846aa8690fd49af7607c94e323c38100c54c",
+      "source_metadata": {
+        "size": 200252292,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73378724,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282032983375675
+      },
+      "alias_metadata": {
+        "size": 200252292,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73378696,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282006997741441
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/c599614ace42bdd6e176043d1dd4d154f645354881af0faf1b28e14f3c725929/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0008/result.json",
+      "sha256": "e75941120ccac6cb502734debe5c1615352ae681b74e96973838f14fe18083f2",
+      "source_metadata": {
+        "size": 128013496,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73378774,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282066333692303
+      },
+      "alias_metadata": {
+        "size": 128013496,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73378754,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282052832719813
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/79766600dac4ec3be7ac142a92909d7ec6552a100fa7f0f62cde9c869e6d0781/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0009/result.json",
+      "sha256": "94c1f2a308086220e6052c390d5a644dc5a323e47d84bff3965b989cc6412eba",
+      "source_metadata": {
+        "size": 211518312,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73378776,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282071174035182
+      },
+      "alias_metadata": {
+        "size": 211518312,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73378768,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282063523758953
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/7c627ca59b4d9ba83f5dce27de1b895df847da6ff785a3e78bb6f15449802777/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0010/result.json",
+      "sha256": "76951a58f15e54cc55829a21dd9c52e02948098df39f19b99cb9c18616e16966",
+      "source_metadata": {
+        "size": 216195807,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73378844,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282103112278088
+      },
+      "alias_metadata": {
+        "size": 216195807,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73378838,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282097985202580
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-01/evaluations/609b7ba9a37847c6814fb4ece0def17af27b181fa33a9154b883ea2bf7d30cd9/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0011/result.json",
+      "sha256": "1e83825bbe93c82c57f40bb8145d69d45c6f57b221c8810052bb1da2a5676f6d",
+      "source_metadata": {
+        "size": 150071420,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73378846,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282106868568860
+      },
+      "alias_metadata": {
+        "size": 150071420,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73378809,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282089061051509
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/c0f098c9298bea9b66519df498566e25c100931d83bf91c97641e5e88d94af4b/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0000/result.json",
+      "sha256": "132e34d2935bca79799437ce277d01d3aa3be4d036e3ba3bd872de4ad8df1d03",
+      "source_metadata": {
+        "size": 265200166,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73382377,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283382620240823
+      },
+      "alias_metadata": {
+        "size": 265200166,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73382350,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283375850843390
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/f0c5a317b59e4befbbaf2d9e812992bd8278a852a4fde40ce0182db8f2ea66a8/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0001/result.json",
+      "sha256": "6e5ead9e8a90e2e15ad3448a2522209dd6abf8063a7f9bbd8b4c0e8fa730396a",
+      "source_metadata": {
+        "size": 95780592,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73382381,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283385169970579
+      },
+      "alias_metadata": {
+        "size": 95780592,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73382330,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283349310003479
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/bbc7415a4c35b6c0dc99a3fea3a7ece1a36ec30b0bc46c7653c3659eca32f9b6/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0002/result.json",
+      "sha256": "d0091e36b55fb9b06c88203494a699f2c64b5f0fac6d74c6b4b5d6859cf65129",
+      "source_metadata": {
+        "size": 87068209,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73396306,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283397920781436
+      },
+      "alias_metadata": {
+        "size": 87068209,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73382408,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283393179675395
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/e085a7f53f8f9c6c91480471ce7ab8d3b4001197f9fa9d5f1969b1cc0f23fe2d/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0003/result.json",
+      "sha256": "5cb26b3b037d609eaae854269215ff76f03d20751889718bae64f228756ea77b",
+      "source_metadata": {
+        "size": 96080782,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73397474,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283400114975759
+      },
+      "alias_metadata": {
+        "size": 96080782,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73386158,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283395789422846
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/563a5f333c4cf4e6c44c510898b07d0637348b33dfccaeb205486485a22b60b3/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0004/result.json",
+      "sha256": "cc7e96b54cd93b31237f6d451c212d3f319a970678eaf1e03e25f5366201880a",
+      "source_metadata": {
+        "size": 362618510,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73406376,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283458520428233
+      },
+      "alias_metadata": {
+        "size": 362618510,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73397606,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283450012870674
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/1cdfdd91a75bcc352cb7c91e416d2385a0913f2fad515588407563e000e158ac/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0005/result.json",
+      "sha256": "ddd3312e0e30d9a48cb7c39bc62e1f0eaaf5c8bfcdfd38fb2ed7aee8abb915a3",
+      "source_metadata": {
+        "size": 361803719,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73406395,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283468966307722
+      },
+      "alias_metadata": {
+        "size": 361803719,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73397585,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283443088279666
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/5652287a155cc0b52f1d6804799e83a3990ead7678354ceb34484199c7532f2c/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0006/result.json",
+      "sha256": "800b7dea4cbb8aab4c3c75b245947e483e071ca376a6e0584e4c37d94b0b2c84",
+      "source_metadata": {
+        "size": 235718691,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73414749,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283523371115214
+      },
+      "alias_metadata": {
+        "size": 235718691,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73406461,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283517853044764
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/2c9982b939198b6edcafdbab6394ffb7267e7b34728cf8bbf8497e9323e8ee67/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0007/result.json",
+      "sha256": "3cfb8379798b3f852e2c6cd168aa47362dc639a3ddd3deeee3fcac50ee2c3df9",
+      "source_metadata": {
+        "size": 200252293,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73414758,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283528094779120
+      },
+      "alias_metadata": {
+        "size": 200252293,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73406448,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283503134388567
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/c599614ace42bdd6e176043d1dd4d154f645354881af0faf1b28e14f3c725929/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0008/result.json",
+      "sha256": "32dce069e82b8a094b73da8d1555b54de945c9b7df46dcd882336b6004c40e61",
+      "source_metadata": {
+        "size": 128013482,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73414824,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283561801811116
+      },
+      "alias_metadata": {
+        "size": 128013482,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73414801,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283548006097846
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/79766600dac4ec3be7ac142a92909d7ec6552a100fa7f0f62cde9c869e6d0781/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0009/result.json",
+      "sha256": "05ff1fe7df8a71b69d6f775b2b3aa7803027432c2abf7dc5dd37ede5a2e54e4b",
+      "source_metadata": {
+        "size": 211518307,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73414831,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283566834391539
+      },
+      "alias_metadata": {
+        "size": 211518307,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73414816,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283558924100339
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/7c627ca59b4d9ba83f5dce27de1b895df847da6ff785a3e78bb6f15449802777/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0010/result.json",
+      "sha256": "4a5625e9a9eb5e34d63d9d50b44feb361b958e61077e3a2242568ffcccf49fd4",
+      "source_metadata": {
+        "size": 216195788,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73422671,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283598917280588
+      },
+      "alias_metadata": {
+        "size": 216195788,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73422661,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283593938616900
+      }
+    },
+    {
+      "source": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/609b7ba9a37847c6814fb4ece0def17af27b181fa33a9154b883ea2bf7d30cd9/result.json",
+      "alias": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0011/result.json",
+      "sha256": "0f23404c945e9c62953b8e09ad6d5577f584d1b2c574e8522b99df91f36b69f6",
+      "source_metadata": {
+        "size": 150071426,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73422678,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602710246260
+      },
+      "alias_metadata": {
+        "size": 150071426,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73422635,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283585122349981
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/5d892a3ae1dce92c70a7243b4e758500e7a20b35db64f715af07a1b541df371b/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0001/result.json",
+      "sha256": "7ab7e92c8bb4dd12a04f12ffbb84886a63c839ba746ca0b80f32426bc05bc33b",
+      "source_metadata": {
+        "size": 100037393,
+        "blocks": 195392,
+        "device": 16777229,
+        "inode": 73492850,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339149409250918
+      },
+      "alias_metadata": {
+        "size": 100037393,
+        "blocks": 195392,
+        "device": 16777229,
+        "inode": 73492843,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339147059698859
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/e3c5d3a7ed64880737ac9ec5c932e01e619dddb21d134e769a4433b11d884872/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0002/result.json",
+      "sha256": "58e2c32c22458cb5ea70c29f8f53a07817287b01f6d9fc8f0bc0556eb1e507c1",
+      "source_metadata": {
+        "size": 192703439,
+        "blocks": 376376,
+        "device": 16777229,
+        "inode": 73493011,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190216750921
+      },
+      "alias_metadata": {
+        "size": 192703439,
+        "blocks": 376376,
+        "device": 16777229,
+        "inode": 73492995,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339184431276889
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/ef10a742ca9b360a96714c5aff81718e6c43a5b5b163aefc6555c8a552071193/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-CROSS/result.json",
+      "sha256": "a94b543bcd48e6da068604f09f48b3791359066d9d9d1cfd876d0849a9882f09",
+      "source_metadata": {
+        "size": 192353133,
+        "blocks": 375696,
+        "device": 16777229,
+        "inode": 73493168,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339233985988510
+      },
+      "alias_metadata": {
+        "size": 192353133,
+        "blocks": 375696,
+        "device": 16777229,
+        "inode": 73493133,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339228293226417
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/28f0603e454bd834a7e717e23cc589d8688f856cd7dd93f32c049dd07986d61a/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-MUTATE/result.json",
+      "sha256": "efe7e7e19fecae97c49e8ba153fb501408a47d8e75446cddad11650fe1e69050",
+      "source_metadata": {
+        "size": 98517179,
+        "blocks": 192424,
+        "device": 16777229,
+        "inode": 73493178,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339236579330702
+      },
+      "alias_metadata": {
+        "size": 98517179,
+        "blocks": 192424,
+        "device": 16777229,
+        "inode": 73493101,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339214556024970
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/7d46fa0d5c4d7d69040c7eb16eccede00a9d1dfd2fc9b179d9467f9911564bdb/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-CROSS/result.json",
+      "sha256": "e75c33ba8ed5f390852f7743dd299ef7bc623300d53ea2d6d55e9640e12d91e3",
+      "source_metadata": {
+        "size": 227107641,
+        "blocks": 443576,
+        "device": 16777229,
+        "inode": 73493371,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339291667449188
+      },
+      "alias_metadata": {
+        "size": 227107641,
+        "blocks": 443576,
+        "device": 16777229,
+        "inode": 73493364,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339285725232666
+      }
+    },
+    {
+      "source": "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/b0244d4b5563f9f83aeda109f0250cc17a8e9fed938cb60819a23211bb0f7b3e/result.json",
+      "alias": "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-MUTATE/result.json",
+      "sha256": "d974100044fa4df42c6f78c514236f38960ae11ab5fc9efffc498318982dea10",
+      "source_metadata": {
+        "size": 134078040,
+        "blocks": 261872,
+        "device": 16777229,
+        "inode": 73493378,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295246940141
+      },
+      "alias_metadata": {
+        "size": 134078040,
+        "blocks": 261872,
+        "device": 16777229,
+        "inode": 73493300,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339265066972280
+      }
+    }
+  ],
+  "all_files": {
+    "runs/b1-v6-r1-train21-20261029-01/Events.jsonl": {
+      "metadata": {
+        "size": 3823,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378187,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282107111391620
+      },
+      "sha256": "8f228bd10789fa2948bf3dd964f63636377cafdc4ea74d573471a7ad27b8686f"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/Protocol.json": {
+      "metadata": {
+        "size": 3607901,
+        "blocks": 7048,
+        "device": 16777229,
+        "inode": 73378165,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281832186162739
+      },
+      "sha256": "838fcf2ae4e0f83519c0b6de692118280dba90c922399763f2ccd81455d4dd50"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/Protocol.receipt.json": {
+      "metadata": {
+        "size": 83,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378166,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281832191131847
+      },
+      "sha256": "bab35b6b95de723a2d5ee0793d17b91654ed7ecb411425f8b954f3663dd68dab"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000002.json": {
+      "metadata": {
+        "size": 1130,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378372,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281889800504398
+      },
+      "sha256": "4feedf29e594e21285a66ca99a964464a0dd49de9ef491421c91ebe6d6d70f3c"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000004.json": {
+      "metadata": {
+        "size": 1130,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378426,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281904709382923
+      },
+      "sha256": "6df65b93c3b1f674978daaebe43d4a22f02404c08894441a45e7383b9cbf5f3c"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000006.json": {
+      "metadata": {
+        "size": 1130,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378567,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281972322220060
+      },
+      "sha256": "1b2ae37ba7b7e0bc8f688ea848b4691398f86f6ef7be56d938af0d7ff52cfb91"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000008.json": {
+      "metadata": {
+        "size": 1134,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378725,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282033109414194
+      },
+      "sha256": "1cceb378c304326a6168fe3b6a3057c5c69e2aba0fe419a47f2823c328a933c8"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000010.json": {
+      "metadata": {
+        "size": 1133,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378781,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282071295666910
+      },
+      "sha256": "a61eb2d56063df5dd05246c89bfc00c28b5d417262666cc4304af8074add78e8"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/batch-receipts/000012.json": {
+      "metadata": {
+        "size": 1135,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378847,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282106969569428
+      },
+      "sha256": "921da408700c840e3aca4ac0f500003e01002d47c9693c510cb5d2cdb216ca92"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/checkpoint.json": {
+      "metadata": {
+        "size": 36399,
+        "blocks": 72,
+        "device": 16777229,
+        "inode": 73378858,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282107110889468
+      },
+      "sha256": "0a5e81a07c65bfe8a0b7a38fe71fc6f8514aa870c8cf648ffb07aad987a7638b"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/checkpoint.receipt.json": {
+      "metadata": {
+        "size": 165,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73378859,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282107111165835
+      },
+      "sha256": "3193ce39759e1715f51002fadb1d0dabb39562ccc2f7ba33cbf04677bf1b0fe9"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/1cdfdd91a75bcc352cb7c91e416d2385a0913f2fad515588407563e000e158ac/result.json": {
+      "metadata": {
+        "size": 361803713,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73378563,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281972110569616
+      },
+      "sha256": "eaa34104c80aefeb423368ee625dff3992286b5734a5cc95346901a41ef6161b"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/2c9982b939198b6edcafdbab6394ffb7267e7b34728cf8bbf8497e9323e8ee67/result.json": {
+      "metadata": {
+        "size": 200252292,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73378724,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282032983375675
+      },
+      "sha256": "36a4d47f34d08047caddc43ca161846aa8690fd49af7607c94e323c38100c54c"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/563a5f333c4cf4e6c44c510898b07d0637348b33dfccaeb205486485a22b60b3/result.json": {
+      "metadata": {
+        "size": 362618505,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73378556,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281963178791979
+      },
+      "sha256": "610d5aa48fc47bbeab07f0d135cc7dcf260df679ece8896626f7a1663b328956"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/5652287a155cc0b52f1d6804799e83a3990ead7678354ceb34484199c7532f2c/result.json": {
+      "metadata": {
+        "size": 235718680,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73378716,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282028070959150
+      },
+      "sha256": "3a56427a0a412e2848a3e270d3b21cf06b2bebc1a00e8292ad1d8e3ea01206e2"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/609b7ba9a37847c6814fb4ece0def17af27b181fa33a9154b883ea2bf7d30cd9/result.json": {
+      "metadata": {
+        "size": 150071420,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73378846,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282106868568860
+      },
+      "sha256": "1e83825bbe93c82c57f40bb8145d69d45c6f57b221c8810052bb1da2a5676f6d"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/79766600dac4ec3be7ac142a92909d7ec6552a100fa7f0f62cde9c869e6d0781/result.json": {
+      "metadata": {
+        "size": 211518312,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73378776,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282071174035182
+      },
+      "sha256": "94c1f2a308086220e6052c390d5a644dc5a323e47d84bff3965b989cc6412eba"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/7c627ca59b4d9ba83f5dce27de1b895df847da6ff785a3e78bb6f15449802777/result.json": {
+      "metadata": {
+        "size": 216195807,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73378844,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282103112278088
+      },
+      "sha256": "76951a58f15e54cc55829a21dd9c52e02948098df39f19b99cb9c18616e16966"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/bbc7415a4c35b6c0dc99a3fea3a7ece1a36ec30b0bc46c7653c3659eca32f9b6/result.json": {
+      "metadata": {
+        "size": 87068191,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73378415,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281902450124512
+      },
+      "sha256": "564b8c90f758374b7f9edf579dc2f25c4d60671586788d1755aded0811c5d082"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/c0f098c9298bea9b66519df498566e25c100931d83bf91c97641e5e88d94af4b/result.json": {
+      "metadata": {
+        "size": 265200168,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73378362,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281887452963821
+      },
+      "sha256": "7fb8ece2fc80485e7fdc4d57f29d6bef292d3036ba7706ce88cb7d0bab9c5cf4"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/c599614ace42bdd6e176043d1dd4d154f645354881af0faf1b28e14f3c725929/result.json": {
+      "metadata": {
+        "size": 128013496,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73378774,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282066333692303
+      },
+      "sha256": "e75941120ccac6cb502734debe5c1615352ae681b74e96973838f14fe18083f2"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/e085a7f53f8f9c6c91480471ce7ab8d3b4001197f9fa9d5f1969b1cc0f23fe2d/result.json": {
+      "metadata": {
+        "size": 96080767,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73378423,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281904652409750
+      },
+      "sha256": "edc09e77382f8a8bf27da14bb0dd2c2ee7167155b5da5ea5c37e378698587d55"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/evaluations/f0c5a317b59e4befbbaf2d9e812992bd8278a852a4fde40ce0182db8f2ea66a8/result.json": {
+      "metadata": {
+        "size": 95780634,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73378370,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281889740043306
+      },
+      "sha256": "45bb0872034521b1a2338adca521b063bcce564424566a5a64b9fd3bcf6147ff"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/populations/P000.json": {
+      "metadata": {
+        "size": 5055,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378855,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282107108519786
+      },
+      "sha256": "853100fd0ac440e0bdfccbf5dc4772fd55335b0bf965da26e732e2550bebcfce"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0000/lifecycle.json": {
+      "metadata": {
+        "size": 4210,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378335,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281873352018913
+      },
+      "sha256": "1d0dd74648ea51ff2f6d2514833b1134f12e011641a6224972ecdd4851b133e4"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0000/result.json": {
+      "metadata": {
+        "size": 265200168,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73378350,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281880567035432
+      },
+      "sha256": "7fb8ece2fc80485e7fdc4d57f29d6bef292d3036ba7706ce88cb7d0bab9c5cf4"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0001/lifecycle.json": {
+      "metadata": {
+        "size": 4220,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378213,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281847964923849
+      },
+      "sha256": "404dc0be104b9a186bb9218fc6cfc2640a01d7ca9f612b89ae5fce12afcf53f1"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0001/result.json": {
+      "metadata": {
+        "size": 95780634,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73378279,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281852725236143
+      },
+      "sha256": "45bb0872034521b1a2338adca521b063bcce564424566a5a64b9fd3bcf6147ff"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0002/lifecycle.json": {
+      "metadata": {
+        "size": 4202,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378400,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281895767376808
+      },
+      "sha256": "9d090fd63b7c32afeb53c7fd9a14ecce8922ec83b313cfae96302747ac60a799"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0002/result.json": {
+      "metadata": {
+        "size": 87068191,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73378403,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281897937824573
+      },
+      "sha256": "564b8c90f758374b7f9edf579dc2f25c4d60671586788d1755aded0811c5d082"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0003/lifecycle.json": {
+      "metadata": {
+        "size": 4202,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378404,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281898319907960
+      },
+      "sha256": "bde90d1b07e8a2b7e8deaa68547164d8b24441fbc42bb548d570be1c7eae1482"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0003/result.json": {
+      "metadata": {
+        "size": 96080767,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73378411,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281900533731096
+      },
+      "sha256": "edc09e77382f8a8bf27da14bb0dd2c2ee7167155b5da5ea5c37e378698587d55"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0004/lifecycle.json": {
+      "metadata": {
+        "size": 4201,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378536,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281941227089484
+      },
+      "sha256": "10c34bc0b6b95f4424bb0c2328c096bab8bc70f51ed2ee81b58dd253a030db9a"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0004/result.json": {
+      "metadata": {
+        "size": 362618505,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73378548,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281954440876441
+      },
+      "sha256": "610d5aa48fc47bbeab07f0d135cc7dcf260df679ece8896626f7a1663b328956"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0005/lifecycle.json": {
+      "metadata": {
+        "size": 4213,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378529,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281936232705944
+      },
+      "sha256": "999842677c494159f819c5d9e0dace10ab3190999e5889fa4b1b42f8736c0abc"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0005/result.json": {
+      "metadata": {
+        "size": 361803713,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73378542,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793281948681071647
+      },
+      "sha256": "eaa34104c80aefeb423368ee625dff3992286b5734a5cc95346901a41ef6161b"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0006/lifecycle.json": {
+      "metadata": {
+        "size": 4195,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378704,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282016416540281
+      },
+      "sha256": "6196991d6df5e13be89abff8e190b9c29d579e2b4df853457e901e5d5eb50411"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0006/result.json": {
+      "metadata": {
+        "size": 235718680,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73378710,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282022427564373
+      },
+      "sha256": "3a56427a0a412e2848a3e270d3b21cf06b2bebc1a00e8292ad1d8e3ea01206e2"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0007/lifecycle.json": {
+      "metadata": {
+        "size": 4207,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378690,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282001996237336
+      },
+      "sha256": "50b823a9e435862e2b635cd8d3fa929a95674f13e0519671c148f8bc48b06d69"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0007/result.json": {
+      "metadata": {
+        "size": 200252292,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73378696,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282006997741441
+      },
+      "sha256": "36a4d47f34d08047caddc43ca161846aa8690fd49af7607c94e323c38100c54c"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0008/lifecycle.json": {
+      "metadata": {
+        "size": 4209,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378746,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282049848578989
+      },
+      "sha256": "bc3b97095bb0fc35ac0b1f5e73dd78919182f49c0c6524f1376dab8df3cc7e0a"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0008/result.json": {
+      "metadata": {
+        "size": 128013496,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73378754,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282052832719813
+      },
+      "sha256": "e75941120ccac6cb502734debe5c1615352ae681b74e96973838f14fe18083f2"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0009/lifecycle.json": {
+      "metadata": {
+        "size": 4210,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378761,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282058625108118
+      },
+      "sha256": "8a850e45eee2a3c1842f22d846758cf7336346b5a2ef6d873167790b5715e004"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0009/result.json": {
+      "metadata": {
+        "size": 211518312,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73378768,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282063523758953
+      },
+      "sha256": "94c1f2a308086220e6052c390d5a644dc5a323e47d84bff3965b989cc6412eba"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0010/lifecycle.json": {
+      "metadata": {
+        "size": 4205,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378824,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282092861528183
+      },
+      "sha256": "4c9a60e27c5e8012ca6d7d0236b259677f67e14ce1b23e98c7bd360e69bd488e"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0010/result.json": {
+      "metadata": {
+        "size": 216195807,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73378838,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282097985202580
+      },
+      "sha256": "76951a58f15e54cc55829a21dd9c52e02948098df39f19b99cb9c18616e16966"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0011/lifecycle.json": {
+      "metadata": {
+        "size": 4210,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73378804,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282085572125587
+      },
+      "sha256": "b27fd9affaef841ef73fc6d349b6fe6944bd66afefc6c3a7e392badd33cc70a5"
+    },
+    "runs/b1-v6-r1-train21-20261029-01/worker-receipts/INIT-0011/result.json": {
+      "metadata": {
+        "size": 150071420,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73378809,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793282089061051509
+      },
+      "sha256": "1e83825bbe93c82c57f40bb8145d69d45c6f57b221c8810052bb1da2a5676f6d"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/Events.jsonl": {
+      "metadata": {
+        "size": 3794,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382285,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602945599975
+      },
+      "sha256": "6f408916fc2267b128c64aac28e4c9492b537f25dcaf827e12c5e0bcce619a44"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/Protocol.json": {
+      "metadata": {
+        "size": 3607898,
+        "blocks": 7048,
+        "device": 16777229,
+        "inode": 73382272,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336288607627
+      },
+      "sha256": "258a14a8a97a119fe58dd4e7da2384983f92be162129125eb397e587dcdfa97e"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/Protocol.receipt.json": {
+      "metadata": {
+        "size": 83,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382273,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336301917987
+      },
+      "sha256": "bb450755f2310f85ec1382bb0af5d4f5339f4aa1d2dd9f5da8844c1344915e51"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000002.json": {
+      "metadata": {
+        "size": 1133,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382383,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283385232814397
+      },
+      "sha256": "af54c93c7656dc30009a3ed3827bd7194651ce5c8d21cddcd3093da1bcb2c0ac"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000004.json": {
+      "metadata": {
+        "size": 1133,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73397475,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283400172210814
+      },
+      "sha256": "4afdeed67030690b9403431867b8feba1e018d7353e0028a6599193e9b140c65"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000006.json": {
+      "metadata": {
+        "size": 1134,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73406400,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283469186183873
+      },
+      "sha256": "3057b609624630b34c2692eb39ed03c875c690e2908cb79593137050fc7fbee7"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000008.json": {
+      "metadata": {
+        "size": 1134,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73414761,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283528213573721
+      },
+      "sha256": "858d40da059ff4e7ec2ed5ba4ec9476a00b63218aa360f481f39ac6453c3ee67"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000010.json": {
+      "metadata": {
+        "size": 1135,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73414832,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283566960969321
+      },
+      "sha256": "5f39e8b6b90739cefd4e8072f8cad6b2346291e4345702625dee7f196d1eb668"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/batch-receipts/000012.json": {
+      "metadata": {
+        "size": 1137,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422679,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602807618298
+      },
+      "sha256": "63b275aede4b4a517cd55fe2ef0dffa954f2d17e6e94e3bfe2e0d3c0b18748c3"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/checkpoint.json": {
+      "metadata": {
+        "size": 36415,
+        "blocks": 72,
+        "device": 16777229,
+        "inode": 73422686,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602945134234
+      },
+      "sha256": "6bf9552f486ef1641b2b943f8049cb45b2c920953c9220e56b572d82407c1c2f"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/checkpoint.receipt.json": {
+      "metadata": {
+        "size": 165,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422687,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602945375687
+      },
+      "sha256": "253689a19f84bd29dc07da2f4200b7d77be6e1c5358acd06e090aa15e56186ab"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/1cdfdd91a75bcc352cb7c91e416d2385a0913f2fad515588407563e000e158ac/result.json": {
+      "metadata": {
+        "size": 361803719,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73406395,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283468966307722
+      },
+      "sha256": "ddd3312e0e30d9a48cb7c39bc62e1f0eaaf5c8bfcdfd38fb2ed7aee8abb915a3"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/2c9982b939198b6edcafdbab6394ffb7267e7b34728cf8bbf8497e9323e8ee67/result.json": {
+      "metadata": {
+        "size": 200252293,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73414758,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283528094779120
+      },
+      "sha256": "3cfb8379798b3f852e2c6cd168aa47362dc639a3ddd3deeee3fcac50ee2c3df9"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/563a5f333c4cf4e6c44c510898b07d0637348b33dfccaeb205486485a22b60b3/result.json": {
+      "metadata": {
+        "size": 362618510,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73406376,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283458520428233
+      },
+      "sha256": "cc7e96b54cd93b31237f6d451c212d3f319a970678eaf1e03e25f5366201880a"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/5652287a155cc0b52f1d6804799e83a3990ead7678354ceb34484199c7532f2c/result.json": {
+      "metadata": {
+        "size": 235718691,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73414749,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283523371115214
+      },
+      "sha256": "800b7dea4cbb8aab4c3c75b245947e483e071ca376a6e0584e4c37d94b0b2c84"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/609b7ba9a37847c6814fb4ece0def17af27b181fa33a9154b883ea2bf7d30cd9/result.json": {
+      "metadata": {
+        "size": 150071426,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73422678,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602710246260
+      },
+      "sha256": "0f23404c945e9c62953b8e09ad6d5577f584d1b2c574e8522b99df91f36b69f6"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/79766600dac4ec3be7ac142a92909d7ec6552a100fa7f0f62cde9c869e6d0781/result.json": {
+      "metadata": {
+        "size": 211518307,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73414831,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283566834391539
+      },
+      "sha256": "05ff1fe7df8a71b69d6f775b2b3aa7803027432c2abf7dc5dd37ede5a2e54e4b"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/7c627ca59b4d9ba83f5dce27de1b895df847da6ff785a3e78bb6f15449802777/result.json": {
+      "metadata": {
+        "size": 216195788,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73422671,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283598917280588
+      },
+      "sha256": "4a5625e9a9eb5e34d63d9d50b44feb361b958e61077e3a2242568ffcccf49fd4"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/bbc7415a4c35b6c0dc99a3fea3a7ece1a36ec30b0bc46c7653c3659eca32f9b6/result.json": {
+      "metadata": {
+        "size": 87068209,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73396306,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283397920781436
+      },
+      "sha256": "d0091e36b55fb9b06c88203494a699f2c64b5f0fac6d74c6b4b5d6859cf65129"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/c0f098c9298bea9b66519df498566e25c100931d83bf91c97641e5e88d94af4b/result.json": {
+      "metadata": {
+        "size": 265200166,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73382377,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283382620240823
+      },
+      "sha256": "132e34d2935bca79799437ce277d01d3aa3be4d036e3ba3bd872de4ad8df1d03"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/c599614ace42bdd6e176043d1dd4d154f645354881af0faf1b28e14f3c725929/result.json": {
+      "metadata": {
+        "size": 128013482,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73414824,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283561801811116
+      },
+      "sha256": "32dce069e82b8a094b73da8d1555b54de945c9b7df46dcd882336b6004c40e61"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/e085a7f53f8f9c6c91480471ce7ab8d3b4001197f9fa9d5f1969b1cc0f23fe2d/result.json": {
+      "metadata": {
+        "size": 96080782,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73397474,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283400114975759
+      },
+      "sha256": "5cb26b3b037d609eaae854269215ff76f03d20751889718bae64f228756ea77b"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/evaluations/f0c5a317b59e4befbbaf2d9e812992bd8278a852a4fde40ce0182db8f2ea66a8/result.json": {
+      "metadata": {
+        "size": 95780592,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73382381,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283385169970579
+      },
+      "sha256": "6e5ead9e8a90e2e15ad3448a2522209dd6abf8063a7f9bbd8b4c0e8fa730396a"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/exports/candidates.csv": {
+      "metadata": {
+        "size": 1538,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422695,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283605140548690
+      },
+      "sha256": "be43a7eebb3baa21d9a9be2c31603edbd657599d420985f2f907930e0991cd06"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/exports/generations.csv": {
+      "metadata": {
+        "size": 156,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422696,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283605140684646
+      },
+      "sha256": "e9861bb95e503a414aef74c891270747b3394739798db4ec9c615238887052a9"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/exports/lineage.json": {
+      "metadata": {
+        "size": 3,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422697,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283605140855559
+      },
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/exports/summary.json": {
+      "metadata": {
+        "size": 1289,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73422698,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283605141178761
+      },
+      "sha256": "ab29f0a2c6335b7c77118851c97b3315a9071df464f4d267796810eadbfc12ce"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/launch/_single_run.py": {
+      "metadata": {
+        "size": 8091,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382278,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336312896893
+      },
+      "sha256": "6df734a1276805d95d447634b7a989c4a4345d5b0260578f0b9cfe3fc50dfd38"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/launch/parameters.json": {
+      "metadata": {
+        "size": 1080,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382279,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336313361675
+      },
+      "sha256": "0466a74928a3c171350d915443e43dd347a8cd8d8764fc87fd4a4c55876722ae"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/launch/receipt.json": {
+      "metadata": {
+        "size": 900,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382280,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336347100544
+      },
+      "sha256": "21fd00df843a02bb8577fe0f73db94b87b2403f5bd89951526da9572d56d7fa5"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/launch/run_r1.py": {
+      "metadata": {
+        "size": 2711,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73382277,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283336312707313
+      },
+      "sha256": "83942312743bb805eb0f8d88a3a883655ae80325671acbdb347bb9394229cd7a"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/populations/P000.json": {
+      "metadata": {
+        "size": 5055,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73422683,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283602943158857
+      },
+      "sha256": "853100fd0ac440e0bdfccbf5dc4772fd55335b0bf965da26e732e2550bebcfce"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/terminal.log": {
+      "metadata": {
+        "size": 4565,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382281,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283605143486256
+      },
+      "sha256": "455ae973fe2b70e3cdf8b63372e622ce8a73439108d0f995c9b5feccec553c93"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0000/lifecycle.json": {
+      "metadata": {
+        "size": 4211,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382339,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283368526575414
+      },
+      "sha256": "6e63a2460ca7f593b187eff76f013515a2794032cb7082a7474e409f2e3d9344"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0000/result.json": {
+      "metadata": {
+        "size": 265200166,
+        "blocks": 517976,
+        "device": 16777229,
+        "inode": 73382350,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283375850843390
+      },
+      "sha256": "132e34d2935bca79799437ce277d01d3aa3be4d036e3ba3bd872de4ad8df1d03"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0001/lifecycle.json": {
+      "metadata": {
+        "size": 4200,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382325,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283346989317116
+      },
+      "sha256": "827412978430a01c50185c57b28dc6ff2aadcffe8bfdac658a96fafa37077f12"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0001/result.json": {
+      "metadata": {
+        "size": 95780592,
+        "blocks": 187072,
+        "device": 16777229,
+        "inode": 73382330,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283349310003479
+      },
+      "sha256": "6e5ead9e8a90e2e15ad3448a2522209dd6abf8063a7f9bbd8b4c0e8fa730396a"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0002/lifecycle.json": {
+      "metadata": {
+        "size": 4218,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382406,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283391142558486
+      },
+      "sha256": "ba58e7bec5c907399d1d49eb5bde61a316d8b27380f6231a62fc6b36413aaf40"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0002/result.json": {
+      "metadata": {
+        "size": 87068209,
+        "blocks": 170056,
+        "device": 16777229,
+        "inode": 73382408,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283393179675395
+      },
+      "sha256": "d0091e36b55fb9b06c88203494a699f2c64b5f0fac6d74c6b4b5d6859cf65129"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0003/lifecycle.json": {
+      "metadata": {
+        "size": 4208,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73382414,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283393642700273
+      },
+      "sha256": "9fab80f7d5d9d7a3a7a50df0a35c47dd8afdb8bc7f0994d94624c98c7b2eb4a8"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0003/result.json": {
+      "metadata": {
+        "size": 96080782,
+        "blocks": 187664,
+        "device": 16777229,
+        "inode": 73386158,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283395789422846
+      },
+      "sha256": "5cb26b3b037d609eaae854269215ff76f03d20751889718bae64f228756ea77b"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0004/lifecycle.json": {
+      "metadata": {
+        "size": 4209,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73397576,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283436319754302
+      },
+      "sha256": "d5b6ee8d4fae116b4fda42a2a30e20779ee4184566bff95839c136481b158c4b"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0004/result.json": {
+      "metadata": {
+        "size": 362618510,
+        "blocks": 708240,
+        "device": 16777229,
+        "inode": 73397606,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283450012870674
+      },
+      "sha256": "cc7e96b54cd93b31237f6d451c212d3f319a970678eaf1e03e25f5366201880a"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0005/lifecycle.json": {
+      "metadata": {
+        "size": 4216,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73397563,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283431331468220
+      },
+      "sha256": "e588325c315d9a46afcce052632f86ee56c3d0f09b1cdc0f0619cc8a96fc649d"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0005/result.json": {
+      "metadata": {
+        "size": 361803719,
+        "blocks": 706648,
+        "device": 16777229,
+        "inode": 73397585,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283443088279666
+      },
+      "sha256": "ddd3312e0e30d9a48cb7c39bc62e1f0eaaf5c8bfcdfd38fb2ed7aee8abb915a3"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0006/lifecycle.json": {
+      "metadata": {
+        "size": 4207,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73406456,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283512000095464
+      },
+      "sha256": "40d323a1a52e9e782cbfbd7c31b5c2ee8021d0c029f1df7621ac7e5ab2e22e60"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0006/result.json": {
+      "metadata": {
+        "size": 235718691,
+        "blocks": 460392,
+        "device": 16777229,
+        "inode": 73406461,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283517853044764
+      },
+      "sha256": "800b7dea4cbb8aab4c3c75b245947e483e071ca376a6e0584e4c37d94b0b2c84"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0007/lifecycle.json": {
+      "metadata": {
+        "size": 4204,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73406439,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283498527494069
+      },
+      "sha256": "7383a3a44bf034e6057ba88ec19e0a69f81b86b4071f6a8cedef04a00d5cc749"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0007/result.json": {
+      "metadata": {
+        "size": 200252293,
+        "blocks": 391120,
+        "device": 16777229,
+        "inode": 73406448,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283503134388567
+      },
+      "sha256": "3cfb8379798b3f852e2c6cd168aa47362dc639a3ddd3deeee3fcac50ee2c3df9"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0008/lifecycle.json": {
+      "metadata": {
+        "size": 4205,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73414793,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283544953537737
+      },
+      "sha256": "aa5627df6fb9c1fc6fc2f3067f55ebdde56727f5286dfc05ea0fd7ba2e29bc73"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0008/result.json": {
+      "metadata": {
+        "size": 128013482,
+        "blocks": 250032,
+        "device": 16777229,
+        "inode": 73414801,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283548006097846
+      },
+      "sha256": "32dce069e82b8a094b73da8d1555b54de945c9b7df46dcd882336b6004c40e61"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0009/lifecycle.json": {
+      "metadata": {
+        "size": 4213,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73414807,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283553945309343
+      },
+      "sha256": "823710ee993593220a01e3a52a23ceb397287b5a096fdfeb07defc618eee0f16"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0009/result.json": {
+      "metadata": {
+        "size": 211518307,
+        "blocks": 413128,
+        "device": 16777229,
+        "inode": 73414816,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283558924100339
+      },
+      "sha256": "05ff1fe7df8a71b69d6f775b2b3aa7803027432c2abf7dc5dd37ede5a2e54e4b"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0010/lifecycle.json": {
+      "metadata": {
+        "size": 4207,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73422652,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283588965297437
+      },
+      "sha256": "c28bc55071abf497a069703202187099b252fd1a549811842b1de0433084f4b2"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0010/result.json": {
+      "metadata": {
+        "size": 216195788,
+        "blocks": 422264,
+        "device": 16777229,
+        "inode": 73422661,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283593938616900
+      },
+      "sha256": "4a5625e9a9eb5e34d63d9d50b44feb361b958e61077e3a2242568ffcccf49fd4"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0011/lifecycle.json": {
+      "metadata": {
+        "size": 4215,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73422629,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283581620714645
+      },
+      "sha256": "a046b921c0d0b89a4562c09dcf3e411abcd52f4e9aeec8b0aa7f73401deb58f1"
+    },
+    "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd/worker-receipts/INIT-0011/result.json": {
+      "metadata": {
+        "size": 150071426,
+        "blocks": 293112,
+        "device": 16777229,
+        "inode": 73422635,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793283585122349981
+      },
+      "sha256": "0f23404c945e9c62953b8e09ad6d5577f584d1b2c574e8522b99df91f36b69f6"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/Events.jsonl": {
+      "metadata": {
+        "size": 3298,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492738,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295530551260
+      },
+      "sha256": "539ad9ab8e1e871cb8d5bc84c4eeae1134415159118c6e48f20b9499a45e4ab0"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/Protocol.json": {
+      "metadata": {
+        "size": 3603188,
+        "blocks": 7040,
+        "device": 16777229,
+        "inode": 73492723,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124576528474
+      },
+      "sha256": "c3718fe631cd2f8aea505610f36aad3da52f5e79187e8b7ccdb4813912c49c3d"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/Protocol.receipt.json": {
+      "metadata": {
+        "size": 83,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492724,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124582315101
+      },
+      "sha256": "e211185c1fb098730ed45388b12ec5fd461e3b03c7a9d0990c872c298ecc44c1"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/batch-receipts/000002.json": {
+      "metadata": {
+        "size": 1446,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492852,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339149470842771
+      },
+      "sha256": "42ae5b96d7999f281c703217d20c2effbe1b0514116173bb597d817fe07ace54"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/batch-receipts/000003.json": {
+      "metadata": {
+        "size": 1102,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493014,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190357428087
+      },
+      "sha256": "afbd8a6d474fdcd37459f638c8c4fae08d27f9248d84bedfa9c7439082de325b"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/batch-receipts/000005.json": {
+      "metadata": {
+        "size": 1815,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493179,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339236648356230
+      },
+      "sha256": "bfbdb04e815fa62eb898d1ff457f43a074669a9a85cde25e33845e0069c174ab"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/batch-receipts/000007.json": {
+      "metadata": {
+        "size": 1820,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493381,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295358981252
+      },
+      "sha256": "975062775b685cabbacb1b6f4f048d57778836251bd131a1cb7fbf7ffe832f96"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/checkpoint.json": {
+      "metadata": {
+        "size": 38450,
+        "blocks": 80,
+        "device": 16777229,
+        "inode": 73493387,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295529655820
+      },
+      "sha256": "7c07250d883978fda5375c28cf0d4273d8dea43c605d58568615c91b4cf6fb52"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/checkpoint.receipt.json": {
+      "metadata": {
+        "size": 165,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493388,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295530304598
+      },
+      "sha256": "e07d8608166d4645fe69ef8c84501b90cbe3a99bace0ef399a884778a3eed971"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/28f0603e454bd834a7e717e23cc589d8688f856cd7dd93f32c049dd07986d61a/result.json": {
+      "metadata": {
+        "size": 98517179,
+        "blocks": 192424,
+        "device": 16777229,
+        "inode": 73493178,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339236579330702
+      },
+      "sha256": "efe7e7e19fecae97c49e8ba153fb501408a47d8e75446cddad11650fe1e69050"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/5d892a3ae1dce92c70a7243b4e758500e7a20b35db64f715af07a1b541df371b/result.json": {
+      "metadata": {
+        "size": 100037393,
+        "blocks": 195392,
+        "device": 16777229,
+        "inode": 73492850,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339149409250918
+      },
+      "sha256": "7ab7e92c8bb4dd12a04f12ffbb84886a63c839ba746ca0b80f32426bc05bc33b"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/7d46fa0d5c4d7d69040c7eb16eccede00a9d1dfd2fc9b179d9467f9911564bdb/result.json": {
+      "metadata": {
+        "size": 227107641,
+        "blocks": 443576,
+        "device": 16777229,
+        "inode": 73493371,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339291667449188
+      },
+      "sha256": "e75c33ba8ed5f390852f7743dd299ef7bc623300d53ea2d6d55e9640e12d91e3"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/b0244d4b5563f9f83aeda109f0250cc17a8e9fed938cb60819a23211bb0f7b3e/result.json": {
+      "metadata": {
+        "size": 134078040,
+        "blocks": 261872,
+        "device": 16777229,
+        "inode": 73493378,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295246940141
+      },
+      "sha256": "d974100044fa4df42c6f78c514236f38960ae11ab5fc9efffc498318982dea10"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/e3c5d3a7ed64880737ac9ec5c932e01e619dddb21d134e769a4433b11d884872/result.json": {
+      "metadata": {
+        "size": 192703439,
+        "blocks": 376376,
+        "device": 16777229,
+        "inode": 73493011,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190216750921
+      },
+      "sha256": "58e2c32c22458cb5ea70c29f8f53a07817287b01f6d9fc8f0bc0556eb1e507c1"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/evaluations/ef10a742ca9b360a96714c5aff81718e6c43a5b5b163aefc6555c8a552071193/result.json": {
+      "metadata": {
+        "size": 192353133,
+        "blocks": 375696,
+        "device": 16777229,
+        "inode": 73493168,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339233985988510
+      },
+      "sha256": "a94b543bcd48e6da068604f09f48b3791359066d9d9d1cfd876d0849a9882f09"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/acceptance.json": {
+      "metadata": {
+        "size": 1125,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493394,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296513465339
+      },
+      "sha256": "d34f3e95ffe37d25bcdad0d576fc85a0707a485a587b379caf9a2ed0f63268aa"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/candidates.csv": {
+      "metadata": {
+        "size": 1144,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493390,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296443385042
+      },
+      "sha256": "8939bd8fa8448f9bb45003b8270521e967c4f5eb84708da6cd38594e222deaa4"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/evaluation_timings.csv": {
+      "metadata": {
+        "size": 1366,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493396,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296515369798
+      },
+      "sha256": "5452567b05ccfc19067483136ef7969653221034c0e8a6c2facee77e217308aa"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/frozen_training_champion.json": {
+      "metadata": {
+        "size": 13252,
+        "blocks": 32,
+        "device": 16777229,
+        "inode": 73493436,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339309232033344
+      },
+      "sha256": "f742a8eb2cfe05fdf76f24b14f46bde542199c9b6315fb22b00b35329b787f07"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/frozen_training_champion.py": {
+      "metadata": {
+        "size": 304,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493437,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339309232303588
+      },
+      "sha256": "f7bdd295315059d6d7583b3442483853960abde84fe89e72caa53b0230dec767"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/generations.csv": {
+      "metadata": {
+        "size": 266,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493391,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296443722576
+      },
+      "sha256": "574000dac4a3b9fcad7f5067a4b9c74514559a9fe350f20bcf2347c313b88377"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/lineage.json": {
+      "metadata": {
+        "size": 2065,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493392,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296444049111
+      },
+      "sha256": "665a47cec4eca610c2165d70deaa7775e4387ba06daecc26ec7fa10190e103da"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/per_instance.csv": {
+      "metadata": {
+        "size": 20049,
+        "blocks": 40,
+        "device": 16777229,
+        "inode": 73493435,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339309229275444
+      },
+      "sha256": "3e52e0b5fe56384026cc320f8f91a5e800d5459c24b09976f7d1a17f7ece044f"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/requests.csv": {
+      "metadata": {
+        "size": 1109,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493395,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296513771291
+      },
+      "sha256": "6b45c1a7053f12c0185be696c4feec44acb1a95827a8493fb02adb16d02d86f9"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/exports/summary.json": {
+      "metadata": {
+        "size": 2214,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493393,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339296444385729
+      },
+      "sha256": "030296bfa5077c6d3f9d4f5861dfe0ac9f0e850f6a625b6eb84b9b11b34e7c6b"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/_real_run.py": {
+      "metadata": {
+        "size": 10942,
+        "blocks": 24,
+        "device": 16777229,
+        "inode": 73492729,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124599124242
+      },
+      "sha256": "ae36483a3265527ab52057fce23db3304ee1501878bc11c17f9b56971727cca7"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/_search_reports.py": {
+      "metadata": {
+        "size": 9200,
+        "blocks": 24,
+        "device": 16777229,
+        "inode": 73492730,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124599527817
+      },
+      "sha256": "501ba28f76868437ee1342659b6f7ca5ab76255742d8ff34b93e9364abe7f883"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/parameters.json": {
+      "metadata": {
+        "size": 1412,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492731,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124600171303
+      },
+      "sha256": "f03586f64e0768a89b470e5065805ad26d0f22748ea6637febb0028710a894cf"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/plan.json": {
+      "metadata": {
+        "size": 769,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492733,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124601478109
+      },
+      "sha256": "33fe4d5b995bf77ee07c6779924fba03647bfd286823b555f4b9dd9c96478ac7"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/prerequisites.json": {
+      "metadata": {
+        "size": 1308,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492732,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124600908871
+      },
+      "sha256": "49e1c2d5c9ebc415f693d4e4cd3fa9666acc25901fb728054e7ef128f5862a2d"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/launch/run_r3.py": {
+      "metadata": {
+        "size": 3015,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492728,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124598723834
+      },
+      "sha256": "76ee4766b275449f9716afed568c022b00605373a00ba91ef4621ac940a737d6"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/plans/G001.json": {
+      "metadata": {
+        "size": 30415,
+        "blocks": 64,
+        "device": 16777229,
+        "inode": 73493022,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190482716582
+      },
+      "sha256": "f320fd09a32943fbbd5bb49df3e1b3c3ae76b4b79a3913d6e4fb11dcd409150d"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/populations/P000.json": {
+      "metadata": {
+        "size": 1455,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493018,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190478534546
+      },
+      "sha256": "013d2974eda8f14133b422f6e4857d1ebf5485c7a747ff9ed35a9d0bd98755eb"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/populations/P001.json": {
+      "metadata": {
+        "size": 1634,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493384,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339295527543282
+      },
+      "sha256": "a84c9d8b5bee0dacfc49ed346c596fd1c38f7fc80b48ede74712f92a566bb3e8"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/G001-000-CROSS.txt": {
+      "metadata": {
+        "size": 17592,
+        "blocks": 40,
+        "device": 16777229,
+        "inode": 73493025,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190488429710
+      },
+      "sha256": "3cddace6fbdd0966b587e3adcd2dc8966f3185ce8da658053ec9ccc658d417c4"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/G001-000-MUTATE.txt": {
+      "metadata": {
+        "size": 17018,
+        "blocks": 40,
+        "device": 16777229,
+        "inode": 73493026,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339190488846701
+      },
+      "sha256": "bcba8c3704f662640c8777c6f336a9e46bd413e361df9314a84aa1964c315568"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/G001-001-CROSS.txt": {
+      "metadata": {
+        "size": 17592,
+        "blocks": 40,
+        "device": 16777229,
+        "inode": 73493182,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339236817843824
+      },
+      "sha256": "67f149033837e89f3dc52b152599e0398d920b172334b14354e7461f8321f8db"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/G001-001-MUTATE.txt": {
+      "metadata": {
+        "size": 17174,
+        "blocks": 40,
+        "device": 16777229,
+        "inode": 73493183,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339236818241899
+      },
+      "sha256": "77acfaf8aa3c29d110016d5eb35de144d67631a33778c2b0b7f9836fed1741df"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/INIT-0000.txt": {
+      "metadata": {
+        "size": 15603,
+        "blocks": 32,
+        "device": 16777229,
+        "inode": 73492742,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124675153079
+      },
+      "sha256": "9a2fed4d1743d5caf0de3cefa552f1c455616432aa55355323053b7d7f121073"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/INIT-0001.txt": {
+      "metadata": {
+        "size": 15603,
+        "blocks": 32,
+        "device": 16777229,
+        "inode": 73492743,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339124675644985
+      },
+      "sha256": "9a2fed4d1743d5caf0de3cefa552f1c455616432aa55355323053b7d7f121073"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/prompts/INIT-0002.txt": {
+      "metadata": {
+        "size": 15603,
+        "blocks": 32,
+        "device": 16777229,
+        "inode": 73492857,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339149507559946
+      },
+      "sha256": "9a2fed4d1743d5caf0de3cefa552f1c455616432aa55355323053b7d7f121073"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/G001-000-CROSS.json": {
+      "metadata": {
+        "size": 2453,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493055,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339197171366602
+      },
+      "sha256": "f0b3c6c1581e64a0cad3562c597037fbe1c7bcb23302fc7677df213f1c1ae005"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/G001-000-MUTATE.json": {
+      "metadata": {
+        "size": 2264,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493056,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339197174129293
+      },
+      "sha256": "07561cc0f89be8be6b43fcf55f79a5f1817dfea0025164f8f9bcc3f836d3db0d"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/G001-001-CROSS.json": {
+      "metadata": {
+        "size": 2563,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493199,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339244042162087
+      },
+      "sha256": "ab13fc420cb839a3c7d51a7569b158aa09cc97204c7f030055c96f6355a17dd0"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/G001-001-MUTATE.json": {
+      "metadata": {
+        "size": 2841,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73493200,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339244044738740
+      },
+      "sha256": "8dea2ff5ab08775f7d30bc6ec96fa404c09e676abb1e54a0fe6e29432508cb66"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/INIT-0000.json": {
+      "metadata": {
+        "size": 3164,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492814,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339133430218572
+      },
+      "sha256": "2bb4572edf1d6f0984fb98a444ce1a5b3fb7f674ae6baa0859c063bb6f2d7672"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/INIT-0001.json": {
+      "metadata": {
+        "size": 1963,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492815,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339133433346713
+      },
+      "sha256": "e28aae94fedba909235d3a3aaf89238477898ac4cc4fef138c9077e0b8a4921f"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/responses/INIT-0002.json": {
+      "metadata": {
+        "size": 2124,
+        "blocks": 8,
+        "device": 16777229,
+        "inode": 73492865,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339156134997147
+      },
+      "sha256": "7ebaab9a9f3a81b8bfc9db3283f500930536754e6fbc42fe21ad1712d4f1182a"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/terminal.log": {
+      "metadata": {
+        "size": 4698,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73492734,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339309237442562
+      },
+      "sha256": "e508fc09909845b8da9674efeef0fc37c6eb71fbfa2672c3acd5ee849729c0bf"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-CROSS/lifecycle.json": {
+      "metadata": {
+        "size": 4212,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73493108,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339221758293453
+      },
+      "sha256": "28e4745dea0aa25b10985ccbbf2d4388e5b81536f90ae6d8c2fc765753d74223"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-CROSS/result.json": {
+      "metadata": {
+        "size": 192353133,
+        "blocks": 375696,
+        "device": 16777229,
+        "inode": 73493133,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339228293226417
+      },
+      "sha256": "a94b543bcd48e6da068604f09f48b3791359066d9d9d1cfd876d0849a9882f09"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-MUTATE/lifecycle.json": {
+      "metadata": {
+        "size": 4209,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73493094,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339211591631774
+      },
+      "sha256": "c943d79d4b9e46f030d63c204496c3c298cfc93735fc0974e1cc351fed4eff70"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-000-MUTATE/result.json": {
+      "metadata": {
+        "size": 98517179,
+        "blocks": 192424,
+        "device": 16777229,
+        "inode": 73493101,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339214556024970
+      },
+      "sha256": "efe7e7e19fecae97c49e8ba153fb501408a47d8e75446cddad11650fe1e69050"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-CROSS/lifecycle.json": {
+      "metadata": {
+        "size": 4192,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73493348,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339279550284982
+      },
+      "sha256": "099fb2b90c9b721f2b56b3f8b6115c6142ad5f5e80a2ef7af2a220ea350d62e4"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-CROSS/result.json": {
+      "metadata": {
+        "size": 227107641,
+        "blocks": 443576,
+        "device": 16777229,
+        "inode": 73493364,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339285725232666
+      },
+      "sha256": "e75c33ba8ed5f390852f7743dd299ef7bc623300d53ea2d6d55e9640e12d91e3"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-MUTATE/lifecycle.json": {
+      "metadata": {
+        "size": 4210,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73493289,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339259818175095
+      },
+      "sha256": "539b9a76ab7db37ad451cc8d926cd08190e38981c89971f5ace718b61f869374"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/G001-001-MUTATE/result.json": {
+      "metadata": {
+        "size": 134078040,
+        "blocks": 261872,
+        "device": 16777229,
+        "inode": 73493300,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339265066972280
+      },
+      "sha256": "d974100044fa4df42c6f78c514236f38960ae11ab5fc9efffc498318982dea10"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0001/lifecycle.json": {
+      "metadata": {
+        "size": 4204,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73492837,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339144652901230
+      },
+      "sha256": "6e8e57f8d795fa979d4142278afef28919484846c138e4503f7b859ddeccbc10"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0001/result.json": {
+      "metadata": {
+        "size": 100037393,
+        "blocks": 195392,
+        "device": 16777229,
+        "inode": 73492843,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339147059698859
+      },
+      "sha256": "7ab7e92c8bb4dd12a04f12ffbb84886a63c839ba746ca0b80f32426bc05bc33b"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0002/lifecycle.json": {
+      "metadata": {
+        "size": 4207,
+        "blocks": 16,
+        "device": 16777229,
+        "inode": 73492971,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339177947814910
+      },
+      "sha256": "0efe8b25685c0837e9ef61685f6f746d333f9418605c7a2a13eed13b9451e0d2"
+    },
+    "runs/b1-v6-r3-20261030-134523-982946-70326e84/worker-receipts/INIT-0002/result.json": {
+      "metadata": {
+        "size": 192703439,
+        "blocks": 376376,
+        "device": 16777229,
+        "inode": 73492995,
+        "nlink": 1,
+        "mode": 420,
+        "uid": 501,
+        "gid": 20,
+        "mtime_ns": 1793339184431276889
+      },
+      "sha256": "58e2c32c22458cb5ea70c29f8f53a07817287b01f6d9fc8f0bc0556eb1e507c1"
+    }
+  },
+  "backups": "independent gzip archive; unique content stored once with tar hardlink aliases",
+  "predicted_duplicate_bytes": 5765500928,
+  "protected": "All filenames, result bytes, reports, champions, protocols, configurations, checkpoints, prompts, responses and failure evidence retained. No old run deleted.",
+  "metadata_note": "Hardlinked aliases share canonical inode and modification time; original per-path metadata retained here."
+}

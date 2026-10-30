@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "run": "runs/b1-v6-r1-train21-20261029-01",
+      "phase": "completed",
+      "complete_candidate_instance_rows": 252,
+      "champion_source_matches": true,
+      "r3_acceptance": null,
+      "export_method": "Existing offline _search_reports.finish into disposable staging; original outputs not modified",
+      "solves": 0,
+      "API_requests": 0
+    },
+    {
+      "run": "runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd",
+      "phase": "completed",
+      "complete_candidate_instance_rows": 252,
+      "champion_source_matches": true,
+      "r3_acceptance": null,
+      "export_method": "Existing offline _search_reports.finish into disposable staging; original outputs not modified",
+      "solves": 0,
+      "API_requests": 0
+    },
+    {
+      "run": "runs/b1-v6-r3-20261030-134523-982946-70326e84",
+      "phase": "completed",
+      "complete_candidate_instance_rows": 126,
+      "champion_source_matches": true,
+      "r3_acceptance": true,
+      "export_method": "Existing offline _search_reports.finish into disposable staging; original outputs not modified",
+      "solves": 0,
+      "API_requests": 0
+    }
+  ],
+  "original_file_hashes_unchanged": true,
+  "note": "Completed runs must not resume. Current engine CLI source guard already differs from original frozen source after the previous recording patch; cleanup changes no code or protocol and does not bypass that guard. Offline receipts/export remain readable."
+}

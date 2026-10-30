@@ -1,0 +1,43 @@
+{
+  "stage": "b1",
+  "N": 10,
+  "G": 50,
+  "H": 10,
+  "train_instances": 21,
+  "initialization_attempt_cap": 50,
+  "planned_evolution_requests": 1000,
+  "evolution_request_cap": 1000,
+  "total_attempt_cap": 1050,
+  "max_solve_passes": 44100,
+  "model": "gpt-6.1-sol",
+  "endpoint": "https://leafapi.cc/v1/chat/completions",
+  "api_concurrency": 2,
+  "evaluation_concurrency": 2,
+  "credential_env": "LEAFAPI_API_KEY",
+  "credential_present": false,
+  "real_requests_authorized": false,
+  "free_GiB": 18.711158752441406,
+  "minimum_free_GiB": 20,
+  "storage_allowance_GiB": 10,
+  "required_free_GiB": 20,
+  "recording_mode": "compact",
+  "storage_note": "compact: conservative 10 GiB experiment allowance, not measured final size",
+  "milestone_generations": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "paid_start_blockers": [
+    "真实请求开关关闭；本轮1050次预算待批准",
+    "运行终端须提供凭据环境变量"
+  ],
+  "authorized_config_sha256": "5752b3e8efeeff6284837724c8fdb517eeaf6d326ce39a8ffbcb6a73c46ed21a",
+  "blocking": [
+    "磁盘可用18.71 GiB，本次预留要求20.00 GiB；可清理自行确认的文件或修改RUN_ROOT为外置目录"
+  ],
+  "network_requests_sent": 0,
+  "solves": 0,
+  "mode": "bounded generation batch, then bounded evaluation batch"
+}

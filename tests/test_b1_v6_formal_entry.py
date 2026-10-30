@@ -19,11 +19,25 @@ from heuristic_design.problems import routing_fixtures as fixtures
 
 
 class Tests(unittest.TestCase):
+    def test_disk_observation_does_not_block_when_threshold_is_none(self):
+        from types import SimpleNamespace
+        parameters={**entry.PARAMETERS,'real_requests_authorized':False}
+        args=dict(root=entry.ROOT,stage='b1',run_root=entry.RUN_ROOT,r1_runs=entry.R1_RUNS,
+                  pilot_run=entry.R3_RUN_DIR,r3_compatibility_file=entry.R3_COMPATIBILITY_FILE)
+        with patch.object(launch.shutil,'disk_usage',return_value=SimpleNamespace(free=1)):
+            _,plan,_=launch.preflight(parameters,min_free_gib=None,**args)
+            self.assertEqual(plan['blocking'],[])
+            self.assertFalse(plan['disk_space_gate_enabled']);self.assertIsNone(plan['required_free_GiB'])
+            self.assertFalse(plan['real_requests_authorized']);self.assertEqual(plan['total_attempt_cap'],1050)
+            _,limited,_=launch.preflight(parameters,min_free_gib=20,**args)
+            self.assertTrue(limited['disk_space_gate_enabled'])
+            self.assertTrue(any('磁盘' in reason for reason in limited['blocking']))
+
     def test_exact_new_budget_and_parent_coverage_without_execution(self):
         c=e.config(entry.PARAMETERS)
         self.assertEqual((c['population_size'],c['generations'],c['initialization_request_cap'],
             c['generation_request_cap'],c['api_attempt_cap']),(10,50,50,1000,1050))
-        self.assertFalse(c['real_requests_authorized'])
+        self.assertTrue(c['real_requests_authorized'])
         self.assertEqual((c['api_concurrency'],c['evaluation_concurrency']),(2,2))
         pop=[{'id':str(i),'candidate':{'key':str(i)}} for i in range(10)]
         before=deepcopy(pop);rng=random.Random(501);total=0
@@ -128,7 +142,7 @@ class Tests(unittest.TestCase):
             with self.assertRaises(ValueError):reports.paired_comparison(d,champion)
 
     def test_disabled_gate_never_prepares_or_requests(self):
-        c=e.config(entry.PARAMETERS)
+        c=e.config({**entry.PARAMETERS,'real_requests_authorized':False})
         with patch.object(launch,'preflight',return_value=(c,{'blocking':[]},{})), \
              patch.object(launch.engine,'prepare') as prepare,redirect_stdout(io.StringIO()),self.assertRaises(PermissionError):
             launch.launch(entry.PARAMETERS,root=entry.ROOT,stage='b1',run_root=entry.RUN_ROOT,prefix=entry.RUN_PREFIX,

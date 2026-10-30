@@ -63,7 +63,7 @@ class Tests(unittest.TestCase):
 
     def test_full_run_has_storage_and_pilot_gates_before_paid_start(self):
         c,plan,_=launcher.preflight(run_b1_v6.PARAMETERS,**{k:v for k,v in kwargs(run_b1_v6,'b1').items() if k not in ('prefix','entry')})
-        self.assertFalse(c['real_requests_authorized']);self.assertTrue(plan['blocking'])
+        self.assertTrue(c['real_requests_authorized']);self.assertTrue(plan['blocking'])
         self.assertTrue(any('R3_RUN_DIR' in r for r in plan['blocking']))
         self.assertEqual(plan['total_attempt_cap'],1050)
 

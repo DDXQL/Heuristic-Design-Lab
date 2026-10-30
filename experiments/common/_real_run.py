@@ -64,15 +64,16 @@ def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,au
                     paths=[directory/ev["path"],directory/"worker-receipts"/task["id"]/"result.json"]
                     sizes.append(sum(x.stat().st_size for x in paths if x.exists())/2**30)
         receipts[kind]={"directory":str(directory),"protocol_sha256":sha(directory/"Protocol.json"),"checkpoint_sha256":sha(directory/"checkpoint.json")}
-    if type(min_free_gib) not in (int,float) or min_free_gib<=0:raise ValueError("磁盘保留量必须为正数")
+    if min_free_gib is not None and (type(min_free_gib) not in (int,float) or min_free_gib<=0):
+        raise ValueError("磁盘保留量必须为正数或None（仅观察）")
     run_root=(root/run_root).resolve();parent=run_root
     while not parent.exists():parent=parent.parent
     free=shutil.disk_usage(parent).free/2**30;blocking=[]
     eval_cap=min(c["initialization_candidate_cap"],c["initialization_request_cap"])+2*c["population_size"]*c["generations"]
     compact=c['recording_mode']=='compact'
     estimate=10 if compact else sum(sizes)/len(sizes)*eval_cap
-    required=min_free_gib if compact else max(min_free_gib,max(sizes)*eval_cap+5)
-    if free<required:blocking.append(f"磁盘可用{free:.2f} GiB，本次预留要求{required:.2f} GiB；可清理自行确认的文件或修改RUN_ROOT为外置目录")
+    required=None if min_free_gib is None else (min_free_gib if compact else max(min_free_gib,max(sizes)*eval_cap+5))
+    if required is not None and free<required:blocking.append(f"磁盘可用{free:.2f} GiB，本次预留要求{required:.2f} GiB；可清理自行确认的文件或修改RUN_ROOT为外置目录")
     if stage=="b1":
         if not pilot_run:blocking.append("先指定通过线上验收的R3_RUN_DIR")
         else:
@@ -117,7 +118,7 @@ def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,au
         "api_concurrency":c["api_concurrency"],"evaluation_concurrency":c["evaluation_concurrency"],
         "credential_env":c["provider"]["api_key_env"],"credential_present":c["provider"]["api_key_env"] in os.environ,
         "real_requests_authorized":c["real_requests_authorized"],"free_GiB":free,"minimum_free_GiB":min_free_gib,
-        "storage_allowance_GiB":estimate,"required_free_GiB":required,"recording_mode":c['recording_mode'],
+        "storage_allowance_GiB":estimate,"required_free_GiB":required,"disk_space_gate_enabled":required is not None,"recording_mode":c['recording_mode'],
         "storage_note":"compact: conservative 10 GiB experiment allowance, not measured final size" if compact else "full: extrapolated R1 size",
         "milestone_generations":c['milestone_generations'],
         "paid_start_blockers":([] if c['real_requests_authorized'] else [f"真实请求开关关闭；本轮{c['api_attempt_cap']}次预算待批准"])

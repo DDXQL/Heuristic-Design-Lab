@@ -1,0 +1,32 @@
+{
+  "completed_at": "2026-10-30T15:28:53.784577+08:00",
+  "verified_pairs": 30,
+  "verified_file_paths": 166,
+  "bytes_unchanged": true,
+  "all_paths_preserved": true,
+  "allocated_before_bytes": 11542667264,
+  "allocated_after_bytes": 5777166336,
+  "run_allocated_bytes_released": 5765500928,
+  "backup_bytes": 659439174,
+  "free_before_bytes": 15144239104,
+  "free_before_link_bytes": 14479564800,
+  "free_after_bytes": 20250144768,
+  "observed_free_space_gain_bytes": 5105905664,
+  "net_accounted_bytes_released": 5093556224,
+  "free_space_GiB": 18.859416961669922,
+  "twenty_GiB_gate_satisfied": false,
+  "backup": {
+    "path": "archives/r1-r3-dedup-20261030/r1-r3-complete.tar.gz",
+    "sha256": "605376d3a10930f4e669ebd75f891166e0fedf98c7461031a39d3bbe5380c884",
+    "size_bytes": 659439174,
+    "verified_files": 166,
+    "regular_content_files": 136,
+    "hardlink_aliases": 30,
+    "all_streamed_SHA256_match": true,
+    "backup_manifest_sha256": "d032e26ec8550b2b6c1d9b1b4ef8500ca86030ac389a0bd8c947e0af3cfb2616"
+  },
+  "experiments_started": 0,
+  "API_requests": 0,
+  "old_runs_deleted": 0,
+  "limitation": "Same-volume archive provides logical restoration, not protection against physical disk failure. Hardlink aliases share modification time and bytes; never edit completed result files."
+}

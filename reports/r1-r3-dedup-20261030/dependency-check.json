@@ -1,0 +1,82 @@
+{
+  "baseline_bundle_sha256": "7d37906b6d653655c901361a4f3541cb6636acd1e4a5f366b7bda79ff5ce679d",
+  "r3_evidence_sha256": "b0477687f7edaf134331cc855e71e1c65f0686619af3d7e55f59451c273e024a",
+  "r3_passed": true,
+  "runs": {
+    "b1-v6-r1-train21-20261029-01": {
+      "snapshot": {
+        "phase": "completed",
+        "problem": "fjsp",
+        "generation_transport": "fixed",
+        "evaluation_mode": "solve",
+        "data_split": [
+          "train"
+        ],
+        "generation": 0,
+        "target_generations": 0,
+        "completed_candidates": 12,
+        "best_evaluated_fitness": -2.0880503182042864,
+        "score_is_mock": false,
+        "initialization_requests": 0,
+        "initialization_request_cap": 12,
+        "generation_requests": 0,
+        "generation_request_cap": 0,
+        "api_attempts_reserved": 0,
+        "api_attempt_cap": null,
+        "inflight": [],
+        "writer_lock": false
+      },
+      "existing_engine_guard": "bound source changed: code/heuristic_design/core/evolution_v1.py"
+    },
+    "b1-v6-r1-train21-20261029-221535-858514-d3145ddd": {
+      "snapshot": {
+        "phase": "completed",
+        "problem": "fjsp",
+        "generation_transport": "fixed",
+        "evaluation_mode": "solve",
+        "data_split": [
+          "train"
+        ],
+        "generation": 0,
+        "target_generations": 0,
+        "completed_candidates": 12,
+        "best_evaluated_fitness": -2.0880503182042864,
+        "score_is_mock": false,
+        "initialization_requests": 0,
+        "initialization_request_cap": 12,
+        "generation_requests": 0,
+        "generation_request_cap": 0,
+        "api_attempts_reserved": 0,
+        "api_attempt_cap": 0,
+        "inflight": [],
+        "writer_lock": false
+      },
+      "existing_engine_guard": "bound source changed: code/heuristic_design/core/evolution_v1.py"
+    },
+    "b1-v6-r3-20261030-134523-982946-70326e84": {
+      "snapshot": {
+        "phase": "completed",
+        "problem": "fjsp",
+        "generation_transport": "real",
+        "evaluation_mode": "solve",
+        "data_split": [
+          "train"
+        ],
+        "generation": 1,
+        "target_generations": 1,
+        "completed_candidates": 7,
+        "best_evaluated_fitness": -2.213715768518546,
+        "score_is_mock": false,
+        "initialization_requests": 3,
+        "initialization_request_cap": 4,
+        "generation_requests": 4,
+        "generation_request_cap": 4,
+        "api_attempts_reserved": 7,
+        "api_attempt_cap": 8,
+        "inflight": [],
+        "writer_lock": false
+      },
+      "existing_engine_guard": "bound source changed: code/heuristic_design/core/evolution_v1.py"
+    }
+  }
+}

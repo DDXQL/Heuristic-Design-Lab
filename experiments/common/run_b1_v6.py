@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """B1-V6：历史冻结10H/train21，真实初始化→50代演化→导出并冻结训练冠军
-修改顶部参数后一次运行。默认真实请求关闭；--check-only不请求API、不求解。
-恢复用原common/manage.py resume --allow-api，读取原Protocol，不读新顶部参数。
+本轮1050次已获明确授权，由用户终端启动；--check-only不请求API、不求解。
+恢复用本脚本 --resume RUN_DIR，读取原Protocol，不读新顶部参数。
 """
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
@@ -18,7 +18,7 @@ PARAMETERS = {'problem': 'fjsp',
  'instance_timeout_seconds': 30,
  'h_file': 'preparations/b1-v6-20261029/H_frozen.json',
  'data_manifest': 'preparations/b1-v6-20261029/train21.manifest.json',
- 'real_requests_authorized': False,
+ 'real_requests_authorized': True,
  'api_mode': 'real',
  'initialization': 'llm',
  'population_size': 10,            # 收集10个完整train21有效且AST去重的初始U
@@ -48,10 +48,10 @@ R1_RUNS = {'common': 'runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd',
  'eoh': 'runs/b1-v6-r1-eoh-train21-20261030-111505-503272-95a4a92f'}
 RUN_ROOT = ROOT / "runs"  # 可改为 Path('/Volumes/外置卷/HDL-runs')；整个运行保存在该目录
 RUN_PREFIX = "b1-v6-b1"
-MIN_FREE_GIB = 20  # 保守预留：实验约10 GiB + 系统/运行余量；非最终体积实测
+MIN_FREE_GIB = None  # 仅显示剩余空间，不设磁盘容量启动门槛；不改变API授权或预算
 R3_RUN_DIR = 'runs/b1-v6-r3-20261030-134523-982946-70326e84'  # 已通过，不重复运行
 R3_COMPATIBILITY_FILE = 'reports/b1-v6-n10g50-prepared-20261030/recording-compatibility.json'
-AUTHORIZATION_FILE = 'reports/b1-v6-n10g50-prepared-20261030/AUTHORIZATION.pending.json'  # 新1050次尚未批准
+AUTHORIZATION_FILE = 'reports/b1-v6-n10g50-prepared-20261030/AUTHORIZATION.json'  # 用户已批准本轮1050次；单次认领
 # ===== 参数区结束；以下不实现新的API、演化、并发或恢复逻辑 =====
 import argparse
 import sys
