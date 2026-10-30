@@ -28,7 +28,8 @@ DEFAULTS = dict(version=VERSION, api_mode='mock', real_requests_authorized=False
     evaluation_mode='mock', window=10, enabled_groups=list(GROUPS),
     instance_timeout_seconds=30, mock_reverse_delay=False, mock_faults={},
     mock_delay_seconds=0.0, provider=None, api_attempt_cap=None,
-    data_manifest=None, h_file=None, p0_file=None, state_schema=None)
+    data_manifest=None, h_file=None, p0_file=None, state_schema=None,
+    recording_mode='full', milestone_generations=[])
 
 
 def config(value):
@@ -63,6 +64,12 @@ def config(value):
         raise ValueError('generation request cap cannot cover the frozen 2NG plan')
     if c['instance_timeout_seconds'] != 30:
         raise ValueError('v1 uses complete solve/recheck row T30 and separate 2s exit grace')
+    if c['recording_mode'] not in ('full','compact') or (c['recording_mode']=='compact' and c['problem']!='fjsp'):
+        raise ValueError('recording_mode must be full, or compact for FJSP')
+    milestones=c['milestone_generations']
+    if (not isinstance(milestones,list) or any(type(g) is not int or not 1<=g<=c['generations'] for g in milestones)
+            or milestones!=sorted(set(milestones))):
+        raise ValueError('milestone_generations must be ordered unique generations within G')
     if (not isinstance(c['enabled_groups'],list) or len(set(c['enabled_groups'])) != len(c['enabled_groups'])
             or not set(c['enabled_groups']) <= set(GROUPS) or 'construction' not in c['enabled_groups']):
         raise ValueError('invalid feature groups')
@@ -87,6 +94,38 @@ def source_identity():
 def save(directory, state):
     write(directory/'checkpoint.json',state)
     write(directory/'checkpoint.receipt.json',{'sha256':sha(directory/'checkpoint.json'),'identity':state['identity']})
+
+
+def store_evaluation(directory, task, key, result, mode):
+    """Keep both receipt paths; compact files share bytes where supported."""
+    path=directory/'evaluations'/key/'result.json'
+    if path.exists():raise FileExistsError('evaluation evidence already exists: '+str(path))
+    origin=directory/'worker-receipts'/task['id']/'result.json'
+    if mode=='compact' and origin.exists() and read(origin)==result:
+        path.parent.mkdir(parents=True,exist_ok=True)
+        try:
+            os.link(origin,path)
+            return path,'hardlink'
+        except FileExistsError:raise
+        except OSError as exc:
+            import errno
+            if exc.errno not in (errno.EXDEV,errno.EPERM,errno.EACCES,errno.ENOTSUP,errno.ENOSYS):raise
+    write(path,result)
+    return path,'copy'
+
+
+def save_milestone(directory, state, protocol):
+    g=state['generation']
+    if g not in protocol['config'].get('milestone_generations',[]):return
+    value={'protocol_sha256':state['identity'],'generation':g,'summary':state['generations'][-1],
+           'population':state['population'],'initialization_requests':state['initialization_requests'],
+           'generation_requests':state['generation_requests'],
+           'evaluations':{r['candidate']['key']:state['evaluations'][r['candidate']['key']] for r in state['population']},
+           'notice':'Result snapshot only; resume uses the live checkpoint and original cumulative budget.'}
+    path=directory/f'milestones/G{g:03d}.json'
+    if path.exists() and read(path)!=value:raise FileExistsError('milestone evidence changed')
+    write(path,value)
+    write(path.with_suffix('.receipt.json'),{'sha256':sha(path),'protocol_sha256':state['identity']})
 
 
 def prepare(directory, settings, *, imports=None, h_members=None, instances=None):
@@ -355,6 +394,7 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
                            'population_ids':[r['id'] for r in s['population']], 'mock':c['evaluation_mode']=='mock'}
                     s['generations'].append(row)
                     write(directory/f'populations/P{g:03d}.json',s['population'])
+                    save_milestone(directory,s,p)
                     log_progress(directory,s,p)
                     save(directory,s)
                     continue
@@ -440,7 +480,8 @@ def _execute_batch(directory,s,p,batch,evaluate):
             s['phase']='blocked';save(directory,s)
             raise RuntimeError('evaluation infrastructure failure: '+response['error'])
         key=task['candidate']['key']
-        path=directory/'evaluations'/key/'result.json';write(path,result)
+        path,storage=store_evaluation(directory,task,key,result,c.get('recording_mode','full'))
+        task['result_storage']=storage
         s['evaluations'][key]={'path':str(path.relative_to(directory)),'sha256':sha(path),
             'binding':digest({'protocol':s['identity'],'candidate':key}),
             'behavior_sha256':result.get('behavior_sha256'),'valid':result['valid']}

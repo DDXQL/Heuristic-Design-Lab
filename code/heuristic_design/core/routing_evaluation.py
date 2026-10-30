@@ -17,8 +17,8 @@ from .lifecycle import collect
 ROOT = Path(__file__).resolve().parents[3]
 
 
-def semantic_row(row):
-    return {k:row[k] for k in ('file','score','solution','trace','h_calls')}
+def semantic_row(row, compact=False):
+    return {k:row[k] for k in ('file','score','solution','member_sequence' if compact else 'trace','h_calls')}
 
 
 def _worker(pipe,payload,members,instances,names,allowed_modes):
@@ -28,20 +28,21 @@ def _worker(pipe,payload,members,instances,names,allowed_modes):
     socket.create_connection = deny
     try:
         c=payload['config']
+        compact=c.get('recording_mode','full')=='compact'
         expected=payload['source_files']
         before={name:sha(ROOT/name) for name in expected}
         if before != expected:raise RuntimeError('worker source identity mismatch')
         for instance,name in zip(instances,names):
-            first=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'])
-            second=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'])
-            if semantic_row(first) != semantic_row(second):raise ValueError('full solve/recheck mismatch')
+            first=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact)
+            second=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact)
+            if semantic_row(first,compact) != semantic_row(second,compact):raise ValueError('solve/recheck mismatch')
             after={name:sha(ROOT/name) for name in expected}
             if before != after:raise RuntimeError('worker source changed during evaluation')
             rss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             # macOS bytes; Linux KiB. Store bytes in either environment.
             peak=int(rss if sys.platform=='darwin' else rss*1024)
-            pipe.send({**first,'recheck_semantic_sha256':digest(semantic_row(second)),
-                       'semantic_sha256':digest(semantic_row(first)),
+            pipe.send({**first,'recheck_semantic_sha256':digest(semantic_row(second,compact)),
+                       'semantic_sha256':digest(semantic_row(first,compact)),
                        'recheck_solve_seconds':second['solve_seconds'],
                        'recheck_observation_seconds':second['observation_seconds'],
                        'captured_solves':2,'feasible':True,'worker_peak_rss_bytes':peak,
@@ -80,11 +81,13 @@ def evaluate_task(task,p):
             if (row['semantic_sha256'] != row['recheck_semantic_sha256'] or row['captured_solves'] != 2
                     or row['source_before_sha256'] != row['source_after_sha256']):
                 raise RuntimeError('solve/recheck/source receipts mismatch')
-        behavior=[[t['member_id'] for t in row['trace']] for row in rows]
+        behavior=[row['member_sequence'] if p['config'].get('recording_mode')=='compact'
+                  else [t['member_id'] for t in row['trace']] for row in rows]
         result={'valid':True,'fitness':sum(r['score'] for r in rows)/len(rows),'mock':False,
                 'instances':rows,'behavior_sha256':digest(behavior),'behavior':behavior,
                 'lifecycle':life,'evaluation_seconds':elapsed}
     if any(sha(ROOT/name)!=value for name,value in p['source_files'].items()):
         raise RuntimeError('parent source changed during worker execution')
+    result['recording_mode']=p['config'].get('recording_mode','full')
     write(folder/'result.json',result)
     return result

@@ -22,12 +22,16 @@ FIELDS={"problem","state_schema","api_mode","evaluation_mode","initialization","
         "search_seed","solve_seed","initialization_candidate_cap","initialization_request_cap","generation_request_cap",
         "api_attempt_cap","api_concurrency","evaluation_concurrency","instance_timeout_seconds","window","enabled_groups",
         "h_file","data_manifest","p0_file","provider","real_requests_authorized"}
+RECORDING_FIELDS={"recording_mode","milestone_generations"}
+RECORDING_CHANGES={"code/heuristic_design/core/evolution_v1.py","code/heuristic_design/core/routing_evaluation.py",
+                   "code/heuristic_design/problems/routing_fixtures.py","code/heuristic_design/problems/fjsp/routing.py"}
 COMPAT={"problem","state_schema","api_mode","evaluation_mode","initialization","solve_seed","api_concurrency",
         "evaluation_concurrency","instance_timeout_seconds","window","enabled_groups","provider"}
 
 
-def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,authorization_file=None):
-    if not isinstance(parameters,dict) or set(parameters)!=FIELDS:raise ValueError("真实入口参数存在未知或缺失字段")
+def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,authorization_file=None,r3_compatibility_file=None):
+    if not isinstance(parameters,dict) or not FIELDS<=set(parameters) or set(parameters)-FIELDS-RECORDING_FIELDS:
+        raise ValueError("真实入口参数存在未知或缺失字段")
     if stage not in ("r3","b1"):raise ValueError("未知阶段")
     c=dict(parameters)
     if (c["problem"]!="fjsp" or c["api_mode"]!="real" or c["evaluation_mode"]!="solve"
@@ -65,19 +69,33 @@ def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,au
     while not parent.exists():parent=parent.parent
     free=shutil.disk_usage(parent).free/2**30;blocking=[]
     eval_cap=min(c["initialization_candidate_cap"],c["initialization_request_cap"])+2*c["population_size"]*c["generations"]
-    estimate=sum(sizes)/len(sizes)*eval_cap
-    required=max(min_free_gib,max(sizes)*eval_cap+5)
-    if free<required:blocking.append(f"磁盘可用{free:.2f} GiB，按已测最大候选归档量及保留量预检要求{required:.2f} GiB")
+    compact=c['recording_mode']=='compact'
+    estimate=10 if compact else sum(sizes)/len(sizes)*eval_cap
+    required=min_free_gib if compact else max(min_free_gib,max(sizes)*eval_cap+5)
+    if free<required:blocking.append(f"磁盘可用{free:.2f} GiB，本次预留要求{required:.2f} GiB；可清理自行确认的文件或修改RUN_ROOT为外置目录")
     if stage=="b1":
         if not pilot_run:blocking.append("先指定通过线上验收的R3_RUN_DIR")
         else:
             directory=(root/pilot_run).resolve();p,s=protocol_state(directory);proof=evidence(directory)
             if not proof["passed"]:blocking.append("R3尚未通过真实并发/传输验收")
-            if any(p["config"][key]!=c[key] for key in COMPAT) or p["source_files"]!=engine.source_identity():
+            compatible=p['source_files']==engine.source_identity()
+            if not compatible and r3_compatibility_file:
+                path=(root/r3_compatibility_file).resolve();bridge=read(path)
+                changed={k for k in p['source_files'].keys()|engine.source_identity().keys()
+                         if p['source_files'].get(k)!=engine.source_identity().get(k)}
+                proof_path=root/bridge['verification_path']
+                compatible=(bridge['r3_protocol_sha256']==sha(directory/'Protocol.json')
+                    and bridge['before']==p['source_files'] and bridge['after']==engine.source_identity()
+                    and set(bridge['changed_paths'])==changed and changed<=RECORDING_CHANGES
+                    and sha(proof_path)==bridge['verification_sha256'] and read(proof_path)['passed'] is True)
+                receipts['recording_compatibility']={'path':str(path),'sha256':sha(path),'compatible':compatible}
+            if any(p["config"][key]!=c[key] for key in COMPAT) or not compatible:
                 blocking.append("R3与正式搜索的模型/协议/并发/状态/源码身份不兼容")
             if (p["input_provenance"]["H"]["sha256"]!=origin["H"]["sha256"]
                 or p["input_provenance"]["data"]["sha256"]!=origin["data"]["sha256"]):blocking.append("R3与正式输入身份不同")
             receipts["r3"]={"directory":str(directory),"protocol_sha256":sha(directory/"Protocol.json")}
+        from experiments.common._search_reports import baseline_bundle
+        receipts['baselines']=baseline_bundle(root,r1_runs,data,members,c)
     authorization=None
     if c["real_requests_authorized"]:
         if not authorization_file:blocking.append("尚无本批明确授权记录")
@@ -87,6 +105,7 @@ def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,au
                 or authorization.get("max_attempts")!=c["api_attempt_cap"]
                 or authorization.get("source_files")!=engine.source_identity()):
                 raise PermissionError("当前参数不在已授权批次范围内")
+            if stage=='b1' and authorization.get('status')!='approved':blocking.append('1050次正式预算尚未明确批准')
             claim=path.with_suffix(".claim.json")
             if claim.exists():blocking.append("该授权已绑定运行，先status核查，勿普通启动另一批："+str(read(claim)["run_directory"]))
             receipts["authorization"]={"path":str(path),"sha256":sha(path),"claim_path":str(claim)}
@@ -98,13 +117,18 @@ def preflight(parameters,*,root,stage,run_root,min_free_gib,r1_runs,pilot_run,au
         "api_concurrency":c["api_concurrency"],"evaluation_concurrency":c["evaluation_concurrency"],
         "credential_env":c["provider"]["api_key_env"],"credential_present":c["provider"]["api_key_env"] in os.environ,
         "real_requests_authorized":c["real_requests_authorized"],"free_GiB":free,"minimum_free_GiB":min_free_gib,
-        "mean_calibration_storage_estimate_GiB":estimate,"required_free_GiB":required,
+        "storage_allowance_GiB":estimate,"required_free_GiB":required,"recording_mode":c['recording_mode'],
+        "storage_note":"compact: conservative 10 GiB experiment allowance, not measured final size" if compact else "full: extrapolated R1 size",
+        "milestone_generations":c['milestone_generations'],
+        "paid_start_blockers":([] if c['real_requests_authorized'] else [f"真实请求开关关闭；本轮{c['api_attempt_cap']}次预算待批准"])
+            +([] if c['provider']['api_key_env'] in os.environ else ['运行终端须提供凭据环境变量']),
+        "authorized_config_sha256":digest({**c,'real_requests_authorized':True}),
         "blocking":blocking,"network_requests_sent":0,"solves":0,"mode":"bounded generation batch, then bounded evaluation batch"}
     return c,plan,receipts
 
 
-def launch(parameters,*,root,stage,run_root,prefix,min_free_gib,r1_runs,pilot_run,entry,check_only=False,authorization_file=None):
-    c,plan,receipts=preflight(parameters,root=root,stage=stage,run_root=run_root,min_free_gib=min_free_gib,r1_runs=r1_runs,pilot_run=pilot_run,authorization_file=authorization_file)
+def launch(parameters,*,root,stage,run_root,prefix,min_free_gib,r1_runs,pilot_run,entry,check_only=False,authorization_file=None,r3_compatibility_file=None):
+    c,plan,receipts=preflight(parameters,root=root,stage=stage,run_root=run_root,min_free_gib=min_free_gib,r1_runs=r1_runs,pilot_run=pilot_run,authorization_file=authorization_file,r3_compatibility_file=r3_compatibility_file)
     if not isinstance(prefix,str) or not prefix or "/" in prefix or "\\" in prefix or prefix in (".",".."):raise ValueError("非法运行目录前缀")
     print(json.dumps(plan,ensure_ascii=False,indent=2))
     if check_only:return 2 if plan["blocking"] else 0
@@ -121,6 +145,10 @@ def launch(parameters,*,root,stage,run_root,prefix,min_free_gib,r1_runs,pilot_ru
     for path in (Path(entry).resolve(),Path(__file__).resolve(),Path(__file__).with_name("_search_reports.py")):
         (folder/path.name).write_bytes(path.read_bytes())
     write(folder/"parameters.json",c);write(folder/"prerequisites.json",receipts);write(folder/"plan.json",plan)
+    if stage=='b1':
+        write(folder/'baselines.json',receipts['baselines'])
+        write(folder/'postprocess.receipt.json',{'baselines_sha256':sha(folder/'baselines.json'),
+              'helper_sha256':sha(folder/'_search_reports.py')})
     try:
         with (directory/"terminal.log").open("x") as log,redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
             print(json.dumps({"prepared":prepared,"plan":plan},ensure_ascii=False,indent=2))
@@ -137,3 +165,23 @@ def launch(parameters,*,root,stage,run_root,prefix,min_free_gib,r1_runs,pilot_ru
             except BaseException as exc:
                 print(f"运行停止：{type(exc).__name__}: {exc}；保留原目录/锁/预算，不重试。",file=sys.stderr);raise
     finally:print(f"运行目录：{directory}\n日志：{directory/'terminal.log'}\n结果：{directory/'exports'}")
+
+
+def existing(directory,*,root,resume=False):
+    """Auxiliary resume/export: use frozen run parameters and archived reporter."""
+    import importlib.util
+    directory=(root/directory).resolve();p,s=engine.check(directory)
+    folder=directory/'launch';receipt=read(folder/'postprocess.receipt.json')
+    helper=folder/'_search_reports.py'
+    if sha(helper)!=receipt['helper_sha256']:raise ValueError('冻结导出实现身份改变')
+    if sha(folder/'baselines.json')!=receipt['baselines_sha256']:raise ValueError('冻结基线结果改变')
+    spec=importlib.util.spec_from_file_location('_frozen_b1_reports',helper)
+    reporter=importlib.util.module_from_spec(spec);spec.loader.exec_module(reporter)
+    with (directory/'terminal.log').open('a') as log,redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
+        if resume:
+            if s['phase']!='paused':raise ValueError('只有安全paused可恢复；completed不得resume；未知锁/在途先核查')
+            engine.run(directory,allow_api=True)
+        summary=export(directory);reporter.finish(directory,summary)
+        print(json.dumps({'phase':summary['phase'],'completed_generations':summary['generation'],
+                          'result_directory':str(directory/'exports')},ensure_ascii=False,indent=2))
+    return 0 if not resume or summary['phase']=='completed' else 2

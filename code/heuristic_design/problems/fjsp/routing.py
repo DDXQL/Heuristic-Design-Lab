@@ -18,6 +18,7 @@ class RouteResult:
     trace: tuple
     h_calls: tuple
     observation_seconds: float
+    member_sequence: tuple = ()
 
 
 def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), trace=True):
@@ -59,4 +60,4 @@ def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GR
     schedule = Schedule(tuple(state.scheduled), max(state.machine_ready))
     validate_schedule(instance, schedule)
     return RouteResult(schedule, -schedule.makespan / lower_bound_v5(instance),
-                       tuple(rows), tuple(calls), observation)
+                       tuple(rows), tuple(calls), observation, tuple(state.selected_members))
