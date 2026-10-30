@@ -1,0 +1,14 @@
+test_actual_R1_preflight_and_dry_run_never_prepare_solve_or_connect (test_real_single_entry.Tests.test_actual_R1_preflight_and_dry_run_never_prepare_solve_or_connect) ... ok
+test_claimed_R3_authorization_blocks_another_new_paid_batch (test_real_single_entry.Tests.test_claimed_R3_authorization_blocks_another_new_paid_batch) ... ok
+test_disabled_API_refuses_before_new_run_or_credential_access (test_real_single_entry.Tests.test_disabled_API_refuses_before_new_run_or_credential_access) ... ok
+test_full_run_has_storage_and_pilot_gates_before_paid_start (test_real_single_entry.Tests.test_full_run_has_storage_and_pilot_gates_before_paid_start) ... ok
+test_more_than_approved_attempts_requires_a_new_explicit_scope (test_real_single_entry.Tests.test_more_than_approved_attempts_requires_a_new_explicit_scope) ... ok
+test_overlaps_and_parent_receipts_are_required_for_online_acceptance (test_real_single_entry.Tests.test_overlaps_and_parent_receipts_are_required_for_online_acceptance) ... ok
+test_skipped_duplicate_does_not_get_a_second_instance_evaluation (test_real_single_entry.Tests.test_skipped_duplicate_does_not_get_a_second_instance_evaluation) ... ok
+test_stream_instance_export_skips_trace_and_preserves_quality (test_real_single_entry.Tests.test_stream_instance_export_skips_trace_and_preserves_quality) ... ok
+test_unknown_provider_parameter_fails_instead_of_being_ignored (test_real_single_entry.Tests.test_unknown_provider_parameter_fails_instead_of_being_ignored) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.845s
+
+OK

@@ -1,0 +1,30 @@
+{
+  "stage": "b1",
+  "N": 5,
+  "G": 20,
+  "H": 10,
+  "train_instances": 21,
+  "initialization_attempt_cap": 20,
+  "planned_evolution_requests": 200,
+  "evolution_request_cap": 200,
+  "total_attempt_cap": 220,
+  "max_solve_passes": 9240,
+  "model": "gpt-6.1-sol",
+  "endpoint": "https://leafapi.cc/v1/chat/completions",
+  "api_concurrency": 2,
+  "evaluation_concurrency": 2,
+  "credential_env": "LEAFAPI_API_KEY",
+  "credential_present": false,
+  "real_requests_authorized": false,
+  "free_GiB": 13.787593841552734,
+  "minimum_free_GiB": 160,
+  "mean_calibration_storage_estimate_GiB": 82.30886613018811,
+  "required_free_GiB": 160,
+  "blocking": [
+    "磁盘可用13.79 GiB，按已测最大候选归档量及保留量预检要求160.00 GiB",
+    "先指定通过线上验收的R3_RUN_DIR"
+  ],
+  "network_requests_sent": 0,
+  "solves": 0,
+  "mode": "bounded generation batch, then bounded evaluation batch"
+}
