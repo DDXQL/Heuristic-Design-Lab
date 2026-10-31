@@ -185,7 +185,11 @@ def launch(plan,arm,*,root,entry,authorization_file):
     write(folder/'postprocess.receipt.json',{'baselines_sha256':sha(folder/'baselines.json'),'helper_sha256':sha(folder/'_search_reports.py')})
     with (target/'terminal.log').open('x') as log,redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
         print(json.dumps({'arm':arm,'directory':str(target),'config':c,'shared_p0_sha256':plan['shared_p0_sha256']},ensure_ascii=False,indent=2))
-        engine.run(target,allow_api=True)
+        result=engine.run(target,allow_api=True,before_evolution=lambda d:p0_generation_gate(d,plan))
+        if result['phase']=='blocked':
+            print(json.dumps({'phase':'blocked','generation':result['generation'],
+                              'notice':'Stopped; inspect checkpoint and launch/p0-recheck.json. No automatic retry.'}))
+            return 2
         summary=export(target);finish(target,summary)
         certify_imported_p0(target,plan)
         print(json.dumps({'phase':summary['phase'],'generations':summary['generation'],'results':str(target/'exports')},ensure_ascii=False))
@@ -198,7 +202,8 @@ def existing_arm(directory,arm,*,root,resume=False):
     if resume and (directory/('B' if arm=='A' else 'A')/'.coordinator.lock').exists():
         raise ValueError('Other arm is running or has an unknown writer lock')
     check_arm_binding(directory/arm,arm,plan)
-    status=existing(directory/arm,root=root,resume=resume)
+    status=existing(directory/arm,root=root,resume=resume,
+                    before_evolution=lambda d:p0_generation_gate(d,plan))
     certify_imported_p0(directory/arm,plan)
     return status
 
@@ -210,12 +215,24 @@ def check_arm_binding(directory,arm,plan):
         raise ValueError('Arm Protocol differs from its frozen pair config/source/P0')
 
 
+def p0_generation_gate(directory,plan):
+    passed=certify_imported_p0(directory,plan)
+    state=read(directory/'checkpoint.json')
+    path=directory/'launch/p0-before-generation.json'
+    if not path.exists():
+        write(path,{'passed':passed,'generation':state['generation'],
+                    'generation_requests':state['generation_requests'],
+                    'shared_p0_sha256':plan['shared_p0_sha256'],
+                    'notice':'Checked before generation planning/reservation; no API request or solve in this gate.'})
+    return passed
+
+
 def certify_imported_p0(directory,plan):
-    """Post-run certification only, not a seeded historical Fitness or re-solve."""
+    """Pre-generation gate (and export audit), never a re-solve or score seed."""
     state=read(directory/'checkpoint.json');path=directory/'populations/P000.json'
     if not path.exists():
         write(directory/'launch/p0-recheck.json',{'status':'not_complete','passed':False,'shared_p0_sha256':plan['shared_p0_sha256']})
-        return
+        return False
     pop=read(path);expected={r['candidate_key']:r for r in plan['shared_p0']['reference_evaluations']}
     passed=(len(pop)==len(expected) and {r['candidate']['key'] for r in pop}==set(expected)
             and all(abs(r['fitness']-expected[r['candidate']['key']]['fitness'])<=1e-12
@@ -224,3 +241,4 @@ def certify_imported_p0(directory,plan):
           'shared_p0_sha256':plan['shared_p0_sha256'],'new_generation_API_requests_for_P0':0,
           'notice':'Actual per-arm import reevaluations compared with frozen P0; historical scores were not seeded.'})
     if not passed and state['generation']>0:raise ValueError('Imported P0 results differ; do not treat this pair as comparable')
+    return passed

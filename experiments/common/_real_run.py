@@ -168,7 +168,7 @@ def launch(parameters,*,root,stage,run_root,prefix,min_free_gib,r1_runs,pilot_ru
     finally:print(f"运行目录：{directory}\n日志：{directory/'terminal.log'}\n结果：{directory/'exports'}")
 
 
-def existing(directory,*,root,resume=False):
+def existing(directory,*,root,resume=False,before_evolution=None):
     """Auxiliary resume/export: use frozen run parameters and archived reporter."""
     import importlib.util
     directory=(root/directory).resolve();p,s=engine.check(directory)
@@ -181,7 +181,11 @@ def existing(directory,*,root,resume=False):
     with (directory/'terminal.log').open('a') as log,redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
         if resume:
             if s['phase']!='paused':raise ValueError('只有安全paused可恢复；completed不得resume；未知锁/在途先核查')
-            engine.run(directory,allow_api=True)
+            result=engine.run(directory,allow_api=True,before_evolution=before_evolution)
+            if result['phase']=='blocked':
+                print(json.dumps({'phase':'blocked','generation':result['generation'],
+                                  'notice':'Stopped; inspect checkpoint and pre-evolution gate receipt. No automatic retry.'}))
+                return 2
         summary=export(directory);reporter.finish(directory,summary)
         print(json.dumps({'phase':summary['phase'],'completed_generations':summary['generation'],
                           'result_directory':str(directory/'exports')},ensure_ascii=False,indent=2))

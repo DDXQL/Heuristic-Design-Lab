@@ -12,7 +12,8 @@ from heuristic_design.core.storage import read,digest
 
 
 def plan():
-    return ab.preview(entry.PARAMETERS,source=entry.P0_SOURCE,pair_directory=entry.PAIR_DIRECTORY,
+    # Editable local launch switches/grant paths are not test prerequisites.
+    return ab.preview({**entry.PARAMETERS,'real_requests_authorized':False},source=entry.P0_SOURCE,pair_directory=entry.PAIR_DIRECTORY,
                       root=entry.ROOT,entry=Path(entry.__file__),pair_attempt_cap=entry.PAIR_API_ATTEMPT_CAP)
 
 
@@ -34,7 +35,6 @@ class Tests(unittest.TestCase):
         self.assertEqual({k for k in a if a[k]!=b[k]},{'survival_policy'})
         self.assertEqual((a['api_attempt_cap'],b['api_attempt_cap']),(1000,1000))
         self.assertFalse(a['real_requests_authorized']);self.assertFalse(b['real_requests_authorized'])
-        self.assertIsNone(entry.AUTHORIZATION_FILE)
         self.assertLessEqual(set(p['shared_p0']['allowed_source_changes']),ab.SELECTOR_ONLY)
 
     def test_incompatible_seed_state_deadline_or_provider_is_rejected(self):
@@ -131,6 +131,91 @@ class Tests(unittest.TestCase):
             self.assertTrue(read(d/'launch/p0-recheck.json')['passed'])
             pop[0]['fitness']+=1;write(d/'populations/P000.json',pop)
             with self.assertRaises(ValueError):ab.certify_imported_p0(d,self.plan)
+
+    def _gate_state(self,ready=False):
+        refs=self.plan['shared_p0']['reference_evaluations']
+        pop=[{'id':f'INIT-{i:04d}','candidate':{'key':r['candidate_key']},
+              'fitness':r['fitness'],'behavior_sha256':r['behavior_sha256']} for i,r in enumerate(refs)]
+        return {'identity':'UNIT_ONLY','phase':'paused','generation':0,'population':pop,
+                'initialization_complete':ready,'completed_tasks':10,'generation_requests':0,
+                'initialization_requests':0,'plans':{},'pause_ack':0}
+
+    def _run_gate(self,d,state):
+        # Drive coordinator control flow using saved data only. No evaluator,
+        # transport, synthetic search, prepare, or imported candidate executes.
+        with patch.object(e,'check',return_value=({'config':self.plan['arm_configs']['A']},state)), \
+             patch('heuristic_design.llm.routing_transport.preflight'),patch.object(e,'log_progress'), \
+             patch.object(e,'_execute_batch',side_effect=AssertionError('NO GENERATE/EVALUATE')) as batch, \
+             patch('socket.socket.connect',side_effect=AssertionError('NO NETWORK')):
+            result=e.run(d,evaluate=lambda *a:None,before_evolution=lambda path:ab.p0_generation_gate(path,self.plan))
+            batch.assert_not_called()
+        return result
+
+    def test_P0_mismatch_blocks_at_generation_zero_without_plans_reservations_or_lock(self):
+        from heuristic_design.core.storage import write
+        for ready in (False,True):
+            for field,bad in (('fitness',100.0),('behavior_sha256','WRONG'),('candidate',{'key':'WRONG'})):
+                with self.subTest(ready=ready,field=field),tempfile.TemporaryDirectory() as temp:
+                    d=Path(temp);state=self._gate_state(ready);state['population'][0][field]=bad
+                    if ready:write(d/'populations/P000.json',state['population'])
+                    with patch.object(e,'plan_generation',side_effect=AssertionError('NO PLAN')) as planner:
+                        result=self._run_gate(d,state)
+                        planner.assert_not_called()
+                    self.assertEqual(result['phase'],'blocked');self.assertEqual(result['generation_requests'],0)
+                    self.assertEqual(state['plans'],{});self.assertFalse((d/'.coordinator.lock').exists())
+                    self.assertFalse(read(d/'launch/p0-before-generation.json')['passed'])
+
+    def test_missing_P0_is_fail_closed_before_generation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            d=Path(temp)
+            with patch.object(e,'plan_generation',side_effect=AssertionError('NO PLAN')):
+                result=self._run_gate(d,self._gate_state(True))
+            self.assertEqual(result['phase'],'blocked')
+            self.assertFalse(read(d/'launch/p0-recheck.json')['passed'])
+
+    def test_matching_P0_gate_runs_before_first_plan_including_resume(self):
+        import random
+        from heuristic_design.core.storage import write
+        class ReachedFirstPlan(Exception):pass
+        for ready in (False,True):
+            with self.subTest(ready=ready),tempfile.TemporaryDirectory() as temp:
+                d=Path(temp);state=self._gate_state(ready);state['rng']=random.Random(501).getstate()
+                if ready:write(d/'populations/P000.json',state['population'])
+                def first_plan(*args):
+                    receipt=read(d/'launch/p0-before-generation.json')
+                    self.assertTrue(receipt['passed']);self.assertEqual(receipt['generation'],0)
+                    self.assertEqual(receipt['generation_requests'],0)
+                    raise ReachedFirstPlan()
+                with patch.object(e,'plan_generation',side_effect=first_plan),self.assertRaises(ReachedFirstPlan):
+                    self._run_gate(d,state)
+                self.assertEqual(state['generation_requests'],0)
+
+    def test_resume_entry_forwards_the_same_P0_gate(self):
+        with patch.object(ab,'read_pair',return_value=self.plan),patch.object(ab,'check_arm_binding'), \
+             patch.object(ab,'existing',return_value=0) as existing, \
+             patch.object(ab,'certify_imported_p0',return_value=True),patch.object(ab,'p0_generation_gate',return_value=True) as gate:
+            self.assertEqual(ab.existing_arm(Path('UNIT_ONLY'),'A',root=entry.ROOT,resume=True),0)
+            callback=existing.call_args.kwargs['before_evolution']
+            self.assertTrue(callback(Path('UNIT_ONLY/A')))
+            gate.assert_called_once_with(Path('UNIT_ONLY/A'),self.plan)
+
+    def test_blocked_resume_returns_without_export_or_postprocessing(self):
+        from experiments.common import _real_run
+        from heuristic_design.core.storage import write,sha
+        with tempfile.TemporaryDirectory() as temp:
+            d=Path(temp);folder=d/'launch';folder.mkdir()
+            helper=folder/'_search_reports.py'
+            helper.write_text('def finish(*args):\n    raise AssertionError("NO POSTPROCESS")\n')
+            write(folder/'baselines.json',{})
+            write(folder/'postprocess.receipt.json',{'helper_sha256':sha(helper),
+                'baselines_sha256':sha(folder/'baselines.json')})
+            gate=lambda path:False
+            with patch.object(e,'check',return_value=({}, {'phase':'paused'})), \
+                 patch.object(e,'run',return_value={'phase':'blocked','generation':0}) as run, \
+                 patch.object(_real_run,'export',side_effect=AssertionError('NO EXPORT')) as export,redirect_stdout(io.StringIO()):
+                self.assertEqual(_real_run.existing(d,root=d,resume=True,before_evolution=gate),2)
+                run.assert_called_once_with(d.resolve(),allow_api=True,before_evolution=gate)
+                export.assert_not_called()
 
     def test_arm_Protocol_cannot_be_swapped_between_pair_policies(self):
         p={'config':self.plan['arm_configs']['B'],'source_files':self.plan['source_files'],

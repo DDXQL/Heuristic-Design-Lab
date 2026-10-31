@@ -314,8 +314,8 @@ def request_pause(directory):
     return {'requested':True,'sequence':sequence}
 
 
-def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
-    """Only this coordinator writes checkpoint, budgets, plans and responses."""
+def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, before_evolution=None):
+    """Single writer; optional fail-closed gate after P0 and before any generation."""
     directory = Path(directory).resolve()
     p,s = check(directory)
     from heuristic_design.llm.routing_transport import preflight
@@ -374,6 +374,12 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
                     batch.append(task)
                 save(directory,s)
             else:
+                # Also runs on resume. A rejected imported P0 must never reach
+                # planning, request reservation, or generation transport.
+                if before_evolution is not None:
+                    if before_evolution(directory) is not True:
+                        s['phase']='blocked';break
+                    before_evolution = None
                 if s['generation'] == c['generations']:
                     s['phase']='completed';break
                 g = s['generation']+1
