@@ -1,0 +1,24 @@
+test_default_policy_is_original_survival (test_coverage_evolution_v1.BehaviorFirstTests.test_default_policy_is_original_survival) ... ok
+test_explicit_policy_preserves_global_elite_and_group_best (test_coverage_evolution_v1.BehaviorFirstTests.test_explicit_policy_preserves_global_elite_and_group_best) ... ok
+test_fixed_ID_ties_and_input_completion_order_do_not_change_result (test_coverage_evolution_v1.BehaviorFirstTests.test_fixed_ID_ties_and_input_completion_order_do_not_change_result) ... ok
+test_reject_unknown_policy_missing_identity_duplicate_ID_or_bad_size (test_coverage_evolution_v1.BehaviorFirstTests.test_reject_unknown_policy_missing_identity_duplicate_ID_or_bad_size) ... ok
+test_single_group_matches_original_ranking (test_coverage_evolution_v1.BehaviorFirstTests.test_single_group_matches_original_ranking) ... ok
+test_too_few_groups_fill_ranked_candidates_to_N (test_coverage_evolution_v1.BehaviorFirstTests.test_too_few_groups_fill_ranked_candidates_to_N) ... ok
+test_P0_receipt_change_is_rejected (test_survival_ab_entry.Tests.test_P0_receipt_change_is_rejected) ... ok
+test_actual_P0_is_shared_and_historical_cost_is_separate (test_survival_ab_entry.Tests.test_actual_P0_is_shared_and_historical_cost_is_separate) ... ok
+test_actual_import_recheck_does_not_seed_reference_fitness (test_survival_ab_entry.Tests.test_actual_import_recheck_does_not_seed_reference_fitness) ... ok
+test_arm_Protocol_cannot_be_swapped_between_pair_policies (test_survival_ab_entry.Tests.test_arm_Protocol_cannot_be_swapped_between_pair_policies) ... ok
+test_closed_or_missing_new_approval_never_prepares_or_runs (test_survival_ab_entry.Tests.test_closed_or_missing_new_approval_never_prepares_or_runs) ... ok
+test_incompatible_seed_state_deadline_or_provider_is_rejected (test_survival_ab_entry.Tests.test_incompatible_seed_state_deadline_or_provider_is_rejected) ... ok
+test_new_Protocol_records_policy_and_unique_identity_without_evaluation (test_survival_ab_entry.Tests.test_new_Protocol_records_policy_and_unique_identity_without_evaluation) ... ok
+test_non_selector_source_change_is_rejected (test_survival_ab_entry.Tests.test_non_selector_source_change_is_rejected) ... ok
+test_old_batch_approval_cannot_be_used (test_survival_ab_entry.Tests.test_old_batch_approval_cannot_be_used) ... ok
+test_pair_fingerprint_binds_budget_and_P0_but_not_the_enable_switch (test_survival_ab_entry.Tests.test_pair_fingerprint_binds_budget_and_P0_but_not_the_enable_switch) ... ok
+test_preview_has_no_network_solve_prepare_or_directory_creation (test_survival_ab_entry.Tests.test_preview_has_no_network_solve_prepare_or_directory_creation) ... ok
+test_resume_routes_to_frozen_pair_and_ignores_edited_top_parameters (test_survival_ab_entry.Tests.test_resume_routes_to_frozen_pair_and_ignores_edited_top_parameters) ... ok
+test_wrong_budget_or_unknown_parameter_fails (test_survival_ab_entry.Tests.test_wrong_budget_or_unknown_parameter_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.913s
+
+OK

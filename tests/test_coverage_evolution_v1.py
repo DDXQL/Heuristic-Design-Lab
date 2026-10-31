@@ -133,4 +133,56 @@ class Tests(unittest.TestCase):
             with self.assertRaises(ValueError):e.config({'api_mode':'real'})
 
 
+
+class BehaviorFirstTests(unittest.TestCase):
+    """Pure data only: never invoke generation, solving or engine.run."""
+    @staticmethod
+    def row(tid,fitness,group):
+        return {'id':tid,'fitness':fitness,'behavior_sha256':group}
+
+    def test_default_policy_is_original_survival(self):
+        from heuristic_design.core.search import survive
+        pop=[self.row('p',4,'a'),self.row('q',3,'a')];children=[self.row('r',2,'b')]
+        self.assertEqual(e.config({})['survival_policy'],'fitness')
+        self.assertEqual(e.select_survivors(pop,children,{'population_size':2}),survive(pop,children,2))
+
+    def test_explicit_policy_preserves_global_elite_and_group_best(self):
+        from heuristic_design.core.search import survive_behavior_first
+        pop=[self.row('a',10,'x'),self.row('b',9,'x')]
+        children=[self.row('c',8,'y'),self.row('d',7,'z'),self.row('e',6,'y')]
+        selected=survive_behavior_first(pop,children,3)
+        self.assertEqual([r['id'] for r in selected],['a','c','d'])
+        self.assertEqual(e.select_survivors(pop,children,{'population_size':3,'survival_policy':'behavior_first'}),selected)
+
+    def test_too_few_groups_fill_ranked_candidates_to_N(self):
+        from heuristic_design.core.search import survive_behavior_first
+        pool=[self.row('a',10,'x'),self.row('b',9,'x'),self.row('c',8,'x'),self.row('d',1,'y'),self.row('e',0,'y')]
+        selected=survive_behavior_first(pool,[],4)
+        self.assertEqual([r['id'] for r in selected],['a','b','c','d'])
+        self.assertEqual(len(selected),4)
+
+    def test_single_group_matches_original_ranking(self):
+        from heuristic_design.core.search import survive_behavior_first,survive
+        pool=[self.row(str(i),i,'same') for i in range(9)]
+        self.assertEqual(survive_behavior_first(pool,[],5),survive(pool,[],5))
+
+    def test_fixed_ID_ties_and_input_completion_order_do_not_change_result(self):
+        from copy import deepcopy
+        from heuristic_design.core.search import survive_behavior_first
+        pool=[self.row('a',10,'x'),self.row('b',10,'y'),self.row('c',10,'x'),self.row('d',9,'z')]
+        original=deepcopy(pool);expected=['a','b','d']
+        for seed in range(20):
+            shuffled=deepcopy(pool);random.Random(seed).shuffle(shuffled)
+            self.assertEqual([r['id'] for r in survive_behavior_first(shuffled[:2],shuffled[2:],3)],expected)
+        self.assertEqual(pool,original)
+
+    def test_reject_unknown_policy_missing_identity_duplicate_ID_or_bad_size(self):
+        from heuristic_design.core.search import survive_behavior_first
+        for value in ('typo',None,False):
+            with self.assertRaises(ValueError):e.config({'survival_policy':value})
+        with self.assertRaises(ValueError):e.select_survivors([],[],{'population_size':2,'survival_policy':'typo'})
+        for pool,n in (([{'id':'a','fitness':1}],1),([self.row('a',1,'x')]*2,2),
+                       ([self.row('a',1,'x')],2),([self.row('a',1,'x')],True)):
+            with self.assertRaises(ValueError):survive_behavior_first(pool,[],n)
+
 if __name__=='__main__':unittest.main()

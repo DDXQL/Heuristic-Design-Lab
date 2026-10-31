@@ -1,0 +1,537 @@
+[
+  {
+    "generation": 1,
+    "A": [
+      {
+        "id": "G001-002-MUTATE",
+        "fitness": -2.0704843742290615,
+        "behavior_sha256": "edee7ce5e030cfbeb72bcacb2c9cb5bd07d2127706884f63079deea590d151b3"
+      },
+      {
+        "id": "G001-004-MUTATE",
+        "fitness": -2.0861652258341943,
+        "behavior_sha256": "2a7c4a6945398b36345048347f0eceb268cc5bd2825dfc397dbbbc66cea501ad"
+      },
+      {
+        "id": "G001-000-CROSS",
+        "fitness": -2.088958835427571,
+        "behavior_sha256": "ac9255849a565de57f22d7da456bd59c5d589d737fc82da6c04f973dbba0c84f"
+      },
+      {
+        "id": "INIT-0010",
+        "fitness": -2.0945234792709395,
+        "behavior_sha256": "497c7c6c5d9058f7fe35a65dbf3bbf12e6a017b3c2dd75660e0ef8e727f6e914"
+      },
+      {
+        "id": "INIT-0009",
+        "fitness": -2.1064654229887414,
+        "behavior_sha256": "fec0628b22d230f146af3476748b11bf67b75ae097cf1c11179fa762dabee6cf"
+      },
+      {
+        "id": "INIT-0022",
+        "fitness": -2.109853444900835,
+        "behavior_sha256": "189df116576c74fbce55bf78e82c4cd29527a4b48b8a92d4dfe76b3cb289481b"
+      },
+      {
+        "id": "G001-003-CROSS",
+        "fitness": -2.1526407968346026,
+        "behavior_sha256": "adf3b8234b9822a59a7829a1f17d34a514f613ffa10261094a9b979013b4a912"
+      },
+      {
+        "id": "G001-003-MUTATE",
+        "fitness": -2.1526407968346026,
+        "behavior_sha256": "adf3b8234b9822a59a7829a1f17d34a514f613ffa10261094a9b979013b4a912"
+      },
+      {
+        "id": "INIT-0020",
+        "fitness": -2.1526407968346026,
+        "behavior_sha256": "adf3b8234b9822a59a7829a1f17d34a514f613ffa10261094a9b979013b4a912"
+      },
+      {
+        "id": "INIT-0004",
+        "fitness": -2.156723240302168,
+        "behavior_sha256": "15c6d623243e2197e42b208c3e1caaa95593219df731b9af7f6b97947269d488"
+      }
+    ],
+    "B": [
+      {
+        "id": "G001-002-MUTATE",
+        "fitness": -2.0704843742290615,
+        "behavior_sha256": "edee7ce5e030cfbeb72bcacb2c9cb5bd07d2127706884f63079deea590d151b3"
+      },
+      {
+        "id": "G001-004-MUTATE",
+        "fitness": -2.0861652258341943,
+        "behavior_sha256": "2a7c4a6945398b36345048347f0eceb268cc5bd2825dfc397dbbbc66cea501ad"
+      },
+      {
+        "id": "G001-000-CROSS",
+        "fitness": -2.088958835427571,
+        "behavior_sha256": "ac9255849a565de57f22d7da456bd59c5d589d737fc82da6c04f973dbba0c84f"
+      },
+      {
+        "id": "INIT-0010",
+        "fitness": -2.0945234792709395,
+        "behavior_sha256": "497c7c6c5d9058f7fe35a65dbf3bbf12e6a017b3c2dd75660e0ef8e727f6e914"
+      },
+      {
+        "id": "INIT-0009",
+        "fitness": -2.1064654229887414,
+        "behavior_sha256": "fec0628b22d230f146af3476748b11bf67b75ae097cf1c11179fa762dabee6cf"
+      },
+      {
+        "id": "INIT-0022",
+        "fitness": -2.109853444900835,
+        "behavior_sha256": "189df116576c74fbce55bf78e82c4cd29527a4b48b8a92d4dfe76b3cb289481b"
+      },
+      {
+        "id": "G001-003-CROSS",
+        "fitness": -2.1526407968346026,
+        "behavior_sha256": "adf3b8234b9822a59a7829a1f17d34a514f613ffa10261094a9b979013b4a912"
+      },
+      {
+        "id": "INIT-0004",
+        "fitness": -2.156723240302168,
+        "behavior_sha256": "15c6d623243e2197e42b208c3e1caaa95593219df731b9af7f6b97947269d488"
+      },
+      {
+        "id": "G001-004-CROSS",
+        "fitness": -2.177730689602132,
+        "behavior_sha256": "f57ff620fa6e0ea1b2d8d6b71d1d32acb170ff24d3c852684ffb1e3bd236c9e0"
+      },
+      {
+        "id": "G001-002-CROSS",
+        "fitness": -2.263648419393057,
+        "behavior_sha256": "b67d8aa6c17ab0707454e6765cfeaad98e85bbf6d923b62e34033f5cb6961c0f"
+      }
+    ]
+  },
+  {
+    "generation": 14,
+    "A": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G008-003-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "e42a88f3b86090c820b857be081b27b53b3712feb11da568891941e938ff1d89"
+      },
+      {
+        "id": "G010-004-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G011-000-MUTATE",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G011-008-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G012-002-MUTATE",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G012-003-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G012-006-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G012-009-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G013-003-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      }
+    ],
+    "B": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G008-003-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "e42a88f3b86090c820b857be081b27b53b3712feb11da568891941e938ff1d89"
+      },
+      {
+        "id": "G010-004-CROSS",
+        "fitness": -2.0355637927885972,
+        "behavior_sha256": "7193c981288c9dfa2c378519136e69f78574c89a9cdc081e9ed3d232d3a2abdc"
+      },
+      {
+        "id": "G014-007-MUTATE",
+        "fitness": -2.043288915181402,
+        "behavior_sha256": "de272208d930d0a2a585dcc3e2b280d6aa18030e6c6c269b1504a1954a010ecf"
+      },
+      {
+        "id": "G014-004-MUTATE",
+        "fitness": -2.1181927379472363,
+        "behavior_sha256": "67eac0bf6cbccdae1068c1f6c08907b84e7d7b397ffae8b9de6a0b15154ba6a2"
+      },
+      {
+        "id": "G014-002-MUTATE",
+        "fitness": -2.119981806736931,
+        "behavior_sha256": "1be508b33e67290f60d6d7fc52143791c5417a9991c38792720fd280c4057a11"
+      },
+      {
+        "id": "G014-003-MUTATE",
+        "fitness": -2.2213744279794603,
+        "behavior_sha256": "837463f2a0b38144ec7b6339e8cac133480befb4cbe5b18ffee7474e6fa98085"
+      },
+      {
+        "id": "G014-007-CROSS",
+        "fitness": -2.316817832340152,
+        "behavior_sha256": "0d08ce78531a226f8eaa34445f35e8dd377d782c82f518b8bf2e6fbcc99d5555"
+      },
+      {
+        "id": "G014-000-CROSS",
+        "fitness": -2.3934339292421534,
+        "behavior_sha256": "9752e2fcb377162e24f79a8d3a577b5720690d47715f3de50fcdb8b021c4f2ca"
+      },
+      {
+        "id": "G014-005-MUTATE",
+        "fitness": -2.5610066104845175,
+        "behavior_sha256": "c3d559dff01410f5aaa28cae46d6b4a6f5633b612d98eaa742d3f274853fa4a9"
+      }
+    ]
+  },
+  {
+    "generation": 22,
+    "A": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G017-006-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G018-001-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G019-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-001-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-003-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-004-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G022-000-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      }
+    ],
+    "B": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-008-MUTATE",
+        "fitness": -2.0351125061579594,
+        "behavior_sha256": "1e3058cac6669180b24531a4ddf4191b38c18880f5e0eea9354850984c6e9304"
+      },
+      {
+        "id": "G022-009-MUTATE",
+        "fitness": -2.0393324890552327,
+        "behavior_sha256": "dae0d4d92149e4916b687236bb79c9b00f3a4963b50521de1452add493f0d2bd"
+      },
+      {
+        "id": "G022-009-CROSS",
+        "fitness": -2.0436994645928817,
+        "behavior_sha256": "84c586d9913cadff5bfeec2e4c6b75743347168f26244c3f45b89bd315918126"
+      },
+      {
+        "id": "G022-002-MUTATE",
+        "fitness": -2.0590682307002623,
+        "behavior_sha256": "4669447c59ba567551b87153ee0b021ac5b74a0199f56822b9738b90cd8c72eb"
+      },
+      {
+        "id": "G022-001-MUTATE",
+        "fitness": -2.090156351376605,
+        "behavior_sha256": "acc858d4aacf0579eae43b5dedcf42de660b259edaf153d1184a39f9a36fdf8f"
+      },
+      {
+        "id": "G022-000-MUTATE",
+        "fitness": -2.119981806736931,
+        "behavior_sha256": "1be508b33e67290f60d6d7fc52143791c5417a9991c38792720fd280c4057a11"
+      },
+      {
+        "id": "G022-003-CROSS",
+        "fitness": -2.3171823036882433,
+        "behavior_sha256": "53bd966f347891a2a5edab9207782a286bc70dca713c50234b72698460b5a657"
+      },
+      {
+        "id": "G022-006-MUTATE",
+        "fitness": -2.40407753533865,
+        "behavior_sha256": "5b5de0bde91fce0db1d6c4b7c46f6ec98a96e311c9033f757513233816c25f19"
+      },
+      {
+        "id": "G022-001-CROSS",
+        "fitness": -2.555263893233282,
+        "behavior_sha256": "64a61e4e37c800fe731ab9c4c8df3ed575ee3b6801ad189a7f89819622faf88c"
+      }
+    ]
+  },
+  {
+    "generation": 30,
+    "A": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G017-006-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G018-001-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G019-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-001-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-003-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-004-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G022-000-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      }
+    ],
+    "B": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G017-006-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G018-001-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G019-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G030-001-MUTATE",
+        "fitness": -2.04271784299137,
+        "behavior_sha256": "98a20d967a221a23b5a0104bfb45c3381633e95e95b6808104ad5137314969cc"
+      },
+      {
+        "id": "G030-002-MUTATE",
+        "fitness": -2.0590682307002623,
+        "behavior_sha256": "4669447c59ba567551b87153ee0b021ac5b74a0199f56822b9738b90cd8c72eb"
+      },
+      {
+        "id": "G030-008-MUTATE",
+        "fitness": -2.119981806736931,
+        "behavior_sha256": "1be508b33e67290f60d6d7fc52143791c5417a9991c38792720fd280c4057a11"
+      },
+      {
+        "id": "G030-006-CROSS",
+        "fitness": -2.1211873522462743,
+        "behavior_sha256": "367d58ecf100dd38080a2af7cb1c64231c106163d4b66681b6d9f44222223abe"
+      },
+      {
+        "id": "G030-004-MUTATE",
+        "fitness": -2.3563907322247095,
+        "behavior_sha256": "3b9a215bdd9e1f5eac6b7babc36d60a4cdcacb556af22446dde649261002e2f4"
+      },
+      {
+        "id": "G030-000-MUTATE",
+        "fitness": -2.570053549607026,
+        "behavior_sha256": "23c6a03176aa453c0a58f4a891c7c02d798d81626117777dca50f6289b9cf334"
+      }
+    ]
+  },
+  {
+    "generation": 50,
+    "A": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G017-006-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G018-001-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G019-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-001-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G020-003-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-004-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G021-005-MUTATE",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G022-000-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      }
+    ],
+    "B": [
+      {
+        "id": "G014-005-CROSS",
+        "fitness": -2.0339935026774993,
+        "behavior_sha256": "44825ea5fb7eee6475d1f2bcbd3b880606768f7f214e551cf2f61a197edcdb01"
+      },
+      {
+        "id": "G050-001-MUTATE",
+        "fitness": -2.038004231762647,
+        "behavior_sha256": "2d98addf7d2f8c918c75c4ea4f57754e7a9be8d8afafbef56a3f5724d12375db"
+      },
+      {
+        "id": "G050-008-MUTATE",
+        "fitness": -2.04347588881334,
+        "behavior_sha256": "7fbf07b269686b57dc2e49d6eca8453e172e3154bc3ea9c1e56de521cda4cd03"
+      },
+      {
+        "id": "G050-003-CROSS",
+        "fitness": -2.0685377719124367,
+        "behavior_sha256": "90e4322df7fd88245895e6a60e4800e6635fc211ed2b861cd2350e15ad39dcfa"
+      },
+      {
+        "id": "G050-006-MUTATE",
+        "fitness": -2.069776230004392,
+        "behavior_sha256": "df4ebe576558b671c5afedb30aa53719ae9c931741bde9c725f063b0b3bbe2f2"
+      },
+      {
+        "id": "G050-007-MUTATE",
+        "fitness": -2.1050008244629885,
+        "behavior_sha256": "6ff66cb59c49e63fa8c64787e4fd94062cfc15253b1ae6f24f57ff638be70fd4"
+      },
+      {
+        "id": "G050-009-MUTATE",
+        "fitness": -2.1118049606260487,
+        "behavior_sha256": "b4511174a246d6b69a09c0660d75fb9b0261a2e36f8e8d147ac8b3a4dbb85cc0"
+      },
+      {
+        "id": "G050-005-CROSS",
+        "fitness": -2.119981806736931,
+        "behavior_sha256": "1be508b33e67290f60d6d7fc52143791c5417a9991c38792720fd280c4057a11"
+      },
+      {
+        "id": "G050-002-MUTATE",
+        "fitness": -2.3563907322247095,
+        "behavior_sha256": "3b9a215bdd9e1f5eac6b7babc36d60a4cdcacb556af22446dde649261002e2f4"
+      },
+      {
+        "id": "G050-009-CROSS",
+        "fitness": -2.404517069142301,
+        "behavior_sha256": "513e99bea6809974ba0d02613e59d78092bbd7c4fb7121176ce811fc0d090702"
+      }
+    ]
+  }
+]

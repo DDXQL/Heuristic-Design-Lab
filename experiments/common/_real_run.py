@@ -22,7 +22,7 @@ FIELDS={"problem","state_schema","api_mode","evaluation_mode","initialization","
         "search_seed","solve_seed","initialization_candidate_cap","initialization_request_cap","generation_request_cap",
         "api_attempt_cap","api_concurrency","evaluation_concurrency","instance_timeout_seconds","window","enabled_groups",
         "h_file","data_manifest","p0_file","provider","real_requests_authorized"}
-RECORDING_FIELDS={"recording_mode","milestone_generations"}
+RECORDING_FIELDS={"recording_mode","milestone_generations","survival_policy"}
 RECORDING_CHANGES={"code/heuristic_design/core/evolution_v1.py","code/heuristic_design/core/routing_evaluation.py",
                    "code/heuristic_design/problems/routing_fixtures.py","code/heuristic_design/problems/fjsp/routing.py"}
 COMPAT={"problem","state_schema","api_mode","evaluation_mode","initialization","solve_seed","api_concurrency",

@@ -1,0 +1,59 @@
+{
+  "original_source": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+  "protocol_sha256": "19a7c858f4bf09f09f2924f37657345dc6eb5e43b36088ac0c230fea1d01adab",
+  "checkpoint_sha256": "2db1cdd91db3aa8717bb2aab233334fddff929c25819c6f9ba74828ecdac6a2c",
+  "generations_audited": 50,
+  "A_matches_archived_selection": true,
+  "global_elite_unchanged_for_each_original_pool": true,
+  "generations_with_different_selection": 50,
+  "generations_with_more_retained_groups": 50,
+  "examples": [
+    {
+      "generation": 14,
+      "pool_size": 28,
+      "A_groups": 3,
+      "B_groups": 10,
+      "A_best": -2.0339935026774993,
+      "B_best": -2.0339935026774993,
+      "A_mean": -2.0354067637774875,
+      "B_mean": -2.1879217348166544,
+      "different_selected_IDs": 7
+    },
+    {
+      "generation": 22,
+      "pool_size": 25,
+      "A_groups": 1,
+      "B_groups": 10,
+      "A_best": -2.0339935026774993,
+      "B_best": -2.0339935026774993,
+      "A_mean": -2.0339935026774993,
+      "B_mean": -2.169786808355755,
+      "different_selected_IDs": 9
+    },
+    {
+      "generation": 30,
+      "pool_size": 23,
+      "A_groups": 1,
+      "B_groups": 7,
+      "A_best": -2.0339935026774993,
+      "B_best": -2.0339935026774993,
+      "A_mean": -2.0339935026774993,
+      "B_mean": -2.1405373525216573,
+      "different_selected_IDs": 6
+    },
+    {
+      "generation": 50,
+      "pool_size": 22,
+      "A_groups": 1,
+      "B_groups": 10,
+      "A_best": -2.0339935026774993,
+      "B_best": -2.0339935026774993,
+      "A_mean": -2.0339935026774993,
+      "B_mean": -2.1351483018363293,
+      "different_selected_IDs": 9
+    }
+  ],
+  "limitation": "Independent one-step pool audits only. B choices are not propagated; cannot infer B future offspring, full trajectory or final superiority. Greater group coverage can reduce current population mean Fitness.",
+  "API_requests": 0,
+  "solves": 0
+}

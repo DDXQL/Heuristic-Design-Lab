@@ -16,7 +16,7 @@ import time
 
 from .constructive_state import GROUPS, SPEC_SHA256, schema_id
 from .routing import ABI, CandidateError, checked, parse, build_prompt, validate
-from .search import ranked, survive, _tuple_tree
+from .search import ranked, survive, survive_behavior_first, _tuple_tree
 from .storage import digest, read, write, sha
 
 VERSION = 'parent-coverage-routing-v1'
@@ -29,13 +29,15 @@ DEFAULTS = dict(version=VERSION, api_mode='mock', real_requests_authorized=False
     instance_timeout_seconds=30, mock_reverse_delay=False, mock_faults={},
     mock_delay_seconds=0.0, provider=None, api_attempt_cap=None,
     data_manifest=None, h_file=None, p0_file=None, state_schema=None,
-    recording_mode='full', milestone_generations=[])
+    recording_mode='full', milestone_generations=[], survival_policy='fitness')
 
 
 def config(value):
     if not isinstance(value,dict) or set(value)-set(DEFAULTS):
         raise ValueError('unknown configuration fields')
     c = {**DEFAULTS, **value}
+    if c['survival_policy'] not in ('fitness','behavior_first'):
+        raise ValueError('survival_policy must be fitness or behavior_first')
     if c['version'] != VERSION or c['api_mode'] not in ('mock','fixed','real') or type(c['real_requests_authorized']) is not bool:
         raise ValueError('invalid version/mode/authorization')
     if c['state_schema'] not in (None,schema_id(c['problem'])):raise ValueError('state schema/problem mismatch')
@@ -89,6 +91,13 @@ def source_identity():
     paths.update((ROOT/'code/llm4ad/task/optimization/fjsp_set').glob('*.py'))
     paths.update([ROOT/'code/fjsp_usage/offline_v2.py', ROOT/'code/fjsp_usage/research/candidates.py'])
     return {str(p.relative_to(ROOT)): sha(p) for p in sorted(paths)}
+
+
+def select_survivors(population, children, c):
+    policy = c.get('survival_policy','fitness')
+    if policy not in ('fitness','behavior_first'):raise ValueError('unknown survival policy')
+    selector = survive_behavior_first if policy == 'behavior_first' else survive
+    return selector(population, children, c['population_size'])
 
 
 def save(directory, state):
@@ -162,7 +171,8 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
         'state_spec_sha256':SPEC_SHA256,'u_abi':ABI,'members':hs,'instances':data,'references':references,'imports':imports,
         'input_provenance':provenance,'source_files':source_identity(),'machine':{'system':platform.system(),'machine':platform.machine(),
             'python':platform.python_version(),'cpu_count':os.cpu_count()},
-        'selection':'fitness descending, id ascending; parent+valid unique child elitism at generation end',
+        'selection':('best behavior representatives, then ranked duplicate fill; fitness descending/id ascending; global elite retained'
+                     if c['survival_policy']=='behavior_first' else 'fitness descending, id ascending; parent+valid unique child elitism at generation end'),
         'H_order_source':'explicit frozen declaration order; no implicit performance-rank prior',
         'initialization':'new-state complete reevaluation; old/imported Fitness is never reused',
         'objective':'MOCK_SYNTHETIC_NOT_QUALITY' if c['evaluation_mode']=='mock' else ('mean(-Cmax/LB_v5)' if c['problem']=='fjsp' else 'mean(-length/NN)'),
@@ -383,7 +393,7 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
                 if not batch:
                     children = [_individual(t,s) for t in tasks if t['valid']]
                     old = s['population']
-                    s['population'] = survive(old,children,c['population_size'])
+                    s['population'] = select_survivors(old,children,c)
                     s['generation']=g
                     selected = {r['id'] for r in s['population']}
                     row = {'generation':g,'planned_candidates':len(tasks),'generation_requests':s['generation_requests'],

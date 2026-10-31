@@ -1,0 +1,97 @@
+{
+  "source_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+  "protocol_sha256": "19a7c858f4bf09f09f2924f37657345dc6eb5e43b36088ac0c230fea1d01adab",
+  "checkpoint_sha256": "2db1cdd91db3aa8717bb2aab233334fddff929c25819c6f9ba74828ecdac6a2c",
+  "p0_file_sha256": "27f671961dfd664e0817f299764fc45ee29fa550036b82eba51da3f29ced5b06",
+  "reference_evaluations": [
+    {
+      "source_id": "INIT-0010",
+      "candidate_key": "42295b6839f74a23bc57dfe0eebf2974e88e8df2ec849c5136016acdeb76e9df",
+      "fitness": -2.0945234792709395,
+      "behavior_sha256": "497c7c6c5d9058f7fe35a65dbf3bbf12e6a017b3c2dd75660e0ef8e727f6e914",
+      "evaluation_sha256": "3c6d447eac1efd0a43d8de91510fcd7dc279cfbc3adb5878482d638c03e6b4dc"
+    },
+    {
+      "source_id": "INIT-0009",
+      "candidate_key": "5f8342d2e385dec3c58f4fdd45d45e24b24b5164dc58a38a5e11020e61054637",
+      "fitness": -2.1064654229887414,
+      "behavior_sha256": "fec0628b22d230f146af3476748b11bf67b75ae097cf1c11179fa762dabee6cf",
+      "evaluation_sha256": "2215a0387fcb53205c3c587de4e5a4fce7730aef0891860a0ab605e1cac4df6b"
+    },
+    {
+      "source_id": "INIT-0022",
+      "candidate_key": "8eab84425e613bf409a6910a3bfdb777b0a1ec010dff94c2ae328a655ad23b40",
+      "fitness": -2.109853444900835,
+      "behavior_sha256": "189df116576c74fbce55bf78e82c4cd29527a4b48b8a92d4dfe76b3cb289481b",
+      "evaluation_sha256": "f79dd12212393f70b6e15a6b02707998ed167786a04225293f9510fe7ff9c5e1"
+    },
+    {
+      "source_id": "INIT-0020",
+      "candidate_key": "01dab55f4eabbeff7c04b58040336a6074de34f87161781f8b61d60bbb508f0d",
+      "fitness": -2.1526407968346026,
+      "behavior_sha256": "adf3b8234b9822a59a7829a1f17d34a514f613ffa10261094a9b979013b4a912",
+      "evaluation_sha256": "fcc9fbec7b7d0da26a78ce3be4c725c9c3ddd2cf11f6141bdb5d3aca8caad391"
+    },
+    {
+      "source_id": "INIT-0004",
+      "candidate_key": "eda07ce9e329cc3680976d6677fdb1121692fad0dfd394a81699887979451d32",
+      "fitness": -2.156723240302168,
+      "behavior_sha256": "15c6d623243e2197e42b208c3e1caaa95593219df731b9af7f6b97947269d488",
+      "evaluation_sha256": "eb1b3c11a04a98216a0d504de2c8d35e9419829bef2dfa737191329489e61656"
+    },
+    {
+      "source_id": "INIT-0002",
+      "candidate_key": "ddaca91b7dac0ebd3c3305cfa3a7c1293ce4e31d47b09521e3845c0c01f75510",
+      "fitness": -2.5351052488599928,
+      "behavior_sha256": "f83c0dbbb6a8fcb6190ccb62d444d44c70b406ea3988e6834bad5b85f6530655",
+      "evaluation_sha256": "7c18fdf97ff3270661f88f725a4c036c728bbcbcee5ee8d58ced055c03a6e838"
+    },
+    {
+      "source_id": "INIT-0016",
+      "candidate_key": "dcdad7688e02bbef8937bef09e6c6db50d5a2e1c12b6b5035b04abad17df1b49",
+      "fitness": -2.5501640263052985,
+      "behavior_sha256": "45bce585eba999eeab48655b5e59d886f3c7e92b5cb68333130f557a52a4401f",
+      "evaluation_sha256": "2c70f07b2c467d89c3e9a74e8513ea1bba6ec32f72c52eecda2c05acfad9c8d8"
+    },
+    {
+      "source_id": "INIT-0005",
+      "candidate_key": "0a6703fef5a378bb8a4387300193b3fbfa2e45a32e605c0ba542f7af3cf7f0cf",
+      "fitness": -2.7913111570512266,
+      "behavior_sha256": "4f0f339c13d8db4556b506cb9a5c85b973ff9405f8ed30f37394d7659723663b",
+      "evaluation_sha256": "bd27c84abd15cd0af8b1ace9c92d85bdbcf41981cb0a03e74c5b4ced86bba2a0"
+    },
+    {
+      "source_id": "INIT-0008",
+      "candidate_key": "f8506a54f3fa8d7acad102d839fba51b44b62ac0a80e4f50f0fc0bb8159e6538",
+      "fitness": -2.812680691059791,
+      "behavior_sha256": "ef5fa11f602cf6b38c65bbb2533f8b5a68f6f6f3835765d413b798fb5570d514",
+      "evaluation_sha256": "d417ad8884a5d0760b1a50920c46a883d87d38b54370b339b1fa2bd310ac93e0"
+    },
+    {
+      "source_id": "INIT-0007",
+      "candidate_key": "429ac7c5c4b885347b4188181aeeebe98f3c3a098a592f204b9cf4efee1c9426",
+      "fitness": -2.8212551536885817,
+      "behavior_sha256": "e029cd6b7388834c7405b49fba175a57ab941ddae6e9f5f4510055a1760e4274",
+      "evaluation_sha256": "a36505222179002fc79c882d35b12fd9e64913f915df11273c308f6975d3fc44"
+    }
+  ],
+  "baseline_snapshot_sha256": "5b03c7b068acc450dd23c067b7b14cb650635d1844e47f6529f635a7b697fa9c",
+  "allowed_source_changes": [
+    "code/heuristic_design/core/evolution_v1.py",
+    "code/heuristic_design/core/search.py"
+  ],
+  "evaluation_compatibility": "Only selector/config/dispatch files may differ; evaluation is repeated in each arm. No historical Fitness is seeded.",
+  "historical_initialization": {
+    "api_mode": "real",
+    "method": "llm",
+    "attempts": 23,
+    "attempt_cap": 50,
+    "confirmed_sent": 19,
+    "known_input_tokens": 116550,
+    "known_output_tokens": 9403,
+    "unknown_usage_responses": 8,
+    "upstream_generation_attempts_known": true,
+    "actual_currency_cost": null,
+    "new_API_requests_for_reuse": 0
+  }
+}

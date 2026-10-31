@@ -1,0 +1,57 @@
+{
+  "files": {
+    "A.config.preview.json": {
+      "bytes": 1562,
+      "sha256": "c6a1baedc48152e99608334c476667c783fd0e49d839059609652a8b26319c9b"
+    },
+    "A.context.preview.json": {
+      "bytes": 10068,
+      "sha256": "21619aa883ed93cb4890ab5c92a0045cb2505b6141a488ef438186080e8b5764"
+    },
+    "B.config.preview.json": {
+      "bytes": 1569,
+      "sha256": "116a806079253501b767f1b70178d057f3dff022c6032f4ddcc14085eb7fc3ff"
+    },
+    "B.context.preview.json": {
+      "bytes": 10068,
+      "sha256": "259f9b75d6c874759ef518363434f2063aebcd94d8df0e5ddca0f673b871f94f"
+    },
+    "REPORT_ZH.md": {
+      "bytes": 7531,
+      "sha256": "90ef871c51a318670a726e74cb7fca001a129ff61d7c1620d56809e74a24b9fc"
+    },
+    "checks.log": {
+      "bytes": 3037,
+      "sha256": "3660dc7df36215a1992915a3b779be0a139d792374b0d7a40f5baa8b97ba5fcc"
+    },
+    "preview.json": {
+      "bytes": 5575,
+      "sha256": "77f45fe8c2c81aa760ef4f553613b7e20bc908f97cbc26eea7b867520ecfb8ab"
+    },
+    "replay.log": {
+      "bytes": 1936,
+      "sha256": "4e2a2f04b7d290ea180993fa228bdea0d34b61491211546595daf59c2b83d2d8"
+    },
+    "selection-audit/sample_selections.json": {
+      "bytes": 18587,
+      "sha256": "85979182cad1ee5c899b6c7bd16406b998d4627be3a3992ff566486a670f9259"
+    },
+    "selection-audit/selection_audit.csv": {
+      "bytes": 4714,
+      "sha256": "195ea64cd0063709f64a4bdde92b286f7a58c871ba2aa80ca02f6f7fa93ff5a6"
+    },
+    "selection-audit/summary.json": {
+      "bytes": 1936,
+      "sha256": "4e2a2f04b7d290ea180993fa228bdea0d34b61491211546595daf59c2b83d2d8"
+    },
+    "shared-p0-receipt.json": {
+      "bytes": 4773,
+      "sha256": "0f2401eacfd6117aec4eee6633632a4178520a097d2ea1648a5d41983a2a4a75"
+    },
+    "verification.json": {
+      "bytes": 1070,
+      "sha256": "ffde74ab31366c85e63e18aa3f689d10970545a966d0aaea81fe2b8c3bc83874"
+    }
+  },
+  "scope": "Offline implementation verification only; no inference, solving or authorization."
+}
