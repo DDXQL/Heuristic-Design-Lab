@@ -1,0 +1,192 @@
+{
+  "run_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+  "seed": 501,
+  "N": 10,
+  "G": 50,
+  "champion_id": "G014-005-CROSS",
+  "fitness": -2.0339935026774993,
+  "final_mean": -2.0339935026774993,
+  "champion_member_counts": {
+    "1": 3299,
+    "9": 501
+  },
+  "champion_decisions": 3800,
+  "syntactic_state_fields": {
+    "availability": 6,
+    "construction_progress": 1,
+    "action_breadth_fraction": 1,
+    "action_delta_mean": 1,
+    "action_delta_std": 1,
+    "recent_delta_mean": 1,
+    "has_history": 1
+  },
+  "behavior_group_transitions": [
+    {
+      "generation": 0,
+      "groups": 10
+    },
+    {
+      "generation": 1,
+      "groups": 8
+    },
+    {
+      "generation": 2,
+      "groups": 9
+    },
+    {
+      "generation": 4,
+      "groups": 7
+    },
+    {
+      "generation": 5,
+      "groups": 5
+    },
+    {
+      "generation": 6,
+      "groups": 4
+    },
+    {
+      "generation": 7,
+      "groups": 7
+    },
+    {
+      "generation": 8,
+      "groups": 6
+    },
+    {
+      "generation": 11,
+      "groups": 4
+    },
+    {
+      "generation": 13,
+      "groups": 2
+    },
+    {
+      "generation": 14,
+      "groups": 3
+    },
+    {
+      "generation": 20,
+      "groups": 4
+    },
+    {
+      "generation": 21,
+      "groups": 2
+    },
+    {
+      "generation": 22,
+      "groups": 1
+    }
+  ],
+  "total_distinct_valid_train_behavior_groups": 280,
+  "first_single_group_generation": 22,
+  "late_G15_G50_new_groups": 124,
+  "late_G15_G50_new_groups_selected": 1,
+  "late_discarded_valid_children": 509,
+  "late_discarded_absent_behavior_with_partial_advantage": 245,
+  "eliminated_different_behavior_candidates": 622,
+  "eliminated_with_partial_instance_advantage": 426,
+  "eliminated_partial_advantage_unique_behaviors": 200,
+  "top_partial_advantage_examples": [
+    {
+      "id": "G017-000-MUTATE",
+      "generation": 17,
+      "fitness": -2.038004231762647,
+      "behavior_sha256": "2d98addf7d2f8c918c75c4ea4f57754e7a9be8d8afafbef56a3f5724d12375db",
+      "wins_vs_frozen_champion": 10,
+      "losses_vs_frozen_champion": 7,
+      "ties_vs_frozen_champion": 4,
+      "winning_files": "Behnke1.fjsp,Behnke14.fjsp,Behnke19.fjsp,Behnke25.fjsp,Behnke21.fjsp,Behnke33.fjsp,Behnke36.fjsp,Behnke47.fjsp,Behnke46.fjsp,Behnke57.fjsp"
+    },
+    {
+      "id": "G014-007-MUTATE",
+      "generation": 14,
+      "fitness": -2.043288915181402,
+      "behavior_sha256": "de272208d930d0a2a585dcc3e2b280d6aa18030e6c6c269b1504a1954a010ecf",
+      "wins_vs_frozen_champion": 9,
+      "losses_vs_frozen_champion": 9,
+      "ties_vs_frozen_champion": 3,
+      "winning_files": "Behnke4.fjsp,Behnke13.fjsp,Behnke19.fjsp,Behnke29.fjsp,Behnke27.fjsp,Behnke43.fjsp,Behnke44.fjsp,Behnke46.fjsp,Behnke57.fjsp"
+    },
+    {
+      "id": "G036-002-MUTATE",
+      "generation": 36,
+      "fitness": -2.0447289939107582,
+      "behavior_sha256": "8c8335a3c79cd725da0b8916e8b3dd7173a039584bb5344dc0426111f11f488f",
+      "wins_vs_frozen_champion": 9,
+      "losses_vs_frozen_champion": 9,
+      "ties_vs_frozen_champion": 3,
+      "winning_files": "Behnke4.fjsp,Behnke13.fjsp,Behnke19.fjsp,Behnke29.fjsp,Behnke27.fjsp,Behnke43.fjsp,Behnke44.fjsp,Behnke46.fjsp,Behnke57.fjsp"
+    },
+    {
+      "id": "G007-008-CROSS",
+      "generation": 7,
+      "fitness": -2.0636618736342602,
+      "behavior_sha256": "affa3eab036e7005b0321f84c062ff356d1ac0ea7f276ad9fac0aaccd345c527",
+      "wins_vs_frozen_champion": 9,
+      "losses_vs_frozen_champion": 11,
+      "ties_vs_frozen_champion": 1,
+      "winning_files": "Behnke13.fjsp,Behnke25.fjsp,Behnke29.fjsp,Behnke43.fjsp,Behnke44.fjsp,Behnke47.fjsp,Behnke46.fjsp,Behnke51.fjsp,Behnke57.fjsp"
+    },
+    {
+      "id": "G003-003-MUTATE",
+      "generation": 3,
+      "fitness": -2.0641463955948884,
+      "behavior_sha256": "de4fabc1c12528ddbecee44ce14fccbbe9cd41fee68300e2165a60ba43d27b5b",
+      "wins_vs_frozen_champion": 9,
+      "losses_vs_frozen_champion": 11,
+      "ties_vs_frozen_champion": 1,
+      "winning_files": "Behnke13.fjsp,Behnke25.fjsp,Behnke29.fjsp,Behnke43.fjsp,Behnke44.fjsp,Behnke47.fjsp,Behnke46.fjsp,Behnke51.fjsp,Behnke57.fjsp"
+    }
+  ],
+  "operators": [
+    {
+      "operator": "CROSS",
+      "logical_attempts": 500,
+      "complete_valid": 349,
+      "valid_rate": 0.698,
+      "better_than_best_parent": 16,
+      "better_rate_among_valid": 0.045845272206303724,
+      "better_rate_among_all_attempts": 0.032,
+      "tied_best_parent": 139,
+      "worse_than_best_parent": 194,
+      "selected_at_generation_end": 43,
+      "different_behavior_from_all_parents": 201,
+      "failure_AST_duplicate": 92,
+      "failure_real_transport": 42,
+      "failure_parse_or_constraint": 17
+    },
+    {
+      "operator": "MUTATE",
+      "logical_attempts": 500,
+      "complete_valid": 417,
+      "valid_rate": 0.834,
+      "better_than_best_parent": 11,
+      "better_rate_among_valid": 0.026378896882494004,
+      "better_rate_among_all_attempts": 0.022,
+      "tied_best_parent": 89,
+      "worse_than_best_parent": 317,
+      "selected_at_generation_end": 18,
+      "different_behavior_from_all_parents": 333,
+      "failure_parse_or_constraint": 3,
+      "failure_real_transport": 43,
+      "failure_AST_duplicate": 37
+    }
+  ],
+  "failures": {
+    "real_transport": 93,
+    "parse_or_constraint": 24,
+    "evaluation_invalid": 1,
+    "AST_duplicate": 129
+  },
+  "complete_valid": 776,
+  "logical_attempts": 1023,
+  "evaluation_receipts_verified": 777,
+  "task_prompt_response_receipts_verified": true,
+  "generation_plan_receipts_verified": 50,
+  "per_instance_rows_verified": 16296,
+  "scope": "Saved train21 complete candidates only. Behavior is ordered selected-H sequences, not global program equivalence or a physical-schedule grouping. No strategy execution, solve, model request, validation or test access.",
+  "missing_evidence": "Compact recording omits per-step state/action tables: cannot recover each numeric trigger input, causal alternative-H action effects or unobserved states without separately authorized evaluation.",
+  "API_requests": 0,
+  "solves": 0
+}

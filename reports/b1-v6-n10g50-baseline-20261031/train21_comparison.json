@@ -1,0 +1,81 @@
+{
+  "champion_id": "G014-005-CROSS",
+  "comparisons": [
+    {
+      "baseline": "H0",
+      "champion_Fitness": -2.0339935026774993,
+      "baseline_Fitness": -2.1118049606260487,
+      "Fitness_difference": 0.07781145794854938,
+      "champion_mean_Cmax_over_LB": 2.0339935026774993,
+      "baseline_mean_Cmax_over_LB": 2.1118049606260487,
+      "mean_ratio_relative_change_percent": -3.684594903379801,
+      "wins": 16,
+      "losses": 5,
+      "ties": 0,
+      "champion_instance_valid_rate": 1.0,
+      "baseline_instance_valid_rate": 1.0
+    },
+    {
+      "baseline": "BEST_FIXED_H",
+      "champion_Fitness": -2.0339935026774993,
+      "baseline_Fitness": -2.1118049606260487,
+      "Fitness_difference": 0.07781145794854938,
+      "champion_mean_Cmax_over_LB": 2.0339935026774993,
+      "baseline_mean_Cmax_over_LB": 2.1118049606260487,
+      "mean_ratio_relative_change_percent": -3.684594903379801,
+      "wins": 16,
+      "losses": 5,
+      "ties": 0,
+      "champion_instance_valid_rate": 1.0,
+      "baseline_instance_valid_rate": 1.0
+    },
+    {
+      "baseline": "H0_H1_EQUAL",
+      "champion_Fitness": -2.0339935026774993,
+      "baseline_Fitness": -1.9831442949150015,
+      "Fitness_difference": -0.050849207762497795,
+      "champion_mean_Cmax_over_LB": 2.0339935026774993,
+      "baseline_mean_Cmax_over_LB": 1.9831442949150015,
+      "mean_ratio_relative_change_percent": 2.5640699919254883,
+      "wins": 5,
+      "losses": 14,
+      "ties": 2,
+      "champion_instance_valid_rate": 1.0,
+      "baseline_instance_valid_rate": 1.0
+    },
+    {
+      "baseline": "EOH_FROZEN",
+      "champion_Fitness": -2.0339935026774993,
+      "baseline_Fitness": -2.012187450378091,
+      "Fitness_difference": -0.02180605229940813,
+      "champion_mean_Cmax_over_LB": 2.0339935026774993,
+      "baseline_mean_Cmax_over_LB": 2.012187450378091,
+      "mean_ratio_relative_change_percent": 1.083698851978765,
+      "wins": 11,
+      "losses": 9,
+      "ties": 1,
+      "champion_instance_valid_rate": 1.0,
+      "baseline_instance_valid_rate": 1.0
+    }
+  ],
+  "search_task_valid_rate": 0.7585532746823069,
+  "historical_only": [
+    {
+      "name": "old B1",
+      "source": "/Users/DDXQL/Developer/Heuristic-Design-Lab/reports/b1-p1-to-p2-T15-seed501-20261027-v1/REPORT_ZH.md",
+      "report_sha256": "648cd3f992bc40d2eaadc6dc8bdd36d14e1011166f04936bca30b97d2148b0cd",
+      "state": "legacy seven scalar inputs",
+      "output_space": "SELECT or two-member MIX over frozen 10H",
+      "status": "Two historical generations completed via interrupted continuation; not an independent rerun",
+      "fitness": -2.092337613385,
+      "budget": "N5/G2; 29 actual logical tasks/attempts; historical caps 40 logical / 60 API attempts",
+      "deadline": "T15 complete row; final continuation 1s exit grace; inherited one-hour run deadline (includes interruption)",
+      "comparison_scope": "Historical reference only; state, output space, budget and deadline all differ. No new solve."
+    }
+  ],
+  "baseline_snapshot_sha256": "5b03c7b068acc450dd23c067b7b14cb650635d1844e47f6529f635a7b697fa9c",
+  "metric_note": "Fitness=mean(-Cmax/LB); relative change=mean(new Cmax/LB)/mean(baseline Cmax/LB)-1; negative is better. W/L/T uses same-instance Cmax.",
+  "additional_API_requests": 0,
+  "additional_solves": 0,
+  "validation_status": "not_run"
+}

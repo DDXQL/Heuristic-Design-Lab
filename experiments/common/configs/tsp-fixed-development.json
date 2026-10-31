@@ -1,0 +1,13 @@
+{
+  "problem": "tsp",
+  "api_mode": "fixed",
+  "evaluation_mode": "solve",
+  "population_size": 5,
+  "generations": 0,
+  "generation_request_cap": 0,
+  "initialization": "import",
+  "evaluation_concurrency": 2,
+  "h_file": "../fixtures/tsp-H-handwritten.json",
+  "data_manifest": "../fixtures/tsp-development-manifest.json",
+  "p0_file": "../fixtures/p0-n5-handwritten.json"
+}

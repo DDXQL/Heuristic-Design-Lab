@@ -1,0 +1,18 @@
+test_actual_R1_reuse_no_solves_or_network (test_b1_v6_formal_entry.Tests.test_actual_R1_reuse_no_solves_or_network) ... ok
+test_compact_hardlink_fallback_and_no_overwrite (test_b1_v6_formal_entry.Tests.test_compact_hardlink_fallback_and_no_overwrite) ... ok
+test_compact_worker_two_pass_receipts_and_behavior (test_b1_v6_formal_entry.Tests.test_compact_worker_two_pass_receipts_and_behavior) ... ok
+test_comparison_is_ratio_of_means_and_paired_wins_losses_ties (test_b1_v6_formal_entry.Tests.test_comparison_is_ratio_of_means_and_paired_wins_losses_ties) ... ok
+test_disabled_gate_never_prepares_or_requests (test_b1_v6_formal_entry.Tests.test_disabled_gate_never_prepares_or_requests) ... ok
+test_exact_new_budget_and_parent_coverage_without_execution (test_b1_v6_formal_entry.Tests.test_exact_new_budget_and_parent_coverage_without_execution) ... ok
+test_full_compact_same_schedules_routing_h_calls_and_scores (test_b1_v6_formal_entry.Tests.test_full_compact_same_schedules_routing_h_calls_and_scores) ... ok
+test_milestone_receipts_preserve_cumulative_budget_and_reject_change (test_b1_v6_formal_entry.Tests.test_milestone_receipts_preserve_cumulative_budget_and_reject_change) ... ok
+test_resume_ignores_edited_top_parameters_and_uses_frozen_reporter (test_b1_v6_formal_entry.Tests.test_resume_ignores_edited_top_parameters_and_uses_frozen_reporter) ... ok
+test_real_fjsp_legacy_parity_and_only_selected_h (test_common_routing_v1.Tests.test_real_fjsp_legacy_parity_and_only_selected_h) ... ok
+test_overlaps_and_parent_receipts_are_required_for_online_acceptance (test_real_single_entry.Tests.test_overlaps_and_parent_receipts_are_required_for_online_acceptance) ... ok
+test_stream_instance_export_skips_trace_and_preserves_quality (test_real_single_entry.Tests.test_stream_instance_export_skips_trace_and_preserves_quality) ... ok
+test_skipped_duplicate_does_not_get_a_second_instance_evaluation (test_real_single_entry.Tests.test_skipped_duplicate_does_not_get_a_second_instance_evaluation) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 5.053s
+
+OK

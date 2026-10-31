@@ -1,0 +1,136 @@
+"""Mock-only lineage, caps, frozen parents, and deterministic safe recovery."""
+from dataclasses import asdict
+from pathlib import Path
+import random
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from heuristic_design.core import evolution_v1 as e
+from heuristic_design.core import routing
+from heuristic_design.core.storage import read, write
+
+
+def imports(n, k=3):
+    return [{'source':f'handwritten-development-fixture-{i}',
+             'candidate':asdict(routing.validate(f'def use_heuristics(state):\n    fixture_tag = {i}\n    return {i%k}\n',member_count=k))} for i in range(n)]
+
+
+def settings(n=5,g=3,**kw):
+    return dict(population_size=n,generations=g,generation_request_cap=2*n*g,**kw)
+
+
+def semantic(s):
+    return {k:s[k] for k in ('population','rng','generations','seen','generation_requests','initialization_requests','initialization_complete','completed_tasks')}
+
+
+class Tests(unittest.TestCase):
+    def test_subject_coverage_n5_n10_and_odd_population(self):
+        for n in (3,5,10):
+            pop=[{'id':str(i),'candidate':r['candidate'],'fitness':i} for i,r in enumerate(imports(n))]
+            tasks=e.plan_generation(pop,1,random.Random(501))
+            self.assertEqual(len(tasks),2*n)
+            for row in pop:
+                pair=[t for t in tasks if t['subject']==row['id']]
+                self.assertEqual([t['operator'] for t in pair],['CROSS','MUTATE'])
+                self.assertEqual(pair[0]['parents'][0],row['id'])
+                self.assertNotEqual(*pair[0]['parents'])
+                self.assertEqual(pair[1]['parents'],[row['id']])
+                self.assertEqual(pair[1]['parent_keys'],[row['candidate']['key']])
+
+    def test_three_generations_mock_and_pause_resume_same_plan_rng_population(self):
+        with tempfile.TemporaryDirectory() as t:
+            a,b=Path(t)/'a',Path(t)/'b'
+            for folder in (a,b): e.prepare(folder,settings(initialization='import'),imports=imports(5))
+            self.assertEqual(e.run(a)['phase'],'completed')
+            self.assertEqual(e.run(b,max_tasks=18)['phase'],'paused')
+            self.assertEqual(e.run(b)['phase'],'completed')
+            pa,sa=e.check(a);pb,sb=e.check(b)
+            self.assertEqual(semantic(sa),semantic(sb))
+            g3=read(a/'plans/G003.json')
+            self.assertTrue(any(r['id'].startswith('G002') for r in g3['population']))
+            self.assertEqual(sa['generation_requests'],30)
+            self.assertEqual(sa['initialization_requests'],0)
+            for i in range(1,4):self.assertEqual(read(a/f'plans/G{i:03d}.json'),read(b/f'plans/G{i:03d}.json'))
+
+    def test_llm_init_budget_duplicate_invalid_failure_no_baseline_borrow(self):
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'caps'
+            faults={'INIT-0000':'duplicate','INIT-0001':'duplicate','INIT-0002':'invalid','INIT-0003':'failure'}
+            e.prepare(a,settings(initialization_candidate_cap=4,initialization_request_cap=4,mock_faults=faults))
+            r=e.run(a);s=e.check(a)[1]
+            self.assertEqual(r['phase'],'initialization_incomplete')
+            self.assertEqual(len(s['population']),1)
+            self.assertEqual(s['initialization_requests'],4)
+            self.assertEqual(s['generation_requests'],0)
+            self.assertEqual(s['tasks']['INIT-0001']['failure'],'AST_duplicate')
+            self.assertIsNone(s['tasks']['INIT-0001']['fitness'])
+            self.assertEqual(s['tasks']['INIT-0002']['failure'],'parse_or_constraint')
+            self.assertEqual(s['tasks']['INIT-0003']['failure'],'mock_transport')
+            with self.assertRaises(ValueError):e.prepare(Path(t)/'bad',settings(initialization='import'),imports=imports(4))
+            bad=imports(5);bad[1]=bad[0]
+            with self.assertRaises(ValueError):e.prepare(Path(t)/'bad2',settings(initialization='import'),imports=bad)
+
+    def test_20_generations_n10_and_separate_init_budget(self):
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'twenty'
+            e.prepare(a,settings(n=10,g=20,api_concurrency=4,evaluation_concurrency=4))
+            result=e.run(a)
+            p,s=e.check(a)
+            self.assertEqual(result['phase'],'completed')
+            self.assertEqual(s['initialization_requests'],10)
+            self.assertEqual(s['generation_requests'],400)
+            self.assertEqual(len(s['generations']),20)
+            self.assertEqual(len(s['population']),10)
+            self.assertTrue(all(len(read(a/r['path'])['tasks'])==20 for r in s['plans'].values()))
+
+    def test_out_of_order_concurrency_does_not_change_survival_or_caps(self):
+        with tempfile.TemporaryDirectory() as t:
+            a,b=Path(t)/'serial',Path(t)/'parallel'
+            for directory,width in [(a,1),(b,4)]:
+                e.prepare(directory,settings(api_concurrency=width,evaluation_concurrency=width,mock_reverse_delay=True))
+                e.run(directory)
+            sa,sb=e.check(a)[1],e.check(b)[1]
+            self.assertEqual(semantic(sa),semantic(sb))
+            receipts=[read(x) for x in (b/'batch-receipts').glob('*.json')]
+            self.assertTrue(any(r['response_completion_order']!=r['semantics_commit_order'] for r in receipts))
+            for tid,ta in sa['tasks'].items():
+                tb=sb['tasks'][tid]
+                self.assertEqual(ta.get('candidate'),tb.get('candidate'))
+                self.assertEqual((ta['parents'],ta['fitness'],ta['valid']),(tb['parents'],tb['fitness'],tb['valid']))
+
+    def test_cpu_width_independent_from_request_width_and_invalid_evaluations(self):
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'independent'
+            e.prepare(a,settings(api_concurrency=1,evaluation_concurrency=4,
+                        mock_faults={'G001-000-CROSS':'invalid_evaluation'}))
+            e.run(a)
+            s=e.check(a)[1]
+            self.assertIsNone(s['tasks']['G001-000-CROSS']['fitness'])
+            self.assertFalse(s['tasks']['G001-000-CROSS']['valid'])
+            receipts=[read(x) for x in (a/'batch-receipts').glob('*.json')]
+            self.assertTrue(any(len(r['evaluation_completion_order'])==4 for r in receipts))
+
+    def test_partial_initialization_export_reports_actual_best_valid_candidate(self):
+        from heuristic_design.core.evolution_export import export
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'partial'
+            e.prepare(a,settings(api_concurrency=4))
+            self.assertEqual(e.run(a,max_tasks=4)['phase'],'paused')
+            s=e.check(a)[1]
+            result=export(a)
+            self.assertEqual(result['champion'],e.ranked(s['population'])[0])
+            self.assertEqual(result['generation'],0)
+
+    def test_legacy_or_changed_identity_and_ambiguous_send_are_not_replayed(self):
+        with tempfile.TemporaryDirectory() as t:
+            a=Path(t)/'unknown';e.prepare(a,settings())
+            s=read(a/'checkpoint.json');s['tasks']['unknown']={'status':'request_reserved'};e.save(a,s)
+            with patch.object(e,'mock_generate',side_effect=AssertionError('NO RESEND')):
+                with self.assertRaisesRegex(ValueError,'in-flight'):e.run(a)
+            b=Path(t)/'changed';e.prepare(b,settings());s=read(b/'checkpoint.json');s['version']='legacy';e.save(b,s)
+            with self.assertRaisesRegex(ValueError,'identity'):e.run(b)
+            with self.assertRaises(ValueError):e.config({'api_mode':'real'})
+
+
+if __name__=='__main__':unittest.main()

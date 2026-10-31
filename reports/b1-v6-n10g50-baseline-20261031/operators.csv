@@ -1,0 +1,3 @@
+operator,logical_attempts,complete_valid,valid_rate,better_than_best_parent,better_rate_among_valid,better_rate_among_all_attempts,tied_best_parent,worse_than_best_parent,selected_at_generation_end,different_behavior_from_all_parents,failure_AST_duplicate,failure_real_transport,failure_parse_or_constraint
+CROSS,500,349,0.698,16,0.045845272206303724,0.032,139,194,43,201,92,42,17
+MUTATE,500,417,0.834,11,0.026378896882494004,0.022,89,317,18,333,37,43,3

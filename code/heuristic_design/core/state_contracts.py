@@ -1,12 +1,9 @@
-"""Version boundaries only: no new sensors, online U inputs or cache migration.
-
-Legacy solvers remain unchanged. The proposed common representation is disabled;
-making it executable requires a new candidate ABI, evaluator and frozen protocol.
-"""
+"""Versioned legacy and common-v1 boundaries; no historical cache migration."""
 from dataclasses import dataclass, asdict
 import hashlib
 import json
 import math
+from .constructive_state import FIELDS, SPEC_SHA256, schema_id
 
 @dataclass(frozen=True)
 class StateSchema:
@@ -15,10 +12,14 @@ class StateSchema:
     fields: tuple[str, ...]
     phase: str = 'construction'
     executable: bool = True
+    sensor_spec_sha256: str = ''
 
     @property
     def definition_sha256(self):
-        return _digest(asdict(self))
+        payload = asdict(self)
+        if not payload['sensor_spec_sha256']:
+            del payload['sensor_spec_sha256']  # preserve pre-v1 legacy identities
+        return _digest(payload)
 
 FJSP_LEGACY = StateSchema('fjsp-seven-v1-legacy', 'fjsp', (
     'progress', 'candidate_pair_ratio', 'remaining_work_mean',
@@ -29,7 +30,9 @@ TSP_LEGACY = StateSchema('tsp-five-v1-legacy', 'tsp', (
 COMMON_DRAFT = StateSchema('constructive-common-v0-draft', 'cross-problem-draft', (
     'construction_progress', 'action_breadth_fraction', 'committed_objective_fraction'),
     executable=False)
-SCHEMAS = {s.schema_id: s for s in (FJSP_LEGACY, TSP_LEGACY, COMMON_DRAFT)}
+COMMON_FJSP = StateSchema(schema_id('fjsp'), 'fjsp', FIELDS, sensor_spec_sha256=SPEC_SHA256)
+COMMON_TSP = StateSchema(schema_id('tsp'), 'tsp', FIELDS, sensor_spec_sha256=SPEC_SHA256)
+SCHEMAS = {s.schema_id: s for s in (FJSP_LEGACY, TSP_LEGACY, COMMON_DRAFT, COMMON_FJSP, COMMON_TSP)}
 LEGACY_BY_PROBLEM = {'fjsp': FJSP_LEGACY.schema_id, 'tsp': TSP_LEGACY.schema_id}
 
 def _digest(value):
@@ -49,6 +52,8 @@ def require_executable_schema(problem_id, schema_id=None):
 def legacy_packet(problem_id, values, *, member_count, schema_id=None):
     """Validate an explicit metadata envelope; does not call or alter online U."""
     schema = require_executable_schema(problem_id, schema_id)
+    if schema.schema_id not in LEGACY_BY_PROBLEM.values():
+        raise ValueError('legacy packet cannot interpret common state')
     if type(member_count) is not int or member_count < 1:
         raise ValueError('explicit positive H count required')
     if type(values) not in (tuple, list) or len(values) != len(schema.fields):

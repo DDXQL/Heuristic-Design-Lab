@@ -1,0 +1,25 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "problem": "tsp",
+  "api_mode": "mock",
+  "real_requests_authorized": false,
+  "evaluation_mode": "mock",
+  "population_size": 5,
+  "generations": 20,
+  "search_seed": 501,
+  "solve_seed": 501,
+  "initialization": "llm",
+  "initialization_candidate_cap": 20,
+  "initialization_request_cap": 20,
+  "generation_request_cap": 200,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1,
+  "window": 10,
+  "enabled_groups": [
+    "construction",
+    "action_cost",
+    "trajectory",
+    "usage"
+  ],
+  "instance_timeout_seconds": 30
+}

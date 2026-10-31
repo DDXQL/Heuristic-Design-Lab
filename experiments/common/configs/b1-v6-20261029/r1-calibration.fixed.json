@@ -1,0 +1,28 @@
+{
+  "problem": "fjsp",
+  "state_schema": "constructive-common-v1-fjsp",
+  "evaluation_mode": "solve",
+  "search_seed": 501,
+  "solve_seed": 501,
+  "api_concurrency": 2,
+  "evaluation_concurrency": 2,
+  "window": 10,
+  "enabled_groups": [
+    "construction",
+    "action_cost",
+    "trajectory",
+    "usage"
+  ],
+  "instance_timeout_seconds": 30,
+  "h_file": "../../../../preparations/b1-v6-20261029/H_frozen.json",
+  "data_manifest": "../../../../preparations/b1-v6-20261029/train21.manifest.json",
+  "real_requests_authorized": false,
+  "api_mode": "fixed",
+  "initialization": "import",
+  "population_size": 12,
+  "generations": 0,
+  "generation_request_cap": 0,
+  "initialization_candidate_cap": 12,
+  "initialization_request_cap": 12,
+  "p0_file": "../../../../preparations/b1-v6-20261029/calibration-p0.json"
+}

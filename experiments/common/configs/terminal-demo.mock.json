@@ -1,0 +1,9 @@
+{
+  "problem": "fjsp",
+  "population_size": 5,
+  "generations": 3,
+  "generation_request_cap": 30,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 2,
+  "mock_delay_seconds": 0.2
+}

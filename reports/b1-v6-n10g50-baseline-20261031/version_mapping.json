@@ -1,0 +1,538 @@
+{
+  "run_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+  "protocol_sha256": "19a7c858f4bf09f09f2924f37657345dc6eb5e43b36088ac0c230fea1d01adab",
+  "config_sha256": "5752b3e8efeeff6284837724c8fdb517eeaf6d326ce39a8ffbcb6a73c46ed21a",
+  "frozen_parameter_file_sha256": "4925ffa3aeeb0c86003c04a2d429cb96cd7eca1c1ba1ff0b0b13a7f2f62918c0",
+  "checkpoint_sha256": "2db1cdd91db3aa8717bb2aab233334fddff929c25819c6f9ba74828ecdac6a2c",
+  "code_commit_matching_frozen_files": "0ce75da0ddd4a6aa67e0e37f7aaa31c8aaeed48c",
+  "git_HEAD_at_diagnosis": "0ce75da0ddd4a6aa67e0e37f7aaa31c8aaeed48c",
+  "identity_limit": "Protocol does not record a Git commit. Matching 81 frozen source hashes and three launcher snapshots establishes byte equivalence to these files in 0ce75da, not identity of the entire historical worktree.",
+  "source_files": [
+    {
+      "path": "code/fjsp_usage/offline_v2.py",
+      "frozen_sha256": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research/candidates.py",
+      "frozen_sha256": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/__init__.py",
+      "frozen_sha256": "61a8137cead46c1d8d11bf285b2dda695bc13bc92b8b0ca7979b38f2f3c8e584",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/assets.py",
+      "frozen_sha256": "b49b9fad3ce1ac3cefc48419906b64178e32d36561b5e8f20f5a5b80694ec456",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/attempt_budget.py",
+      "frozen_sha256": "9f72b7bad939b8942a91096183aa173b6720631eaba3da6ea476ff9abc431c91",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/budget.py",
+      "frozen_sha256": "a6e54f9310a280d96c540dd6a0838dbc63285cffe492b9bcc8e3472d8c002aef",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/conditional_research.py",
+      "frozen_sha256": "cbfbf5b0a32f5c356df81a3c226d877b13d467dc41bba62a4a9273986ad95564",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/config.py",
+      "frozen_sha256": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/continuation.py",
+      "frozen_sha256": "ca8d350f28b34dc8b36dccce8d1c98613b291e23f30b35246c7af7e4477f6bb4",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/deepseek_pilot.py",
+      "frozen_sha256": "29dc3efbb8edcde854daf4b5d1230ed113405963d49106e7e499045ed6c91988",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/development_acceptance.py",
+      "frozen_sha256": "502267a8a30f3f3563b180631a43730cb4caa8d7ba7cb92279f73138e699116a",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/development_reuse.py",
+      "frozen_sha256": "5b380194f5df86c6077076ac41be42a65d76a9762423b3e0b35e39070e47a6a5",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/diagnostics.py",
+      "frozen_sha256": "3ab39b497a58b147012a041360be57357fc52dbffe6ccaa3452e9a1989dc8f30",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/evaluation_cache.py",
+      "frozen_sha256": "6ae961f8e7306e8ae4ec43fed4d4d0c2cb72959d786940b205dc9c22154e769c",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/fixtures.py",
+      "frozen_sha256": "252cf82e75c5d7b283f5073cdf121987bca2ea430afe8060002f57b1c72baf45",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/initialization.py",
+      "frozen_sha256": "d7d7f2a10b1a436518cb06d6a7e1a76e6fc134f47721616bd71d9f8a1201288e",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/integration_smoke.py",
+      "frozen_sha256": "6a688b835324cd26ff8c6bc39ed4f4516d10df320773235c9188e55e16fe4e1f",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/leafapi.py",
+      "frozen_sha256": "e83dff15076c2d85276e3309ce692ec17116d6312fae54f0134d9217c505c15f",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/locking.py",
+      "frozen_sha256": "82778fb424df90f5c8237f64d2e9e9fc75633f0c151813bc06ac60596196d085",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/preparation.py",
+      "frozen_sha256": "ebfee6141ad55a0dc8685156ff5a1f38d06fb8785504b15e95f40492cbb2fcc1",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/prompts.py",
+      "frozen_sha256": "104291219a6863687feb12afc79fc7096d51835c00e87e2cf53f097916a68486",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/quota_guard.py",
+      "frozen_sha256": "d936d1f2eb321d3cc0a0548d9bad7a838c3c5c3509771213eb6986553a23928c",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/real_transport.py",
+      "frozen_sha256": "0e10e404614ce46bdbf962660e907b0952bedd46d2e8b9448ad24957b75da286",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/report.py",
+      "frozen_sha256": "5d1f311f81e2dce35e35adb8900c434d71690c7b5067bced445abd6a87ef39c1",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/review_execution.py",
+      "frozen_sha256": "b49a00a73f86213af79c44c472be0a4e601f22a8ae8720e5509a6fd3f9172337",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/review_packet.py",
+      "frozen_sha256": "da7203aa2254c0ca563abbc70b9247706ef9449f2b014f4a7bb83cfcd13c1afc",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/runtime.py",
+      "frozen_sha256": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/search.py",
+      "frozen_sha256": "adf49cb28b42e05471e9634fffb4452c9932ff61c2c63442a4c83ebc35531a30",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/smoke_reuse.py",
+      "frozen_sha256": "30c77f9e5046e26339f4f440c2c1fb077960903d9c89a07c8a938975ee2930a0",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/staged_evaluation.py",
+      "frozen_sha256": "d9b6668c0c77d1b3b2803debf2cbe0c27ae048a20c1c40cf22cb638515ea198a",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/state_diagnostics.py",
+      "frozen_sha256": "6db01ff91f33ed6f85cc14c56ed5c2106630f80caf2b7d3909c7aa8d7043a0e4",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/training_report.py",
+      "frozen_sha256": "a5afa0e4064f25fb3e62ea15f1beb8a41f8ddfcfbdeb6bfbdef85cce50ba9b24",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/fjsp_usage/research_real/workflow.py",
+      "frozen_sha256": "cd4cdb0cb9a5fdbc38e1d28bc674431f9324667f5e0fbb6f43036be5c971c97b",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/__init__.py",
+      "frozen_sha256": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/adapter.py",
+      "frozen_sha256": "98ea8cef5d4480e5259563631f1ff51aaba60abcfd668798cfb412ba1c090193",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/constructive_state.py",
+      "frozen_sha256": "fe8c2c70559aa26c45af97c8685414d76193a530f3d715bb773071ed70618812",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/evolution_export.py",
+      "frozen_sha256": "f0aacec9a8740a59146369e899c643b0c5b79265f511ce32af377d7ae37dafad",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/evolution_v1.py",
+      "frozen_sha256": "7215e69da13f03aa830855eea722109df5bd79f634ef7e8d2bd0bb4f813306ff",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/execution.py",
+      "frozen_sha256": "a40cc949314974eaef162da459a01fa7b666540624e47e67bd3c2e5b1b9ad80c",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/lifecycle.py",
+      "frozen_sha256": "be29289735b53a106f8956fe8a99ec0bba4f907f7ca20e61be925fb8f3d53666",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/mixing.py",
+      "frozen_sha256": "98cdd97e7c79d30cc0344be0fca2844d2565f672b2ca38f6932921a45a97e829",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/operators.py",
+      "frozen_sha256": "3e2da96fc8a58a38a3654472d04bb9585ccabd1043c02ab7c7ee444d45ae0b08",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/results.py",
+      "frozen_sha256": "af743cd8e990cabe30c6b9c1218058ffa345a86700eb6149d6711f15ebec0f9a",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/routing.py",
+      "frozen_sha256": "f2026011e4fd5b86c63003aa734e107f4881135a5bbdf066353f0fc26d4db64f",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/routing_evaluation.py",
+      "frozen_sha256": "3a3ffd83cbc61c22c6af2bccec68539cce97c5e12f247973b0baa29d14627ae5",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/search.py",
+      "frozen_sha256": "dd545a9e71d72b2d197063d01af7e4c3e6220d82634a60143aea6f4deb7f7bf9",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/state_contracts.py",
+      "frozen_sha256": "2e43f66a56325d3fa244087a1ac766edfcfe7bc07bb608208a2342f03c628ef5",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/storage.py",
+      "frozen_sha256": "376786707ac16011b32cd123a70aa112f83bee65aada6fdf6a4376541d513f40",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/core/terminal_ops.py",
+      "frozen_sha256": "be45ac6f77d0446866534f9c3282af22132b3eb36095d206c6358761b90b1b5a",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/llm/__init__.py",
+      "frozen_sha256": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/llm/legacy.py",
+      "frozen_sha256": "a1fa3157a2229c5e8fac6e7541dc8df01d9ec5be50ed92871fe90876b4be2514",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/llm/routing_transport.py",
+      "frozen_sha256": "18570222b23e6090a8fdfd6b323025bdbf29437ade82328e22eb62e11166bedb",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/__init__.py",
+      "frozen_sha256": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/__init__.py",
+      "frozen_sha256": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/adapter.py",
+      "frozen_sha256": "325f963ffc1a74dad7af0f155c34fa2e9edf3ea50bc858a7e893c4b6d45f7c5b",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/common_state.py",
+      "frozen_sha256": "78493f65e55303b1c39430aad94bbb91e114f4e578a85303299c82c16c0b7e56",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/data.py",
+      "frozen_sha256": "224732266bb36bcedb838d264aa790cb3452c9af90d3a59277840c9e3f7a9a73",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/evaluation.py",
+      "frozen_sha256": "8df7e03e73d419dd3963e62d745a95580e558f7ec3ad952606732f8dcf7173c9",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/policies.py",
+      "frozen_sha256": "a4c9c595fbcefd10b2894950a6ef64a089ea3b6269c399faf68a8927cb4e1631",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/prompts.py",
+      "frozen_sha256": "6c875929db123ce76176a65102e5bd5e898a987c1493300d9284f2e6b5c05579",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/provenance.py",
+      "frozen_sha256": "97ef821fb3639f61aac2cd56fe698c16222b44200f1000d5a9e09590f8960d5f",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/routing.py",
+      "frozen_sha256": "5b8b95bffa8d72ef2fdfb63115de171884bcc635aaaaad103ce69d44d57e6075",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/solver.py",
+      "frozen_sha256": "5705a3c5733acb14c4bc583092abd171eaafed42b5850b4e2a095d311130a8eb",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/fjsp/states.py",
+      "frozen_sha256": "6e9185e1dc9b33bc596ec2636efa7b96d1aefbb7baad218481ed295b0929e7e2",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/routing_fixtures.py",
+      "frozen_sha256": "f5747fd63b5a0d68077b58b3dc41e2da0d7653bcb986765f088d0fe91e272153",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/__init__.py",
+      "frozen_sha256": "cb702c19dbfdb959d0e8336e35bd22ac67351592ddc57ba7b1de39e65000eb74",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/campaign.py",
+      "frozen_sha256": "3b956a391fce49c75ee04cb329947196a29ff3da8af94abd7b7f7f8cadd4bb3e",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/candidates.py",
+      "frozen_sha256": "3a1bb56c5d85018f047f5ef26dc3ed2d0a7681e5f338de8923b98e16330585fc",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/common_state.py",
+      "frozen_sha256": "d5f141e9f1abdf7d073e0827ca543a600bc223c10f33910e0576e52390b4227a",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/data.py",
+      "frozen_sha256": "ddd2ff79d7860baf11ada11b75a36fcea1d877e76f743578c49a2587c8242c6f",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/evaluation.py",
+      "frozen_sha256": "b74f8bbbe0a68c90b850e86c5e3f05b1cc647b631a87fd4fa54fab84e218d96e",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/operations.py",
+      "frozen_sha256": "0443dcca3d132405005c9d6a58800741e91e24fe97ec2b921fa98eee6ec48491",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/prompts.py",
+      "frozen_sha256": "e4b4e73a6fb0e892c347bfd57b4be5e7940558e0b95c5266be7490a7506e8774",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/routing.py",
+      "frozen_sha256": "4777176b39ca474414c02e5123d2bf302b21fc21c517298b1e00bc79a37ac7a1",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/heuristic_design/problems/tsp/solver.py",
+      "frozen_sha256": "a2d514ec58585520d06e01c34b10ea81c29134d9ef1f9cd13821491bb73683a0",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/__init__.py",
+      "frozen_sha256": "e200b13ec7f9527d6c742963be0a6a22359ba75a026ee3114711ac3470b47fff",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/evaluation.py",
+      "frozen_sha256": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/instances.py",
+      "frozen_sha256": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/scheduler.py",
+      "frozen_sha256": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "code/llm4ad/task/optimization/fjsp_set/template.py",
+      "frozen_sha256": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77",
+      "working_matches": true,
+      "commit_matches": true
+    },
+    {
+      "path": "experiments/common/manage.py",
+      "frozen_sha256": "0f8fe9aaf8f7cd3bf7aa1c51b5914e72ff900d2e03c418c43bd5c0fa9972a5f1",
+      "working_matches": true,
+      "commit_matches": true
+    }
+  ],
+  "launch_files": [
+    {
+      "path": "experiments/common/_real_run.py",
+      "frozen_sha256": "f33414f03765e5dfbe39b899b9264c72c74ad9133c1c435ee6e925d1b10edc75",
+      "commit_matches": true,
+      "working_matches": true
+    },
+    {
+      "path": "experiments/common/_search_reports.py",
+      "frozen_sha256": "b19c112f0e046707c677aac2bbcfbd62c82fb5242594b58aee567488a370b945",
+      "commit_matches": true,
+      "working_matches": true
+    },
+    {
+      "path": "experiments/common/run_b1_v6.py",
+      "frozen_sha256": "75b73cbd2fec0117249cb32b68c48f6b9dbfe5b654c55ff267b41e42efabcd2d",
+      "commit_matches": true,
+      "working_matches": false
+    }
+  ],
+  "working_launcher_difference": "diff --git a/experiments/common/run_b1_v6.py b/experiments/common/run_b1_v6.py\nindex d8d1c2d..e1ad5f3 100644\n--- a/experiments/common/run_b1_v6.py\n+++ b/experiments/common/run_b1_v6.py\n@@ -26,7 +26,7 @@ PARAMETERS = {'problem': 'fjsp',\n  'generation_request_cap': 1000,   # 2*N*G；失败/重复也占逻辑预算，无自动补发\n  'initialization_candidate_cap': 50,\n  'initialization_request_cap': 50,\n- 'api_attempt_cap': 1050,          # 初始化50 + 演化1000；不是美元硬封顶\n+ 'api_attempt_cap': 1050,          # 初始化50 + 演化1000；\n  'recording_mode': 'compact',      # 保留排程/H序列/两遍证据；不保存大动作表/状态轨迹\n  'milestone_generations': [10, 20, 30, 40, 50],\n  'p0_file': None,\n",
+  "working_launcher_AST_matches_frozen": true,
+  "champion_id": "G014-005-CROSS",
+  "champion_source_sha256": "a60ebfa2e854e4570150e4b9b85611ed9e91f669ac8f96dbb40d0d1bab5e88ba",
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/H_frozen.json",
+      "sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/train21.manifest.json",
+      "sha256": "a56c152290a9ab5c6818eef80a0daaec9e3969093895973d9ee467d46c8aa1d7",
+      "split": "train"
+    }
+  },
+  "publication_note": "Publish a curated snapshot based on existing remote aa83cac, without introducing local authorization/claim artifacts. Original local history/worktree remain intact.",
+  "publication_branch": "baseline/b1-v6-n10g50-20261031",
+  "publication_tag": "b1-v6-n10g50-train21-20261031-v1",
+  "publication_parent": "aa83cac0ce39b94c8da3dc6b1d17d0daf9027f9a"
+}
