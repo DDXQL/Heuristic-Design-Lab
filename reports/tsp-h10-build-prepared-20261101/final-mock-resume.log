@@ -1,0 +1,26 @@
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101
+{"cursor": 5, "committed_candidates": 5, "valid_unique_H": 5, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543746.545027, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 6, "committed_candidates": 6, "valid_unique_H": 6, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543746.760463, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 7, "committed_candidates": 7, "valid_unique_H": 7, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543746.971133, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 8, "committed_candidates": 8, "valid_unique_H": 8, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543747.187927, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 9, "committed_candidates": 9, "valid_unique_H": 9, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543747.404881, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 10, "committed_candidates": 10, "valid_unique_H": 10, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543747.619794, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 11, "committed_candidates": 11, "valid_unique_H": 11, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543747.836428, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 12, "committed_candidates": 12, "valid_unique_H": 12, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543748.0702379, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{
+  "phase": "completed",
+  "cursor": 12,
+  "planned": 12,
+  "valid_unique_H": 12,
+  "generation": 0,
+  "required_members": 10,
+  "origin_mode": "mock",
+  "freeze": {
+    "status": "frozen",
+    "member_count": 10,
+    "protocol_sha256": "2a261c8e42ea6296d835eadd3dad44d1522718bd96e17bdadf1f1d4efa70ca22",
+    "H_sha256": "e57427c8e2393f2a729db36ee88a387cfabb53f55968a50ec2deafc647f88d3f",
+    "origin_mode": "mock"
+  }
+}
+{"output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101/analysis", "status": "已完成", "plots_status": "completed", "committed_tasks": 12}

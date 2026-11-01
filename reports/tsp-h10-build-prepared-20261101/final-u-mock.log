@@ -1,0 +1,52 @@
+{
+  "problem": "tsp",
+  "state_schema": "constructive-common-v1-tsp",
+  "H_count": 10,
+  "instances": 1,
+  "city_counts": [
+    9
+  ],
+  "generation_transport": "mock",
+  "evaluation_mode": "solve",
+  "recording_mode": "compact",
+  "initialization_candidate_upper_bound": 4,
+  "evolution_slots": 4,
+  "max_candidate_instance_rows": 8,
+  "max_solve_passes": 16,
+  "api_attempt_cap": null,
+  "real_requests_authorized": false,
+  "policy_solves": 0,
+  "API_requests": 0,
+  "references_computed": 1,
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101/H_frozen.json",
+      "sha256": "e57427c8e2393f2a729db36ee88a387cfabb53f55968a50ec2deafc647f88d3f",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101/next/train.manifest.json",
+      "sha256": "63f2a88829f72d003030f94a9760b162e7989f03ded10e4642a2a3e1bd447bde",
+      "split": "synthetic-development"
+    }
+  },
+  "notice": "NN reference precheck only; Mock generation is not an LLM. No quality claim."
+}
+{"run_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-u-20261101"}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 0, "best_evaluated_fitness": null, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 4, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543823.640609}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 2, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 2, "initialization_request_cap": 4, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543823.873329}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 4, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 2, "initialization_request_cap": 4, "generation_requests": 2, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543824.105385}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 2, "initialization_request_cap": 4, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543824.331105}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 2, "initialization_request_cap": 4, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543824.332017}
+{"phase": "completed", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 2, "initialization_request_cap": 4, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793543824.333784}
+{
+  "phase": "completed",
+  "generation": 1,
+  "completed_tasks": 6,
+  "initialization_requests": 2,
+  "generation_requests": 4,
+  "api_attempts_reserved": 0
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-u-20261101
+导出：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-u-20261101/exports
+{"output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-u-20261101/analysis", "status": "已完成", "plots_status": "completed", "committed_tasks": 6}

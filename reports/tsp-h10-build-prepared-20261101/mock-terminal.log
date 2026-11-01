@@ -1,0 +1,34 @@
+{
+  "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/experiments/common/configs/tsp-h10.mock.json",
+  "origin_mode": "mock",
+  "final_H_count": 10,
+  "logical_candidate_cap": 12,
+  "API_attempt_cap": 12,
+  "max_candidate_instance_rows": 12,
+  "max_solve_passes": 24,
+  "instances": 1,
+  "selection": "CPM greedy instance-score envelope; first maximum mean; gain ties by mean descending / task ID ascending",
+  "H_evolution_generations": 0,
+  "real_requests_authorized": false,
+  "requests_sent": 0,
+  "policy_solves": 0,
+  "references_computed": 1
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-engineering-20261101
+{
+  "phase": "completed",
+  "cursor": 12,
+  "planned": 12,
+  "valid_unique_H": 12,
+  "generation": 0,
+  "required_members": 10,
+  "origin_mode": "mock",
+  "freeze": {
+    "status": "frozen",
+    "member_count": 10,
+    "protocol_sha256": "b20e98e46b900e4c58415cd35eb428d22e09a9767364dd5e5cc5294ffee8034e",
+    "H_sha256": "159995a63da2208e9fb0426b1adf0ef8ecdc3d998c9947d33c3a2423880ca0dc",
+    "origin_mode": "mock"
+  }
+}
+{"output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-engineering-20261101/analysis", "status": "已完成", "plots_status": "completed", "committed_tasks": 12}

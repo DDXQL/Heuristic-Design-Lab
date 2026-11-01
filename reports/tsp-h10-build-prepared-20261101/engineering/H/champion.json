@@ -1,0 +1,30 @@
+{
+  "id": "H-0000",
+  "stage": "new",
+  "generation": null,
+  "operator": "I1",
+  "status": "completed",
+  "started": {
+    "wall": 1793543730.600487,
+    "monotonic": 352200.340216
+  },
+  "valid": true,
+  "fitness": -1.0,
+  "parents": [],
+  "parent_keys": [],
+  "prompt": "Design ONE constructive symmetric Euclidean TSP action-scoring heuristic independently.\nCoordinates are float64 in [0,1]^2. Start city 0, visit all other cities exactly once, then close to 0.\nNo local search. Highest raw priority chooses the next city; exact ties use smallest city ID.\nSignature: def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\ndistance_current=current-to-candidate; distance_start=candidate-to-city-0. mean_remaining_distance and\nnearest_remaining_distance summarize candidate-to-OTHER-unvisited-city edges, zero if none remain.\nALL FOUR distance inputs are divided by sqrt(2). progress=committed decisions/(n-1), before the action.\nThe closing edge counts in final length but does not call the heuristic. Return one finite real scalar.\nTraining fitness maximizes mean(-tour_length / deterministic_nearest_neighbor_length) on the ENTIRE\ndeclared train20. NN starts at 0, smallest-city ties, closed tour. NN is not an optimum or lower bound.\nNo parent, earlier code, fitness, score ranking, validation or test feedback is supplied.\nUse scalar assignments, if/else, arithmetic and abs/min/max/int/float/round. No imports, attributes,\nsubscripts, loops, recursion, collections, randomness, external calls, U or other H. Integer literal\npower exponents 0..8 only. Numeric constants <=1e9; intermediates must be finite and <=1e100.\nAll paths return. Return a short description followed by exactly one fenced python function.\n",
+  "generation_status": "completed",
+  "candidate": {
+    "description": "MOCK engineering fixture, not a real LLM.",
+    "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current + -0.125 * (1 - progress) * distance_start + 0.0 * nearest_remaining_distance\n",
+    "key": "2a52aeaff896b1944861948f498e256e0ca9902693e616bd94a8ee44f6939ba2",
+    "kind": "h"
+  },
+  "AST_duplicate": false,
+  "cache_hit": false,
+  "evaluation_key": "2a52aeaff896b1944861948f498e256e0ca9902693e616bd94a8ee44f6939ba2",
+  "finished": {
+    "wall": 1793543730.813317,
+    "monotonic": 352200.553042625
+  }
+}

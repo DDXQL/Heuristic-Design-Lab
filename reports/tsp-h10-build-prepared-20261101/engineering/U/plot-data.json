@@ -1,0 +1,77 @@
+{
+  "kind": "U",
+  "engineering": true,
+  "phase": "completed",
+  "as_of": "2026-11-01T22:37:17+08:00",
+  "curve": [
+    {
+      "requests": 1,
+      "task_index": 1,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 1
+    },
+    {
+      "requests": 2,
+      "task_index": 2,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 2
+    },
+    {
+      "requests": 3,
+      "task_index": 3,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 3
+    },
+    {
+      "requests": 4,
+      "task_index": 4,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 4
+    },
+    {
+      "requests": 5,
+      "task_index": 5,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 5
+    },
+    {
+      "requests": 6,
+      "task_index": 6,
+      "best_fitness": -1.0,
+      "valid_unique_so_far": 6
+    }
+  ],
+  "generations": [
+    {
+      "generation": 1,
+      "planned_candidates": 4,
+      "generation_requests": 4,
+      "valid_unique_children": 4,
+      "children_selected": [
+        "G001-000-CROSS",
+        "G001-000-MUTATE"
+      ],
+      "best_fitness": -1.0,
+      "population_mean": -1.0,
+      "behavior_groups": 2,
+      "population_ids": [
+        "G001-000-CROSS",
+        "G001-000-MUTATE"
+      ],
+      "mock": false
+    }
+  ],
+  "comparison": {
+    "status": "compatible",
+    "champion_id": "G001-000-CROSS",
+    "baseline_id": "INIT-0000",
+    "U_fitness": -1.0,
+    "baseline_fitness": -1.0,
+    "delta_fitness": 0.0,
+    "relative_normalized_improvement_percent": 0.0,
+    "wins": 0,
+    "losses": 0,
+    "ties": 1,
+    "selection": "both complete train champions, fixed ID ties; descriptive training comparison"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/reports/tsp-h10-build-prepared-20261101/engineering-mock.config.json",
+  "origin_mode": "mock",
+  "final_H_count": 10,
+  "logical_candidate_cap": 12,
+  "API_attempt_cap": 12,
+  "max_candidate_instance_rows": 12,
+  "max_solve_passes": 24,
+  "instances": 1,
+  "selection": "CPM greedy instance-score envelope; first maximum mean; gain ties by mean descending / task ID ascending",
+  "H_evolution_generations": 0,
+  "real_requests_authorized": false,
+  "requests_sent": 0,
+  "policy_solves": 0,
+  "references_computed": 1
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101
+{"cursor": 1, "committed_candidates": 1, "valid_unique_H": 1, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543730.814259, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 2, "committed_candidates": 2, "valid_unique_H": 2, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543731.029425, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 3, "committed_candidates": 3, "valid_unique_H": 3, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543731.242615, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{"cursor": 4, "committed_candidates": 4, "valid_unique_H": 4, "generation": 0, "API_attempt_cap": 12, "as_of": 1793543731.454526, "stage": "H_independent_pool", "generation_transport": "mock", "evaluation_mode": "solve", "real_requests": 0}
+{
+  "phase": "paused",
+  "cursor": 4,
+  "planned": 12,
+  "valid_unique_H": 4,
+  "generation": 0,
+  "required_members": 10,
+  "origin_mode": "mock"
+}
+{"output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-final-offline-20261101/analysis", "status": "进行中", "plots_status": "completed", "committed_tasks": 4}

@@ -1,0 +1,15 @@
+test_complete_mock_freeze_and_handoff_parity_reports (test_tsp_h10_build.Tests.test_complete_mock_freeze_and_handoff_parity_reports) ... ok
+test_failure_duplicate_invalid_and_no_manual_refill (test_tsp_h10_build.Tests.test_failure_duplicate_invalid_and_no_manual_refill) ... ok
+test_hard_auth_failure_is_charged_and_never_retried (test_tsp_h10_build.Tests.test_hard_auth_failure_is_charged_and_never_retried) ... ok
+test_live_u_report_excludes_reserved_tasks_and_rejects_incompatible_baseline (test_tsp_h10_build.Tests.test_live_u_report_excludes_reserved_tasks_and_rejects_incompatible_baseline) ... ok
+test_pause_resume_preserves_attempts_and_original_budget (test_tsp_h10_build.Tests.test_pause_resume_preserves_attempts_and_original_budget) ... ok
+test_real_gate_budget_and_prompt_are_explicit (test_tsp_h10_build.Tests.test_real_gate_budget_and_prompt_are_explicit) ... ok
+test_report_failure_never_changes_scientific_receipts (test_tsp_h10_build.Tests.test_report_failure_never_changes_scientific_receipts) ... ok
+test_three_transport_failures_stop_without_refill (test_tsp_h10_build.Tests.test_three_transport_failures_stop_without_refill) ... ok
+test_u_nodes_report_actual_overshoot_and_callback_failure_is_nonfatal (test_tsp_h10_build.Tests.test_u_nodes_report_actual_overshoot_and_callback_failure_is_nonfatal) ... ok
+test_unknown_reservation_never_replayed_and_inflight_not_reported (test_tsp_h10_build.Tests.test_unknown_reservation_never_replayed_and_inflight_not_reported) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 10.389s
+
+OK

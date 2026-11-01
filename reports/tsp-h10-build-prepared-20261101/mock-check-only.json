@@ -1,0 +1,16 @@
+{
+  "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/experiments/common/configs/tsp-h10.mock.json",
+  "origin_mode": "mock",
+  "final_H_count": 10,
+  "logical_candidate_cap": 12,
+  "API_attempt_cap": 12,
+  "max_candidate_instance_rows": 12,
+  "max_solve_passes": 24,
+  "instances": 1,
+  "selection": "CPM greedy instance-score envelope; first maximum mean; gain ties by mean descending / task ID ascending",
+  "H_evolution_generations": 0,
+  "real_requests_authorized": false,
+  "requests_sent": 0,
+  "policy_solves": 0,
+  "references_computed": 1
+}

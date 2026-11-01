@@ -1,0 +1,23 @@
+{
+  "evidence_report": "reports/baseline-a-provenance-timeout-audit-20261024-v1/REPORT_ZH.md",
+  "evidence_report_sha256": "4c2e48b80541f24f6d0b8eda67bef43c3012fa6a106a9c32d966afbacc40c5c2",
+  "mapping_sha256": "d34ec3bf23d7c33df598d4412c751c5ed84f1f164cb5a1410f8d392982ce67dc",
+  "source_identity_audit_sha256": "4041d50222b7b4c655309594a06fdb2ed2aa2d6fa943779e7899d3ee82427421",
+  "current_H_path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/H_frozen.json",
+  "current_H_sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+  "current_H_count": 10,
+  "current_source_mechanism": "unchanged existing frozen H; original reviews/receipts retained; no generation or new review",
+  "fixed_h_source": {
+    "version": "usage-frozen-H-source-v1",
+    "directory": "/Users/DDXQL/Documents/大学/硕士/代码/FJSP-Heuristic-Research-h-usage-space/runs/v22-gpt61-select-mix-301-20261014-v1",
+    "files_sha256": {
+      "protocol.json": "19e2e83106532c1e7ef2a5dd54891247c23bafe0232dd5cdd3340eb84777eeb9",
+      "H_frozen.json": "2c11510d3ced58aa7aeb3b15103f12b4c1f4d0ba9a2f2b06ad14af0ac0e823e1",
+      "Conditional_H_reassessment.json": "b70626ac9da769e0bbf329c3dd7ebe33a0879d3100e2502425b3c474941cb4ab"
+    }
+  },
+  "historical_path": "v1:6 valid -> v2:8 valid -> v3:2 valid init + 2x10 attempts evolution -> reviewed/frozen 10",
+  "historical_H_search_seed": 7,
+  "new_TSP_method": "independent pool + existing CPM once; no H evolution; no human review claim",
+  "reading_scope": "existing formal audit, member mapping and current frozen metadata only; no historical solve or mutation"
+}

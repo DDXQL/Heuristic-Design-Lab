@@ -1,0 +1,28 @@
+{
+  "id": "INIT-0000",
+  "stage": "initialization",
+  "generation": 0,
+  "operator": "INIT",
+  "parents": [],
+  "parent_keys": [],
+  "parent_records": [],
+  "status": "completed",
+  "fitness": -1.0,
+  "valid": true,
+  "candidate": {
+    "description": "Constant frozen H0",
+    "code": "def use_heuristics(state):\n    return 0\n",
+    "key": "c0f098c9298bea9b66519df498566e25c100931d83bf91c97641e5e88d94af4b",
+    "abi": "pure-routing-state-v1"
+  },
+  "source": "frozen-H10-constant-0",
+  "evaluation_timing": {
+    "started_at_unix": 1793543807.989197,
+    "finished_at_unix": 1793543808.2078469,
+    "started_monotonic": 352277.727633875,
+    "finished_monotonic": 352277.946280208,
+    "scope": "candidate function in bounded task pool; not provider-side execution"
+  },
+  "result_storage": "hardlink",
+  "evaluation_batch_seconds": 0.21895316697191447
+}

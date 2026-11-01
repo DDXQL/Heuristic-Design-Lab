@@ -1,0 +1,19 @@
+{
+  "phase": "completed",
+  "cursor": 12,
+  "planned": 12,
+  "valid_unique_H": 12,
+  "generation": 0,
+  "required_members": 10,
+  "origin_mode": "mock",
+  "reserved_attempts": 12,
+  "API_attempt_cap": 12,
+  "writer_lock": false,
+  "freeze": {
+    "status": "frozen",
+    "member_count": 10,
+    "protocol_sha256": "2a261c8e42ea6296d835eadd3dad44d1522718bd96e17bdadf1f1d4efa70ca22",
+    "H_sha256": "e57427c8e2393f2a729db36ee88a387cfabb53f55968a50ec2deafc647f88d3f",
+    "origin_mode": "mock"
+  }
+}

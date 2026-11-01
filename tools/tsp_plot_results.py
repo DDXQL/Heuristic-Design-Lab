@@ -42,6 +42,8 @@ def main():
         if matrix:
             fig,ax=plt.subplots(figsize=(11,5.8));im=ax.imshow([r['scores'] for r in matrix],aspect='auto',cmap='viridis')
             ax.set(yticks=range(len(matrix)),yticklabels=[r['id'] for r in matrix],xlabel='固定顺序训练实例索引',title='最终冻结成员分数矩阵' if d['selection_final'] else '进行中：当前均值前10候选（展示，非冻结）')
+            width=len(matrix[0]['scores'])
+            ax.set_xticks(range(width),labels=[str(i+1) for i in range(width)])
             fig.colorbar(im,ax=ax,label='−length / NN_length');save(fig,'03_H_score_matrix')
         else:placeholder('逐实例互补性','完整分数矩阵待产生','03_H_score_matrix')
         comp=d.get('complementarity',[])
