@@ -300,11 +300,11 @@ def request_pause(directory):
     directory = Path(directory)
     path = directory/'Pause.json'
     sequence = read(path)['sequence']+1 if path.exists() else 1
-    write(path,{'sequence':sequence,'action':'pause_after_draining_bounded_batch'})
+    write(path,{'sequence':sequence,'action':'pause_after_draining_bounded_batch','requested_at':time.time()})
     return {'requested':True,'sequence':sequence}
 
 
-def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
+def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progress=None):
     """Only this coordinator writes checkpoint, budgets, plans and responses."""
     directory = Path(directory).resolve()
     p,s = check(directory)
@@ -397,8 +397,10 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
                     save_milestone(directory,s,p)
                     log_progress(directory,s,p)
                     save(directory,s)
+                    _notify_progress(on_progress,directory,s,p)
                     continue
             _execute_batch(directory,s,p,batch,evaluate)
+            _notify_progress(on_progress,directory,s,p)
             if s['phase'] == 'blocked':break
         save(directory,s)
         log_progress(directory,s,p)
@@ -414,6 +416,14 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False):
     return {'phase':s['phase'],'generation':s['generation'],'completed_tasks':s['completed_tasks'],
             'initialization_requests':s['initialization_requests'],'generation_requests':s['generation_requests'],
             'api_attempts_reserved':s['initialization_requests']+s['generation_requests'] if c['api_mode']=='real' else 0}
+
+
+def _notify_progress(callback,directory,state,protocol):
+    if callback is None:return
+    try:callback(directory,state,protocol)
+    except Exception as exc:
+        write(directory/'Snapshot_error.json',{'error_type':type(exc).__name__,'error':str(exc)[:300],
+              'completed_tasks':state['completed_tasks'],'raw_results_preserved':True})
 
 
 def _individual(t,s):

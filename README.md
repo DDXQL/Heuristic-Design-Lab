@@ -1,5 +1,7 @@
 # Heuristic-Design-Lab：多问题实验与中文文档入口
 
+- **TSP专用10H一条命令构建与离线汇报**：[协议V1](docs/TSP_H10_BUILD_PROTOCOL_V1.md)、[正式/工程命令与预算](reports/tsp-h10-build-prepared-20261101/REPORT_ZH.md)。默认真实请求关闭；H构建建议40次、恒选0次API、U预算另计，由用户终端分别启动。
+
 - **EoH正式对照与TSP新版准备（2026-11-01）**：[方案、参数、check-only与小试命令](reports/eoh-tsp-prep-20261101/REPORT_ZH.md)。独立工作树准备；TSP compact离线验证完成，正式搜索未启动，EoH公平训练协议待定。
 
 - **VS Code终端独立运行**：[中文操作手册](docs/终端独立运行实验.md)。Mock、固定候选/训练集评价、默认拦截的真实搜索；含启动/status/暂停/恢复/导出命令。

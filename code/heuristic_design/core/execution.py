@@ -161,6 +161,12 @@ def work(directory,*,adapter):
                 raise ValueError('P0 incomplete; cannot fill/borrow parents or continue EVO')
             o.write(directory/'checkpoint.json',s)
             with (directory/'Events.jsonl').open('a') as f:f.write(json.dumps({'event':'task_committed','id':tid,'cursor':s['cursor'],'at':end['wall']})+'\n');f.flush();os.fsync(f.fileno())
+            # Optional problem-level result snapshots; reporting cannot undo a commit.
+            if hasattr(o,'on_commit'):
+                try:o.on_commit(directory,s,p)
+                except Exception as exc:
+                    o.write(directory/'Snapshot_error.json',{'error_type':type(exc).__name__,'error':str(exc)[:300],
+                        'cursor':s['cursor'],'raw_results_preserved':True})
             if s.get('transport_failure_streak',0)>=3:raise ValueError('three consecutive failed logical transports; Stop without refill')
         else:s['phase']='completed'
         o.write(directory/'checkpoint.json',s);normal=True

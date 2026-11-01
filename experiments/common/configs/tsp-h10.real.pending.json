@@ -1,0 +1,35 @@
+{
+  "version": "tsp-h10-independent-pool-cpm-v1",
+  "api_mode": "real",
+  "real_requests_authorized": false,
+  "member_count": 10,
+  "candidate_cap": 40,
+  "api_attempt_cap": 40,
+  "per_candidate_attempt_cap": 1,
+  "search_seed": 501,
+  "solve_seed": 501,
+  "window_seconds": 43200,
+  "instance_timeout_seconds": 30,
+  "data_manifest": "../fixtures/tsp-routing-train20.manifest.json",
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "milestone_requests": [
+    10,
+    20,
+    30,
+    40
+  ]
+}
