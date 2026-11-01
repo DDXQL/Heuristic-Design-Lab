@@ -64,8 +64,8 @@ def config(value):
         raise ValueError('generation request cap cannot cover the frozen 2NG plan')
     if c['instance_timeout_seconds'] != 30:
         raise ValueError('v1 uses complete solve/recheck row T30 and separate 2s exit grace')
-    if c['recording_mode'] not in ('full','compact') or (c['recording_mode']=='compact' and c['problem']!='fjsp'):
-        raise ValueError('recording_mode must be full, or compact for FJSP')
+    if c['recording_mode'] not in ('full','compact'):
+        raise ValueError('recording_mode must be full or compact')
     milestones=c['milestone_generations']
     if (not isinstance(milestones,list) or any(type(g) is not int or not 1<=g<=c['generations'] for g in milestones)
             or milestones!=sorted(set(milestones))):

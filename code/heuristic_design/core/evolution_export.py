@@ -1,5 +1,6 @@
 """Research-oriented offline exports, separate from recovery bookkeeping."""
 import csv
+import json
 from pathlib import Path
 from .storage import read, write
 from .evolution_v1 import check
@@ -35,6 +36,29 @@ def export(directory,output=None):
               'prompt_path':t.get('prompt_path'),'response_path':t.get('response_path')}
              for t in s['tasks'].values() if t['stage']=='evolution']
     write(output/'lineage.json',lineage)
+    # Export compact, human-readable evidence without rerunning any constructor.
+    references={r['file']:r['reference'] for r in p['references']}
+    columns=['candidate_key','task_ids','file','valid','score','reference','length','makespan',
+             'tour','member_sequence','h_calls','captured_solves','semantic_sha256','recheck_semantic_sha256']
+    with (output/'per_instance.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=columns);w.writeheader()
+        for key,ev in s['evaluations'].items():
+            value=read(directory/ev['path'])
+            task_ids=','.join(t['id'] for t in s['tasks'].values() if t.get('candidate',{}).get('key')==key)
+            for row in value.get('instances',[]):
+                solution=row.get('solution',{})
+                sequence=row.get('member_sequence',[t['member_id'] for t in row.get('trace',[])])
+                w.writerow({'candidate_key':key,'task_ids':task_ids,'file':row['file'],
+                    'valid':value['valid'],'score':row['score'],'reference':references[row['file']],
+                    'length':solution.get('length'),'makespan':solution.get('makespan'),
+                    'tour':json.dumps(solution.get('tour')),'member_sequence':json.dumps(sequence),
+                    'h_calls':json.dumps(row.get('h_calls')),'captured_solves':row.get('captured_solves'),
+                    'semantic_sha256':row.get('semantic_sha256'),
+                    'recheck_semantic_sha256':row.get('recheck_semantic_sha256')})
+    champion=ranked(s['population'])[0] if s['population'] else None
+    if champion:
+        write(output/'champion.json',champion)
+        (output/'champion.py').write_text(champion['candidate']['code'])
     result={'version':p['version'],'protocol_sha256':s['identity'],'phase':s['phase'],
         'evaluation_mode':p['config']['evaluation_mode'],
         'generation_transport':'MOCK_OFFLINE_NOT_LLM' if p['config']['api_mode']=='mock' else p['config']['api_mode'],
@@ -45,9 +69,9 @@ def export(directory,output=None):
         'planned_evolution_candidates':2*p['config']['population_size']*p['config']['generations'],
         'valid_unique_evaluations':sum(r['valid'] for r in s['evaluations'].values()),
         'failed_or_duplicate_tasks':sum(t['status']=='completed' and not t['valid'] for t in s['tasks'].values()),
-        'generations':s['generations'],'champion':ranked(s['population'])[0] if s['population'] else None,
+        'generations':s['generations'],'champion':champion,
         'H_order_source':p['H_order_source'],
         'timing_note':'per-task batch times are shared; do not sum them as wall time',
-        'behavior_note':'mock: five artificial progress probes; solve: selected-H sequences on declared synthetic instances'}
+        'behavior_note':'mock: five artificial progress probes; solve: selected-H sequences on declared train/development instances'}
     write(output/'summary.json',result)
     return result

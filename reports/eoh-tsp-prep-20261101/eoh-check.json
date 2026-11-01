@@ -1,0 +1,46 @@
+{
+  "historical_run": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-r1-eoh-train21-20261030-111505-503272-95a4a92f",
+  "historical_protocol_sha256": "e579ce8eaebdede1fdf3156e577d740431d533fab67ecb46d35ab7ec65f4b6f2",
+  "historical_evaluation": {
+    "fitness": -2.012187450378091,
+    "complete_instances": 21,
+    "result_sha256": "9fbe140e2406af81827449c463b15235272f12f7ab35fc9095d1d5bbba5a8b5b"
+  },
+  "historical_model": "deepseek-flash",
+  "historical_budget": {
+    "max_sample_nums": 40,
+    "max_generations": 10,
+    "pop_size": 5,
+    "num_samplers": 1,
+    "num_evaluators": 1,
+    "timeout_seconds": 180,
+    "debug_mode": false
+  },
+  "historical_selection": {
+    "pool": "each run final EoH population only",
+    "partition": "validation",
+    "criterion": "highest arithmetic mean normalized score on 11 validation instances",
+    "tie_break": "lower final-population index",
+    "test_used": false
+  },
+  "pending_fields": [
+    "comparison_scope",
+    "total_api_attempt_cap",
+    "h_generation_api_attempt_cap",
+    "u_initialization_api_attempt_cap",
+    "u_search_api_attempt_cap",
+    "search_seeds",
+    "selection_protocol",
+    "model",
+    "eoh_algorithm_version",
+    "h_language",
+    "train_manifest",
+    "validation_policy",
+    "test_manifest"
+  ],
+  "training_ready": false,
+  "training_enabled": false,
+  "API_requests": 0,
+  "solves": 0,
+  "notice": "Historical frozen-rule quality reference only; current-model budget-matched EoH training is not implemented or authorized."
+}

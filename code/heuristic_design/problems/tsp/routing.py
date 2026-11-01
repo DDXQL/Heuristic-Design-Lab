@@ -18,6 +18,7 @@ class RouteResult:
     trace: tuple
     h_calls: tuple
     observation_seconds: float
+    member_sequence: tuple = ()
 
 
 def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), trace=True):
@@ -28,12 +29,14 @@ def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), 
     remaining, tour = list(range(1, len(d))), [0]
     history = History(len(d)-1, len(members), window)
     rows, calls, partial, observation = [], [0]*len(members), 0., 0.
+    selected_members = []
     while remaining:
         current, progress = tour[-1], (len(tour)-1)/(len(d)-1)
         started = time.perf_counter()
         packet = extract(d, tour, remaining, partial, history, scale, enabled_groups)
         observation += time.perf_counter() - started
         member = route_token(usage(packet), len(members))
+        selected_members.append(member)
         inputs, scores = [], []
         for city in remaining:
             ds = [float(d[city,j])/SCALE for j in remaining if j != city]
@@ -59,4 +62,5 @@ def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), 
         history.commit(member, cost/scale)
     tour.append(0)
     length = tour_length(d, tour)
-    return RouteResult(tuple(tour), length, -length/nearest_neighbor(d)[1], tuple(rows), tuple(calls), observation)
+    return RouteResult(tuple(tour), length, -length/nearest_neighbor(d)[1], tuple(rows), tuple(calls), observation,
+                       tuple(selected_members))

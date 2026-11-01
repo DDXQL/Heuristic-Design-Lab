@@ -1,0 +1,10 @@
+test_binding_rejects_cross_schema_problem_and_policy (test_common_routing_v1.Tests.test_binding_rejects_cross_schema_problem_and_policy) ... ok
+test_closed_access_and_runtime_tokens (test_common_routing_v1.Tests.test_closed_access_and_runtime_tokens) ... ok
+test_prompt_matches_abi_and_contains_exact_parents (test_common_routing_v1.Tests.test_prompt_matches_abi_and_contains_exact_parents) ... ok
+test_real_fjsp_legacy_parity_and_only_selected_h (test_common_routing_v1.Tests.test_real_fjsp_legacy_parity_and_only_selected_h) ... ok
+test_real_tsp_parity_and_recheck (test_common_routing_v1.Tests.test_real_tsp_parity_and_recheck) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.030s
+
+OK

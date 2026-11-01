@@ -1,0 +1,47 @@
+[
+  {
+    "source": "fixed-single-H0-baseline",
+    "candidate": {
+      "description": "Constant H0, not an EoH training run",
+      "code": "def use_heuristics(state):\n    return 0\n",
+      "key": "0cdafbdbb23a5093ffd62a00cb429067072e8fc738fb24b6ba1044160438d8c0",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "fixed-single-H1-baseline",
+    "candidate": {
+      "description": "Constant H1, not an EoH training run",
+      "code": "def use_heuristics(state):\n    return 1\n",
+      "key": "18d93069e5815d7b22d0b292d99b61b6eeb4349a98defe2bda6373cff46917ac",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "fixed-single-H2-baseline",
+    "candidate": {
+      "description": "Constant H2, not an EoH training run",
+      "code": "def use_heuristics(state):\n    return 2\n",
+      "key": "be975bafaf65c5343c572b810fa76b010e2131e17a3e3b619596f9e68dac2a0c",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "fixed-single-H3-baseline",
+    "candidate": {
+      "description": "Constant H3, not an EoH training run",
+      "code": "def use_heuristics(state):\n    return 3\n",
+      "key": "7310bb3ab07b165f9df7a9a08519e4183498d2fd6c103d3c98fc4c0f0f7cdc16",
+      "abi": "pure-routing-state-v1"
+    }
+  },
+  {
+    "source": "fixed-single-H4-baseline",
+    "candidate": {
+      "description": "Constant H4, not an EoH training run",
+      "code": "def use_heuristics(state):\n    return 4\n",
+      "key": "7acc7aafd8755207edcaad5b359ac22e5ad3863f5ffd629e1ec3bef012006f3a",
+      "abi": "pure-routing-state-v1"
+    }
+  }
+]

@@ -1,0 +1,65 @@
+test_full_compact_parity_sequence_closure_and_selected_calls (test_tsp_routing_preparation.Tests.test_full_compact_parity_sequence_closure_and_selected_calls) ... ok
+test_preflight_explicit_inputs_and_budget (test_tsp_routing_preparation.Tests.test_preflight_explicit_inputs_and_budget) ... ok
+test_prompt_contains_tsp_task_and_original_parents (test_tsp_routing_preparation.Tests.test_prompt_contains_tsp_task_and_original_parents) ... ok
+test_real_template_blocked_before_creating_run_even_with_cli_gate (test_tsp_routing_preparation.Tests.test_real_template_blocked_before_creating_run_even_with_cli_gate) ... TSP启动停止：PermissionError: real search requires config authorization AND --allow-api; no request sent
+ok
+test_solver_receipts_pause_resume_exports_and_parallel_parity (test_tsp_routing_preparation.Tests.test_solver_receipts_pause_resume_exports_and_parallel_parity) ... {
+  "problem": "tsp",
+  "state_schema": "constructive-common-v1-tsp",
+  "H_count": 5,
+  "instances": 20,
+  "city_counts": [
+    50
+  ],
+  "generation_transport": "real",
+  "evaluation_mode": "solve",
+  "recording_mode": "compact",
+  "initialization_candidate_upper_bound": 20,
+  "evolution_slots": 200,
+  "max_candidate_instance_rows": 4400,
+  "max_solve_passes": 8800,
+  "api_attempt_cap": 220,
+  "real_requests_authorized": false,
+  "policy_solves": 0,
+  "API_requests": 0,
+  "references_computed": 20,
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/reports/tsp-pilot-20261028-complete/H_frozen.json",
+      "sha256": "48ae0e9fc4ab9dde906e6b2360c05b942174ecebe2303968893b17b342c67c09",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/experiments/common/fixtures/tsp-routing-train20.manifest.json",
+      "sha256": "fa95ca6ac7dd7f3902ca693436ec63d6241b91c11c0b7708615f1f20b07d3ccb",
+      "split": "train"
+    }
+  },
+  "notice": "NN reference precheck only; Mock generation is not an LLM. No quality claim."
+}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 0, "best_evaluated_fitness": null, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.154752}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 1, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.319633}
+{"phase": "paused", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 1, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.320571}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 1, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.323861}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 2, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.472715}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 3, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 1, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.624915}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 4, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 2, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.774585}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 5, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 3, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538414.939268}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.120202}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.120803}
+{"phase": "completed", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.1228402}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 0, "best_evaluated_fitness": null, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.157604}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 2, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.370118}
+{"phase": "paused", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 2, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.370986}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 2, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.374656}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 4, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 2, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.568138}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 0, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.753314}
+{"phase": "running", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.753823}
+{"phase": "completed", "problem": "tsp", "generation_transport": "mock", "evaluation_mode": "solve", "data_split": ["synthetic-development"], "generation": 1, "target_generations": 1, "completed_candidates": 6, "best_evaluated_fitness": -1.0, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 4, "generation_request_cap": 4, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538415.755796}
+ok
+test_ties_distance_scale_and_state_scale (test_tsp_routing_preparation.Tests.test_ties_distance_scale_and_state_scale) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.805s
+
+OK

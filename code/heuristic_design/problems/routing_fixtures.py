@@ -76,7 +76,7 @@ def solve(problem, instance, h_rows, candidate, *, window=10, enabled_groups=Non
     elapsed = time.perf_counter() - started
     return {'file': instance['file'], 'score': result.score, 'solution': solution,
             'trace': list(result.trace), 'h_calls': list(result.h_calls),
-            **({'member_sequence': list(result.member_sequence)} if problem == 'fjsp' else {}),
+            'member_sequence': list(result.member_sequence),
             'solve_seconds': elapsed, 'observation_seconds': result.observation_seconds}
 
 

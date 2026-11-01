@@ -1,0 +1,23 @@
+{
+  "problem": "tsp",
+  "state_schema": "constructive-common-v1-tsp",
+  "api_mode": "mock",
+  "real_requests_authorized": false,
+  "evaluation_mode": "solve",
+  "recording_mode": "compact",
+  "population_size": 2,
+  "generations": 2,
+  "generation_request_cap": 8,
+  "initialization": "llm",
+  "h_file": "../../../reports/tsp-pilot-20261028-complete/H_frozen.json",
+  "data_manifest": "../fixtures/tsp-routing-smoke2.manifest.json",
+  "p0_file": null,
+  "search_seed": 501,
+  "solve_seed": 501,
+  "api_concurrency": 2,
+  "evaluation_concurrency": 2,
+  "window": 10,
+  "instance_timeout_seconds": 30,
+  "initialization_candidate_cap": 4,
+  "initialization_request_cap": 4
+}

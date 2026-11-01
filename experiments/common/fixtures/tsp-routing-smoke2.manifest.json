@@ -1,0 +1,24 @@
+{
+  "problem": "tsp",
+  "split": "train",
+  "instances": [
+    {
+      "file": "train_000.json",
+      "path": "tsp-routing-train20/train_000.json",
+      "sha256": "fe781badd16bbca6d4b9977e17c77c8c79f1305b43e56529eb2b093d00bf2679"
+    },
+    {
+      "file": "train_001.json",
+      "path": "tsp-routing-train20/train_001.json",
+      "sha256": "78fba18924f96a171c803aa3c14dc29ea67a45c2ecbbfff731dcab13f43e27a7"
+    }
+  ],
+  "provenance": {
+    "archive_sha256": "00d618ca9f3bc759639ac484bca77cdfdc5570799c9e24201b79c0c68e05440b",
+    "source_prefix": "runs/tsp-pilot-20261026-v2/data/train/",
+    "source_manifest_sha256": "f4512383e9845ef026e597a1e605bc732c0fb6e9ae829ab96907860e4aaa4caa",
+    "H_source": "reports/tsp-pilot-20261028-complete/H_frozen.json",
+    "H_sha256": "48ae0e9fc4ab9dde906e6b2360c05b942174ecebe2303968893b17b342c67c09",
+    "notice": "Historical train only, not a new holdout; five selected H are all handwritten."
+  }
+}

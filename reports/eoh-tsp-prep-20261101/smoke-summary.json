@@ -1,0 +1,31 @@
+{
+  "version": "parent-coverage-routing-v1",
+  "protocol_sha256": "dd0e3e7ab7f238b2652007259eef8c1c6681e4b3db31992b9cb3735c0f673c5e",
+  "phase": "completed",
+  "evaluation_mode": "solve",
+  "generation_transport": "fixed",
+  "quality_claim": false,
+  "real_API_calls": 0,
+  "api_attempts_reserved": 0,
+  "generation": 0,
+  "initialization_requests": 0,
+  "generation_requests": 0,
+  "planned_evolution_candidates": 0,
+  "valid_unique_evaluations": 3,
+  "failed_or_duplicate_tasks": 0,
+  "generations": [],
+  "champion": {
+    "id": "INIT-0000",
+    "candidate": {
+      "description": "constant-H0",
+      "code": "def use_heuristics(state):\n    return 0\n",
+      "key": "0cdafbdbb23a5093ffd62a00cb429067072e8fc738fb24b6ba1044160438d8c0",
+      "abi": "pure-routing-state-v1"
+    },
+    "fitness": -0.9776199632169118,
+    "behavior_sha256": "a9fe626dce1daace4c417d74b61c1b10e835b0d681bf17086788f3cca71132b6"
+  },
+  "H_order_source": "explicit frozen declaration order; no implicit performance-rank prior",
+  "timing_note": "per-task batch times are shared; do not sum them as wall time",
+  "behavior_note": "mock: five artificial progress probes; solve: selected-H sequences on declared train/development instances"
+}

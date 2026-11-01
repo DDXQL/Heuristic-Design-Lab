@@ -1,0 +1,26 @@
+{
+  "run_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101",
+  "phase": "completed",
+  "unique_candidates": 3,
+  "candidate_instance_rows": 6,
+  "solve_passes": 12,
+  "real_API_requests": 0,
+  "generation": "fixed handwritten policies; no search",
+  "all_solve_recheck_hashes_equal": true,
+  "all_trace_empty": true,
+  "all_member_sequence_length_49": true,
+  "evaluation_seconds_sum_serial": 0.6134657090879045,
+  "constructor_seconds_sum_both_passes": 0.14436137612210587,
+  "artifact_hashes": {
+    "smoke-candidates.csv": "4f67844041b3f1f5759001d1b493a04a198e6a2ec44a6022c1ef883e551608a9",
+    "smoke-summary.json": "bbc205908da60f3ccb2f52659f979f7ac1129684923a57d6fa1976a986bd3f4a",
+    "smoke-champion.json": "3ea45de8f6f1578eb1f6c5a252239592d9639deb3d3fb9e572813cc652e01919",
+    "smoke-export.log": "1f3d104467a574996bd39fa7cd936cee1e35f55d07dcaa7e73efcb55faadb6bd",
+    "smoke-status.json": "c540dfece5d79af36dc1e6039d38ae564fedf456e3df177619bcc694675f5a22",
+    "smoke-generations.csv": "e9861bb95e503a414aef74c891270747b3394739798db4ec9c615238887052a9",
+    "smoke-lineage.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "smoke-champion.py": "feab9509732aee6901dec84094a14fe40062885e9bc7c4d2728a29606adc4782",
+    "smoke-terminal.log": "36c1819eacfbdf6d61b2a61f0181aad61a3d1a9c909008bbc3dc3e7dd2b34c75",
+    "smoke-per_instance.csv": "2db23310ab23b9660556e95078b8d35360cb0fdced527887bf43305cc17d7938"
+  }
+}

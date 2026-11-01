@@ -182,6 +182,31 @@ def build_prompt(problem, task, parents, members, *, window=10, enabled_groups=N
             'Do not use old seven-argument U signatures or MIX outputs. '
             'Use the exact unannotated signature def use_heuristics(state):; no type annotations.'
         )
+    elif problem == 'tsp':
+        task_definition = (
+            'Task: constructive symmetric Euclidean traveling salesman problem (TSP). '
+            'Coordinates are float64 in the unit square [0,1]^2. Start at city 0, visit each other city '
+            'exactly once, and close the tour back to city 0. Minimize total length, including the closing edge. '
+            'No local search. Each legal action appends one unvisited city. U selects exactly one H; '
+            'only that H scores all current legal actions. Largest raw priority wins; exact ties use '
+            'the smallest city ID. H arguments: distance_current is the edge from the current city to '
+            'the candidate; distance_start is the edge from the candidate to city 0; '
+            'mean_remaining_distance and nearest_remaining_distance summarize edges from the candidate '
+            'to the OTHER unvisited cities (both zero if none). All four distance arguments are '
+            'divided by sqrt(2), not by the state scale B. progress is committed optional decisions/(n-1). '
+            'State partial objective C(s) is open-path length; legal action delta is edge_length/B. '
+            'State scales: '+SPEC['scales']['tsp']+'. '
+            'Observe before routing, commit one edge, then update history. The forced closing edge '
+            'contributes to final length but has no U/H call and no history update. '
+            'All training instances must solve and recheck successfully. Fitness is the arithmetic mean '
+            'of -length/NN_length on the complete declared set, maximized. NN is deterministic nearest '
+            'neighbor starting at 0, smallest city ID breaks ties, closed edge included. NN is a reference, '
+            'not an optimum, a lower bound, or a state field. H tokens follow the declared order; '
+            'do not assume token 0 is nearest neighbor. Do not use legacy five-argument U signatures '
+            'or SELECT/MIX tuples. Use the exact unannotated signature def use_heuristics(state):.'
+        )
+    else:
+        raise ValueError('unknown routing prompt problem')
     return '\n'.join([
         f'Problem: {problem}. ABI: {ABI}. State spec: {SPEC_SHA256}.',
         task_definition,

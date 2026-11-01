@@ -1,0 +1,50 @@
+{
+  "problem": "tsp",
+  "state_schema": "constructive-common-v1-tsp",
+  "H_count": 5,
+  "instances": 2,
+  "city_counts": [
+    50
+  ],
+  "generation_transport": "fixed",
+  "evaluation_mode": "solve",
+  "recording_mode": "compact",
+  "initialization_candidate_upper_bound": 3,
+  "evolution_slots": 0,
+  "max_candidate_instance_rows": 6,
+  "max_solve_passes": 12,
+  "api_attempt_cap": null,
+  "real_requests_authorized": false,
+  "policy_solves": 0,
+  "API_requests": 0,
+  "references_computed": 2,
+  "input_provenance": {
+    "H": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/reports/tsp-pilot-20261028-complete/H_frozen.json",
+      "sha256": "48ae0e9fc4ab9dde906e6b2360c05b942174ecebe2303968893b17b342c67c09",
+      "order": "file order, no reranking"
+    },
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/experiments/common/fixtures/tsp-routing-smoke2.manifest.json",
+      "sha256": "dac7fb7c0c5571eaf9e226ca6594e938e93b8ba6ba294aad8424a6d3012666b6",
+      "split": "train"
+    }
+  },
+  "notice": "NN reference precheck only; Mock generation is not an LLM. No quality claim."
+}
+{"run_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101"}
+{"phase": "running", "problem": "tsp", "generation_transport": "fixed", "evaluation_mode": "solve", "data_split": ["train"], "generation": 0, "target_generations": 0, "completed_candidates": 0, "best_evaluated_fitness": null, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 0, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538346.085685}
+{"phase": "running", "problem": "tsp", "generation_transport": "fixed", "evaluation_mode": "solve", "data_split": ["train"], "generation": 0, "target_generations": 0, "completed_candidates": 1, "best_evaluated_fitness": -0.9776199632169118, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 0, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538346.3073332}
+{"phase": "running", "problem": "tsp", "generation_transport": "fixed", "evaluation_mode": "solve", "data_split": ["train"], "generation": 0, "target_generations": 0, "completed_candidates": 2, "best_evaluated_fitness": -0.9776199632169118, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 0, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538346.516507}
+{"phase": "running", "problem": "tsp", "generation_transport": "fixed", "evaluation_mode": "solve", "data_split": ["train"], "generation": 0, "target_generations": 0, "completed_candidates": 3, "best_evaluated_fitness": -0.9776199632169118, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 0, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538346.728653}
+{"phase": "completed", "problem": "tsp", "generation_transport": "fixed", "evaluation_mode": "solve", "data_split": ["train"], "generation": 0, "target_generations": 0, "completed_candidates": 3, "best_evaluated_fitness": -0.9776199632169118, "score_is_mock": false, "initialization_requests": 0, "initialization_request_cap": 20, "generation_requests": 0, "generation_request_cap": 0, "api_attempts_reserved": 0, "api_attempt_cap": null, "inflight": [], "at": 1793538346.730437}
+{
+  "phase": "completed",
+  "generation": 0,
+  "completed_tasks": 3,
+  "initialization_requests": 0,
+  "generation_requests": 0,
+  "api_attempts_reserved": 0
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101
+导出：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101/exports

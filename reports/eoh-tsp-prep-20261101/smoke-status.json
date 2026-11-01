@@ -1,0 +1,24 @@
+{
+  "phase": "completed",
+  "problem": "tsp",
+  "generation_transport": "fixed",
+  "evaluation_mode": "solve",
+  "data_split": [
+    "train"
+  ],
+  "generation": 0,
+  "target_generations": 0,
+  "completed_candidates": 3,
+  "best_evaluated_fitness": -0.9776199632169118,
+  "score_is_mock": false,
+  "initialization_requests": 0,
+  "initialization_request_cap": 20,
+  "generation_requests": 0,
+  "generation_request_cap": 0,
+  "api_attempts_reserved": 0,
+  "api_attempt_cap": null,
+  "inflight": [],
+  "writer_lock": false
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101
+导出：/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-routing-offline-smoke-20261101/exports
