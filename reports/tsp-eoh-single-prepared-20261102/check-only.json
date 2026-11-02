@@ -1,0 +1,52 @@
+{
+  "mode": "real",
+  "real_requests_authorized": false,
+  "API_requests": 0,
+  "policy_solves": 0,
+  "instances": 20,
+  "references_computed": 20,
+  "N": 5,
+  "operators": [
+    "I1",
+    "E1",
+    "E2",
+    "M1",
+    "M2"
+  ],
+  "api_attempt_cap": 260,
+  "per_candidate_attempt_cap": 1,
+  "initialization_HTTP_cap": 20,
+  "native_initialization_evaluated_cap": 10,
+  "native_max_generations": null,
+  "max_candidate_instance_rows": 5200,
+  "max_solve_passes": 10400,
+  "comparison": {
+    "status": "compatible_train_physics_and_model",
+    "ceiling": 260,
+    "existing_H_slots": 40,
+    "existing_U_slots": 213,
+    "actual_existing_slots": 253,
+    "h_protocol_sha256": "68c4290ca78fbc52b15d6d1ee9450550a58f8bee1c318c64024c94777657e941",
+    "u_protocol_sha256": "9de09fd3d154f6d7aaf61dddd3650fb77e84cf38dcea0a82ff1735763d1907aa",
+    "fixed_protocol_sha256": "bf7271db1f7a8405dc1bb73d63c93b8f668d77522018585b2a7beb942120d15c",
+    "physical_source_files": [
+      "code/heuristic_design/core/routing_evaluation.py",
+      "code/heuristic_design/core/constructive_state.py",
+      "code/heuristic_design/core/routing.py",
+      "code/heuristic_design/problems/routing_fixtures.py",
+      "code/heuristic_design/problems/tsp/__init__.py",
+      "code/heuristic_design/problems/tsp/campaign.py",
+      "code/heuristic_design/problems/tsp/candidates.py",
+      "code/heuristic_design/problems/tsp/common_state.py",
+      "code/heuristic_design/problems/tsp/data.py",
+      "code/heuristic_design/problems/tsp/evaluation.py",
+      "code/heuristic_design/problems/tsp/operations.py",
+      "code/heuristic_design/problems/tsp/prompts.py",
+      "code/heuristic_design/problems/tsp/routing.py",
+      "code/heuristic_design/problems/tsp/solver.py"
+    ],
+    "native_request_concurrency": 1,
+    "previous_U_request_concurrency": 2,
+    "notice": "Same maximum budget, not guaranteed equal realized calls/tokens/CPU. Single train run; no generalization claim."
+  }
+}

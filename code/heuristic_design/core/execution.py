@@ -118,13 +118,18 @@ def work(directory,*,adapter):
             reserve=30*len(p['instances'])+5
             if plan[index]['stage']=='new':reserve+=p['config']['per_candidate_attempt_cap']*p['config']['provider']['total_timeout']+2
             if time.time()+reserve>clock['deadline']:s['phase']='expired';break
-            task=plan[index];tid=task['id'];beg={'wall':time.time(),'monotonic':time.monotonic()}
+            task=plan[index];parents=None
+            if hasattr(o,'task_context'):
+                task,parents=o.task_context(directory,s,p,task,index)
+                if task is None:break  # adapter-declared terminal state, before any reservation
+            tid=task['id'];beg={'wall':time.time(),'monotonic':time.monotonic()}
             record={**task,'status':'reserved','started':beg,'valid':False,'fitness':None,'parents':[]}
             s['tasks'][tid]=record;o.write(directory/'checkpoint.json',s)
             c=None
             if task['stage']!='new':c=o.checked_candidate(task['candidate'])
             else:
-                if p['config']['type']=='evo':parents=select_parents(s['population'],p['config']['cross_parents'] if task['operator']=='CROSS' else 1,rng)
+                if parents is not None:pass  # native algorithm supplied its own parent selection
+                elif p['config']['type']=='evo':parents=select_parents(s['population'],p['config']['cross_parents'] if task['operator']=='CROSS' else 1,rng)
                 elif p['config']['type']=='cross_ab':parents=[next(r for r in o.read(directory/'Parents.json') if r['id']==pid) for pid in task['parents']]
                 else:parents=[]
                 record['parents']=[r['id'] for r in parents];record['parent_keys']=[r['candidate']['key'] for r in parents]
@@ -157,6 +162,8 @@ def work(directory,*,adapter):
                 s['population']=survive(s['population'],s['children'],p['config']['population_size']);s['children']=[];s['generation']+=1
                 (directory/'populations').mkdir(exist_ok=True);o.write(directory/'populations'/f"P{s['generation']}.json",s['population'])
             record.update(status='completed',finished=end);s['cursor']+=1;s['rng']=rng.getstate()
+            if hasattr(o,'commit_candidate'):
+                o.commit_candidate(directory,s,p,record,c,result if c else None)
             if index+1<len(plan) and plan[index+1]['stage']=='new' and p['config']['type']=='evo' and len(s['population'])!=p['config']['population_size']:
                 raise ValueError('P0 incomplete; cannot fill/borrow parents or continue EVO')
             o.write(directory/'checkpoint.json',s)
@@ -167,7 +174,10 @@ def work(directory,*,adapter):
                 except Exception as exc:
                     o.write(directory/'Snapshot_error.json',{'error_type':type(exc).__name__,'error':str(exc)[:300],
                         'cursor':s['cursor'],'raw_results_preserved':True})
-            if s.get('transport_failure_streak',0)>=3:raise ValueError('three consecutive failed logical transports; Stop without refill')
+            if s.get('transport_failure_streak',0)>=3:
+                if getattr(o,'pause_on_transport_streak',False):
+                    s['phase']='paused';s['pause_reason']='three consecutive failed transports; resume requires user action';break
+                raise ValueError('three consecutive failed logical transports; Stop without refill')
         else:s['phase']='completed'
         o.write(directory/'checkpoint.json',s);normal=True
     except BaseException as exc:

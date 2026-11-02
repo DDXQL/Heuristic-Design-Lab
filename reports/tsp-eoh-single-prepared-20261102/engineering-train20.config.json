@@ -1,0 +1,41 @@
+{
+  "version": "tsp-eoh-single-native-http-v1",
+  "api_mode": "mock",
+  "real_requests_authorized": false,
+  "candidate_cap": 2,
+  "api_attempt_cap": 2,
+  "per_candidate_attempt_cap": 1,
+  "population_size": 2,
+  "selection_num": 2,
+  "initialization_request_cap": 2,
+  "initialization_sample_cap": 4,
+  "search_seed": 501,
+  "solve_seed": 501,
+  "window_seconds": 43200,
+  "instance_timeout_seconds": 30,
+  "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-real-20261101-01/next/train.manifest.json",
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "comparison_h_run": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-real-20261101-01",
+  "comparison_u_run": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-u10-real-20261101-01",
+  "comparison_fixed_run": "/Users/DDXQL/Developer/Heuristic-Design-Lab-eoh-tsp-prep/runs/tsp-h10-singles-real-20261101-01",
+  "milestone_requests": [
+    1,
+    2
+  ],
+  "mock_faults": {},
+  "pause_after_tasks": null
+}

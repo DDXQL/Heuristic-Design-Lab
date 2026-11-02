@@ -1,0 +1,21 @@
+{
+  "implementation": "vendored LLM4AD EoH; eoh.py revision 2025/2/16",
+  "native_sources_unchanged": true,
+  "source_sha256": {
+    "code/llm4ad/method/eoh/resume.py": "ef8b125ca29d4b5630dbc30d07819f6c3a8c150bc5130996309e9b77e4755dfc",
+    "code/llm4ad/method/eoh/population.py": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa",
+    "code/llm4ad/method/eoh/__init__.py": "0ba3378334836234196dac4b1d9b9601b445d4cf60a9674e671bf79f78fa9884",
+    "code/llm4ad/method/eoh/prompt.py": "8e136b4f9a011ce489abf4857837e2eb08e045a87e5f0fd417df58bf8652b91f",
+    "code/llm4ad/method/eoh/sampler.py": "508881ff7f5e5affd3179c012a0271ed077522d01a307ed57832c9b26a9edc15",
+    "code/llm4ad/method/eoh/profiler.py": "d1daaf28869bea66ebfd1caa8497381e31db9bb1aaff244688924728785b7066",
+    "code/llm4ad/method/eoh/eoh.py": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245"
+  },
+  "operators": [
+    "I1",
+    "E1",
+    "E2",
+    "M1",
+    "M2"
+  ],
+  "M3_present_in_this_version": false
+}

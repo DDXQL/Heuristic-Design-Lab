@@ -1,0 +1,45 @@
+{
+  "mode": "mock",
+  "real_requests_authorized": false,
+  "API_requests": 0,
+  "policy_solves": 0,
+  "instances": 2,
+  "references_computed": 2,
+  "N": 2,
+  "operators": [
+    "I1",
+    "E1",
+    "E2",
+    "M1",
+    "M2"
+  ],
+  "api_attempt_cap": 12,
+  "per_candidate_attempt_cap": 1,
+  "initialization_HTTP_cap": 8,
+  "native_initialization_evaluated_cap": 4,
+  "native_max_generations": null,
+  "max_candidate_instance_rows": 24,
+  "max_solve_passes": 48,
+  "comparison": {
+    "status": "Mock engineering, no scientific comparison"
+  }
+}
+运行目录：/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-eoh-single/runs/tsp-eoh-engineering-smoke-20261102-02
+{"phase": "running", "cursor": 1, "planned": 12, "request_slots": 1, "confirmed_sends": 1, "valid_unique_H": 1, "best_fitness": -1.0, "evolution_survival_updates": 0, "native_generation": 0, "evaluated_samples": 1, "stage": "initialization", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 2, "planned": 12, "request_slots": 2, "confirmed_sends": 2, "valid_unique_H": 2, "best_fitness": -1.0, "evolution_survival_updates": 0, "native_generation": 1, "evaluated_samples": 2, "stage": "initialization", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 3, "planned": 12, "request_slots": 3, "confirmed_sends": 3, "valid_unique_H": 3, "best_fitness": -1.0, "evolution_survival_updates": 0, "native_generation": 2, "evaluated_samples": 3, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 4, "planned": 12, "request_slots": 4, "confirmed_sends": 4, "valid_unique_H": 4, "best_fitness": -1.0, "evolution_survival_updates": 1, "native_generation": 3, "evaluated_samples": 4, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 5, "planned": 12, "request_slots": 5, "confirmed_sends": 5, "valid_unique_H": 5, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 1, "native_generation": 3, "evaluated_samples": 5, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 6, "planned": 12, "request_slots": 6, "confirmed_sends": 6, "valid_unique_H": 6, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 2, "native_generation": 4, "evaluated_samples": 6, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 7, "planned": 12, "request_slots": 7, "confirmed_sends": 7, "valid_unique_H": 7, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 2, "native_generation": 4, "evaluated_samples": 7, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 8, "planned": 12, "request_slots": 8, "confirmed_sends": 8, "valid_unique_H": 8, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 3, "native_generation": 5, "evaluated_samples": 8, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 9, "planned": 12, "request_slots": 9, "confirmed_sends": 9, "valid_unique_H": 9, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 3, "native_generation": 5, "evaluated_samples": 9, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 10, "planned": 12, "request_slots": 10, "confirmed_sends": 10, "valid_unique_H": 10, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 4, "native_generation": 6, "evaluated_samples": 10, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 11, "planned": 12, "request_slots": 11, "confirmed_sends": 11, "valid_unique_H": 11, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 4, "native_generation": 6, "evaluated_samples": 11, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{"phase": "running", "cursor": 12, "planned": 12, "request_slots": 12, "confirmed_sends": 12, "valid_unique_H": 12, "best_fitness": -0.9839569848176049, "evolution_survival_updates": 5, "native_generation": 7, "evaluated_samples": 12, "stage": "evolution", "generation_transport": "mock", "evaluation_mode": "solve", "API_attempt_cap": 12, "writer_lock": true}
+{
+  "phase": "completed",
+  "cursor": 12,
+  "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-eoh-single/runs/tsp-eoh-engineering-smoke-20261102-02"
+}
+{"output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-eoh-single/runs/tsp-eoh-engineering-smoke-20261102-02/analysis", "phase": "completed", "plots_status": "completed"}

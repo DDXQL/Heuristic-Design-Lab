@@ -1,0 +1,21 @@
+test_common_execution_v1 (unittest.loader._FailedTest.test_common_execution_v1) ... ERROR
+
+======================================================================
+ERROR: test_common_execution_v1 (unittest.loader._FailedTest.test_common_execution_v1)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_common_execution_v1
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-eoh-single/tests/test_common_execution_v1.py", line 11, in <module>
+    from heuristic_design.core import evolution_v1 as e, routing
+ModuleNotFoundError: No module named 'heuristic_design'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
