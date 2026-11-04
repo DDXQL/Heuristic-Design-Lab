@@ -23,11 +23,11 @@ class Checks(unittest.TestCase):
         cfg={**self.c,**(changes or {})};path=self.root/(name+'.json');write(path,cfg)
         run=self.root/name;e.prepare(run,path);return run
     def execute(self,run,resume=False):return execution.start(run,adapter=e.Adapter(),resume=resume)
-    def test_pending_real_check_and_closed_launch_zero_side_effects(self):
-        c,data,refs,origin,binding=e.preflight(ROOT/'experiments/common/configs/fjsp-eoh-single.real.pending.json')
+    def test_bound_real_check_and_unapproved_launch_zero_side_effects(self):
+        c,data,refs,origin,binding=e.preflight(ROOT/'experiments/common/configs/fjsp-eoh-single.real.json')
         self.assertEqual(len(data),21);self.assertEqual(c['api_attempt_cap'],1050);self.assertEqual(c['initialization_request_cap'],50)
-        self.assertEqual(c['initialization_sample_cap'],10);self.assertEqual(e.transport_status(c),'pending_external_API_reliability_conclusion')
-        with self.assertRaises(PermissionError):e.prepare(self.root/'paid',ROOT/'experiments/common/configs/fjsp-eoh-single.real.pending.json',allow_api=True,approve_budget=1050)
+        self.assertEqual(c['initialization_sample_cap'],10);self.assertEqual(e.transport_status(c),'admitted_common_nonstream_and_strict_caller_bound')
+        with self.assertRaises(PermissionError):e.prepare(self.root/'paid',ROOT/'experiments/common/configs/fjsp-eoh-single.real.json')
         self.assertFalse((self.root/'paid').exists())
     def test_config_rejects_unused_fields_bad_caps_and_real_Mock_scores(self):
         for change in ({'unknown':1},{'api_attempt_cap':1051,'candidate_cap':1051},{'initialization_request_cap':51},
@@ -35,7 +35,7 @@ class Checks(unittest.TestCase):
             path=self.root/'bad.json';write(path,{**self.c,**change})
             with self.assertRaises(ValueError):e.settings(path)
     def test_same_train_order_LB_seed_timeout_required(self):
-        cfg=ROOT/'experiments/common/configs/fjsp-eoh-single.real.pending.json';c,data,refs,_,_=e.preflight(cfg)
+        cfg=ROOT/'experiments/common/configs/fjsp-eoh-single.real.json';c,data,refs,_,_=e.preflight(cfg)
         for key,value in [('solve_seed',502),('instance_timeout_seconds',29),('expected_model','wrong-model')]:
             with self.assertRaises(ValueError):e.comparison_identity({**c,key:value},data,refs)
         with self.assertRaises(ValueError):e.comparison_identity(c,list(reversed(data)),refs)
@@ -82,7 +82,7 @@ class Checks(unittest.TestCase):
         with self.assertRaises(ValueError):self.execute(run,resume=True)
         self.assertEqual(len(read(run/'API_attempts.json')['api_attempts']),3)
     def test_fixed_R1_result_validation_and_host_dispatch_no_solve(self):
-        cfg=ROOT/'experiments/common/configs/fjsp-eoh-single.real.pending.json';c,data,refs,_,_=e.preflight(cfg)
+        cfg=ROOT/'experiments/common/configs/fjsp-eoh-single.real.json';c,data,refs,_,_=e.preflight(cfg)
         r=Path('/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-r1-train21-20261029-221535-858514-d3145ddd')
         s=read(r/'checkpoint.json');task=s['tasks']['INIT-0000'];meta=s['evaluations'][task['candidate']['key']]
         self.assertEqual(sha(r/meta['path']),meta['sha256']);result=read(r/meta['path']);adapter=e.Adapter()

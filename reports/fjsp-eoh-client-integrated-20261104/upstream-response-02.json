@@ -1,0 +1,75 @@
+{
+  "text": "H1 estimates job completion horizon and favors the smallest estimated horizon. H9 emphasizes remaining work but sharply discounts slow machines and delayed completion, while the supplied selectors switch based on action-cost spread or variability; those costs measure immediate burden, not which H performs better. This selector uses action-cost contrast and progress to choose between those two distinct scheduling priorities.\n\n```python\ndef use_heuristics(state):\n    if state[\"availability\"][\"action_delta_best_gap\"] and state[\"availability\"][\"action_delta_mean\"] and state[\"availability\"][\"action_delta_std\"]:\n        gap = state[\"action_delta_best_gap\"]\n        mean = state[\"action_delta_mean\"]\n        std = state[\"action_delta_std\"]\n        if gap > 0.05 and std <= mean:\n            if state[\"availability\"][\"construction_progress\"]:\n                if state[\"construction_progress\"] < 0.4:\n                    return 9\n            return 1\n        if gap > 0.01 and std > mean:\n            return 9\n    if state[\"availability\"][\"construction_progress\"]:\n        if state[\"construction_progress\"] < 0.4:\n            return 9\n    return 1\n```",
+  "usage": {
+    "input_tokens": 9690,
+    "output_tokens": 236
+  },
+  "metadata": {
+    "failure_stage": "json_decode",
+    "local_request": {
+      "serialized_body_bytes": 19482,
+      "serialized_body_sha256": "f154f1fc6491eaf4fc98bbd4cb89dd7f32d156c135b48cd46b5e8bd31df26656",
+      "body_fields": [
+        "max_completion_tokens",
+        "messages",
+        "model",
+        "n",
+        "stream"
+      ],
+      "model": "gpt-6.1-sol",
+      "max_completion_tokens": 8192,
+      "stream": false,
+      "n": 1,
+      "messages_count": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "str",
+            "bytes": 18835,
+            "sha256": "764d9e95e4bf70847f9001e4a1dbd5a1dcf1268f82acc184b4103f9a2b03030b"
+          }
+        }
+      ],
+      "scope": "body passed to HTTP client; excludes authorization headers; not proof of server context or billing"
+    },
+    "send_status": "confirmed",
+    "wire_timing": {
+      "started_at_unix": 1793793110.279295,
+      "connected_seconds": 0.9756262910086662,
+      "send_confirmed_seconds": 0.9759708330384456,
+      "response_headers_seconds": 8.210016666038428,
+      "first_body_data_seconds": 8.210776708030608,
+      "body_complete_seconds": 8.212105291022453,
+      "finished_seconds": 8.212369208049495
+    },
+    "connection": {
+      "mode": "direct_https",
+      "application_proxy": false,
+      "proxy_environment_used": false,
+      "system_tun": "not_observed",
+      "host": "leafapi.cc",
+      "port": 443,
+      "peer": [
+        "2606:4700:3037::6815:e2c",
+        443
+      ]
+    },
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202611041151519299600178268d9d6sfjwLbEt",
+    "x-request-id": "3f8c9b49-9280-42c9-9d48-58ae34e7a163",
+    "date": "Wed, 04 Nov 2026 11:51:57 GMT",
+    "cf-ray": "a55368c19d912639-NRT",
+    "server": "cloudflare",
+    "gateway_request_id": "202611041151519299600178268d9d6sfjwLbEt",
+    "first_body_chunk_bytes": 356,
+    "cached_tokens": 4224,
+    "id": "resp_0cc96f7456336d48016aeb1c58937887d083b087be6ea0a065",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

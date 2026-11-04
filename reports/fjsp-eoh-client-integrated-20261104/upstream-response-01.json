@@ -1,0 +1,76 @@
+{
+  "text": "H1 selects the shortest estimated job-completion horizon; H9 favors remaining work while strongly favoring faster machines and penalizing waiting. I combine the parents’ best-action-gap and relative-variability triggers: choose H1 when either indicates differentiated action costs, otherwise choose H9. These cost signals are a selection hypothesis, not evidence that either H wins on a given state.\n\n```python\ndef use_heuristics(state):\n    gap = 0.0\n    if state[\"availability\"][\"action_delta_best_gap\"]:\n        gap = state[\"action_delta_best_gap\"]\n    if gap > 0.05:\n        return 1\n    if state[\"availability\"][\"action_delta_mean\"]:\n        if state[\"availability\"][\"action_delta_std\"]:\n            if state[\"action_delta_std\"] > state[\"action_delta_mean\"]:\n                return 1\n    return 9\n```",
+  "usage": {
+    "input_tokens": 9690,
+    "output_tokens": 476
+  },
+  "metadata": {
+    "failure_stage": "json_decode",
+    "local_request": {
+      "serialized_body_bytes": 19482,
+      "serialized_body_sha256": "f154f1fc6491eaf4fc98bbd4cb89dd7f32d156c135b48cd46b5e8bd31df26656",
+      "body_fields": [
+        "max_completion_tokens",
+        "messages",
+        "model",
+        "n",
+        "stream"
+      ],
+      "model": "gpt-6.1-sol",
+      "max_completion_tokens": 8192,
+      "stream": false,
+      "n": 1,
+      "messages_count": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "str",
+            "bytes": 18835,
+            "sha256": "764d9e95e4bf70847f9001e4a1dbd5a1dcf1268f82acc184b4103f9a2b03030b"
+          }
+        }
+      ],
+      "scope": "body passed to HTTP client; excludes authorization headers; not proof of server context or billing"
+    },
+    "send_status": "confirmed",
+    "wire_timing": {
+      "started_at_unix": 1793793110.2644649,
+      "connected_seconds": 0.9125261669978499,
+      "send_confirmed_seconds": 0.9137077920022421,
+      "response_headers_seconds": 15.848071708984207,
+      "first_body_data_seconds": 15.84913891699398,
+      "body_complete_seconds": 15.84965629200451,
+      "finished_seconds": 15.849991333961952
+    },
+    "connection": {
+      "mode": "direct_https",
+      "application_proxy": false,
+      "proxy_environment_used": false,
+      "system_tun": "not_observed",
+      "host": "leafapi.cc",
+      "port": 443,
+      "peer": [
+        "2606:4700:3037::6815:e2c",
+        443
+      ]
+    },
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202611041151520348911698268d9d6eDhsCcrd",
+    "x-request-id": "6f916031-cd7d-43ce-9bec-ef811c601b6a",
+    "date": "Wed, 04 Nov 2026 11:52:05 GMT",
+    "cf-ray": "a55368c0ec28447c-SIN",
+    "server": "cloudflare",
+    "gateway_request_id": "202611041151520348911698268d9d6eDhsCcrd",
+    "first_body_chunk_bytes": 351,
+    "cached_tokens": 4224,
+    "reasoning_tokens": 295,
+    "id": "resp_0b6cef3c5076074d016aeb1c5c3ab887d096dc4756587e6aa5",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

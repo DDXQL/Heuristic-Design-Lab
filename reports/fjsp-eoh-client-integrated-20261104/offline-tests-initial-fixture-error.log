@@ -1,0 +1,135 @@
+...........E.E.E..E...E
+======================================================================
+ERROR: test_HTTP403_stops_first_and_does_not_consume_remaining_budget (check_fjsp_eoh_integration.Checks.test_HTTP403_stops_first_and_does_not_consume_remaining_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 72, in test_HTTP403_stops_first_and_does_not_consume_remaining_budget
+    run=self.prepare('403')
+        ^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 31, in prepare
+    p=self.root/(name+'.json');write(p,{**self.c,**(changes or {})});run=self.root/name;e.prepare(run,p);return run
+                                                                                        ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 136, in prepare
+    c,data,refs,origin,binding=preflight(path)
+                               ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 128, in preflight
+    c=settings(path);_,data,origin=inputs({'problem':'fjsp','data_manifest':c['data_manifest']})
+      ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 90, in settings
+    ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/llm/legacy.py", line 19, in __init__
+    c=p['config'];self.provider=ProviderConfig(**c['provider'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/fjsp_usage/research_real/config.py", line 70, in __post_init__
+    raise ValueError('api_key_env must name a local environment variable')
+ValueError: api_key_env must name a local environment variable
+
+======================================================================
+ERROR: test_export_nodes_curves_and_engineering_freeze_are_explicit (check_fjsp_eoh_integration.Checks.test_export_nodes_curves_and_engineering_freeze_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 127, in test_export_nodes_curves_and_engineering_freeze_are_explicit
+    run=self.prepare('export');execution.start(run,adapter=e.Adapter());summary=e.export(run)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 31, in prepare
+    p=self.root/(name+'.json');write(p,{**self.c,**(changes or {})});run=self.root/name;e.prepare(run,p);return run
+                                                                                        ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 136, in prepare
+    c,data,refs,origin,binding=preflight(path)
+                               ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 128, in preflight
+    c=settings(path);_,data,origin=inputs({'problem':'fjsp','data_manifest':c['data_manifest']})
+      ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 90, in settings
+    ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/llm/legacy.py", line 19, in __init__
+    c=p['config'];self.provider=ProviderConfig(**c['provider'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/fjsp_usage/research_real/config.py", line 70, in __post_init__
+    raise ValueError('api_key_env must name a local environment variable')
+ValueError: api_key_env must name a local environment variable
+
+======================================================================
+ERROR: test_missing_usage_first_failure_committed_then_persistent_stop (check_fjsp_eoh_integration.Checks.test_missing_usage_first_failure_committed_then_persistent_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 63, in test_missing_usage_first_failure_committed_then_persistent_stop
+    run=self.prepare('missing')
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 31, in prepare
+    p=self.root/(name+'.json');write(p,{**self.c,**(changes or {})});run=self.root/name;e.prepare(run,p);return run
+                                                                                        ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 136, in prepare
+    c,data,refs,origin,binding=preflight(path)
+                               ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 128, in preflight
+    c=settings(path);_,data,origin=inputs({'problem':'fjsp','data_manifest':c['data_manifest']})
+      ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 90, in settings
+    ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/llm/legacy.py", line 19, in __init__
+    c=p['config'];self.provider=ProviderConfig(**c['provider'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/fjsp_usage/research_real/config.py", line 70, in __post_init__
+    raise ValueError('api_key_env must name a local environment variable')
+ValueError: api_key_env must name a local environment variable
+
+======================================================================
+ERROR: test_repeated_524_pause_then_explicit_resume_preserves_clock_and_no_replay (check_fjsp_eoh_integration.Checks.test_repeated_524_pause_then_explicit_resume_preserves_clock_and_no_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 79, in test_repeated_524_pause_then_explicit_resume_preserves_clock_and_no_replay
+    run=self.prepare('524');calls=[]
+        ^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 31, in prepare
+    p=self.root/(name+'.json');write(p,{**self.c,**(changes or {})});run=self.root/name;e.prepare(run,p);return run
+                                                                                        ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 136, in prepare
+    c,data,refs,origin,binding=preflight(path)
+                               ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 128, in preflight
+    c=settings(path);_,data,origin=inputs({'problem':'fjsp','data_manifest':c['data_manifest']})
+      ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 90, in settings
+    ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/llm/legacy.py", line 19, in __init__
+    c=p['config'];self.provider=ProviderConfig(**c['provider'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/fjsp_usage/research_real/config.py", line 70, in __post_init__
+    raise ValueError('api_key_env must name a local environment variable')
+ValueError: api_key_env must name a local environment variable
+
+======================================================================
+ERROR: test_valid_transport_invalid_H_is_scientific_failure_not_infrastructure_stop (check_fjsp_eoh_integration.Checks.test_valid_transport_invalid_H_is_scientific_failure_not_infrastructure_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 91, in test_valid_transport_invalid_H_is_scientific_failure_not_infrastructure_stop
+    run=self.prepare('parse')
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 31, in prepare
+    p=self.root/(name+'.json');write(p,{**self.c,**(changes or {})});run=self.root/name;e.prepare(run,p);return run
+                                                                                        ^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 136, in prepare
+    c,data,refs,origin,binding=preflight(path)
+                               ^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 128, in preflight
+    c=settings(path);_,data,origin=inputs({'problem':'fjsp','data_manifest':c['data_manifest']})
+      ^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/problems/fjsp/eoh_single.py", line 90, in settings
+    ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/heuristic_design/llm/legacy.py", line 19, in __init__
+    c=p['config'];self.provider=ProviderConfig(**c['provider'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/code/fjsp_usage/research_real/config.py", line 70, in __post_init__
+    raise ValueError('api_key_env must name a local environment variable')
+ValueError: api_key_env must name a local environment variable
+
+----------------------------------------------------------------------
+Ran 23 tests in 87.575s
+
+FAILED (errors=5)

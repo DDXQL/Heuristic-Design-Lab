@@ -11,6 +11,7 @@ from heuristic_design.core.terminal_ops import inputs
 from heuristic_design.problems.routing_fixtures import precheck_instances,decode_instance
 from heuristic_design.problems.tsp import eoh_single as native
 from heuristic_design.llm.legacy import ClientConfig,JsonCandidateTransport
+from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport,StopAwareJournal,verify_binding,POLICY,STOP_POLICY
 from fjsp_usage.research.candidates import H_ARGS,CandidateError,parse_response,validate_code
 from fjsp_usage.offline_v2 import lower_bound_v5
 from llm4ad.base import TextFunctionProgramConverter as Converter
@@ -19,13 +20,13 @@ from llm4ad.method.eoh.sampler import EoHSampler
 from llm4ad.task.optimization.fjsp_set.scheduler import Schedule,ScheduledOperation,validate_schedule
 
 ROOT=Path(__file__).resolve().parents[4]
-VERSION='fjsp-eoh-single-native-http-v1'
+VERSION='fjsp-eoh-single-native-http-v2'
 DEFAULTS=dict(version=VERSION,api_mode='real',evaluation_mode='solve',real_requests_authorized=False,
  candidate_cap=1050,api_attempt_cap=1050,per_candidate_attempt_cap=1,
  population_size=5,selection_num=2,initialization_request_cap=50,initialization_sample_cap=10,
  search_seed=501,solve_seed=501,window_seconds=172800,instance_timeout_seconds=30,
  data_manifest=None,comparison_a_run=None,comparison_b_run=None,
- expected_model='gpt-6.1-sol',provider=None,transport_binding=None,
+ expected_model='gpt-6.1-sol',provider=None,transport_binding=None,api_concurrency=1,evaluation_concurrency=1,
  milestone_requests=[50,100,200,400,600,800,1000,1023,1050],mock_faults={},pause_after_tasks=None)
 TEMPLATE='def priority('+', '.join(H_ARGS)+'):\n    return 0.0\n'
 
@@ -47,7 +48,7 @@ def task_description():
 
 def sources():
     result=native.sources()
-    for name in ('code/heuristic_design/problems/fjsp/eoh_single.py','experiments/common/run_fjsp_eoh_single.py'):
+    for name in ('code/heuristic_design/problems/fjsp/eoh_single.py','experiments/common/run_fjsp_eoh_single.py','tools/plot_fjsp_eoh.py'):
         result[name]=sha(ROOT/name)
     return result
 
@@ -75,6 +76,12 @@ def settings(path):
     if c['pause_after_tasks'] is not None and (type(c['pause_after_tasks']) is not int or not 1<=c['pause_after_tasks']<=c['candidate_cap']):raise ValueError('invalid Mock pause cursor')
     if any(v not in ('failure','invalid','duplicate','invalid_evaluation') for v in c['mock_faults'].values()):raise ValueError('unsupported Mock fault')
     if c['api_mode']=='real' and (c['mock_faults'] or c['pause_after_tasks'] is not None):raise ValueError('Mock faults forbidden in real configuration')
+    if type(c['api_concurrency']) is not int or type(c['evaluation_concurrency']) is not int or c['api_concurrency']!=1 or c['evaluation_concurrency']!=1:
+        raise ValueError('native serial API1/evaluation1 required')
+    if c['api_mode']=='real':
+        required=dict(candidate_cap=1050,api_attempt_cap=1050,population_size=5,selection_num=2,initialization_request_cap=50,initialization_sample_cap=10,solve_seed=501)
+        if any(c[k]!=v for k,v in required.items()):raise ValueError('formal profile must retain N5,1050/50 budgets and solve_seed501')
+        if not {1023,1050}<=set(c['milestone_requests']):raise ValueError('both 1023 and 1050 nodes required')
     for k in ('data_manifest','comparison_a_run','comparison_b_run'):
         if not c[k]:raise ValueError('explicit input required: '+k)
         c[k]=str((path.parent/c[k]).resolve())
@@ -84,13 +91,10 @@ def settings(path):
     return c
 
 def transport_status(c):
-    if c['provider'] is None or c['transport_binding'] is None:return 'pending_external_API_reliability_conclusion'
-    # A future minimal integration binds the external page's immutable technical evidence.
-    b=c['transport_binding']
-    if set(b)!={'evidence_file','sha256'} or sha(Path(b['evidence_file']))!=b['sha256']:raise ValueError('transport evidence missing/changed')
+    verify_binding(c,ROOT)
     if c['provider']['model']!=c['expected_model'] or c['provider']['expected_response_model']!=c['expected_model']:raise ValueError('model identity differs')
     ClientConfig({'config':c,'budgets':{'logical_generation':c['candidate_cap']}})
-    return 'bound_evidence_requires_integration_review'
+    return 'admitted_common_nonstream_and_strict_caller_bound'
 
 def comparison_identity(c,data,refs):
     runs=[Path(c[k]) for k in ('comparison_a_run','comparison_b_run')];items=[]
@@ -125,18 +129,23 @@ def preflight(path):
     refs=precheck_instances('fjsp',data)  # arithmetic LB and structural checks only, no policy solve
     if c['api_mode']=='real' and (len(data)!=21 or any(r['split']!='train' for r in data)):raise ValueError('complete declared train21 required')
     binding=comparison_identity(c,data,refs) if c['api_mode']=='real' else {'scope':'Mock engineering only'}
+    if c['api_mode']=='real':transport_status(c)
     return c,data,refs,origin,binding
 
 def prepare(directory,path,*,approve_budget=None,allow_api=False):
     c,data,refs,origin,binding=preflight(path)
     if c['api_mode']=='real':
-        # This phase deliberately cannot launch merely by filling provider fields.
-        raise PermissionError('transport integration pending; no real EoH authorization or requests created')
-    if allow_api or approve_budget is not None:raise PermissionError('Mock must not carry paid approval')
+        if not allow_api or type(approve_budget) is not int or approve_budget!=c['api_attempt_cap']:
+            raise PermissionError('THIS new EoH run requires explicit --allow-api --approve-budget 1050')
+        if not os.environ.get(c['provider']['api_key_env']):raise ValueError('credential environment variable absent; no attempt reserved')
+        c['real_requests_authorized']=True
+    elif allow_api or approve_budget is not None:raise PermissionError('Mock must not carry paid approval')
     directory=Path(directory).resolve()
     if directory.exists() or not directory.is_relative_to(ROOT/'runs'):raise ValueError('new independent runs directory required')
     directory.mkdir(parents=True)
     write(directory/'Tasks.json',[dict(id=f'H-{i:04d}',stage='new',generation=None,operator='adaptive_EoH_slot') for i in range(c['candidate_cap'])])
+    references=reference_curves(binding) if c['api_mode']=='real' else {}
+    write(directory/'Reference_curves.json',references)
     runtime={**c,'type':'native_eoh','candidate_kind':'h','problem':'fjsp',
              'recording_mode':'compact','window':10,'enabled_groups':list(native.evolution_v1.GROUPS),'cross_parents':2}
     p=dict(version=VERSION,config=runtime,instances=data,references=refs,input_provenance=origin,source_files=sources(),
@@ -147,6 +156,8 @@ def prepare(directory,path,*,approve_budget=None,allow_api=False):
         initialization='native auto-survival + explicit post-init survival; 2N sample ceiling and <=50 HTTP subcap',
         stopping='HTTP total cap includes initialization; no fixed generation target or retries',
         final_selection='all full valid train21 Fitness descending, fixed task ID ascending',local_search=False),
+      caller_acceptance_policy=POLICY,infrastructure_policy=STOP_POLICY,
+      reference_curves_sha256=sha(directory/'Reference_curves.json'),
       git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
       budgets=dict(logical_generation=c['candidate_cap'],API_attempts=c['api_attempt_cap'],
         max_program_instances=c['candidate_cap']*len(data),max_solve_passes=2*c['candidate_cap']*len(data)),created_at=time.time())
@@ -175,16 +186,22 @@ class MockTransport:
 
 class Adapter(native.Adapter):
     ROOT=ROOT;entrypoint='experiments/common/run_fjsp_eoh_single.py';CandidateError=CandidateError
+    settle_known_api_stop=True
     def read_state(self,directory):return protocol_state(directory)
     def check_run(self,directory):
         p,s=protocol_state(directory)
         if sha(Path(directory)/'Tasks.json')!=p['tasks_sha256'] or digest(task_description())!=p['prompt_sha256']:raise ValueError('FJSP tasks/prompt changed')
         if any(sha(ROOT/n)!=v for n,v in p['source_files'].items()):raise ValueError('frozen FJSP EoH source changed')
+        if p.get('caller_acceptance_policy')!=POLICY or p.get('infrastructure_policy')!=STOP_POLICY:raise ValueError('frozen acceptance/stop policy differs')
+        if sha(Path(directory)/'Reference_curves.json')!=p['reference_curves_sha256']:raise ValueError('frozen historical reference curves changed')
+        if p['config']['api_mode']=='real':transport_status(p['config'])
         self._engineering_mode=p['config']['evaluation_mode']=='mock'
         return p
     def summary(self,directory,write_files=False):
         result=super().summary(directory,write_files=False);p,s=protocol_state(directory)
         result.update(evaluation_mode=p['config']['evaluation_mode'],engineering_only=p['config']['evaluation_mode']=='mock')
+        j=read(Path(directory)/'API_attempts.json') if (Path(directory)/'API_attempts.json').exists() else {}
+        result.update(remaining_attempts=p['config']['api_attempt_cap']-result['request_slots'],api_stop_reason=j.get('halt_reason'),pause_reason=s.get('pause_reason'))
         if write_files:write(Path(directory)/'results/Summary.json',result)
         return result
     def checked_candidate(self,row):
@@ -202,8 +219,16 @@ class Adapter(native.Adapter):
         else:text=fn(task_description(),funcs[0],template)
         return text+'\nSerialization requirement: one boxed {description}, then exactly one fenced python block containing the complete function. No other text.\n'
     def transport(self,p):
-        if p['config']['api_mode']!='mock':raise PermissionError('real transport binding pending external page')
+        if p['config']['api_mode']=='real':
+            transport_status(p['config']);return StrictNonstreamTransport(self.client_config(p))
         return MockTransport(self.client_config(p),p['config']['mock_faults'])
+    def journal(self,directory,state,p,deadline):
+        from heuristic_design.llm.legacy import WireRecorder,DeadlineTransport
+        inner=self.transport(p)
+        inner.rejection_directory=Path(directory)/'caller_rejections'
+        wire=WireRecorder(inner,Path(directory)/'wire_responses',verify=lambda:self.check_run(directory))
+        return StopAwareJournal(Path(directory)/'API_attempts.json',config=self.client_config(p),context=state['identity'],
+            phase='operations/'+state['identity'],transport=DeadlineTransport(wire,deadline))
     def evaluate(self,directory,state,p,candidate):
         if p['config']['evaluation_mode']!='mock':return super().evaluate(directory,state,p,candidate)
         key=candidate.key
@@ -238,6 +263,46 @@ class Adapter(native.Adapter):
                 raise ValueError('FJSP physical/LB/recheck result invalid')
         if any(not math.isfinite(r['score']) for r in rows):raise ValueError('finite instance score required')
 
+def reference_curves(binding):
+    """Saved-result arithmetic only. Keep initialization and inherited P0 costs explicit."""
+    output={}
+    for label,ref in zip(('A_actual_total','B_incremental'),binding['runs']):
+        root=Path(ref['directory']);s=read(root/'checkpoint.json')
+        if sha(root/'checkpoint.json')!=ref['checkpoint_sha256']:raise ValueError('historical reference moved during preparation')
+        tasks=[t for t in s['tasks'].values() if t['status']=='completed']
+        init=sorted([t for t in tasks if t['stage']=='initialization'],key=lambda t:t['id'])
+        evo=sorted([t for t in tasks if t['stage']=='evolution'],key=lambda t:(t['generation'],t['id']))
+        if label=='A_actual_total':planned=init+evo;best=None
+        else:planned=evo;best=max((t['fitness'] for t in init if t['valid']),default=None)
+        values=[best]
+        for t in planned:
+            if t['valid']:best=t['fitness'] if best is None else max(best,t['fitness'])
+            values.append(best)
+        output[label]=values
+    # Attribution is NOT an additional B charge or an end-to-end cost estimate.
+    init_cost=binding['runs'][0]['initialization_requests']
+    output['B_with_P0_origin_attribution']=output['A_actual_total'][:init_cost]+output['B_incremental']
+    return output
+
+def progress_curve(state,journal):
+    tasks=state['tasks'];complete_ids=set(list(tasks)[:state['cursor']])
+    best=None;seen=set();valid_tasks=duplicates=invalid=0
+    curve=[dict(physical_attempts=0,committed_tasks=0,full_valid_unique_H_evaluations=0,
+                full_valid_candidate_records=0,duplicate_tasks=0,invalid_evaluations=0,best_fitness=None,latest_task_committed=True)]
+    committed=0
+    for n,a in enumerate(journal['api_attempts'].values(),1):
+        tid=a['logical_id'];t=tasks.get(tid);done=tid in complete_ids and t['status']=='completed'
+        if done:
+            committed+=1;duplicates+=bool(t.get('AST_duplicate'))
+            invalid+=t.get('failure')=='evaluation_invalid'
+            if t['valid']:
+                seen.add(t['candidate']['key']);valid_tasks+=1
+                best=t['fitness'] if best is None else max(best,t['fitness'])
+        curve.append(dict(physical_attempts=n,committed_tasks=committed,full_valid_unique_H_evaluations=len(seen),
+           full_valid_candidate_records=valid_tasks,duplicate_tasks=duplicates,invalid_evaluations=invalid,
+           best_fitness=best,latest_task_committed=done))
+    return curve
+
 def export(directory):
     directory=Path(directory);p,s=protocol_state(directory);out=directory/'analysis';out.mkdir(exist_ok=True)
     values=list(s['tasks'].values())[:s['cursor']];rows=[dict(id=t['id'],operator=t['operator'],valid=t['valid'],fitness=t['fitness'],failure=t.get('failure'),AST_duplicate=t.get('AST_duplicate'),native_population_duplicate=t.get('native_population_duplicate'),parents=str(t['parents'])) for t in values]
@@ -259,6 +324,19 @@ def export(directory):
     for name,table in [('requests.csv',request_rows),('per_instance.csv',per_instance)]:
         if table:
             with (out/name).open('w',encoding='utf-8-sig',newline='') as f:w=csv.DictWriter(f,fieldnames=list(table[0]));w.writeheader();w.writerows(table)
+    curve=progress_curve(s,journal);reference=read(directory/'Reference_curves.json');nodes=[]
+    for n in [0,*p['config']['milestone_requests']]:
+        observed=n<len(curve);r=curve[n] if observed else {}
+        def historical(key):
+            values=reference.get(key,[])
+            return values[n] if observed and n<len(values) else None
+        nodes.append(dict(physical_attempts=n,reached=observed,EoH_best_fitness=r.get('best_fitness'),
+          EoH_full_valid_unique_H_evaluations=r.get('full_valid_unique_H_evaluations'),
+          A_actual_total_includes_init=historical('A_actual_total'),B_incremental_P0_external=historical('B_incremental'),
+          B_P0_origin_attributed_NOT_extra_charge=historical('B_with_P0_origin_attribution'),
+          comparison_scope='historical exploratory; H build excluded; blank outside observed common prefix'))
+    for name,table in [('progress_curve.csv',curve),('budget_nodes.csv',nodes)]:
+        with (out/name).open('w',encoding='utf-8-sig',newline='') as f:w=csv.DictWriter(f,fieldnames=list(table[0]));w.writeheader();w.writerows(table)
     summary=Adapter().summary(directory);summary.update(training_only=p['config']['evaluation_mode']=='solve',actual_billed_cost=None,validation_status='not_run',quality_claim=False,
         known_input_tokens=sum(r['input_tokens'] or 0 for r in request_rows),known_output_tokens=sum(r['output_tokens'] or 0 for r in request_rows),
         usage_unknown_attempts=sum(r['input_tokens'] is None or r['output_tokens'] is None for r in request_rows))
@@ -270,4 +348,12 @@ def export(directory):
             path=out/('frozen_engineering_candidate.json' if p['config']['evaluation_mode']=='mock' else 'frozen_training_champion.json')
             if path.exists() and read(path)!=frozen:raise ValueError('frozen champion cannot be overwritten')
             write(path,frozen);(out/'champion.py').write_text(best['candidate']['code'])
-    write(out/'Summary.json',summary);return summary
+    summary['as_of_committed_tasks']=s['cursor'];summary['curve_attempts_reserved']=len(curve)-1
+    write(out/'Summary.json',summary)
+    try:
+        plotter=ROOT/'tools/plot_fjsp_eoh.py';python='/opt/homebrew/bin/python3'
+        result=subprocess.run([python,'-B',str(plotter),'--run-dir',str(directory)],capture_output=True,text=True,timeout=60,
+                              env={**os.environ,'MPLCONFIGDIR':str(out/'.mplconfig')})
+        write(out/'Plot_status.json',dict(passed=result.returncode==0,error=None if result.returncode==0 else result.stderr[-600:]))
+    except (OSError,subprocess.TimeoutExpired) as exc:write(out/'Plot_status.json',dict(passed=False,error_type=type(exc).__name__,CSV_preserved=True))
+    return summary

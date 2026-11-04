@@ -1,0 +1,92 @@
+{
+  "status": "nonstream_short_admission_passed",
+  "new_confirmed_sends": 2,
+  "stage_maximum": 2,
+  "cumulative_reserved": 4,
+  "cumulative_confirmed_sends": 4,
+  "cumulative_plan_cap": 4,
+  "original_user_ceiling": 8,
+  "combined_known_input_tokens": 29070,
+  "combined_known_output_tokens": 1022,
+  "combined_sent_usage_unknown": 1,
+  "new_known_input_tokens": 19380,
+  "new_known_output_tokens": 712,
+  "nonstream_complete_response_pass": {
+    "passed": 3,
+    "tested": 3,
+    "stage_counts": [
+      1,
+      2
+    ]
+  },
+  "stream_complete_response_pass": {
+    "passed": 0,
+    "tested": 1,
+    "reason": "sse_id_changed; observed model matched"
+  },
+  "actual_inflight_overlap_seconds": 7.2660300731658936,
+  "dispatch_start_gap_ms": 0.7660388946533203,
+  "send_confirmation_gap_ms": 75.24371147155762,
+  "same_request_body_as_prior_nonstream": true,
+  "code_keys_distinct_within_pair": true,
+  "historical_population_duplicate_checked": false,
+  "source_and_plan_hashes_match": true,
+  "followup_model_requests": 0,
+  "solves": 0,
+  "may_prepare_matched_protocol": true,
+  "long_experiment_stability_proven": false,
+  "formal_search_started": false,
+  "records": [
+    {
+      "attempt": 1,
+      "task_elapsed_seconds": 16.787003666977398,
+      "wire_timing": {
+        "started_at_unix": 1793793110.2644649,
+        "connected_seconds": 0.9125261669978499,
+        "send_confirmed_seconds": 0.9137077920022421,
+        "response_headers_seconds": 15.848071708984207,
+        "first_body_data_seconds": 15.84913891699398,
+        "body_complete_seconds": 15.84965629200451,
+        "finished_seconds": 15.849991333961952
+      },
+      "code_extracted": true,
+      "static_legal": true,
+      "candidate_key": "7fdec7a4416c921a00d3e6b0dc7c213aca3a554d4d16bfdedb955d521ce20ec0",
+      "usage": {
+        "input_tokens": 9690,
+        "output_tokens": 476
+      },
+      "request_body_sha256": "f154f1fc6491eaf4fc98bbd4cb89dd7f32d156c135b48cd46b5e8bd31df26656",
+      "gateway_request_id": "202611041151520348911698268d9d6eDhsCcrd"
+    },
+    {
+      "attempt": 2,
+      "task_elapsed_seconds": 9.16452804201981,
+      "wire_timing": {
+        "started_at_unix": 1793793110.279295,
+        "connected_seconds": 0.9756262910086662,
+        "send_confirmed_seconds": 0.9759708330384456,
+        "response_headers_seconds": 8.210016666038428,
+        "first_body_data_seconds": 8.210776708030608,
+        "body_complete_seconds": 8.212105291022453,
+        "finished_seconds": 8.212369208049495
+      },
+      "code_extracted": true,
+      "static_legal": true,
+      "candidate_key": "70980e679d10ab93ad255373fdf7ed2ebce4da506d90181e8b9fdc4b689200c4",
+      "usage": {
+        "input_tokens": 9690,
+        "output_tokens": 236
+      },
+      "request_body_sha256": "f154f1fc6491eaf4fc98bbd4cb89dd7f32d156c135b48cd46b5e8bd31df26656",
+      "gateway_request_id": "202611041151519299600178268d9d6sfjwLbEt"
+    }
+  ],
+  "evidence_sha256": {
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/ledger.json": "b19f708d894a03387ca2278d67828d72bdc003c18130efb14af1a8a54af13e51",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability/preparations/api-reliability-next-20261104.claim.json": "2789b0889e8ea8bf3355ddb48e0927600fd8a1f9a89d4a043adec1d776b4f44d",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/reports/api-reliability-next-20261104/plan.json": "ca2f5d15ce83a904aabfacb45fff790aba0807b433da3c528e1ee07d24f73cbb",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/responses/01.json": "f1f8e8858e5bfcb6d3b25a481928642d73827f9217903b46b0f58f425d217940",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/responses/02.json": "6006d54643d0ba1e832e83abbb9930d97e7f06ce65f33dd5c62bb95a3db28ac2"
+  }
+}

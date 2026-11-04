@@ -1,0 +1,94 @@
+{
+  "mode": "real",
+  "evaluation_mode": "solve",
+  "real_requests_authorized": false,
+  "instances": 21,
+  "policy_solves": 0,
+  "API_requests": 0,
+  "population_size": 5,
+  "operators": [
+    "I1",
+    "E1",
+    "E2",
+    "M1",
+    "M2"
+  ],
+  "total_attempt_cap": 1050,
+  "initialization_HTTP_subcap": 50,
+  "initialization_evaluated_ceiling": 10,
+  "max_generations": null,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1,
+  "stop_policy": {
+    "version": "fjsp-eoh-api-stop-v1",
+    "explicit_refusal_or_response_protocol": "first failure stops",
+    "temporary_or_unclassified_transport": "3 consecutive failed tasks pause",
+    "candidate_parse_or_evaluation_invalid": "record scientific failure; no infrastructure stop",
+    "unknown_inflight_or_evaluation": "retain evidence/lock; no replay",
+    "automatic_retry": false,
+    "automatic_restart": false,
+    "failure_budget_refund": false
+  },
+  "max_candidate_instance_rows": 22050,
+  "max_solve_passes": 44100,
+  "transport_status": "admitted_common_nonstream_and_strict_caller_bound",
+  "comparison": {
+    "scope": "historical exploratory; not end-to-end equal cost",
+    "runs": [
+      {
+        "directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+        "protocol_sha256": "19a7c858f4bf09f09f2924f37657345dc6eb5e43b36088ac0c230fea1d01adab",
+        "checkpoint_sha256": "2db1cdd91db3aa8717bb2aab233334fddff929c25819c6f9ba74828ecdac6a2c",
+        "initialization_requests": 23,
+        "evolution_requests": 1000,
+        "physical_files": [
+          "code/fjsp_usage/offline_v2.py",
+          "code/heuristic_design/core/constructive_state.py",
+          "code/heuristic_design/core/lifecycle.py",
+          "code/heuristic_design/core/routing_evaluation.py",
+          "code/heuristic_design/problems/fjsp/__init__.py",
+          "code/heuristic_design/problems/fjsp/adapter.py",
+          "code/heuristic_design/problems/fjsp/common_state.py",
+          "code/heuristic_design/problems/fjsp/data.py",
+          "code/heuristic_design/problems/fjsp/evaluation.py",
+          "code/heuristic_design/problems/fjsp/policies.py",
+          "code/heuristic_design/problems/fjsp/prompts.py",
+          "code/heuristic_design/problems/fjsp/provenance.py",
+          "code/heuristic_design/problems/fjsp/routing.py",
+          "code/heuristic_design/problems/fjsp/solver.py",
+          "code/heuristic_design/problems/fjsp/states.py",
+          "code/llm4ad/task/optimization/fjsp_set/instances.py",
+          "code/llm4ad/task/optimization/fjsp_set/scheduler.py"
+        ]
+      },
+      {
+        "directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-recovery-check/runs/b-continue-on-errors-seed501-20261101-01/B",
+        "protocol_sha256": "9f032a094696641bf844ef2b09d1ab3a8c924616bce0071061ce9399277c849c",
+        "checkpoint_sha256": "a5fb131a76f9b1ec55bc77fa4b019375a081deb1b87b4092f415e340b0a6df65",
+        "initialization_requests": 0,
+        "evolution_requests": 1000,
+        "physical_files": [
+          "code/fjsp_usage/offline_v2.py",
+          "code/heuristic_design/core/constructive_state.py",
+          "code/heuristic_design/core/lifecycle.py",
+          "code/heuristic_design/core/routing_evaluation.py",
+          "code/heuristic_design/problems/fjsp/__init__.py",
+          "code/heuristic_design/problems/fjsp/adapter.py",
+          "code/heuristic_design/problems/fjsp/common_state.py",
+          "code/heuristic_design/problems/fjsp/data.py",
+          "code/heuristic_design/problems/fjsp/evaluation.py",
+          "code/heuristic_design/problems/fjsp/policies.py",
+          "code/heuristic_design/problems/fjsp/prompts.py",
+          "code/heuristic_design/problems/fjsp/provenance.py",
+          "code/heuristic_design/problems/fjsp/routing.py",
+          "code/heuristic_design/problems/fjsp/solver.py",
+          "code/heuristic_design/problems/fjsp/states.py",
+          "code/llm4ad/task/optimization/fjsp_set/instances.py",
+          "code/llm4ad/task/optimization/fjsp_set/scheduler.py"
+        ]
+      }
+    ],
+    "H_build_cost": "separate historical upstream cost; not included or assumed zero",
+    "routing_bridge": "TSP-only prompt extension; all non-build_prompt AST identical; constant-U host does not invoke it"
+  }
+}

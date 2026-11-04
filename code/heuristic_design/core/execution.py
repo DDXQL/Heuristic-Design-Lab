@@ -136,7 +136,9 @@ def work(directory,*,adapter):
                 prompt=o.build_prompt(p['config'],task,parents,members);record['prompt']=prompt
                 (directory/'prompts').mkdir(exist_ok=True);o.write(directory/'prompts'/(f'{index:05d}.json'),{'id':tid,'prompt':prompt})
                 reply=journal.request(tid,prompt,kind=p['config'].get('candidate_kind','U'));record['generation_status']=reply['status']
-                if journal.data['halt_reason']:raise ValueError('API Stop: '+journal.data['halt_reason'])
+                if journal.data['halt_reason'] and not (getattr(o,'settle_known_api_stop',False)
+                    and reply['status']=='failed' and all(journal.data['api_attempts'][k]['status']=='failed' for k in reply['attempt_ids'])):
+                    raise ValueError('API Stop: '+journal.data['halt_reason'])
                 if reply['status']=='completed':
                     s['transport_failure_streak']=0
                     (directory/'responses').mkdir(exist_ok=True);o.write(directory/'responses'/f'{index:05d}.json',reply)
@@ -174,6 +176,8 @@ def work(directory,*,adapter):
                 except Exception as exc:
                     o.write(directory/'Snapshot_error.json',{'error_type':type(exc).__name__,'error':str(exc)[:300],
                         'cursor':s['cursor'],'raw_results_preserved':True})
+            if journal and journal.data['halt_reason']:
+                s['phase']='paused';s['pause_reason']='persistent API Stop: '+journal.data['halt_reason'];break
             if s.get('transport_failure_streak',0)>=3:
                 if getattr(o,'pause_on_transport_streak',False):
                     s['phase']='paused';s['pause_reason']='three consecutive failed transports; resume requires user action';break

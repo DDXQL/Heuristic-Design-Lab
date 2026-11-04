@@ -1,0 +1,13 @@
+.............F.........
+======================================================================
+FAIL: test_export_nodes_curves_and_engineering_freeze_are_explicit (check_fjsp_eoh_integration.Checks.test_export_nodes_curves_and_engineering_freeze_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-single/tools/check_fjsp_eoh_integration.py", line 132, in test_export_nodes_curves_and_engineering_freeze_are_explicit
+    self.assertTrue(read(run/'analysis/Plot_status.json')['passed'])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 23 tests in 188.512s
+
+FAILED (failures=1)

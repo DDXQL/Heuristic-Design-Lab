@@ -26,8 +26,8 @@ class TransportError(RuntimeError):
     pass
 
 
-WIRE_VERSION = 'bounded-sse-evidence-t1-v1'
-OBSERVATION_VERSION = 'paired-stream-observation-d2-v1'
+WIRE_VERSION = 'bounded-wire-reliability-v4'
+OBSERVATION_VERSION = 'bounded-sse-prefix-observation-v2'
 TEMPORARY_CODES = frozenset(('service_unavailable', 'temporarily_unavailable',
                             'server_overloaded', 'rate_limit_exceeded'))
 PERMANENT_CODES = frozenset(('insufficient_quota', 'invalid_api_key', 'authentication_error',
@@ -81,13 +81,13 @@ def upstream_error_evidence(data):
                    '余额不足', '额度不足', '欠费', 'service temporarily unavailable')
         result['error_message'] = ' '.join(x for x in markers if x in message.lower())
     status = error.get('status', error.get('http_status'))
-    if type(status) is int and status in (400, 401, 402, 403, 404, 405, 422, 429, 502, 503, 504):
+    if type(status) is int and status in (400, 401, 402, 403, 404, 405, 422, 429, 502, 503, 504, 524):
         result['upstream_http_status'] = status
     codes = {result.get('error_code'), result.get('error_type')}
     if (codes & PERMANENT_CODES or status in (400, 401, 402, 403, 404, 405, 422)
             or result.get('error_message', '').replace('service temporarily unavailable', '').strip()):
         result['failure_class'] = 'permanent'
-    elif (codes & TEMPORARY_CODES or status in (429, 502, 503, 504)
+    elif (codes & TEMPORARY_CODES or status in (429, 502, 503, 504, 524)
           or result.get('error_message') == 'service temporarily unavailable'):
         result['failure_class'] = 'temporary'
     else:
@@ -118,7 +118,7 @@ def frame_evidence(chunk, content):
     return result
 
 
-def sse_lines(response, counters):
+def sse_lines(response, counters, on_data=None):
     """Bounded LF/CRLF/CR framing, including CR split across HTTP read chunks."""
     pending, after_cr = bytearray(), False
     read = getattr(response, 'read1', None) or response.readline
@@ -128,6 +128,7 @@ def sse_lines(response, counters):
             error = TransportError('stream ended without DONE or exceeded byte limit')
             error.metadata = {'temporary_network_failure': True, 'network_error_type': 'stream_eof'}
             raise error
+        if on_data is not None:on_data(len(block))
         counters['wire_bytes_seen'] += len(block)
         if counters['wire_bytes_seen'] > 8388608:
             raise TransportError('stream exceeds byte limit')
@@ -165,11 +166,11 @@ def response_audit(response, secret=''):
     content_type = response.getheader('Content-Type')
     if isinstance(content_type, str):
         result['http_content_type'] = redact_diagnostic(content_type, secret)[:256]
-    for header in ('x-oneapi-request-id','x-request-id','x-new-api-request-id','date'):
+    for header in ('x-oneapi-request-id','x-request-id','x-new-api-request-id','date',
+                   'cf-ray','server','via','x-envoy-upstream-service-time'):
         value=response.getheader(header)
         if isinstance(value,str):
-            value=value.replace(secret,'[REDACTED]') if secret else value
-            result[header]=value[:256]
+            result[header]=redact_diagnostic(value,secret)[:256]
     result['gateway_request_id']=next((result[h] for h in
         ('x-oneapi-request-id','x-new-api-request-id','x-request-id') if h in result),None)
     return result
@@ -178,9 +179,28 @@ def response_audit(response, secret=''):
 def error_audit(raw,secret=''):
     result={'error_body_sha256':hashlib.sha256(raw).hexdigest(),'error_body_bytes_sampled':len(raw)}
     try:
-        result.update(upstream_error_evidence(json.loads(raw)))
-    except (ValueError,AttributeError):pass
+        body=json.loads(raw)
+        result.update(upstream_error_evidence(body))
+        error=body.get('error',body) if isinstance(body,dict) else None
+        if isinstance(error,dict):
+            fields={k:error[k][:1500] if isinstance(error[k],str) else error[k]
+                    for k in ('code','type','message','status')
+                    if k in error and type(error[k]) in (str,int,float,bool,type(None))}
+            result['diagnostic_error']=redact_diagnostic(fields,secret)
+    except (ValueError,AttributeError):
+        result['diagnostic_error_text']=redact_diagnostic(raw.decode('utf-8',errors='replace')[:500],secret)
     return result
+
+
+def request_audit(payload,body):
+    """Exact serialized-body evidence, never headers or prompt/secret contents."""
+    messages=payload.get('messages',[])
+    return {'serialized_body_bytes':len(body),'serialized_body_sha256':hashlib.sha256(body).hexdigest(),
+            'body_fields':sorted(payload),'model':payload.get('model'),
+            'max_completion_tokens':payload.get('max_completion_tokens'),'stream':payload.get('stream'),
+            'n':payload.get('n'),'messages_count':len(messages),
+            'messages':[{'role':m.get('role'),'content':field_evidence(m.get('content'))} for m in messages],
+            'scope':'body passed to HTTP client; excludes authorization headers; not proof of server context or billing'}
 
 
 def decode_chat(data, provider):
@@ -253,7 +273,7 @@ def decode_chat(data, provider):
     return {'text': text, 'usage': usage, 'finish_reason': 'stop', 'metadata': metadata}
 
 
-def decode_stream(response, provider):
+def decode_stream(response, provider, on_data=None, secret='', on_progress=None):
     """Bounded SSE assembly; incomplete streams never become candidates.
 
     Ignore reasoning deltas for code assembly, but retain their billed token
@@ -263,6 +283,8 @@ def decode_stream(response, provider):
     text_size, event, event_type, event_size = 0, [], '', 0
     counters = {'wire_bytes_seen': 0, 'event_index': 0}
     evidence, current_frame, first_line = {}, None, True
+    decode_started=time.monotonic()
+    trace={'version':'bounded-sse-frame-trace-v1','first_events':[],'last_event':None}
     observed = {'version': OBSERVATION_VERSION, 'stop_received': False, 'usage_received': False,
                 'usage_validated': False, 'DONE_received': False, 'complete_text': False,
                 'id_check': 'not_observed', 'model_check': 'not_observed',
@@ -272,10 +294,30 @@ def decode_stream(response, provider):
         return {**observed, 'data_events_seen': counters['event_index'],
                 'wire_bytes_seen': counters['wire_bytes_seen'], 'text_bytes_seen': text_size,
                 'scope': 'parsed_prefix_only_unless_complete'}
+    def snapshot():
+        return {'stream_trace':{'version':trace['version'],'first_events':list(trace['first_events']),
+                                'last_event':trace['last_event']},'stream_observation':observation()}
+    def observe_frame(chunk, content):
+        # No raw JSON, content, arbitrary keys or full identities. At most 5 summaries.
+        summary={'event_index':counters['event_index'],
+                 'since_decode_start_seconds':time.monotonic()-decode_started,
+                 'shape':frame_evidence(chunk,content)}
+        if isinstance(chunk,dict):
+            value=chunk.get('id')
+            summary['id_format_family']=next((prefix for prefix in ('chatcmpl-','chatcmpl_','resp_')
+                                             if isinstance(value,str) and value.startswith(prefix)),'other')
+            model=chunk.get('model')
+            summary['model_matches_expected']=(model==provider.expected_response_model
+                if isinstance(model,str) and provider.expected_response_model else None)
+        if len(trace['first_events'])<4:trace['first_events'].append(summary)
+        trace['last_event']=summary
+        if on_progress is not None and (counters['event_index']<=4 or content=='[DONE]' or
+                isinstance(chunk,dict) and (chunk.get('usage') is not None or 'error' in chunk)):
+            on_progress(snapshot())
     try:
         if response.getheader('Content-Type', '').split(';')[0].strip().lower() != 'text/event-stream':
             raise TransportError('stream response must use text/event-stream')
-        for raw_line in sse_lines(response, counters):
+        for raw_line in sse_lines(response, counters, on_data):
             line = raw_line.decode('utf-8-sig' if first_line else 'utf-8')
             first_line = False
             if line:
@@ -303,6 +345,7 @@ def decode_stream(response, provider):
             counters['event_index'] += 1
             current_frame = frame_evidence(None, content)
             if content == '[DONE]':
+                observe_frame(None,content)
                 observed['DONE_received'] = True
                 if event_type == 'error':
                     raise TransportError('error event cannot terminate successfully')
@@ -311,16 +354,17 @@ def decode_stream(response, provider):
                 result = decode_chat({**audit, 'usage':raw_usage, 'choices':[
                     {'message':{'content':''.join(text)}, 'finish_reason':finish}]}, provider)
                 observed['complete_text'] = True
-                result['metadata']['stream_observation'] = observation()
+                result['metadata'].update(snapshot())
                 return result
             chunk = json.loads(content)
             current_frame = frame_evidence(chunk, content)
+            observe_frame(chunk,content)
             if isinstance(chunk, dict) and isinstance(chunk.get('model'), str) and provider.expected_response_model:
                 match = chunk['model'] == provider.expected_response_model
                 observed['model_matches_expected'] = match if observed['model_matches_expected'] is not False else False
             if (not isinstance(chunk, dict) or 'error' in chunk or
                     chunk.get('type') == 'error' or event_type == 'error'):
-                evidence.update(upstream_error_evidence(chunk))
+                evidence.update(error_audit(content.encode()[:4096], secret))
                 evidence.setdefault('failure_class', 'unknown' if isinstance(chunk, dict) else 'protocol_incompatible')
                 raise TransportError('invalid/error stream chunk')
             event_type = ''
@@ -331,12 +375,14 @@ def decode_stream(response, provider):
                     raise TransportError('missing stream identity/model')
                 if field in audit and audit[field] != value:
                     observed[field + '_check'] = 'changed'
+                    evidence['failure_subtype']='sse_id_changed' if field=='id' else 'sse_model_changed'
                     evidence['identity_change'] = {'field': field,
                         'previous': field_evidence(audit[field]), 'observed': field_evidence(value)}
                     raise TransportError('stream identity/model changed')
                 audit[field] = value
                 observed[field + '_check'] = 'observed_consistent'
             if provider.expected_response_model and audit['model'] != provider.expected_response_model:
+                evidence['failure_subtype']='sse_model_mismatch'
                 raise TransportError('stream model differs from locked model')
             choices = chunk.get('choices')
             if not isinstance(choices, list) or len(choices) > 1:
@@ -350,6 +396,7 @@ def decode_stream(response, provider):
                 decode_chat({**audit, 'usage':raw_usage, 'choices':[
                     {'message':{'content':''.join(text)}, 'finish_reason':finish}]}, provider)
                 observed['usage_validated'] = True
+                if on_progress is not None:on_progress(snapshot())
             if not choices:
                 if chunk.get('usage') is None:
                     raise TransportError('empty choice without final usage')
@@ -376,13 +423,14 @@ def decode_stream(response, provider):
                 observed['stop_received'] = reason == 'stop'
                 if reason != 'stop':
                     raise TransportError('stream completion truncated or refused')
+                if on_progress is not None:on_progress(snapshot())
     except BaseException as exc:
         error = exc if isinstance(exc, TransportError) else TransportError('malformed or interrupted SSE stream')
-        # Do not retain raw error frames, messages, arbitrary fields or identities.
+        # Retain bounded sanitized error fields and frame summaries, never raw frames/identities.
         network = network_failure_metadata(exc)
         error.metadata = {**evidence, **(getattr(exc,'metadata',{}) or {}), **network,
             'transport_version': WIRE_VERSION, 'failure_stage': 'sse_decode',
-            'stream_observation': observation(),
+            **snapshot(),
             'stream_evidence': {**counters, 'text_bytes_seen': text_size,
                 'last_frame': current_frame,
                 'identities': {k: field_evidence(v) for k, v in audit.items()}}}
@@ -404,36 +452,68 @@ def decode_stream(response, provider):
 def _wire_worker(pipe, provider, payload, secret):
     connection = None
     usage = None
-    metadata = {'failure_stage': 'connect'}
+    body=json.dumps(payload).encode()
+    started=time.monotonic()
+    metadata = {'failure_stage': 'connect','local_request':request_audit(payload,body),
+                'send_status':'not_started','wire_timing':{'started_at_unix':time.time()},
+                'connection':{'mode':'direct_https' if provider.endpoint.startswith('https:') else 'direct_loopback_http',
+                              'application_proxy':False,'proxy_environment_used':False,'system_tun':'not_observed'}}
+    def stamp(name):metadata['wire_timing'][name]=time.monotonic()-started
+    def emit():pipe.send({'kind':'audit','metadata':redact_diagnostic(metadata,secret)})
+    def first_data(count):
+        if 'first_body_data_seconds' not in metadata['wire_timing']:
+            stamp('first_body_data_seconds');metadata['first_body_chunk_bytes']=count;emit()
+    def bounded_body(response,limit):
+        chunks=[];size=0;reader=getattr(response,'read1',None) or response.read
+        while size<=limit:
+            block=reader(min(4096,limit+1-size))
+            if not block:break
+            first_data(len(block));chunks.append(block);size+=len(block)
+        return b''.join(chunks)
     try:
         parts = urlsplit(provider.endpoint)
+        metadata['connection'].update(host=parts.hostname,port=parts.port or (443 if parts.scheme=='https' else 80))
+        emit()
         cls = http.client.HTTPSConnection if parts.scheme == 'https' else http.client.HTTPConnection
         kwargs = {'timeout': provider.connect_timeout}
         if parts.scheme == 'https':
             kwargs['context'] = ssl.create_default_context()
         connection = cls(parts.hostname, parts.port, **kwargs)
         connection.connect()
+        stamp('connected_seconds')
         connection.sock.settimeout(provider.read_timeout)
+        try:metadata['connection']['peer']=list(connection.sock.getpeername())[:2]
+        except (AttributeError,OSError):pass
         headers = {'Content-Type': 'application/json'}
         if secret:
             headers['Authorization'] = 'Bearer ' + secret
         metadata['failure_stage'] = 'http_send'
-        connection.request('POST', parts.path or '/', body=json.dumps(payload).encode(), headers=headers)
+        metadata['send_status']='unknown';emit()
+        connection.request('POST', parts.path or '/', body=body, headers=headers)
+        stamp('send_confirmed_seconds');metadata['send_status']='confirmed'
         pipe.send({'kind': 'sent'})
         metadata['failure_stage'] = 'http_receive'
+        emit()  # preserve confirmed send even if response headers never arrive
         response = connection.getresponse()
+        stamp('response_headers_seconds')
         metadata = {**metadata, **response_audit(response,secret)}
-        pipe.send({'kind':'audit','metadata':metadata})
+        emit()
         if response.status != 200:
-            metadata.update(error_audit(response.read(4096),secret))
+            metadata.update(error_audit(bounded_body(response,4095),secret))
+            metadata.setdefault('failure_class','temporary' if response.status in (429,502,503,504,524) else
+                                'permanent' if response.status in (400,401,402,403,404,405,422) else 'unknown')
             raise TransportError(f'HTTP status {response.status}; response body omitted')
         if getattr(provider, 'stream_response', False):
-            data = decode_stream(response, provider)
+            stamp('sse_decode_started_seconds')
+            def progress(value):
+                metadata.update(value);emit()
+            data = decode_stream(response, provider, first_data, secret, progress)
             metadata = {**metadata,**data['metadata']}
         else:
-            body = response.read(524289)
+            body = bounded_body(response,524288)
             if len(body) > 524288:
                 raise TransportError('response exceeds 512 KiB')
+            stamp('body_complete_seconds');metadata['failure_stage']='json_decode'
             data = json.loads(body)
         if provider.protocol in ('openai-chat-v1', 'deepseek-chat-v1') and not getattr(provider, 'stream_response', False):
             if isinstance(data, dict) and isinstance(data.get('usage'), dict):
@@ -448,8 +528,10 @@ def _wire_worker(pipe, provider, payload, secret):
             raise TransportError('response incomplete/truncated')
         if len(data['text'].encode()) > 32768:
             raise TransportError('candidate text exceeds 32 KiB')
+        stamp('finished_seconds')
         pipe.send({'kind': 'reply', 'text': data['text'], 'usage': usage, 'metadata': metadata})
     except BaseException as exc:
+        stamp('finished_seconds')
         # Do not echo endpoint, headers, server bodies or credentials.
         message = str(exc) if isinstance(exc, TransportError) else type(exc).__name__
         if secret:
@@ -460,6 +542,37 @@ def _wire_worker(pipe, provider, payload, secret):
         if connection is not None:
             connection.close()
         pipe.close()
+
+
+def request_payload(provider,key,prompt,kind='U'):
+    """One shared serializer input for wire dispatch and pre-send audit."""
+    payload={'model':provider.model,'prompt':prompt,'kind':kind,'request_id':key,
+             'max_output_tokens':provider.max_output_tokens,'temperature':provider.temperature}
+    if provider.protocol in ('openai-chat-v1','deepseek-chat-v1'):
+        payload={'model':provider.model,'messages':[{'role':'user','content':prompt}],
+                 'max_completion_tokens':provider.max_output_tokens,'stream':False,'n':1}
+        if provider.temperature is not None:payload['temperature']=provider.temperature
+        if provider.reasoning_effort is not None:payload['reasoning_effort']=provider.reasoning_effort
+        if provider.protocol=='deepseek-chat-v1':
+            payload['max_tokens']=payload.pop('max_completion_tokens');payload['thinking']={'type':provider.thinking}
+        if provider.stream_response:payload.update(stream=True,stream_options={'include_usage':True})
+    return payload
+
+
+def failure_category(error, metadata):
+    """Observed layer only; unknown HTTP status is never guessed to be 200."""
+    m=metadata or {};status=m.get('http_status');net=m.get('network_error_type')
+    if m.get('failure_stage')=='connect':
+        return 'dns_failure' if net=='gaierror' else 'connect_dns_tcp_tls_unresolved'
+    if status is not None and status!=200:
+        return 'http_524' if status==524 else 'http_gateway' if status>=500 else 'http_rejection'
+    if m.get('deadline_kind') or net in ('TimeoutError','TotalDeadline'):
+        return 'http200_read_or_total_timeout' if status==200 else 'timeout_http_status_unknown'
+    if m.get('failure_subtype') in ('sse_id_changed','sse_model_changed','sse_model_mismatch'):
+        return m['failure_subtype']
+    if m.get('upstream_error_shape'):return 'sse_upstream_error'
+    if m.get('temporary_network_failure'):return 'network_interruption'
+    return 'response_acceptance_failure'
 
 
 class JsonCandidateTransport:
@@ -487,22 +600,7 @@ class JsonCandidateTransport:
         self.preflight(prompt)
         context = mp.get_context('spawn')
         receive, send = context.Pipe(duplex=False)
-        payload = {'model': self.provider.model, 'prompt': prompt, 'kind': kind,
-                   'request_id': key, 'max_output_tokens': self.provider.max_output_tokens,
-                   'temperature': self.provider.temperature}
-        if self.provider.protocol in ('openai-chat-v1', 'deepseek-chat-v1'):
-            payload = {'model': self.provider.model, 'messages': [{'role': 'user', 'content': prompt}],
-                       'max_completion_tokens': self.provider.max_output_tokens, 'stream': False, 'n': 1}
-            if self.provider.temperature is not None:
-                payload['temperature'] = self.provider.temperature
-            if self.provider.reasoning_effort is not None:
-                payload['reasoning_effort'] = self.provider.reasoning_effort
-            if self.provider.protocol == 'deepseek-chat-v1':
-                payload['max_tokens'] = payload.pop('max_completion_tokens')
-                payload['thinking'] = {'type': self.provider.thinking}
-            if self.provider.stream_response:
-                payload['stream'] = True
-                payload['stream_options'] = {'include_usage': True}
+        payload=request_payload(self.provider,key,prompt,kind)
         worker = context.Process(target=_wire_worker, args=(send, self.provider, payload, self.secret))
         started = time.monotonic()
         worker.start()
@@ -530,7 +628,13 @@ class JsonCandidateTransport:
                     return {'text': self.redact(message['text']), 'usage': message['usage'],
                             'metadata': self.redact_metadata(message.get('metadata', {}))}
         except BaseException as exc:
-            exc.metadata={**audit,**(getattr(exc,'metadata',{}) or {})}
+            exc.metadata={**audit,**(getattr(exc,'metadata',{}) or {}),
+                          'dispatch_elapsed_seconds':time.monotonic()-started}
+            if 'total network deadline exceeded' in str(exc):
+                exc.metadata.update(deadline_kind='total', last_observed_stage=exc.metadata.get('failure_stage'),
+                                    temporary_network_failure=True, network_error_type='TotalDeadline')
+            exc.metadata['failure_category']=failure_category(str(exc),exc.metadata)
+            exc.metadata=self.redact_metadata(exc.metadata)
             raise
         finally:
             receive.close()

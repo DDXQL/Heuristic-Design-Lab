@@ -1,0 +1,55 @@
+{
+  "version": "common-client-preparation-receipt-v1",
+  "scope": "FJSP matched EoH experiment preparation only",
+  "status": "short_nonstream_admission_passed",
+  "production_launch_authorized": false,
+  "long_term_stability_proven": false,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "api_concurrency": 2,
+  "physical_attempts_per_task": 1,
+  "automatic_retry": false,
+  "wire_version": "bounded-wire-reliability-v4",
+  "runtime_source_sha256": {
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/tools/api_reliability_next.py": "47ae1abee9c31a63908be6298432222461c0c4827c5e9935681286f0a88e0d64",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/tools/api_reliability_diagnostic.py": "6f47b05376d227ca49f23515ce11d9f1931ec3d09eb7aac2cb3fca2352c19813",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/fjsp_usage/research_real/real_transport.py": "0b68d92746e97fc93f23efe867a2a9506bd40aa6aaf1f0f7d885e5bbc38fbd80",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/fjsp_usage/research_real/config.py": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/fjsp_usage/research_real/budget.py": "a6e54f9310a280d96c540dd6a0838dbc63285cffe492b9bcc8e3472d8c002aef",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/fjsp_usage/research_real/attempt_budget.py": "535a5a06fd29d05035c742833a68497687e30c3d08a8de308b86c20e6ac94244",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/heuristic_design/core/routing.py": "ac8cb438fee03cf53bce551ed48ac858cb6fc28c083280a176efe273e832a097",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/heuristic_design/core/constructive_state.py": "fe8c2c70559aa26c45af97c8685414d76193a530f3d715bb773071ed70618812",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/code/heuristic_design/llm/legacy.py": "a1fa3157a2229c5e8fac6e7541dc8df01d9ec5be50ed92871fe90876b4be2514"
+  },
+  "diagnostic_prompt_sha256": "764d9e95e4bf70847f9001e4a1dbd5a1dcf1268f82acc184b4103f9a2b03030b",
+  "evidence_sha256": {
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/reports/api-reliability-next-20261104/online-result.json": "bb9c8427d5886032084451842504eca9a9aa4602f85f957064dc0bc08ff44d91",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/ledger.json": "b19f708d894a03387ca2278d67828d72bdc003c18130efb14af1a8a54af13e51",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability/preparations/api-reliability-next-20261104.claim.json": "2789b0889e8ea8bf3355ddb48e0927600fd8a1f9a89d4a043adec1d776b4f44d",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/reports/api-reliability-next-20261104/plan.json": "ca2f5d15ce83a904aabfacb45fff790aba0807b433da3c528e1ee07d24f73cbb",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/responses/01.json": "f1f8e8858e5bfcb6d3b25a481928642d73827f9217903b46b0f58f425d217940",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/responses/02.json": "6006d54643d0ba1e832e83abbb9930d97e7f06ce65f33dd5c62bb95a3db28ac2"
+  },
+  "required_future_integration_checks": [
+    "Both comparison arms import this exact shared transport and use the same response acceptance policy.",
+    "Explicit valid-usage acceptance for nonstream callers: legacy transport permits usage=None; diagnostic rejects it.",
+    "FJSP EoH H-specific candidate parser and prompt must be audited separately; this probe tested U extraction only.",
+    "Freeze operator/prompt identities, physical request budget, concurrency, timeouts and stop policy before a new run.",
+    "Candidate static acceptance does not establish complete FJSP solver feasibility."
+  ],
+  "do_not_resume_frozen_runs_with_this_runtime": true,
+  "no_additional_diagnostic_requests_planned": true
+}

@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-11-04T21:02:48.241990+08:00",
+  "base_commit": "e8c073b9027d5d16cf5ac121d0d5944578a0e56b",
+  "offline_tests_passed": 24,
+  "offline_log_sha256": "a25c94022c2f6499359a8b46a5e5b42213260c96312b460307775659d6ca988f",
+  "check_only_sha256": "81309e80184fb4e3027d595b924c0b3e5555d60ef0e0111b453e1bd7f8e49559",
+  "caller_policy": "strict-nonstream-model-stop-usage-v1",
+  "bound_common_sources_verified": 7,
+  "native_files_identical_to_52cfc1d": 12,
+  "historical_A_B_protocol_and_checkpoint_unchanged": true,
+  "formal_run_directory_created": false,
+  "additional_model_requests": 0,
+  "additional_strategy_solves": 0,
+  "actual_financial_authorization_created": false,
+  "tests": [
+    "mandatory model/stop/full JSON/usage",
+    "caller-rejected normalized reply retained",
+    "403 first stop and settled task",
+    "524 three consecutive pause and same-ledger resume",
+    "invalid H is scientific failure",
+    "default other-adapter behavior unchanged",
+    "physical-budget conservation",
+    "native operators and RNG/pause continuation",
+    "saved R1 H0 full21 replay only",
+    "1023/1050 nodes and complete-valid unique H curve",
+    "CSV and PNG/SVG Mock exports",
+    "binding and source identity checks"
+  ]
+}

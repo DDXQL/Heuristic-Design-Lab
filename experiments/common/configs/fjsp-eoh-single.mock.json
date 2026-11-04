@@ -1,5 +1,5 @@
 {
-  "version": "fjsp-eoh-single-native-http-v1",
+  "version": "fjsp-eoh-single-native-http-v2",
   "api_mode": "mock",
   "evaluation_mode": "mock",
   "real_requests_authorized": false,
@@ -40,5 +40,7 @@
     12
   ],
   "mock_faults": {},
-  "pause_after_tasks": null
+  "pause_after_tasks": null,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1
 }

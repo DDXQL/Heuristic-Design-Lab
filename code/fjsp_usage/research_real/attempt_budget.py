@@ -60,9 +60,9 @@ def failure_policy(message, metadata=None, error_type=''):
         return False, 'non_retryable_protocol_incompatible', False
     if m.get('failure_class') == 'permanent':
         return False, 'non_retryable_permanent_response_error', False
-    if status in (429,502,503,504):
+    if status in (429,502,503,504,524):
         return True, 'temporary_http_'+str(status), False
-    if upstream_status in (429,502,503,504):
+    if upstream_status in (429,502,503,504,524):
         return True, 'temporary_upstream_http_'+str(upstream_status), False
     if m.get('temporary_network_failure') or error_type in (
             'TimeoutError','ConnectionError','ConnectionResetError','ConnectionAbortedError',
