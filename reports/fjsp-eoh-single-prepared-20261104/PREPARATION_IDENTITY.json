@@ -1,0 +1,189 @@
+{
+  "version": "fjsp-eoh-single-native-http-v1",
+  "base_commit": "52cfc1de313c4f738415f7e7e091194571765c1c",
+  "configuration_sha256": "05516d7a83630cb055887a73d00b4ba4f32ad6fa147e370385167ffe08b73f60",
+  "comparison": {
+    "scope": "historical exploratory; not end-to-end equal cost",
+    "runs": [
+      {
+        "directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab/runs/b1-v6-b1-20261030-155904-688532-7ced645e",
+        "protocol_sha256": "19a7c858f4bf09f09f2924f37657345dc6eb5e43b36088ac0c230fea1d01adab",
+        "checkpoint_sha256": "2db1cdd91db3aa8717bb2aab233334fddff929c25819c6f9ba74828ecdac6a2c",
+        "initialization_requests": 23,
+        "evolution_requests": 1000,
+        "physical_files": [
+          "code/fjsp_usage/offline_v2.py",
+          "code/heuristic_design/core/constructive_state.py",
+          "code/heuristic_design/core/lifecycle.py",
+          "code/heuristic_design/core/routing_evaluation.py",
+          "code/heuristic_design/problems/fjsp/__init__.py",
+          "code/heuristic_design/problems/fjsp/adapter.py",
+          "code/heuristic_design/problems/fjsp/common_state.py",
+          "code/heuristic_design/problems/fjsp/data.py",
+          "code/heuristic_design/problems/fjsp/evaluation.py",
+          "code/heuristic_design/problems/fjsp/policies.py",
+          "code/heuristic_design/problems/fjsp/prompts.py",
+          "code/heuristic_design/problems/fjsp/provenance.py",
+          "code/heuristic_design/problems/fjsp/routing.py",
+          "code/heuristic_design/problems/fjsp/solver.py",
+          "code/heuristic_design/problems/fjsp/states.py",
+          "code/llm4ad/task/optimization/fjsp_set/instances.py",
+          "code/llm4ad/task/optimization/fjsp_set/scheduler.py"
+        ]
+      },
+      {
+        "directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-recovery-check/runs/b-continue-on-errors-seed501-20261101-01/B",
+        "protocol_sha256": "9f032a094696641bf844ef2b09d1ab3a8c924616bce0071061ce9399277c849c",
+        "checkpoint_sha256": "a5fb131a76f9b1ec55bc77fa4b019375a081deb1b87b4092f415e340b0a6df65",
+        "initialization_requests": 0,
+        "evolution_requests": 1000,
+        "physical_files": [
+          "code/fjsp_usage/offline_v2.py",
+          "code/heuristic_design/core/constructive_state.py",
+          "code/heuristic_design/core/lifecycle.py",
+          "code/heuristic_design/core/routing_evaluation.py",
+          "code/heuristic_design/problems/fjsp/__init__.py",
+          "code/heuristic_design/problems/fjsp/adapter.py",
+          "code/heuristic_design/problems/fjsp/common_state.py",
+          "code/heuristic_design/problems/fjsp/data.py",
+          "code/heuristic_design/problems/fjsp/evaluation.py",
+          "code/heuristic_design/problems/fjsp/policies.py",
+          "code/heuristic_design/problems/fjsp/prompts.py",
+          "code/heuristic_design/problems/fjsp/provenance.py",
+          "code/heuristic_design/problems/fjsp/routing.py",
+          "code/heuristic_design/problems/fjsp/solver.py",
+          "code/heuristic_design/problems/fjsp/states.py",
+          "code/llm4ad/task/optimization/fjsp_set/instances.py",
+          "code/llm4ad/task/optimization/fjsp_set/scheduler.py"
+        ]
+      }
+    ],
+    "H_build_cost": "separate historical upstream cost; not included or assumed zero",
+    "routing_bridge": "TSP-only prompt extension; all non-build_prompt AST identical; constant-U host does not invoke it"
+  },
+  "data_provenance": {
+    "data": {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/train21.manifest.json",
+      "sha256": "a56c152290a9ab5c6818eef80a0daaec9e3969093895973d9ee467d46c8aa1d7",
+      "split": "train"
+    }
+  },
+  "references": [
+    {
+      "file": "Behnke1.fjsp",
+      "reference": 70.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "reference": 79.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "reference": 76.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "reference": 159.7,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "reference": 163.75,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "reference": 322.35,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "reference": 80.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "reference": 78.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "reference": 81.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "reference": 76.45,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "reference": 78.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "reference": 151.625,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "reference": 68.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "reference": 68.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "reference": 76.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "reference": 73.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "reference": 74.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "reference": 98.31666666666666,
+      "rule": "LB_v5"
+    }
+  ],
+  "H_signature": [
+    "processing_time",
+    "remaining_work",
+    "remaining_operations",
+    "job_ready_time",
+    "machine_ready_time",
+    "earliest_start",
+    "earliest_finish"
+  ],
+  "local_search": false,
+  "final_selection": "complete train21 Fitness, fixed task ID; freeze then supplementary validation; never validation reselect"
+}

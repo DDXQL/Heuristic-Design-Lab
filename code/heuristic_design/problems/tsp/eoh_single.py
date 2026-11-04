@@ -227,6 +227,9 @@ class Adapter(h_build.Adapter):
     entrypoint='experiments/common/run_tsp_eoh_single.py'
     pause_on_transport_streak=True
 
+    def read_state(self,directory):
+        return protocol_state(directory)
+
     def check_run(self,directory):
         p,s=protocol_state(directory)
         if sha(Path(directory)/'Tasks.json')!=p['tasks_sha256'] or digest(task_description())!=p['prompt_sha256']:
@@ -302,7 +305,7 @@ class Adapter(h_build.Adapter):
         if p['config']['pause_after_tasks']==state['cursor']: execution.stop(directory,adapter=self)
 
     def summary(self,directory,write_files=False):
-        p,s=protocol_state(directory);jpath=Path(directory)/'API_attempts.json'
+        p,s=self.read_state(directory);jpath=Path(directory)/'API_attempts.json'
         attempts=read(jpath)['api_attempts'] if jpath.exists() else {}
         values=list(s['tasks'].values())[:s['cursor']]
         unique={t['candidate']['key'] for t in values if t['valid']}
