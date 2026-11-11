@@ -15,6 +15,18 @@
 
 原始路径、大小与SHA见 `source-manifest.json`；本轮只读来源包括原Protocol/检查点/API账本、末段terminal.log、具体失败收据、原始Prompt、旧收尾JSON和两条相关聊天的最新记录。没有递归读取所有历史响应或holdout内容。选取的14份原始文件前后SHA一致。
 
+### 请求分母与已知成本
+
+|批次／身份|硬上限|实际预留／确认发送|完整响应成功／分类失败|usage边界|
+|---|---|---|---|---|
+|11-04 V3流式对照；计划SHA `159382f8…`|旧累计4|本批2／2|1／1（SSE id变化）|已知输入9690、输出310；未知1|
+|11-04 V4非流式短检查；计划SHA `ca2f5d15…`|与上一批共用旧累计4；本批仅剩2|本批2／2；两批累计4／4|2／0|已知输入19380、输出712；未知0|
+|Mac正式FJSP EoH|1050|324／293|290／34，失败分型见上表|已知输入1429457、输出99432；未知34，其中确认发送而usage未知3|
+|集群旧10H 585019正式搜索|1050；计划生成1010|1010／1010|传输成功1007／HTTP524失败3；候选解析/约束2另算|历史失败具体usage及费用不以摘要补算；当前远端状态未知|
+|本轮V5两端新计划|待用户显式批准累计4；每端2|0／0|0／0|尚无线上usage，费用未知|
+
+前两行来源分别为 `/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability/runs/api-reliability-diagnostic-20261104-01/ledger.json`、`/Users/DDXQL/Developer/Heuristic-Design-Lab-api-reliability-next/runs/api-reliability-nonstream-pair-20261104-01/ledger.json`。它们是两批、一个累计4次的旧授权；旧额度已耗尽。本轮4次是独立待批准上限，未计入已用或正式搜索。所有费用均未获得提供方账单，不能用token或发送确认冒充实际费用。
+
 远端只读SSH实际结果为跳板 `Permission denied (publickey,password)`，不是已成功进入计算节点。未索取、提取或输出凭据，也未反复登录。后续启动脚本会由用户在自己的终端完成SSH认证，先只读收集Slurm/检查点/锁/最近失败收据，再决定是否执行本轮诊断。当前远端事实仍未知。
 
 “平台正在修复”只保留为用户信息，不作为根治证明。未发现超时参数被覆盖；也没有证据支持换模型、供应商、代理或单纯增大超时。LeafAPI当前接口说明未在本环境成功取得，不能借官方OpenAI接口文档替LeafAPI承诺；本轮按已观察成功的非流式格式、既有严格验收与离线反例核对，没有放宽完整性要求。
@@ -29,7 +41,7 @@
 |同一transport|非流式记录完整收到正文的字节数／哈希；JSON损坏时保留有界脱敏样本并明确分类。保留V4 SSE有界摘要，兼容分类旧id-change证据；不拼接不一致流或残缺JSON。|
 |`routing_transport.py`|新源码中非流式OpenAI-chat调用也经过既有StrictNonstreamTransport，与FJSP EoH统一HTTP200、精确模型、stop、非空文本及合法usage门禁。没有把候选非法计作API协议错误。|
 |`core/execution.py`|请求/评价已明确返回时，clock gap先记录、结算该任务一次，再在边界安全暂停；保留原deadline、任务、种群/RNG和已用成本。异常或未知在途仍走原停止保护。只改变未来新源码，不修写旧H-0323检查点。|
-|已有诊断入口 `tools/api_reliability_next.py`|扩展为check-only／回放／显式run／安全resume／status／stop／export／bundle。每次先落盘预留，未知发送不重放；失败关闭，只有已结算成功前缀的主动/时钟暂停可以显式续接剩余槽位。|
+|已有诊断入口 `tools/api_reliability_next.py`|扩展为check-only／回放／显式run／安全resume／status／stop／export／bundle。每次先以exclusive create写入不可覆盖的逐槽预留收据，再落盘账本；收据/账本/响应前缀不一致就停止，孤立预留保守计入未知成本，不补发；失败关闭，只有已结算成功前缀的主动/时钟暂停可以显式续接剩余槽位。|
 
 旧正式运行仍使用其原绑定：Mac FJSP V4、旧集群搜索V1、新版状态套件V4。没有在其他工作树并行修改客户端。新Mac/集群验证实际导入同一份V5，check-only核对导入文件路径及SHA；未来正式接入需新客户端收据与来源绑定，不能只复制provider配置，也不能用新源码resume旧冻结运行。
 
@@ -50,12 +62,13 @@
 
 ## 4. 已完成的纯离线检查
 
-- 16项V5专项单元检查通过：DNS/TCP/TLS分型、坏JSON哈希、严格usage统一、clock gap结算后暂停/同预算续接、两个控制器互斥、两端累计4次、先预留后发送、拒绝后全局停止、未知请求禁止重放、控制暂停/续接、导出篡改拒绝、已有发布包身份复核且不覆盖、候选提取/约束分层、默认入口不读密钥/不构造transport。
-- 15项既有JSON/SSE/传输预算回归通过。组合日志为29项（当时新增14）通过，随后加入互斥及归档复用场景的16项专项通过；合计31项不同单元检查，不把重复运行相加。见 `offline-tests.log`、`targeted-tests.log`。
+- 17项V5专项单元检查通过：DNS/TCP/TLS分型、坏JSON哈希、严格usage统一、clock gap结算后暂停/同预算续接、两个控制器互斥、两端累计4次、先预留后发送、拒绝后全局停止、未知请求禁止重放、控制暂停/续接、导出篡改拒绝、已有发布包身份复核且不覆盖、候选提取/约束分层、默认入口不读密钥/不构造transport。
+- 15项既有JSON/SSE/传输预算回归通过。组合日志为29项（当时新增14）通过，随后加入互斥及归档复用及丢失账本前缀拒绝补发场景的17项专项通过；合计32项不同单元检查，不把重复运行相加。见 `offline-tests.log`、`targeted-tests.log`。
 - 5份已有真实响应/故障材料离线回放通过：H成功响应、U成功响应、524、SSE id变化、clock gap；不是原始网络重发。见 `replay.json`。
 - 40文件最小发布包在临时目录解压，用隔离Python `-I`执行check-only和回放均通过，不依赖原工作树的隐式PYTHONPATH。见 `bundle-offline-check.json`。
 - 四个shell/Slurm脚本通过bash语法检查。没运行sbatch，没在登录节点做诊断计算。
 - 两次测试夹具问题及原失败日志保留：首次坏JSON夹具误用另一协议responder；旧slow-drip测试的0.45秒期限在spawn启动前终止，改为仅该测试夹具1.2秒以实际触发慢体条件。部署的10/240/300秒没有调整。
+- 新增不可覆盖预留收据后，专项反例发现未知中断的resume先校验响应文件、后校验阶段，报错顺序不够明确；现先拒绝unknown/failed再核对成功前缀。原失败日志 `targeted-prefix-initial-error.log` 保留，最终17项通过；没有因此补发请求。
 
 这里的单元测试只用合成回执、伪transport及localhost HTTP；未调用任何策略求解/训练评价。clock gap控制用固定失败回执模拟结算，不执行研究算法。
 
@@ -155,3 +168,5 @@ bash deploy/api-common/fetch.sh
 如果出现拒绝、DNS/TCP/TLS、524/200超时、解析或本地生命周期失败，分别按对应证据处理；平台/网络原因只有日志能支持时才归因，不通过多跑种子、补齐候选或提高API并发掩盖问题。
 
 写作依据为主项目《中文科研写作规范》和固定humanizer-zh；实验代码遵循用户明确授权下的ahd-experiment-copilot边界。本报告是本轮增量，不覆盖任何历史报告、协议或账本。
+
+原始Prompt和电源日志保留源文件中的尾部空白以保持字节身份；源码/文档的空白检查将这两类受保护文本排除，不修剪真实Prompt来消除格式提示。

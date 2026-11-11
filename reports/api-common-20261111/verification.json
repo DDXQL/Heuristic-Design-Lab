@@ -13,14 +13,15 @@
   "old_budgets_reset": false,
   "original_files_checked": 14,
   "changed_original_files": [],
-  "unique_unit_cases_passed": 31,
+  "unique_unit_cases_passed": 32,
   "saved_material_replays_passed": 5,
   "isolated_bundle_check_passed": true,
   "shell_scripts_syntax_passed": 4,
   "source_files_bound": 38,
-  "plan_sha256": "e422a4cc21a5fe4f9bcc240e3920d412769d2581f16632d5a39a82d82248597c",
+  "plan_sha256": "3305b009ca4b14b85eaf618a917d4e404024668bc311f87ef575425ea88c2efa",
   "ssh_readonly_query": "noninteractive jump authentication denied; remote state not verified",
   "research_method_changed": false,
   "new_state_ablation_added": false,
-  "online_stability_proven": false
+  "online_stability_proven": false,
+  "immutable_slot_reservations": true
 }

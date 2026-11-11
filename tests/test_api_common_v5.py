@@ -168,6 +168,16 @@ class DiagnosticTests(unittest.TestCase):
             self.assertEqual(r['status'],'paused');self.assertEqual(len(c),1)
             self.assertTrue(r['clock_events'][0]['settled']);self.assertEqual(r['records'][0]['status'],'passed')
         self.fixture(check)
+    def test_missing_ledger_prefix_cannot_refill_reserved_cost(self):
+        def check(p,b,c,T):
+            original=T.dispatch
+            def one(self,*a,**kw):
+                value=original(self,*a,**kw);d.save(b/'mac/Stop_request.json',{'sequence':1});return value
+            with patch.object(T,'dispatch',one):d.run('mac',allow_api=True,approve_total=4)
+            ledger=d.read(b/'mac/ledger.json');ledger['records']=[];d.save(b/'mac/ledger.json',ledger)
+            with self.assertRaises(ValueError):d.run('mac',allow_api=True,approve_total=4,resume=True)
+            self.assertEqual(len(c),1);self.assertTrue((b/'mac/reservations/01.json').exists())
+        self.fixture(check)
     def test_refusal_stops_stage_and_blocks_cluster(self):
         def check(p,b,c,T):
             def refuse(self,key,*a,**kw):

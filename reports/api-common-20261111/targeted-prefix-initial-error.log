@@ -1,0 +1,30 @@
+..........E......
+======================================================================
+ERROR: test_unknown_interruption_never_resumes_or_replays (test_api_common_v5.DiagnosticTests.test_unknown_interruption_never_resumes_or_replays)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tests/test_api_common_v5.py", line 195, in test_unknown_interruption_never_resumes_or_replays
+    self.fixture(check)
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tests/test_api_common_v5.py", line 116, in fixture
+    fn(p,base,calls,Transport)
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tests/test_api_common_v5.py", line 194, in check
+    with self.assertRaises(ValueError):d.run('mac',allow_api=True,approve_total=4,resume=True)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tools/api_reliability_next.py", line 118, in run
+    if row['slot']!=i+1 or row['task']!=p['tasks'][i]['id'] or receipt.get('request_sha256')!=row['request']['serialized_body_sha256'] or receipt.get('plan_sha256')!=sha(PLAN) or sha(d/'responses'/f"{i+1:02d}.json")!=row['response_sha256']:
+                                                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tools/api_reliability_next.py", line 18, in sha
+    def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/y3/1mhk00ms01b0bb25v5rvmmf40000gn/T/tmp07y0q8bh/mac/responses/01.json'
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.369s
+
+FAILED (errors=1)

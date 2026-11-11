@@ -26,7 +26,8 @@ def verify():
     if sha(PLAN)!=(PLAN.with_suffix('.sha256')).read_text().split()[0]:raise ValueError('frozen plan changed')
     if (p['version']!='mac-cluster-api-v5-20261111' or p['new_total_cap']!=4
             or p['stage_cap']!=2 or p['api_concurrency']!=1 or p['automatic_retry'] is not False
-            or p['real_requests_authorized'] is not False or WIRE_VERSION!=p['wire_version']):
+            or p['real_requests_authorized'] is not False or WIRE_VERSION!=p['wire_version']
+            or [t['id'] for t in p['tasks']]!=['fjsp_h','tsp_u']):
         raise ValueError('unreviewed plan/cap/client identity')
     for name,h in p['files'].items():
         path=ROOT/name
@@ -58,6 +59,7 @@ def stage_export(site):
     d=directory(site);ledger=read(d/'ledger.json')
     value={'version':'api-v5-stage-export-v1','site':site,'plan_sha256':sha(PLAN),
            'ledger_sha256':sha(d/'ledger.json'),'ledger':ledger,
+           'reservations':{p.name:read(p) for p in sorted((d/'reservations').glob('*.json'))},
            'responses':{p.name:read(p) for p in sorted((d/'responses').glob('*.json'))},
            'caller_rejections':{p.name:read(p) for p in sorted((d/'caller_rejections').glob('*.json'))}}
     save(d/'export.json',value);return d/'export.json'
@@ -78,19 +80,20 @@ def prior_receipt(path,p):
         encoded=(json.dumps(response,ensure_ascii=False,indent=2,allow_nan=False)+'\n').encode()
         if response is None or hashlib.sha256(encoded).hexdigest()!=r.get('response_sha256'):
             raise ValueError('Mac response export changed')
+    if len(e.get('reservations',{}))!=len(rs):raise ValueError('Mac reservation receipts differ')
     if len(rs)>2 or any(r['status'] not in ('passed','failed') for r in rs):raise ValueError('ambiguous Mac request; no cluster dispatch')
     if len(rs)+p['stage_cap']>p['new_total_cap']:raise ValueError('cumulative cap exceeded')
     return e
 
-def totals(ledger):
-    rows=ledger['records'];return {'reserved':len(rows),'confirmed_sends':sum(r['send_status']=='confirmed' for r in rows),
-        'send_unknown':sum(r['send_status']=='unknown' for r in rows),
+def totals(ledger,reservation_count=None):
+    rows=ledger['records'];orphan=max(0,(reservation_count or 0)-len(rows));return {'reserved':len(rows)+orphan,'confirmed_sends':sum(r['send_status']=='confirmed' for r in rows),
+        'send_unknown':sum(r['send_status']=='unknown' for r in rows)+orphan,
         'response_passed':sum(r.get('response_pass') is True for r in rows),
         'static_passed':sum((r.get('candidate') or {}).get('static_legal') is True for r in rows),
         'failed':sum(r['status']=='failed' for r in rows),
         'known_input_tokens':sum((r.get('usage') or {}).get('input_tokens',0) for r in rows),
         'known_output_tokens':sum((r.get('usage') or {}).get('output_tokens',0) for r in rows),
-        'usage_unknown':sum(r.get('usage') is None for r in rows),
+        'usage_unknown':sum(r.get('usage') is None for r in rows)+orphan,
         'sent_usage_unknown':sum(r['send_status']=='confirmed' and r.get('usage') is None for r in rows)}
 
 def run(site,*,allow_api=False,approve_total=None,resume=False,mac_export=None,credential_file=None):
@@ -107,6 +110,15 @@ def run(site,*,allow_api=False,approve_total=None,resume=False,mac_export=None,c
     try:
         if resume:
             l=read(d/'ledger.json')
+            if l['status']!='paused' or l['plan_sha256']!=sha(PLAN) or any(r['status']!='passed' for r in l['records']):
+                raise ValueError('resume only a safely paused settled prefix; unknown/failed requests never replay')
+            receipts={f.name:read(f) for f in (d/'reservations').glob('*.json')}
+            if read(d/'claim.json')['plan_sha256']!=sha(PLAN) or len(receipts)!=len(l['records']) or len(l['records'])>2:
+                raise ValueError('reservation ledger mismatch; never refill or reset')
+            for i,row in enumerate(l['records']):
+                receipt=receipts.get(f"{i+1:02d}.json",{})
+                if row['slot']!=i+1 or row['task']!=p['tasks'][i]['id'] or receipt.get('request_sha256')!=row['request']['serialized_body_sha256'] or receipt.get('plan_sha256')!=sha(PLAN) or sha(d/'responses'/f"{i+1:02d}.json")!=row['response_sha256']:
+                    raise ValueError('settled prefix/reservation response changed')
             if l['status']!='paused' or l['plan_sha256']!=sha(PLAN) or any(r['status']!='passed' for r in l['records']):
                 raise ValueError('resume only a safely paused, fully settled successful prefix; never replay unknown/failed')
         elif (d/'claim.json').exists() or (d/'ledger.json').exists():raise FileExistsError('stage already claimed; no new run or refill')
@@ -148,8 +160,15 @@ def run(site,*,allow_api=False,approve_total=None,resume=False,mac_export=None,c
                 row={'slot':len(l['records'])+1,'task':task['id'],'kind':task['kind'],'status':'reserved',
                      'reserved_at_unix':time.time(),'send_status':'unknown','usage':None,'response_pass':False,
                      'candidate':{'extracted':None,'static_legal':None,'solved':False}}
+                if len(l['records'])>=2:raise ValueError('physical stage cap exhausted')
                 prompt=(ROOT/task['prompt']).read_text();payload=request_payload(transport.provider,site+'-'+task['id'],prompt)
-                row['request']=request_audit(payload,json.dumps(payload).encode());l['records'].append(row);save(d/'ledger.json',l)
+                row['request']=request_audit(payload,json.dumps(payload).encode())
+                (d/'reservations').mkdir(exist_ok=True)
+                with (d/'reservations'/f"{row['slot']:02d}.json").open('x') as f:
+                    json.dump({'slot':row['slot'],'task':task['id'],'plan_sha256':sha(PLAN),
+                               'request_sha256':row['request']['serialized_body_sha256'],'at':row['reserved_at_unix']},f)
+                    f.flush();os.fsync(f.fileno())
+                l['records'].append(row);save(d/'ledger.json',l)
                 def sent():row.update(send_status='confirmed',send_confirmed_at_unix=time.time());save(d/'ledger.json',l)
                 row['dispatch_started_at_unix']=time.time();began=time.monotonic()
                 try:
@@ -182,7 +201,7 @@ def run(site,*,allow_api=False,approve_total=None,resume=False,mac_export=None,c
         except BaseException:
             l['status']='unknown_interruption';raise
         finally:
-            l['totals']=totals(l);save(d/'ledger.json',l);stage_export(site)
+            l['totals']=totals(l,len(list((d/'reservations').glob('*.json'))));save(d/'ledger.json',l);stage_export(site)
             for signum,handler in old_signals.items():signal.signal(signum,handler)
         return l
     finally:fcntl.flock(owner,fcntl.LOCK_UN);owner.close()
@@ -235,7 +254,10 @@ def main():
         if args.command=='check-only':value={'offline':True,'model_requests':0,'solves':0,'version':p['wire_version'],'plan_sha256':sha(PLAN),'new_cap':4,'stage_cap':2,'concurrency':1,'state_path':str(d),'tasks':[{k:t[k] for k in ('id','kind','bytes','sha256')} for t in p['tasks']]}
         elif args.command=='replay':value=replay()
         elif args.command in ('run','resume'):value=run(args.site,allow_api=args.allow_api,approve_total=args.approve_total,resume=args.command=='resume',mac_export=args.mac_export,credential_file=args.credential_file)
-        elif args.command=='status':value=read(d/'ledger.json') if (d/'ledger.json').exists() else {'status':'not_started','no_request':True}
+        elif args.command=='status':
+            value=read(d/'ledger.json') if (d/'ledger.json').exists() else {'status':'not_started','no_request':True}
+            value['reservation_receipt_count']=len(list((d/'reservations').glob('*.json')))
+            if 'records' in value:value['totals']=totals(value,value['reservation_receipt_count'])
         elif args.command=='stop':
             previous=read(d/'Stop_request.json') if (d/'Stop_request.json').exists() else {'sequence':0}
             save(d/'Stop_request.json',{'sequence':previous['sequence']+1,'at':time.time(),'action':'drain_current_request_and_pause'});value={'stop_requested':True,'requests_added':0}
