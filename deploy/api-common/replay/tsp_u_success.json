@@ -1,0 +1,26 @@
+{
+  "text": "Use the distance-and-connectivity heuristic early, then switch to the stronger return-to-start bias as the tour progresses.\n\n```python\ndef use_heuristics(state):\n    if state[\"availability\"][\"construction_progress\"]:\n        progress = state[\"construction_progress\"]\n    else:\n        progress = 0.5\n    if progress < 0.6:\n        return 9\n    else:\n        return 1\n```",
+  "usage": {
+    "input_tokens": 7313,
+    "output_tokens": 499
+  },
+  "metadata": {
+    "failure_stage": "http_receive",
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202611040829139718003808268d9d65lnYbkKD",
+    "x-request-id": "a9807fa4-3325-47f2-a1b7-8b89a63d3300",
+    "date": "Wed, 04 Nov 2026 08:29:26 GMT",
+    "gateway_request_id": "202611040829139718003808268d9d65lnYbkKD",
+    "cached_tokens": 4224,
+    "reasoning_tokens": 409,
+    "id": "resp_00cbb10f2157ce8c016aeaecda996487d0abb2dccf98865199",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  },
+  "sent": true,
+  "wire_send_confirmed_at_unix": 1793780953.751522
+}

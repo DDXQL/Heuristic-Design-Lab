@@ -155,8 +155,14 @@ def work(directory,*,adapter):
                     child={'id':tid,'candidate':asdict(c),'fitness':result['fitness'],'scores':[r['score'] for r in result['instances']]}
                 else:record['failure']='evaluation_invalid'
             end={'wall':time.time(),'monotonic':time.monotonic()}
-            if abs((end['wall']-beg['wall'])-(end['monotonic']-beg['monotonic']))>2:
-                o.write(directory/'Clock_quarantine.json',{'task':tid,'before':beg,'after':end});raise ValueError('clock gap; preserve uncommitted evidence')
+            clock_delta=(end['wall']-beg['wall'])-(end['monotonic']-beg['monotonic'])
+            clock_gap=abs(clock_delta)>2
+            if clock_gap:
+                # The request/evaluation has returned; commit it exactly once before pausing.
+                # An exception/unknown worker result still follows the existing hard-stop path.
+                o.write(directory/'Clock_quarantine.json',{'task':tid,'before':beg,'after':end,
+                    'wall_minus_monotonic_seconds':clock_delta,'task_committed':False,
+                    'cause':'unresolved local clock/suspend gap; not a provider attribution'})
             if task['stage']=='p0' and child:s['population'].append(child);s['population']=ranked(s['population'])
             if task['stage']=='new' and p['config']['type']=='evo' and child and not record.get('AST_duplicate'):s['children'].append(child)
             last_gen_task=task.get('generation') is not None and (index+1==len(plan) or plan[index+1].get('generation')!=task['generation'])
@@ -176,6 +182,13 @@ def work(directory,*,adapter):
                 except Exception as exc:
                     o.write(directory/'Snapshot_error.json',{'error_type':type(exc).__name__,'error':str(exc)[:300],
                         'cursor':s['cursor'],'raw_results_preserved':True})
+            if clock_gap:
+                s['phase']='paused';s['pause_reason']='local_clock_gap_after_settled_task'
+                o.write(directory/'Clock_quarantine.json',{'task':tid,'before':beg,'after':end,
+                    'wall_minus_monotonic_seconds':clock_delta,'task_committed':True,
+                    'cursor':s['cursor'],'original_deadline':clock['deadline'],
+                    'cause':'unresolved local clock/suspend gap; not a provider attribution'})
+                break
             if journal and journal.data['halt_reason']:
                 s['phase']='paused';s['pause_reason']='persistent API Stop: '+journal.data['halt_reason'];break
             if s.get('transport_failure_streak',0)>=3:

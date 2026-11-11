@@ -26,7 +26,7 @@ class TransportError(RuntimeError):
     pass
 
 
-WIRE_VERSION = 'bounded-wire-reliability-v4'
+WIRE_VERSION = 'bounded-wire-reliability-v5'
 OBSERVATION_VERSION = 'bounded-sse-prefix-observation-v2'
 TEMPORARY_CODES = frozenset(('service_unavailable', 'temporarily_unavailable',
                             'server_overloaded', 'rate_limit_exceeded'))
@@ -460,6 +460,29 @@ def _wire_worker(pipe, provider, payload, secret):
                               'application_proxy':False,'proxy_environment_used':False,'system_tun':'not_observed'}}
     def stamp(name):metadata['wire_timing'][name]=time.monotonic()-started
     def emit():pipe.send({'kind':'audit','metadata':redact_diagnostic(metadata,secret)})
+    def network_stage(name):
+        metadata['connection_phase']=name
+        stamp(name+'_started_seconds');emit()
+    def create_socket(address,timeout=socket._GLOBAL_DEFAULT_TIMEOUT,source_address=None):
+        # Same ordered DNS address fallback as socket.create_connection; no HTTP retry.
+        host,port=address;network_stage('dns')
+        addresses=socket.getaddrinfo(host,port,0,socket.SOCK_STREAM)
+        stamp('dns_completed_seconds');metadata['connection']['resolved_address_count']=len(addresses);emit()
+        error=None
+        for family,kind,proto,_,target in addresses:
+            sock=None
+            try:
+                network_stage('tcp');sock=socket.socket(family,kind,proto)
+                if timeout is not socket._GLOBAL_DEFAULT_TIMEOUT:sock.settimeout(timeout)
+                if source_address:sock.bind(source_address)
+                sock.connect(target);stamp('tcp_completed_seconds')
+                if provider.endpoint.startswith('https:'):network_stage('tls')
+                return sock
+            except OSError as exc:
+                error=exc
+                if sock is not None:sock.close()
+        if error is not None:raise error
+        raise OSError('DNS returned no socket addresses')
     def first_data(count):
         if 'first_body_data_seconds' not in metadata['wire_timing']:
             stamp('first_body_data_seconds');metadata['first_body_chunk_bytes']=count;emit()
@@ -468,6 +491,7 @@ def _wire_worker(pipe, provider, payload, secret):
         while size<=limit:
             block=reader(min(4096,limit+1-size))
             if not block:break
+            metadata['response_body_bytes_seen']=size+len(block)
             first_data(len(block));chunks.append(block);size+=len(block)
         return b''.join(chunks)
     try:
@@ -479,7 +503,10 @@ def _wire_worker(pipe, provider, payload, secret):
         if parts.scheme == 'https':
             kwargs['context'] = ssl.create_default_context()
         connection = cls(parts.hostname, parts.port, **kwargs)
+        connection._create_connection=create_socket
         connection.connect()
+        if parts.scheme=='https':stamp('tls_completed_seconds')
+        metadata['connection_phase']='connected'
         stamp('connected_seconds')
         connection.sock.settimeout(provider.read_timeout)
         try:metadata['connection']['peer']=list(connection.sock.getpeername())[:2]
@@ -514,7 +541,11 @@ def _wire_worker(pipe, provider, payload, secret):
             if len(body) > 524288:
                 raise TransportError('response exceeds 512 KiB')
             stamp('body_complete_seconds');metadata['failure_stage']='json_decode'
-            data = json.loads(body)
+            metadata.update(response_body_bytes=len(body),response_body_sha256=hashlib.sha256(body).hexdigest())
+            try:data = json.loads(body)
+            except (ValueError,UnicodeError):
+                metadata.update(error_audit(body[:4096],secret),failure_subtype='invalid_json_response')
+                raise
         if provider.protocol in ('openai-chat-v1', 'deepseek-chat-v1') and not getattr(provider, 'stream_response', False):
             if isinstance(data, dict) and isinstance(data.get('usage'), dict):
                 usage = validate_usage({'input_tokens': data['usage'].get('prompt_tokens'),
@@ -563,13 +594,20 @@ def failure_category(error, metadata):
     """Observed layer only; unknown HTTP status is never guessed to be 200."""
     m=metadata or {};status=m.get('http_status');net=m.get('network_error_type')
     if m.get('failure_stage')=='connect':
-        return 'dns_failure' if net=='gaierror' else 'connect_dns_tcp_tls_unresolved'
+        phase=m.get('connection_phase')
+        if net=='gaierror' or phase=='dns':return 'dns_failure'
+        if phase=='tcp':return 'tcp_connection_failure'
+        if phase=='tls':return 'tls_failure'
+        return 'connect_dns_tcp_tls_unresolved'
     if status is not None and status!=200:
         return 'http_524' if status==524 else 'http_gateway' if status>=500 else 'http_rejection'
     if m.get('deadline_kind') or net in ('TimeoutError','TotalDeadline'):
         return 'http200_read_or_total_timeout' if status==200 else 'timeout_http_status_unknown'
+    if m.get('failure_subtype')=='invalid_json_response':return 'invalid_json_response'
     if m.get('failure_subtype') in ('sse_id_changed','sse_model_changed','sse_model_mismatch'):
         return m['failure_subtype']
+    if (m.get('identity_change') or {}).get('field')=='id':return 'sse_id_changed'
+    if (m.get('identity_change') or {}).get('field')=='model':return 'sse_model_changed'
     if m.get('upstream_error_shape'):return 'sse_upstream_error'
     if m.get('temporary_network_failure'):return 'network_interruption'
     return 'response_acceptance_failure'

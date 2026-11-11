@@ -1,0 +1,76 @@
+{
+  "text": "{Prioritize the action with the earliest projected job completion, using remaining work as the job-tail estimate and penalizing longer candidate processing times to favor faster machine assignments.}\n```python\ndef priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return -(earliest_start + remaining_work + processing_time)\n```",
+  "usage": {
+    "input_tokens": 4742,
+    "output_tokens": 707
+  },
+  "metadata": {
+    "failure_stage": "json_decode",
+    "local_request": {
+      "serialized_body_bytes": 1992,
+      "serialized_body_sha256": "caeafeefc327048c975cae654d687ad1725a100c71ebd6174286b9da36ebcfe6",
+      "body_fields": [
+        "max_completion_tokens",
+        "messages",
+        "model",
+        "n",
+        "stream"
+      ],
+      "model": "gpt-6.1-sol",
+      "max_completion_tokens": 8192,
+      "stream": false,
+      "n": 1,
+      "messages_count": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "str",
+            "bytes": 1856,
+            "sha256": "3ecfee7f28c9e9e2c7815732490037d8ca678c222641e01802f67f8824a65310"
+          }
+        }
+      ],
+      "scope": "body passed to HTTP client; excludes authorization headers; not proof of server context or billing"
+    },
+    "send_status": "confirmed",
+    "wire_timing": {
+      "started_at_unix": 1793797818.6815948,
+      "connected_seconds": 0.9823804160114378,
+      "send_confirmed_seconds": 0.9828930409858003,
+      "response_headers_seconds": 16.03174416598631,
+      "first_body_data_seconds": 16.033908832992893,
+      "body_complete_seconds": 16.034414124966133,
+      "finished_seconds": 16.034672375011723
+    },
+    "connection": {
+      "mode": "direct_https",
+      "application_proxy": false,
+      "proxy_environment_used": false,
+      "system_tun": "not_observed",
+      "host": "leafapi.cc",
+      "port": 443,
+      "peer": [
+        "2606:4700:3037::6815:e2c",
+        443
+      ]
+    },
+    "http_status": 200,
+    "http_content_type": "application/json; charset=utf-8",
+    "x-oneapi-request-id": "202611041310203661541168268d9d6cVKrWqcI",
+    "x-request-id": "3f07b472-653e-4e29-bad3-4dbf4de24630",
+    "date": "Wed, 04 Nov 2026 13:10:34 GMT",
+    "cf-ray": "a553dbb51ba18228-SIN",
+    "server": "cloudflare",
+    "gateway_request_id": "202611041310203661541168268d9d6cVKrWqcI",
+    "first_body_chunk_bytes": 355,
+    "cached_tokens": 4224,
+    "reasoning_tokens": 624,
+    "id": "resp_06bd663a7c67ed0f016aeb2ebd32ec87d0910140b4e8a441e3",
+    "model": "gpt-6.1-sol",
+    "finish_reason": "stop",
+    "content_type": "str",
+    "refusal_present": false,
+    "tool_calls_present": false
+  }
+}

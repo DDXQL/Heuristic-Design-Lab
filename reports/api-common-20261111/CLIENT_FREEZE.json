@@ -1,0 +1,50 @@
+{
+  "version": "bounded-wire-reliability-v5",
+  "plan_sha256": "e422a4cc21a5fe4f9bcc240e3920d412769d2581f16632d5a39a82d82248597c",
+  "base_commit": "ca94a63cfdbb2831ba9bee3ecaf0ac819f0ac83e",
+  "status": "offline_frozen_online_not_run",
+  "model_requests_added": 0,
+  "solves_added": 0,
+  "new_budget": {
+    "requires_explicit_approval": 4,
+    "mac_cap": 2,
+    "cluster_cap": 2,
+    "api_concurrency_each_site": 1,
+    "automatic_retry": false,
+    "old_budget_inherited": false
+  },
+  "common_sources": {
+    "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+    "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc",
+    "code/heuristic_design/core/execution.py": "88284eee7fe9332f23180c9b173395ecb00882488dcdf9538a1f500a34154939",
+    "code/heuristic_design/llm/routing_transport.py": "64cccf3e8dc4528b321d572af535b101918d1a2c5ca0198127dd0543bb4134ed"
+  },
+  "consumers": [
+    {
+      "consumer": "new Mac diagnostic",
+      "route": "tools/api_reliability_next.py -> StrictNonstreamTransport -> JsonCandidateTransport",
+      "status": "frozen; offline verified; not sent"
+    },
+    {
+      "consumer": "new cluster diagnostic",
+      "route": "same frozen 40-file package; isolated import/check/replay passed",
+      "status": "ready for user transfer/Slurm; remote not verified"
+    },
+    {
+      "consumer": "historical Mac FJSP EoH ca94a63",
+      "status": "still V4 unchanged; stopped clock-gap task H-0323 and old expired window preserved; no direct resume/migration"
+    },
+    {
+      "consumer": "historical old10H cluster585019",
+      "status": "still old V1 package unchanged; historical completed_verified is not current acceptance"
+    },
+    {
+      "consumer": "TSP state suite bb21b69 / deployed afeb29b",
+      "status": "existing source/protocol untouched; job585597 current remote evidence unavailable; do not resume with V5 sources"
+    },
+    {
+      "consumer": "future FJSP / full-state U baseline tasks",
+      "status": "new source-bound Protocol/client receipt required; both new nonstream call sites use strict model/stop/usage admission; no method or state ablation added"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ complete response. Crash-ambiguous reservations are never automatically resent.
 import os
 import time
 from .legacy import ClientConfig, JsonCandidateTransport
+from .strict_nonstream import StrictNonstreamTransport
 
 
 def preflight(c, allow_api):
@@ -20,7 +21,9 @@ def generate(task,prompt,c,members):
     cap=c['api_attempt_cap']
     client=ClientConfig({'config':{**c,'per_candidate_attempt_cap':1},
                          'budgets':{'logical_generation':cap}})
-    transport=JsonCandidateTransport(client)
+    # New source identity only: use the same explicit strict caller as FJSP EoH.
+    cls=StrictNonstreamTransport if client.provider.protocol=='openai-chat-v1' and client.provider.stream_response is False else JsonCandidateTransport
+    transport=cls(client)
     sent=[False]
     send_time=[None]
     def on_sent():

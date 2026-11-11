@@ -1,0 +1,174 @@
+{
+  "attempt": 2,
+  "stream": true,
+  "status": "failed",
+  "reserved_at_unix": 1793778296.876469,
+  "send_status": "confirmed",
+  "transport_response_pass": false,
+  "send_confirmed_at_unix": 1793778297.515362,
+  "error": "stream identity/model changed",
+  "usage": null,
+  "metadata": {
+    "failure_stage": "sse_decode",
+    "local_request": {
+      "serialized_body_bytes": 19524,
+      "serialized_body_sha256": "b91f431a7aebb8fdbe5ffb78881db4c0ec7a15e21805775b9af1a6ee30d4f2ae",
+      "body_fields": [
+        "max_completion_tokens",
+        "messages",
+        "model",
+        "n",
+        "stream",
+        "stream_options"
+      ],
+      "model": "gpt-6.1-sol",
+      "max_completion_tokens": 8192,
+      "stream": true,
+      "n": 1,
+      "messages_count": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "str",
+            "bytes": 18835,
+            "sha256": "764d9e95e4bf70847f9001e4a1dbd5a1dcf1268f82acc184b4103f9a2b03030b"
+          }
+        }
+      ],
+      "scope": "body passed to HTTP client; excludes authorization headers; not proof of server context or billing"
+    },
+    "send_status": "confirmed",
+    "wire_timing": {
+      "started_at_unix": 1793778297.159632,
+      "connected_seconds": 0.3551432089880109,
+      "send_confirmed_seconds": 0.35556412499863654,
+      "response_headers_seconds": 9.861955166968983,
+      "first_body_data_seconds": 9.862758125003893,
+      "finished_seconds": 9.864002417016309
+    },
+    "connection": {
+      "mode": "direct_https",
+      "application_proxy": false,
+      "proxy_environment_used": false,
+      "system_tun": "not_observed",
+      "host": "leafapi.cc",
+      "port": 443,
+      "peer": [
+        "2606:4700:3037::ac43:9dbb",
+        443
+      ]
+    },
+    "http_status": 200,
+    "http_content_type": "text/event-stream",
+    "x-oneapi-request-id": "202611040745003173913458268d9d6eBhNTqDH",
+    "date": "Wed, 04 Nov 2026 07:45:07 GMT",
+    "cf-ray": "a551ff1b2cd37d87-SIN",
+    "server": "cloudflare",
+    "gateway_request_id": "202611040745003173913458268d9d6eBhNTqDH",
+    "first_body_chunk_bytes": 447,
+    "identity_change": {
+      "field": "id",
+      "previous": {
+        "type": "str",
+        "bytes": 33,
+        "sha256": "547bcec99008b17eb7c5f056c18969dd6a7d4c91f8eee41e0155f64dd4fdf0a7"
+      },
+      "observed": {
+        "type": "str",
+        "bytes": 55,
+        "sha256": "f524ecce3ca92b356eab71730cd6dba5b5d128dc72cf9c893dff49d22050976b"
+      }
+    },
+    "transport_version": "bounded-wire-reliability-v3",
+    "stream_observation": {
+      "version": "paired-stream-observation-d2-v1",
+      "stop_received": false,
+      "usage_received": false,
+      "usage_validated": false,
+      "DONE_received": false,
+      "complete_text": false,
+      "id_check": "changed",
+      "model_check": "observed_consistent",
+      "model_matches_expected": true,
+      "data_events_seen": 2,
+      "wire_bytes_seen": 447,
+      "text_bytes_seen": 0,
+      "scope": "parsed_prefix_only_unless_complete"
+    },
+    "stream_evidence": {
+      "wire_bytes_seen": 447,
+      "event_index": 2,
+      "text_bytes_seen": 0,
+      "last_frame": {
+        "type": "dict",
+        "count": 6,
+        "frame_sha256": "2565c938bf091603532a23e66ce29f4fba3d03f51e6ee350f1f8ac2015f71cac",
+        "fields": {
+          "id": {
+            "type": "str",
+            "bytes": 55,
+            "sha256": "f524ecce3ca92b356eab71730cd6dba5b5d128dc72cf9c893dff49d22050976b"
+          },
+          "model": {
+            "type": "str",
+            "bytes": 11,
+            "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+          },
+          "choices": {
+            "type": "list",
+            "count": 1
+          },
+          "object": {
+            "type": "str",
+            "bytes": 21,
+            "sha256": "4f3fdcc1c3fe648f328d45afd6039791a4173c594533e11ff7d2d3fe2a463b74"
+          }
+        },
+        "other_field_count": 2,
+        "choice_shapes": [
+          {
+            "type": "dict",
+            "count": 3,
+            "index": {
+              "type": "int"
+            },
+            "finish_reason": {
+              "type": "NoneType"
+            },
+            "delta": {
+              "type": "dict",
+              "count": 1
+            },
+            "delta_fields": {
+              "content": {
+                "type": "str",
+                "bytes": 9,
+                "sha256": "345f2aab2bc23ea71923f642a7c804d4ac829ff281aa2a60b861136c4b1ecdfa"
+              }
+            }
+          }
+        ]
+      },
+      "identities": {
+        "id": {
+          "type": "str",
+          "bytes": 33,
+          "sha256": "547bcec99008b17eb7c5f056c18969dd6a7d4c91f8eee41e0155f64dd4fdf0a7"
+        },
+        "model": {
+          "type": "str",
+          "bytes": 11,
+          "sha256": "dedfefd51120f28386c9dba78e46feb403523e23d67980cdf24514ee0b50b5ed"
+        }
+      }
+    },
+    "failure_class": "protocol_incompatible",
+    "stream_protocol_anomaly": true,
+    "dispatch_elapsed_seconds": 10.146493624954019,
+    "failure_category": "response_acceptance_failure"
+  },
+  "category": "response_acceptance_failure",
+  "elapsed_seconds": 10.162337957997806,
+  "finished_at_unix": 1793778307.0401971
+}

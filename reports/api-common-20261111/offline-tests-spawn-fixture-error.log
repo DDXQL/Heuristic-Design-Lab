@@ -1,0 +1,13 @@
+.........................F...
+======================================================================
+FAIL: test_read_timeout_and_slow_drip_total_deadline (test_research_real_transport.RealTransportTests.test_read_timeout_and_slow_drip_total_deadline) (fault={'drip': 0.02})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/tests/test_research_real_transport.py", line 74, in test_read_timeout_and_slow_drip_total_deadline
+    self.assertEqual(len(traffic['requests']), 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 29 tests in 17.701s
+
+FAILED (failures=1)

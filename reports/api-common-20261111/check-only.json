@@ -1,0 +1,25 @@
+{
+  "offline": true,
+  "model_requests": 0,
+  "solves": 0,
+  "version": "bounded-wire-reliability-v5",
+  "plan_sha256": "e422a4cc21a5fe4f9bcc240e3920d412769d2581f16632d5a39a82d82248597c",
+  "new_cap": 4,
+  "stage_cap": 2,
+  "concurrency": 1,
+  "state_path": "/Users/DDXQL/hdl-api-validation/mac-cluster-api-v5-20261111/mac",
+  "tasks": [
+    {
+      "id": "fjsp_h",
+      "kind": "fjsp_h",
+      "bytes": 3154,
+      "sha256": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62"
+    },
+    {
+      "id": "tsp_u",
+      "kind": "tsp_u",
+      "bytes": 14946,
+      "sha256": "2f614756a2557acb2a8e423cf8e5adb5a0bcabcf5236289f31c2fb83135d2764"
+    }
+  ]
+}

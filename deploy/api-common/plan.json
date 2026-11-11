@@ -1,0 +1,111 @@
+{
+  "version": "mac-cluster-api-v5-20261111",
+  "wire_version": "bounded-wire-reliability-v5",
+  "python_version": "3.12.10",
+  "new_total_cap": 4,
+  "stage_cap": 2,
+  "api_concurrency": 1,
+  "automatic_retry": false,
+  "real_requests_authorized": false,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "tasks": [
+    {
+      "id": "fjsp_h",
+      "kind": "fjsp_h",
+      "prompt": "deploy/api-common/prompts/fjsp_h.txt",
+      "bytes": 3154,
+      "sha256": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62"
+    },
+    {
+      "id": "tsp_u",
+      "kind": "tsp_u",
+      "prompt": "deploy/api-common/prompts/tsp_u.txt",
+      "bytes": 14946,
+      "sha256": "2f614756a2557acb2a8e423cf8e5adb5a0bcabcf5236289f31c2fb83135d2764"
+    }
+  ],
+  "replay": [
+    {
+      "file": "deploy/api-common/replay/fjsp_h_success.json",
+      "type": "normalized",
+      "kind": "fjsp_h",
+      "expected": true
+    },
+    {
+      "file": "deploy/api-common/replay/tsp_u_success.json",
+      "type": "normalized",
+      "kind": "tsp_u",
+      "expected": true
+    },
+    {
+      "file": "deploy/api-common/replay/http524.json",
+      "type": "failure",
+      "expected": "http_524"
+    },
+    {
+      "file": "deploy/api-common/replay/sse_id_change.json",
+      "type": "failure",
+      "expected": "sse_id_changed"
+    },
+    {
+      "file": "deploy/api-common/replay/clock_gap.json",
+      "type": "clock",
+      "expected": "local_clock_gap"
+    }
+  ],
+  "old_diagnostics": "closed and not inherited; explicit new --approve-total 4 required",
+  "files": {
+    "tools/api_reliability_next.py": "44c8da2b7b35cb550caa6e0abe71b9fb0c5e773032ccbf9c5ce118b84750298c",
+    "code/fjsp_usage/__init__.py": "2506ee00a45678ef1aabe5d5a8973ec61db1df8ebabafc1b38cc710ec3381a47",
+    "code/fjsp_usage/research/__init__.py": "122e53d3a9e3c6b114ca334c2dff04ad83c0bf4470c84353e62c5cad10f0186d",
+    "code/fjsp_usage/research/protocol.py": "a4a1ca453ec85951f4a1bbbf45fbc25340bfe6e39aee8566f23dea49b9f00286",
+    "code/fjsp_usage/research/events.py": "f68aabf420aa9df4081deb0681c60aa729f0fd9a5d7ab118246340238799bda2",
+    "code/fjsp_usage/research/candidates.py": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+    "code/fjsp_usage/research/prompts.py": "de032a17d043fe9073fd07a96341fd00e71bf4566d5c04c098b4438023fc9269",
+    "code/fjsp_usage/research_real/__init__.py": "61a8137cead46c1d8d11bf285b2dda695bc13bc92b8b0ca7979b38f2f3c8e584",
+    "code/fjsp_usage/research_real/config.py": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+    "code/fjsp_usage/research_real/prompts.py": "104291219a6863687feb12afc79fc7096d51835c00e87e2cf53f097916a68486",
+    "code/fjsp_usage/research_real/state_diagnostics.py": "6db01ff91f33ed6f85cc14c56ed5c2106630f80caf2b7d3909c7aa8d7043a0e4",
+    "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+    "code/fjsp_usage/research_real/attempt_budget.py": "535a5a06fd29d05035c742833a68497687e30c3d08a8de308b86c20e6ac94244",
+    "code/fjsp_usage/research_real/budget.py": "a6e54f9310a280d96c540dd6a0838dbc63285cffe492b9bcc8e3472d8c002aef",
+    "code/fjsp_usage/usage_v2/__init__.py": "5d8a22b5439e9d48488d498dc59757a3056e06d5f25de7076c541546c9a20a1b",
+    "code/fjsp_usage/usage_v2/access.py": "211fe4b700c8d031dddbef2d543756bf195e46c823976cd33bb5ce8de753b265",
+    "code/heuristic_design/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/core/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/core/storage.py": "376786707ac16011b32cd123a70aa112f83bee65aada6fdf6a4376541d513f40",
+    "code/heuristic_design/core/constructive_state.py": "fe8c2c70559aa26c45af97c8685414d76193a530f3d715bb773071ed70618812",
+    "code/heuristic_design/core/routing.py": "ac8cb438fee03cf53bce551ed48ac858cb6fc28c083280a176efe273e832a097",
+    "code/heuristic_design/llm/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/llm/legacy.py": "a1fa3157a2229c5e8fac6e7541dc8df01d9ec5be50ed92871fe90876b4be2514",
+    "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc",
+    "deploy/api-common/inspect_remote.py": "a8f3e8c7ccc6794e484ec18a71d6c523b04143b1cb81eae790a90ae8c01e1203",
+    "deploy/api-common/start.sh": "c850f322494bfa965643bb033c27fbf614d76753ad30e1c454ef7af8488ca115",
+    "deploy/api-common/fetch.sh": "de6e0256bffa548bc0ef89f5127414af7ab273438682ace8b4e18076916e7b5a",
+    "deploy/api-common/cluster.sbatch": "f819785894d66499fe5e2a23439a3a0a316a1847dc2f3aa9f36d71aabb04dbcd",
+    "deploy/api-common/prompts/fjsp_h.txt": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62",
+    "deploy/api-common/prompts/tsp_u.txt": "2f614756a2557acb2a8e423cf8e5adb5a0bcabcf5236289f31c2fb83135d2764",
+    "deploy/api-common/replay/clock_gap.json": "a7ef726ae4b704aa01840e4b62c1d7f16371a1f7f4d1d425f53ae32cdba95b75",
+    "deploy/api-common/replay/http524.json": "9a804850dda51b140f72ce8b57e369445bab82f96f868180a5fde29d821b6fa5",
+    "deploy/api-common/replay/sse_id_change.json": "fc2e078ed6762bad923642a6a85920c4087826d6109d95d3f93a0c94dcf7a164",
+    "deploy/api-common/replay/tsp_u_success.json": "d28898a581d6969cbdc1c334811f00a9d18b32b24b484d5b148acd2bcc33f3d4",
+    "deploy/api-common/replay/fjsp_h_success.json": "9decebc4c107cdfdbb8803d915160fb27afc40248180413523386c3f022f12c3",
+    "code/heuristic_design/core/execution.py": "88284eee7fe9332f23180c9b173395ecb00882488dcdf9538a1f500a34154939",
+    "code/heuristic_design/llm/routing_transport.py": "64cccf3e8dc4528b321d572af535b101918d1a2c5ca0198127dd0543bb4134ed",
+    "deploy/api-common/submit_cluster.sh": "8decf97733e913438ffe8f8fa0859d57d53b43a419c050dc895bf5f4bf0454d2"
+  }
+}

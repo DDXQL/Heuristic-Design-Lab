@@ -63,10 +63,12 @@ class RealTransportTests(unittest.TestCase):
 
     def test_read_timeout_and_slow_drip_total_deadline(self):
         from dataclasses import replace
+        # Leave spawn startup headroom; the slow body still exceeds the fixture deadline.
+        # Production connection/read/total limits are unchanged.
         for fault, read in (({'delay':.7}, .1), ({'drip':.02}, .15)):
             with self.subTest(fault=fault), fixture_server(script=(fault,)) as (endpoint, traffic):
                 c = config(endpoint)
-                c = replace(c, provider=replace(c.provider, read_timeout=read, total_timeout=.45))
+                c = replace(c, provider=replace(c.provider, read_timeout=read, total_timeout=1.2))
                 started = time.monotonic()
                 with self.assertRaises(TransportError):
                     JsonCandidateTransport(c).dispatch('one', 'prompt')

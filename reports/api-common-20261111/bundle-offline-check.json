@@ -1,0 +1,20 @@
+{
+  "isolated_interpreter": true,
+  "files": 40,
+  "model_requests": 0,
+  "solves": 0,
+  "results": [
+    {
+      "command": "check-only",
+      "exit_code": 0,
+      "stdout": "{\n  \"offline\": true,\n  \"model_requests\": 0,\n  \"solves\": 0,\n  \"version\": \"bounded-wire-reliability-v5\",\n  \"plan_sha256\": \"e422a4cc21a5fe4f9bcc240e3920d412769d2581f16632d5a39a82d82248597c\",\n  \"new_cap\": 4,\n  \"stage_cap\": 2,\n  \"concurrency\": 1,\n  \"state_path\": \"/Users/DDXQL/hdl-api-validation/mac-cluster-api-v5-20261111/mac\",\n  \"tasks\": [\n    {\n      \"id\": \"fjsp_h\",\n      \"kind\": \"fjsp_h\",\n      \"bytes\": 3154,\n      \"sha256\": \"6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62\"\n    },\n    {\n      \"id\": \"tsp_u\",\n      \"kind\": \"tsp_u\",\n      \"bytes\": 14946,\n      \"sha256\": \"2f614756a2557acb2a8e423cf8e5adb5a0bcabcf5236289f31c2fb83135d2764\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "replay",
+      "exit_code": 0,
+      "stdout": "{\n  \"offline\": true,\n  \"model_requests\": 0,\n  \"solves\": 0,\n  \"cases\": [\n    {\n      \"file\": \"deploy/api-common/replay/fjsp_h_success.json\",\n      \"response_pass\": true,\n      \"candidate\": {\n        \"extracted\": true,\n        \"static_legal\": true,\n        \"solved\": false,\n        \"key\": \"de318b16700ffc128efb058522ff99e3c4dedb5e2b85189076902587c99b5499\"\n      }\n    },\n    {\n      \"file\": \"deploy/api-common/replay/tsp_u_success.json\",\n      \"response_pass\": true,\n      \"candidate\": {\n        \"extracted\": true,\n        \"static_legal\": true,\n        \"solved\": false,\n        \"key\": \"01ba0fd5ad506b6b9f80ed8249517d56b54b35451e7ab02d159e3a2b8296a24c\"\n      }\n    },\n    {\n      \"file\": \"deploy/api-common/replay/http524.json\",\n      \"classification\": \"http_524\"\n    },\n    {\n      \"file\": \"deploy/api-common/replay/sse_id_change.json\",\n      \"classification\": \"sse_id_changed\"\n    },\n    {\n      \"file\": \"deploy/api-common/replay/clock_gap.json\",\n      \"classification\": \"local_clock_gap\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ]
+}

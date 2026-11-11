@@ -1,0 +1,25 @@
+Design ONE FJSP ready-operation/machine action scoring heuristic. Minimize makespan. Use the exact seven-argument Python function def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):. processing_time is the candidate operation duration; remaining_work is the sum of minimum alternative durations from this operation to the job end; remaining_operations includes the candidate operation. job_ready_time and machine_ready_time are current ready times; earliest_start=max(job_ready_time,machine_ready_time), earliest_finish=earliest_start+processing_time. Arguments are unnormalized physical values. Largest finite real priority wins; ties retain the first legal action in ascending job then machine order. The unchanged append-only constructor commits this action, with no local search or postprocessing. Complete train21 Fitness is mean(-Cmax/LB), maximized; LB=max(max_j sum_over_job_ops min_duration, sum_all_ops min_duration/M), not rounded. Do not access data, files, networks or globals. Closed H language: one function, finite scalar arithmetic, comparisons, conditionals; only abs/min/max/int/float/round/range builtins, no imports, external calls or fractional powers. Use the native boxed description and one complete fenced python function. Validation/test are never supplied.
+I have 2 existing algorithms with their codes as follows:
+No. 1 algorithm and the corresponding code are:
+Prioritize jobs by average remaining workload per operation, while penalizing candidate duration and earliest finish using weights 2.0, 0.1, and 1.5, respectively.
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    return 2.0 * remaining_work / max(1, remaining_operations) - 0.1 * processing_time - 1.5 * earliest_finish
+
+No. 2 algorithm and the corresponding code are:
+Score each action using a blend of average remaining workload and a duration-adjusted workload urgency bonus, then penalize processing time and earliest finish.
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+    workload_per_operation = remaining_work / max(1, remaining_operations)
+    urgency = remaining_work / (1 + max(0, earliest_start))
+    duration_efficiency = remaining_work / (1 + max(0, processing_time))
+    return 1.0 * workload_per_operation + 0.25 * urgency + 0.1 * duration_efficiency - 0.04 * processing_time - earliest_finish
+
+
+Please help me create a new algorithm that has a totally different form from the given ones. 
+1. First, describe your new algorithm and main steps in one sentence. The description must be inside within boxed {}.
+2. Next, implement the following Python function:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+
+
+
+Do not give additional explanations.
+Serialization requirement: one boxed {description}, then exactly one fenced python block containing the complete function. No other text.
