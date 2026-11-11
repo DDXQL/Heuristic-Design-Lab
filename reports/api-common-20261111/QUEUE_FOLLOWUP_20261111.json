@@ -1,0 +1,62 @@
+{
+  "review_at_utc8": "2026-11-11T20:01:15.423930+08:00",
+  "runtime_plan_sha256": "f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b",
+  "runtime_files_verified_unchanged": 38,
+  "runtime_client_commit": "625c07158416de8866db8fa43776434e31a1a5a9",
+  "source_receipt": {
+    "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/collected-20261111-192224-b5b5116c/remote.json",
+    "sha256": "434ca82a54e9a5b51f197eeac37b1df3b2d0dab66ce28eb95512f0ec3700f37a",
+    "at_utc8": "2026-11-11T19:22:40.086442+08:00"
+  },
+  "mac_current_local": {
+    "status": "completed",
+    "totals": {
+      "reserved": 2,
+      "confirmed_sends": 2,
+      "send_unknown": 0,
+      "response_passed": 2,
+      "static_passed": 2,
+      "failed": 0,
+      "known_input_tokens": 13099,
+      "known_output_tokens": 728,
+      "usage_unknown": 0,
+      "sent_usage_unknown": 0
+    }
+  },
+  "cluster_at_192240": {
+    "job_id": "609676",
+    "state": "PENDING",
+    "reason": "Resources",
+    "reserved": 0,
+    "confirmed_sent": 0,
+    "initial_runtime": "00:00:00",
+    "restarts": 0,
+    "requeue": 1,
+    "requested_nodes": 1,
+    "requested_cpus": 1,
+    "requested_memory": "1G",
+    "wallclock_limit": "00:15:00",
+    "partition": "128C_02",
+    "account": "wz",
+    "qos": "normal",
+    "abnormal_start_time_field": "2027-11-11T12:10:12"
+  },
+  "cluster_current": "unverified; this turn one noninteractive SSH attempt denied at jump, no repeat",
+  "current_cluster_reserved": null,
+  "current_cluster_confirmed_sent": null,
+  "current_cumulative_confirmed_minimum": 2,
+  "same_cumulative_hard_cap": 4,
+  "new_model_requests_by_agent": 0,
+  "new_solves": 0,
+  "new_slurm_submissions": 0,
+  "remote_policy_updates_executed_by_agent": 0,
+  "collector_default": "read-only",
+  "explicit_user_disable_requeue": "one identity-checked existing-job update; no submit/cancel/requeue/release",
+  "offline_collector_tests_passed": 13,
+  "long_stability_proven": false,
+  "remaining": [
+    "fresh remote job/account/partition/resource state",
+    "verify Requeue=0 after explicit user action",
+    "actual cluster response and parsing receipts before full-flow preparation"
+  ]
+}

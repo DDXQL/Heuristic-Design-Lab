@@ -1,0 +1,13 @@
+test_check_only_never_connects_or_creates_output (test_api_reliability_collect.CollectorTests.test_check_only_never_connects_or_creates_output) ... ok
+test_existing_failed_ledger_and_redacted_log_are_retained (test_api_reliability_collect.CollectorTests.test_existing_failed_ledger_and_redacted_log_are_retained) ... ok
+test_pending_with_missing_state_and_logs_is_collected_without_failure (test_api_reliability_collect.CollectorTests.test_pending_with_missing_state_and_logs_is_collected_without_failure) ... ok
+test_resources_add_six_read_only_queries_and_preserve_unknown_limits (test_api_reliability_collect.CollectorTests.test_resources_add_six_read_only_queries_and_preserve_unknown_limits) ... ok
+test_resources_flag_is_forwarded_in_same_single_ssh_connection (test_api_reliability_collect.CollectorTests.test_resources_flag_is_forwarded_in_same_single_ssh_connection) ... ok
+test_ssh_failure_does_not_retry_or_save_unparsed_stdout (test_api_reliability_collect.CollectorTests.test_ssh_failure_does_not_retry_or_save_unparsed_stdout) ... ok
+test_success_saves_collection_once_with_no_slurm_submission (test_api_reliability_collect.CollectorTests.test_success_saves_collection_once_with_no_slurm_submission) ... ok
+test_unreadable_ledger_retains_scheduler_evidence_without_zero_cost_claim (test_api_reliability_collect.CollectorTests.test_unreadable_ledger_retains_scheduler_evidence_without_zero_cost_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.035s
+
+OK

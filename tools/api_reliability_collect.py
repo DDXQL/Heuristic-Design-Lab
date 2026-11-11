@@ -1,7 +1,9 @@
-"""One SSH session for read-only Slurm/state/log collection; no API/client imports.
+"""One SSH session for Slurm/state/log collection; no API/client imports.
 
 Kept outside the frozen runtime manifest: this never changes that release or budget.
 Passwords are handled by SSH on the user's terminal, never read by this program.
+Default is read-only. --disable-requeue explicitly disables node-failure requeue
+on the identity-checked existing job; it never submits, cancels or requeues a job.
 """
 import argparse
 import datetime
@@ -19,15 +21,22 @@ import datetime,getpass,hashlib,json,os,re,socket,subprocess,sys
 from pathlib import Path
 job=sys.argv[1]
 assert job.isdecimal()
+resources='--resources' in sys.argv[2:]
+disable_requeue='--disable-requeue' in sys.argv[2:]
 base=Path('/public2/home/qiuqian/hdl-deploy/api-common-v5-20261111')
 home=Path.home()
 def scrub(s):return re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)','[REDACTED]',s)
 def query(args):
  try:
   p=subprocess.run(args,capture_output=True,text=True,timeout=25)
-  return {'returncode':p.returncode,'stdout':scrub(p.stdout[-20000:]),'stderr':scrub(p.stderr[-2000:])}
- except Exception as e:return {'error_type':type(e).__name__}
+  stdout=scrub(p.stdout);stderr=scrub(p.stderr)
+  return {'command':args,'returncode':p.returncode,'stdout':stdout[-20000:],'stderr':stderr[-2000:],
+          'stdout_truncated':len(stdout)>20000,'stderr_truncated':len(stderr)>2000}
+ except Exception as e:return {'command':args,'error_type':type(e).__name__}
 def snapshot(path,kind='json'):
+ try:return snapshot_file(path,kind)
+ except OSError as error:return {'path':str(path),'read_error_type':type(error).__name__}
+def snapshot_file(path,kind='json'):
  info={'path':str(path),'exists':path.exists()}
  if not info['exists']:return info
  resolved=path.resolve()
@@ -51,6 +60,18 @@ out={'at_utc8':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=
      'queue':query(['squeue','-j',job,'-h','-o','%i %j %T %R']),
      'accounting':query(['sacct','-j',job,'--format=JobID,JobName%24,State,ExitCode,Elapsed,NodeList']),
      'job_details':query(['scontrol','show','job',job]),'states':[],'logs':[]}
+if resources:
+ match=re.search(r'\bPartition=([A-Za-z0-9_.+,-]+)',out['job_details'].get('stdout',''))
+ partition=match[1] if match else '128C_02'
+ out['resources']={
+  'partition_query_target':partition,
+  'partition_source':'job_details' if match else 'frozen_submission_hint; current job partition unknown',
+  'partitions':query(['sinfo','-a','-h','-o','%P %a %l %D %t %C']),
+  'partition_policy':query(['scontrol','show','partition']),
+  'partition_queue':query(['squeue','-p',partition,'-h','-o','%T %C %D %r']),
+  'associations':query(['sacctmgr','-P','show','assoc','where','user=qiuqian']),
+  'qos':query(['sacctmgr','-P','show','qos','where','name=normal']),
+  'reservations':query(['scontrol','show','reservation'])}
 paths=[home/'hdl-api-validation/mac-cluster-api-v5-20261111/cluster',
  Path('/public2/home/qiuqian/hdl-api-validation/mac-cluster-api-v5-20261111/cluster')]
 for state in dict.fromkeys(paths):
@@ -68,6 +89,25 @@ for key in ['StdOut','StdErr']:
   if job in path.name and path.suffix in ('.out','.err'):logpaths.append(path)
 out['logs']=[snapshot(path,'log') for path in dict.fromkeys(logpaths)]
 out['release_plan']=snapshot(base/'deploy/api-common/plan.json')
+if disable_requeue:
+ before=query(['scontrol','show','job',job]);out['job_details_before_update']=before
+ details=before.get('stdout','')
+ fields=dict(re.findall(r'\b(UserId|Command|JobState|Requeue)=([^\s]+)',details))
+ owner=re.fullmatch(r'qiuqian\((\d+)\)',fields.get('UserId',''))
+ valid=(before.get('returncode')==0 and owner and int(owner[1])==os.getuid()
+        and fields.get('Command')==str(base/'deploy/api-common/cluster.sbatch')
+        and out['release_plan'].get('sha256')=='f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b')
+ if not valid:out['requeue_policy_update']={'status':'blocked','reason':'job owner/command/frozen plan identity not verified; no update'}
+ elif fields.get('JobState') not in ('PENDING','RUNNING','CONFIGURING','SUSPENDED'):
+  out['requeue_policy_update']={'status':'terminal_no_update','job_state':fields.get('JobState')}
+ elif fields.get('Requeue')=='0':out['requeue_policy_update']={'status':'verified','already_disabled':True}
+ else:
+  result=query(['scontrol','update','JobId='+job,'Requeue=0'])
+  after=query(['scontrol','show','job',job]);out['job_details_after_update']=after
+  verified=(result.get('returncode')==0 and after.get('returncode')==0 and re.search(r'\bRequeue=0\b',after.get('stdout','')) is not None)
+  out['requeue_policy_update']={'status':'verified' if verified else 'not_verified','result':result,
+      'action':'disable node-failure requeue only; no cancel, submission, release or replay'}
+out['finished_at_utc8']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat()
 print(json.dumps(out,ensure_ascii=False,indent=2))
 '''
 
@@ -80,8 +120,14 @@ def summary(value):
         states.append({'path': entry['path'], 'exists': entry['exists'],
                        'phase': ledger.get('status') if ledger else None,
                        'totals': ledger.get('totals') if ledger else None})
-    return {'job_id': value['job_id'], 'queue': value.get('queue'),
+    fields = dict(re.findall(r'\b(JobState|Reason|Partition|Account|QOS|Requeue|Restarts|RunTime|TimeLimit|SubmitTime|EligibleTime|StartTime|NumNodes|NumCPUs)=([^\s]+)',
+                             value.get('job_details_after_update', value.get('job_details_before_update', value.get('job_details', {}))).get('stdout', '')))
+    resource_checks = {k: {name: v.get(name) for name in ('returncode', 'error_type', 'stdout_truncated') if name in v}
+                       for k, v in value.get('resources', {}).items() if isinstance(v, dict)}
+    return {'job_id': value['job_id'], 'queue': value.get('queue'), 'job_fields': fields,
             'accounting': value.get('accounting'), 'states': states,
+            'resource_checks': resource_checks,
+            'requeue_policy_update': value.get('requeue_policy_update'),
             'logs_found': [f['path'] for f in value.get('logs', []) if f.get('exists')],
             'requests_added': 0, 'solves_added': 0, 'submissions_added': 0}
 
@@ -90,13 +136,17 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--job-id', default='609676')
     parser.add_argument('--check-only', action='store_true')
+    parser.add_argument('--resources', action='store_true', help='also read partition, association, QoS and reservation state; never modify jobs')
+    parser.add_argument('--disable-requeue', action='store_true', help='explicitly disable node-failure requeue on this identity-checked existing job; no submit/cancel/requeue')
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[0-9]+', args.job_id):
         parser.error('job-id must contain digits only')
     if args.check_only:
         compile(REMOTE, '<read-only-remote-collector>', 'exec')
         print(json.dumps({'offline': True, 'requests_added': 0, 'solves_added': 0,
-                          'submissions_added': 0, 'job_id': args.job_id}))
+                          'submissions_added': 0, 'job_id': args.job_id,
+                          'resource_queries': 6 if args.resources else 0,
+                          'would_disable_requeue': args.disable_requeue}))
         return 0
     stamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime('%Y%m%d-%H%M%S')
     directory = ROOT/'reports/api-common-20261111'/f'collected-{stamp}-{uuid.uuid4().hex[:8]}'
@@ -104,7 +154,7 @@ def main(argv=None):
     command = ['ssh', '-o', 'NumberOfPasswordPrompts=1', '-o', 'ConnectTimeout=8',
                '-o', 'ProxyCommand=ssh -o NumberOfPasswordPrompts=1 -o ConnectTimeout=8 -W %h:%p custom@222.201.144.188',
                'qiuqian@110.1.2.1',
-               '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python -B - '+args.job_id]
+               '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python -B - '+args.job_id+(' --resources' if args.resources else '')+(' --disable-requeue' if args.disable_requeue else '')]
     # SSH opens /dev/tty itself for authentication; no key reads or password capture.
     result = subprocess.run(command, input=REMOTE, text=True, stdout=subprocess.PIPE)
     status = {'ssh_exit_code': result.returncode, 'job_id': args.job_id,
@@ -123,7 +173,7 @@ def main(argv=None):
         json.dump(value, f, ensure_ascii=False, indent=2); f.write('\n')
     status.update(result=summary(value), output=str(directory/'remote.json'))
     print(json.dumps(status, ensure_ascii=False, indent=2))
-    return 0
+    return 2 if value.get('requeue_policy_update', {}).get('status') in ('blocked','not_verified') else 0
 
 
 if __name__ == '__main__':
