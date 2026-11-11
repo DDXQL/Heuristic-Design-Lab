@@ -1,0 +1,10 @@
+test_check_only_never_connects_or_creates_output (test_api_reliability_collect.CollectorTests.test_check_only_never_connects_or_creates_output) ... ok
+test_existing_failed_ledger_and_redacted_log_are_retained (test_api_reliability_collect.CollectorTests.test_existing_failed_ledger_and_redacted_log_are_retained) ... ok
+test_pending_with_missing_state_and_logs_is_collected_without_failure (test_api_reliability_collect.CollectorTests.test_pending_with_missing_state_and_logs_is_collected_without_failure) ... ok
+test_ssh_failure_does_not_retry_or_save_unparsed_stdout (test_api_reliability_collect.CollectorTests.test_ssh_failure_does_not_retry_or_save_unparsed_stdout) ... ok
+test_success_saves_collection_once_with_no_slurm_submission (test_api_reliability_collect.CollectorTests.test_success_saves_collection_once_with_no_slurm_submission) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.018s
+
+OK
