@@ -29,7 +29,7 @@ def route_token(value, members):
     return value
 
 
-def validate(code, description='', member_count=10):
+def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
     if type(member_count) is not int or member_count < 1 or not isinstance(code, str) or len(code.encode()) > 24576:
         raise CandidateError('bounded code and positive H count required')
     try:
@@ -84,7 +84,7 @@ def validate(code, description='', member_count=10):
                 raise CandidateError('only literal read-only state access')
             k, v = n.slice.value, n.value
             if isinstance(v, ast.Name) and v.id == 'state':
-                if k not in FIELDS + ('availability',):
+                if k not in _fields + ('availability',):
                     raise CandidateError('unknown state field')
                 if k in ('availability', 'usage_fraction'):
                     p = parent.get(id(n))
@@ -93,8 +93,8 @@ def validate(code, description='', member_count=10):
                         raise CandidateError('availability requires a named scalar mask')
             elif isinstance(v, ast.Subscript) and isinstance(v.value, ast.Name) and v.value.id == 'state' and isinstance(v.slice, ast.Constant):
                 base = v.slice.value
-                if not ((base == 'availability' and type(k) is str and k in FIELDS)
-                        or (base == 'usage_fraction' and type(k) is int and 0 <= k < member_count)):
+                if not ((base == 'availability' and type(k) is str and k in _fields)
+                        or (base == 'usage_fraction' and base in _fields and type(k) is int and 0 <= k < member_count)):
                     raise CandidateError('mask name or usage vector index outside contract')
             else:
                 raise CandidateError('arbitrary containers and aliases forbidden')
@@ -110,30 +110,30 @@ def validate(code, description='', member_count=10):
     if not returns(f.body):
         raise CandidateError('all paths require return')
     canonical = ast.unparse(tree) + '\n'
-    return Candidate(description, canonical, digest({'abi': ABI, 'spec': SPEC_SHA256,
-                       'members': member_count, 'ast': ast.dump(tree, include_attributes=False)}))
+    return Candidate(description, canonical, digest({'abi': _abi, 'spec': _spec,
+                       'members': member_count, 'ast': ast.dump(tree, include_attributes=False)}), abi=_abi)
 
 
-def checked(row, members):
-    if row.get('abi') != ABI:
+def checked(row, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
+    if row.get('abi') != _abi:
         raise CandidateError('old or foreign routing ABI')
-    c = validate(row['code'], row['description'], members)
+    c = validate(row['code'], row['description'], members, _fields=_fields, _abi=_abi, _spec=_spec)
     if c.key != row['key']:
         raise CandidateError('routing identity changed')
     return c
 
 
-def parse(text, members):
+def parse(text, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
     if not isinstance(text, str) or len(text.encode()) > 32768 or text.count('```') != 2:
         raise CandidateError('one bounded fenced Python response required')
     m = re.fullmatch(r'\s*(.*?)\s*```python\s*\n(.*?)\n```\s*', text, re.S)
     if not m or not m[1].strip() or len(m[1]) > 1000:
         raise CandidateError('description then one Python function required')
-    return validate(m[2], m[1].strip(), members)
+    return validate(m[2], m[1].strip(), members, _fields=_fields, _abi=_abi, _spec=_spec)
 
 
-def compile_candidate(c, members):
-    checked(c.__dict__, members)
+def compile_candidate(c, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
+    checked(c.__dict__, members, _fields=_fields, _abi=_abi, _spec=_spec)
     def bounded(v):
         if type(v) not in (int,float,bool) or not math.isfinite(v) or abs(v) > 1e100:
             raise ValueError('routing numeric limit')

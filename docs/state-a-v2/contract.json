@@ -1,0 +1,101 @@
+{
+  "spec_sha256": "8eed0e3257cf0a9314ad6ea1d14ae2b5ca659d8ece80748efaeb4a1aa965c632",
+  "spec": {
+    "version": "common-state-a-v2",
+    "numeric_fields": [
+      "construction_progress",
+      "legal_action_count",
+      "remaining_demand_mean",
+      "remaining_demand_std",
+      "resource_commitment_mean",
+      "resource_commitment_std",
+      "action_delta_mean",
+      "action_delta_std",
+      "recent_delta_mean",
+      "recent_delta_std"
+    ],
+    "auxiliary_fields": [
+      "previous_h_token",
+      "has_history",
+      "history_count",
+      "recent_history_count"
+    ],
+    "definitions": {
+      "construction_progress": "committed decisions / public total decisions, [0,1)",
+      "legal_action_count": "number of legal commit actions, positive integer, unnormalized",
+      "remaining_demand_mean": "mean of normalized lowest remaining demand of visible unfinished objects, [0,1]",
+      "remaining_demand_std": "population std of that same demand list, [0,0.5]",
+      "resource_commitment_mean": "mean of normalized committed shares over all defined carriers, [0,1]",
+      "resource_commitment_std": "population std of that same carrier list, [0,0.5]",
+      "action_delta_mean": "mean normalized partial-objective increment over all current legal actions, [0,1]",
+      "action_delta_std": "population std of that same action list, [0,0.5]",
+      "recent_delta_mean": "mean of last up to 10 actually committed normalized increments, [0,1]; first None",
+      "recent_delta_std": "population std of that same history window, [0,0.5]; first None",
+      "previous_h_token": "last committed H category; first None; not a quality rank",
+      "has_history": "whether a real action has been committed, bool",
+      "history_count": "all committed decisions, nonnegative integer",
+      "recent_history_count": "min(10, history_count), nonnegative integer"
+    },
+    "adaptations": {
+      "fjsp": {
+        "decisions": "all operations; append-only operation-machine commits",
+        "demand": "unfinished jobs: sum of remaining operation minimum durations / B",
+        "resource": "all machines: ready time / B, unused machines zero",
+        "delta": "(max(current makespan, candidate finish)-current makespan) / Pmax",
+        "scale": "B=sum of each operation maximum eligible duration; Pmax=instance maximum duration",
+        "visibility": "all jobs, eligible machines and processing times known before solve",
+        "cost": "one-time O(total alternatives) preprocessing; each observation O(jobs+machines+actions+10)"
+      },
+      "tsp": {
+        "decisions": "n-1 next-city choices, start 0; forced return excluded from history",
+        "demand": "each unvisited city: min distance to another unvisited city or start / dmax",
+        "resource": "all cities: current open-path degree / 2",
+        "delta": "current-to-candidate edge distance / dmax",
+        "scale": "dmax=max distance in fixed symmetric nonnegative matrix; dmax>0",
+        "visibility": "whole distance matrix public; no continuation or reference route read",
+        "cost": "O(n^2) precheck; each observation O(unvisited^2+n+10); reuse matrix"
+      },
+      "obp": {
+        "decisions": "N publicly known from start; each arrival is one placement",
+        "demand": "singleton current item size / bin capacity, std=0 available",
+        "resource": "all opened bins used capacity / capacity, full bins included; empty list missing",
+        "delta": "0 for fitting old bins; if none fits exactly one new-bin action with delta=1",
+        "scale": "public fixed bin capacity; bin-count increments already 0 or 1",
+        "visibility": "only current item, public N, opened bins and past actions; no future items",
+        "cost": "each observation O(opened bins+10); no lookahead"
+      }
+    },
+    "window": 10,
+    "timing": "enumerate legal actions -> observe -> U chooses one H -> only chosen H scores -> commit -> history",
+    "statistics": "population std; same list for each mean/std pair; singleton std zero; no history padding",
+    "missing": "None+availability false only for absent objects: first history and OBP unopened resources",
+    "constants": "constant/redundant/singleton zero is available; no disabled groups in scheme A",
+    "invalid": "reject invalid scales, nonfinite or out-of-range inputs; never treat invalid as missing",
+    "u_readable": [
+      "construction_progress",
+      "legal_action_count",
+      "remaining_demand_mean",
+      "remaining_demand_std",
+      "resource_commitment_mean",
+      "resource_commitment_std",
+      "action_delta_mean",
+      "action_delta_std",
+      "recent_delta_mean",
+      "recent_delta_std",
+      "previous_h_token",
+      "has_history",
+      "history_count",
+      "recent_history_count",
+      "availability"
+    ],
+    "host_only": [
+      "problem_id",
+      "schema_id",
+      "spec_sha256",
+      "window",
+      "missing_reason"
+    ],
+    "score_interface": "final mean((cost-reference)/reference), minimize; no quality labels in observation",
+    "numeric_tolerance": "packet scalar validation tolerates 1e-12 for floating arithmetic; never clips"
+  }
+}

@@ -4,6 +4,7 @@ import hashlib
 import json
 import math
 from .constructive_state import FIELDS, SPEC_SHA256, schema_id
+from . import state_a
 
 @dataclass(frozen=True)
 class StateSchema:
@@ -32,7 +33,9 @@ COMMON_DRAFT = StateSchema('constructive-common-v0-draft', 'cross-problem-draft'
     executable=False)
 COMMON_FJSP = StateSchema(schema_id('fjsp'), 'fjsp', FIELDS, sensor_spec_sha256=SPEC_SHA256)
 COMMON_TSP = StateSchema(schema_id('tsp'), 'tsp', FIELDS, sensor_spec_sha256=SPEC_SHA256)
-SCHEMAS = {s.schema_id: s for s in (FJSP_LEGACY, TSP_LEGACY, COMMON_DRAFT, COMMON_FJSP, COMMON_TSP)}
+STATE_A = tuple(StateSchema(state_a.schema_id(p), p, state_a.FIELDS,
+                           sensor_spec_sha256=state_a.SPEC_SHA256) for p in state_a.PROBLEMS)
+SCHEMAS = {s.schema_id: s for s in (FJSP_LEGACY, TSP_LEGACY, COMMON_DRAFT, COMMON_FJSP, COMMON_TSP, *STATE_A)}
 LEGACY_BY_PROBLEM = {'fjsp': FJSP_LEGACY.schema_id, 'tsp': TSP_LEGACY.schema_id}
 
 def _digest(value):
@@ -86,6 +89,10 @@ def make_binding(*, problem_id, state_schema, policy_sha256, h_order, data_order
     if any(type(order) not in (list, tuple) for order in (h_order, data_order)):
         raise ValueError('identity order must be a list or tuple, not a scalar')
     schema = require_executable_schema(problem_id, state_schema)
+    if state_schema.startswith(state_a.VERSION + '-'):
+        if (u_interface != 'pure-routing-state-a-v2' or normalization != state_a.SPEC_SHA256
+                or objective != 'relative-gap-min'):
+            raise ValueError('scheme A requires its own U ABI, frozen normalization and relative-gap-min objective')
     payload = dict(problem_id=problem_id, state_schema=state_schema,
                    state_schema_sha256=schema.definition_sha256,
                    policy_sha256=policy_sha256, h_order=list(h_order), data_order=list(data_order),

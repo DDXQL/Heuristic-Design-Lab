@@ -1,5 +1,12 @@
 # Third Party Notices
 
+## Humanizer-zh writing rules
+
+Project-local writing rules in `.agents/skills/humanizer-zh/` are copied from
+https://github.com/op7418/Humanizer-zh at commit
+`f4518a8eab97b8bfebc66a89d34320a89bef6930` under the MIT license.
+The license and pinned-source SHA-256 metadata are included in that directory.
+
 ## EoH-S / EoH
 
 The evolutionary framework was exported from EoH-S:

@@ -1,0 +1,38 @@
+{
+  "source_worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab",
+  "source_head": "0ce75da0ddd4a6aa67e0e37f7aaa31c8aaeed48c",
+  "source_branch": "codex/common-state-routing-v1",
+  "delivery_worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-state-a-v2",
+  "delivery_branch": "codex/state-a-v2",
+  "definition_source": "https://app.notion.com/p/41204e0510d781f3a328c11ed393a1b1",
+  "calculation_source": "https://app.notion.com/p/41404e0510d7804fb660c75b198e36d0",
+  "base_commit": "0ce75da0ddd4a6aa67e0e37f7aaa31c8aaeed48c",
+  "source_user_modifications_preserved": [
+    "M AGENTS.md",
+    " M README.md",
+    " M THIRD_PARTY_NOTICES.md",
+    " M experiments/common/run_b1_v6.py",
+    "?? .agents/",
+    "?? \"docs/\\344\\270\\255\\346\\226\\207\\347\\247\\221\\347\\240\\224\\345\\206\\231\\344\\275\\234\\350\\247\\204\\350\\214\\203.md\"",
+    "?? reports/b1-v6-n10g50-baseline-20261031/",
+    "?? reports/b1-v6-n10g50-prepared-20261030/AUTHORIZATION.claim.json",
+    "?? reports/b1-v6-r0-20261029/CODE_FREEZE.json",
+    "?? reports/b1-v6-r3-result-20261030-70326e84/",
+    "?? reports/my-terminal-demo/",
+    "?? reports/r1-legacy-comparison-20261030/",
+    "?? reports/r1-single-entry-20261029/RESULT_STATUS_ZH.md",
+    "?? reports/state7-state13-readonly-20261031/"
+  ],
+  "writing_rules_copied_from_source": {
+    "docs/中文科研写作规范.md": "01bbcdd9b4c7d353b770257e6e884bdb372498439ba4cced62ea0b756234047e",
+    ".agents/skills/humanizer-zh/SKILL.md": "95627fd4437d886f98032ccc62d79136e6310f1fc04e354bb86431795ff206df",
+    ".agents/skills/humanizer-zh/LICENSE": "aa00e74769e1b9d8e7fa7094dbfcca9b129a0ded6dce1cf4da050b99146d2fa7",
+    ".agents/skills/humanizer-zh/UPSTREAM.json": "e483fb90fbb330dfa992ba8af4cb5746733da5a1413c6cc09a14af36997482ed"
+  },
+  "legacy_files_unchanged_from_base": {
+    "code/heuristic_design/core/constructive_state.py": "fe8c2c70559aa26c45af97c8685414d76193a530f3d715bb773071ed70618812",
+    "code/heuristic_design/core/evolution_v1.py": "7215e69da13f03aa830855eea722109df5bd79f634ef7e8d2bd0bb4f813306ff",
+    "code/heuristic_design/problems/routing_fixtures.py": "f5747fd63b5a0d68077b58b3dc41e2da0d7653bcb986765f088d0fe91e272153",
+    "code/heuristic_design/core/routing_evaluation.py": "3a3ffd83cbc61c22c6af2bccec68539cce97c5e12f247973b0baa29d14627ae5"
+  }
+}
