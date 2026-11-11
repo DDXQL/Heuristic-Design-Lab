@@ -18,7 +18,7 @@ spec.loader.exec_module(c)
 class CollectorTests(unittest.TestCase):
     def remote_fixture(self, pending=True, resources=False, unreadable=False,
                        disable_requeue=False, plan_matches=True, owner_matches=True, update_fails=False,
-                       long_policy=False):
+                       long_policy=False, archived=False, accounting_parent=True, accounting_terminal=True):
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
@@ -49,11 +49,14 @@ class CollectorTests(unittest.TestCase):
                 stdout = '609676 hdl-api-v5 PENDING Resources\n' if pending else ''
             elif args[0] == 'sacct':
                 stdout = '609676 PENDING 0:0\n' if pending else '609676 FAILED 2:0\n'
+                if archived:stdout=('609676' if accounting_parent else '609676.0')+' hdl-api-v5 '+('COMPLETED' if accounting_terminal else 'RUNNING')+' 0:0 00:00:22 node15\n'
             else:
                 stdout = ('JobId=609676 Partition=128C_02 Requeue='+('0' if updated[0] else '1')+
                           ' Restarts=0 UserId=qiuqian('+('1078' if owner_matches else '9999')+') Command='+
                           str(release/'deploy/api-common/cluster.sbatch')+' JobState='+('PENDING' if pending else 'FAILED'))
             if args==['scontrol','show','partition'] and long_policy:stdout='fixture-long-policy '*2000
+            if args==['scontrol','show','job','609676'] and archived:
+                return types.SimpleNamespace(returncode=1,stdout='',stderr='Invalid job id specified')
             return types.SimpleNamespace(returncode=0, stdout=stdout, stderr='')
         output = io.StringIO()
         original_read = Path.read_bytes
@@ -132,6 +135,21 @@ class CollectorTests(unittest.TestCase):
         value,calls=self.remote_fixture(pending=False,disable_requeue=True)
         self.assertEqual(value['requeue_policy_update']['status'],'terminal_no_update')
         self.assertFalse(any('update' in cmd for cmd in calls))
+
+    def test_archived_completed_parent_is_not_a_failed_policy_operation(self):
+        value,calls=self.remote_fixture(pending=False,disable_requeue=True,archived=True)
+        update=value['requeue_policy_update']
+        self.assertEqual(update['status'],'terminal_no_update')
+        self.assertEqual(update['job_state'],'COMPLETED')
+        self.assertEqual(update['source'],'sacct exact parent job')
+        self.assertFalse(any('update' in cmd for cmd in calls))
+
+    def test_missing_active_job_without_terminal_parent_remains_blocked(self):
+        for kwargs in [{'accounting_parent':False},{'accounting_terminal':False}]:
+            with self.subTest(**kwargs):
+                value,calls=self.remote_fixture(pending=False,disable_requeue=True,archived=True,**kwargs)
+                self.assertEqual(value['requeue_policy_update']['status'],'blocked')
+                self.assertFalse(any('update' in cmd for cmd in calls))
 
     def test_check_only_never_connects_or_creates_output(self):
         with patch.object(c.subprocess,'run',side_effect=AssertionError('NO SSH')), \

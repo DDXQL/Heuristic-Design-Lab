@@ -1,0 +1,116 @@
+{
+  "review_at_utc8": "2026-11-11T22:42:31.220985+08:00",
+  "as_of_remote_receipt": "2026-11-11T22:37:20.178317+08:00",
+  "client_version": "bounded-wire-reliability-v5",
+  "client_commit": "625c07158416de8866db8fa43776434e31a1a5a9",
+  "plan_sha256": "f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b",
+  "source_receipt": "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/collected-20261111-223711-dc60b6f8/remote.json",
+  "source_receipt_sha256": "f046fde6343ef5118a2ad3b99a3dca2a2b7d25b61710c945065bd32d2dea876d",
+  "frozen_runtime_files_verified": 38,
+  "diagnostic_cap": 4,
+  "reserved": 4,
+  "confirmed_sends": 4,
+  "response_passed": 4,
+  "static_passed": 4,
+  "failed": 0,
+  "send_unknown": 0,
+  "usage_unknown": 0,
+  "known_input_tokens": 26198,
+  "known_output_tokens": 1305,
+  "actual_money_cost": null,
+  "solves": 0,
+  "new_model_requests_by_agent": 0,
+  "new_slurm_submissions_by_agent": 0,
+  "actual_response_offline_replays": 4,
+  "rows": [
+    {
+      "site": "mac",
+      "task": "fjsp_h",
+      "elapsed_seconds": 14.485912083997391,
+      "request_bytes": 3306,
+      "request_sha256": "9e590a01efae39c7f63fad500532bf5f41f220c01d869a13c460bb79d9e2ba80",
+      "response_bytes": 916,
+      "usage": {
+        "input_tokens": 5033,
+        "output_tokens": 398
+      },
+      "response_passed": true,
+      "candidate_static_passed": true,
+      "solved": false,
+      "first_data_seconds": 14.30480591700325,
+      "connected_seconds": 0.8998981670010835,
+      "request_start_utc8": "2026-11-11T14:54:39.138699+08:00"
+    },
+    {
+      "site": "mac",
+      "task": "tsp_u",
+      "elapsed_seconds": 23.74071125000046,
+      "request_bytes": 15492,
+      "request_sha256": "0c8851a672dd4d4099dbf6aff22d9f8f37392879f052e82b4451db2b4a9edf70",
+      "response_bytes": 1271,
+      "usage": {
+        "input_tokens": 8066,
+        "output_tokens": 330
+      },
+      "response_passed": true,
+      "candidate_static_passed": true,
+      "solved": false,
+      "first_data_seconds": 23.568604250001954,
+      "connected_seconds": 0.5712779999958002,
+      "request_start_utc8": "2026-11-11T14:54:53.642336+08:00"
+    },
+    {
+      "site": "cluster",
+      "task": "fjsp_h",
+      "elapsed_seconds": 12.292770267929882,
+      "request_bytes": 3306,
+      "request_sha256": "9e590a01efae39c7f63fad500532bf5f41f220c01d869a13c460bb79d9e2ba80",
+      "response_bytes": 847,
+      "usage": {
+        "input_tokens": 5033,
+        "output_tokens": 387
+      },
+      "response_passed": true,
+      "candidate_static_passed": true,
+      "solved": false,
+      "first_data_seconds": 11.964842034969479,
+      "connected_seconds": 0.5788177098147571,
+      "request_start_utc8": "2026-11-11T20:03:34.163877+08:00"
+    },
+    {
+      "site": "cluster",
+      "task": "tsp_u",
+      "elapsed_seconds": 7.93967318162322,
+      "request_bytes": 15492,
+      "request_sha256": "0c8851a672dd4d4099dbf6aff22d9f8f37392879f052e82b4451db2b4a9edf70",
+      "response_bytes": 1298,
+      "usage": {
+        "input_tokens": 8066,
+        "output_tokens": 190
+      },
+      "response_passed": true,
+      "candidate_static_passed": true,
+      "solved": false,
+      "first_data_seconds": 7.729447469115257,
+      "connected_seconds": 0.7413268452510238,
+      "request_start_utc8": "2026-11-11T20:03:46.380709+08:00"
+    }
+  ],
+  "cluster_job": "609676",
+  "cluster_accounting": "COMPLETED 0:0; 22 seconds; node15",
+  "raw_policy_update_status": {
+    "status": "blocked",
+    "reason": "job owner/command/frozen plan identity not verified; no update"
+  },
+  "policy_reclassification": "terminal_no_update; no remote modification required/performed; Requeue=0 not asserted",
+  "owner_lock_file_preserved": true,
+  "full_solve_chain_executed": false,
+  "short_api_admission_passed": true,
+  "long_experiment_stability_proven": false,
+  "budget_closed_no_more_diagnostic_requests": true,
+  "terminal_classification_actual_receipt_replay": {
+    "state": "COMPLETED",
+    "exit_code": "0:0"
+  },
+  "collector_terminal_tests_passed": 15
+}

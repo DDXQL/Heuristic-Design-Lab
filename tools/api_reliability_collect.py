@@ -33,6 +33,14 @@ def query(args):
   return {'command':args,'returncode':p.returncode,'stdout':stdout[-20000:],'stderr':stderr[-2000:],
           'stdout_truncated':len(stdout)>20000,'stderr_truncated':len(stderr)>2000}
  except Exception as e:return {'command':args,'error_type':type(e).__name__}
+def terminal_accounting(result):
+ if result.get('returncode')!=0 or result.get('stdout_truncated'):return None
+ states='COMPLETED|FAILED|CANCELLED|TIMEOUT|NODE_FAIL|OUT_OF_MEMORY|BOOT_FAIL|PREEMPTED|DEADLINE|REVOKED'
+ for line in result.get('stdout','').splitlines():
+  if not line.split() or line.split()[0]!=job:continue
+  match=re.search(r'\s('+states+r')\+?\s+(\d+:\d+)(?:\s|$)',line)
+  if match:return {'state':match[1],'exit_code':match[2]}
+ return None
 def snapshot(path,kind='json'):
  try:return snapshot_file(path,kind)
  except OSError as error:return {'path':str(path),'read_error_type':type(error).__name__}
@@ -97,7 +105,12 @@ if disable_requeue:
  valid=(before.get('returncode')==0 and owner and int(owner[1])==os.getuid()
         and fields.get('Command')==str(base/'deploy/api-common/cluster.sbatch')
         and out['release_plan'].get('sha256')=='f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b')
- if not valid:out['requeue_policy_update']={'status':'blocked','reason':'job owner/command/frozen plan identity not verified; no update'}
+ terminal=terminal_accounting(out['accounting'])
+ if before.get('returncode')!=0 and terminal:
+  out['requeue_policy_update']={'status':'terminal_no_update','job_state':terminal['state'],
+      'accounting_exit_code':terminal['exit_code'],'source':'sacct exact parent job',
+      'reason':'job left active controller; no policy update needed; Requeue=0 not claimed'}
+ elif not valid:out['requeue_policy_update']={'status':'blocked','reason':'job owner/command/frozen plan identity not verified; no update'}
  elif fields.get('JobState') not in ('PENDING','RUNNING','CONFIGURING','SUSPENDED'):
   out['requeue_policy_update']={'status':'terminal_no_update','job_state':fields.get('JobState')}
  elif fields.get('Requeue')=='0':out['requeue_policy_update']={'status':'verified','already_disabled':True}
