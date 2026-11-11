@@ -7,6 +7,10 @@ case "$HDL_ACTION" in run|resume) ;; *) printf '%s\n' 'Usage: submit_cluster.sh 
 if [ "$#" -ne 3 ] || [ "$2" != --approve-total ] || [ "$3" != 4 ]; then exit 2; fi
 HDL_ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 HDL_PY=/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python
+HDL_MAC_EXPORT="$HOME/hdl-api-validation/mac-cluster-api-v5-20261111/mac/export.json"
+if [ ! -f "$HDL_MAC_EXPORT" ]; then
+  printf '%s\n' 'Mac阶段没有结果导出；不连接SSH、不传输、不提交集群诊断。请先检查Mac启动结果。' >&2; exit 2
+fi
 HDL_REMOTE=qiuqian@110.1.2.1
 HDL_JUMP=custom@222.201.144.188:22
 HDL_CONTROL=${HDL_SHARED_CONTROL:-}
@@ -14,7 +18,6 @@ if [ -z "$HDL_CONTROL" ]; then HDL_CONTROL=$(mktemp -d /tmp/hdl-api.XXXXXX); fi
 HDL_SSH_OPTS=(-o ControlMaster=auto -o ControlPersist=1200 -o "ControlPath=$HDL_CONTROL/%C" -o "ProxyJump=$HDL_JUMP")
 hdl_disconnect() { ssh "${HDL_SSH_OPTS[@]}" -O exit "$HDL_REMOTE" >/dev/null 2>&1 || true; rmdir "$HDL_CONTROL" 2>/dev/null || true; }
 trap hdl_disconnect EXIT
-HDL_MAC_EXPORT="$HOME/hdl-api-validation/mac-cluster-api-v5-20261111/mac/export.json"
 HDL_PACKAGE=/Users/DDXQL/Developer/transfer-outbox/api-common-v5-20261111.zip
 cd "$HDL_ROOT"
 exec > >(tee -a reports/api-common-20261111/user-transfer.log) 2>&1

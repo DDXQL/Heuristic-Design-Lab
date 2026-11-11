@@ -1,0 +1,82 @@
+{
+  "files": 40,
+  "isolated": true,
+  "model_requests": 0,
+  "solves": 0,
+  "results": [
+    {
+      "command": "check-only",
+      "exit_code": 0,
+      "result": {
+        "offline": true,
+        "model_requests": 0,
+        "solves": 0,
+        "version": "bounded-wire-reliability-v5",
+        "plan_sha256": "f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b",
+        "new_cap": 4,
+        "stage_cap": 2,
+        "concurrency": 1,
+        "state_path": "/Users/DDXQL/hdl-api-validation/mac-cluster-api-v5-20261111/mac",
+        "tasks": [
+          {
+            "id": "fjsp_h",
+            "kind": "fjsp_h",
+            "bytes": 3154,
+            "sha256": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62"
+          },
+          {
+            "id": "tsp_u",
+            "kind": "tsp_u",
+            "bytes": 14946,
+            "sha256": "2f614756a2557acb2a8e423cf8e5adb5a0bcabcf5236289f31c2fb83135d2764"
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "command": "replay",
+      "exit_code": 0,
+      "result": {
+        "offline": true,
+        "model_requests": 0,
+        "solves": 0,
+        "cases": [
+          {
+            "file": "deploy/api-common/replay/fjsp_h_success.json",
+            "response_pass": true,
+            "candidate": {
+              "extracted": true,
+              "static_legal": true,
+              "solved": false,
+              "key": "de318b16700ffc128efb058522ff99e3c4dedb5e2b85189076902587c99b5499"
+            }
+          },
+          {
+            "file": "deploy/api-common/replay/tsp_u_success.json",
+            "response_pass": true,
+            "candidate": {
+              "extracted": true,
+              "static_legal": true,
+              "solved": false,
+              "key": "01ba0fd5ad506b6b9f80ed8249517d56b54b35451e7ab02d159e3a2b8296a24c"
+            }
+          },
+          {
+            "file": "deploy/api-common/replay/http524.json",
+            "classification": "http_524"
+          },
+          {
+            "file": "deploy/api-common/replay/sse_id_change.json",
+            "classification": "sse_id_changed"
+          },
+          {
+            "file": "deploy/api-common/replay/clock_gap.json",
+            "classification": "local_clock_gap"
+          }
+        ]
+      },
+      "error": ""
+    }
+  ]
+}

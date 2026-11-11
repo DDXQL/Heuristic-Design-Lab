@@ -1,0 +1,121 @@
+{
+  "base_commit": "7e05091c7873243fb0e1f4ac05413ea3f47bff8d",
+  "wire_version": "bounded-wire-reliability-v5",
+  "wire_changed": false,
+  "previous_plan_sha256": "3305b009ca4b14b85eaf618a917d4e404024668bc311f87ef575425ea88c2efa",
+  "current_plan_sha256": "f75598d47fec350444f7caafdab34327f92011a8702eb94615b04ba32b0d828b",
+  "same_new_plan_cap": 4,
+  "actual_reserved": 0,
+  "confirmed_sent": 0,
+  "new_slurm_submissions": 0,
+  "new_model_requests_by_agent": 0,
+  "solves": 0,
+  "credential_values_read_by_agent": false,
+  "user_materials": {
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/remote-before.json": {
+      "bytes": 20338,
+      "sha256": "88b231b5ad9279c03f248b9ee425eca1b8e3caf39921e51f76ab35b59a89db7d"
+    },
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/user-launch.log": {
+      "bytes": 835,
+      "sha256": "99a8960f71e2428b1951924c356aa62f3fe747a3d42cd40d0c37e17d71ba08cf"
+    },
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/user-transfer.log": {
+      "bytes": 115,
+      "sha256": "276fb9748726fca44c08a67c1edf9b0114f06cee4103313e04615e52be5deb9a"
+    },
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-api-common-20261111/reports/api-common-20261111/user-replay.json": {
+      "bytes": 1000,
+      "sha256": "122634ae3375971ddaeb43b0c97dd6e9ad18c1e74a438e49b3a683d475eb03ec"
+    }
+  },
+  "remote_inventory_at_unix": 1794379493.1224484,
+  "queue_at_inventory": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "remote_phases": [
+    {
+      "name": "old585019",
+      "checkpoint_exists": true,
+      "phase": "completed",
+      "generation": 50,
+      "initialization_requests": 10,
+      "generation_requests": 1000,
+      "failure_counts": {
+        "valid": 765,
+        "AST_duplicate": 240,
+        "real_transport": 3,
+        "parse_or_constraint": 2
+      }
+    },
+    {
+      "name": "p1_progress_only",
+      "checkpoint_exists": true,
+      "phase": "completed",
+      "generation": 20,
+      "initialization_requests": 5,
+      "generation_requests": 200,
+      "failure_counts": {
+        "valid": 133,
+        "AST_duplicate": 63,
+        "evaluation_invalid": 3,
+        "parse_or_constraint": 6
+      }
+    },
+    {
+      "name": "p1_full",
+      "checkpoint_exists": false,
+      "phase": null,
+      "generation": null,
+      "initialization_requests": null,
+      "generation_requests": null,
+      "failure_counts": null
+    },
+    {
+      "name": "p2_full",
+      "checkpoint_exists": false,
+      "phase": null,
+      "generation": null,
+      "initialization_requests": null,
+      "generation_requests": null,
+      "failure_counts": null
+    },
+    {
+      "name": "p2_progress_only",
+      "checkpoint_exists": false,
+      "phase": null,
+      "generation": null,
+      "initialization_requests": null,
+      "generation_requests": null,
+      "failure_counts": null
+    },
+    {
+      "name": "p3_progress_only",
+      "checkpoint_exists": false,
+      "phase": null,
+      "generation": null,
+      "initialization_requests": null,
+      "generation_requests": null,
+      "failure_counts": null
+    },
+    {
+      "name": "p3_full",
+      "checkpoint_exists": false,
+      "phase": null,
+      "generation": null,
+      "initialization_requests": null,
+      "generation_requests": null,
+      "failure_counts": null
+    }
+  ],
+  "patched_files": [
+    "deploy/api-common/start.sh",
+    "deploy/api-common/submit_cluster.sh"
+  ],
+  "offline_launcher_tests": 5,
+  "offline_v5_regression_tests": 17,
+  "material_replays": 5,
+  "isolated_release_files": 40
+}

@@ -1,0 +1,10 @@
+test_absent_or_malformed_env_stops_before_ssh_and_api (test_api_common_launcher.LauncherTests.test_absent_or_malformed_env_stops_before_ssh_and_api) ... ok
+test_direct_submit_without_mac_export_stops_before_any_ssh (test_api_common_launcher.LauncherTests.test_direct_submit_without_mac_export_stops_before_any_ssh) ... ok
+test_existing_claim_is_preserved_and_not_relaunched (test_api_common_launcher.LauncherTests.test_existing_claim_is_preserved_and_not_relaunched) ... ok
+test_failed_mac_without_export_never_calls_cluster_helper (test_api_common_launcher.LauncherTests.test_failed_mac_without_export_never_calls_cluster_helper) ... ok
+test_terminal_input_is_hidden_and_existing_inventory_is_preserved (test_api_common_launcher.LauncherTests.test_terminal_input_is_hidden_and_existing_inventory_is_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.358s
+
+OK
