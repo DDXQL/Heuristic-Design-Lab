@@ -1,0 +1,18 @@
+{
+  "status": "blocked_for_formal_TSP_full_flow",
+  "state_schema": "common-state-a-v2-tsp",
+  "U_ABI": "pure-routing-state-a-v2",
+  "needed": [
+    "ordered development/train data hashes without opening holdout",
+    "externally frozen positive LKH tour length per instance with coordinate binding",
+    "LKH version/binary identity, settings, seed and compute budget",
+    "distance/scaling definition plus reference-tour provenance consistent with final Euclidean closed-tour cost"
+  ],
+  "not_substituted": [
+    "NN reference",
+    "an invented LKH scalar",
+    "old 13-field U"
+  ],
+  "actual_requests": 0,
+  "actual_solves": 0
+}

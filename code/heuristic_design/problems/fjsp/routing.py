@@ -83,7 +83,7 @@ def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GR
     if sensors is not None:
         return StateAResult(schedule, state_a.score_final_cost(schedule.makespan, reference),
                             tuple(rows), tuple(calls), observation, tuple(state.selected_members),
-                            reference=reference)
+                            reference=reference, member_sequence=tuple(state.selected_members))
     return RouteResult(schedule, -schedule.makespan / reference,
                        tuple(rows), tuple(calls), observation, tuple(state.selected_members))
 

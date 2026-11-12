@@ -23,7 +23,10 @@ job=sys.argv[1]
 assert job.isdecimal()
 resources='--resources' in sys.argv[2:]
 disable_requeue='--disable-requeue' in sys.argv[2:]
+flow_profile='--flow-profile' in sys.argv[2:]
+assert not (flow_profile and disable_requeue), 'flow profile is collection-only; no-requeue is set at submission'
 base=Path('/public2/home/qiuqian/hdl-deploy/api-common-v5-20261111')
+if flow_profile:base=Path('/public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112')
 home=Path.home()
 def scrub(s):return re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)','[REDACTED]',s)
 def query(args):
@@ -82,21 +85,26 @@ if resources:
   'reservations':query(['scontrol','show','reservation'])}
 paths=[home/'hdl-api-validation/mac-cluster-api-v5-20261111/cluster',
  Path('/public2/home/qiuqian/hdl-api-validation/mac-cluster-api-v5-20261111/cluster')]
+if flow_profile:paths=[home/'hdl-flow-validation/fjsp-state-a-flow-20261112/cluster',
+ Path('/public2/home/qiuqian/hdl-flow-validation/fjsp-state-a-flow-20261112/cluster')]
 for state in dict.fromkeys(paths):
  row={'path':str(state),'exists':state.exists(),'owner_lock_exists':(state/'owner.lock').exists(),'files':[]}
  # Explicit allowlist; never walk HOME or open any credential/config file.
  names=['claim.json','ledger.json','export.json','Stop_request.json',
         'reservations/01.json','reservations/02.json','responses/01.json','responses/02.json']
+ if flow_profile:names=['Protocol.json','Tasks.json','checkpoint.json','Summary.json','API_attempts.json',
+      'Run_clock.json','End_summary.json','Stop.json','Known_failure.json','export.json']
  row['files']=[snapshot(state/name) for name in names]
  out['states'].append(row)
 logpaths=[base/'logs'/('api-v5-'+job+'.out'),base/'logs'/('api-v5-'+job+'.err')]
+if flow_profile:logpaths=[base/'logs'/('flow-'+job+'.out'),base/'logs'/('flow-'+job+'.err')]
 for key in ['StdOut','StdErr']:
  m=re.search(r'\b'+key+r'=(\S+)',out['job_details'].get('stdout',''))
  if m:
   path=Path(m[1])
   if job in path.name and path.suffix in ('.out','.err'):logpaths.append(path)
 out['logs']=[snapshot(path,'log') for path in dict.fromkeys(logpaths)]
-out['release_plan']=snapshot(base/'deploy/api-common/plan.json')
+out['release_plan']=snapshot(base/('deploy/flow-check/plan.json' if flow_profile else 'deploy/api-common/plan.json'))
 if disable_requeue:
  before=query(['scontrol','show','job',job]);out['job_details_before_update']=before
  details=before.get('stdout','')
@@ -129,9 +137,9 @@ def summary(value):
     states = []
     for entry in value.get('states', []):
         ledger = next((f.get('value') for f in entry['files']
-                       if f['path'].endswith('/ledger.json') and 'value' in f), None)
+                       if (f['path'].endswith('/ledger.json') or f['path'].endswith('/checkpoint.json')) and 'value' in f), None)
         states.append({'path': entry['path'], 'exists': entry['exists'],
-                       'phase': ledger.get('status') if ledger else None,
+                       'phase': ledger.get('status',ledger.get('phase')) if ledger else None,
                        'totals': ledger.get('totals') if ledger else None})
     fields = dict(re.findall(r'\b(JobState|Reason|Partition|Account|QOS|Requeue|Restarts|RunTime|TimeLimit|SubmitTime|EligibleTime|StartTime|NumNodes|NumCPUs)=([^\s]+)',
                              value.get('job_details_after_update', value.get('job_details_before_update', value.get('job_details', {}))).get('stdout', '')))
@@ -151,23 +159,25 @@ def main(argv=None):
     parser.add_argument('--check-only', action='store_true')
     parser.add_argument('--resources', action='store_true', help='also read partition, association, QoS and reservation state; never modify jobs')
     parser.add_argument('--disable-requeue', action='store_true', help='explicitly disable node-failure requeue on this identity-checked existing job; no submit/cancel/requeue')
+    parser.add_argument('--flow-profile',action='store_true',help='read the new FJSP flow state/log paths; no job mutations')
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[0-9]+', args.job_id):
         parser.error('job-id must contain digits only')
+    if args.flow_profile and args.disable_requeue:parser.error('flow profile is read-only; submission already requires no-requeue')
     if args.check_only:
         compile(REMOTE, '<read-only-remote-collector>', 'exec')
         print(json.dumps({'offline': True, 'requests_added': 0, 'solves_added': 0,
                           'submissions_added': 0, 'job_id': args.job_id,
                           'resource_queries': 6 if args.resources else 0,
-                          'would_disable_requeue': args.disable_requeue}))
+                          'would_disable_requeue': args.disable_requeue,'flow_profile':args.flow_profile}))
         return 0
     stamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime('%Y%m%d-%H%M%S')
-    directory = ROOT/'reports/api-common-20261111'/f'collected-{stamp}-{uuid.uuid4().hex[:8]}'
+    directory = ROOT/('reports/flow-check-20261112' if args.flow_profile else 'reports/api-common-20261111')/f'collected-{stamp}-{uuid.uuid4().hex[:8]}'
     directory.mkdir()
     command = ['ssh', '-o', 'NumberOfPasswordPrompts=1', '-o', 'ConnectTimeout=8',
                '-o', 'ProxyCommand=ssh -o NumberOfPasswordPrompts=1 -o ConnectTimeout=8 -W %h:%p custom@222.201.144.188',
                'qiuqian@110.1.2.1',
-               '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python -B - '+args.job_id+(' --resources' if args.resources else '')+(' --disable-requeue' if args.disable_requeue else '')]
+               '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python -B - '+args.job_id+(' --resources' if args.resources else '')+(' --disable-requeue' if args.disable_requeue else '')+(' --flow-profile' if args.flow_profile else '')]
     # SSH opens /dev/tty itself for authentication; no key reads or password capture.
     result = subprocess.run(command, input=REMOTE, text=True, stdout=subprocess.PIPE)
     status = {'ssh_exit_code': result.returncode, 'job_id': args.job_id,

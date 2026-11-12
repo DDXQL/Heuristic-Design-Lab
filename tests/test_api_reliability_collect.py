@@ -196,6 +196,35 @@ class CollectorTests(unittest.TestCase):
             self.assertEqual(run.call_count,1)
             self.assertTrue(run.call_args.args[0][-1].endswith('609676 --resources'))
 
+    def test_flow_profile_flag_is_forwarded_without_job_update(self):
+        value,_=self.remote_fixture()
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'reports/flow-check-20261112').mkdir(parents=True)
+            result=types.SimpleNamespace(returncode=0,stdout=json.dumps(value))
+            with patch.object(c,'ROOT',root),patch.object(c.subprocess,'run',return_value=result) as run,patch('sys.stdout',new_callable=io.StringIO):
+                self.assertEqual(c.main(['--flow-profile']),0)
+            self.assertTrue(run.call_args.args[0][-1].endswith('609676 --flow-profile'))
+            self.assertEqual(len(list((root/'reports/flow-check-20261112').glob('collected-*/remote.json'))),1)
+
+    def test_flow_profile_cannot_modify_job_policy(self):
+        with patch.object(c.subprocess,'run',side_effect=AssertionError('NO SSH')),patch('sys.stderr',new_callable=io.StringIO),self.assertRaises(SystemExit):
+            c.main(['--flow-profile','--disable-requeue'])
+
+    def test_remote_flow_profile_reads_its_checkpoint_and_export(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp).resolve();release=root/'release';state=root/'hdl-flow-validation/fjsp-state-a-flow-20261112/cluster'
+            state.mkdir(parents=True);(release/'deploy/flow-check').mkdir(parents=True)
+            (state/'checkpoint.json').write_text('{"phase":"completed"}')
+            (state/'export.json').write_text('{}');(release/'deploy/flow-check/plan.json').write_text('{}')
+            code=c.REMOTE.replace('/public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112',str(release)).replace('/public2/home/qiuqian/hdl-flow-validation/fjsp-state-a-flow-20261112/cluster',str(state))
+            output=io.StringIO();result=types.SimpleNamespace(returncode=0,stdout='',stderr='')
+            with patch('subprocess.run',return_value=result) as run,patch.object(Path,'home',return_value=root),patch('sys.argv',['remote','123','--flow-profile']),contextlib.redirect_stdout(output):
+                exec(compile(code,'offline-flow-collection','exec'),{})
+            value=json.loads(output.getvalue());names={Path(f['path']).name for f in value['states'][0]['files']}
+            self.assertIn('checkpoint.json',names);self.assertNotIn('ledger.json',names)
+            self.assertEqual(c.summary(value)['states'][0]['phase'],'completed')
+            self.assertEqual(run.call_count,3)
+
 
 if __name__ == '__main__':
     unittest.main()

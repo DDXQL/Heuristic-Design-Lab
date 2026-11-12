@@ -1,0 +1,15 @@
+{
+  "files": 184,
+  "zip_bytes": 417904,
+  "model_requests": 0,
+  "constructive_solves": 0,
+  "Slurm_submissions": 0,
+  "results": [
+    {
+      "command": "isolated check-only",
+      "exit_code": 0,
+      "stdout": "{\n  \"offline\": true,\n  \"model_requests\": 0,\n  \"solves\": 0,\n  \"version\": \"fjsp-state-a-flow-20261112\",\n  \"plan_sha256\": \"b21f60346dcbe2e7b2d134a9e2d52fb4565ede3af1be6f70ae8d91595d4c47bd\",\n  \"new_api_cap\": 2,\n  \"new_total_solve_cap\": 12,\n  \"per_site_solve_cap\": 6,\n  \"old_budget_inherited\": false,\n  \"state_abi\": \"pure-routing-state-a-v2\",\n  \"state_spec\": \"8eed0e3257cf0a9314ad6ea1d14ae2b5ca659d8ece80748efaeb4a1aa965c632\",\n  \"wire\": \"bounded-wire-reliability-v5\",\n  \"data\": \"one 9-operation synthetic FJSP development instance; no holdout\",\n  \"tasks\": [\n    \"fixed_H0\",\n    \"single_H_sample\",\n    \"state_A_U\"\n  ],\n  \"preplanned_pause\": \"after settled fixed_H0; same clock/budget resume once\",\n  \"prompts\": [\n    {\n      \"role\": \"single_H_sample\",\n      \"bytes\": 3154,\n      \"sha256\": \"6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62\"\n    },\n    {\n      \"role\": \"state_A_U\",\n      \"bytes\": 4778,\n      \"sha256\": \"ad7a3ced3097af7548b4710191bac049215dfe18f24bb4be157b10f3b9ae902f\"\n    }\n  ],\n  \"tsp\": \"not run: frozen LKH reference provenance still needed; no NN substitute\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

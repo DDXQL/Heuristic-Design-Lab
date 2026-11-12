@@ -88,6 +88,7 @@ def work(directory,*,adapter):
     if p['config']['api_mode']=='real' and not auth['explicit_cli_allow_api']:raise PermissionError('no real launch acknowledgement')
     o.write(directory/'.execution.lock',{'pid':os.getpid(),'state':'running'})
     keep=None;normal=False;requested=[False]
+    prior_signals={signum:signal.getsignal(signum) for signum in (signal.SIGHUP,signal.SIGINT,signal.SIGTERM)}
     signal.signal(signal.SIGHUP,signal.SIG_IGN)
     signal.signal(signal.SIGINT,lambda *a:requested.__setitem__(0,True))
     signal.signal(signal.SIGTERM,lambda *a:requested.__setitem__(0,True))
@@ -114,7 +115,8 @@ def work(directory,*,adapter):
         s['phase']='running';o.write(directory/'checkpoint.json',s)
         for index in range(s['cursor'],len(plan)):
             o.check_run(directory);ledger(directory,s,p,adapter=o)
-            if requested[0] or pause_sequence(directory,adapter=o)>s['pause_ack']:s['phase']='paused';break
+            if requested[0] or pause_sequence(directory,adapter=o)>s['pause_ack']:
+                s['phase']='paused';s['pause_reason']='user_control';break
             reserve=30*len(p['instances'])+5
             if plan[index]['stage']=='new':reserve+=p['config']['per_candidate_attempt_cap']*p['config']['provider']['total_timeout']+2
             if time.time()+reserve>clock['deadline']:s['phase']='expired';break
@@ -212,5 +214,8 @@ def work(directory,*,adapter):
         finally:
             # A paused controller releases ownership only after its own report
             # writes finish, so resume cannot overlap that final write phase.
-            if normal:(directory/'.execution.lock').unlink()
+            try:
+                if normal:(directory/'.execution.lock').unlink()
+            finally:
+                for signum,handler in prior_signals.items():signal.signal(signum,handler)
     return {'phase':s['phase'],'cursor':s['cursor'],'run_dir':str(directory)}
