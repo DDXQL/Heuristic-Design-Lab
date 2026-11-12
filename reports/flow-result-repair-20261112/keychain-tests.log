@@ -1,0 +1,14 @@
+test_bad_flags_do_not_read_credentials_or_launch (test_flow_keychain_launcher.KeychainLauncherTests.test_bad_flags_do_not_read_credentials_or_launch) ... ok
+test_default_and_check_only_do_not_access_keychain_or_launch (test_flow_keychain_launcher.KeychainLauncherTests.test_default_and_check_only_do_not_access_keychain_or_launch) ... ok
+test_explicit_environment_override_is_not_saved_or_queried (test_flow_keychain_launcher.KeychainLauncherTests.test_explicit_environment_override_is_not_saved_or_queried) ... ok
+test_malformed_saved_key_never_reaches_original_launcher (test_flow_keychain_launcher.KeychainLauncherTests.test_malformed_saved_key_never_reaches_original_launcher) ... ok
+test_missing_or_denied_key_does_not_prompt_store_retry_or_launch (test_flow_keychain_launcher.KeychainLauncherTests.test_missing_or_denied_key_does_not_prompt_store_retry_or_launch) ... ok
+test_resume_and_child_failure_propagate_without_retry (test_flow_keychain_launcher.KeychainLauncherTests.test_resume_and_child_failure_propagate_without_retry) ... ok
+test_saved_key_is_only_passed_to_original_launcher_with_unchanged_flags (test_flow_keychain_launcher.KeychainLauncherTests.test_saved_key_is_only_passed_to_original_launcher_with_unchanged_flags) ... ok
+test_setup_noninteractive_refuses_before_access (test_flow_keychain_launcher.KeychainLauncherTests.test_setup_noninteractive_refuses_before_access) ... ok
+test_setup_prompts_in_native_tool_without_secret_argv_and_does_not_launch (test_flow_keychain_launcher.KeychainLauncherTests.test_setup_prompts_in_native_tool_without_secret_argv_and_does_not_launch) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.216s
+
+OK
