@@ -32,8 +32,12 @@ def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), 
               state_schema=None, reference=None):
     sensors = None
     if state_schema is not None:
-        from heuristic_design.core import state_a
-        from .state_a import Sensors
+        if state_schema == 'common-state-a-v3-tsp':
+            from heuristic_design.core import state_a_v3 as state_a
+            from .state_a_v3 import Sensors
+        else:
+            from heuristic_design.core import state_a
+            from .state_a import Sensors
         if state_schema != state_a.schema_id('tsp') or tuple(enabled_groups) != tuple(GROUPS):
             raise ValueError('explicit full scheme-A schema required; no feature disabling')
         if type(window) is not int or window != state_a.WINDOW:
@@ -87,7 +91,7 @@ def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), 
     length = tour_length(d, tour)
     if sensors is not None:
         return StateAResult(tuple(tour), length, state_a.score_final_cost(length, reference),
-                            tuple(rows), tuple(calls), observation, tuple(selected_members), reference=reference)
+                            tuple(rows), tuple(calls), observation, tuple(selected_members), reference=reference, state_schema=state_schema)
     return RouteResult(tuple(tour), length, -length/nearest_neighbor(d)[1], tuple(rows), tuple(calls), observation,
                        tuple(selected_members))
 
@@ -95,5 +99,11 @@ def construct(d, heuristics, usage, *, window=10, enabled_groups=tuple(GROUPS), 
 def construct_state_a(d, heuristics, usage, *, reference, trace=True):
     """Reference must be the caller's frozen LKH length. No reference solve here."""
     from heuristic_design.core.state_a import schema_id
+    return construct(d, heuristics, usage, trace=trace,
+                     state_schema=schema_id('tsp'), reference=reference)
+
+
+def construct_state_a_v3(d, heuristics, usage, *, reference, trace=True):
+    from heuristic_design.core.state_a_v3 import schema_id
     return construct(d, heuristics, usage, trace=trace,
                      state_schema=schema_id('tsp'), reference=reference)

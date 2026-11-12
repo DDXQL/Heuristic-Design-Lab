@@ -32,8 +32,12 @@ def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GR
               state_schema=None):
     sensors = None
     if state_schema is not None:
-        from heuristic_design.core import state_a
-        from .state_a import Sensors
+        if state_schema == 'common-state-a-v3-fjsp':
+            from heuristic_design.core import state_a_v3 as state_a
+            from .state_a_v3 import Sensors
+        else:
+            from heuristic_design.core import state_a
+            from .state_a import Sensors
         if state_schema != state_a.schema_id('fjsp') or tuple(enabled_groups) != tuple(GROUPS):
             raise ValueError('explicit full scheme-A schema required; no feature disabling')
         if type(window) is not int or window != state_a.WINDOW:
@@ -83,7 +87,7 @@ def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GR
     if sensors is not None:
         return StateAResult(schedule, state_a.score_final_cost(schedule.makespan, reference),
                             tuple(rows), tuple(calls), observation, tuple(state.selected_members),
-                            reference=reference)
+                            reference=reference, state_schema=state_schema)
     return RouteResult(schedule, -schedule.makespan / reference,
                        tuple(rows), tuple(calls), observation, tuple(state.selected_members))
 
@@ -91,4 +95,10 @@ def construct(instance, heuristics, usage, *, window=10, enabled_groups=tuple(GR
 def construct_state_a(instance, heuristics, usage, *, trace=True):
     """New protocol only. Score is relative gap, MINIMIZE; never resume a v1 run."""
     from heuristic_design.core.state_a import schema_id
+    return construct(instance, heuristics, usage, trace=trace, state_schema=schema_id('fjsp'))
+
+
+def construct_state_a_v3(instance, heuristics, usage, *, trace=True):
+    """Ten scalars plus four per-H vectors; final score remains relative-gap-min."""
+    from heuristic_design.core.state_a_v3 import schema_id
     return construct(instance, heuristics, usage, trace=trace, state_schema=schema_id('fjsp'))

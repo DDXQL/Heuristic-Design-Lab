@@ -29,7 +29,8 @@ def route_token(value, members):
     return value
 
 
-def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
+def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256,
+             _vector_fields=('usage_fraction',), _vector_masks=False):
     if type(member_count) is not int or member_count < 1 or not isinstance(code, str) or len(code.encode()) > 24576:
         raise CandidateError('bounded code and positive H count required')
     try:
@@ -86,6 +87,10 @@ def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI,
             if isinstance(v, ast.Name) and v.id == 'state':
                 if k not in _fields + ('availability',):
                     raise CandidateError('unknown state field')
+                if _vector_masks and k in _vector_fields:
+                    p = parent.get(id(n))
+                    if not isinstance(p, ast.Subscript) or p.value is not n:
+                        raise CandidateError('H vectors require a literal member index')
                 if k in ('availability', 'usage_fraction'):
                     p = parent.get(id(n))
                     # usage_fraction may also be compared to None for availability.
@@ -94,8 +99,18 @@ def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI,
             elif isinstance(v, ast.Subscript) and isinstance(v.value, ast.Name) and v.value.id == 'state' and isinstance(v.slice, ast.Constant):
                 base = v.slice.value
                 if not ((base == 'availability' and type(k) is str and k in _fields)
-                        or (base == 'usage_fraction' and base in _fields and type(k) is int and 0 <= k < member_count)):
+                        or (base in _vector_fields and base in _fields and type(k) is int and 0 <= k < member_count)):
                     raise CandidateError('mask name or usage vector index outside contract')
+                if _vector_masks and base == 'availability' and k in _vector_fields:
+                    p = parent.get(id(n))
+                    if not isinstance(p, ast.Subscript) or p.value is not n:
+                        raise CandidateError('H availability requires a literal member index')
+            elif (_vector_masks and isinstance(v, ast.Subscript) and isinstance(v.slice, ast.Constant)
+                  and isinstance(v.value, ast.Subscript) and isinstance(v.value.slice, ast.Constant)
+                  and isinstance(v.value.value, ast.Name) and v.value.value.id == 'state'
+                  and v.value.slice.value == 'availability' and v.slice.value in _vector_fields):
+                if type(k) is not int or not 0 <= k < member_count:
+                    raise CandidateError('per-H mask index outside contract')
             else:
                 raise CandidateError('arbitrary containers and aliases forbidden')
         if isinstance(n, ast.Constant):
@@ -114,26 +129,32 @@ def validate(code, description='', member_count=10, *, _fields=FIELDS, _abi=ABI,
                        'members': member_count, 'ast': ast.dump(tree, include_attributes=False)}), abi=_abi)
 
 
-def checked(row, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
+def checked(row, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256,
+            _vector_fields=('usage_fraction',), _vector_masks=False):
     if row.get('abi') != _abi:
         raise CandidateError('old or foreign routing ABI')
-    c = validate(row['code'], row['description'], members, _fields=_fields, _abi=_abi, _spec=_spec)
+    c = validate(row['code'], row['description'], members, _fields=_fields, _abi=_abi, _spec=_spec,
+                 _vector_fields=_vector_fields, _vector_masks=_vector_masks)
     if c.key != row['key']:
         raise CandidateError('routing identity changed')
     return c
 
 
-def parse(text, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
+def parse(text, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256,
+          _vector_fields=('usage_fraction',), _vector_masks=False):
     if not isinstance(text, str) or len(text.encode()) > 32768 or text.count('```') != 2:
         raise CandidateError('one bounded fenced Python response required')
     m = re.fullmatch(r'\s*(.*?)\s*```python\s*\n(.*?)\n```\s*', text, re.S)
     if not m or not m[1].strip() or len(m[1]) > 1000:
         raise CandidateError('description then one Python function required')
-    return validate(m[2], m[1].strip(), members, _fields=_fields, _abi=_abi, _spec=_spec)
+    return validate(m[2], m[1].strip(), members, _fields=_fields, _abi=_abi, _spec=_spec,
+                    _vector_fields=_vector_fields, _vector_masks=_vector_masks)
 
 
-def compile_candidate(c, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256):
-    checked(c.__dict__, members, _fields=_fields, _abi=_abi, _spec=_spec)
+def compile_candidate(c, members, *, _fields=FIELDS, _abi=ABI, _spec=SPEC_SHA256,
+                      _vector_fields=('usage_fraction',), _vector_masks=False):
+    checked(c.__dict__, members, _fields=_fields, _abi=_abi, _spec=_spec,
+            _vector_fields=_vector_fields, _vector_masks=_vector_masks)
     def bounded(v):
         if type(v) not in (int,float,bool) or not math.isfinite(v) or abs(v) > 1e100:
             raise ValueError('routing numeric limit')

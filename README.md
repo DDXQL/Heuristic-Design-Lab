@@ -1,5 +1,7 @@
 # Heuristic-Design-Lab：多问题实验与中文文档入口
 
+- **本工作树：单次FJSP长演化工程交付**：[执行层、配置、离线证据与单作业交接](reports/fjsp-execution-20261112/HANDOFF_ZH.md)。接入v3完整状态；研究参数与真实启动许可待单独冻结，旧入口不作为本轮命令。
+
 - **Mac API密钥保存一次（2026-11-12）**：[钥匙串设置与新启动入口](reports/flow-result-repair-20261112/KEYCHAIN_ZH.md)。本机保存一次，后续自动读取；不改冻结客户端或累计预算，集群不接收密钥。
 
 - **本工作树：FJSP结果封装修复与有限接续（2026-11-12）**：[实际失败、累计限额、启动与取回](reports/flow-result-repair-20261112/README_ZH.md)。原运行在固定基线封装时报本地错误，API0；修复阶段保留失败占用2次，Mac最多6次、集群H/U复检最多4次求解，累计仍不超过原12次，API仍最多2次。默认 `tools/flow_check.py check-only`；真实请求、构造求解及Slurm提交均由用户启动。旧准备报告和下方历史入口不能代替本次真实验收。
@@ -7,6 +9,8 @@
 - **TSP专用10H一条命令构建与离线汇报**：[协议V1](docs/TSP_H10_BUILD_PROTOCOL_V1.md)、[正式/工程命令与预算](reports/tsp-h10-build-prepared-20261101/REPORT_ZH.md)。默认真实请求关闭；H构建建议40次、恒选0次API、U预算另计，由用户终端分别启动。
 
 - **EoH正式对照与TSP新版准备（2026-11-01）**：[方案、参数、check-only与小试命令](reports/eoh-tsp-prep-20261101/REPORT_ZH.md)。独立工作树准备；TSP compact离线验证完成，正式搜索未启动，EoH公平训练协议待定。
+- **方案A逐H历史补充**：[接口与FJSP接入清单](docs/state-a-v3/接口与FJSP接入.md)。`common-state-a-v3`保留原10项并增加4个逐H数组；检查命令为 `python3 tools/check_state_a_v3.py --check-only`。旧v2接口与下方历史记录继续保留。
+
 - **本工作树的方案A交付（2026-11-11）**：[冻结字段与计算口径](docs/state-a-v2/共同状态定义.md)、[FJSP/TSP接入和OBP准备说明](docs/state-a-v2/接入与交付说明.md)。接口 `common-state-a-v2`，10项＋辅助信息；方案B停止开发。仅执行 `python3 tools/check_state_a.py --check-only` 做离线检查。下方旧13项及旧负分搜索入口保留为历史兼容，不代表已经切换到方案A。
 
 - **VS Code终端独立运行**：[中文操作手册](docs/终端独立运行实验.md)。Mock、固定候选/训练集评价、默认拦截的真实搜索；含启动/status/暂停/恢复/导出命令。

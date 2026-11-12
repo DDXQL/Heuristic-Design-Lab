@@ -1,0 +1,46 @@
+{
+  "spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+  "spec": {
+    "version": "common-state-a-v3",
+    "u_abi": "pure-routing-state-a-v3",
+    "base_spec_sha256": "8eed0e3257cf0a9314ad6ea1d14ae2b5ca659d8ece80748efaeb4a1aa965c632",
+    "scalar_fields": [
+      "construction_progress",
+      "legal_action_count",
+      "remaining_demand_mean",
+      "remaining_demand_std",
+      "resource_commitment_mean",
+      "resource_commitment_std",
+      "action_delta_mean",
+      "action_delta_std",
+      "recent_delta_mean",
+      "recent_delta_std",
+      "previous_h_token",
+      "has_history",
+      "history_count",
+      "recent_history_count"
+    ],
+    "h_fields": [
+      "h_usage_count",
+      "h_recent_usage_count",
+      "h_last_use_gap_fraction",
+      "h_recent_delta_mean"
+    ],
+    "h_definitions": {
+      "h_usage_count": "K nonnegative integer counts of successful commits controlled by each H; never used=0, available",
+      "h_recent_usage_count": "K integer counts in the same last min(10,t) GLOBAL commits; zero available; also sample counts for h_recent_delta_mean",
+      "h_last_use_gap_fraction": "K values (t-last_commit_index[h])/D in [0,1); last step=0; never used=None, item unavailable",
+      "h_recent_delta_mean": "K means of actual normalized deltas controlled by H in the GLOBAL ten-commit window, [0,1]; no recent sample=None, item unavailable; real zero available"
+    },
+    "member_order": "one immutable K-vector per field, in the frozen problem-specific H order",
+    "availability": "base fields use bool masks; H fields use K bool masks under availability[field][literal_H_index]",
+    "window": 10,
+    "history_scope": "reset for each instance and each candidate solve; only real successful commits",
+    "timing": "observe before U; only selected H scores; commit action; then update selected-H history",
+    "delta_scales": "unchanged v2: FJSP partial makespan/Pmax; TSP chosen edge/dmax excluding closure; OBP new bins 0/1",
+    "missing": "counts always available; gap missing for never used; delta mean missing for no recent samples",
+    "read_boundary": "literal member indices only; no H calls, offline quality priors, lookahead, vectors returned, loops or writes",
+    "score_interface": "unchanged relative-gap-min, final complete-instance cost only",
+    "cost": "commit O(1), observe/output O(K+10), memory O(K+10), in addition to v2 sensors"
+  }
+}
