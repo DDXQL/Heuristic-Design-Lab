@@ -6,10 +6,12 @@ import json
 import os
 from pathlib import Path
 import socket
+import sys
 import tempfile
 import threading
 import time
 import unittest
+import importlib.util
 from unittest.mock import patch
 
 from heuristic_design.core import evolution_v1 as e
@@ -104,6 +106,25 @@ class Offline(unittest.TestCase):
         self.assertEqual(r['initialization_requests'],2);self.assertEqual(r['generation_requests'],0)
         self.assertEqual(len(list((d/'responses').glob('*.json'))),2)
 
+    def test_explicit_bounded_initialization_uses_only_its_declared_cap(self):
+        c=settings(initialization_request_cap=3,initialization_candidate_cap=3,api_attempt_cap=10,
+                   mock_faults={'INIT-0000':'invalid'})
+        c['execution_contract']['initialization_policy']='bounded_initialization_until_population'
+        d,p,s=self.run_case('bounded-init',c)
+        self.assertEqual((s['initialization_requests'],s['generation_requests']),(3,7))
+
+    def test_bounded_user_validation_prefix_is_exact_and_resumes_same_budget(self):
+        d=self.root/'finite-prefix';e.prepare(d,settings())
+        with contextlib.redirect_stdout(io.StringIO()):r=e.run(d,max_tasks=3)
+        self.assertEqual(r['phase'],'paused')
+        self.assertEqual(r['completed_tasks'],3)
+        self.assertEqual(r['initialization_requests']+r['generation_requests'],3)
+        clock=read(d/'Run_clock.json')
+        with contextlib.redirect_stdout(io.StringIO()):e.run(d)
+        p,s=e.check(d)
+        self.assertEqual(read(d/'Run_clock.json'),clock)
+        self.assertEqual(s['initialization_requests']+s['generation_requests'],9)
+
     def test_failure_classes_unknown_and_hard_stop(self):
         p={'config':{'api_mode':'real'}}
         for metadata in ({'send_status':'unknown'},{}):
@@ -118,6 +139,26 @@ class Offline(unittest.TestCase):
             t={'id':str(i)}
             contract.settle_api(s,p,[t],{str(i):{'ok':True,'value':{'sent':True,'text':None,'error':'HTTP524','metadata':{'http_status':524}}}})
         self.assertEqual(s['phase'],'paused');self.assertEqual(s['transport_failure_streak'],3)
+
+    def test_hard_or_unknown_reply_prevents_later_reserved_request_in_same_wave(self):
+        from heuristic_design.llm import routing_transport
+        for name,value in (
+            ('hard',{'sent':True,'text':None,'error':'HTTP401','metadata':{'http_status':401}}),
+            ('unknown',{'sent':False,'text':None,'error':'uncertain send','metadata':{'send_status':'unknown'}})):
+            d=self.root/name;e.prepare(d,settings());p,s=e.check(d)
+            p['config']['api_mode']='real';gate=self.root/(name+'-gate');gate.mkdir()
+            p['config']['execution_contract']['account_gate']=str(gate)
+            tasks=[{'id':'INIT-'+str(i),'stage':'initialization','generation':0,'operator':'INIT',
+                    'parents':[],'parent_records':[],'parent_keys':[],'status':'planned','valid':False,'fitness':None} for i in range(2)]
+            s['tasks']={t['id']:t for t in tasks}
+            with patch.object(routing_transport,'generate',return_value=value) as fake,contextlib.redirect_stdout(io.StringIO()):
+                if name=='unknown':
+                    with self.assertRaises(RuntimeError):e._execute_batch(d,s,p,tasks,e.mock_evaluate)
+                else:e._execute_batch(d,s,p,tasks,e.mock_evaluate)
+            self.assertEqual(fake.call_count,1)
+            self.assertEqual(s['initialization_requests'],2)  # both reservations remain charged
+            self.assertEqual(tasks[1]['send_state'],'not_sent')
+            self.assertEqual(tasks[1]['failure'],'cancelled_before_dispatch')
 
     def test_infrastructure_failure_retains_lock_and_reservation(self):
         d=self.root/'infra';e.prepare(d,settings())
@@ -165,6 +206,76 @@ class Offline(unittest.TestCase):
         bad={'valid':True,'mock':True,'fitness':-.2,'instances':[{'file':'a','score':.2,'raw_cost':11,'reference':10}],
              'behavior_sha256':'synthetic'}
         with self.assertRaises(ValueError):e._validate_result(bad,p)
+
+    def test_v3_constructor_call_binding_without_solving(self):
+        from types import SimpleNamespace
+        from heuristic_design.problems import routing_fixtures as fixtures
+        from heuristic_design.core import routing_state_a_v3 as language
+        from heuristic_design.problems.fjsp import routing as fjsp
+        from llm4ad.task.optimization.fjsp_set.scheduler import Schedule
+        candidate={'code':'inert'}
+        inert=SimpleNamespace(schedule=Schedule((),12),reference=10,score=.2,trace=(),
+            h_calls=(1,0),member_sequence=(0,),observation_seconds=0)
+        with patch.object(fixtures,'compile_members',return_value=[lambda:None,lambda:None]), \
+             patch.object(fixtures,'decode_instance',return_value='inert-instance'), \
+             patch.object(language,'checked',return_value='inert-candidate'), \
+             patch.object(language,'compile_candidate',return_value='inert-U'), \
+             patch.object(fjsp,'construct_state_a_v3',return_value=inert) as construct:
+            result=fixtures.solve('fjsp',{'file':'inert'},[],candidate,trace=False,state_schema='common-state-a-v3-fjsp')
+        self.assertEqual(construct.call_args.args[0],'inert-instance')
+        self.assertEqual(construct.call_args.kwargs,{'trace':False})
+        self.assertEqual((result['raw_cost'],result['reference'],result['score']),(12,10,.2))
+        # Retain the repaired inherited result packet binding with v3 metadata.
+        packet=fjsp.StateAResult(Schedule((),12),.2,(),(1,0),0.,(0,),reference=10,state_schema='common-state-a-v3-fjsp')
+        self.assertEqual(packet.member_sequence,(0,))
+
+    def test_slurm_command_matches_configuration_without_submission(self):
+        spec=importlib.util.spec_from_file_location('single_submit',ROOT/'deploy/fjsp-long/submit.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        document=read(ROOT/'experiments/fjsp_long/mock.json')
+        cfg=self.root/'mock.json';write(cfg,document)
+        deploy=read(ROOT/'deploy/fjsp-long/deployment.pending.json')
+        deploy.update(partition='MOCK',memory_mib=512,walltime_seconds=1800)
+        path=self.root/'deployment.json';write(path,deploy)
+        with patch.object(module.subprocess,'run',side_effect=AssertionError('NO SUBMISSION')):
+            _,cmd=module.command(path,cfg,'run')
+        self.assertIn('--cpus-per-task=3',cmd);self.assertIn('--mem=512M',cmd)
+        self.assertIn('--time=00:30:00',cmd);self.assertIn('--no-requeue',cmd)
+        self.assertIn('--signal=B:USR1@120',cmd)
+        self.assertFalse(any('--array' in part for part in cmd))
+        _,finite=module.command(path,cfg,'run',pause_after_attempts=1)
+        self.assertEqual(finite[-1],'1')
+        with self.assertRaises(ValueError):module.command(path,cfg,'run',pause_after_attempts=10)
+        deploy['walltime_seconds']=1801;write(path,deploy)
+        with self.assertRaises(ValueError):module.command(path,cfg,'run')
+
+    def test_slurm_duplicate_and_unknown_submission_are_not_replayed(self):
+        from types import SimpleNamespace
+        spec=importlib.util.spec_from_file_location('submission_fixture',ROOT/'deploy/fjsp-long/submit.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        document=read(ROOT/'experiments/fjsp_long/mock.json');document['run_root']='runs'
+        cfg=self.root/'launch.json';write(cfg,document)
+        from experiments.common.run_frozen import configuration
+        _,c,d,_=configuration(cfg);e.prepare(d,c)
+        deploy=read(ROOT/'deploy/fjsp-long/deployment.pending.json')
+        deploy.update(remote_root=str(self.root),partition='MOCK',memory_mib=512,walltime_seconds=1800)
+        path=self.root/'deploy.json';write(path,deploy)
+        calls=[]
+        def fake(command,**kwargs):
+            calls.append(command)
+            return SimpleNamespace(stdout='12345|COMPLETED|\n' if command[0]=='sacct' else '12345\n')
+        args=['submit.py','run','--deployment',str(path),'--config',str(cfg),'--submit']
+        errors=io.StringIO()
+        with patch.object(module,'ROOT',self.root.resolve()),patch.object(sys,'argv',args), \
+             patch.object(module.subprocess,'run',side_effect=fake), \
+             contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(errors):
+            self.assertEqual(module.main(),0,errors.getvalue())
+            self.assertEqual(module.main(),2)
+        self.assertEqual(sum(cmd[0]=='sbatch' for cmd in calls),1)
+        claim=next((d/'submissions').glob('*.json'));write(claim,{'state':'submission_reserved'})
+        with patch.object(module,'ROOT',self.root.resolve()),patch.object(sys,'argv',args), \
+             patch.object(module.subprocess,'run',side_effect=AssertionError('unknown submission must not dispatch')), \
+             contextlib.redirect_stderr(io.StringIO()):self.assertEqual(module.main(),2)
 
 
 if __name__=='__main__':unittest.main()

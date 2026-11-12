@@ -1,0 +1,10 @@
+id,stage,generation,operator,parents,attempt,evolution_attempt,status,valid,J,best_J,valid_unique_evaluations,failure,api_outcome,send_state,http_status,failure_stage,input_tokens,output_tokens,actual_cost,source_H_attempts,attempts_including_H
+INIT-0000,initialization,0,INIT,,1,0,completed,True,0.7306571601019205,0.7306571601019205,1,,,,,,,,,0,1
+INIT-0001,initialization,0,INIT,,2,0,completed,True,0.5354759329375857,0.5354759329375857,2,,,,,,,,,0,2
+G001-000-CROSS,evolution,1,CROSS,"INIT-0001,INIT-0000",3,1,completed,True,0.41232185778330493,0.41232185778330493,3,,,,,,,,,0,3
+G001-000-MUTATE,evolution,1,MUTATE,INIT-0001,4,2,completed,True,0.3885184987145615,0.3885184987145615,4,,,,,,,,,0,4
+G001-001-CROSS,evolution,1,CROSS,"INIT-0000,INIT-0001",5,3,completed,True,0.4742544249372357,0.3885184987145615,5,,,,,,,,,0,5
+G001-001-MUTATE,evolution,1,MUTATE,INIT-0000,6,4,completed,True,0.49165835573416833,0.3885184987145615,6,,,,,,,,,0,6
+G002-000-CROSS,evolution,2,CROSS,"G001-000-MUTATE,G001-000-CROSS",7,5,completed,True,0.26835285484445603,0.26835285484445603,7,,,,,,,,,0,7
+G002-000-MUTATE,evolution,2,MUTATE,G001-000-MUTATE,8,6,completed,True,0.2938520915757226,0.26835285484445603,8,,,,,,,,,0,8
+G002-001-CROSS,evolution,2,CROSS,"G001-000-CROSS,G001-000-MUTATE",9,7,completed,True,0.25007109875327665,0.25007109875327665,9,,,,,,,,,0,9

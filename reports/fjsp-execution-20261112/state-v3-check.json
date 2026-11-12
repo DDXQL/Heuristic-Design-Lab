@@ -1,0 +1,45 @@
+test_actual_result_calls_bind_without_running_construction (test_state_a_offline.OfflineTests.test_actual_result_calls_bind_without_running_construction)
+Bind the real source call, rather than a separately written example. ... ok
+test_fjsp_hand_given_initial_and_partial_state (test_state_a_offline.OfflineTests.test_fjsp_hand_given_initial_and_partial_state) ... ok
+test_frozen_spec_and_common_readable_fields (test_state_a_offline.OfflineTests.test_frozen_spec_and_common_readable_fields) ... ok
+test_new_result_and_entry_signatures_import_without_solving (test_state_a_offline.OfflineTests.test_new_result_and_entry_signatures_import_without_solving) ... ok
+test_obp_only_current_item_and_opened_bins (test_state_a_offline.OfflineTests.test_obp_only_current_item_and_opened_bins) ... ok
+test_packet_invalid_values_and_missing_are_different (test_state_a_offline.OfflineTests.test_packet_invalid_values_and_missing_are_different) ... ok
+test_prompt_and_cache_binding_align_with_new_contract (test_state_a_offline.OfflineTests.test_prompt_and_cache_binding_align_with_new_contract) ... ok
+test_pure_selection_host_source_has_only_selected_h_and_post_commit_history (test_state_a_offline.OfflineTests.test_pure_selection_host_source_has_only_selected_h_and_post_commit_history) ... ok
+test_router_literal_reads_masks_actual_reads_and_version_rejection (test_state_a_offline.OfflineTests.test_router_literal_reads_masks_actual_reads_and_version_rejection) ... ok
+test_tsp_hand_given_snapshots_and_degenerate_values (test_state_a_offline.OfflineTests.test_tsp_hand_given_snapshots_and_degenerate_values) ... ok
+test_window_uses_last_ten_actual_commits_no_padding (test_state_a_offline.OfflineTests.test_window_uses_last_ten_actual_commits_no_padding) ... ok
+test_forbidden_indices_aliases_containers_and_foreign_candidates (test_state_a_v3_offline.OfflineV3Tests.test_forbidden_indices_aliases_containers_and_foreign_candidates) ... ok
+test_global_window_eviction_zero_observation_and_history_reset (test_state_a_v3_offline.OfflineV3Tests.test_global_window_eviction_zero_observation_and_history_reset) ... ok
+test_initial_counts_available_absent_means_and_gaps_unavailable (test_state_a_v3_offline.OfflineV3Tests.test_initial_counts_available_absent_means_and_gaps_unavailable) ... ok
+test_literal_array_reads_per_item_masks_and_observed_read_paths (test_state_a_v3_offline.OfflineV3Tests.test_literal_array_reads_per_item_masks_and_observed_read_paths) ... ok
+test_packet_shapes_counts_masks_versions_and_absence_rules (test_state_a_v3_offline.OfflineV3Tests.test_packet_shapes_counts_masks_versions_and_absence_rules) ... ok
+test_prompt_schema_binding_and_frozen_spec (test_state_a_v3_offline.OfflineV3Tests.test_prompt_schema_binding_and_frozen_spec) ... ok
+test_rejected_commits_leave_all_history_unchanged (test_state_a_v3_offline.OfflineV3Tests.test_rejected_commits_leave_all_history_unchanged) ... ok
+test_selected_h_only_and_post_commit_history_in_host_source (test_state_a_v3_offline.OfflineV3Tests.test_selected_h_only_and_post_commit_history_in_host_source) ... ok
+test_three_problem_adapters_reuse_the_ten_scalar_definitions (test_state_a_v3_offline.OfflineV3Tests.test_three_problem_adapters_reuse_the_ten_scalar_definitions) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.119s
+
+OK
+{
+  "mode": "CHECK_ONLY_NO_SOLVE_NO_REQUEST",
+  "success": true,
+  "tests_run": 20,
+  "state_version": "common-state-a-v3",
+  "u_abi": "pure-routing-state-a-v3",
+  "spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+  "h_fields": [
+    "h_usage_count",
+    "h_recent_usage_count",
+    "h_last_use_gap_fraction",
+    "h_recent_delta_mean"
+  ],
+  "old_v2_checks_included": true,
+  "model_requests": 0,
+  "constructive_solves": 0,
+  "final_evaluations": 0,
+  "forbidden_entries": []
+}

@@ -52,7 +52,7 @@
     "data_manifest": "../../preparations/fjsp-long/train21.manifest.json",
     "h_file": "../../preparations/fjsp-long/H_frozen.json",
     "p0_file": null,
-    "state_schema": null,
+    "state_schema": "common-state-a-v3-fjsp",
     "recording_mode": "compact",
     "milestone_generations": [],
     "execution_contract": {
@@ -68,7 +68,12 @@
         1000
       ],
       "initialization_policy": null,
-      "state_binding": null,
+      "state_binding": {
+        "version": "common-state-a-v3",
+        "spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+        "abi": "pure-routing-state-a-v3",
+        "history_extension_delivered": true
+      },
       "client_binding": {
         "wire_version": "bounded-wire-reliability-v5",
         "caller_policy": "strict-nonstream-model-stop-usage-v1",

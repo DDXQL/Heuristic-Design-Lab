@@ -1,0 +1,35 @@
+{
+  "label": "MOCK_ENGINEERING_ONLY",
+  "run_id": "mock-seed-71",
+  "phase": "completed",
+  "protocol_sha256": "cdd7bc14c65565b646e453a80860e4a066b6c8c5d3d3d1b86cf81ea626414892",
+  "initialization_attempts": 2,
+  "evolution_attempts": 7,
+  "request_reservations": 9,
+  "confirmed_sends": 0,
+  "unknown_sends": 0,
+  "valid_unique_evaluations": 9,
+  "evaluation_reservations": 9,
+  "candidate_failures": 0,
+  "duplicates": 0,
+  "cancelled_before_dispatch": 0,
+  "known_usage_subtotal": null,
+  "unknown_usage_attempts": 0,
+  "actual_cost": null,
+  "currency_hard_cap_verified": false,
+  "automatic_retries": 0,
+  "source_H_cost": {
+    "H_attempts": 0,
+    "scope": "synthetic handwritten fixtures, no scientific cost claim",
+    "actual_cost": null
+  },
+  "best_J": 0.25007109875327665,
+  "champion_id": "G002-001-CROSS",
+  "calendar_clock": {
+    "started_at": 1794500845.161012,
+    "deadline": 1794504445.161012
+  },
+  "timing_scope": "task timings are per function; batch durations are shared, never summed as wall time",
+  "real_requests": 0,
+  "real_solves": 0
+}

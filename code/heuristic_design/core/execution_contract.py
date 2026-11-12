@@ -32,10 +32,16 @@ def validate_contract(c):
     for key in ('allocated_cpus', 'window_seconds', 'segment_seconds', 'drain_seconds'):
         if type(x[key]) is not int or x[key] <= 0:
             raise ValueError('positive explicit resource/time required: ' + key)
-    if x['initialization_policy'] != 'fixed_population_slots_no_refill':
-        raise ValueError('only a fixed N-slot initialization plan is implemented; no success refill')
+    if x['initialization_policy'] not in ('fixed_population_slots_no_refill','bounded_initialization_until_population'):
+        raise ValueError('explicit initialization plan required; no default success refill')
     if c['initialization'] != 'llm' or c['population_size'] > c['initialization_request_cap']:
         raise ValueError('explicit independent N-slot initialization budget required')
+    if (c['initialization_candidate_cap']!=c['initialization_request_cap']
+            or c['api_attempt_cap']!=c['initialization_request_cap']+c['generation_request_cap']):
+        raise ValueError('full request limit must explicitly equal initialization cap plus evolution attempts')
+    from .constructive_state import GROUPS
+    if c['window']!=10 or tuple(c['enabled_groups'])!=tuple(GROUPS):
+        raise ValueError('full frozen state and global history window=10 required')
     if c['problem'] != 'fjsp':
         raise ValueError('TSP must supply its frozen reference adapter before enabling this profile')
     n = c['generation_request_cap']
@@ -55,12 +61,12 @@ def validate_contract(c):
     if c['api_mode'] == 'real':
         if c['api_concurrency'] != 1:
             raise ValueError('safe fallback permits one generation worker only')
-        from . import state_a, routing_state_a
+        from . import state_a_v3 as state_a, routing_state_a_v3 as routing_state_a
         b = x['state_binding']
         if not isinstance(b, dict) or b != {'version':state_a.VERSION, 'spec_sha256':state_a.SPEC_SHA256,
                 'abi':routing_state_a.ABI, 'history_extension_delivered':True}:
             raise ValueError('frozen delivered state binding missing or changed')
-        if state_a.VERSION == 'common-state-a-v2':
+        if state_a.VERSION != 'common-state-a-v3':
             raise ValueError('the current ten-field delivery lacks the required per-H history extension')
         verify_client(c)
         a = x['account_exclusion']
@@ -120,7 +126,7 @@ def bind_protocol(p):
     p.update(objective='mean((raw_cost-reference)/reference); minimize J; internal fitness=-J',
              selection='internal -J descending, fixed id ascending; original parent-coverage survival',
              state_history_delivery=x['state_binding'], drain_bound_seconds=bound,
-             run_id=x['run_id'], group=x['group'], initialization='fixed N slots, no automatic refill',
+             run_id=x['run_id'], group=x['group'], initialization=x['initialization_policy'],
              generation_budget='exact attempt prefix; invalids and duplicates consume attempts',
              source_cost=x['source_cost'])
     import subprocess
@@ -175,7 +181,8 @@ def start_segment(directory,p,s):
     write(directory/'segments'/f'{time.time_ns()}.json', {'started_at':now,
         'segment_deadline':now+x['segment_seconds'],'original_deadline':read(directory/'Run_clock.json')['deadline'],
         'resources':resource_receipt,'host':socket.gethostname(),
-        'slurm':{k:os.environ.get(k) for k in ('SLURM_JOB_ID','SLURM_ARRAY_JOB_ID','SLURM_ARRAY_TASK_ID','SLURM_CPUS_PER_TASK')},
+        'slurm':{k:os.environ.get(k) for k in ('SLURM_JOB_ID','SLURM_ARRAY_JOB_ID','SLURM_ARRAY_TASK_ID','SLURM_CPUS_PER_TASK',
+                 'SLURM_MEM_PER_NODE','SLURM_MEM_PER_CPU','SLURM_JOB_NUM_NODES','SLURM_JOB_PARTITION','SLURM_JOB_ACCOUNT')},
         'scope':'execution segment wall clock, excludes queue and paused time'})
     s['segment_started_at']=now
     s['segment_started_monotonic']=time.monotonic()
@@ -199,26 +206,47 @@ def bound_batch(batch,s,c):
     return batch[:min(next_mark-s['generation_requests'],c['generation_request_cap']-s['generation_requests'])]
 
 
+def send_state(value):
+    if not isinstance(value,dict):return 'unknown'
+    if value.get('sent'):return 'confirmed'
+    m=value.get('metadata') or {};state=m.get('send_status')
+    if state in ('confirmed','unknown','not_sent'):return state
+    return ('not_sent' if m.get('failure_stage') in ('preflight','dns','connect','tls','prepare','connection')
+            or m.get('connection_phase') in ('connecting','dns','tls') else 'unknown')
+
+
+def dispatch_policy(value,streak):
+    from fjsp_usage.research_real.attempt_budget import failure_policy
+    if send_state(value)=='unknown':return True,streak
+    if value.get('text') is not None:return False,0
+    m=value.get('metadata') or {}
+    temporary,_,permanent=failure_policy(value.get('error',''),m,value.get('error_type',''))
+    streak+=1
+    return bool(permanent or m.get('caller_hard_stop') or not temporary or streak>=3),streak
+
+
 def settle_api(s,p,tasks,replies):
     if p['config']['api_mode']!='real':return
     from fjsp_usage.research_real.attempt_budget import failure_policy
+    unknown=[]
     for t in tasks:
         r=replies[t['id']];v=r.get('value') if r.get('ok') else None
         if not isinstance(v,dict):
             t.update(status='unknown_send',send_state='unknown')
-            raise RuntimeError('request worker failed without a send receipt; reservation retained')
+            unknown.append(t['id']);continue
         m=v.get('metadata') or {}
-        state='confirmed' if v.get('sent') else m.get('send_status')
+        state=send_state(v)
         # A V5 pre-send failure has observed a stage before http_send. Missing
         # audit or http_send without confirmation is intentionally ambiguous.
-        if state not in ('confirmed','unknown'):
-            state='not_sent' if m.get('failure_stage') in ('preflight','dns','connect','tls','prepare','connection') or m.get('connection_phase') in ('connecting','dns','tls') else 'unknown'
         t['send_state']=state
         t['usage']=v.get('usage');t['actual_cost']=None
         t['http_status']=m.get('http_status');t['failure_stage']=m.get('failure_stage')
         if state=='unknown':
             t['status']='unknown_send'
-            raise RuntimeError('unknown physical send; retain reservation and prohibit replay')
+            unknown.append(t['id']);continue
+        if m.get('dispatch_cancelled'):
+            t.update(api_outcome='not_dispatched_after_stop',failure='cancelled_before_dispatch')
+            continue
         if v.get('text') is not None:
             t['api_outcome']='accepted';s['transport_failure_streak']=0
         else:
@@ -230,6 +258,7 @@ def settle_api(s,p,tasks,replies):
                 s.update(phase='paused',pause_reason='API hard error: '+reason,hard_api_stop=True)
             elif s['transport_failure_streak']>=3:
                 s.update(phase='paused',pause_reason='three consecutive transport failures; no retry')
+    if unknown:raise RuntimeError('unknown physical send; retain reservations and prohibit replay: '+','.join(unknown))
 
 
 def pace(c):

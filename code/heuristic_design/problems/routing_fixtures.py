@@ -66,13 +66,19 @@ def solve(problem, instance, h_rows, candidate, *, window=10, enabled_groups=Non
     language = routing
     if state_schema is not None:
         from heuristic_design.core import routing_state_a as language, state_a
+        if state_schema == 'common-state-a-v3-'+problem:
+            from heuristic_design.core import routing_state_a_v3 as language, state_a_v3 as state_a
         if state_schema != state_a.schema_id(problem):raise ValueError('state delivery mismatch')
     u = language.compile_candidate(language.checked(candidate,len(hs)),len(hs))
     obj = decode_instance(problem,instance)
     started = time.perf_counter()
     kwargs = dict(window=window, enabled_groups=tuple(GROUPS) if enabled_groups is None else enabled_groups, trace=trace)
     if problem == 'fjsp':
-        result = fjsp(obj, hs, u, **kwargs, state_schema=state_schema)
+        if state_schema == 'common-state-a-v3-fjsp':
+            from .fjsp.routing import construct_state_a_v3
+            result=construct_state_a_v3(obj,hs,u,trace=trace)
+        else:
+            result = fjsp(obj, hs, u, **kwargs, state_schema=state_schema)
         solution = asdict(result.schedule)
     else:
         if state_schema is not None:raise ValueError('TSP requires its separately frozen reference adapter')

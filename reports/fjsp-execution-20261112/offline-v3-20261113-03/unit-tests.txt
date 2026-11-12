@@ -1,0 +1,21 @@
+test_bounded_user_validation_prefix_is_exact_and_resumes_same_budget (test_frozen_execution_offline.Offline.test_bounded_user_validation_prefix_is_exact_and_resumes_same_budget) ... ok
+test_explicit_bounded_initialization_uses_only_its_declared_cap (test_frozen_execution_offline.Offline.test_explicit_bounded_initialization_uses_only_its_declared_cap) ... ok
+test_failure_classes_unknown_and_hard_stop (test_frozen_execution_offline.Offline.test_failure_classes_unknown_and_hard_stop) ... ok
+test_hard_or_unknown_reply_prevents_later_reserved_request_in_same_wave (test_frozen_execution_offline.Offline.test_hard_or_unknown_reply_prevents_later_reserved_request_in_same_wave) ... ok
+test_independent_seeds_and_exclusive_launch (test_frozen_execution_offline.Offline.test_independent_seeds_and_exclusive_launch) ... ok
+test_infrastructure_failure_retains_lock_and_reservation (test_frozen_execution_offline.Offline.test_infrastructure_failure_retains_lock_and_reservation) ... ok
+test_initialization_failure_does_not_refill_and_duplicate_spends_attempt (test_frozen_execution_offline.Offline.test_initialization_failure_does_not_refill_and_duplicate_spends_attempt) ... ok
+test_parallel_serial_resume_prefix_milestones_and_process_receipts (test_frozen_execution_offline.Offline.test_parallel_serial_resume_prefix_milestones_and_process_receipts) ... ok
+test_pool_limits_actually_apply (test_frozen_execution_offline.Offline.test_pool_limits_actually_apply) ... ok
+test_raw_cost_and_reference_receipt_cannot_be_replaced_by_partial_score (test_frozen_execution_offline.Offline.test_raw_cost_and_reference_receipt_cannot_be_replaced_by_partial_score) ... ok
+test_resources_and_staged_drain_math (test_frozen_execution_offline.Offline.test_resources_and_staged_drain_math) ... ok
+test_slurm_command_matches_configuration_without_submission (test_frozen_execution_offline.Offline.test_slurm_command_matches_configuration_without_submission) ... ok
+test_slurm_duplicate_and_unknown_submission_are_not_replayed (test_frozen_execution_offline.Offline.test_slurm_duplicate_and_unknown_submission_are_not_replayed) ... ok
+test_unknown_reservation_config_and_checkpoint_tamper_block (test_frozen_execution_offline.Offline.test_unknown_reservation_config_and_checkpoint_tamper_block) ... ok
+test_v3_constructor_call_binding_without_solving (test_frozen_execution_offline.Offline.test_v3_constructor_call_binding_without_solving) ... ok
+test_wave_budget_is_checked_before_any_reservation_or_dispatch (test_frozen_execution_offline.Offline.test_wave_budget_is_checked_before_any_reservation_or_dispatch) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 9.961s
+
+OK

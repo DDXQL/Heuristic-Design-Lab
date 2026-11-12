@@ -1,0 +1,45 @@
+{
+  "worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-execution-20261112",
+  "branch": "codex/fjsp-execution-20261112",
+  "base_commit": "169a129fdde9c5d27d8f73f2361809c5e3644681",
+  "shared_git_common_dir": "/Users/DDXQL/Developer/FJSP-Heuristic-Research/.git",
+  "state_source_commit": "2d36f37aeb8a953c0ed2f9c0d63f86e943de7e1e",
+  "state_import_commit": "c2cea61",
+  "state_modules_byte_equal_to_owner": {
+    "code/heuristic_design/core/state_a_v3.py": true,
+    "code/heuristic_design/core/routing_state_a_v3.py": true,
+    "code/heuristic_design/problems/fjsp/state_a_v3.py": true,
+    "code/heuristic_design/problems/tsp/state_a_v3.py": true,
+    "code/heuristic_design/problems/obp/state_a_v3.py": true
+  },
+  "V5_client_byte_equal_to_admitted_owner": {
+    "code/fjsp_usage/research_real/real_transport.py": true,
+    "code/heuristic_design/llm/strict_nonstream.py": true
+  },
+  "closed_finite_flow": {
+    "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-flow-result-repair-20261112/reports/flow-result-repair-20261112/closed-20261112-160518/FINAL_ACCEPTANCE_ZH.md",
+    "sha256": "ac3d1a446b35c63e1a3eabfa727ee89566b128b5b0c1bf80327a7b08741b402f",
+    "old_budget_reusable": false
+  },
+  "rules_discoverable": {
+    "AGENTS.md": "cc04605fa89073450636cfdded0ff033cddf29f646f6924212c9deffd9a19b64",
+    "docs/中文科研写作规范.md": "01bbcdd9b4c7d353b770257e6e884bdb372498439ba4cced62ea0b756234047e",
+    ".agents/skills/humanizer-zh/SKILL.md": "95627fd4437d886f98032ccc62d79136e6310f1fc04e354bb86431795ff206df"
+  },
+  "experiment_skill": "/Users/DDXQL/.codex/skills/ahd-experiment-copilot/SKILL.md",
+  "experiment_skill_sha256": "769aea1568e59f335b78d95d9480a7bcdc1a1310d8bbce424f75cd2f753f0b39",
+  "sources_preserved": true,
+  "cluster_deployment_git_status": "ordinary directory; parent /Users/DDXQL Git explicitly excluded",
+  "remote_current_state": "not verified: BatchMode jump-host authentication failed; no retries",
+  "runtime": "existing portable-v2 Python3.12.10 / NumPy2.2.6; no installation",
+  "notion_sources": [
+    {
+      "id": "41604e0510d781f3bbdbd540917022f2",
+      "last_edited": "2026-11-12T14:44:53.248Z"
+    },
+    {
+      "id": "41204e0510d781f3a328c11ed393a1b1",
+      "last_edited": "2026-11-12T09:02:35.576Z"
+    }
+  ]
+}

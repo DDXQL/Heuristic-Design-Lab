@@ -58,7 +58,7 @@ def export(directory,p,s):
     # Initializations have their own denominator; unknown sends are excluded.
     api=[]
     for stage in ('initialization','evolution'):
-        selected=[t for t in tasks if t['stage']==stage and t.get('api_outcome')]
+        selected=[t for t in tasks if t['stage']==stage and t.get('api_outcome') in ('accepted','transport_failed','response_rejected')]
         blocks=sorted({(i//100)*100 for i in range(len(selected))}) or [0]
         for start in blocks:
             group=selected[start:start+100]
@@ -76,13 +76,15 @@ def export(directory,p,s):
         'run_id':p['run_id'],'phase':s['phase'],'protocol_sha256':s['identity'],
         'initialization_attempts':s['initialization_requests'],'evolution_attempts':s['generation_requests'],
         'request_reservations':s['initialization_requests']+s['generation_requests'],
-        'confirmed_sends':sum(t.get('send_state')=='confirmed' for t in s['tasks'].values()),
-        'unknown_sends':sum(t.get('send_state')=='unknown' or t['status']=='request_reserved' for t in s['tasks'].values()) if p['config']['api_mode']=='real' else 0,
+        'confirmed_sends':sum(t.get('sent_confirmed') or t.get('send_state')=='confirmed' for t in s['tasks'].values()),
+        'unknown_sends':sum('request_key' in t and not t.get('sent_confirmed') and t.get('send_state') not in ('confirmed','not_sent') for t in s['tasks'].values()) if p['config']['api_mode']=='real' else 0,
         'valid_unique_evaluations':valid,'evaluation_reservations':sum(t.get('evaluation_timing') is not None or t['status']=='evaluation_reserved' for t in s['tasks'].values()),
         'candidate_failures':sum(t.get('failure') in ('parse_or_constraint','evaluation_invalid') for t in tasks),
         'duplicates':sum(t.get('failure')=='AST_duplicate' for t in tasks),
+        'cancelled_before_dispatch':sum(t.get('failure')=='cancelled_before_dispatch' for t in tasks),
         'known_usage_subtotal':known_usage if p['config']['api_mode']=='real' else None,
-        'unknown_usage_attempts':unknown_usage,'actual_cost':None,'currency_hard_cap_verified':False,
+        'unknown_usage_attempts':sum('request_key' in t and t.get('usage') is None for t in s['tasks'].values()) if p['config']['api_mode']=='real' else 0,
+        'actual_cost':None,'currency_hard_cap_verified':False,
         'automatic_retries':0,'source_H_cost':p['source_cost'],'best_J':-c['fitness'] if c else None,
         'champion_id':c['id'] if c else None,'calendar_clock':read(Path(directory)/'Run_clock.json') if (Path(directory)/'Run_clock.json').exists() else None,
         'timing_scope':'task timings are per function; batch durations are shared, never summed as wall time',

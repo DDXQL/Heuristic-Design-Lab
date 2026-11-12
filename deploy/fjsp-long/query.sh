@@ -3,5 +3,5 @@
 set -euo pipefail
 HDL_JOB=${1:?job ID}
 case "$HDL_JOB" in ''|*[!0-9]*) exit 2;; esac
-squeue -j "$HDL_JOB" -o '%.18i %.12T %.10M %.6C %.20R'
+squeue -j "$HDL_JOB" -o '%.18i %.12T %.10M %.6C %.20R' || true
 sacct -j "$HDL_JOB" --format=JobID,JobName,State,ExitCode,Elapsed,AllocCPUS,MaxRSS,NodeList

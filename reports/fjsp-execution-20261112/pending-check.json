@@ -1,0 +1,30 @@
+{
+  "offline": true,
+  "model_requests": 0,
+  "solves": 0,
+  "writes": 0,
+  "configuration_sha256": "831dd6dc2d38ef1e621e31e40aa683114462c3784aa5bb50514ecfdb2050caa9",
+  "freeze_status": "draft_NOT_AUTHORIZED",
+  "pending": [
+    "seeds.0",
+    "settings.population_size",
+    "settings.generations",
+    "settings.search_seed",
+    "settings.solve_seed",
+    "settings.initialization_candidate_cap",
+    "settings.initialization_request_cap",
+    "settings.api_concurrency",
+    "settings.evaluation_concurrency",
+    "settings.instance_timeout_seconds",
+    "settings.api_attempt_cap",
+    "settings.execution_contract.allocated_cpus",
+    "settings.execution_contract.window_seconds",
+    "settings.execution_contract.segment_seconds",
+    "settings.execution_contract.drain_seconds",
+    "settings.execution_contract.initialization_policy",
+    "settings.execution_contract.account_exclusion",
+    "settings.execution_contract.min_request_interval_seconds",
+    "freeze_status"
+  ],
+  "ready": false
+}

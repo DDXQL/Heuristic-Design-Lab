@@ -92,6 +92,7 @@ def main(argv=None):
     parser.add_argument('--allow-api',action='store_true');parser.add_argument('--allow-evaluation',action='store_true')
     parser.add_argument('--credential-file',type=Path,help='existing owner-only cluster credential; read only in explicit real run/resume')
     parser.add_argument('--max-tasks',type=int,help='Mock boundary pause for offline acceptance only')
+    parser.add_argument('--pause-after-attempts',type=int,help='pause at an exact cumulative settled-attempt prefix, within the original budget')
     args=parser.parse_args(argv)
     try:
         if args.action=='check-only':
@@ -118,6 +119,11 @@ def main(argv=None):
                     if s['phase']!=('paused' if args.action=='resume' else 'prepared'):
                         raise ValueError('run requires prepared; resume requires safely paused original checkpoint')
                     if c['evaluation_mode']=='solve' and not args.allow_evaluation:raise PermissionError('explicit --allow-evaluation required')
+                    maximum=args.max_tasks
+                    if args.pause_after_attempts is not None:
+                        if maximum is not None or not s['completed_tasks']<args.pause_after_attempts<=c['api_attempt_cap']:
+                            raise ValueError('pause prefix must exceed current settled attempts and stay within original cap')
+                        maximum=args.pause_after_attempts-s['completed_tasks']
                     if c['api_mode']=='real' and args.credential_file is not None:
                         if not args.allow_api or not c['real_requests_authorized']:raise PermissionError('explicit real launch authorization required before credential access')
                         import stat
@@ -130,7 +136,7 @@ def main(argv=None):
                         if not secret or '\n' in secret or '\r' in secret:raise ValueError('credential absent or malformed')
                         os.environ[c['provider']['api_key_env']]=secret
                     if args.max_tasks is not None and document['freeze_status']!='mock_frozen':raise ValueError('Mock control only')
-                    result=engine.run(directory,allow_api=args.allow_api,max_tasks=args.max_tasks)
+                    result=engine.run(directory,allow_api=args.allow_api,max_tasks=maximum)
         print(json.dumps(result,ensure_ascii=False,indent=2))
         if result.get('pending') or result.get('phase') in ('blocked','initialization_incomplete'):return 2
         return 0

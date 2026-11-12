@@ -98,6 +98,13 @@ def source_identity():
 def save(directory, state):
     write(directory/'checkpoint.json',state)
     write(directory/'checkpoint.receipt.json',{'sha256':sha(directory/'checkpoint.json'),'identity':state['identity']})
+    if state.get('execution_contract_version'):
+        # Reservations reach durable storage before any physical dispatch.
+        for name in ('checkpoint.json','checkpoint.receipt.json'):
+            with (directory/name).open('rb') as f:os.fsync(f.fileno())
+        fd=os.open(directory,os.O_RDONLY)
+        try:os.fsync(fd)
+        finally:os.close(fd)
 
 
 def store_evaluation(directory, task, key, result, mode):
@@ -185,6 +192,7 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
           'initialization_candidates':0,'initialization_requests':0,'generation_requests':0,
           'rng':random.Random(c['search_seed']).getstate(),'generations':[],
           'initialization_complete':False,'pause_ack':0,'completed_tasks':0}
+    if c['execution_contract'] is not None:st['execution_contract_version']=c['execution_contract']['version']
     save(directory,st)
     return {'directory':str(directory),'phase':st['phase'],'protocol':st['identity'],'real_API_calls':0}
 
@@ -225,22 +233,22 @@ def check(directory):
 
 def contract_language(c):
     if c.get('execution_contract') is not None:
-        from . import routing_state_a
-        return routing_state_a
+        from . import routing_state_a_v3
+        return routing_state_a_v3
     from . import routing
     return routing
 
 
 def contract_schema(c):
     if c.get('execution_contract') is not None:
-        from .state_a import schema_id as schema
+        from .state_a_v3 import schema_id as schema
         return schema(c['problem'])
     return schema_id(c['problem'])
 
 
 def contract_spec(c):
     if c.get('execution_contract') is not None:
-        from .state_a import SPEC_SHA256 as spec
+        from .state_a_v3 import SPEC_SHA256 as spec
         return spec
     return SPEC_SHA256
 
@@ -280,6 +288,11 @@ def mock_generate(task, prompt, c, member_count):
         a,b = n%member_count,(n+1)%member_count
         code = (f'def use_heuristics(state):\n    fixture_tag = {n}\n'
                 f'    return {a} if state["construction_progress"] < {(n%89+5)/100!r} else {b}\n')
+    if c.get('execution_contract') is not None and fault != 'duplicate':
+        code=(f'def use_heuristics(state):\n    fixture_tag = {n}\n'
+              f'    if state["availability"]["h_recent_delta_mean"][{a}]:\n'
+              f'        if state["h_recent_delta_mean"][{a}] < {(n%89+5)/100!r}:\n            return {a}\n'
+              f'    return {a} if state["h_usage_count"][{a}] == 0 else {b}\n')
     return 'MOCK engineering response, not an LLM or quality claim.\n```python\n'+code+'```'
 
 
@@ -304,9 +317,12 @@ def mock_evaluate(task, p):
                       history_count=0,recent_history_count=0)
         probes.append(freeze({**values,'availability':{k:v is not None for k,v in values.items()}}))
     if c.get('execution_contract') is not None:
-        from .state_a import History, observe
-        probes=[observe(c['problem'],history=History(100,len(p['members']),10),
-                        demands=[.2],commitments=[0.],action_deltas=[.1]) for _ in probes]
+        from .state_a_v3 import History, observe
+        probes=[]
+        for x in (0.,.2,.5,.8,.99):
+            history=History(100,len(p['members']),10)
+            for i in range(int(x*100)):history.commit(i%len(p['members']),.1)
+            probes.append(observe(c['problem'],history=history,demands=[.2],commitments=[0.],action_deltas=[.1]))
     behavior = [u(packet) for packet in probes]
     if c.get('execution_contract') is not None:score=-1/(1+score)
     return {'valid':True,'fitness':score,'mock':True,
@@ -393,7 +409,8 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     write(directory/'populations/P000.json',s['population'])
                     save(directory,s)
                     continue
-                limit = c['population_size'] if c['initialization']=='import' else (c['population_size'] if c['execution_contract'] is not None else min(c['initialization_candidate_cap'],c['initialization_request_cap']))
+                fixed_slots=c['execution_contract'] is not None and c['execution_contract']['initialization_policy']=='fixed_population_slots_no_refill'
+                limit = c['population_size'] if c['initialization']=='import' or fixed_slots else min(c['initialization_candidate_cap'],c['initialization_request_cap'])
                 if s['initialization_candidates'] >= limit:
                     s['phase']='initialization_incomplete';break
                 # Initialization may replace duplicates/invalid responses only
@@ -451,6 +468,8 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     save(directory,s)
                     _notify_progress(on_progress,directory,s,p)
                     continue
+            if max_tasks is not None and c['execution_contract'] is not None:
+                batch=batch[:max_tasks-(s['completed_tasks']-started_count)]
             _execute_batch(directory,s,p,batch,evaluate)
             _notify_progress(on_progress,directory,s,p)
             if c['execution_contract'] is not None:
@@ -514,11 +533,24 @@ def _execute_batch(directory,s,p,batch,evaluate):
     api_started = time.perf_counter()
     from heuristic_design.llm.routing_transport import generate as real_generate
     generator=real_generate if c['api_mode']=='real' else mock_generate
+    dispatch_stopped=[False]
+    dispatch_streak=[s.get('transport_failure_streak',0)]
     def generate_one(task):
+        guarded=c['execution_contract'] is not None and c['api_mode']=='real'
+        if guarded and dispatch_stopped[0]:
+            return {'text':None,'sent':False,'usage':None,'error':'cancelled before dispatch after API stop',
+                    'metadata':{'send_status':'not_sent','dispatch_cancelled':True}}
         if c['execution_contract'] is not None:
             from .execution_contract import pace
             pace(c)
-        return generator(task,(directory/task['prompt_path']).read_text(),c,len(p['members']))
+        try:value=generator(task,(directory/task['prompt_path']).read_text(),c,len(p['members']))
+        except BaseException:
+            if guarded:dispatch_stopped[0]=True
+            raise
+        if guarded:
+            from .execution_contract import dispatch_policy
+            dispatch_stopped[0],dispatch_streak[0]=dispatch_policy(value,dispatch_streak[0])
+        return value
     responses = _batch(generate_one,needed,c['api_concurrency']) if needed else {}
     api_seconds=time.perf_counter()-api_started
     for task in needed:
@@ -536,7 +568,8 @@ def _execute_batch(directory,s,p,batch,evaluate):
         else:task.update(status='completed',failure='mock_transport' if c['api_mode']=='mock' else 'real_transport',error='request failed; see redacted response receipt')
     if c['execution_contract'] is not None:
         from .execution_contract import settle_api
-        settle_api(s,p,needed,responses)
+        try:settle_api(s,p,needed,responses)
+        finally:save(directory,s)
     save(directory,s)
     evaluate_tasks=[]
     for task in batch:
@@ -595,6 +628,10 @@ def log_progress(directory,s,p):
     import json
     from .terminal_ops import progress
     row={**progress(s,p),'at':time.time()}
+    if p['config']['execution_contract'] is not None:
+        row.update(run_id=p['run_id'],best_training_J=-row['best_evaluated_fitness'] if row['best_evaluated_fitness'] is not None else None,
+                   objective='relative-gap-min; internal fitness=-J',
+                   api_concurrency=p['config']['api_concurrency'],evaluation_concurrency=p['config']['evaluation_concurrency'])
     print(json.dumps(row,ensure_ascii=False),flush=True)
     with (directory/'Events.jsonl').open('a') as f:f.write(json.dumps(row,ensure_ascii=False)+'\n')
 

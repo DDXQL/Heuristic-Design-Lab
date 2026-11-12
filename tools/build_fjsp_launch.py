@@ -18,7 +18,10 @@ def build(source,output):
     if output.exists() or output.with_suffix('.zip.sha256').exists():raise FileExistsError('new package name required')
     names=subprocess.check_output(['git','ls-files','-z','--','code','experiments/common','experiments/fjsp_long',
         'deploy/fjsp-long','tools/fjsp_fixed_h_reuse.py','tools/build_fjsp_launch.py',
-        'requirements.txt','AGENTS.md','.agents','docs/中文科研写作规范.md','docs/state-a-v3',
+        'tools/verify_frozen_execution.py','tools/check_state_a.py','tools/check_state_a_v3.py',
+        'tests/test_frozen_execution_offline.py','tests/test_state_a_offline.py','tests/test_state_a_v3_offline.py',
+        'requirements.txt','LICENSE','LICENSES','THIRD_PARTY_NOTICES.md','AGENTS.md','.agents',
+        'docs/中文科研写作规范.md','docs/state-a-v2','docs/state-a-v3',
         'reports/fjsp-execution-20261112'],cwd=ROOT).decode().rstrip('\0').split('\0')
     # zip paths are explicit relative names, with no symlinks or ambient files.
     payload={}

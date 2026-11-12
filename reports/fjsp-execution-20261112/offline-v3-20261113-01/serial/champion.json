@@ -1,0 +1,12 @@
+{
+  "id": "G002-001-CROSS",
+  "candidate": {
+    "description": "MOCK engineering response, not an LLM or quality claim.",
+    "code": "def use_heuristics(state):\n    fixture_tag = 268130187\n    if state['availability']['h_recent_delta_mean'][0]:\n        if state['h_recent_delta_mean'][0] < 0.7:\n            return 0\n    return 0 if state['h_usage_count'][0] == 0 else 1\n",
+    "key": "8ebf69e1e201473e53e7c1c7a3defff39c02ac2286f61f4ba29d32e80e15d7ee",
+    "abi": "pure-routing-state-a-v3"
+  },
+  "J": 0.25007109875327665,
+  "protocol_sha256": "fb13f39fd8d7c55567911c5083955be34e9a3fca86d459b297a6d462962096ad",
+  "selection_scope": "ALL complete valid settled prefix candidates"
+}
