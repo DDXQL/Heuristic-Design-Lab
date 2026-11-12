@@ -1,0 +1,45 @@
+{
+  "valid": false,
+  "fitness": null,
+  "instances": [],
+  "failure": {
+    "error_type": "TypeError",
+    "error": "StateAResult.__init__() got multiple values for argument 'member_sequence'",
+    "failed_instance": "synthetic-fjsp-flow-development",
+    "parent_observed_instance_seconds": 0.19369250000454485
+  },
+  "lifecycle": {
+    "status": "terminal",
+    "pid": 22182,
+    "deadline_seconds": 30,
+    "started_monotonic": 75731.638763458,
+    "deadline_scope": "complete_recv_including_deserialisation",
+    "trigger": null,
+    "cleanup": [
+      "join_0.05"
+    ],
+    "expected_rows": 1,
+    "rows_received": 0,
+    "all_results_received": false,
+    "exit_grace_seconds": 2.0,
+    "exit_grace_used": false,
+    "results_complete_monotonic": null,
+    "receiver_thread_stopped": true,
+    "instance_receives": [
+      {
+        "file": "synthetic-fjsp-flow-development",
+        "started": 75731.639625083,
+        "deadline": 75761.639625083,
+        "finished": 75731.833090666,
+        "timely": true
+      }
+    ],
+    "exit_wait_observed_seconds": 0.015848249997361563,
+    "alive": false,
+    "exitcode": 0,
+    "finished_monotonic": 75731.849202541
+  },
+  "score_direction": "min",
+  "failure_layer": "candidate_runtime",
+  "utility_note": "fitness=-J only for established executor storage; no selection/search"
+}

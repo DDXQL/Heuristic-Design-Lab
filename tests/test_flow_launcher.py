@@ -15,7 +15,7 @@ class FlowLauncherTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name).resolve();self.state=self.root/'state'
         deploy=self.root/'deploy/flow-check';deploy.mkdir(parents=True)
-        (self.root/'reports/flow-check-20261112').mkdir(parents=True)
+        (self.root/'reports/flow-result-repair-20261112').mkdir(parents=True)
         (self.root/'bin').mkdir();self.zip=self.root/'fixture.zip'
         self.zip.write_bytes(b'local stub, never an actual upload')
         stub='''import json,os,pathlib,sys
@@ -42,8 +42,8 @@ if name=='fixture-python' and 'check-mac-export' in sys.argv:
         source=(ROOT/'deploy/flow-check/start.sh').read_text()
         source=source.replace('HDL_ROOT=$(cd "$(dirname "$0")/../.." && pwd)','HDL_ROOT='+shlex.quote(str(self.root)))
         source=source.replace('HDL_PY=/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python','HDL_PY='+shlex.quote(str(self.root/'bin/fixture-python')))
-        source=source.replace('HDL_STATE="$HOME/hdl-flow-validation/fjsp-state-a-flow-20261112/mac"','HDL_STATE='+shlex.quote(str(self.state)))
-        source=source.replace('HDL_ZIP=/Users/DDXQL/Developer/transfer-outbox/fjsp-state-a-flow-20261112.zip','HDL_ZIP='+shlex.quote(str(self.zip)))
+        source=source.replace('HDL_STATE="$HOME/hdl-flow-validation/fjsp-state-a-flow-20261112-r1/mac"','HDL_STATE='+shlex.quote(str(self.state)))
+        source=source.replace('HDL_ZIP=/Users/DDXQL/Developer/transfer-outbox/fjsp-state-a-flow-20261112-r1.zip','HDL_ZIP='+shlex.quote(str(self.zip)))
         self.launch=deploy/'start.sh';self.launch.write_text(source)
         (deploy/'submit_cluster.sh').write_text('printf "SUBMIT-WRAPPER\\n" >> "$TRACE"\n')
         self.env={'PATH':str(self.root/'bin')+os.pathsep+os.defpath,'TRACE':str(self.root/'trace'),'STAGE':str(self.state),'LEAFAPI_API_KEY':'synthetic-key'}
@@ -91,12 +91,12 @@ if name=='fixture-python' and 'check-mac-export' in sys.argv:
         source=(ROOT/'deploy/flow-check/submit_cluster.sh').read_text()
         source=source.replace('HDL_ROOT=$(cd "$(dirname "$0")/../.." && pwd)','HDL_ROOT='+shlex.quote(str(self.root)))
         source=source.replace('HDL_PY=/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python','HDL_PY='+shlex.quote(str(self.root/'bin/fixture-python')))
-        source=source.replace('HDL_EXPORT="$HOME/hdl-flow-validation/fjsp-state-a-flow-20261112/mac/export.json"','HDL_EXPORT='+shlex.quote(str(self.state/'export.json')))
+        source=source.replace('HDL_EXPORT="$HOME/hdl-flow-validation/fjsp-state-a-flow-20261112-r1/mac/export.json"','HDL_EXPORT='+shlex.quote(str(self.state/'export.json')))
         script=self.root/'deploy/flow-check/submit-real-source.sh';script.write_text(source)
         result=self.run_fixture(['/bin/bash',str(script),'run','--allow-evaluation','--approve-solves','12'])
         self.assertEqual(result.returncode,0,result.stdout)
         self.assertEqual(self.trace().count('SUBMIT-COMPUTE-STUB'),1)
-        report=self.root/'reports/flow-check-20261112'
+        report=self.root/'reports/flow-result-repair-20261112'
         self.assertEqual((report/'submitted-jobs.txt').read_text().strip(),'701234')
         self.assertEqual(len(list(report.glob('transfer-*/accounting-after-submit.txt'))),1)
 

@@ -1,6 +1,6 @@
 # Heuristic-Design-Lab：多问题实验与中文文档入口
 
-- **本工作树：FJSP方案A完整链工程准备（2026-11-12）**：[启动、限额、停止接续与取回](reports/flow-check-20261112/README_ZH.md)。默认 `tools/flow_check.py check-only`；真实请求、构造求解及Slurm提交均由用户启动。前轮4次API诊断预算已关闭；本次待批准上限为2次请求＋12次小型构造，无正式搜索。下方历史入口不作为本轮启动入口。
+- **本工作树：FJSP结果封装修复与有限接续（2026-11-12）**：[实际失败、累计限额、启动与取回](reports/flow-result-repair-20261112/README_ZH.md)。原运行在固定基线封装时报本地错误，API0；修复阶段保留失败占用2次，Mac最多6次、集群H/U复检最多4次求解，累计仍不超过原12次，API仍最多2次。默认 `tools/flow_check.py check-only`；真实请求、构造求解及Slurm提交均由用户启动。旧准备报告和下方历史入口不能代替本次真实验收。
 
 - **TSP专用10H一条命令构建与离线汇报**：[协议V1](docs/TSP_H10_BUILD_PROTOCOL_V1.md)、[正式/工程命令与预算](reports/tsp-h10-build-prepared-20261101/REPORT_ZH.md)。默认真实请求关闭；H构建建议40次、恒选0次API、U预算另计，由用户终端分别启动。
 

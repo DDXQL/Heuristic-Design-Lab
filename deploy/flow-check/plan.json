@@ -1,8 +1,11 @@
 {
-  "version": "fjsp-state-a-flow-20261112",
+  "version": "fjsp-state-a-flow-20261112-r1",
   "new_api_cap": 2,
   "total_solve_cap": 12,
-  "per_site_solve_cap": 6,
+  "per_site_solve_cap": {
+    "mac": 6,
+    "cluster": 4
+  },
   "automatic_retry": false,
   "real_requests_authorized": false,
   "evaluation_authorized": false,
@@ -34,9 +37,11 @@
   "source_provenance": {
     "API_base_commit": "ab45eadaf4c849b15ae6fabfd450c9019d9dc43d",
     "admitted_client_launch_commit": "625c07158416de8866db8fa43776434e31a1a5a9",
-    "state_A_commit": "dd28326e6340fd3c6de75c4b3ada4ed58851bb94"
+    "state_A_commit": "dd28326e6340fd3c6de75c4b3ada4ed58851bb94",
+    "failed_flow_commit": "d160411c72eb8f5a96824be4eebb1ac94ca5e8f8",
+    "failed_flow_plan_sha256": "b21f60346dcbe2e7b2d134a9e2d52fb4565ede3af1be6f70ae8d91595d4c47bd"
   },
-  "research_scope": "FJSP synthetic engineering only; no search, no quality comparison; TSP LKH reference unprepared",
+  "research_scope": "FJSP synthetic engineering repair phase only; old failed reservation2 + Mac6 + cluster H/U replay4 <= original12; no search; TSP LKH reference unprepared",
   "files": {
     "LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
     "LICENSES/LLM4AD-BSD-2-Clause.txt": "66d37674abb627f800e3a034cf0353785e9ef2e5dc1d6736bbe31ae0a3e96857",
@@ -133,7 +138,7 @@
     "code/heuristic_design/core/evolution_export.py": "c9654cb23cfc167ae6a085caf6e0c141ac711f13e5ff81a5a77307272a4740a3",
     "code/heuristic_design/core/evolution_v1.py": "f344f26c105ac1712e646ede58ac5a902b94039d9cb78f8c8a90f3fbeea3e39b",
     "code/heuristic_design/core/execution.py": "02b72de73c23917b9358f5f3d8d8820845f5aa7305f968ad8129ad4e9b6b21af",
-    "code/heuristic_design/core/flow_check.py": "36eb67d6cbed93be7a6bc58d8ada87812f85ea7c405482b5f7e4f8c68057d51d",
+    "code/heuristic_design/core/flow_check.py": "fadb64dab0ef9a93bbe48a26f9c993d8c2d929a9d8bedcc8166ffefbdf399037",
     "code/heuristic_design/core/lifecycle.py": "be29289735b53a106f8956fe8a99ec0bba4f907f7ca20e61be925fb8f3d53666",
     "code/heuristic_design/core/mixing.py": "98cdd97e7c79d30cc0344be0fca2844d2565f672b2ca38f6932921a45a97e829",
     "code/heuristic_design/core/operators.py": "3e2da96fc8a58a38a3654472d04bb9585ccabd1043c02ab7c7ee444d45ae0b08",
@@ -160,7 +165,7 @@
     "code/heuristic_design/problems/fjsp/policies.py": "a4c9c595fbcefd10b2894950a6ef64a089ea3b6269c399faf68a8927cb4e1631",
     "code/heuristic_design/problems/fjsp/prompts.py": "6c875929db123ce76176a65102e5bd5e898a987c1493300d9284f2e6b5c05579",
     "code/heuristic_design/problems/fjsp/provenance.py": "97ef821fb3639f61aac2cd56fe698c16222b44200f1000d5a9e09590f8960d5f",
-    "code/heuristic_design/problems/fjsp/routing.py": "ee5403be8827ae729894c39d6a872160725d12adb1c6aa8d0431727b918d1983",
+    "code/heuristic_design/problems/fjsp/routing.py": "618e222489661c6c5351024a75c715b55b607b2e9551b3593f8c69d3d058402d",
     "code/heuristic_design/problems/fjsp/solver.py": "5705a3c5733acb14c4bc583092abd171eaafed42b5850b4e2a095d311130a8eb",
     "code/heuristic_design/problems/fjsp/state_a.py": "7597b612361b00aa4152fdd7c832ff0484489c04ad013f17bc49223cae5fcdc4",
     "code/heuristic_design/problems/fjsp/states.py": "6e9185e1dc9b33bc596ec2636efa7b96d1aefbb7baad218481ed295b0929e7e2",
@@ -211,14 +216,27 @@
     "code/llm4ad/tools/profiler/tensorboard_profiler.py": "09476e02ba3c793848ec02a2b9c3180f555d48042ded85304439eed4f7eb1f71",
     "code/llm4ad/tools/profiler/wandb_profiler.py": "05ef0f29eb475a1b636bce0b1dcf2823f0f64b9b18e9632aa689dfb94344372b",
     "deploy/api-common/prompts/fjsp_h.txt": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62",
-    "deploy/flow-check/cluster.sbatch": "9f777cbff24bef7f197391614c68a6bb8b0974ac8a35fe781cc3a641967340b2",
-    "deploy/flow-check/fetch.sh": "4b59a9c71675805e947711d4c9fccc8183f54663274744dbcf8f5bbf9c347204",
+    "deploy/flow-check/cluster.sbatch": "37582c51681caef86dac5d4cf996710ecaa1ec06bd02bfb3edb00c84072fa8c7",
+    "deploy/flow-check/fetch.sh": "a409ab27a6d08eaf33cba1e34f7124edc6092c8bdf87afc80e63960791f079a1",
     "deploy/flow-check/members.json": "5e9375d51ea07ff511f38bdbc42645a0ee57cece12ccbab3ed2dc6b4a4af2f83",
-    "deploy/flow-check/start.sh": "ee5601c68ab798f7f26464f167e21c3dc89f1788bfd028137f3d9007e4f7123b",
-    "deploy/flow-check/submit_cluster.sh": "4a637b72bd677ca23218abd5c53a44bcbb868bda515fbabd2db4d5f3a62a75cb",
+    "deploy/flow-check/predecessor.json": "e889c093ca1e9583cd4880cca5109a2396e8c42a399736e3324aac9b36e3956b",
+    "deploy/flow-check/predecessor/End_summary.json": "8ffdf15d453c95f3ffd7d84bf59b8329c90e8be55a0690f61077a239fc80d58e",
+    "deploy/flow-check/predecessor/Known_failure.json": "2e6b78cd9fdd224d4240bae6acfdb962a6abf3965d75f7f2b6ae6610d6d1ec31",
+    "deploy/flow-check/predecessor/Protocol.json": "dc002b22e43d7264dc91576516b34001b610e7275ff9a1de8bce23fc21a83901",
+    "deploy/flow-check/predecessor/Run_clock.json": "0c17aea94983f77ae0f01f19c8b9cd962f063ce1bc96c639446f62e5915c6d31",
+    "deploy/flow-check/predecessor/Stop.json": "a600717a240d16bd525bd8c2f5077074546b273f5dc163a3d02e2baf51c1fff8",
+    "deploy/flow-check/predecessor/Summary.json": "b227c0a1e327285f95260e5146e3ca514ea0523f68f9170480ca755ea52dcc2a",
+    "deploy/flow-check/predecessor/checkpoint.json": "e073e5f4cff776524dc4bc25373be82b003408ae96875d92d7da8a4d3ebb253e",
+    "deploy/flow-check/predecessor/evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/lifecycle.json": "4fc5413604515e67234321ccb017a371ce09685cd6c0358dc5f6044fe2868084",
+    "deploy/flow-check/predecessor/evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/result.json": "5a719081322a8fc60be3d2174eb09ad4e48c7df921ed5a175b5bb49184ccf521",
+    "deploy/flow-check/start.sh": "157f64c9b42270b60932f842f6faa976efc9885f0dcb3335c9b0602380acf881",
+    "deploy/flow-check/submit_cluster.sh": "d0048687c0ef80b2c456a81cbc66ea58fc6d80d1b41cb3639171dba2ccedf504",
     "docs/state-a-v2/contract.json": "858c0467be32d07417097a97965912004d1e9d6b0464f72cfcf0170b19959175",
     "experiments/common/fixtures/fjsp-development.json": "d854d527508760c30e9c078ede0542ce05dcb5c93206f4439e9c56829c6cfdbe",
-    "tools/api_reliability_collect.py": "90f10eef0d10ac50fe7c6a7beab4f3d571ab72fa9401c5df070dd55f4bae01b1",
-    "tools/flow_check.py": "78dddb4d7a0e64ff3a8e3fb09bb7f5e7c063f667a129ea0a6eaf8a267209f684"
-  }
+    "tools/api_reliability_collect.py": "5783ae07c3e85365ea9e1f8a656d5772897dea233d68e3b9ad59ec864733ab01",
+    "tools/flow_check.py": "a938321b06de39a366b3baf02139b83b7af403044142018f380bdb0f2796f7c7"
+  },
+  "carried_solve_passes": 2,
+  "remaining_phase_solve_cap": 10,
+  "failed_flow_budget_carried": true
 }

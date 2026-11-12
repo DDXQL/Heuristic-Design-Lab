@@ -26,7 +26,7 @@ disable_requeue='--disable-requeue' in sys.argv[2:]
 flow_profile='--flow-profile' in sys.argv[2:]
 assert not (flow_profile and disable_requeue), 'flow profile is collection-only; no-requeue is set at submission'
 base=Path('/public2/home/qiuqian/hdl-deploy/api-common-v5-20261111')
-if flow_profile:base=Path('/public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112')
+if flow_profile:base=Path('/public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112-r1')
 home=Path.home()
 def scrub(s):return re.sub(r'(?i)(bearer\s+\S+|sk-[A-Za-z0-9_-]+)','[REDACTED]',s)
 def query(args):
@@ -85,8 +85,8 @@ if resources:
   'reservations':query(['scontrol','show','reservation'])}
 paths=[home/'hdl-api-validation/mac-cluster-api-v5-20261111/cluster',
  Path('/public2/home/qiuqian/hdl-api-validation/mac-cluster-api-v5-20261111/cluster')]
-if flow_profile:paths=[home/'hdl-flow-validation/fjsp-state-a-flow-20261112/cluster',
- Path('/public2/home/qiuqian/hdl-flow-validation/fjsp-state-a-flow-20261112/cluster')]
+if flow_profile:paths=[home/'hdl-flow-validation/fjsp-state-a-flow-20261112-r1/cluster',
+ Path('/public2/home/qiuqian/hdl-flow-validation/fjsp-state-a-flow-20261112-r1/cluster')]
 for state in dict.fromkeys(paths):
  row={'path':str(state),'exists':state.exists(),'owner_lock_exists':(state/'owner.lock').exists(),'files':[]}
  # Explicit allowlist; never walk HOME or open any credential/config file.
@@ -172,7 +172,7 @@ def main(argv=None):
                           'would_disable_requeue': args.disable_requeue,'flow_profile':args.flow_profile}))
         return 0
     stamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime('%Y%m%d-%H%M%S')
-    directory = ROOT/('reports/flow-check-20261112' if args.flow_profile else 'reports/api-common-20261111')/f'collected-{stamp}-{uuid.uuid4().hex[:8]}'
+    directory = ROOT/('reports/flow-result-repair-20261112' if args.flow_profile else 'reports/api-common-20261111')/f'collected-{stamp}-{uuid.uuid4().hex[:8]}'
     directory.mkdir()
     command = ['ssh', '-o', 'NumberOfPasswordPrompts=1', '-o', 'ConnectTimeout=8',
                '-o', 'ProxyCommand=ssh -o NumberOfPasswordPrompts=1 -o ConnectTimeout=8 -W %h:%p custom@222.201.144.188',

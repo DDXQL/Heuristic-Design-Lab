@@ -5,7 +5,9 @@ requests; cluster imports the exact Mac responses and makes no model request.
 """
 from collections import Counter
 from dataclasses import asdict, dataclass
+import ast
 import csv
+import inspect
 import json
 import math
 import multiprocessing as mp
@@ -25,8 +27,63 @@ from fjsp_usage.research_real.real_transport import WIRE_VERSION, failure_catego
 
 ROOT = Path(__file__).resolve().parents[3]
 PLAN = ROOT/'deploy/flow-check/plan.json'
-VERSION = 'fjsp-state-a-flow-20261112'
+VERSION = 'fjsp-state-a-flow-20261112-r1'
 ROLES = ('fixed_H0', 'single_H_sample', 'state_A_U')
+
+
+def site_roles(site):
+    return ROLES if site == 'mac' else ROLES[1:]
+
+
+def predecessor_proof():
+    proof = read(ROOT/'deploy/flow-check/predecessor.json')
+    base = ROOT/'deploy/flow-check/predecessor'
+    for name, expected in proof['raw_files'].items():
+        path = (base/name).resolve()
+        if not path.is_relative_to(base.resolve()) or sha(path) != expected:
+            raise ValueError('predecessor evidence changed')
+    p = read(base/'Protocol.json');s = read(base/'checkpoint.json')
+    result = read(base/next(iter(s['evaluations'].values()))['path'])
+    life = result['lifecycle']
+    closed=read(base/'End_summary.json')
+    if (proof['previous_version'] != 'fjsp-state-a-flow-20261112'
+            or p['version'] != proof['previous_version'] or s['identity'] != sha(base/'Protocol.json')
+            or s['phase'] != 'stopped' or s['cursor'] != 1 or set(s['tasks']) != {'fixed_H0'}
+            or len(s['evaluations']) != 1 or s['tasks']['fixed_H0']['valid']
+            or proof['API_reserved'] != 0 or proof['API_confirmed'] != 0
+            or proof['carried_solve_passes'] != 2 or proof['incomplete_solve_usage_reservations'] != 1
+            or p['budgets']['logical_generation'] != 2
+            or closed['phase'] != 'stopped' or not closed['lock_retained']
+            or life['alive'] or not life['receiver_thread_stopped'] or life['exitcode'] != 0
+            or evaluation_failure_layer(result['failure']) != 'local_result_contract'
+            or result['valid'] or result['instances']):
+        raise ValueError('predecessor is not the exact bounded, terminal, API-unsent failure')
+    return proof
+
+
+def verify_predecessor_live():
+    """Read-only guard before user-authorized Mac work; never clear old Stop/lock."""
+    proof = predecessor_proof();base = Path(proof['previous_directory'])
+    for name, expected in proof['raw_files'].items():
+        if sha(base/name) != expected:
+            raise ValueError('original predecessor changed; do not spend or resubmit')
+    if (base/'API_attempts.json').exists() or list((base/'wire_responses').glob('*.json')):
+        raise ValueError('predecessor now has API evidence; cumulative budget must be reconciled')
+    if not (base/'.execution.lock').is_file():
+        raise ValueError('original retained lock missing; no automatic recovery')
+
+
+def check_result_call_bindings():
+    """Bind real host call sites using inert values; never invoke construction."""
+    from heuristic_design.problems.fjsp.routing import StateAResult as FJSPResult
+    from heuristic_design.problems.tsp.routing import StateAResult as TSPResult
+    for problem, result_type in (('fjsp',FJSPResult),('tsp',TSPResult)):
+        tree=ast.parse((ROOT/'code/heuristic_design/problems'/problem/'routing.py').read_text())
+        calls=[n for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='StateAResult']
+        if len(calls)!=1 or any(k.arg is None for k in calls[0].keywords):
+            raise ValueError('unexpected host result call shape')
+        call=calls[0]
+        inspect.signature(result_type).bind(*[None]*len(call.args),**{k.arg:None for k in call.keywords})
 
 
 def directory(site):
@@ -38,6 +95,7 @@ def preflight():
     if sha(PLAN) != PLAN.with_suffix('.sha256').read_text().split()[0]:
         raise ValueError('flow plan changed')
     if (p['version'] != VERSION or p['new_api_cap'] != 2 or p['total_solve_cap'] != 12
+            or p['carried_solve_passes'] != 2 or p['per_site_solve_cap'] != {'mac':6,'cluster':4}
             or p['state_spec'] != state_a.SPEC_SHA256 or p['state_abi'] != u.ABI
             or p['wire_version'] != WIRE_VERSION or p['automatic_retry'] is not False):
         raise ValueError('flow identity, state or budget differs')
@@ -58,6 +116,8 @@ def preflight():
     for name, expected in p['admitted_client'].items():
         if sha(ROOT/name) != expected:
             raise ValueError('admitted client differs')
+    predecessor_proof()
+    check_result_call_bindings()
     members = read(ROOT/p['members'])
     for row in members:
         if validate_code(row['code'], description=row['description'], kind='h').key != row['key']:
@@ -178,11 +238,25 @@ def validate_result(value, instances):
         raise ValueError('explicit engineering utility must equal negative relative gap')
 
 
+def evaluation_failure_layer(failure):
+    """Recognize the evidenced host ABI defect without blaming a candidate."""
+    if not failure:
+        return None
+    if (failure.get('error_type') == 'TypeError'
+            and failure.get('error') == "StateAResult.__init__() got multiple values for argument 'member_sequence'"):
+        return 'local_result_contract'
+    return 'evaluation_deadline' if failure.get('error_type') == 'Timeout' else 'candidate_runtime'
+
+
 def evaluate(directory, state, p, c):
     if c.key in state['evaluations']:
         return read(directory/state['evaluations'][c.key]['path']), True
-    if len(state['evaluations']) >= 3:
-        raise ValueError('three evaluation reservations exhausted; no refill')
+    if len(state['evaluations']) >= len(site_roles(p['site'])):
+        raise ValueError('site evaluation reservations exhausted; no refill')
+    prior_mac=(read(directory/'Mac_export.json')['summary']['maximum_reserved_solve_passes']
+               if p['site']=='cluster' else 0)
+    if 2+prior_mac+2*(len(state['evaluations'])+1)>12:
+        raise ValueError('original cumulative solve cap12 exhausted, including failed predecessor')
     folder = directory/'evaluations'/c.key
     folder.mkdir(parents=True,exist_ok=False)
     state['evaluations'][c.key]={'status':'reserved','role':c.role,'maximum_solve_passes':2}
@@ -198,7 +272,7 @@ def evaluate(directory, state, p, c):
         raise RuntimeError('worker normal exit uncertified')
     value={'valid':failure is None,'fitness':None if failure else -sum(r['score'] for r in rows)/len(rows),
            'instances':rows,'failure':failure,'lifecycle':life,'score_direction':'min',
-           'failure_layer':None if not failure else 'evaluation_deadline' if failure.get('error_type')=='Timeout' else 'candidate_runtime',
+           'failure_layer':evaluation_failure_layer(failure),
            'utility_note':'fitness=-J only for established executor storage; no selection/search'}
     validate_result(value,p['instances'])
     write(folder/'result.json',value)
@@ -231,7 +305,8 @@ class Adapter:
             raise ValueError('task plan changed')
         logical=2 if p['site']=='mac' else 0
         if (p['site'] not in ('mac','cluster') or p['members']!=members or p['instances']!=instances
-                or p['references']!=refs or p['budgets']!={'logical_generation':logical,'max_program_instances':3}
+                or p['references']!=refs or p['budgets']!={'logical_generation':logical,'max_program_instances':len(site_roles(p['site']))}
+                or p.get('predecessor_proof_sha256')!=sha(ROOT/'deploy/flow-check/predecessor.json')
                 or p['config']['api_attempt_cap']!=logical or p['config']['per_candidate_attempt_cap']!=1
                 or p['config']['window_seconds']!=3600 or p['config']['type']!='engineering_flow'
                 or p['config']['provider']!=plan['provider']
@@ -240,7 +315,7 @@ class Adapter:
             raise ValueError('frozen flow inputs or bounds differ')
         if p['site']=='cluster' and sha(directory/'Mac_export.json')!=p['Mac_export_sha256']:
             raise ValueError('original Mac export changed')
-        if [r['id'] for r in read(directory/'Tasks.json')]!=list(ROLES):
+        if [r['id'] for r in read(directory/'Tasks.json')]!=list(site_roles(p['site'])):
             raise ValueError('flow task order differs')
         expected={**plan['files'],'deploy/flow-check/plan.json':sha(PLAN),
                   'deploy/flow-check/plan.sha256':sha(PLAN.with_suffix('.sha256'))}
@@ -253,7 +328,7 @@ class Adapter:
         return self.check_run(directory)['members']
 
     def task_context(self,directory,state,p,task,index):
-        if index==1 and not state.get('planned_pause_done'):
+        if p['site']=='mac' and index==1 and not state.get('planned_pause_done'):
             if getattr(self,'resume_cursor',0)>=1:
                 state.update(planned_pause_done=True,pause_exercise='explicit_resume_after_settled_baseline')
                 state.setdefault('resume_checks',[]).append({'cursor':index,'clock_sha256':state['clock_sha256'],
@@ -310,16 +385,24 @@ class Adapter:
              'planned_pause_exercised':s.get('pause_exercise')=='preplanned_after_baseline',
              'checkpoint_pause_kind':s.get('pause_exercise'),
              'resume_receipts':len(s.get('resume_checks',[])),'actual_money_cost':None,
-             'API_cap_this_site':2 if p['site']=='mac' else 0,'solve_cap_this_site':6}
+             'API_cap_this_site':2 if p['site']=='mac' else 0,'solve_cap_this_site':6 if p['site']=='mac' else 4,
+             'carried_predecessor_reserved_solve_passes':2,'carried_predecessor_incomplete_evaluations':1,
+             'cumulative_API_cap':2,'cumulative_solve_cap':12}
         results=[read(directory/r['path']) for r in s['evaluations'].values() if r['status']=='completed']
         out['known_solve_passes']=sum(row['captured_solves'] for value in results for row in value['instances'])
         out['unknown_solve_usage_reservations']=sum(r['status']!='completed' for r in s['evaluations'].values())+sum(not r['valid'] for r in results)
         out['api_send_unknown']=sum(not r.get('send_confirmed',False) and r.get('metadata',{}).get('send_status') not in ('confirmed','not_started') for r in attempts)
+        previous=read(directory/'Mac_export.json')['summary'] if p['site']=='cluster' else None
+        out['cumulative_API_reserved']=out['api_reserved']+(previous['api_reserved'] if previous else 0)
+        out['cumulative_reserved_solve_passes']=2+out['maximum_reserved_solve_passes']+(previous['maximum_reserved_solve_passes'] if previous else 0)
+        out['remaining_cumulative_solve_capacity']=12-out['cumulative_reserved_solve_passes']
         failures=Counter(failure_category(r.get('error',''),r.get('metadata',{})) for r in attempts if r['status']=='failed')
         for task in s['tasks'].values():
             if task.get('failure')=='parse_or_constraint_error':failures['candidate_parse_or_constraint']+=1
         for value in results:
-            if not value['valid']:failures[value.get('failure_layer','evaluation_invalid')]+=1
+            if not value['valid']:
+                layer=evaluation_failure_layer(value.get('failure'))
+                failures[layer if layer=='local_result_contract' else value.get('failure_layer','evaluation_invalid')]+=1
         if out['unknown_solve_usage_reservations']:failures['unknown_or_incomplete_evaluation']=out['unknown_solve_usage_reservations']
         if any(r['status']=='pending' for r in attempts):failures['unknown_API_reservation']=sum(r['status']=='pending' for r in attempts)
         out['failure_counts_by_layer']=dict(failures)
@@ -331,8 +414,17 @@ def accept_mac_export(path):
     value=read(path);p=value['protocol'];s=value['checkpoint']
     if (value['flow_plan_sha256']!=sha(PLAN) or p['site']!='mac' or s['phase']!='completed'
             or value['summary']['api_reserved']!=2 or value['summary']['api_confirmed']!=2
-            or value['summary']['valid_tasks']!=3 or value['summary']['usage_unknown']!=0):
+            or value['summary']['maximum_reserved_solve_passes']!=6
+            or value['summary'].get('cumulative_reserved_solve_passes')!=8
+            or p.get('predecessor_proof_sha256')!=sha(ROOT/'deploy/flow-check/predecessor.json')
+            or value['summary']['valid_tasks']!=3 or value['summary']['usage_unknown']!=0
+            or value['summary']['unknown_solve_usage_reservations']!=0 or value['summary']['api_send_unknown']!=0):
         raise ValueError('complete, fully accounted Mac flow export required')
+    if (set(s['tasks'])!=set(ROLES) or len(s['evaluations'])!=3
+            or any(r['status']!='completed' for r in s['evaluations'].values())
+            or set(value['evaluations'])!=set(s['evaluations'])
+            or any(not r['valid'] for r in value['evaluations'].values())):
+        raise ValueError('all three complete Mac evaluations required; no prefix admission')
     if value['protocol_sha256']!=digest(p) or value['checkpoint_sha256']!=digest(s):
         raise ValueError('Mac export protocol/checkpoint changed')
     if s['identity']!=sha_bytes(p) or s.get('clock_sha256')!=sha_bytes(value['run_clock']):
@@ -384,6 +476,7 @@ def prepare(site,*,allow_api=False,approve_api=None,allow_evaluation=False,appro
         if not secret or any(c.isspace() for c in secret):
             raise ValueError('credential missing; no flow claim or request reserved')
         if sys_platform()!='darwin':raise ValueError('Mac run requires Mac')
+        verify_predecessor_live()
         previous=None
     else:
         if allow_api or approve_api is not None:raise PermissionError('cluster flow is replay, API flags forbidden')
@@ -404,11 +497,12 @@ def prepare(site,*,allow_api=False,approve_api=None,allow_evaluation=False,appro
                   'slurm_job_id':os.environ.get('SLURM_JOB_ID'),'wire':WIRE_VERSION,
                   'transport_file':str(ROOT/'code/fjsp_usage/research_real/real_transport.py'),
                   'monotonic_implementation':time.get_clock_info('monotonic').implementation},
-       'budgets':{'logical_generation':2 if site=='mac' else 0,'max_program_instances':3},
+       'budgets':{'logical_generation':2 if site=='mac' else 0,'max_program_instances':len(site_roles(site))},
+       'predecessor_proof_sha256':sha(ROOT/'deploy/flow-check/predecessor.json'),
        'scope':'synthetic engineering, no search/quality claim; score J min; internal utility=-J',
        'Mac_export_sha256':sha(mac_export) if previous else None}
     tasks=[]
-    for role in ROLES:
+    for role in site_roles(site):
         if previous:
             row=previous['checkpoint']['tasks'][role]['candidate'];c=candidate(row,role,p)
         elif role=='fixed_H0':c=candidate(members[0],role,p)
@@ -423,6 +517,7 @@ def prepare(site,*,allow_api=False,approve_api=None,allow_evaluation=False,appro
            'seen':{},'population':[],'children':[],'generation':0,'pause_ack':0}
     write(d/'checkpoint.json',state)
     write(d/'Budget_approval.json',{'new_API_cumulative_cap':2,'new_solve_cumulative_cap':12,
+          'carried_predecessor_reserved_solve_passes':2,'new_phase_solve_cap':10,
           'explicit_allow_API':allow_api,'explicit_allow_evaluation':allow_evaluation,
           'old_diagnostic_budget_inherited':False,'site':site,'at':time.time()})
     if previous:write(d/'Mac_export.json',previous)
@@ -447,7 +542,9 @@ def run(site,*,resume=False,allow_api=False,approve_api=None,allow_evaluation=Fa
         d=prepare(site,allow_api=allow_api,approve_api=approve_api,
           allow_evaluation=allow_evaluation,approve_solves=approve_solves,mac_export=mac_export)
     adapter=Adapter()
-    if resume:adapter.resume_cursor=read(d/'checkpoint.json')['cursor']
+    if resume:
+        if site=='mac':verify_predecessor_live()
+        adapter.resume_cursor=read(d/'checkpoint.json')['cursor']
     result=execution.start(d,adapter=adapter,resume=resume,allow_api=allow_api)
     s=read(d/'checkpoint.json')
     if (result['phase']=='paused' and s.get('pause_reason')=='preplanned_baseline_boundary' and not s.get('resume_checks')
@@ -476,12 +573,13 @@ def export(site):
     if site=='cluster':
         previous=read(d/'Mac_export.json')
         value['cross_platform']={}
-        for role in ROLES:
+        for role in site_roles('cluster'):
             left=previous['checkpoint']['tasks'].get(role,{});right=s['tasks'].get(role,{})
             le=previous['evaluations'].get(left.get('evaluation_key'));re=evaluations.get(right.get('evaluation_key'))
             value['cross_platform'][role]=bool(le and re and le['valid'] and re['valid'] and
                 [r['semantic_sha256'] for r in le['instances']]==[r['semantic_sha256'] for r in re['instances']])
         value['cross_platform_passed']=all(value['cross_platform'].values())
+        value['cross_platform_scope']='single_H_sample and state_A_U only; fixed_H0 baseline is Mac-only to retain the original cumulative solve cap12'
     write(d/'export.json',value)
     with (d/'results.csv').open('w') as f:
         writer=csv.writer(f);writer.writerow(['role','valid','raw_cost','reference_LB','J_min','captured_solves'])

@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-11-12T15:21:57.859476+08:00",
+  "predecessor_directory": "/Users/DDXQL/hdl-flow-validation/fjsp-state-a-flow-20261112/mac",
+  "predecessor_source_commit": "d160411c72eb8f5a96824be4eebb1ac94ca5e8f8",
+  "predecessor_plan_sha256": "b21f60346dcbe2e7b2d134a9e2d52fb4565ede3af1be6f70ae8d91595d4c47bd",
+  "phase": "stopped",
+  "cursor": 1,
+  "API_cap": 2,
+  "API_reserved": 0,
+  "API_confirmed": 0,
+  "API_passed": 0,
+  "API_failed": 0,
+  "API_send_unknown": 0,
+  "API_usage_unknown": 0,
+  "known_input_tokens": 0,
+  "known_output_tokens": 0,
+  "API_not_exercised": true,
+  "evaluation_reservations": 1,
+  "maximum_reserved_solve_passes": 2,
+  "complete_valid_tasks": 0,
+  "reported_complete_solve_passes": 0,
+  "actual_solve_pass_count": "unknown; conservatively retain maximum reservation2; never infer no solve from absent result",
+  "incomplete_solve_usage_reservations": 1,
+  "failure_original": {
+    "error_type": "TypeError",
+    "error": "StateAResult.__init__() got multiple values for argument 'member_sequence'",
+    "failed_instance": "synthetic-fjsp-flow-development",
+    "parent_observed_instance_seconds": 0.19369250000454485
+  },
+  "failure_original_layer": "candidate_runtime",
+  "failure_corrected_layer": "local_result_contract",
+  "worker_terminal": {
+    "status": "terminal",
+    "pid": 22182,
+    "deadline_seconds": 30,
+    "started_monotonic": 75731.638763458,
+    "deadline_scope": "complete_recv_including_deserialisation",
+    "trigger": null,
+    "cleanup": [
+      "join_0.05"
+    ],
+    "expected_rows": 1,
+    "rows_received": 0,
+    "all_results_received": false,
+    "exit_grace_seconds": 2.0,
+    "exit_grace_used": false,
+    "results_complete_monotonic": null,
+    "receiver_thread_stopped": true,
+    "instance_receives": [
+      {
+        "file": "synthetic-fjsp-flow-development",
+        "started": 75731.639625083,
+        "deadline": 75761.639625083,
+        "finished": 75731.833090666,
+        "timely": true
+      }
+    ],
+    "exit_wait_observed_seconds": 0.015848249997361563,
+    "alive": false,
+    "exitcode": 0,
+    "finished_monotonic": 75731.849202541
+  },
+  "slurm_submission_record_present": false,
+  "original_clock": {
+    "start": 1794458227.9775848,
+    "deadline": 1794461827.9775848
+  },
+  "original_clock_expired_now": true,
+  "clock_gap_record_present": false,
+  "original_files_sha256_verified_unchanged": {
+    "Protocol.json": "dc002b22e43d7264dc91576516b34001b610e7275ff9a1de8bce23fc21a83901",
+    "checkpoint.json": "e073e5f4cff776524dc4bc25373be82b003408ae96875d92d7da8a4d3ebb253e",
+    "Summary.json": "b227c0a1e327285f95260e5146e3ca514ea0523f68f9170480ca755ea52dcc2a",
+    "Run_clock.json": "0c17aea94983f77ae0f01f19c8b9cd962f063ce1bc96c639446f62e5915c6d31",
+    "Stop.json": "a600717a240d16bd525bd8c2f5077074546b273f5dc163a3d02e2baf51c1fff8",
+    "Known_failure.json": "2e6b78cd9fdd224d4240bae6acfdb962a6abf3965d75f7f2b6ae6610d6d1ec31",
+    "End_summary.json": "8ffdf15d453c95f3ffd7d84bf59b8329c90e8be55a0690f61077a239fc80d58e",
+    "evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/lifecycle.json": "4fc5413604515e67234321ccb017a371ce09685cd6c0358dc5f6044fe2868084",
+    "evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/result.json": "5a719081322a8fc60be3d2174eb09ad4e48c7df921ed5a175b5bb49184ccf521"
+  },
+  "launch_logs": [
+    {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-flow-check-20261112/reports/flow-check-20261112/launch-20261112-123429-21478/user-launch.log",
+      "sha256": "194b3dff98b772d7f005e34d996747def8b23ad0cffd9e3222032a0af2a6e211"
+    },
+    {
+      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-flow-check-20261112/reports/flow-check-20261112/launch-20261112-123650-22036/user-launch.log",
+      "sha256": "7c549e0d2787e9f6fc9557a244dbae560a687e419e189a9fc94963b2aaba9261"
+    }
+  ],
+  "repair_limits": {
+    "cumulative_API": 2,
+    "cumulative_solve": 12,
+    "carried_failed_reserved_solves": 2,
+    "new_Mac_max_solves": 6,
+    "new_cluster_max_solves": 4,
+    "API_retry": 0
+  },
+  "repair_stage_actual_reserved": 0,
+  "repair_stage_actual_requests": 0,
+  "repair_stage_actual_solves": 0,
+  "repair_stage_slurm_submissions": 0,
+  "older_cap4_diagnostics_remain_closed_and_separate": true,
+  "long_stability_proven": false
+}

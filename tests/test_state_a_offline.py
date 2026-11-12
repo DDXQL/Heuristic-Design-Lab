@@ -32,6 +32,28 @@ def packet(problem='fjsp', count=0):
 
 
 class OfflineTests(unittest.TestCase):
+    def test_actual_result_calls_bind_without_running_construction(self):
+        """Bind the real source call, rather than a separately written example."""
+        from heuristic_design.problems.fjsp.routing import StateAResult as FJSPResult
+        from heuristic_design.problems.tsp.routing import StateAResult as TSPResult
+        marker = object()
+        for problem, result_type in [('fjsp', FJSPResult), ('tsp', TSPResult)]:
+            path = ROOT / 'code/heuristic_design/problems' / problem / 'routing.py'
+            tree = ast.parse(path.read_text())
+            calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)
+                     and isinstance(n.func, ast.Name) and n.func.id == 'StateAResult']
+            self.assertEqual(len(calls), 1)
+            call = calls[0]
+            with self.subTest(problem=problem):
+                self.assertTrue(all(k.arg is not None for k in call.keywords))
+                # Inert objects only: no H/U execution, schedule, tour or solve.
+                positional = [marker] * len(call.args)
+                keywords = {k.arg: marker for k in call.keywords}
+                bound = inspect.signature(result_type).bind(*positional, **keywords)
+                value = result_type(*bound.args, **bound.kwargs)
+                self.assertIs(value.member_sequence, marker)
+                self.assertIs(value.reference, marker)
+
     def test_frozen_spec_and_common_readable_fields(self):
         frozen = json.loads((ROOT / 'docs/state-a-v2/contract.json').read_text())
         self.assertEqual(frozen['spec_sha256'], s.SPEC_SHA256)

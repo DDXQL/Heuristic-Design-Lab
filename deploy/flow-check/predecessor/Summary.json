@@ -1,0 +1,28 @@
+{
+  "version": "fjsp-state-a-flow-20261112",
+  "site": "mac",
+  "phase": "stopped",
+  "cursor": 1,
+  "tasks": 1,
+  "valid_tasks": 0,
+  "api_reserved": 0,
+  "api_confirmed": 0,
+  "usage_unknown": 0,
+  "known_input_tokens": 0,
+  "known_output_tokens": 0,
+  "evaluation_reserved": 1,
+  "maximum_reserved_solve_passes": 2,
+  "planned_pause_exercised": false,
+  "checkpoint_pause_kind": null,
+  "resume_receipts": 0,
+  "actual_money_cost": null,
+  "API_cap_this_site": 2,
+  "solve_cap_this_site": 6,
+  "known_solve_passes": 0,
+  "unknown_solve_usage_reservations": 1,
+  "api_send_unknown": 0,
+  "failure_counts_by_layer": {
+    "candidate_runtime": 1,
+    "unknown_or_incomplete_evaluation": 1
+  }
+}

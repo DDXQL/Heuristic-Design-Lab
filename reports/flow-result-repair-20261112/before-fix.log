@@ -1,0 +1,65 @@
+test_actual_result_calls_bind_without_running_construction (test_state_a_offline.OfflineTests.test_actual_result_calls_bind_without_running_construction)
+Bind the real source call, rather than a separately written example. ... 
+  test_actual_result_calls_bind_without_running_construction (test_state_a_offline.OfflineTests.test_actual_result_calls_bind_without_running_construction) (problem='fjsp')
+Bind the real source call, rather than a separately written example. ... ERROR
+test_fjsp_hand_given_initial_and_partial_state (test_state_a_offline.OfflineTests.test_fjsp_hand_given_initial_and_partial_state) ... ok
+test_frozen_spec_and_common_readable_fields (test_state_a_offline.OfflineTests.test_frozen_spec_and_common_readable_fields) ... ok
+test_new_result_and_entry_signatures_import_without_solving (test_state_a_offline.OfflineTests.test_new_result_and_entry_signatures_import_without_solving) ... ok
+test_obp_only_current_item_and_opened_bins (test_state_a_offline.OfflineTests.test_obp_only_current_item_and_opened_bins) ... ok
+test_packet_invalid_values_and_missing_are_different (test_state_a_offline.OfflineTests.test_packet_invalid_values_and_missing_are_different) ... ok
+test_prompt_and_cache_binding_align_with_new_contract (test_state_a_offline.OfflineTests.test_prompt_and_cache_binding_align_with_new_contract) ... ok
+test_pure_selection_host_source_has_only_selected_h_and_post_commit_history (test_state_a_offline.OfflineTests.test_pure_selection_host_source_has_only_selected_h_and_post_commit_history) ... ok
+test_router_literal_reads_masks_actual_reads_and_version_rejection (test_state_a_offline.OfflineTests.test_router_literal_reads_masks_actual_reads_and_version_rejection) ... ok
+test_tsp_hand_given_snapshots_and_degenerate_values (test_state_a_offline.OfflineTests.test_tsp_hand_given_snapshots_and_degenerate_values) ... ok
+test_window_uses_last_ten_actual_commits_no_padding (test_state_a_offline.OfflineTests.test_window_uses_last_ten_actual_commits_no_padding) ... ok
+
+======================================================================
+ERROR: test_actual_result_calls_bind_without_running_construction (test_state_a_offline.OfflineTests.test_actual_result_calls_bind_without_running_construction) (problem='fjsp')
+Bind the real source call, rather than a separately written example.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-flow-result-repair-20261112/tests/test_state_a_offline.py", line 52, in test_actual_result_calls_bind_without_running_construction
+    bound = inspect.signature(result_type).bind(*positional, **keywords)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/inspect.py", line 3280, in bind
+    return self._bind(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.10_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/inspect.py", line 3217, in _bind
+    raise TypeError(
+TypeError: multiple values for argument 'member_sequence'
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.087s
+
+FAILED (errors=1)
+{
+  "mode": "CHECK_ONLY_NO_SOLVE_NO_REQUEST",
+  "success": false,
+  "tests_run": 11,
+  "state_version": "common-state-a-v2",
+  "u_abi": "pure-routing-state-a-v2",
+  "spec_sha256": "8eed0e3257cf0a9314ad6ea1d14ae2b5ca659d8ece80748efaeb4a1aa965c632",
+  "rules_discoverable": {
+    "AGENTS.md": true,
+    "docs/中文科研写作规范.md": true,
+    ".agents/skills/humanizer-zh/SKILL.md": true,
+    "/Users/DDXQL/.codex/skills/ahd-experiment-copilot/SKILL.md": true
+  },
+  "forbidden_entries": [],
+  "model_requests": 0,
+  "constructive_solves": 0,
+  "final_evaluations": 0,
+  "numeric_fields": [
+    "construction_progress",
+    "legal_action_count",
+    "remaining_demand_mean",
+    "remaining_demand_std",
+    "resource_commitment_mean",
+    "resource_commitment_std",
+    "action_delta_mean",
+    "action_delta_std",
+    "recent_delta_mean",
+    "recent_delta_std"
+  ],
+  "scope": "manual partial-state snapshots, history bookkeeping, U-only execution, static host-call inspection"
+}

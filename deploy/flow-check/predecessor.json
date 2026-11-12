@@ -1,0 +1,23 @@
+{
+  "previous_directory": "/Users/DDXQL/hdl-flow-validation/fjsp-state-a-flow-20261112/mac",
+  "previous_version": "fjsp-state-a-flow-20261112",
+  "previous_source_commit": "d160411c72eb8f5a96824be4eebb1ac94ca5e8f8",
+  "raw_files": {
+    "Protocol.json": "dc002b22e43d7264dc91576516b34001b610e7275ff9a1de8bce23fc21a83901",
+    "checkpoint.json": "e073e5f4cff776524dc4bc25373be82b003408ae96875d92d7da8a4d3ebb253e",
+    "Summary.json": "b227c0a1e327285f95260e5146e3ca514ea0523f68f9170480ca755ea52dcc2a",
+    "Run_clock.json": "0c17aea94983f77ae0f01f19c8b9cd962f063ce1bc96c639446f62e5915c6d31",
+    "Stop.json": "a600717a240d16bd525bd8c2f5077074546b273f5dc163a3d02e2baf51c1fff8",
+    "Known_failure.json": "2e6b78cd9fdd224d4240bae6acfdb962a6abf3965d75f7f2b6ae6610d6d1ec31",
+    "End_summary.json": "8ffdf15d453c95f3ffd7d84bf59b8329c90e8be55a0690f61077a239fc80d58e",
+    "evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/lifecycle.json": "4fc5413604515e67234321ccb017a371ce09685cd6c0358dc5f6044fe2868084",
+    "evaluations/6471ce55cb1e096cb5e900a8654d7ede98fe0a088c2debec7f4009c6386c8b2b/result.json": "5a719081322a8fc60be3d2174eb09ad4e48c7df921ed5a175b5bb49184ccf521"
+  },
+  "API_reserved": 0,
+  "API_confirmed": 0,
+  "carried_solve_passes": 2,
+  "incomplete_solve_usage_reservations": 1,
+  "old_clock_not_reset": true,
+  "retained_old_lock": true,
+  "interpretation": "Known terminal local result-packet defect; both maximum solve passes stay charged. No model request was reserved. A new source-bound repair phase does not resume or edit the stopped predecessor."
+}

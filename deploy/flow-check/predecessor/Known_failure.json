@@ -1,0 +1,14 @@
+{
+  "task": "fixed_H0",
+  "failure": "evaluation_invalid",
+  "failure_layer": "candidate_runtime",
+  "details": {
+    "error_type": "TypeError",
+    "error": "StateAResult.__init__() got multiple values for argument 'member_sequence'",
+    "failed_instance": "synthetic-fjsp-flow-development",
+    "parent_observed_instance_seconds": 0.19369250000454485
+  },
+  "cursor": 1,
+  "settled": true,
+  "automatic_retry": false
+}

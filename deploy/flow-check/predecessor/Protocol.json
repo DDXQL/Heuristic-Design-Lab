@@ -1,0 +1,371 @@
+{
+  "version": "fjsp-state-a-flow-20261112",
+  "site": "mac",
+  "flow_plan_sha256": "b21f60346dcbe2e7b2d134a9e2d52fb4565ede3af1be6f70ae8d91595d4c47bd",
+  "config": {
+    "problem": "fjsp",
+    "type": "engineering_flow",
+    "api_mode": "real",
+    "real_requests_authorized": true,
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "max_prompt_bytes": 262144,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "stream_response": false
+    },
+    "api_attempt_cap": 2,
+    "per_candidate_attempt_cap": 1,
+    "candidate_kind": "h",
+    "window_seconds": 3600,
+    "search_seed": 501,
+    "solve_seed": 501,
+    "instance_timeout_seconds": 30,
+    "population_size": 1
+  },
+  "members": [
+    {
+      "description": "Handwritten synthetic fixture: -earliest_finish",
+      "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return -earliest_finish\n",
+      "key": "97495fff0a331e4aaef12273ed31423bdf75553181296bed65e32a0f02c58cfc",
+      "kind": "h"
+    },
+    {
+      "description": "Handwritten synthetic fixture: -processing_time",
+      "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return -processing_time\n",
+      "key": "c2fba6b63db457a95352d58380b04ea84fc674fa62df939122cd1f2ead5aec2e",
+      "kind": "h"
+    },
+    {
+      "description": "Handwritten synthetic fixture: remaining_work",
+      "code": "def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):\n    return remaining_work\n",
+      "key": "667c954369b077a2e9c425024cf0fd43e04c7949f8b989cdbbc627328ad71847",
+      "kind": "h"
+    }
+  ],
+  "instances": [
+    {
+      "file": "synthetic-fjsp-flow-development",
+      "split": "synthetic-development",
+      "value": {
+        "machines": 4,
+        "jobs": [
+          [
+            [
+              [
+                2,
+                13
+              ],
+              [
+                3,
+                9
+              ]
+            ],
+            [
+              [
+                0,
+                16
+              ],
+              [
+                1,
+                18
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                15
+              ]
+            ],
+            [
+              [
+                1,
+                17
+              ],
+              [
+                2,
+                12
+              ]
+            ],
+            [
+              [
+                0,
+                17
+              ],
+              [
+                1,
+                5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                1,
+                16
+              ],
+              [
+                2,
+                12
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            [
+              [
+                0,
+                9
+              ],
+              [
+                3,
+                15
+              ]
+            ]
+          ]
+        ]
+      },
+      "sha256": "2c520c19e5688c399a8d6cdefb99b27412f6e883e4e51711d3e77c246483f0d4"
+    }
+  ],
+  "references": [
+    {
+      "file": "synthetic-fjsp-flow-development",
+      "reference": 27.0,
+      "rule": "LB_v5"
+    }
+  ],
+  "source_files": {
+    "LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+    "LICENSES/LLM4AD-BSD-2-Clause.txt": "66d37674abb627f800e3a034cf0353785e9ef2e5dc1d6736bbe31ae0a3e96857",
+    "THIRD_PARTY_NOTICES.md": "6835b5167f08dc83c8a3c41e7beaaa8b974b42e694381753380ec38167b5e41e",
+    "code/fjsp_usage/__init__.py": "2506ee00a45678ef1aabe5d5a8973ec61db1df8ebabafc1b38cc710ec3381a47",
+    "code/fjsp_usage/a4_static/__init__.py": "f09d3c157577d0d60f20bcb7279d8608ed66b2154dc9f1115389c3f46e1ea829",
+    "code/fjsp_usage/a4_static/authorization.py": "cb43ee80760d3b358917b14523ad600ec871d135fe340481fc01ff6cc05913ee",
+    "code/fjsp_usage/a4_static/engine.py": "67443596d76e74ad98b53d89a156e6b66340fc11709f9550c09a34b19ee1af02",
+    "code/fjsp_usage/a4_static/model.py": "3921cc4a291cf07747d4d87049b7b9b03208d8e09276c3c14a675af9bdf7e785",
+    "code/fjsp_usage/baseline_a/__init__.py": "da7543cfe4b6655c8b8d085bf258c29d771c03a5f6c58e95d1d4605bc613dec5",
+    "code/fjsp_usage/baseline_a/policies.py": "eb705229a7f93e684f6405ad8293da1e0ac8101beab757913654ab46c188ee43",
+    "code/fjsp_usage/baseline_a/validation.py": "37f483f05c50af43421939d932bbe829ac75f7adbdd4ed842181d610e1c5a331",
+    "code/fjsp_usage/baseline_supplemental/__init__.py": "b277d4f856c49349d0acc20d90a0ecbf3e3f6672058b4a2b50ec752eba4156a2",
+    "code/fjsp_usage/baseline_supplemental/lifecycle.py": "7759cb6ed76265afa3ddd092241df6f9aab46664aaba89bb50fa79472b6045bd",
+    "code/fjsp_usage/baseline_supplemental/validation.py": "ffb4a4cdd9aa376277b16a5e2623af045568c27a6aa5b6f8b7ceaf023b0915d0",
+    "code/fjsp_usage/cross_feedback_ab.py": "4dd9c60ee626c542c595e2660c5ca4f80ac0b688d6b78e317c65914e4b941aaa",
+    "code/fjsp_usage/fusion_v2/__init__.py": "565518de06e932380014c262e332dc1d6f8299385094848cb3b3e16dd7081052",
+    "code/fjsp_usage/fusion_v2/execution.py": "42ad3ea2edc17ee19ff651d1332d265bb42217ccfeaf6200594609f077b0bd42",
+    "code/fjsp_usage/fusion_v3/__init__.py": "b36f601dce0de1f8e3341083df9b13ab4cc2858ecb924d885fa1ff122f05e16c",
+    "code/fjsp_usage/fusion_v3/execution.py": "0f608be57687cccc28e0a46893f158e1d41990803cd616b1790a960c7589518d",
+    "code/fjsp_usage/fusion_v3/ranking.py": "0ca2e66b9e4436f9d8dcf1a345e6faa2aa9fefaff1b6d201aa8000a995329c70",
+    "code/fjsp_usage/fusion_v4/__init__.py": "cb470e1380d764b20223d07b837ccf1a9929659deb708f017046d0b393e26327",
+    "code/fjsp_usage/fusion_v4/lifecycle.py": "7b88460d7b53580ce93f236680594f8cce6087c09bbbfc7f0886cc2ab4cfcea7",
+    "code/fjsp_usage/fusion_v4/policies.py": "3ba96e69a79da2fc577c649bd9145dc5436b240bfe74a8cbfad77f50000cc8eb",
+    "code/fjsp_usage/long_jobs/__init__.py": "5e575f03900df79e7bdace2aaf616824c1a85db54ed0836e761244d5d02b8983",
+    "code/fjsp_usage/long_jobs/local.py": "ada00ac012407d71ca25cba6ccb317d634685252a8137f4eddc63e1c979ba618",
+    "code/fjsp_usage/offline_v1.py": "a7f9159dd9545b98f9700cdc9cd474d3c2f8da6f9988669973aa014c29e43503",
+    "code/fjsp_usage/offline_v2.py": "caef17f0e3c7ebdb936ce109517a2585c42cf4e9541134732932ef4432b0467d",
+    "code/fjsp_usage/research/__init__.py": "122e53d3a9e3c6b114ca334c2dff04ad83c0bf4470c84353e62c5cad10f0186d",
+    "code/fjsp_usage/research/candidates.py": "c3a13b6e641f87157cc2a2553783485b6b19eabd7118738168f55686cbea8fa5",
+    "code/fjsp_usage/research/events.py": "f68aabf420aa9df4081deb0681c60aa729f0fd9a5d7ab118246340238799bda2",
+    "code/fjsp_usage/research/evolution.py": "c829b388ddbc582cf267f071d4409a0498d4368798e571f1b1107db1c4b1074d",
+    "code/fjsp_usage/research/prompts.py": "de032a17d043fe9073fd07a96341fd00e71bf4566d5c04c098b4438023fc9269",
+    "code/fjsp_usage/research/protocol.py": "a4a1ca453ec85951f4a1bbbf45fbc25340bfe6e39aee8566f23dea49b9f00286",
+    "code/fjsp_usage/research/requests.py": "c0899bbc4d61b724c1cc502b493fd8ef386e361c481fe6689d6312bd89dc19af",
+    "code/fjsp_usage/research/runtime.py": "b5ff2348941d45a9751e43073ced645c187909766629d2c8cc591d32e0de37a0",
+    "code/fjsp_usage/research/scheduler.py": "f855df163639424a55f4dbdc5cfc2dd7ea6f5decb8e53d782305d928212b2427",
+    "code/fjsp_usage/research/sets.py": "44749411689a7114df6e0bc4a523555af422d45c50974912e1b537185561ff9a",
+    "code/fjsp_usage/research/viewer.py": "10608397fb3171a81e0a853902f2acce5eeb09e15c13f85d1b721c17ae087ff7",
+    "code/fjsp_usage/research_real/__init__.py": "61a8137cead46c1d8d11bf285b2dda695bc13bc92b8b0ca7979b38f2f3c8e584",
+    "code/fjsp_usage/research_real/assets.py": "b49b9fad3ce1ac3cefc48419906b64178e32d36561b5e8f20f5a5b80694ec456",
+    "code/fjsp_usage/research_real/attempt_budget.py": "535a5a06fd29d05035c742833a68497687e30c3d08a8de308b86c20e6ac94244",
+    "code/fjsp_usage/research_real/budget.py": "a6e54f9310a280d96c540dd6a0838dbc63285cffe492b9bcc8e3472d8c002aef",
+    "code/fjsp_usage/research_real/conditional_research.py": "cbfbf5b0a32f5c356df81a3c226d877b13d467dc41bba62a4a9273986ad95564",
+    "code/fjsp_usage/research_real/config.py": "4eb43dad61665e6ae9821c63e6dc13c2919ef36bde6c776a8d8aebd171657aa1",
+    "code/fjsp_usage/research_real/continuation.py": "ca8d350f28b34dc8b36dccce8d1c98613b291e23f30b35246c7af7e4477f6bb4",
+    "code/fjsp_usage/research_real/deepseek_pilot.py": "29dc3efbb8edcde854daf4b5d1230ed113405963d49106e7e499045ed6c91988",
+    "code/fjsp_usage/research_real/development_acceptance.py": "502267a8a30f3f3563b180631a43730cb4caa8d7ba7cb92279f73138e699116a",
+    "code/fjsp_usage/research_real/development_reuse.py": "5b380194f5df86c6077076ac41be42a65d76a9762423b3e0b35e39070e47a6a5",
+    "code/fjsp_usage/research_real/diagnostics.py": "3ab39b497a58b147012a041360be57357fc52dbffe6ccaa3452e9a1989dc8f30",
+    "code/fjsp_usage/research_real/evaluation_cache.py": "6ae961f8e7306e8ae4ec43fed4d4d0c2cb72959d786940b205dc9c22154e769c",
+    "code/fjsp_usage/research_real/fixtures.py": "252cf82e75c5d7b283f5073cdf121987bca2ea430afe8060002f57b1c72baf45",
+    "code/fjsp_usage/research_real/initialization.py": "d7d7f2a10b1a436518cb06d6a7e1a76e6fc134f47721616bd71d9f8a1201288e",
+    "code/fjsp_usage/research_real/integration_smoke.py": "6a688b835324cd26ff8c6bc39ed4f4516d10df320773235c9188e55e16fe4e1f",
+    "code/fjsp_usage/research_real/leafapi.py": "e83dff15076c2d85276e3309ce692ec17116d6312fae54f0134d9217c505c15f",
+    "code/fjsp_usage/research_real/locking.py": "82778fb424df90f5c8237f64d2e9e9fc75633f0c151813bc06ac60596196d085",
+    "code/fjsp_usage/research_real/preparation.py": "ebfee6141ad55a0dc8685156ff5a1f38d06fb8785504b15e95f40492cbb2fcc1",
+    "code/fjsp_usage/research_real/prompts.py": "104291219a6863687feb12afc79fc7096d51835c00e87e2cf53f097916a68486",
+    "code/fjsp_usage/research_real/quota_guard.py": "d936d1f2eb321d3cc0a0548d9bad7a838c3c5c3509771213eb6986553a23928c",
+    "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+    "code/fjsp_usage/research_real/report.py": "5d1f311f81e2dce35e35adb8900c434d71690c7b5067bced445abd6a87ef39c1",
+    "code/fjsp_usage/research_real/review_execution.py": "b49a00a73f86213af79c44c472be0a4e601f22a8ae8720e5509a6fd3f9172337",
+    "code/fjsp_usage/research_real/review_packet.py": "da7203aa2254c0ca563abbc70b9247706ef9449f2b014f4a7bb83cfcd13c1afc",
+    "code/fjsp_usage/research_real/runtime.py": "13c60b36e7ddee45e3090dcc945d74b768daf1e35884d55f6e574ce7fa4c45e8",
+    "code/fjsp_usage/research_real/search.py": "adf49cb28b42e05471e9634fffb4452c9932ff61c2c63442a4c83ebc35531a30",
+    "code/fjsp_usage/research_real/smoke_reuse.py": "30c77f9e5046e26339f4f440c2c1fb077960903d9c89a07c8a938975ee2930a0",
+    "code/fjsp_usage/research_real/staged_evaluation.py": "d9b6668c0c77d1b3b2803debf2cbe0c27ae048a20c1c40cf22cb638515ea198a",
+    "code/fjsp_usage/research_real/state_diagnostics.py": "6db01ff91f33ed6f85cc14c56ed5c2106630f80caf2b7d3909c7aa8d7043a0e4",
+    "code/fjsp_usage/research_real/training_report.py": "a5afa0e4064f25fb3e62ea15f1beb8a41f8ddfcfbdeb6bfbdef85cce50ba9b24",
+    "code/fjsp_usage/research_real/workflow.py": "cd4cdb0cb9a5fdbc38e1d28bc674431f9324667f5e0fbb6f43036be5c971c97b",
+    "code/fjsp_usage/training_v2.py": "2b81952f351613179b6c3942ae8263adb8ee659da63a754db0d15323653f575f",
+    "code/fjsp_usage/usage_v2/__init__.py": "5d8a22b5439e9d48488d498dc59757a3056e06d5f25de7076c541546c9a20a1b",
+    "code/fjsp_usage/usage_v2/access.py": "211fe4b700c8d031dddbef2d543756bf195e46c823976cd33bb5ce8de753b265",
+    "code/fjsp_usage/usage_v2/billing.py": "97cefc669eb4cc6f4de673c6bc6ace16f553ed6b371f3e0a146fb4ad73d4d71d",
+    "code/fjsp_usage/usage_v2/candidates.py": "5b629f08df3960df18d24085a64732b43bee7567e5cf4e4c21f5ad4bac1f43b0",
+    "code/fjsp_usage/usage_v2/compatibility.py": "54adbdd91e3ddc49d6a00038bf5b56c252e7aba6d191140c195b64c4c25c20e9",
+    "code/fjsp_usage/usage_v2/config.py": "e3aa75dc295a03f51edcb03084d19530e2acd2d69bc726248c76c1ef68bc3144",
+    "code/fjsp_usage/usage_v2/examples.py": "17cecd405c5cc8266f430c81cd0d3e141a544062cee4cfb81e3408db3797e959",
+    "code/fjsp_usage/usage_v2/execution.py": "3d6a4c8dcbd15f2ea8955a2274e4c526b8995adc7d63314b02fbcbb2b86f8da0",
+    "code/fjsp_usage/usage_v2/exports.py": "3d3d42a4d971b76c2b6927c37baff9f9c384157903160b4ab35e76160f22c226",
+    "code/fjsp_usage/usage_v2/fixed_h.py": "1b8a53cec13784aa3885cd61bbfd0af4f127e8052ddc636004262c2500a798a1",
+    "code/fjsp_usage/usage_v2/fixtures.py": "5e600a010f6319e598ad9395bc8268dc8c4ad7108c1627c37ca1757c21ac751e",
+    "code/fjsp_usage/usage_v2/model_migration.py": "67935486e6c6a3c8a97b6c809c14fbb39f788fa18d5e836d6f5ff7d69bb2968c",
+    "code/fjsp_usage/usage_v2/prompts.py": "f53d7b0ffa03faf907d894970696737c04c9af01841ede7a8a726f4fd07b29fa",
+    "code/fjsp_usage/usage_v2/registration.py": "311c65c797c1763fae00e8c9dbf36bcdbf207aa9451037c9dbc87f45e84acd5f",
+    "code/fjsp_usage/usage_v2/search.py": "cee73960d64d42ef6b02f938902216936f713ae05e5eac2cacf9dc8ad52eb0ca",
+    "code/fjsp_usage/usage_v2/strategy_examples.py": "1e7ede362519c79aba32b66ca0accf42e8c32ae30d0ed4b2054a91ebd3c9bff1",
+    "code/fjsp_usage/usage_v2/training_export.py": "6f1dfa0dadf67080cf7d7a7b07c7614f7f10720a98f68bb23b7f054ac44ec9fb",
+    "code/fjsp_usage/usage_v2/workflow.py": "950a322a8f0350a70392db2429608844f9ef74fc4d9d3d9cf2b8f4c6163cfa75",
+    "code/heuristic_design/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/core/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/core/adapter.py": "98ea8cef5d4480e5259563631f1ff51aaba60abcfd668798cfb412ba1c090193",
+    "code/heuristic_design/core/constructive_state.py": "fe8c2c70559aa26c45af97c8685414d76193a530f3d715bb773071ed70618812",
+    "code/heuristic_design/core/evolution_export.py": "c9654cb23cfc167ae6a085caf6e0c141ac711f13e5ff81a5a77307272a4740a3",
+    "code/heuristic_design/core/evolution_v1.py": "f344f26c105ac1712e646ede58ac5a902b94039d9cb78f8c8a90f3fbeea3e39b",
+    "code/heuristic_design/core/execution.py": "02b72de73c23917b9358f5f3d8d8820845f5aa7305f968ad8129ad4e9b6b21af",
+    "code/heuristic_design/core/flow_check.py": "36eb67d6cbed93be7a6bc58d8ada87812f85ea7c405482b5f7e4f8c68057d51d",
+    "code/heuristic_design/core/lifecycle.py": "be29289735b53a106f8956fe8a99ec0bba4f907f7ca20e61be925fb8f3d53666",
+    "code/heuristic_design/core/mixing.py": "98cdd97e7c79d30cc0344be0fca2844d2565f672b2ca38f6932921a45a97e829",
+    "code/heuristic_design/core/operators.py": "3e2da96fc8a58a38a3654472d04bb9585ccabd1043c02ab7c7ee444d45ae0b08",
+    "code/heuristic_design/core/results.py": "af743cd8e990cabe30c6b9c1218058ffa345a86700eb6149d6711f15ebec0f9a",
+    "code/heuristic_design/core/routing.py": "e504472253c1853e324ef002b027ce59bf38dcc2f4f3b030cd1c11f376053625",
+    "code/heuristic_design/core/routing_evaluation.py": "3a3ffd83cbc61c22c6af2bccec68539cce97c5e12f247973b0baa29d14627ae5",
+    "code/heuristic_design/core/routing_state_a.py": "b5a9d79e3ab1e9468b96a057350e666426feb327798f01df940beed21abd68d5",
+    "code/heuristic_design/core/search.py": "dd545a9e71d72b2d197063d01af7e4c3e6220d82634a60143aea6f4deb7f7bf9",
+    "code/heuristic_design/core/state_a.py": "fd665e5fe8621383bad85aada39068fece1cae0e247ea81e0e504f6cf29019b4",
+    "code/heuristic_design/core/state_contracts.py": "ca14d71016883b188933d4e9183988dc805b866d39698b06f5dff16f72edf702",
+    "code/heuristic_design/core/storage.py": "376786707ac16011b32cd123a70aa112f83bee65aada6fdf6a4376541d513f40",
+    "code/heuristic_design/core/terminal_ops.py": "be45ac6f77d0446866534f9c3282af22132b3eb36095d206c6358761b90b1b5a",
+    "code/heuristic_design/llm/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/llm/legacy.py": "a1fa3157a2229c5e8fac6e7541dc8df01d9ec5be50ed92871fe90876b4be2514",
+    "code/heuristic_design/llm/routing_transport.py": "64cccf3e8dc4528b321d572af535b101918d1a2c5ca0198127dd0543bb4134ed",
+    "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc",
+    "code/heuristic_design/problems/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/problems/fjsp/__init__.py": "38831b64c9178b14af71f53615a5ac9c17ef6db841ca6ed12a4b535e2de13b36",
+    "code/heuristic_design/problems/fjsp/adapter.py": "325f963ffc1a74dad7af0f155c34fa2e9edf3ea50bc858a7e893c4b6d45f7c5b",
+    "code/heuristic_design/problems/fjsp/common_state.py": "78493f65e55303b1c39430aad94bbb91e114f4e578a85303299c82c16c0b7e56",
+    "code/heuristic_design/problems/fjsp/data.py": "224732266bb36bcedb838d264aa790cb3452c9af90d3a59277840c9e3f7a9a73",
+    "code/heuristic_design/problems/fjsp/eoh_single.py": "c439d619cc1d70242c506a781d3827bef5b44415b4d8651af078b3b8e7e4e000",
+    "code/heuristic_design/problems/fjsp/evaluation.py": "8df7e03e73d419dd3963e62d745a95580e558f7ec3ad952606732f8dcf7173c9",
+    "code/heuristic_design/problems/fjsp/policies.py": "a4c9c595fbcefd10b2894950a6ef64a089ea3b6269c399faf68a8927cb4e1631",
+    "code/heuristic_design/problems/fjsp/prompts.py": "6c875929db123ce76176a65102e5bd5e898a987c1493300d9284f2e6b5c05579",
+    "code/heuristic_design/problems/fjsp/provenance.py": "97ef821fb3639f61aac2cd56fe698c16222b44200f1000d5a9e09590f8960d5f",
+    "code/heuristic_design/problems/fjsp/routing.py": "ee5403be8827ae729894c39d6a872160725d12adb1c6aa8d0431727b918d1983",
+    "code/heuristic_design/problems/fjsp/solver.py": "5705a3c5733acb14c4bc583092abd171eaafed42b5850b4e2a095d311130a8eb",
+    "code/heuristic_design/problems/fjsp/state_a.py": "7597b612361b00aa4152fdd7c832ff0484489c04ad013f17bc49223cae5fcdc4",
+    "code/heuristic_design/problems/fjsp/states.py": "6e9185e1dc9b33bc596ec2636efa7b96d1aefbb7baad218481ed295b0929e7e2",
+    "code/heuristic_design/problems/obp/__init__.py": "4530ad2d8f431f5db318d76d095fdafd05d29ce155f09c474c7fb9dcc5f8365d",
+    "code/heuristic_design/problems/obp/state_a.py": "15a028c216f553531496c3b05a82ce6a9e73358660637e78242771e000c1bc07",
+    "code/heuristic_design/problems/routing_fixtures.py": "02fc3d72406fca0bb6dcf4a44535251667bfb59c1d8889454132c98f18cca27c",
+    "code/heuristic_design/problems/tsp/__init__.py": "cb702c19dbfdb959d0e8336e35bd22ac67351592ddc57ba7b1de39e65000eb74",
+    "code/heuristic_design/problems/tsp/campaign.py": "3b956a391fce49c75ee04cb329947196a29ff3da8af94abd7b7f7f8cadd4bb3e",
+    "code/heuristic_design/problems/tsp/candidates.py": "3a1bb56c5d85018f047f5ef26dc3ed2d0a7681e5f338de8923b98e16330585fc",
+    "code/heuristic_design/problems/tsp/common_state.py": "d5f141e9f1abdf7d073e0827ca543a600bc223c10f33910e0576e52390b4227a",
+    "code/heuristic_design/problems/tsp/data.py": "ddd2ff79d7860baf11ada11b75a36fcea1d877e76f743578c49a2587c8242c6f",
+    "code/heuristic_design/problems/tsp/eoh_reporting.py": "0cb39c169819870f22355559605951335ab728155844979dee4d5b7e3ec7d89f",
+    "code/heuristic_design/problems/tsp/eoh_single.py": "a58c19ea5c450156af750f969e87a46f1eea3f81c8e5433cd038f06feff7a30e",
+    "code/heuristic_design/problems/tsp/evaluation.py": "b74f8bbbe0a68c90b850e86c5e3f05b1cc647b631a87fd4fa54fab84e218d96e",
+    "code/heuristic_design/problems/tsp/h_build.py": "f75f5c596fcae7c68ca6bd38d07fead5e4eaf8034dc8eec2a8f147a64c19cc45",
+    "code/heuristic_design/problems/tsp/operations.py": "0443dcca3d132405005c9d6a58800741e91e24fe97ec2b921fa98eee6ec48491",
+    "code/heuristic_design/problems/tsp/prompts.py": "e4b4e73a6fb0e892c347bfd57b4be5e7940558e0b95c5266be7490a7506e8774",
+    "code/heuristic_design/problems/tsp/reporting.py": "35ec4484cc1988df874ef5de50f0b266fd9465365a194ccb0ceab4cac62391e7",
+    "code/heuristic_design/problems/tsp/routing.py": "29f249f1d319702d8091d5ffaefa54549e3110eea82a9ed028bad3b2ac808fb1",
+    "code/heuristic_design/problems/tsp/solver.py": "a2d514ec58585520d06e01c34b10ea81c29134d9ef1f9cd13821491bb73683a0",
+    "code/heuristic_design/problems/tsp/state_a.py": "812081560fae08f39b34b82b431f0a83d1b61e7cce9208f4a1cf6e35db2f8260",
+    "code/llm4ad/__init__.py": "42804da958aa9637c4c86d9a0aea49a22f26dfcef9dd1270418f409d2d95ec8d",
+    "code/llm4ad/base/__init__.py": "17c95b5cd4a3ec3629e713d3b0442ba8b8cb2910a41144b4aefef8531e8a6c1e",
+    "code/llm4ad/base/code.py": "7d1d15f0d52ac4139b8dca532d1f74917d2eee51e7abce229d31cf83b8982b1e",
+    "code/llm4ad/base/evaluate.py": "4baba1eb3d4e7442a2f6f26b0c877ebba65510fadaea6eb18140aa5053c40393",
+    "code/llm4ad/base/modify_code.py": "f594c3d4cde44f0b951c1187294f0452484d36b6b945a4f4a08061bea58332af",
+    "code/llm4ad/base/sample.py": "3211ac99cd09b4feec4ac169f4b4a247ca868732beeb0eb7902d0fd2bb47ed80",
+    "code/llm4ad/method/__init__.py": "5cb63b527c508a18836d9b5184a9c6bb28e12fb6f42f0bc5969163c7b63cb69b",
+    "code/llm4ad/method/eoh/__init__.py": "0ba3378334836234196dac4b1d9b9601b445d4cf60a9674e671bf79f78fa9884",
+    "code/llm4ad/method/eoh/eoh.py": "de4b56d9fa0a060dcc603afdc6b253c355ef11e5683a5823eb9bd2b7dd80f245",
+    "code/llm4ad/method/eoh/population.py": "92fb94dccd1c67b24411fe4b96eefa09abbe60d82fb4a302af9db0daa60f82aa",
+    "code/llm4ad/method/eoh/profiler.py": "d1daaf28869bea66ebfd1caa8497381e31db9bb1aaff244688924728785b7066",
+    "code/llm4ad/method/eoh/prompt.py": "8e136b4f9a011ce489abf4857837e2eb08e045a87e5f0fd417df58bf8652b91f",
+    "code/llm4ad/method/eoh/resume.py": "ef8b125ca29d4b5630dbc30d07819f6c3a8c150bc5130996309e9b77e4755dfc",
+    "code/llm4ad/method/eoh/sampler.py": "508881ff7f5e5affd3179c012a0271ed077522d01a307ed57832c9b26a9edc15",
+    "code/llm4ad/task/__init__.py": "72bfd4ca8025554d9d4772bdc1d7b30e45c37a2e77a4fb64d139096e2791f0e8",
+    "code/llm4ad/task/optimization/__init__.py": "f06b51231fc1b4628aa94ae8087362d5545d06c9dc77680e308b33a88f38c4a9",
+    "code/llm4ad/task/optimization/fjsp_set/__init__.py": "e200b13ec7f9527d6c742963be0a6a22359ba75a026ee3114711ac3470b47fff",
+    "code/llm4ad/task/optimization/fjsp_set/evaluation.py": "ee9904c71f4c3e6ed6b9b4aa2f05b8f1fcdd7bae027b9130f8826c6463a18e61",
+    "code/llm4ad/task/optimization/fjsp_set/instances.py": "6b55a3d3e4abf7ffb9da78ee561975f57dc8a9ec8dd6c86e01ff77e029c3f849",
+    "code/llm4ad/task/optimization/fjsp_set/scheduler.py": "f0eccd17b7948892365e051f94e2757efdd1a4b4337ecc2ed929a695642a1057",
+    "code/llm4ad/task/optimization/fjsp_set/template.py": "7bca61db95eebbc711235a11e4dc56cdac6fb559aaa6405ed41a83a3045c6f77",
+    "code/llm4ad/tools/__init__.py": "c7e4492280486583fda7aa8027039794938b1bbe39452cc55d4035835f8b7eca",
+    "code/llm4ad/tools/llm/__init__.py": "18b596b0b80ce98d955793f4b563e7a2cdf0889ba1b4a78476d9bca81a172c22",
+    "code/llm4ad/tools/llm/llm_api_https.py": "9eaf774c0fa4854dcbe2f6fc1e1a382da9cb1a595140b5e0086b55ddebd27cf1",
+    "code/llm4ad/tools/profiler/__init__.py": "5fd4bed717bcadf6f27bec343b8617a841feb1af9e8560266f2098d3e6caa2a5",
+    "code/llm4ad/tools/profiler/profile.py": "565847bde0ee0253d4feadb3325091365f4f420978b470f151783fe123312ee5",
+    "code/llm4ad/tools/profiler/tensorboard_profiler.py": "09476e02ba3c793848ec02a2b9c3180f555d48042ded85304439eed4f7eb1f71",
+    "code/llm4ad/tools/profiler/wandb_profiler.py": "05ef0f29eb475a1b636bce0b1dcf2823f0f64b9b18e9632aa689dfb94344372b",
+    "deploy/api-common/prompts/fjsp_h.txt": "6284d871acea052255447e2a6cf1f4a87dfe4f66cd5ceebdd36551a093c12a62",
+    "deploy/flow-check/cluster.sbatch": "9f777cbff24bef7f197391614c68a6bb8b0974ac8a35fe781cc3a641967340b2",
+    "deploy/flow-check/fetch.sh": "4b59a9c71675805e947711d4c9fccc8183f54663274744dbcf8f5bbf9c347204",
+    "deploy/flow-check/members.json": "5e9375d51ea07ff511f38bdbc42645a0ee57cece12ccbab3ed2dc6b4a4af2f83",
+    "deploy/flow-check/start.sh": "ee5601c68ab798f7f26464f167e21c3dc89f1788bfd028137f3d9007e4f7123b",
+    "deploy/flow-check/submit_cluster.sh": "4a637b72bd677ca23218abd5c53a44bcbb868bda515fbabd2db4d5f3a62a75cb",
+    "docs/state-a-v2/contract.json": "858c0467be32d07417097a97965912004d1e9d6b0464f72cfcf0170b19959175",
+    "experiments/common/fixtures/fjsp-development.json": "d854d527508760c30e9c078ede0542ce05dcb5c93206f4439e9c56829c6cfdbe",
+    "tools/api_reliability_collect.py": "90f10eef0d10ac50fe7c6a7beab4f3d571ab72fa9401c5df070dd55f4bae01b1",
+    "tools/flow_check.py": "78dddb4d7a0e64ff3a8e3fb09bb7f5e7c063f667a129ea0a6eaf8a267209f684",
+    "deploy/flow-check/plan.json": "b21f60346dcbe2e7b2d134a9e2d52fb4565ede3af1be6f70ae8d91595d4c47bd",
+    "deploy/flow-check/plan.sha256": "036d09bf2c16f626619237a855961459abf81b3f2a7c612a76649eea146f4d5d"
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "platform": "darwin",
+    "hostname": "DDXQL.local",
+    "slurm_job_id": null,
+    "wire": "bounded-wire-reliability-v5",
+    "transport_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-flow-check-20261112/code/fjsp_usage/research_real/real_transport.py",
+    "monotonic_implementation": "mach_absolute_time()"
+  },
+  "budgets": {
+    "logical_generation": 2,
+    "max_program_instances": 3
+  },
+  "scope": "synthetic engineering, no search/quality claim; score J min; internal utility=-J",
+  "Mac_export_sha256": null,
+  "tasks_sha256": "8392f9baf59f1c61caf025bdd957fe5f4c7d49611b99d32bfa2a74c56f0d6c76"
+}

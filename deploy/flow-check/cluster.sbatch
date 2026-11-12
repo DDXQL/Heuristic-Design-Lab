@@ -12,7 +12,7 @@
 #SBATCH --error=logs/flow-%j.err
 set -uo pipefail
 set +x
-cd /public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112 || exit 2
+cd /public2/home/qiuqian/hdl-deploy/fjsp-state-a-flow-20261112-r1 || exit 2
 HDL_PY=/public2/home/qiuqian/hdl-envs/portable-v2/bin/python
 export PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1
 unset PYTHONPATH LEAFAPI_API_KEY

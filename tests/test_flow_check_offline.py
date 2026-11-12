@@ -60,6 +60,7 @@ class FlowTests(unittest.TestCase):
                     patch.object(f,'StrictNonstreamTransport',Wire),patch.object(f.Adapter,'evaluate',staticmethod(evaluation)), \
                     patch.object(f.Adapter,'validate_result',staticmethod(lambda *a:None)),patch.object(f,'validate_result',lambda *a:None), \
                     patch.object(f.lifecycle,'collect',side_effect=AssertionError('NO WORKER/SOLVER')), \
+                    patch.object(f,'verify_predecessor_live'), \
                     patch.object(socket.socket,'connect',side_effect=AssertionError('NO NETWORK')),patch.object(f.execution,'time',fake_time):
                 fn(base,calls,evals)
 
@@ -86,8 +87,11 @@ class FlowTests(unittest.TestCase):
             self.assertEqual(result['phase'],'completed');self.assertEqual(calls,list(f.ROLES[1:]))
             final=read(base/'cluster/export.json');self.assertTrue(final['cross_platform_passed'])
             self.assertEqual(final['summary']['api_reserved'],0)
-            self.assertEqual(len(evals),6)  # six SYNTHETIC receipts, no actual solve
-            self.assertEqual(final['summary']['known_solve_passes'],6)
+            self.assertEqual(len(evals),5)  # five SYNTHETIC receipts, no actual solve
+            self.assertEqual(final['summary']['known_solve_passes'],4)
+            self.assertEqual(final['summary']['cumulative_reserved_solve_passes'],12)
+            self.assertEqual(final['summary']['carried_predecessor_reserved_solve_passes'],2)
+            self.assertEqual(set(final['cross_platform']),set(f.ROLES[1:]))
             with self.assertRaises(FileExistsError):f.run('mac',**self.args())
             self.assertEqual(len(calls),2)
         self.fixture(check)
@@ -99,6 +103,14 @@ class FlowTests(unittest.TestCase):
             self.assertTrue((base/'mac/Known_failure.json').exists())
             with self.assertRaises(ValueError):f.run('mac',resume=True,**self.args())
         self.fixture(check,invalid=True)
+
+    def test_changed_predecessor_blocks_before_new_stage_or_request(self):
+        def check(base,calls,evals):
+            with patch.object(f,'verify_predecessor_live',side_effect=ValueError('changed predecessor')):
+                with self.assertRaises(ValueError):f.run('mac',**self.args())
+            self.assertFalse((base/'mac').exists())
+            self.assertEqual(calls,[]);self.assertEqual(evals,[])
+        self.fixture(check)
 
     def test_refusal_closes_after_first_new_request_without_fill(self):
         def check(base,calls,evals):
