@@ -33,8 +33,9 @@ def _worker(pipe,payload,members,instances,names,allowed_modes):
         before={name:sha(ROOT/name) for name in expected}
         if before != expected:raise RuntimeError('worker source identity mismatch')
         for instance,name in zip(instances,names):
-            first=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact)
-            second=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact)
+            extra={'state_schema':payload['state_schema']} if c.get('execution_contract') is not None else {}
+            first=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact,**extra)
+            second=solve(c['problem'],instance,members,payload['candidate'],window=c['window'],enabled_groups=c['enabled_groups'],trace=not compact,**extra)
             if semantic_row(first,compact) != semantic_row(second,compact):raise ValueError('solve/recheck mismatch')
             after={name:sha(ROOT/name) for name in expected}
             if before != after:raise RuntimeError('worker source changed during evaluation')
@@ -57,7 +58,7 @@ def evaluate_task(task,p):
     directory=Path(p['run_directory'])
     folder=directory/'worker-receipts'/task['id']
     folder.mkdir(parents=True,exist_ok=False)
-    payload={'candidate':task['candidate'],'config':p['config'],'source_files':p['source_files']}
+    payload={'candidate':task['candidate'],'config':p['config'],'source_files':p['source_files'],'state_schema':p['state_schema']}
     started=time.perf_counter()
     rows,failure,life=collect(mp.get_context('spawn'),_worker,payload,p['members'],p['instances'],
         [r['file'] for r in p['instances']],p['config']['instance_timeout_seconds'],(0,),
@@ -83,7 +84,7 @@ def evaluate_task(task,p):
                 raise RuntimeError('solve/recheck/source receipts mismatch')
         behavior=[row['member_sequence'] if p['config'].get('recording_mode')=='compact'
                   else [t['member_id'] for t in row['trace']] for row in rows]
-        result={'valid':True,'fitness':sum(r['score'] for r in rows)/len(rows),'mock':False,
+        result={'valid':True,'fitness':(-1 if p['config'].get('execution_contract') is not None else 1)*sum(r['score'] for r in rows)/len(rows),'mock':False,
                 'instances':rows,'behavior_sha256':digest(behavior),'behavior':behavior,
                 'lifecycle':life,'evaluation_seconds':elapsed}
     if any(sha(ROOT/name)!=value for name,value in p['source_files'].items()):

@@ -1,0 +1,69 @@
+{
+  "version": "fjsp-single-launch-v1",
+  "freeze_status": "mock_frozen",
+  "campaign_id": "mock-offline",
+  "seeds": [
+    71
+  ],
+  "run_root": "../../runs/fjsp-execution-mock",
+  "settings": {
+    "version": "parent-coverage-routing-v1",
+    "api_mode": "mock",
+    "real_requests_authorized": false,
+    "problem": "fjsp",
+    "population_size": 2,
+    "generations": 2,
+    "search_seed": 71,
+    "solve_seed": 17,
+    "initialization": "llm",
+    "initialization_candidate_cap": 2,
+    "initialization_request_cap": 2,
+    "generation_request_cap": 7,
+    "api_concurrency": 1,
+    "evaluation_concurrency": 2,
+    "evaluation_mode": "mock",
+    "window": 10,
+    "enabled_groups": [
+      "construction",
+      "action_cost",
+      "trajectory",
+      "usage"
+    ],
+    "instance_timeout_seconds": 30,
+    "mock_reverse_delay": false,
+    "mock_faults": {},
+    "mock_delay_seconds": 0.0,
+    "provider": null,
+    "api_attempt_cap": 9,
+    "data_manifest": null,
+    "h_file": null,
+    "p0_file": null,
+    "state_schema": null,
+    "recording_mode": "compact",
+    "milestone_generations": [],
+    "execution_contract": {
+      "version": "frozen-execution-v1",
+      "run_id": "mock-seed-71",
+      "group": "mock-engineering",
+      "allocated_cpus": 3,
+      "window_seconds": 3600,
+      "segment_seconds": 1800,
+      "drain_seconds": 120,
+      "milestone_attempts": [
+        3,
+        7
+      ],
+      "initialization_policy": "fixed_population_slots_no_refill",
+      "state_binding": null,
+      "client_binding": null,
+      "account_exclusion": null,
+      "account_gate": null,
+      "min_request_interval_seconds": 0,
+      "source_cost": {
+        "H_attempts": 0,
+        "scope": "synthetic handwritten fixtures, no scientific cost claim",
+        "actual_cost": null
+      }
+    }
+  }
+}

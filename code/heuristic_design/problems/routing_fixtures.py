@@ -58,23 +58,29 @@ def instances(problem, *, size=12, count=2, seed=501):
     return rows
 
 
-def solve(problem, instance, h_rows, candidate, *, window=10, enabled_groups=None, trace=True):
+def solve(problem, instance, h_rows, candidate, *, window=10, enabled_groups=None, trace=True, state_schema=None):
     from heuristic_design.core.constructive_state import GROUPS
     from .fjsp.routing import construct as fjsp
     from .tsp.routing import construct as tsp
     hs = compile_members(problem, h_rows)
-    u = routing.compile_candidate(routing.checked(candidate,len(hs)),len(hs))
+    language = routing
+    if state_schema is not None:
+        from heuristic_design.core import routing_state_a as language, state_a
+        if state_schema != state_a.schema_id(problem):raise ValueError('state delivery mismatch')
+    u = language.compile_candidate(language.checked(candidate,len(hs)),len(hs))
     obj = decode_instance(problem,instance)
     started = time.perf_counter()
     kwargs = dict(window=window, enabled_groups=tuple(GROUPS) if enabled_groups is None else enabled_groups, trace=trace)
     if problem == 'fjsp':
-        result = fjsp(obj, hs, u, **kwargs)
+        result = fjsp(obj, hs, u, **kwargs, state_schema=state_schema)
         solution = asdict(result.schedule)
     else:
+        if state_schema is not None:raise ValueError('TSP requires its separately frozen reference adapter')
         result = tsp(obj,hs,u,**kwargs)
         solution = {'tour': list(result.tour), 'length': result.length}
     elapsed = time.perf_counter() - started
     return {'file': instance['file'], 'score': result.score, 'solution': solution,
+            **({'raw_cost':result.schedule.makespan,'reference':result.reference} if state_schema is not None else {}),
             'trace': list(result.trace), 'h_calls': list(result.h_calls),
             'member_sequence': list(result.member_sequence),
             'solve_seconds': elapsed, 'observation_seconds': result.observation_seconds}

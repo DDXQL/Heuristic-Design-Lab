@@ -29,7 +29,7 @@ DEFAULTS = dict(version=VERSION, api_mode='mock', real_requests_authorized=False
     instance_timeout_seconds=30, mock_reverse_delay=False, mock_faults={},
     mock_delay_seconds=0.0, provider=None, api_attempt_cap=None,
     data_manifest=None, h_file=None, p0_file=None, state_schema=None,
-    recording_mode='full', milestone_generations=[])
+    recording_mode='full', milestone_generations=[], execution_contract=None)
 
 
 def config(value):
@@ -38,7 +38,10 @@ def config(value):
     c = {**DEFAULTS, **value}
     if c['version'] != VERSION or c['api_mode'] not in ('mock','fixed','real') or type(c['real_requests_authorized']) is not bool:
         raise ValueError('invalid version/mode/authorization')
-    if c['state_schema'] not in (None,schema_id(c['problem'])):raise ValueError('state schema/problem mismatch')
+    if c['execution_contract'] is not None:
+        from .execution_contract import validate_contract
+        validate_contract(c)
+    if c['state_schema'] not in (None,contract_schema(c)):raise ValueError('state schema/problem mismatch')
     if c['api_mode']!='real' and c['real_requests_authorized']:raise ValueError('offline modes cannot authorize requests')
     if c['api_mode']=='real':
         from fjsp_usage.research_real.config import ProviderConfig
@@ -60,7 +63,7 @@ def config(value):
             raise ValueError('invalid nonnegative/positive integer: '+k)
     if c['population_size'] < 2:
         raise ValueError('N>=2 required; odd N supported')
-    if c['generation_request_cap'] < 2*c['population_size']*c['generations']:
+    if c['execution_contract'] is None and c['generation_request_cap'] < 2*c['population_size']*c['generations']:
         raise ValueError('generation request cap cannot cover the frozen 2NG plan')
     if c['instance_timeout_seconds'] != 30:
         raise ValueError('v1 uses complete solve/recheck row T30 and separate 2s exit grace')
@@ -86,6 +89,7 @@ def source_identity():
     paths.update((ROOT/'code/heuristic_design/llm').glob('*.py'))
     paths.update((ROOT/'code/fjsp_usage/research_real').glob('*.py'))
     paths.add(ROOT/'experiments/common/manage.py')
+    paths.add(ROOT/'experiments/common/run_frozen.py')
     paths.update((ROOT/'code/llm4ad/task/optimization/fjsp_set').glob('*.py'))
     paths.update([ROOT/'code/fjsp_usage/offline_v2.py', ROOT/'code/fjsp_usage/research/candidates.py'])
     return {str(p.relative_to(ROOT)): sha(p) for p in sorted(paths)}
@@ -153,13 +157,13 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
         for row in imports:
             if not isinstance(row.get('source'),str) or not row['source']:
                 raise ValueError('explicit P0 source provenance required')
-            keys.append(checked(row['candidate'],len(hs)).key)
+            keys.append(contract_language(c).checked(row['candidate'],len(hs)).key)
         if len(set(keys)) != len(keys):
             raise ValueError('import P0 must be AST distinct; no borrowing baseline')
     elif imports is not None:
         raise ValueError('LLM initialization cannot borrow imported P0')
-    protocol = {'version':VERSION,'config':c,'state_schema':schema_id(c['problem']),
-        'state_spec_sha256':SPEC_SHA256,'u_abi':ABI,'members':hs,'instances':data,'references':references,'imports':imports,
+    protocol = {'version':VERSION,'config':c,'state_schema':contract_schema(c),
+        'state_spec_sha256':contract_spec(c),'u_abi':contract_language(c).ABI,'members':hs,'instances':data,'references':references,'imports':imports,
         'input_provenance':provenance,'source_files':source_identity(),'machine':{'system':platform.system(),'machine':platform.machine(),
             'python':platform.python_version(),'cpu_count':os.cpu_count()},
         'selection':'fitness descending, id ascending; parent+valid unique child elitism at generation end',
@@ -170,6 +174,9 @@ def prepare(directory, settings, *, imports=None, h_members=None, instances=None
         'cost_scope':'T30 complete solve/recheck row including transport, then separate 2s exit grace',
         'recovery':'safe pause drains a bounded batch; ambiguous in-flight crash requires investigation, no automatic resend',
         'real_API_calls':0}
+    if c['execution_contract'] is not None:
+        from .execution_contract import bind_protocol
+        bind_protocol(protocol)
     directory.mkdir(parents=True)
     write(directory/'Protocol.json',protocol)
     write(directory/'Protocol.receipt.json',{'sha256':sha(directory/'Protocol.json')})
@@ -187,7 +194,7 @@ def check(directory):
     if p.get('version') != VERSION or sha(directory/'Protocol.json') != read(directory/'Protocol.receipt.json')['sha256']:
         raise ValueError('foreign/changed protocol; never reinterpret legacy checkpoint')
     config(p['config'])
-    if p['state_schema'] != schema_id(p['config']['problem']) or p['state_spec_sha256'] != SPEC_SHA256 or p['u_abi'] != ABI:
+    if p['state_schema'] != contract_schema(p['config']) or p['state_spec_sha256'] != contract_spec(p['config']) or p['u_abi'] != contract_language(p['config']).ABI:
         raise ValueError('state/ABI mismatch')
     for name,value in p['source_files'].items():
         if sha(ROOT/name) != value:
@@ -197,7 +204,7 @@ def check(directory):
             or read(directory/'checkpoint.receipt.json') != {'identity':s['identity'],'sha256':sha(directory/'checkpoint.json')}):
         raise ValueError('checkpoint identity/receipt mismatch')
     for task in s['tasks'].values():
-        if task['status'] in ('request_reserved','evaluation_reserved'):
+        if task['status'] in ('request_reserved','evaluation_reserved','unknown_send'):
             raise ValueError('ambiguous in-flight task; never resend or auto-replay')
         for k in ('prompt','response'):
             if k+'_path' in task and sha(directory/task[k+'_path']) != task[k+'_sha256']:
@@ -210,7 +217,32 @@ def check(directory):
             raise ValueError('evaluation cache identity changed')
     if s['generation_requests'] > p['config']['generation_request_cap'] or s['initialization_requests'] > p['config']['initialization_request_cap']:
         raise ValueError('request budget exceeded')
+    if p['config']['execution_contract'] is not None:
+        from .execution_contract import check_checkpoint
+        check_checkpoint(directory,p,s)
     return p,s
+
+
+def contract_language(c):
+    if c.get('execution_contract') is not None:
+        from . import routing_state_a
+        return routing_state_a
+    from . import routing
+    return routing
+
+
+def contract_schema(c):
+    if c.get('execution_contract') is not None:
+        from .state_a import schema_id as schema
+        return schema(c['problem'])
+    return schema_id(c['problem'])
+
+
+def contract_spec(c):
+    if c.get('execution_contract') is not None:
+        from .state_a import SPEC_SHA256 as spec
+        return spec
+    return SPEC_SHA256
 
 
 def plan_generation(population, generation, rng):
@@ -253,13 +285,16 @@ def mock_generate(task, prompt, c, member_count):
 
 def mock_evaluate(task, p):
     """Artificial objective forces generational turnover for lineage testing."""
-    from .routing import compile_candidate
     c = p['config']
+    if c.get('execution_contract') is not None and not task.get('_mock_child'):
+        from .execution_contract import mock_process_receipt
+        return mock_process_receipt(task,p)
+    language = contract_language(c)
     if c['mock_faults'].get(task['id']) == 'invalid_evaluation':
         return {'valid':False,'fitness':None,'instances':[],'mock':True,'error':'MOCK evaluation failure'}
     rank = int(digest(task['id'])[:6],16)/16**6
     score = task.get('generation',0) + rank
-    u = compile_candidate(checked(task['candidate'],len(p['members'])),len(p['members']))
+    u = language.compile_candidate(language.checked(task['candidate'],len(p['members'])),len(p['members']))
     from .constructive_state import FIELDS, freeze
     probes = []
     for x in (0.,.2,.5,.8,.99):
@@ -268,9 +303,15 @@ def mock_evaluate(task, p):
                       committed_objective_fraction=x/2,has_history=False,
                       history_count=0,recent_history_count=0)
         probes.append(freeze({**values,'availability':{k:v is not None for k,v in values.items()}}))
+    if c.get('execution_contract') is not None:
+        from .state_a import History, observe
+        probes=[observe(c['problem'],history=History(100,len(p['members']),10),
+                        demands=[.2],commitments=[0.],action_deltas=[.1]) for _ in probes]
     behavior = [u(packet) for packet in probes]
+    if c.get('execution_contract') is not None:score=-1/(1+score)
     return {'valid':True,'fitness':score,'mock':True,
-            'instances':[{'file':r['file'],'score':score} for r in p['instances']],
+            'instances':[{'file':r['file'],'score':-score if c.get('execution_contract') is not None else score,
+                          **({'raw_cost':1-score,'reference':1} if c.get('execution_contract') is not None else {})} for r in p['instances']],
             'behavior_sha256':digest(behavior),'behavior':behavior,
             'notice':'MOCK synthetic objective and five progress probes; no solver quality inference'}
 
@@ -334,8 +375,14 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
     if (directory/'Pause.json').exists(): s['pause_ack'] = read(directory/'Pause.json')['sequence']
     normal = False
     try:
+        if c['execution_contract'] is not None:
+            from .execution_contract import start_segment
+            start_segment(directory,p,s)
         s['phase']='running';save(directory,s);log_progress(directory,s,p)
         while True:
+            if c['execution_contract'] is not None:
+                from .execution_contract import deadline_pause
+                if deadline_pause(directory,p,s):break
             if (stopped[0] or max_tasks is not None and s['completed_tasks']-started_count >= max_tasks
                     or (directory/'Pause.json').exists() and read(directory/'Pause.json')['sequence'] > s['pause_ack']):
                 s['phase']='paused';break
@@ -346,7 +393,7 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     write(directory/'populations/P000.json',s['population'])
                     save(directory,s)
                     continue
-                limit = c['population_size'] if c['initialization']=='import' else min(c['initialization_candidate_cap'],c['initialization_request_cap'])
+                limit = c['population_size'] if c['initialization']=='import' else (c['population_size'] if c['execution_contract'] is not None else min(c['initialization_candidate_cap'],c['initialization_request_cap']))
                 if s['initialization_candidates'] >= limit:
                     s['phase']='initialization_incomplete';break
                 # Initialization may replace duplicates/invalid responses only
@@ -371,6 +418,8 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     rng = random.Random();rng.setstate(_tuple_tree(s['rng']))
                     before = rng.getstate()
                     tasks = plan_generation(s['population'],g,rng)
+                    if c['execution_contract'] is not None:
+                        tasks=tasks[:c['generation_request_cap']-s['generation_requests']]
                     path = directory/f'plans/G{g:03d}.json'
                     write(path,{'generation':g,'population':s['population'],'tasks':tasks,
                                 'rng_before':before,'rng_after':rng.getstate()})
@@ -380,6 +429,9 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     save(directory,s)
                 tasks = [s['tasks'][t['id']] for t in read(directory/s['plans'][str(g)]['path'])['tasks']]
                 batch = [t for t in tasks if t['status']!='completed'][:max(c['api_concurrency'],c['evaluation_concurrency'])]
+                if batch and c['execution_contract'] is not None:
+                    from .execution_contract import bound_batch
+                    batch=bound_batch(batch,s,c)
                 if not batch:
                     children = [_individual(t,s) for t in tasks if t['valid']]
                     old = s['population']
@@ -401,7 +453,10 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
                     continue
             _execute_batch(directory,s,p,batch,evaluate)
             _notify_progress(on_progress,directory,s,p)
-            if s['phase'] == 'blocked':break
+            if c['execution_contract'] is not None:
+                from .execution_contract import after_batch
+                after_batch(directory,p,s)
+            if s['phase'] in ('blocked','paused'):break
         save(directory,s)
         log_progress(directory,s,p)
         normal=True
@@ -412,7 +467,10 @@ def run(directory, *, max_tasks=None, evaluate=None, allow_api=False, on_progres
         raise
     finally:
         for sig,handler in old_handlers.items():signal.signal(sig,handler)
-        if normal:lock.unlink()
+        if c['execution_contract'] is not None:
+            from .execution_contract import finish_segment
+            finish_segment(directory,p,s,normal)
+        if normal and s['phase']!='blocked':lock.unlink()
     return {'phase':s['phase'],'generation':s['generation'],'completed_tasks':s['completed_tasks'],
             'initialization_requests':s['initialization_requests'],'generation_requests':s['generation_requests'],
             'api_attempts_reserved':s['initialization_requests']+s['generation_requests'] if c['api_mode']=='real' else 0}
@@ -435,20 +493,33 @@ def _individual(t,s):
 def _execute_batch(directory,s,p,batch,evaluate):
     c = p['config']
     needed = [t for t in batch if t['status']=='planned']
+    if c['execution_contract'] is not None:
+        init=sum(t['stage']=='initialization' for t in needed)
+        evo=len(needed)-init
+        if (s['initialization_requests']+init>c['initialization_request_cap']
+                or s['generation_requests']+evo>c['generation_request_cap']
+                or s['initialization_requests']+s['generation_requests']+len(needed)>c['api_attempt_cap']):
+            raise ValueError('entire wave exceeds frozen attempt limits; nothing dispatched')
     for task in needed:
         counter,cap = ('initialization_requests','initialization_request_cap') if task['stage']=='initialization' else ('generation_requests','generation_request_cap')
         if s[counter] >= c[cap]:raise ValueError('predeclared request cap exhausted')
         s[counter] += 1
         if c['api_mode']=='real' and s['initialization_requests']+s['generation_requests']>c['api_attempt_cap']:raise ValueError('total API attempt cap exhausted')
         task['request_key']=s['identity']+'/'+task['id']
-        prompt = build_prompt(c['problem'],task,task['parent_records'],p['members'],window=c['window'],enabled_groups=c['enabled_groups'])
+        prompt = (contract_language(c).build_prompt(c['problem'],task,task['parent_records'],p['members'],window=c['window'])
+                  if c['execution_contract'] is not None else build_prompt(c['problem'],task,task['parent_records'],p['members'],window=c['window'],enabled_groups=c['enabled_groups']))
         path=directory/'prompts'/(task['id']+'.txt');path.parent.mkdir(parents=True,exist_ok=True);path.write_text(prompt)
         task.update(status='request_reserved',prompt_path=str(path.relative_to(directory)),prompt_sha256=sha(path))
     save(directory,s)  # all sends reserved before dispatch; workers never touch ledger
     api_started = time.perf_counter()
     from heuristic_design.llm.routing_transport import generate as real_generate
     generator=real_generate if c['api_mode']=='real' else mock_generate
-    responses = _batch(lambda task:generator(task,(directory/task['prompt_path']).read_text(),c,len(p['members'])),needed,c['api_concurrency']) if needed else {}
+    def generate_one(task):
+        if c['execution_contract'] is not None:
+            from .execution_contract import pace
+            pace(c)
+        return generator(task,(directory/task['prompt_path']).read_text(),c,len(p['members']))
+    responses = _batch(generate_one,needed,c['api_concurrency']) if needed else {}
     api_seconds=time.perf_counter()-api_started
     for task in needed:
         reply=responses[task['id']]
@@ -460,9 +531,12 @@ def _execute_batch(directory,s,p,batch,evaluate):
             task['wire_send_confirmed_at_unix']=reply['value'].get('wire_send_confirmed_at_unix')
         if reply['ok'] and (c['api_mode']!='real' or reply['value'].get('text') is not None):
             text=reply['value']['text'] if c['api_mode']=='real' else reply['value']
-            try:task.update(candidate=asdict(parse(text,len(p['members']))),status='parsed')
+            try:task.update(candidate=asdict(contract_language(c).parse(text,len(p['members']))),status='parsed')
             except CandidateError as exc:task.update(status='completed',failure='parse_or_constraint',error=str(exc))
         else:task.update(status='completed',failure='mock_transport' if c['api_mode']=='mock' else 'real_transport',error='request failed; see redacted response receipt')
+    if c['execution_contract'] is not None:
+        from .execution_contract import settle_api
+        settle_api(s,p,needed,responses)
     save(directory,s)
     evaluate_tasks=[]
     for task in batch:
@@ -531,9 +605,18 @@ def _validate_result(result,p):
     if not result['valid']:
         if result.get('fitness') is not None:raise ValueError('invalid candidate cannot have fitness')
         return
+    if p['config'].get('execution_contract') is not None:
+        refs={r['file']:r['reference'] for r in p['references']}
+        for row in result['instances']:
+            cost,reference=row.get('raw_cost'),row.get('reference')
+            if (type(cost) not in (int,float) or not math.isfinite(cost) or cost<0
+                    or type(reference) not in (int,float) or not math.isfinite(reference) or reference<=0
+                    or not math.isclose(row['score'],(cost-reference)/reference,rel_tol=0,abs_tol=1e-12)
+                    or not result['mock'] and reference!=refs.get(row['file'])):
+                raise ValueError('raw cost/reference/J receipt mismatch')
     if (type(result.get('fitness')) not in (int,float) or not math.isfinite(result['fitness'])
             or [r['file'] for r in result['instances']] != [r['file'] for r in p['instances']]
             or any(type(r['score']) not in (int,float) or not math.isfinite(r['score']) for r in result['instances'])
-            or result['fitness'] != sum(r['score'] for r in result['instances'])/len(p['instances'])
+            or result['fitness'] != (-1 if p['config'].get('execution_contract') is not None else 1)*sum(r['score'] for r in result['instances'])/len(p['instances'])
             or not result.get('behavior_sha256')):
         raise ValueError('complete finite all-instance evaluation required')
