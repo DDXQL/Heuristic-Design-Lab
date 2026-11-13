@@ -1,0 +1,41 @@
+{
+  "phase": "PREPARED_OFFLINE_ONLY",
+  "public_executor_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "base_admission_job": "614258",
+  "base_redeployed": false,
+  "Mock_rerun": false,
+  "Mac_experiment_modified": false,
+  "public_code_modified": false,
+  "instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "path": "train21/Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1",
+      "base_path": "preparations/fjsp-long/train21/Behnke1.fjsp"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "path": "train21/Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d",
+      "base_path": "preparations/fjsp-long/train21/Behnke2.fjsp"
+    }
+  ],
+  "selected_by": "first two entries in the unchanged frozen train21 manifest; no score/cost/runtime consulted",
+  "native_passes_per_instance": 2,
+  "max_physical_solves": 16,
+  "allocation": {
+    "cpus": 3,
+    "memory_mib": 2048,
+    "Slurm_seconds": 600,
+    "application_seconds": 300,
+    "numeric_threads": 1
+  },
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submissions": 0,
+  "uploaded": false,
+  "actual_concurrency_verified": false,
+  "scope": "single experiment internal real evaluation concurrency only; multi-job not verified",
+  "offline_evidence": "offline-r2.json",
+  "gate_evidence": "gates-r2.json"
+}

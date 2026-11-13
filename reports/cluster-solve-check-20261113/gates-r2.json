@@ -1,0 +1,13 @@
+{
+  "label": "OFFLINE_GATES_ONLY",
+  "actual_solves": 0,
+  "model_requests": 0,
+  "explicit_solve_gate_rejected": true,
+  "isolation": {
+    "key_env_removed": true,
+    "client_import": true,
+    "network": true,
+    "credential_file": true,
+    "existing_evaluator_importable": true
+  }
+}

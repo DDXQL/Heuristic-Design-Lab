@@ -1,0 +1,78 @@
+{
+  "version": "fjsp-real-solve-acceptance-v1",
+  "identity": "fjsp-two-U-two-I-serial-parallel-20261113-r1",
+  "base_release": "/public2/home/qiuqian/hdl-deploy/fjsp-noapi-923781f-20261113-r1",
+  "remote_release": "/public2/home/qiuqian/hdl-deploy/fjsp-real-solve-923781f-20261113-r1",
+  "base_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "base_zip_sha256": "b7941d16b82caa9929c644afd8d75500dddba260a5f0141cef96d010f2a92b7d",
+  "base_manifest_sha256": "0c36695692324109a501eec41a9773edcec4773935b12e50db0ea49f167a127f",
+  "h_file_sha256": "042157b541aa6fda4dc69082a075a08ade814d3c3cc273e6c0327b6fdd189dc2",
+  "train_manifest_sha256": "a56c152290a9ab5c6818eef80a0daaec9e3969093895973d9ee467d46c8aa1d7",
+  "selection_rule": "first two entries in the unchanged frozen train21 manifest; no score/cost/runtime consulted",
+  "instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "path": "train21/Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1",
+      "base_path": "preparations/fjsp-long/train21/Behnke1.fjsp"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "path": "train21/Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d",
+      "base_path": "preparations/fjsp-long/train21/Behnke2.fjsp"
+    }
+  ],
+  "H_keys": [
+    "0a9a150a19558cad577ee8a513a9e071a0c9b1efb2b1d6d233cf408089b94f15",
+    "b572970054116558a4aa371ad5979448dfc2d452a269bee18e5caf81e8e9fd2b",
+    "ea670cf652a79268ddf9dc4e7f7355617fe7ece588c7596fbd8517db9dd67e30",
+    "bfeef074de93edae33badb20b38e077eaa60b3b5ce2c4e64fe4cf0ec4b52ef2e",
+    "48b3d3da14d08c6d342d228ffbba9a28ac962246f2fa24da6ffed855facb9eb1",
+    "4387b27ee7190c8957f53c576cfd6961e05a8d0cb9bca4b6c3aa54d133a44d73",
+    "63680f8ff2784e3396341af7c8b6c643c84db47137025419cda7a68fed32e67b",
+    "2a4ed2af0119955215aaf03ccd10d3ff9185b19eb64a147905cfb0b8ffa3dca8",
+    "b8682acdc262ee4e3d36bdbffb1fd5edcf785f56e46037176a6ce83205215855",
+    "7dd48c63c1e08b8f835c9b673bf8d5132c7a195b581f91066f6c491efc94fa03"
+  ],
+  "U": [
+    {
+      "id": "constant_H0",
+      "provenance": "fixed handwritten engineering selector; not a search champion",
+      "code": "def use_heuristics(state):\n    return 0\n"
+    },
+    {
+      "id": "state_switch_H0_H1",
+      "provenance": "fixed handwritten engineering selector; not a search champion",
+      "code": "def use_heuristics(state):\n    if state[\"construction_progress\"] < 0.5:\n        return 0\n    if state[\"h_usage_count\"][1] < state[\"h_usage_count\"][0]:\n        return 1\n    return 0\n"
+    }
+  ],
+  "state_schema": "common-state-a-v3-fjsp",
+  "u_abi": "pure-routing-state-a-v3",
+  "modes": [
+    {
+      "id": "serial",
+      "workers": 1
+    },
+    {
+      "id": "parallel",
+      "workers": 2
+    }
+  ],
+  "instance_timeout_seconds": 30,
+  "native_solves_per_instance": 2,
+  "candidate_evaluations": 4,
+  "max_physical_solves": 16,
+  "resources": {
+    "cpus": 3,
+    "memory_mib": 2048,
+    "Slurm_seconds": 600,
+    "application_seconds": 300,
+    "numeric_threads": 1
+  },
+  "API_requests": 0,
+  "automatic_retries": 0,
+  "automatic_requeue": false,
+  "execution_gate": "explicit --allow-solves --approve-solves 16 by the user, only inside Slurm",
+  "scope": "engineering acceptance on seen train subset; no formal training score, no search, no holdout"
+}

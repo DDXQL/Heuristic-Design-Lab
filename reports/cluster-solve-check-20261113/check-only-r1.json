@@ -1,0 +1,43 @@
+{
+  "offline": true,
+  "actual_solves": 0,
+  "API": {
+    "model_requests": 0,
+    "credential_reads": 0,
+    "real_client_modules_loaded": []
+  },
+  "max_physical_solves": 16,
+  "instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d"
+    }
+  ],
+  "references": [
+    {
+      "file": "Behnke1.fjsp",
+      "reference": 70.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    }
+  ],
+  "native_call_sites": 2,
+  "U": [
+    {
+      "id": "constant_H0",
+      "key": "88566b0957eda6c909d29fcb335598e7a0329718b104adeb5460bd0c1d915b93"
+    },
+    {
+      "id": "state_switch_H0_H1",
+      "key": "548d442799759da10e1148aca2fad1abbc1d578cd6c0406566224a4315d7b0f1"
+    }
+  ]
+}

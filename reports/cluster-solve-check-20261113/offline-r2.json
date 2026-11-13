@@ -1,0 +1,50 @@
+{
+  "label": "SYNTHETIC_OFFLINE_ONLY",
+  "passed": true,
+  "actual_solves": 0,
+  "model_requests": 0,
+  "cases": {
+    "two_modes_two_U_two_instances_two_native_passes_cap_16": true,
+    "duplicate_identity_no_replay": true,
+    "parallel_wave_budget_checked_before_dispatch": true,
+    "failure_stops_with_charged_unknown_reservation_and_retained_lock": true,
+    "meter_rejects_hidden_fifth_call_before_delegate": true,
+    "selected_first_two_not_score_based": true,
+    "fourteen_category_state_v3": true,
+    "API_clients_absent": true
+  },
+  "selected_instances": [
+    {
+      "file": "Behnke1.fjsp",
+      "sha256": "d3902d14d6a27f0d335bbb556ee088ba9103e738dc3f20d6d3feb74eb42c2ad1"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "sha256": "5ac8ba43854c66383f0f0f5b72734766033bd3f7104fb99bff5995bf3e64ba6d"
+    }
+  ],
+  "LB": [
+    {
+      "file": "Behnke1.fjsp",
+      "reference": 70.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    }
+  ],
+  "U": [
+    {
+      "id": "constant_H0",
+      "key": "88566b0957eda6c909d29fcb335598e7a0329718b104adeb5460bd0c1d915b93"
+    },
+    {
+      "id": "state_switch_H0_H1",
+      "key": "548d442799759da10e1148aca2fad1abbc1d578cd6c0406566224a4315d7b0f1"
+    }
+  ],
+  "native_solves_per_instance": 2,
+  "declared_max_physical_solves": 16
+}
