@@ -1,0 +1,40 @@
+{
+  "environment": "import_passed",
+  "protocol_check": "unfrozen_expected_rejection",
+  "protocol_pending": [
+    "seeds.0",
+    "settings.population_size",
+    "settings.generations",
+    "settings.search_seed",
+    "settings.solve_seed",
+    "settings.initialization_candidate_cap",
+    "settings.initialization_request_cap",
+    "settings.api_concurrency",
+    "settings.evaluation_concurrency",
+    "settings.instance_timeout_seconds",
+    "settings.api_attempt_cap",
+    "settings.execution_contract.allocated_cpus",
+    "settings.execution_contract.window_seconds",
+    "settings.execution_contract.segment_seconds",
+    "settings.execution_contract.drain_seconds",
+    "settings.execution_contract.initialization_policy",
+    "settings.execution_contract.account_exclusion",
+    "settings.execution_contract.min_request_interval_seconds",
+    "freeze_status"
+  ],
+  "engine_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "python": "3.12.10",
+  "dependencies": {
+    "numpy": "2.2.6",
+    "pytz": "2026.5",
+    "tqdm": "4.70.1"
+  },
+  "isolation": {
+    "no_API_stub": true,
+    "real_client_modules_loaded": [],
+    "credential_reads": 0,
+    "model_requests": 0,
+    "formal_solves": 0,
+    "guard_denials": []
+  }
+}

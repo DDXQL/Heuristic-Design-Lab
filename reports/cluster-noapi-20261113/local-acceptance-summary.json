@@ -1,0 +1,45 @@
+{
+  "label": "LOCAL_ONLY_NO_CLUSTER_RUN",
+  "engine_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "cases": {
+    "serial": {
+      "phase": "completed",
+      "worker_count": 9,
+      "worker_overlap_observed": false,
+      "evaluation_calls_overlap": false,
+      "writer_lock_released": true,
+      "semantic_sha256": "48669b788290973c7999afd3390d04d48babd9cb7017c767c3409b00fb53bb1f"
+    },
+    "parallel": {
+      "phase": "completed",
+      "worker_count": 9,
+      "worker_overlap_observed": true,
+      "evaluation_calls_overlap": true,
+      "writer_lock_released": true,
+      "semantic_sha256": "48669b788290973c7999afd3390d04d48babd9cb7017c767c3409b00fb53bb1f"
+    },
+    "resume": {
+      "phase": "completed",
+      "worker_count": 9,
+      "worker_overlap_observed": true,
+      "evaluation_calls_overlap": true,
+      "writer_lock_released": true,
+      "semantic_sha256": "48669b788290973c7999afd3390d04d48babd9cb7017c767c3409b00fb53bb1f"
+    }
+  },
+  "serial_parallel_resume_equal": true,
+  "isolation": {
+    "no_API_stub": true,
+    "real_client_modules_loaded": [],
+    "credential_reads": 0,
+    "model_requests": 0,
+    "formal_solves": 0,
+    "guard_denials": []
+  },
+  "uploaded": false,
+  "compute_node_verified": false,
+  "Slurm_submissions": 0,
+  "source_public_code_unchanged_from_923781f": true,
+  "QA_result_manifest_sha256": "b203e25d1eb1cadd96fe07c8d7e8999040a811ef43dbf511355db7e6ca4a5796",
+  "QA_path": "/tmp/fjsp-cluster-noapi-localcheck-r2/acceptance/local-only"
+}

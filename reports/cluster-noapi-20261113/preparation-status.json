@@ -1,0 +1,28 @@
+{
+  "phase": "LOCAL_PREPARATION_ONLY",
+  "frozen_public_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-cluster-mock-20261113",
+  "branch": "codex/fjsp-cluster-mock-20261113",
+  "Mac_running_tree_modified": false,
+  "public_executor_modified": false,
+  "official_research_config_modified": false,
+  "uploaded": false,
+  "compute_node_verified": false,
+  "actual_Slurm_submissions": 0,
+  "actual_model_requests": 0,
+  "formal_solves": 0,
+  "authentication": "prior noninteractive jump-host authentication rejected; no repeated attempt in this continuation",
+  "local_checks": [
+    "all original manifest hashes",
+    "frozen public code unchanged",
+    "unpacked import; expected protocol rejection separated",
+    "serial / parallel / safe pause-resume synthetic receipts",
+    "network / actual client / credential file / real dispatch rejected",
+    "underallocated CPU rejected",
+    "installer hash verification and identical restage",
+    "result copy and manifest round trip; local sample not accepted as cluster evidence",
+    "duplicate fake sbatch submission blocked",
+    "Python AST and bash syntax"
+  ],
+  "next_action": "Run deploy/cluster-mock/control.py stage in Mac terminal; interactive SSH authentication occurs there."
+}

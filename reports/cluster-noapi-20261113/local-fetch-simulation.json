@@ -1,0 +1,15 @@
+{
+  "job_id": "424242",
+  "active": false,
+  "accounting_state": "COMPLETED",
+  "exit_code": "0:0",
+  "remote_root": "/public2/home/qiuqian/hdl-deploy/fjsp-noapi-923781f-20261113-r1",
+  "local_evidence": "/tmp/fjsp-noapi-fetch-simulation-r1",
+  "retrieved": true,
+  "result_hashes_verified": true,
+  "compute_node_verified": false,
+  "model_requests": 0,
+  "formal_solves": 0,
+  "label": "LOCAL_COPY_SIMULATION_NOT_CLUSTER_EVIDENCE",
+  "actual_Slurm_submissions": 0
+}
