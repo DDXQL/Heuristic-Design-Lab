@@ -15,8 +15,8 @@ spec=importlib.util.spec_from_file_location('admitted_cluster',ROOT/'deploy/clus
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import configuration,batch
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r1'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r1.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r2'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r2.zip')
 EXPORT='''import hashlib,json,pathlib,sys,time,zipfile
 root=pathlib.Path(sys.argv[1]);run=pathlib.Path(sys.argv[2]);job=sys.argv[3]
 if not run.resolve().is_relative_to((root/'runs').resolve()) or not job.isdigit():raise SystemExit('invalid retrieval identity')
@@ -98,10 +98,10 @@ def main():
                 else:
                     submission=json.loads(c.run(['cat',row['run_dir']+'/latest-submission.json']).stdout);job=submission.get('job_id','')
                     if submission['state']!='submitted' or not job.isdigit():raise ValueError('unknown job receipt; never resubmit')
-                    queue=c.run(['squeue','-h','-j',job,'-o','%i|%T|%C']);account=c.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,Elapsed,AllocCPUS,MaxRSS,NodeList'])
+                    queue=c.run(['squeue','-h','-u','qiuqian','-o','%i|%T|%C']);account=c.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,Elapsed,AllocCPUS,MaxRSS,NodeList'])
                     (d/'squeue.txt').write_text(queue.stdout);(d/'sacct.psv').write_text(account.stdout)
                     record=next((r.split('|') for r in account.stdout.splitlines() if r.split('|')[0]==job),None)
-                    value.update(job_id=job,active=bool(queue.stdout.strip()),Slurm_state=record[1].split()[0] if record else None,exit_code=record[2] if record else None)
+                    value.update(job_id=job,active=any(line.split('|')[0]==job for line in queue.stdout.splitlines()),Slurm_state=record[1].split()[0] if record else None,exit_code=record[2] if record else None)
                     if a.action=='fetch':
                         if value['active'] or value['Slurm_state'] not in {'COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED','BOOT_FAIL','DEADLINE','REVOKED'}:raise ValueError('terminal accounting missing; wait before retrieval')
                         receipt=json.loads(c.run([shared.PY,'-s','-B','-c',EXPORT,REMOTE,row['run_dir'],job]).stdout);local=d/'result.zip';c.copy(shared.HOST+':'+receipt['path'],str(local))

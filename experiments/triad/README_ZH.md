@@ -46,7 +46,7 @@ TSP H原件SHA为`f85c5cafb8d675ae0dbbe2f682fe5f61f7a2bda5490eb6f95d958256d3dcdb
 
 Mac单次运行接口为`entry.py run --config 子配置真实路径 --run-dir 独立目录 --allow-api --allow-solves --approve-budget 原累计上限`。`prepare`只有文件写入，真实模式仍要求显式原额度确认但不读密钥。状态／暂停／导出使用同一路径与`status`、`pause`、`export`。恢复使用`resume`并承认原额度。批次可用`batch.py run --all`依次推进已冻结运行；遇暂停、失败、未知请求或未知提交停止，不能跳过后自动补跑。用户可自行执行下一条状态或恢复命令，无需逐代向聊天报告。
 
-集群独立根目录固定为`/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r1`，复用`/public2/home/qiuqian/hdl-envs/portable-v2/bin/python`，不默认安装依赖。包准备完成后用户可在Mac终端执行：
+集群独立根目录固定为`/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r2`，复用`/public2/home/qiuqian/hdl-envs/portable-v2/bin/python`，不默认安装依赖。包准备完成后用户可在Mac终端执行：
 
 ```bash
 /Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/cluster.py stage

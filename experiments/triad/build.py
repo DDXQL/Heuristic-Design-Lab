@@ -11,7 +11,7 @@ sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from experiments.triad import runtime
 BASE=Path('/Users/DDXQL/Developer/transfer-outbox/fjsp-cluster-noapi-923781f-20261113-r1.zip')
 BASE_SHA='b7941d16b82caa9929c644afd8d75500dddba260a5f0141cef96d010f2a92b7d'
-OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r1.zip')
+OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r2.zip')
 PUBLIC='923781f05686f1899c24fd7899fb3bc6b1df1562'
 
 
