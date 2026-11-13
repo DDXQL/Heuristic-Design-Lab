@@ -1,0 +1,108 @@
+{
+  "version": "fjsp-single-launch-v1",
+  "freeze_status": "research_frozen",
+  "campaign_id": "triad-fjsp-u-template",
+  "seeds": [],
+  "run_root": "../../runs",
+  "settings": {
+    "version": "parent-coverage-routing-v1",
+    "api_mode": "real",
+    "real_requests_authorized": false,
+    "problem": "fjsp",
+    "population_size": 5,
+    "generations": 100,
+    "search_seed": 501,
+    "solve_seed": 501,
+    "initialization": "llm",
+    "initialization_candidate_cap": 20,
+    "initialization_request_cap": 20,
+    "generation_request_cap": 1000,
+    "api_concurrency": 1,
+    "evaluation_concurrency": 2,
+    "evaluation_mode": "solve",
+    "window": 10,
+    "enabled_groups": [
+      "construction",
+      "action_cost",
+      "trajectory",
+      "usage"
+    ],
+    "instance_timeout_seconds": 30,
+    "mock_reverse_delay": false,
+    "mock_faults": {},
+    "mock_delay_seconds": 0.0,
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "max_prompt_bytes": 262144,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "stream_response": false
+    },
+    "api_attempt_cap": 1020,
+    "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/train21.manifest.json",
+    "h_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab/preparations/b1-v6-20261029/H_frozen.json",
+    "p0_file": null,
+    "state_schema": "common-state-a-v3-fjsp",
+    "recording_mode": "compact",
+    "milestone_generations": [],
+    "execution_contract": {
+      "version": "frozen-execution-v1",
+      "run_id": "TEMPLATE_NOT_AUTHORIZATION",
+      "group": "fjsp-u1000",
+      "allocated_cpus": 3,
+      "window_seconds": 172800,
+      "segment_seconds": 43200,
+      "drain_seconds": 1260,
+      "milestone_attempts": [
+        220,
+        1000
+      ],
+      "initialization_policy": "bounded_initialization_until_population",
+      "state_binding": {
+        "version": "common-state-a-v3",
+        "spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+        "abi": "pure-routing-state-a-v3",
+        "history_extension_delivered": true
+      },
+      "client_binding": {
+        "wire_version": "bounded-wire-reliability-v5",
+        "caller_policy": "strict-nonstream-model-stop-usage-v1",
+        "files": {
+          "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+          "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc"
+        },
+        "provider": {
+          "endpoint": "https://leafapi.cc/v1/chat/completions",
+          "model": "gpt-6.1-sol",
+          "protocol": "openai-chat-v1",
+          "api_key_env": "LEAFAPI_API_KEY",
+          "connect_timeout": 10,
+          "read_timeout": 240,
+          "total_timeout": 300,
+          "max_output_tokens": 8192,
+          "max_prompt_bytes": 262144,
+          "temperature": null,
+          "reasoning_effort": null,
+          "expected_response_model": "gpt-6.1-sol",
+          "stream_response": false
+        }
+      },
+      "account_exclusion": null,
+      "account_gate": null,
+      "min_request_interval_seconds": 1,
+      "source_cost": {
+        "H_attempts": 34,
+        "scope": "shared historical H provenance; counted once, not added again on resume",
+        "actual_cost": null
+      }
+    }
+  }
+}

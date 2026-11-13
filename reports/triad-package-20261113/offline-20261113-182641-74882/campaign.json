@@ -1,0 +1,37 @@
+{
+  "version": "triad-serial-batch-v1",
+  "campaign_id": "MOCK-20261113-182641-74882",
+  "repeat_count": 2,
+  "search_seeds": [
+    7,
+    8
+  ],
+  "global_generation_tasks": 1,
+  "run_root": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-182641-74882",
+  "groups": [
+    {
+      "group": "fjsp-u",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/fjsp-u.json"
+    },
+    {
+      "group": "fjsp-eoh",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/fjsp-eoh.json"
+    },
+    {
+      "group": "tsp-u",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/tsp-u.json"
+    },
+    {
+      "group": "tsp-eoh",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/tsp-eoh.json"
+    },
+    {
+      "group": "obp-u",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/obp-u.json"
+    },
+    {
+      "group": "obp-eoh",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-182641-74882/obp-eoh.json"
+    }
+  ]
+}

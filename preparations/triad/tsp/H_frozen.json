@@ -1,0 +1,468 @@
+{
+  "kind": "tsp-eoh-reused-cpm-v1",
+  "origin_mode": "real",
+  "engineering_only": false,
+  "member_count": 10,
+  "members": [
+    {
+      "description": "Score candidates by penalizing travel from the current city, rewarding early access to candidates with distant remaining neighbors, and increasing the weight on distance from the start as the tour progresses.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    isolation = remaining * remaining * (0.16 * mean_remaining_distance + 0.24 * nearest_remaining_distance)\n    return_weight = 0.12 + 0.64 * progress\n    return -distance_current + isolation + return_weight * distance_start\n",
+      "key": "d196c17c679ed06fc1d1b70bd24aace111c6744c4a1769c7b09e9054107250af",
+      "kind": "h"
+    },
+    {
+      "description": "Score each candidate using a retuned local distance scale, a stronger early isolation bonus, and an increasing distance-from-start reward, then select the highest-scoring city.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_scale = 0.03 + 0.6 * (mean_remaining_distance + nearest_remaining_distance)\n    travel_cost = distance_current * (1.0 + 0.24 * distance_current / (local_scale + distance_current))\n    isolation_bonus = remaining ** 2 * (0.1 * mean_remaining_distance + 0.28 * nearest_remaining_distance)\n    closure_weight = 0.04 + 0.95 * progress ** 2 / (progress ** 2 + remaining ** 2)\n    return isolation_bonus + closure_weight * distance_start - travel_cost\n",
+      "key": "74db7afb76dbe406262779eea6a55b91dcf842a2a58194e50816deeaf7fd70b2",
+      "kind": "h"
+    },
+    {
+      "description": "Score candidates using local-scale offset 0.035 and factor 0.65, travel-penalty strength 0.40, early isolation weights 0.26 and 0.16, and a distance-from-start reward increasing from 0.04 to 0.62; select the highest score, breaking exact ties by smallest city ID.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_scale = 0.035 + 0.65 * (mean_remaining_distance + nearest_remaining_distance)\n    travel_cost = distance_current * (1.0 + 0.4 * distance_current / (local_scale + distance_current))\n    isolation_bonus = remaining ** 2 * (0.26 * mean_remaining_distance + 0.16 * nearest_remaining_distance)\n    closure_weight = 0.04 + 0.58 * progress ** 2 / (progress ** 2 + remaining ** 2)\n    return isolation_bonus + closure_weight * distance_start - travel_cost\n",
+      "key": "861f1b7bb5ce513e8481d1228a0ab4d4261427b448f57be2961d7dd023322eca",
+      "kind": "h"
+    },
+    {
+      "description": "Score each candidate by negative current distance, add an isolation bonus that decays with remaining progress using mean-distance weight 0.14 and nearest-distance weight 0.42, then add a distance-from-start preference weighted by 0.05 + 0.85 × progress².",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    isolation_bonus = remaining * (0.14 * mean_remaining_distance + 0.42 * nearest_remaining_distance)\n    return_weight = 0.05 + 0.85 * progress ** 2\n    return -distance_current + isolation_bonus + return_weight * distance_start\n",
+      "key": "fb68dce735c49c3716e33e473e5bfc9621d951bf730eb6e6425494f1e64e3015",
+      "kind": "h"
+    },
+    {
+      "description": "Building on the shared backbone of short travel, early isolation preference, and late preservation of a short closing edge, use a multiplicative score that balances density-normalized travel cost against isolation relief and progress-dependent distance from the start.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    travel_ratio = (0.02 + distance_current) / (0.02 + distance_current + mean_remaining_distance)\n    isolation_factor = 1.0 + remaining ** 2 * (nearest_remaining_distance / (0.04 + mean_remaining_distance))\n    closure_factor = 1.0 + 0.8 * progress ** 3 * (1.0 - distance_start)\n    return -travel_ratio * closure_factor / isolation_factor\n",
+      "key": "f342517b5f08c0a737dea57332f41f397a410b36e54d1bab8e0420824d773aa1",
+      "kind": "h"
+    },
+    {
+      "description": "Both algorithms trade off immediate travel cost against preserving access to unvisited cities early and favoring candidates farther from the start as the tour nears completion; this version expresses that balance as an access-to-travel ratio with a progressively stronger departure factor.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    progress_power = progress ** 4\n    remaining_power = remaining ** 4\n    closure_pressure = progress_power / (progress_power + remaining_power + 0.0001)\n    access = 0.02 + 0.65 * nearest_remaining_distance + 0.35 * mean_remaining_distance\n    departure_factor = 1.0 + 1.2 * closure_pressure * distance_start\n    return access * departure_factor / (0.04 + distance_current)\n",
+      "key": "5f99cf46b44592d964f10fe0130e14c23c377de0f7007291ebb105b7a69fac2e",
+      "kind": "h"
+    },
+    {
+      "description": "Score candidates with a progress-dependent blend of their distance from the start and their remaining-neighbor distances, divided by current travel distance plus a progress-scaled offset, then choose the highest score.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    neighbor_value = mean_remaining_distance + nearest_remaining_distance\n    numerator = distance_start * (0.25 + 0.55 * remaining) + neighbor_value * (0.15 + 0.35 * progress)\n    denominator = distance_current + 0.04 + 0.24 * remaining * nearest_remaining_distance\n    return numerator / denominator\n",
+      "key": "537196cb022b796806b38022a93dba6071591f07b2ed1d8362d1b81ca1599a39",
+      "kind": "h"
+    },
+    {
+      "description": "Use a phase-dependent minimax rule that balances immediate travel against excess travel relative to local spacing, then applies a squared radial potential to preserve nearby return options.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_spacing = 0.5 * (mean_remaining_distance + nearest_remaining_distance)\n    excess = max(0.0, distance_current - local_spacing)\n    immediate_cost = distance_current ** 2\n    regret_cost = 0.65 * distance_current ** 2 + 1.4 * remaining * excess ** 2\n    bottleneck_cost = max(immediate_cost, regret_cost)\n    radial_potential = (0.04 + 0.5 * progress ** 3) * distance_start ** 2\n    return radial_potential - bottleneck_cost\n",
+      "key": "5303a43c0679368eadb29aa271aef679dc5deab4df2fbc250c03e95391b9404f",
+      "kind": "h"
+    },
+    {
+      "description": "Use a nonlinear travel penalty, reward isolated candidates more strongly early in construction, and gradually shift from favoring cities far from the start to favoring an inexpensive return.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    travel_penalty = distance_current * (1.0 + 0.35 * distance_current)\n    isolation_gap = max(0.0, mean_remaining_distance - nearest_remaining_distance)\n    isolation_bonus = remaining * (0.2 * mean_remaining_distance + 0.32 * nearest_remaining_distance + 0.18 * isolation_gap ** 2)\n    start_weight = 0.12 + 0.3 * progress - 0.72 * progress ** 3\n    return -travel_penalty + isolation_bonus + start_weight * distance_start\n",
+      "key": "8f14d47b92884a395cf3ac9fe40001e2112df27ef9115cd3853e1699a67eb102",
+      "kind": "h"
+    },
+    {
+      "description": "Compute a local-scale-normalized travel cost, penalize edges longer than the candidate’s nearest remaining connection, and progressively incorporate return-to-start cost; choose the highest negative cost.",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    local_scale = 0.25 + 0.75 * mean_remaining_distance + 0.25 * nearest_remaining_distance\n    outward_scale = 0.1 * (1.0 - progress) ** 2 * distance_start\n    edge_excess = max(0.0, distance_current - nearest_remaining_distance)\n    closure_cost = 0.3 * progress ** 6 * distance_start\n    travel_cost = distance_current + 0.25 * edge_excess + closure_cost\n    return -travel_cost / (local_scale + outward_scale)\n",
+      "key": "b94abcd176a61066452f7cdc86c4f06af088097f9e6dc3123811a8007d97e76f",
+      "kind": "h"
+    }
+  ],
+  "source_run": "/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-eoh-single/runs/tsp-eoh-single-real-20261102-01",
+  "source_protocol_sha256": "2251d67c870cc2f74acd33c0ad9d9c41fc76e549e4c7b313819cb4221bd22bf8",
+  "source_checkpoint_sha256": "94c13863688cd0df2b191a41a0e6df553e702d83f9708e2db9bdbf5af885c3d4",
+  "source_attempts": 260,
+  "reuse_new_API": 0,
+  "reuse_new_solves": 0,
+  "training_only": true,
+  "selection_source": "code/fjsp_usage/research/sets.py",
+  "selection_source_sha256": "44749411689a7114df6e0bc4a523555af422d45c50974912e1b537185561ff9a",
+  "greedy_selection_order": [
+    "H-0243",
+    "H-0216",
+    "H-0208",
+    "H-0030",
+    "H-0226",
+    "H-0065",
+    "H-0144",
+    "H-0013",
+    "H-0229",
+    "H-0115"
+  ],
+  "numbering": "fitness descending, id ascending",
+  "lineage": [
+    {
+      "id": "H-0243",
+      "candidate": {
+        "description": "Score candidates by penalizing travel from the current city, rewarding early access to candidates with distant remaining neighbors, and increasing the weight on distance from the start as the tour progresses.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    isolation = remaining * remaining * (0.16 * mean_remaining_distance + 0.24 * nearest_remaining_distance)\n    return_weight = 0.12 + 0.64 * progress\n    return -distance_current + isolation + return_weight * distance_start\n",
+        "key": "d196c17c679ed06fc1d1b70bd24aace111c6744c4a1769c7b09e9054107250af",
+        "kind": "h"
+      },
+      "fitness": -0.9133568870570258,
+      "scores": [
+        -0.9771982371575992,
+        -0.9662036644234961,
+        -0.8652214785274684,
+        -0.8937201361826261,
+        -0.9311747385270841,
+        -0.8978647272374418,
+        -1.000563876190572,
+        -0.9524266037627211,
+        -0.9370116725458506,
+        -0.8401151319524334,
+        -1.0059457852066729,
+        -0.8675629816797572,
+        -0.9186017386922383,
+        -0.8764061361806282,
+        -0.9130188121558446,
+        -0.7880734463381386,
+        -0.9234608460459471,
+        -1.0683115452708605,
+        -0.8201434790330747,
+        -0.8241127040300594
+      ],
+      "evaluation_sha256": "2c8d7b87206841e880cee019567fef1b6d94bca97682bbf379e599470cf565f4",
+      "operator": "M1",
+      "parents": [
+        "H-0108"
+      ]
+    },
+    {
+      "id": "H-0144",
+      "candidate": {
+        "description": "Score each candidate using a retuned local distance scale, a stronger early isolation bonus, and an increasing distance-from-start reward, then select the highest-scoring city.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_scale = 0.03 + 0.6 * (mean_remaining_distance + nearest_remaining_distance)\n    travel_cost = distance_current * (1.0 + 0.24 * distance_current / (local_scale + distance_current))\n    isolation_bonus = remaining ** 2 * (0.1 * mean_remaining_distance + 0.28 * nearest_remaining_distance)\n    closure_weight = 0.04 + 0.95 * progress ** 2 / (progress ** 2 + remaining ** 2)\n    return isolation_bonus + closure_weight * distance_start - travel_cost\n",
+        "key": "74db7afb76dbe406262779eea6a55b91dcf842a2a58194e50816deeaf7fd70b2",
+        "kind": "h"
+      },
+      "fitness": -0.9154317464136781,
+      "scores": [
+        -0.9739831862586349,
+        -1.0034272488518803,
+        -0.8651943721579187,
+        -0.9263352747646358,
+        -0.9433761138175638,
+        -0.9251620662313678,
+        -1.006983236897126,
+        -0.852052324350188,
+        -0.9584404737043882,
+        -0.8216692259071149,
+        -0.926810158190651,
+        -0.8726955638401924,
+        -0.9068076898162029,
+        -0.8879029516867849,
+        -0.9925863283826519,
+        -0.8573127349112443,
+        -0.9139313220553238,
+        -1.0618689875892653,
+        -0.8292560053215642,
+        -0.7828396635388644
+      ],
+      "evaluation_sha256": "abbe65a29b8c19c8f4165f029a1dad4d98f0b8cdf28131205dbf3dcc85304e43",
+      "operator": "M2",
+      "parents": [
+        "H-0031"
+      ]
+    },
+    {
+      "id": "H-0208",
+      "candidate": {
+        "description": "Score candidates using local-scale offset 0.035 and factor 0.65, travel-penalty strength 0.40, early isolation weights 0.26 and 0.16, and a distance-from-start reward increasing from 0.04 to 0.62; select the highest score, breaking exact ties by smallest city ID.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_scale = 0.035 + 0.65 * (mean_remaining_distance + nearest_remaining_distance)\n    travel_cost = distance_current * (1.0 + 0.4 * distance_current / (local_scale + distance_current))\n    isolation_bonus = remaining ** 2 * (0.26 * mean_remaining_distance + 0.16 * nearest_remaining_distance)\n    closure_weight = 0.04 + 0.58 * progress ** 2 / (progress ** 2 + remaining ** 2)\n    return isolation_bonus + closure_weight * distance_start - travel_cost\n",
+        "key": "861f1b7bb5ce513e8481d1228a0ab4d4261427b448f57be2961d7dd023322eca",
+        "kind": "h"
+      },
+      "fitness": -0.9227520117036443,
+      "scores": [
+        -0.9225937011543924,
+        -0.9506787855008944,
+        -0.9262439949073137,
+        -0.981660707481069,
+        -1.0122968450035488,
+        -0.8804948759017722,
+        -1.0504502291082882,
+        -0.9658837985660425,
+        -0.9382161992282738,
+        -0.8476568359257751,
+        -0.9473538851105533,
+        -0.8714100055365005,
+        -0.9137157446898505,
+        -0.8311158016437987,
+        -0.9656486955980063,
+        -0.9218932013920197,
+        -0.9139313220553238,
+        -0.9962193108332705,
+        -0.8347366308973282,
+        -0.7828396635388644
+      ],
+      "evaluation_sha256": "c71dede491b8d6a881f221fea0ef428ec88ee1f978f4046683b332cdf458f5af",
+      "operator": "M2",
+      "parents": [
+        "H-0180"
+      ]
+    },
+    {
+      "id": "H-0216",
+      "candidate": {
+        "description": "Score each candidate by negative current distance, add an isolation bonus that decays with remaining progress using mean-distance weight 0.14 and nearest-distance weight 0.42, then add a distance-from-start preference weighted by 0.05 + 0.85 × progress².",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    isolation_bonus = remaining * (0.14 * mean_remaining_distance + 0.42 * nearest_remaining_distance)\n    return_weight = 0.05 + 0.85 * progress ** 2\n    return -distance_current + isolation_bonus + return_weight * distance_start\n",
+        "key": "fb68dce735c49c3716e33e473e5bfc9621d951bf730eb6e6425494f1e64e3015",
+        "kind": "h"
+      },
+      "fitness": -0.9239411453173577,
+      "scores": [
+        -0.9287323482893448,
+        -1.0202997180185327,
+        -0.9287994120743785,
+        -0.994293780096467,
+        -1.0139113064091387,
+        -0.8889921730673621,
+        -0.9465917699651335,
+        -0.8073190307773154,
+        -0.9382161992282738,
+        -0.885319550164019,
+        -1.0241833908661957,
+        -0.8600132096761165,
+        -0.9068076898162029,
+        -0.8323329885807118,
+        -1.0167139178979574,
+        -0.9390870700914399,
+        -0.8993229531349853,
+        -1.0367072002719464,
+        -0.8206421481395514,
+        -0.7905370497820802
+      ],
+      "evaluation_sha256": "94dc77fd65dd5dc8b3dcaf39caaa73024982a74043acb67172a0398824687cf1",
+      "operator": "M2",
+      "parents": [
+        "H-0108"
+      ]
+    },
+    {
+      "id": "H-0030",
+      "candidate": {
+        "description": "Building on the shared backbone of short travel, early isolation preference, and late preservation of a short closing edge, use a multiplicative score that balances density-normalized travel cost against isolation relief and progress-dependent distance from the start.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    travel_ratio = (0.02 + distance_current) / (0.02 + distance_current + mean_remaining_distance)\n    isolation_factor = 1.0 + remaining ** 2 * (nearest_remaining_distance / (0.04 + mean_remaining_distance))\n    closure_factor = 1.0 + 0.8 * progress ** 3 * (1.0 - distance_start)\n    return -travel_ratio * closure_factor / isolation_factor\n",
+        "key": "f342517b5f08c0a737dea57332f41f397a410b36e54d1bab8e0420824d773aa1",
+        "kind": "h"
+      },
+      "fitness": -0.9275346233499823,
+      "scores": [
+        -0.8653926050179778,
+        -0.9683360648987476,
+        -0.8258131677076576,
+        -0.9296191706793225,
+        -0.9648520152717254,
+        -0.9085760749409709,
+        -1.0547492211793705,
+        -0.8583169382296862,
+        -0.9833366800970741,
+        -0.8443300195710592,
+        -0.9890865848001279,
+        -0.8827180037950239,
+        -0.8950613470489018,
+        -0.8361337098778329,
+        -1.0313466652695096,
+        -0.926123908811723,
+        -0.928074649525527,
+        -1.117556273473743,
+        -0.8966271244601347,
+        -0.8446422423435292
+      ],
+      "evaluation_sha256": "eca6b90d10b2c0d20255ee2e68cc659823f8e1d3dd22ce3190d929088c7cd26c",
+      "operator": "E2",
+      "parents": [
+        "H-0000",
+        "H-0024"
+      ]
+    },
+    {
+      "id": "H-0226",
+      "candidate": {
+        "description": "Both algorithms trade off immediate travel cost against preserving access to unvisited cities early and favoring candidates farther from the start as the tour nears completion; this version expresses that balance as an access-to-travel ratio with a progressively stronger departure factor.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    progress_power = progress ** 4\n    remaining_power = remaining ** 4\n    closure_pressure = progress_power / (progress_power + remaining_power + 0.0001)\n    access = 0.02 + 0.65 * nearest_remaining_distance + 0.35 * mean_remaining_distance\n    departure_factor = 1.0 + 1.2 * closure_pressure * distance_start\n    return access * departure_factor / (0.04 + distance_current)\n",
+        "key": "5f99cf46b44592d964f10fe0130e14c23c377de0f7007291ebb105b7a69fac2e",
+        "kind": "h"
+      },
+      "fitness": -0.9376517348728871,
+      "scores": [
+        -0.9276021807450737,
+        -0.9799085500801138,
+        -0.9598339921479184,
+        -0.9641138140985894,
+        -0.9145488012962841,
+        -0.9346604289626057,
+        -1.0259263080140677,
+        -0.7979872977228686,
+        -1.0365689224854613,
+        -0.915436522171265,
+        -0.9919399732994746,
+        -0.9294649331049157,
+        -0.9835145000362676,
+        -0.9030453537500379,
+        -0.8737238109665302,
+        -0.9463123378579322,
+        -0.9721030540120555,
+        -0.9973467264415304,
+        -0.8788623766145505,
+        -0.8201348136501984
+      ],
+      "evaluation_sha256": "51c17b0a8c2944d0705005a1bcc1719a4389da3da5ff1e4e6f780b5ab5a75a09",
+      "operator": "E2",
+      "parents": [
+        "H-0164",
+        "H-0144"
+      ]
+    },
+    {
+      "id": "H-0229",
+      "candidate": {
+        "description": "Score candidates with a progress-dependent blend of their distance from the start and their remaining-neighbor distances, divided by current travel distance plus a progress-scaled offset, then choose the highest score.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    neighbor_value = mean_remaining_distance + nearest_remaining_distance\n    numerator = distance_start * (0.25 + 0.55 * remaining) + neighbor_value * (0.15 + 0.35 * progress)\n    denominator = distance_current + 0.04 + 0.24 * remaining * nearest_remaining_distance\n    return numerator / denominator\n",
+        "key": "537196cb022b796806b38022a93dba6071591f07b2ed1d8362d1b81ca1599a39",
+        "kind": "h"
+      },
+      "fitness": -0.9387417031528156,
+      "scores": [
+        -0.8777525486837893,
+        -0.92325321512719,
+        -0.9063314184094444,
+        -0.9148475527392078,
+        -1.023154644943238,
+        -0.9451149188581155,
+        -1.0763160442151054,
+        -0.959273650923123,
+        -1.0203555934249877,
+        -0.8848531603324847,
+        -1.0070548841787363,
+        -0.9008711498169247,
+        -0.9741175949311384,
+        -0.8355594783080762,
+        -0.9914375863450103,
+        -0.8584549961360326,
+        -1.0034318486863667,
+        -1.0297775595334848,
+        -0.8351670441926017,
+        -0.8077091732712526
+      ],
+      "evaluation_sha256": "4b0093f200afc287e8d2dece561698a95ccfd0b715dedddf6c05cb8521782953",
+      "operator": "E1",
+      "parents": [
+        "H-0144",
+        "H-0180"
+      ]
+    },
+    {
+      "id": "H-0065",
+      "candidate": {
+        "description": "Use a phase-dependent minimax rule that balances immediate travel against excess travel relative to local spacing, then applies a squared radial potential to preserve nearby return options.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    local_spacing = 0.5 * (mean_remaining_distance + nearest_remaining_distance)\n    excess = max(0.0, distance_current - local_spacing)\n    immediate_cost = distance_current ** 2\n    regret_cost = 0.65 * distance_current ** 2 + 1.4 * remaining * excess ** 2\n    bottleneck_cost = max(immediate_cost, regret_cost)\n    radial_potential = (0.04 + 0.5 * progress ** 3) * distance_start ** 2\n    return radial_potential - bottleneck_cost\n",
+        "key": "5303a43c0679368eadb29aa271aef679dc5deab4df2fbc250c03e95391b9404f",
+        "kind": "h"
+      },
+      "fitness": -0.945829789916866,
+      "scores": [
+        -0.9639153373182879,
+        -1.0088858723255592,
+        -1.013377377309858,
+        -0.9863165749967889,
+        -0.9699789230932052,
+        -0.932012523825085,
+        -0.9961993958626021,
+        -0.9360698054881591,
+        -0.9698875247799603,
+        -0.9273742237625472,
+        -0.9392216179228373,
+        -0.8191112204883835,
+        -0.9102718944349218,
+        -0.8938853402573003,
+        -0.9970198472953143,
+        -0.8999153587707304,
+        -0.9251424687948275,
+        -1.1766075555813287,
+        -0.8179525075742827,
+        -0.8334504284553386
+      ],
+      "evaluation_sha256": "c475e0c44c32c240eeb778d1bcb96d9e9c8cb8ad5b09e5099ec953ba2e06faad",
+      "operator": "E1",
+      "parents": [
+        "H-0030",
+        "H-0031"
+      ]
+    },
+    {
+      "id": "H-0115",
+      "candidate": {
+        "description": "Use a nonlinear travel penalty, reward isolated candidates more strongly early in construction, and gradually shift from favoring cities far from the start to favoring an inexpensive return.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    remaining = 1.0 - progress\n    travel_penalty = distance_current * (1.0 + 0.35 * distance_current)\n    isolation_gap = max(0.0, mean_remaining_distance - nearest_remaining_distance)\n    isolation_bonus = remaining * (0.2 * mean_remaining_distance + 0.32 * nearest_remaining_distance + 0.18 * isolation_gap ** 2)\n    start_weight = 0.12 + 0.3 * progress - 0.72 * progress ** 3\n    return -travel_penalty + isolation_bonus + start_weight * distance_start\n",
+        "key": "8f14d47b92884a395cf3ac9fe40001e2112df27ef9115cd3853e1699a67eb102",
+        "kind": "h"
+      },
+      "fitness": -0.9599050755699718,
+      "scores": [
+        -0.8942868993820822,
+        -0.9755337348829866,
+        -0.952038743225764,
+        -0.9670548921532595,
+        -1.0532507928140773,
+        -0.9182433492756288,
+        -1.0504502291082882,
+        -0.9923218397818335,
+        -1.029595761241455,
+        -0.9386904641901586,
+        -1.0637601629647602,
+        -0.8786885695580641,
+        -1.004406119147503,
+        -0.8038044110137073,
+        -0.996458860480534,
+        -0.9463990046798383,
+        -0.9443624383010835,
+        -1.0030212312950457,
+        -0.9065608719877153,
+        -0.8791731359156525
+      ],
+      "evaluation_sha256": "bb25da123bfe46221991c6dd254d08ec44c2f03d86bf653b8d02a6bfd36224ee",
+      "operator": "M1",
+      "parents": [
+        "H-0096"
+      ]
+    },
+    {
+      "id": "H-0013",
+      "candidate": {
+        "description": "Compute a local-scale-normalized travel cost, penalize edges longer than the candidate’s nearest remaining connection, and progressively incorporate return-to-start cost; choose the highest negative cost.",
+        "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    local_scale = 0.25 + 0.75 * mean_remaining_distance + 0.25 * nearest_remaining_distance\n    outward_scale = 0.1 * (1.0 - progress) ** 2 * distance_start\n    edge_excess = max(0.0, distance_current - nearest_remaining_distance)\n    closure_cost = 0.3 * progress ** 6 * distance_start\n    travel_cost = distance_current + 0.25 * edge_excess + closure_cost\n    return -travel_cost / (local_scale + outward_scale)\n",
+        "key": "b94abcd176a61066452f7cdc86c4f06af088097f9e6dc3123811a8007d97e76f",
+        "kind": "h"
+      },
+      "fitness": -0.9779828809860514,
+      "scores": [
+        -1.0086419304381764,
+        -1.0424585762001886,
+        -0.9510950979738787,
+        -0.96597466618578,
+        -0.9870769211312262,
+        -1.0027630799435716,
+        -0.9582291179601943,
+        -0.9217383045871513,
+        -0.9882805358660303,
+        -0.8775236430151978,
+        -1.0579401183667019,
+        -0.9356419020007657,
+        -1.0060546157670174,
+        -1.0034467770563715,
+        -1.1078789919755443,
+        -0.958876880602768,
+        -0.8710720081730298,
+        -1.1484381634103988,
+        -0.9034706713311034,
+        -0.8630556177359286
+      ],
+      "evaluation_sha256": "132e57746adaadfecc380ab50f007c0cc5de7d97cae2f97f29c09193ff18c899",
+      "operator": "E1",
+      "parents": [
+        "H-0001",
+        "H-0001"
+      ]
+    }
+  ],
+  "artifact_sha256": "8b1c246b58b8cc046e5c32a8007877078fd114f32a1b479ae41d3a13e080e30f"
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/offline_tests.py", line 102, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/offline_tests.py", line 50, in main
+    d,value=run(group,'normal');assert value['phase']=='completed',(group,value,read(d/'Stop.json') if (d/'Stop.json').exists() else None)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('fjsp-eoh', {'phase': 'stopped', 'cursor': 0, 'run_dir': '/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261113-181844-74000-fjsp-eoh-normal'}, {'error_type': 'AttributeError', 'error': "module 'eoh_gap' has no attribute 'Converter'", 'at': 1794565129.033858, 'automatic_retry': False})

@@ -1,0 +1,120 @@
+{
+  "kind": "H_frozen",
+  "engineering_only": true,
+  "problem": "obp",
+  "identity": "bounded independent H construction + complete train J selection; NOT EoH-S",
+  "members": [
+    {
+      "id": "H-00001",
+      "candidate": {
+        "description": "OFFLINE fixture; not model output",
+        "code": "def priority(item_size, remaining_capacity):\n    return -item_size + 0.01 * remaining_capacity\n",
+        "key": "d527a76808142003e0800e1cd08aaec7e44831ced76b524d56e5bda115fc6392",
+        "kind": "h"
+      },
+      "train_J": 0.0
+    },
+    {
+      "id": "H-00000",
+      "candidate": {
+        "description": "OFFLINE fixture; not model output",
+        "code": "def priority(item_size, remaining_capacity):\n    return -item_size + 0.0 * remaining_capacity\n",
+        "key": "f1acd1edc0c3c73bb71034b385b804e46b4f05b6f72b712ba4a9a49a1953e197",
+        "kind": "h"
+      },
+      "train_J": 0.01
+    }
+  ],
+  "source_protocol_sha256": "dc8a52179b190f5da82738d62d17f0642531f177bcf1d6ad4225994522438052",
+  "data": [
+    {
+      "file": "synthetic-arrivals",
+      "split": "train",
+      "value": {
+        "capacity": 10,
+        "items": [
+          2,
+          3,
+          5
+        ]
+      },
+      "sha256": "7717ae27fef599993a50cc2d963d482ed3842068e6beac4c3b18c47c6ba9d8b8",
+      "source_sha256": "76202c6418b57a40efb6acd91d1d7aa60427ab6581f6340d453bcf231dc34894"
+    }
+  ],
+  "references": [
+    {
+      "file": "synthetic-arrivals",
+      "reference": 1
+    }
+  ],
+  "budget": {
+    "logical_generation": 3,
+    "API_attempts": 3,
+    "initialization": 3,
+    "evolution": 0,
+    "max_program_instances": 3,
+    "max_solve_passes": 6
+  },
+  "API_summary": {
+    "run_id": "triad-OFFLINE-20261113-184151-76232-Hbuild",
+    "problem": "obp",
+    "method": "h-build",
+    "phase": "completed",
+    "cursor": 3,
+    "engineering_only": true,
+    "initialization_attempts": 3,
+    "evolution_attempts": 0,
+    "request_reservations": 3,
+    "confirmed_sends": 0,
+    "unknown_sends": 0,
+    "valid_candidates": 3,
+    "unique_evaluation_reservations": 3,
+    "failures": 0,
+    "duplicates": 0,
+    "automatic_retries": 0,
+    "API_stop": null,
+    "requires_investigation": false,
+    "budgets": {
+      "logical_generation": 3,
+      "API_attempts": 3,
+      "initialization": 3,
+      "evolution": 0,
+      "max_program_instances": 3,
+      "max_solve_passes": 6
+    },
+    "best_J": 0.0,
+    "champion_id": "H-00001",
+    "actual_cost": null,
+    "known_usage_subtotal": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "unknown_usage_attempts": 0,
+    "writer_lock": false,
+    "pause_reason": null,
+    "physical_passes": {
+      "first": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "recheck": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0
+      }
+    },
+    "native_solve_upper_reserved": 0,
+    "physical_passes_unsettled": 0,
+    "resources": {
+      "declared_model_concurrency": 1,
+      "declared_evaluation_concurrency": 1,
+      "CPUs": 2,
+      "memory_mib": 512,
+      "numeric_threads": 1,
+      "generation_tasks_across_devices": 1,
+      "real_throughput_verified": false
+    }
+  }
+}

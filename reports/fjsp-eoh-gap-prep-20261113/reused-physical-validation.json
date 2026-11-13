@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "pure validation of already-returned serial engineering receipts; no fresh construction, no new EoH quality evidence",
+  "source_job": "614474",
+  "source_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-cluster-mock-20261113/reports/cluster-solve-check-20261113/fetch-20261113-073927-a5f646/result/run",
+  "source_files": {
+    "worker-receipts/serial/constant_H0/result.json": "d1671b295c653e28da9f5d143c22e0aa7ca6787b67a29c68898bbed627e1559e",
+    "worker-receipts/serial/state_switch_H0_H1/result.json": "a27fbba1893638f1b08de7da47e9971d1116c86b02a995f039217df7005b1db6"
+  },
+  "new_adapter_J_raw_cost_LB_and_feasibility_validated": true,
+  "API_requests": 0,
+  "additional_actual_solves": 0,
+  "credential_reads": 0,
+  "checked_results": [
+    "worker-receipts/serial/constant_H0/result.json",
+    "worker-receipts/serial/state_switch_H0_H1/result.json"
+  ]
+}

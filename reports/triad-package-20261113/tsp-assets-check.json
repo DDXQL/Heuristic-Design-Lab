@@ -1,0 +1,40 @@
+{
+  "H_count": 10,
+  "H_keys": [
+    "d196c17c679ed06fc1d1b70bd24aace111c6744c4a1769c7b09e9054107250af",
+    "74db7afb76dbe406262779eea6a55b91dcf842a2a58194e50816deeaf7fd70b2",
+    "861f1b7bb5ce513e8481d1228a0ab4d4261427b448f57be2961d7dd023322eca",
+    "fb68dce735c49c3716e33e473e5bfc9621d951bf730eb6e6425494f1e64e3015",
+    "f342517b5f08c0a737dea57332f41f397a410b36e54d1bab8e0420824d773aa1",
+    "5f99cf46b44592d964f10fe0130e14c23c377de0f7007291ebb105b7a69fac2e",
+    "537196cb022b796806b38022a93dba6071591f07b2ed1d8362d1b81ca1599a39",
+    "5303a43c0679368eadb29aa271aef679dc5deab4df2fbc250c03e95391b9404f",
+    "8f14d47b92884a395cf3ac9fe40001e2112df27ef9115cd3853e1699a67eb102",
+    "b94abcd176a61066452f7cdc86c4f06af088097f9e6dc3123811a8007d97e76f"
+  ],
+  "pending": [
+    "repeat_count",
+    "search_seeds",
+    "population_size",
+    "initialization_request_cap",
+    "api_attempt_cap",
+    "window_seconds",
+    "solve_seed",
+    "budget_basis",
+    "protocol_receipt",
+    "initialization_policy",
+    "reference_file",
+    "data_usage_receipt",
+    "freeze_status",
+    "resources.cpus",
+    "resources.memory_mib",
+    "resources.segment_seconds",
+    "resources.drain_seconds",
+    "account_exclusion",
+    "account_gate",
+    "credential_file"
+  ],
+  "data_manifest_exists": true,
+  "API_requests": 0,
+  "actual_solves": 0
+}

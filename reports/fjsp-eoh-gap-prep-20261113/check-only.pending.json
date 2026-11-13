@@ -1,0 +1,184 @@
+{
+  "version": "fjsp-eoh-single-J-min-v1",
+  "environment_check": "passed",
+  "protocol_check": "unfrozen_expected_rejection",
+  "missing_protocol_decisions": [
+    "candidate_cap",
+    "api_attempt_cap",
+    "initialization_request_cap",
+    "evolution_request_cap",
+    "population_size",
+    "initialization_sample_cap",
+    "search_seed",
+    "window_seconds",
+    "budget_basis",
+    "freeze_status=frozen (future explicit approval)",
+    "resources.partition",
+    "resources.cpus",
+    "resources.memory_mib",
+    "resources.walltime_seconds",
+    "account_exclusion",
+    "credential_file"
+  ],
+  "API_requests": 0,
+  "actual_solves": 0,
+  "credential_reads": 0,
+  "instances": 21,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "metrics": {
+    "objective": "J=mean((Cmax-LB_v5)/LB_v5)",
+    "direction": "min",
+    "internal_native_score": "-J; implementation bridge only, NOT historical negative Fitness",
+    "legacy_identity": "fjsp-eoh-single-native-http-v2; mean(-Cmax/LB_v5), maximize; immutable",
+    "final_selection": "all complete valid train candidates, J ascending then stable task ID ascending",
+    "population_ties": "native stable elitism; equal internal score OR canonical source duplicate penalized -inf; final selection uses unpenalized J"
+  },
+  "resources": {
+    "partition": null,
+    "account": null,
+    "qos": null,
+    "cpus": null,
+    "memory_mib": null,
+    "walltime_seconds": null,
+    "numeric_threads": 1
+  },
+  "budgets": {
+    "initialization_request_cap": null,
+    "initialization_sample_cap": null,
+    "evolution_request_cap": null,
+    "candidate_cap": null,
+    "api_attempt_cap": null,
+    "per_candidate_attempt_cap": 1
+  },
+  "max_native_solve_passes": null,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1,
+  "native_operators": [
+    "I1",
+    "E1",
+    "E2",
+    "M1",
+    "M2"
+  ],
+  "references": [
+    {
+      "file": "Behnke1.fjsp",
+      "reference": 70.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke2.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke3.fjsp",
+      "reference": 79.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke4.fjsp",
+      "reference": 76.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke13.fjsp",
+      "reference": 159.7,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke14.fjsp",
+      "reference": 163.75,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke19.fjsp",
+      "reference": 322.35,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke25.fjsp",
+      "reference": 80.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke21.fjsp",
+      "reference": 78.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke29.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke27.fjsp",
+      "reference": 81.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke33.fjsp",
+      "reference": 76.45,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke34.fjsp",
+      "reference": 78.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke36.fjsp",
+      "reference": 151.625,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke43.fjsp",
+      "reference": 68.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke44.fjsp",
+      "reference": 68.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke47.fjsp",
+      "reference": 76.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke46.fjsp",
+      "reference": 73.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke51.fjsp",
+      "reference": 75.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke53.fjsp",
+      "reference": 74.0,
+      "rule": "LB_v5"
+    },
+    {
+      "file": "Behnke57.fjsp",
+      "reference": 98.31666666666666,
+      "rule": "LB_v5"
+    }
+  ]
+}

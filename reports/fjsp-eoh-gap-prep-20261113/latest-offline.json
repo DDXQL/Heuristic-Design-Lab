@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "kind": "PURE_OFFLINE_SYNTHETIC_RECEIPTS",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "credential_reads": 0,
+  "protected": [
+    "socket connect",
+    "real transport constructor",
+    "real evaluate_task",
+    "routing solve"
+  ],
+  "cases": {
+    "pending_rejection_separate_from_environment": true,
+    "separate_caps_J_min_native_operators_and_equal_J_penalty": {
+      "version": "fjsp-eoh-single-J-min-v1",
+      "phase": "completed",
+      "cursor": 10,
+      "stage": "evolution",
+      "engineering_only": true,
+      "objective": "J=mean((Cmax-LB_v5)/LB_v5)",
+      "direction": "min",
+      "best_J": 0.01,
+      "champion_id": "H-0002",
+      "initialization_attempts": 2,
+      "evolution_attempts": 8,
+      "request_reservations": 10,
+      "actual_API_confirmed_sends": 0,
+      "uncertain_request_attempts": 0,
+      "completed_transport_attempts": 10,
+      "failed_transport_attempts": 0,
+      "scientific_failures": 0,
+      "AST_duplicates": 0,
+      "native_population_duplicates": 3,
+      "cached_evaluations": 0,
+      "unique_H_evaluation_reservations": 10,
+      "valid_candidate_records": 10,
+      "automatic_retries": 0,
+      "confirmed_native_solve_passes": 0,
+      "native_solve_passes_upper_reserved": 0,
+      "failed_or_inflight_solve_count_known": true,
+      "budgets": {
+        "logical_generation": 12,
+        "API_attempts": 12,
+        "initialization": 4,
+        "evolution": 8,
+        "max_program_instances": 252,
+        "max_solve_passes": 504
+      },
+      "remaining_cumulative_requests": 2,
+      "known_input_tokens": 0,
+      "known_output_tokens": 0,
+      "usage_unknown_attempts": 0,
+      "actual_billed_cost": null,
+      "API_stop": null,
+      "pause_reason": null,
+      "writer_lock": false,
+      "training_only": false,
+      "validation_status": "not_run",
+      "quality_claim": false,
+      "phase_breakdown": {
+        "initialization": {
+          "committed_attempts": 2,
+          "valid_candidates": 2,
+          "failures": 0,
+          "AST_duplicates": 0
+        },
+        "evolution": {
+          "committed_attempts": 8,
+          "valid_candidates": 8,
+          "failures": 0,
+          "AST_duplicates": 0
+        }
+      }
+    },
+    "pause_resume_exact_native_rng_population_candidates_and_deadline": true,
+    "failures_duplicates_cached_evaluation_no_refill_no_retry": {
+      "version": "fjsp-eoh-single-J-min-v1",
+      "phase": "completed",
+      "cursor": 10,
+      "stage": "evolution",
+      "engineering_only": true,
+      "objective": "J=mean((Cmax-LB_v5)/LB_v5)",
+      "direction": "min",
+      "best_J": 0.01,
+      "champion_id": "H-0002",
+      "initialization_attempts": 2,
+      "evolution_attempts": 8,
+      "request_reservations": 10,
+      "actual_API_confirmed_sends": 0,
+      "uncertain_request_attempts": 0,
+      "completed_transport_attempts": 9,
+      "failed_transport_attempts": 1,
+      "scientific_failures": 3,
+      "AST_duplicates": 1,
+      "native_population_duplicates": 3,
+      "cached_evaluations": 1,
+      "unique_H_evaluation_reservations": 7,
+      "valid_candidate_records": 7,
+      "automatic_retries": 0,
+      "confirmed_native_solve_passes": 0,
+      "native_solve_passes_upper_reserved": 0,
+      "failed_or_inflight_solve_count_known": true,
+      "budgets": {
+        "logical_generation": 12,
+        "API_attempts": 12,
+        "initialization": 4,
+        "evolution": 8,
+        "max_program_instances": 252,
+        "max_solve_passes": 504
+      },
+      "remaining_cumulative_requests": 2,
+      "known_input_tokens": 0,
+      "known_output_tokens": 0,
+      "usage_unknown_attempts": 2,
+      "actual_billed_cost": null,
+      "API_stop": null,
+      "pause_reason": null,
+      "writer_lock": false,
+      "training_only": false,
+      "validation_status": "not_run",
+      "quality_claim": false,
+      "phase_breakdown": {
+        "initialization": {
+          "committed_attempts": 2,
+          "valid_candidates": 2,
+          "failures": 0,
+          "AST_duplicates": 0
+        },
+        "evolution": {
+          "committed_attempts": 8,
+          "valid_candidates": 5,
+          "failures": 3,
+          "AST_duplicates": 1
+        }
+      }
+    },
+    "three_failures_safe_pause_no_automatic_restart": true,
+    "native_duplicate_and_final_exact_tie_policy": true,
+    "frozen_evaluator_two_solve_calls_shared_T30_and_J_arithmetic": true,
+    "unknown_lock_preserved_no_replay": true
+  },
+  "evidence": {
+    "normal": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/eoh-J-OFFLINE-20261113-162015-52900-normal",
+    "pause": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/eoh-J-OFFLINE-20261113-162015-52900-pause",
+    "faults": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/eoh-J-OFFLINE-20261113-162015-52900-faults",
+    "three-transport-failures": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/eoh-J-OFFLINE-20261113-162015-52900-three-transport-failures",
+    "unknown-preserved": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/eoh-J-OFFLINE-20261113-162015-52900-unknown"
+  }
+}
