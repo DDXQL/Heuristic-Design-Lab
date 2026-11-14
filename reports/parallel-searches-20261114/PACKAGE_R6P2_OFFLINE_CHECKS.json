@@ -1,0 +1,78 @@
+{
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "scope": "LOCAL TWO PROCESSES AND SYNTHETIC NATIVE COORDINATORS ONLY",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "credential_values_read": 0,
+  "actual_cross_job_or_cross_node_verified": false,
+  "results": {
+    "fjsp-eoh": {
+      "two_native_coordinators": true,
+      "parallel_matches_alone": true,
+      "independent_protocols_and_directories": true,
+      "single_pause_resume_same_clock_cap_and_trace": true,
+      "safe_initial_boundary": 1,
+      "Mock_instance_rows": 21,
+      "peer_continues_and_unchanged_on_other_resume": true,
+      "reserved_synthetic_dispatches": 16,
+      "peak": 1,
+      "FIFO": true,
+      "spacing": true,
+      "per_seed_caps": true,
+      "API_wait_seconds": 0.3586662489979062,
+      "peer_request_during_other_evaluation_observed": true
+    },
+    "fjsp-u": {
+      "two_native_coordinators": true,
+      "parallel_matches_alone": true,
+      "independent_protocols_and_directories": true,
+      "single_pause_resume_same_clock_cap_and_trace": true,
+      "safe_initial_boundary": 2,
+      "Mock_instance_rows": 1,
+      "peer_continues_and_unchanged_on_other_resume": true,
+      "reserved_synthetic_dispatches": 32,
+      "peak": 1,
+      "FIFO": true,
+      "spacing": true,
+      "per_seed_caps": true,
+      "API_wait_seconds": 1.2368811219348572,
+      "peer_request_during_other_evaluation_observed": true
+    },
+    "actual_transport_paths": {
+      "real_mode_EoH_transport_factory": true,
+      "unchanged_U_routing_generate_factory": true,
+      "synthetic_dispatches": 2,
+      "real_API_requests": 0
+    },
+    "peer_STOP_drains_existing": {
+      "send_callback_preserved": true,
+      "existing_response_settled": true,
+      "next_request_known_not_sent": true,
+      "no_refund": true
+    },
+    "node_scope": {
+      "real_login_execution_refused": true,
+      "unverified_node_migration_refused": true,
+      "synthetic_branch_only": true,
+      "API_requests": 0
+    },
+    "exact_budget_boundary": {
+      "no_extra_dispatch": true,
+      "reserved": 24,
+      "refunds": 0
+    },
+    "unknown_submission": {
+      "synthetic_sbatch_calls": 1,
+      "claims_retained": 2,
+      "automatic_retry": false,
+      "actual_Slurm_submissions": 0
+    },
+    "unknown": {
+      "shared_STOP": true,
+      "permit_and_budget_retained": true,
+      "no_peer_send_or_replay": true
+    }
+  }
+}
