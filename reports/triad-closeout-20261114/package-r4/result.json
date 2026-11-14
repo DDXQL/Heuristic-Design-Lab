@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "zip": "/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r4.zip",
+  "sha256": "5237f1e6030b4e532167a4c34b582b785284310e62a3184537bb5d8c15e046fe",
+  "member_hashes_verified": 319,
+  "code_files_equal_to_r3": 177,
+  "r3_sha256_unchanged": true,
+  "checks": {
+    "closeout_tests": true,
+    "delivery_tests": true
+  },
+  "check_only_without_matplotlib": true,
+  "actual_501_read_only_check": true,
+  "evidence_root": "/Users/DDXQL/Developer/cluster-deployment/triad-r4-offline-extracted-20261114",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "GitHub_pushed": false
+}

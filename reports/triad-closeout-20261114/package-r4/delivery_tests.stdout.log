@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "six draft configs preserve paths, recommendations and no authorization",
+    "synthetic 501 registration/import, identity mismatch, incomplete/locked refusal and rerun guards",
+    "synthetic NumPy int32 training import, natural split/reference precheck, unadopted refusal before source read",
+    "runtime input upload allowlist, exact installer hash checks, idempotence and no overwrite on conflict"
+  ],
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "real_501_read": false,
+  "published_OBP_data_read": false
+}

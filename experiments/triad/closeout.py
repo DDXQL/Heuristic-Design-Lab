@@ -17,7 +17,7 @@ import sys
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[2]
-VERSION='offline-closeout-v1'
+VERSION='offline-closeout-v1.1'
 SECRET_PATTERNS=[re.compile(x,re.I) for x in (
     rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',
     rb'\bsk-[a-z0-9_-]{20,}',
@@ -70,6 +70,11 @@ def inspect(source,allow_incomplete=False):
     source=Path(source).resolve()
     p=read(source/'Protocol.json');s=read(source/'checkpoint.json');summary=read(source/'exports/summary.json')
     if p['version'] not in ('parent-coverage-routing-v1','triad-shared-native-adapter-v1'):raise ValueError('only explicit J protocol exports are supported; legacy Fitness is not reinterpreted')
+    if p['version']=='parent-coverage-routing-v1':
+        explicit_J=p.get('objective')=='mean((raw_cost-reference)/reference); minimize J; internal fitness=-J'
+    else:
+        metrics=p.get('metrics',{});explicit_J=(metrics.get('objective')=='J=mean((raw_cost-reference)/reference)' and metrics.get('direction')=='min' and metrics.get('internal_score')=='-J')
+    if not explicit_J:raise ValueError('explicit J-min gap definition missing; legacy negative Fitness is not converted')
     identity=sha(source/'Protocol.json')
     if s.get('identity')!=identity or summary.get('protocol_sha256',identity)!=identity:raise ValueError('protocol/checkpoint/export identity mismatch')
     receipt=source/'Protocol.receipt.json'

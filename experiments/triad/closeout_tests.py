@@ -22,7 +22,7 @@ def reject(fn,kind=Exception):
 def main():
     with tempfile.TemporaryDirectory(prefix='closeout-fixture-') as tmp,patch.object(socket.socket,'connect',deny),patch.object(socket,'create_connection',deny):
         root=Path(tmp).resolve();run=root/'runs/synthetic';run.mkdir(parents=True)
-        p={'version':'parent-coverage-routing-v1','config':{'problem':'fjsp','search_seed':7},'members':[{},{}],'instances':[{'file':'train-fixture','split':'train'}],'source_files':{},'git':{'commit':'SYNTHETIC NOT REAL'}}
+        p={'version':'parent-coverage-routing-v1','objective':'mean((raw_cost-reference)/reference); minimize J; internal fitness=-J','config':{'problem':'fjsp','search_seed':7},'members':[{},{}],'instances':[{'file':'train-fixture','split':'train'}],'source_files':{},'git':{'commit':'SYNTHETIC NOT REAL'}}
         c.write(run/'Protocol.json',p);identity=c.sha(run/'Protocol.json');s={'identity':identity,'phase':'completed','tasks':{str(i):{'status':'completed'} for i in range(4)}};c.write(run/'checkpoint.json',s)
         summary={'phase':'completed','run_id':'SYNTHETIC','protocol_sha256':identity,'initialization_attempts':1,'evolution_attempts':3,'request_reservations':4,'unknown_sends':0,'champion_id':'G1','best_J':1.0};c.write(run/'exports/summary.json',summary)
         c.write(run/'exports/champion.json',{'id':'G1','J':1.0,'candidate':{'key':'fixture'}});(run/'exports/champion.py').write_text('# fixture source; never executed\n')
@@ -49,7 +49,11 @@ def main():
           'groups':[{'group':'fjsp-u','declared_runs':3,'complete_valid_runs':1,'mean_J':1,'sample_std_J':None,'J_curve_mean_sample_std':[{'evolution_attempt':1,'observed_runs':1,'mean_J':1,'sample_std_J':None}]}]}
         c.write(root/'batch-summary.json',batch);check=c.batch_report(root/'batch-summary.json');assert check['declared_rows']==3 and check['phases']['not_started']==1
         c.batch_report(root/'batch-summary.json',root/'batch-report');assert len(c.csvrows(root/'batch-report/all-runs.csv'))==3
-    proof={'passed':True,'checks':['all evolution attempts retained; init separate','exclusive outcome counts','internal -J converted once','H selections from sequence, not score-call counts','seven PNG/SVG/PDF charts','full ZIP/member hashes/source immutability','secret/lock/overwrite refusal','batch failures/unstarted retained and n=1 has no SD band'],'API_requests':0,'actual_solves':0,'H_U_executions':0}
+        legacy=copy.deepcopy(p);legacy['objective']='negative Fitness=-mean(cost/reference)';c.write(run/'Protocol.json',legacy)
+        try:c.inspect(run)
+        except ValueError as e:assert 'explicit J-min gap definition missing' in str(e)
+        else:raise AssertionError('legacy negative Fitness relabeled J')
+    proof={'passed':True,'checks':['all evolution attempts retained; init separate','exclusive outcome counts','internal -J converted once','explicit metric declaration required; same-name legacy Fitness rejected','H selections from sequence, not score-call counts','seven PNG/SVG/PDF charts','full ZIP/member hashes/source immutability','secret/lock/overwrite refusal','batch failures/unstarted retained and n=1 has no SD band'],'API_requests':0,'actual_solves':0,'H_U_executions':0}
     c.write(ROOT/'reports/triad-closeout-20261114/OFFLINE_CHECKS.json',proof);print(json.dumps(proof,ensure_ascii=False,indent=2))
 
 

@@ -1,0 +1,23 @@
+{
+  "phase": "completed",
+  "run_id": "fjsp-u1000-20261112-mac-seed-501",
+  "problem": "fjsp",
+  "search_seed": 501,
+  "protocol_sha256": "cb412de468a1f079ff86a6ccdf7ed0f40a0abcb05552c32b15e1fc22e14c505d",
+  "initialization_attempts": 8,
+  "evolution_attempts": 1000,
+  "outcomes": {
+    "valid_unique": 789,
+    "parse_or_constraint_failure": 53,
+    "duplicate": 162,
+    "transport_or_response_failure": 4
+  },
+  "locks": [],
+  "unsettled_tasks": 0,
+  "matplotlib_available": false,
+  "source_writes": 0,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "test_dataset_opened": false,
+  "writer_check": "settled phase + no locks + receipt identity; full build also checks before/after source bytes"
+}

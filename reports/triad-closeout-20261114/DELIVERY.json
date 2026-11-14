@@ -1,0 +1,69 @@
+{
+  "CODE_READY": true,
+  "single_run_actual_sample_verified": true,
+  "version": "r4p1-closeout-v1.1",
+  "original_run_commit": "19a86bf4f515077bbc7159a9e1559d1d6740095a",
+  "original_run_source_hashes": 102,
+  "original_run_files": 5117,
+  "original_run_bytes_unchanged": true,
+  "source_credential_files_included": false,
+  "secret_pattern_scan_passed": true,
+  "generated_charts": 7,
+  "image_formats": [
+    "PNG",
+    "SVG",
+    "PDF"
+  ],
+  "all_attempts": 1008,
+  "evolution_attempts": 1000,
+  "initialization_attempts": 8,
+  "champion_id": "G076-001-CROSS",
+  "train_J": 1.028064685792435,
+  "dataset": "train21 only",
+  "model_H_U_solve_executions": 0,
+  "API_requests": 0,
+  "test_dataset_opened": false,
+  "slim_directory": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/results/fjsp-u501-closeout-20261114-v1",
+  "full_archive": {
+    "path": "/Users/DDXQL/Developer/transfer-outbox/fjsp-u501-closeout-20261114-v1-full.zip",
+    "sha256": "2c4fd40cb5669f004d5e2d6608f7223dc3f47ed74e78e202bb05ac1a36f6d9b2",
+    "bytes": 87617447,
+    "members": 5280,
+    "member_hashes_verified": true,
+    "source_bytes_unchanged": true,
+    "runtime_source_snapshot_complete": true,
+    "missing_assets": [],
+    "packed": true,
+    "transferred": false,
+    "Windows_verified": false,
+    "source_deleted": false
+  },
+  "slim_archive": {
+    "path": "/Users/DDXQL/Developer/transfer-outbox/fjsp-u501-closeout-20261114-v1-slim.zip",
+    "sha256": "4bf5340f022fdaeb74ddd8995b14284a7e99f2504abb6717397d739f27a0d06f",
+    "bytes": 991571,
+    "members": 41,
+    "verified": true
+  },
+  "GitHub": {
+    "remote": "git@github.com:DDXQL/Heuristic-Design-Lab.git",
+    "branch": "codex/fjsp-eoh-gap-prep-20261113",
+    "pushed": false,
+    "Release_uploaded": false,
+    "selected_slim_file_count": 40,
+    "public_review_pending": true
+  },
+  "limitations": [
+    "Only existing J exports supported; legacy Fitness is rejected",
+    "Missing per-instance/sequence/generation records are reported, never rerun",
+    "Batch reporting reuses existing Summary.json; per-run archives remain separate",
+    "No test evaluation, no approved same-condition fixed-H overlay, no real multi-seed results",
+    "Currency cost remains unknown; no solve count inferred from candidate count",
+    "Secret pattern scan is finite; privacy/license and complete outgoing Git history review still required",
+    "Original runtime package lock is not inferred; original recorded machine and exact source/input bytes are retained",
+    "r4 package not uploaded or compute-node verified; six research groups remain pending",
+    "Standalone extracted use records exact tool SHA; if Git metadata is unavailable, compare it with release.json rather than invent a commit."
+  ],
+  "sample_postprocessing_commit": "e926be80eca06a49f3f59c78b771101033fa5454",
+  "metric_gate_patch": "same-name legacy protocol rejected unless explicit J-gap definition matches; no sample regeneration"
+}
