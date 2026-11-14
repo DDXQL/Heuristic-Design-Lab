@@ -175,6 +175,12 @@ class Adapter(old.Adapter):
         return fn(description,template) if op=='I1' else fn(description,funcs if op in ('E1','E2') else funcs[0],template)
     def task_context(self,d,s,p,task,index):
         c=p['config'];v=s['eoh']
+        boundary=Path(d)/'Current_manual_boundary.json'
+        if boundary.exists():
+            control=read(boundary)
+            if control['protocol']!=s['identity'] or control['original_request_cap']!=c['api_attempt_cap']:raise ValueError('manual boundary belongs to another original budget')
+            if control['settled_prefix'] is not None and s['cursor']>=control['settled_prefix']:
+                s.update(phase='paused',pause_reason='manual finite settled-attempt boundary; original budget retained');return None,[]
         if getattr(self,'segment_deadline',None) and time.monotonic()+c['resources']['drain_seconds']>self.segment_deadline:
             s.update(phase='paused',pause_reason='segment drain before next reservation');return None,[]
         if p['run_kind']=='h-build':return {**task,'operator':'I1','semantic_id':f'H-{index:05d}','phase':'initialization'},[]

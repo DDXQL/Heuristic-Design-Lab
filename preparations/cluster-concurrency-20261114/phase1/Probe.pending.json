@@ -1,0 +1,95 @@
+{
+  "version": "cluster-two-job-API-probe-v1",
+  "phase": 1,
+  "approved": false,
+  "jobs": 2,
+  "requests_per_job": 2,
+  "physical_send_cap": 4,
+  "global_API_width": 1,
+  "per_attempt_cap": 1,
+  "min_request_interval_seconds": 1,
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "client_binding": {
+    "wire_version": "bounded-wire-reliability-v5",
+    "caller_policy": "strict-nonstream-model-stop-usage-v1",
+    "files": {
+      "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+      "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc"
+    },
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "max_prompt_bytes": 262144,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "stream_response": false
+    }
+  },
+  "prompts": [
+    {
+      "role": 0,
+      "path": "role-0-representative.txt",
+      "sha256": "01896e6de9bf4301157b4e8c678a1b53c98a9946a9462de3c9042732e171a7b7",
+      "bytes": 823,
+      "kind": "h",
+      "source": "actual EoH I1 / frozen U INIT prompt builder; training inputs only"
+    },
+    {
+      "role": 1,
+      "path": "role-1-representative.txt",
+      "sha256": "891854c486e24ee2f3faed7702f9af3cb8a19329cf32b5e7d2a134482cdd9947",
+      "bytes": 16750,
+      "kind": "U",
+      "source": "actual EoH I1 / frozen U INIT prompt builder; training inputs only"
+    }
+  ],
+  "credential_file": "/public2/home/qiuqian/.config/hdl/leafapi.key",
+  "wall_seconds": 1800,
+  "peer_wait_seconds": 300,
+  "request_timeout_seconds": 300,
+  "max_output_tokens": 8192,
+  "resources": {
+    "cpus_per_job": 1,
+    "memory_mib_per_job": 1024,
+    "partition": "128C_02",
+    "account": "wz",
+    "qos": "normal"
+  },
+  "solver_calls": 0,
+  "fees": "unknown, no currency hard cap",
+  "limits": {
+    "RPM": null,
+    "TPM": null,
+    "provider_concurrency": null
+  },
+  "rate_limit_headers": "V5 exposes only its existing allowlist; missing RPM/TPM headers remain unknown; no additional query",
+  "second_phase": "optional separate user approval, 4 additional sends maximum; never automatic",
+  "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+  "engineering_sources": {
+    "experiments/triad/concurrency_probe.py": "1b99568a11b958630eb90c66aead9d8a74077a50e382384c2419ac26e1356dfc",
+    "experiments/triad/probe_submit.py": "3088e6727d60801ac0416d1d925f0f05dc11e165362090ae805acf2fdfc12ba2",
+    "experiments/triad/probe.sbatch": "9e7ab307cf34fb5f70dfe395279081b6b4eae6a30834839b908cbf2c5e8e8de9",
+    "experiments/triad/entry.py": "afa218bb6c9bb1d1f7192a2a9b7f4a651726a478ca551360115f9e3853f03037"
+  }
+}

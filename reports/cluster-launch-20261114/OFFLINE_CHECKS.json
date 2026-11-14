@@ -1,0 +1,312 @@
+{
+  "passed": true,
+  "scope": "LOCAL_FILESYSTEM_TWO_PROCESSES_AND_SYNTHETIC_RECEIPTS_ONLY",
+  "actual_cross_job_or_cross_node_verified": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "credential_values_read": 0,
+  "results": {
+    "local_shared_API1": {
+      "passed": false,
+      "phase": 1,
+      "states": [
+        {
+          "phase": "completed",
+          "job": "LOCAL-FIXTURE-0",
+          "host": "DDXQL.local",
+          "requests": 2,
+          "solver_calls": 0
+        },
+        {
+          "phase": "completed",
+          "job": "LOCAL-FIXTURE-1",
+          "host": "DDXQL.local",
+          "requests": 2,
+          "solver_calls": 0
+        }
+      ],
+      "independent_Slurm_receipts_verified": false,
+      "reserved_attempts": 4,
+      "confirmed_sends": 4,
+      "unknown_attempts": 0,
+      "retained_active_after_error": 0,
+      "physical_send_cap": 4,
+      "automatic_retries": 0,
+      "global_inflight_peak": 1,
+      "host_scope": "same_node_or_unknown",
+      "hosts": [
+        "DDXQL.local",
+        "DDXQL.local"
+      ],
+      "known_usage_subtotal": {
+        "input_tokens": 40,
+        "output_tokens": 8
+      },
+      "unknown_usage_attempts": 0,
+      "HTTP_statuses": [
+        200,
+        200,
+        200,
+        200
+      ],
+      "request_receipts": [
+        {
+          "attempt_id": "engineering-phase1-job0/role0-request0/attempt/01",
+          "reserved_at": 1794637738.698266,
+          "finished_at": 1794637738.994984,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase1-job0/role0-request1/attempt/01",
+          "reserved_at": 1794637738.9973462,
+          "finished_at": 1794637739.087184,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase1-job1/role1-request0/attempt/01",
+          "reserved_at": 1794637738.69744,
+          "finished_at": 1794637738.785279,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase1-job1/role1-request1/attempt/01",
+          "reserved_at": 1794637738.789162,
+          "finished_at": 1794637738.8812852,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        }
+      ],
+      "actual_cost": null,
+      "official_limits_still_unknown": true,
+      "rate_limit_headers_available": false,
+      "solver_calls": 0,
+      "research_population_updates": 0,
+      "interpretation": "only this specified load and topology; not an official concurrency/RPM/TPM limit"
+    },
+    "local_shared_API2": {
+      "passed": false,
+      "phase": 2,
+      "states": [
+        {
+          "phase": "completed",
+          "job": "LOCAL-FIXTURE-0",
+          "host": "DDXQL.local",
+          "requests": 2,
+          "solver_calls": 0
+        },
+        {
+          "phase": "completed",
+          "job": "LOCAL-FIXTURE-1",
+          "host": "DDXQL.local",
+          "requests": 2,
+          "solver_calls": 0
+        }
+      ],
+      "independent_Slurm_receipts_verified": false,
+      "reserved_attempts": 4,
+      "confirmed_sends": 4,
+      "unknown_attempts": 0,
+      "retained_active_after_error": 0,
+      "physical_send_cap": 4,
+      "automatic_retries": 0,
+      "global_inflight_peak": 2,
+      "host_scope": "same_node_or_unknown",
+      "hosts": [
+        "DDXQL.local",
+        "DDXQL.local"
+      ],
+      "known_usage_subtotal": {
+        "input_tokens": 40,
+        "output_tokens": 8
+      },
+      "unknown_usage_attempts": 0,
+      "HTTP_statuses": [
+        200,
+        200,
+        200,
+        200
+      ],
+      "request_receipts": [
+        {
+          "attempt_id": "engineering-phase2-job0/role0-request0/attempt/01",
+          "reserved_at": 1794637739.783156,
+          "finished_at": 1794637739.878413,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase2-job0/role0-request1/attempt/01",
+          "reserved_at": 1794637739.98321,
+          "finished_at": 1794637740.0771918,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase2-job1/role1-request0/attempt/01",
+          "reserved_at": 1794637739.883135,
+          "finished_at": 1794637739.978476,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase2-job1/role1-request1/attempt/01",
+          "reserved_at": 1794637739.9835992,
+          "finished_at": 1794637740.136489,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        }
+      ],
+      "actual_cost": null,
+      "official_limits_still_unknown": true,
+      "rate_limit_headers_available": false,
+      "solver_calls": 0,
+      "research_population_updates": 0,
+      "interpretation": "only this specified load and topology; not an official concurrency/RPM/TPM limit"
+    },
+    "local_unknown_stop": {
+      "passed": false,
+      "phase": 1,
+      "states": [
+        {
+          "phase": "stopped",
+          "job": "LOCAL-FIXTURE-0",
+          "error_type": "RuntimeError",
+          "no_retry": true
+        },
+        {
+          "phase": "completed",
+          "job": "LOCAL-FIXTURE-1",
+          "host": "DDXQL.local",
+          "requests": 2,
+          "solver_calls": 0
+        }
+      ],
+      "independent_Slurm_receipts_verified": false,
+      "reserved_attempts": 3,
+      "confirmed_sends": 3,
+      "unknown_attempts": 0,
+      "retained_active_after_error": 1,
+      "physical_send_cap": 4,
+      "automatic_retries": 0,
+      "global_inflight_peak": 1,
+      "host_scope": "same_node_or_unknown",
+      "hosts": [
+        "DDXQL.local",
+        "DDXQL.local"
+      ],
+      "known_usage_subtotal": {
+        "input_tokens": 20,
+        "output_tokens": 4
+      },
+      "unknown_usage_attempts": 1,
+      "HTTP_statuses": [
+        null,
+        200,
+        200
+      ],
+      "request_receipts": [
+        {
+          "attempt_id": "engineering-phase1-job0/role0-request0/attempt/01",
+          "reserved_at": 1794637740.602218,
+          "finished_at": 1794637740.909939,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": null,
+          "usage": null
+        },
+        {
+          "attempt_id": "engineering-phase1-job1/role1-request0/attempt/01",
+          "reserved_at": 1794637740.6011882,
+          "finished_at": 1794637740.6968489,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        },
+        {
+          "attempt_id": "engineering-phase1-job1/role1-request1/attempt/01",
+          "reserved_at": 1794637740.702671,
+          "finished_at": 1794637740.795,
+          "wire_timing": null,
+          "send_confirmed": true,
+          "HTTP_status": 200,
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 2
+          }
+        }
+      ],
+      "actual_cost": null,
+      "official_limits_still_unknown": true,
+      "rate_limit_headers_available": false,
+      "solver_calls": 0,
+      "research_population_updates": 0,
+      "interpretation": "only this specified load and topology; not an official concurrency/RPM/TPM limit"
+    },
+    "finite_native_EoH_prefix": {
+      "passed": true,
+      "first_segment_attempts": 1,
+      "first_segment_native_solves": 0,
+      "original_cap": 8,
+      "clock_unchanged": true,
+      "source": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/cluster-launch-OFFLINE-1794637740934463000"
+    },
+    "finite_serial_queue": {
+      "passed": true,
+      "exit0_paused_does_not_advance": true,
+      "unknown_completed_does_not_advance": true
+    },
+    "unknown_sbatch_no_replay": {
+      "passed": true,
+      "synthetic_submission_calls": 1,
+      "actual_Slurm_submissions": 0
+    }
+  }
+}

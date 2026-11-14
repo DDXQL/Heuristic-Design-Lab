@@ -16,8 +16,8 @@ spec=importlib.util.spec_from_file_location('admitted_cluster',ROOT/'deploy/clus
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import configuration,batch
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r4p1'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r4p1.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r5'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r5.zip')
 EXPORT='''import hashlib,json,pathlib,sys,time,zipfile
 root=pathlib.Path(sys.argv[1]);run=pathlib.Path(sys.argv[2]);job=sys.argv[3]
 if not run.resolve().is_relative_to((root/'runs').resolve()) or not job.isdigit():raise SystemExit('invalid retrieval identity')
@@ -121,6 +121,17 @@ def sync_config(connection,campaign,report):
     (report/'remote-batch.json').write_text(result.stdout);return {'remote_campaign':target,'remote_batch':REMOTE+'/plans/'+doc['campaign_id'],'runtime_input_files_verified':len(assets)}
 
 
+def stage_release(c,d):
+    expected=BUNDLE.with_suffix('.zip.sha256').read_text().split()[0]
+    if sha(BUNDLE)!=expected:raise ValueError('local package hash mismatch')
+    incoming='/public2/home/qiuqian/hdl-deploy/triad-incoming-20261114';c.run(['mkdir','-p',incoming]);target=incoming+'/'+BUNDLE.name;exists=c.run(['test','-e',target],check=False)
+    if exists.returncode==1:c.copy(str(BUNDLE),shared.HOST+':'+target);c.copy(str(BUNDLE.with_suffix('.zip.sha256')),shared.HOST+':'+target+'.sha256')
+    elif exists.returncode or c.run(['sha256sum',target]).stdout.split()[0]!=expected:raise ValueError('remote archive differs; preserve it')
+    installed=c.run([shared.PY,'-s','-B','-c',shared.INSTALL,target,REMOTE,expected]);(d/'release-verification.json').write_text(installed.stdout)
+    checked=c.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','plan']);(d/'login-plan.json').write_text(checked.stdout)
+    return {'uploaded':True,'remote_manifest_verified':True,'login_import_verified':True,'formal_search_authorized':False}
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['inspect','stage','prepare','submit','resume','query','pause','fetch','summary'])
     ap.add_argument('--existing-receipt',type=Path);ap.add_argument('--campaign',type=Path,default=ROOT/'experiments/triad/campaign.pending.json');ap.add_argument('--batch-name',default='triad-20261113');ap.add_argument('--experiment',choices=configuration.GROUPS);ap.add_argument('--seed',type=int)
@@ -136,14 +147,7 @@ def main():
             if a.action=='inspect':
                 r=c.run(['/usr/bin/python3','-s','-'],(ROOT/'deploy/cluster-mock/inspect_remote.py').read_text());(d/'read-only-environment.json').write_text(r.stdout);value['inspection']=json.loads(r.stdout)
             elif a.action=='stage':
-                expected=BUNDLE.with_suffix('.zip.sha256').read_text().split()[0]
-                if sha(BUNDLE)!=expected:raise ValueError('local package hash mismatch')
-                incoming='/public2/home/qiuqian/hdl-deploy/triad-incoming-20261113';c.run(['mkdir','-p',incoming]);target=incoming+'/'+BUNDLE.name;exists=c.run(['test','-e',target],check=False)
-                if exists.returncode==1:c.copy(str(BUNDLE),shared.HOST+':'+target);c.copy(str(BUNDLE.with_suffix('.zip.sha256')),shared.HOST+':'+target+'.sha256')
-                elif exists.returncode or c.run(['sha256sum',target]).stdout.split()[0]!=expected:raise ValueError('remote archive differs; preserved')
-                installed=c.run([shared.PY,'-s','-B','-c',shared.INSTALL,target,REMOTE,expected]);(d/'release-verification.json').write_text(installed.stdout)
-                checked=c.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','plan']);(d/'login-plan.json').write_text(checked.stdout)
-                value.update(uploaded=True,remote_manifest_verified=True,login_import_verified=True,formal_search_authorized=False)
+                value.update(stage_release(c,d))
             elif a.action=='prepare':
                 value.update(sync_config(c,a.campaign,d))
                 if a.existing_receipt:

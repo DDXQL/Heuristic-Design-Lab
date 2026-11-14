@@ -4,7 +4,7 @@
 
 ## 配置与当前状态
 
-配置位于本目录`configs/`，分别为`fjsp-u.json`、`fjsp-eoh.json`、`tsp-u.json`、`tsp-eoh.json`、`obp-u.json`、`obp-eoh.json`。六组均声明每个独立种子1000次演化生成尝试；初始化及H构建另计。重复数、种子清单、未批准种群和初始化上限保持null。当前全部正式启动被协议缺口阻止，不能把结构化准备当作真实运行验收。
+配置位于本目录`configs/`，分别为`fjsp-u.json`、`fjsp-eoh.json`、`tsp-u.json`、`tsp-eoh.json`、`obp-u.json`、`obp-eoh.json`。六组均声明每个独立种子1000次演化生成尝试；初始化及H构建另计。每组3次及种子501／502／503已采用；FJSP EoH N10、初始化最多20、累计1020和有限初始化门槛也已采用。其余未批准研究值仍待定。当前全部正式启动被协议缺口阻止，不能把结构化准备当作真实运行验收。
 
 - FJSP U：通过`entry.py`委托原`experiments/common/run_frozen.py`，保留实际501算法、Prompt和客户端。新的资源与账户安排在独立子配置中绑定；科学参数不符合原501配置时拒绝同版重复。原正式入口的单种子限制不删除。每份子配置仅向它传一个种子。
 - FJSP EoH：复用旧原生EoH的I1、E1、E2、M1、M2、按秩选父代、原生生存及同分重复惩罚。完整train21的J最小化；种群内部仅桥接为−J，最终按完整有效候选的J、稳定语义ID升序选优。旧负Fitness入口和记录保持原身份。
@@ -46,7 +46,7 @@ TSP H原件SHA为`f85c5cafb8d675ae0dbbe2f682fe5f61f7a2bda5490eb6f95d958256d3dcdb
 
 Mac单次运行接口为`entry.py run --config 子配置真实路径 --run-dir 独立目录 --allow-api --allow-solves --approve-budget 原累计上限`。`prepare`只有文件写入，真实模式仍要求显式原额度确认但不读密钥。状态／暂停／导出使用同一路径与`status`、`pause`、`export`。恢复使用`resume`并承认原额度。批次可用`batch.py run --all`依次推进已冻结运行；遇暂停、失败、未知请求或未知提交停止，不能跳过后自动补跑。用户可自行执行下一条状态或恢复命令，无需逐代向聊天报告。
 
-本工作树r4集群独立根目录为`/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r4p1`，复用`/public2/home/qiuqian/hdl-envs/portable-v2/bin/python`，不默认安装依赖。包准备完成后用户可在Mac终端执行：
+本工作树r4集群独立根目录为`/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r5`，复用`/public2/home/qiuqian/hdl-envs/portable-v2/bin/python`，不默认安装依赖。包准备完成后用户可在Mac终端执行：
 
 ```bash
 /Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/cluster.py stage
@@ -93,3 +93,8 @@ FJSP U501被entry和Slurm入口保护，不能重开；只有用户采用其纳�
 r3 ZIP保持原SHA不变。r4追加closeout.py、独立可选绘图依赖和[收尾操作说明](../../docs/实验结束与归档.md)，不改公共执行代码、正式参数或原501。现有cluster.py stage指向新的20261114-r4包及独立远端目录，不覆盖旧部署。check-only只读现有导出；build生成新图表／报告／清单，并在显式archive参数下创建完整证据ZIP。batch-report复用已有批次Summary。所有模式均不导入客户端、求解器，不执行H／U或自动推送。图形依赖不安装进原portable执行环境。r4工程包不包含原501的1.15GB运行；实际样例精简成果及完整证据ZIP分别交付。
 
 最终默认包为r4p1（closeout-v1.1）：比r4初稿多核对明确的J-gap定义，防止同名旧协议被误标。r4初稿与r3均保留。实际501样例v1由e926be8生成，保留其当时脚本和哈希；新增严格门禁不改写样例或原运行。
+
+
+## r5首份FJSP集群交付
+
+当前启动以[cluster-fjsp/README_ZH.md](cluster-fjsp/README_ZH.md)为准，使用launch_fjsp.py；R5独立根目录不覆盖旧包。先完成当前inventory／凭据元数据／上传核验，再由用户单独批准第一阶段4次无求解的双作业共享API1验证；API2不阻塞首份。正式EoH单作业及其有限1次／42求解前缀都复用原entry和Slurm。当前研究之间仍串行，不把工程探针准入当成已接入两个研究搜索。旧501已只读纳入，真实请求／求解／Slurm本轮均0。

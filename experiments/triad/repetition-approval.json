@@ -1,0 +1,15 @@
+{
+  "version": "triad-repetition-adoption-v1",
+  "adopted": true,
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "evolution_attempts_per_seed": 1000,
+  "initialization_separate": true,
+  "include_existing_fjsp_u501_read_only": true,
+  "source": "User confirmation relayed by total planner 2026-11-14",
+  "scope": "repeat count / seeds / completed same-version U501 inclusion only; no new model/API/solve/Slurm authority; no other suggested study parameters adopted"
+}

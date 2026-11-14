@@ -1,0 +1,22 @@
+{
+  "version": "triad-serial-batch-v1",
+  "campaign_id": "fjsp-priority-20261114-pending",
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "global_generation_tasks": 1,
+  "run_root": "../../../runs/fjsp-priority-20261114-pending",
+  "groups": [
+    {
+      "group": "fjsp-eoh",
+      "config": "fjsp-eoh.pending.json"
+    },
+    {
+      "group": "fjsp-u",
+      "config": "fjsp-u.pending.json"
+    }
+  ]
+}

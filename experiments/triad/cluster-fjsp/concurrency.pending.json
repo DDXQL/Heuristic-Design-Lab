@@ -1,0 +1,21 @@
+{
+  "version": "independent-search-concurrency-review-v1",
+  "independent_generating_runs_current": 1,
+  "independent_generating_runs_candidate": 2,
+  "global_API_concurrency_candidate": 1,
+  "provider_limits": {
+    "concurrency": null,
+    "RPM": null,
+    "TPM": null,
+    "source": "unknown; public provider homepage requires JavaScript; account-specific limits not available without user confirmation"
+  },
+  "gate_current": "whole execution segment exclusive; not per-request sharing",
+  "cross_node_shared_gate_verified": false,
+  "shared_request_limiter_implemented": false,
+  "other_device_exclusion_confirmed": false,
+  "real_concurrent_search_authorized": false,
+  "account_owner_statement": "user confirmed only they use this account; this does NOT prove all their devices/old scripts are stopped",
+  "phase1_physical_send_cap": 4,
+  "phase2_optional_physical_send_cap": 4,
+  "real_probe_sends_approved": false
+}

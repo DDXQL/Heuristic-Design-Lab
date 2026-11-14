@@ -58,6 +58,8 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['check-only','prepare','run','status','pause','resume','export'])
     ap.add_argument('--config',type=Path,required=True);ap.add_argument('--run-dir',type=Path)
     ap.add_argument('--kind',choices=['search','h-build'],default='search');ap.add_argument('--engineering',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int)
+    ap.add_argument('--pause-after-attempts',type=int,help='absolute cumulative settled-attempt prefix within original cap')
+    ap.add_argument('--approve-segment-solves',type=int,help='inclusive first/recheck upper bound for this finite segment')
     args=ap.parse_args();c=configuration.load(args.config,engineering=args.engineering)
     if args.kind=='h-build':c=runtime.h_build_config(c)
     if args.action=='check-only':
@@ -86,6 +88,11 @@ def main():
         if args.action in ('run','resume'):
             approve(c,args,read(d/'Run_clock.json')['deadline'] if (d/'Run_clock.json').exists() else None)
             cmd += ['--allow-api','--allow-evaluation','--credential-file',c['credential_file']]
+            if args.pause_after_attempts is not None:
+                from heuristic_design.core.storage import read as read_json
+                state=read_json(d/'checkpoint.json');used=state['initialization_requests']+state['generation_requests'];maximum=2*(args.pause_after_attempts-used)*c['instance_count']
+                if args.pause_after_attempts<=used or args.pause_after_attempts>c['api_attempt_cap'] or args.approve_segment_solves!=maximum:raise PermissionError('finite prefix and inclusive solve upper bound must match original remaining budget')
+                cmd+=['--pause-after-attempts',str(args.pause_after_attempts)]
         return subprocess.run(cmd).returncode
     adapter=runtime.Adapter()
     if args.action in ('status','pause','export'):
@@ -102,6 +109,11 @@ def main():
         else:
             deadline=read(d/'Run_clock.json')['deadline'] if (d/'Run_clock.json').exists() else None
             approve(c,args,deadline);execution.ledger(d,s,p,adapter=adapter)
+            prefix=args.pause_after_attempts
+            if prefix is not None and (not s['cursor']<prefix<=c['api_attempt_cap'] or args.approve_segment_solves!=2*(prefix-s['cursor'])*len(p['instances'])):raise PermissionError('finite segment must declare exact inclusive first/recheck cap under original cumulative budget')
+            seq=len(list((d/'manual-boundaries').glob('*.json')))+1
+            control={'sequence':seq,'protocol':s['identity'],'settled_prefix':prefix,'original_request_cap':c['api_attempt_cap'],'remaining_segment_request_cap':None if prefix is None else prefix-s['cursor'],'inclusive_native_solve_cap':args.approve_segment_solves,'at':time.time()}
+            write(d/'manual-boundaries'/f'{seq:04d}.json',control);write(d/'Current_manual_boundary.json',control)
             if p['config']['api_mode']=='real':
                 if os.environ.get('SLURM_JOB_ID') and int(os.environ.get('SLURM_CPUS_PER_TASK','0'))<c['resources']['cpus']:raise ValueError('allocation below declared CPUs')
                 key(c);gate=Path(c['account_gate']);gate.mkdir(parents=True,exist_ok=True)

@@ -1,0 +1,72 @@
+{
+  "CODE_READY_first_FJSP": true,
+  "RUN_READY": false,
+  "worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113",
+  "study_adoptions": {
+    "all_groups_repeats": 3,
+    "seeds": [
+      501,
+      502,
+      503
+    ],
+    "existing_U501": "registered read-only, not rerun",
+    "FJSP_EoH": {
+      "N": 10,
+      "init_HTTP_cap": 20,
+      "evolution_attempts": 1000,
+      "total_model_cap": 1020,
+      "per_slot_attempt_cap": 1,
+      "initialization_policy": "native finite + project N finite guard; may stop before20"
+    }
+  },
+  "model_and_V5_match_verified": true,
+  "remote_inventory_current": false,
+  "existing_SSH_control_sockets": 0,
+  "remote_auth_required": "one user interactive prepare; previous noninteractive failure not retried",
+  "uploaded": false,
+  "compute_node_verified": false,
+  "credential_value_reads": 0,
+  "credential_path": "/public2/home/qiuqian/.config/hdl/leafapi.key",
+  "probe": {
+    "phase1_pending_user_approval": true,
+    "phase1_send_cap": 4,
+    "phase1_jobs": 2,
+    "global_API_width": 1,
+    "phase2_optional_send_cap": 4,
+    "phase2_required_for_first_FJSP": false,
+    "actual_sends": 0,
+    "actual_cross_job_or_cross_node_verified": false,
+    "solves": 0
+  },
+  "first_FJSP": {
+    "resources_proposed": {
+      "cpu": 2,
+      "memory_mib": 2048,
+      "partition": "128C_02",
+      "account": "wz",
+      "QOS": "normal",
+      "segment_seconds": 43200,
+      "drain_seconds": 1260,
+      "calendar_window_seconds": 172800
+    },
+    "native_solve_cap_full_run": 42840,
+    "optional_first_segment": {
+      "model_attempts": 1,
+      "inclusive_native_solve_cap": 42,
+      "charged_to_original1020": true
+    }
+  },
+  "pending": [
+    "fresh remote inventory/deployment/credential metadata",
+    "operator all-device exclusion duration, no old expiry reuse",
+    "user manual phase1 four-send result",
+    "new FJSP U scientific profile adoption; TSP LKH and OBP assets separate"
+  ],
+  "first_safe_command": "launch_fjsp.py prepare (Mac terminal, interactive authentication, API0/solve0/Slurm0)",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "old_614258_614474_repeated": false,
+  "public_code_unchanged": true,
+  "public_execution_commit": "923781f"
+}

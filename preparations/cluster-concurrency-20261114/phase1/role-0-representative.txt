@@ -1,0 +1,8 @@
+Design ONE fjsp action-scoring H with exact function arguments ('processing_time', 'remaining_work', 'remaining_operations', 'job_ready_time', 'machine_ready_time', 'earliest_start', 'earliest_finish'). Highest finite priority wins, stable original action order breaks exact ties. Minimize complete train objective J=mean((raw cost-reference)/reference). No imports, network, files, globals or lookahead. Return one boxed {description} and one complete fenced python function.
+1. First, describe your new algorithm and main steps in one sentence. The description must be inside within boxed {}. 
+2. Next, implement the following Python function:
+def priority(processing_time, remaining_work, remaining_operations, job_ready_time, machine_ready_time, earliest_start, earliest_finish):
+
+
+
+Do not give additional explanations.

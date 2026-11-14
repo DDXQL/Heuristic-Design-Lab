@@ -12,10 +12,14 @@ from heuristic_design.core.storage import read,write,sha
 from experiments.triad import batch,runtime,configuration
 
 
-def command(row,action,python):
+def command(row,action,python,prefix=None,solve_cap=None):
     if row.get('protected_existing_501') or row.get('existing_registration'):raise PermissionError('existing 501 is read-only and cannot be submitted or resumed by this batch')
     c=configuration.load(row['config']);r=c['resources'];todo=configuration.gaps(c)
     if todo or r['partition'] is None:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo+(['resources.partition'] if r['partition'] is None else [])))
+    if prefix is not None:
+        cp=Path(row['run_dir'])/'checkpoint.json';state=read(cp) if cp.exists() else {}
+        used=state.get('initialization_requests',0)+state.get('generation_requests',0) if 'eoh' not in state else state['eoh']['initialization_requests']+state['eoh']['operator_cursor']
+        if not used<prefix<=c['api_attempt_cap'] or solve_cap!=2*(prefix-used)*c['instance_count']:raise PermissionError('finite segment prefix/first+recheck solve cap must match original ledger')
     h,left=divmod(r['segment_seconds'],3600);m,s=divmod(left,60)
     cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time='+f'{h:02d}:{m:02d}:{s:02d}',
       '--partition='+r['partition'],'--signal=B:USR1@'+str(r['drain_seconds']),'--chdir='+str(ROOT),'--job-name='+row['run_id'],
@@ -24,13 +28,15 @@ def command(row,action,python):
     for k in ('account','qos'):
         if r[k]:cmd+=['--'+k+'='+r[k]]
     cmd += [str(ROOT/'experiments/triad/cluster.sbatch'),action,row['config'],row['run_dir'],python,str(c['api_attempt_cap'])]
+    if prefix is not None:cmd += [str(prefix),str(solve_cap)]
     return cmd
 
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['run','resume']);ap.add_argument('--batch',type=Path,default=ROOT/'plans/triad-20261113');ap.add_argument('--experiment',required=True,choices=configuration.GROUPS);ap.add_argument('--seed',type=int,required=True)
     ap.add_argument('--python',default='/public2/home/qiuqian/hdl-envs/portable-v2/bin/python');ap.add_argument('--submit',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int)
-    a=ap.parse_args();p=read(a.batch/'Batch.json');row=batch.select(p,a.experiment,a.seed)[0];cmd=command(row,a.action,a.python)
+    ap.add_argument('--pause-after-attempts',type=int);ap.add_argument('--approve-segment-solves',type=int)
+    a=ap.parse_args();p=read(a.batch/'Batch.json');row=batch.select(p,a.experiment,a.seed)[0];cmd=command(row,a.action,a.python,a.pause_after_attempts,a.approve_segment_solves)
     if not a.submit:print(json.dumps({'submitted':False,'command':cmd},indent=2));return 0
     c=configuration.load(row['config'])
     if not a.allow_api or not a.allow_solves or a.approve_budget!=c['api_attempt_cap']:raise PermissionError('manual submit requires API/solve approval and ORIGINAL request cap')
@@ -53,7 +59,7 @@ def main():
         info=batch.state(row)
     if info['phase']!=('prepared' if a.action=='run' else 'paused'):raise ValueError('run needs prepared, resume needs safely paused original run')
     claims=d/'submissions';claims.mkdir(exist_ok=True);claim=claims/(a.action+'-'+sha(d/'checkpoint.json')+'.json')
-    record={'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':c['api_attempt_cap'],'automatic_retry':False}
+    record={'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':c['api_attempt_cap'],'finite_settled_prefix':a.pause_after_attempts,'inclusive_segment_solve_cap':a.approve_segment_solves,'automatic_retry':False}
     fd=os.open(claim,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f:json.dump(record,f);f.flush();os.fsync(f.fileno())
     (ROOT/'logs').mkdir(exist_ok=True)

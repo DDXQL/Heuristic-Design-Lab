@@ -1,0 +1,47 @@
+{
+  "adopt_study_parameters": false,
+  "adopt_obp_candidate_state": false,
+  "campaign_id": "fjsp-priority-20261114",
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "common": {
+    "window_seconds": 172800,
+    "credential_file": "/public2/home/qiuqian/.config/hdl/leafapi.key",
+    "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+    "account_exclusion": null,
+    "resources": {
+      "memory_mib": 2048,
+      "segment_seconds": 43200,
+      "drain_seconds": 1260,
+      "partition": "128C_02",
+      "account": "wz",
+      "qos": "normal"
+    }
+  },
+  "groups": {
+    "fjsp-u": {},
+    "fjsp-eoh": {
+      "budget_basis": "User-adopted 2026-11-14: N10, native bounded init HTTP<=20 + project finite N gate, evolution1000, cumulative cap1020; init/H separate, not equal end-to-end cost"
+    },
+    "tsp-u": {},
+    "tsp-eoh": {},
+    "obp-u": {},
+    "obp-eoh": {}
+  },
+  "notes": [
+    "R=3 / seeds501,502,503 / completed U501 inclusion are ADOPTED only.",
+    "FJSP EoH N10/init<=20/evolution1000/cap1020/native_N_finite_or_fail and same model/V5 adopted by explicit user reply 2026-11-14; execution still manual.",
+    "Provider/V5 equals completed U501, verified from actual Protocol, not inferred from model name.",
+    "Resource values are recommendations from the accepted prior inventory; fresh current inventory still required.",
+    "Original relative window172800 and segment43200 are recommendations; no old absolute expiry is copied.",
+    "Native initialization may end early; project N-finite guard can fail before20; no refilling.",
+    "account_exclusion must be a fresh explicit all-device confirmation, never inherited from old501."
+  ],
+  "adopt_groups": [
+    "fjsp-eoh"
+  ]
+}

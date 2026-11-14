@@ -6,8 +6,12 @@
   "mode": "real",
   "freeze_status": "pending",
   "real_requests_authorized": false,
-  "repeat_count": null,
-  "search_seeds": null,
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
   "population_size": null,
   "initialization_request_cap": null,
   "evolution_request_cap": 1000,

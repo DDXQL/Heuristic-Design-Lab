@@ -1,8 +1,12 @@
 {
   "version": "triad-serial-batch-v1",
   "campaign_id": "triad-20261113",
-  "repeat_count": null,
-  "search_seeds": null,
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
   "global_generation_tasks": 1,
   "run_root": "../../runs/triad-20261113",
   "groups": [
