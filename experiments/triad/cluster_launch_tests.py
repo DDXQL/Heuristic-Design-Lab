@@ -26,7 +26,7 @@ class FakeWire:
     def __init__(self,c):self.config=c;self.identity='SYNTHETIC_NOT_V5_SEND';self.secret='';self.redact=lambda s:s
     def preflight(self,prompt):assert len(prompt)>100
     def dispatch(self,key,prompt,*,kind,on_sent):
-        on_sent();time.sleep(.08)
+        on_sent();time.sleep(.3) # exceed the 100ms peer polling tick; do not demand overlap from an 80ms fixture
         if os.environ.get('PROBE_FIXTURE_FAIL')=='1':
             e=TimeoutError('SYNTHETIC unknown response');e.metadata={'send_status':'unknown','failure_stage':'response_body'};raise e
         return {'text':'SYNTHETIC RECEIPT; NEVER A MODEL OUTPUT','usage':{'input_tokens':10,'output_tokens':2},'metadata':{'http_status':200,'model':'gpt-6.1-sol','finish_reason':'stop','send_status':'confirmed'}}

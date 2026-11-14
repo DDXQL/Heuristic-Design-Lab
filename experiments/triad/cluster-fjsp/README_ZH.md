@@ -34,7 +34,7 @@ Mac终端使用原portable Python3.12；画图用的Python3.13不用于冻结H�
 
 如果操作者能够保证未来72小时本人其他设备及旧脚本都不请求同一账户，可在该prepare命令末尾显式加`--confirm-exclusive-account --exclusive-hours 72`。这只写新鲜的排他确认和配置，不发请求。不能保证时不加，部署仍可继续，正式启动保持拒绝。此时限为覆盖48小时原搜索窗口及排队余量的工程建议，不因恢复重新延长。
 
-回执在reports/cluster-launch-20261114/prepare-*；latest-preparation.json保存精确remote_batch、batch_name、远端目录和凭据元数据。当前默认远端为/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r5，环境仍为/public2/home/qiuqian/hdl-envs/portable-v2/bin/python，不默认安装。
+回执在reports/cluster-launch-20261114/prepare-*；latest-preparation.json保存精确remote_batch、batch_name、远端目录和凭据元数据。当前默认远端为/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r5p1，环境仍为/public2/home/qiuqian/hdl-envs/portable-v2/bin/python，不默认安装。
 
 ## 2. 第一阶段：两个独立作业共享API总并发1
 

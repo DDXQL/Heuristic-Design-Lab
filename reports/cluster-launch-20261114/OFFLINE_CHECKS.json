@@ -53,8 +53,8 @@
       "request_receipts": [
         {
           "attempt_id": "engineering-phase1-job0/role0-request0/attempt/01",
-          "reserved_at": 1794637738.698266,
-          "finished_at": 1794637738.994984,
+          "reserved_at": 1794639092.3528829,
+          "finished_at": 1794639093.244385,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -65,8 +65,8 @@
         },
         {
           "attempt_id": "engineering-phase1-job0/role0-request1/attempt/01",
-          "reserved_at": 1794637738.9973462,
-          "finished_at": 1794637739.087184,
+          "reserved_at": 1794639093.247103,
+          "finished_at": 1794639093.563301,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -77,8 +77,8 @@
         },
         {
           "attempt_id": "engineering-phase1-job1/role1-request0/attempt/01",
-          "reserved_at": 1794637738.69744,
-          "finished_at": 1794637738.785279,
+          "reserved_at": 1794639092.251783,
+          "finished_at": 1794639092.559834,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -89,8 +89,8 @@
         },
         {
           "attempt_id": "engineering-phase1-job1/role1-request1/attempt/01",
-          "reserved_at": 1794637738.789162,
-          "finished_at": 1794637738.8812852,
+          "reserved_at": 1794639092.5628538,
+          "finished_at": 1794639092.877656,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -153,8 +153,8 @@
       "request_receipts": [
         {
           "attempt_id": "engineering-phase2-job0/role0-request0/attempt/01",
-          "reserved_at": 1794637739.783156,
-          "finished_at": 1794637739.878413,
+          "reserved_at": 1794639094.165781,
+          "finished_at": 1794639094.484968,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -165,8 +165,8 @@
         },
         {
           "attempt_id": "engineering-phase2-job0/role0-request1/attempt/01",
-          "reserved_at": 1794637739.98321,
-          "finished_at": 1794637740.0771918,
+          "reserved_at": 1794639094.5926661,
+          "finished_at": 1794639094.909343,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -177,8 +177,8 @@
         },
         {
           "attempt_id": "engineering-phase2-job1/role1-request0/attempt/01",
-          "reserved_at": 1794637739.883135,
-          "finished_at": 1794637739.978476,
+          "reserved_at": 1794639094.260389,
+          "finished_at": 1794639094.570791,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -189,8 +189,8 @@
         },
         {
           "attempt_id": "engineering-phase2-job1/role1-request1/attempt/01",
-          "reserved_at": 1794637739.9835992,
-          "finished_at": 1794637740.136489,
+          "reserved_at": 1794639094.574659,
+          "finished_at": 1794639094.896306,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -218,17 +218,16 @@
           "no_retry": true
         },
         {
-          "phase": "completed",
+          "phase": "stopped",
           "job": "LOCAL-FIXTURE-1",
-          "host": "DDXQL.local",
-          "requests": 2,
-          "solver_calls": 0
+          "error_type": "RuntimeError",
+          "no_retry": true
         }
       ],
       "independent_Slurm_receipts_verified": false,
       "reserved_attempts": 3,
-      "confirmed_sends": 3,
-      "unknown_attempts": 0,
+      "confirmed_sends": 2,
+      "unknown_attempts": 1,
       "retained_active_after_error": 1,
       "physical_send_cap": 4,
       "automatic_retries": 0,
@@ -239,20 +238,20 @@
         "DDXQL.local"
       ],
       "known_usage_subtotal": {
-        "input_tokens": 20,
-        "output_tokens": 4
+        "input_tokens": 10,
+        "output_tokens": 2
       },
-      "unknown_usage_attempts": 1,
+      "unknown_usage_attempts": 2,
       "HTTP_statuses": [
         null,
         200,
-        200
+        null
       ],
       "request_receipts": [
         {
           "attempt_id": "engineering-phase1-job0/role0-request0/attempt/01",
-          "reserved_at": 1794637740.602218,
-          "finished_at": 1794637740.909939,
+          "reserved_at": 1794639095.487979,
+          "finished_at": 1794639096.0185258,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": null,
@@ -260,8 +259,8 @@
         },
         {
           "attempt_id": "engineering-phase1-job1/role1-request0/attempt/01",
-          "reserved_at": 1794637740.6011882,
-          "finished_at": 1794637740.6968489,
+          "reserved_at": 1794639095.390168,
+          "finished_at": 1794639095.70433,
           "wire_timing": null,
           "send_confirmed": true,
           "HTTP_status": 200,
@@ -272,15 +271,12 @@
         },
         {
           "attempt_id": "engineering-phase1-job1/role1-request1/attempt/01",
-          "reserved_at": 1794637740.702671,
-          "finished_at": 1794637740.795,
+          "reserved_at": 1794639095.708711,
+          "finished_at": 1794639096.043319,
           "wire_timing": null,
-          "send_confirmed": true,
-          "HTTP_status": 200,
-          "usage": {
-            "input_tokens": 10,
-            "output_tokens": 2
-          }
+          "send_confirmed": false,
+          "HTTP_status": null,
+          "usage": null
         }
       ],
       "actual_cost": null,
@@ -296,7 +292,7 @@
       "first_segment_native_solves": 0,
       "original_cap": 8,
       "clock_unchanged": true,
-      "source": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/cluster-launch-OFFLINE-1794637740934463000"
+      "source": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/cluster-launch-OFFLINE-1794639096070069000"
     },
     "finite_serial_queue": {
       "passed": true,

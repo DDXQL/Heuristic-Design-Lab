@@ -1,0 +1,50 @@
+{
+  "full": {
+    "passed": true,
+    "argv": [
+      "--ntasks=1",
+      "--cpus-per-task=2",
+      "FAKE-PY",
+      "-s",
+      "-u",
+      "-B",
+      "experiments/triad/entry.py",
+      "run",
+      "--config",
+      "FAKE-CONFIG",
+      "--run-dir",
+      "FAKE-RUN",
+      "--allow-api",
+      "--allow-solves",
+      "--approve-budget",
+      "1020"
+    ],
+    "actual_srun_or_API_calls": 0
+  },
+  "finite": {
+    "passed": true,
+    "argv": [
+      "--ntasks=1",
+      "--cpus-per-task=2",
+      "FAKE-PY",
+      "-s",
+      "-u",
+      "-B",
+      "experiments/triad/entry.py",
+      "run",
+      "--config",
+      "FAKE-CONFIG",
+      "--run-dir",
+      "FAKE-RUN",
+      "--allow-api",
+      "--allow-solves",
+      "--approve-budget",
+      "1020",
+      "--pause-after-attempts",
+      "1",
+      "--approve-segment-solves",
+      "42"
+    ],
+    "actual_srun_or_API_calls": 0
+  }
+}
