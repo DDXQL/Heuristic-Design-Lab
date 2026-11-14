@@ -16,8 +16,8 @@ spec=importlib.util.spec_from_file_location('admitted_cluster',ROOT/'deploy/clus
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import configuration,batch
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6p1'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-two-searches-20261114-r6p1.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6p2'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-two-searches-20261114-r6p2.zip')
 EXPORT='''import hashlib,json,pathlib,sys,time,zipfile
 root=pathlib.Path(sys.argv[1]);run=pathlib.Path(sys.argv[2]);job=sys.argv[3]
 if not run.resolve().is_relative_to((root/'runs').resolve()) or not job.isdigit():raise SystemExit('invalid retrieval identity')

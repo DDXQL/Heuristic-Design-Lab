@@ -1,4 +1,4 @@
-# 两个独立种子同时运行：R6p1准备交付
+# 两个独立种子同时运行：R6p2准备交付
 
 本版从R5p1源码7edeeb9建立，公共`code/`与冻结U入口不变。当前仅本地离线准备；没有上传、真实模型请求、真实求解或Slurm提交。616362仍使用原部署，不能接入这个批次，也不更换它的源码、配置或门禁。其最新远端进度仍未知。
 
@@ -51,7 +51,7 @@ EoH每作业2CPU、2048MiB；U每作业3CPU、2048MiB。单作业12小时、原�
 在已登录的集群终端进入新目录。沿用原Python环境，不安装依赖。
 
 ```bash
-cd /public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6p1
+cd /public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6p2
 P=/public2/home/qiuqian/hdl-envs/portable-v2/bin/python
 "$P" -s -B experiments/triad/parallel.py mock-plan --directory plans/two-search-mock-acceptance
 "$P" -s -B experiments/triad/parallel.py activate --manifest plans/two-search-mock-acceptance/Shared.json
@@ -118,3 +118,5 @@ fetch保留原ZIP／成员哈希核验，并附共享清单、账本、停止原
 ```bash
 "$P" -s -B experiments/triad/parallel.py close --manifest plans/two-eoh-502-503/Shared.json
 ```
+
+有限验收会记录实际Slurm节点；正式恢复固定在各成员已验收的节点，不把同节点证据扩展到未验证节点。节点不可用时保留排队／停止状态，不自动迁移。真实共享搜索也拒绝在登录节点直接运行；更换节点需另行有界验证。

@@ -57,8 +57,11 @@
     "bounded actual new-path acceptance before full paired resume",
     "new U scientific adoption; never inferred from EoH approval"
   ],
-  "delivery_revision": "R6p1",
+  "delivery_revision": "R6p2",
   "preliminary_r6_candidate_preserved": true,
   "peer_STOP_existing_response_drain_verified_offline": true,
-  "wire_seconds_excludes_pacing": true
+  "wire_seconds_excludes_pacing": true,
+  "real_compute_only_guard": true,
+  "resume_pinned_to_actual_validated_nodes": true,
+  "preliminary_r6p1_preserved": true
 }

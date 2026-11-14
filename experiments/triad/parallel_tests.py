@@ -145,6 +145,21 @@ def main():
         else:raise AssertionError('new send after peer STOP')
         s=read(p.parent/'gate/ledger.json');assert confirmed==[True] and not s['active'] and len(s['requests'])==1 and next(iter(s['requests'].values()))['state']=='completed'
         results['peer_STOP_drains_existing']={'send_callback_preserved':True,'existing_response_settled':True,'next_request_known_not_sent':True,'no_refund':True}
+        # Compute-only and topology checks happen before any session/permit.
+        p=fixture(root,'fjsp-eoh','node-scope',False);m=read(p);r=m['members'][0]
+        runtime.prepare(r['run_dir'],r['config'],engineering=True);b=shared.binding(p,r['run_dir'],r['config']);shared.attach(r['run_dir'],b)
+        admission=shared.Admission(b);admission.m['mode']='real' # branch fixture only; saved mode stays Mock, no real authority
+        with patch.dict(os.environ,{'SLURM_JOB_ID':'','SLURM_JOB_NODELIST':'','SLURM_NODELIST':''}):
+            try:
+                with admission.session(r['run_dir']):raise AssertionError('login node accepted')
+            except PermissionError:pass
+        write(p.parent/'Acceptance.json',{'validated_nodes':['SYNTHETIC-NODE-0','SYNTHETIC-NODE-1']})
+        with patch.dict(os.environ,{'SLURM_JOB_ID':'123','SLURM_JOB_NODELIST':'SYNTHETIC-OTHER-NODE'}):
+            try:
+                with admission.session(r['run_dir']):raise AssertionError('unverified migration accepted')
+            except PermissionError:pass
+        assert not read(p.parent/'gate/ledger.json')['requests']
+        results['node_scope']={'real_login_execution_refused':True,'unverified_node_migration_refused':True,'synthetic_branch_only':True,'API_requests':0}
         # At the exact declared cap, one additional logical key cannot send.
         p=fixture(root,'fjsp-eoh','caps',False);m=read(p);calls=[]
         class Wire:

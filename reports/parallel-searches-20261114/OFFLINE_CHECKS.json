@@ -21,7 +21,7 @@
       "FIFO": true,
       "spacing": true,
       "per_seed_caps": true,
-      "API_wait_seconds": 0.3546171690104529,
+      "API_wait_seconds": 0.31008799909614027,
       "peer_request_during_other_evaluation_observed": true
     },
     "fjsp-u": {
@@ -37,7 +37,7 @@
       "FIFO": true,
       "spacing": true,
       "per_seed_caps": true,
-      "API_wait_seconds": 0.7338788739871234,
+      "API_wait_seconds": 0.7534192469029222,
       "peer_request_during_other_evaluation_observed": true
     },
     "actual_transport_paths": {
@@ -51,6 +51,12 @@
       "existing_response_settled": true,
       "next_request_known_not_sent": true,
       "no_refund": true
+    },
+    "node_scope": {
+      "real_login_execution_refused": true,
+      "unverified_node_migration_refused": true,
+      "synthetic_branch_only": true,
+      "API_requests": 0
     },
     "exact_budget_boundary": {
       "no_extra_dispatch": true,

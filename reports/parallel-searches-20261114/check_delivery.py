@@ -20,6 +20,12 @@ p=ROOT/'plans/two-eoh-502-503/Shared.json'
 with patch.object(configuration,'gaps',return_value=[]):
  finite=parallel.submit(p,'run',prefix=1,solve_cap=84)['commands']
  full=parallel.submit(p,'resume')['commands']
+with tempfile.TemporaryDirectory(prefix='node-command-fixture-') as tmp:
+ t=Path(tmp);mp=t/'Shared.json';m=read(p);write(mp,m)
+ write(t/'Acceptance.json',{'manifest_sha256':sha(mp),'adapter_sha256':sha(parallel.shared.__file__),'validated_nodes':['SYNTHETIC-NODE-0','SYNTHETIC-NODE-1'],'real_dispatch_path_verified':False})
+ with patch.object(configuration,'gaps',return_value=[]),patch.object(parallel.shared,'load',return_value=m):
+  pinned=parallel.submit(mp,'resume')['commands']
+ for i,cmd in enumerate(pinned):assert '--nodelist=SYNTHETIC-NODE-'+str(i) in cmd
 for cmd in finite+full:
  i=cmd.index(str(ROOT/'experiments/triad/parallel.sbatch'));assert len(cmd[i+1:])==8
 assert all(cmd[-3:-1]==['1','42'] for cmd in finite)
@@ -55,4 +61,4 @@ with tempfile.TemporaryDirectory(prefix='parallel-export-') as tmp:
   assert 'plans/SYNTHETIC/gate/ledger.json' in man['files']
   assert all(hashlib.sha256(z.read(n)).hexdigest()==h for n,h in man['files'].items())
 write(out/'SOURCE_AND_RETRIEVAL.json',{'public_code_files_equal_923781f':len(public),'frozen_U_entry_unchanged':True,'r5p1_archive_unchanged':True,'synthetic_shared_export_hashes_passed':True,'remote_queries':0,'API_requests':0,'actual_solves':0})
-print(json.dumps({'passed':True,'pending_refusals':True,'shell_variants':3,'public_code_equal':len(public),'shared_retrieval':True}))
+print(json.dumps({'passed':True,'pending_refusals':True,'shell_variants':3,'validated_node_pinning':True,'public_code_equal':len(public),'shared_retrieval':True}))

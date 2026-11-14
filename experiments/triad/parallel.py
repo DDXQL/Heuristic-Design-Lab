@@ -104,6 +104,11 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
             cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',prefix,segment_cap)
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
+            certificate=path.parent/'Acceptance.json'
+            if certificate.exists():
+                accepted=read(certificate)
+                if accepted.get('manifest_sha256')!=sha(path) or accepted.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('original bounded acceptance changed')
+                cmd.insert(cmd.index(str(ROOT/'experiments/triad/parallel.sbatch')),'--nodelist='+accepted['validated_nodes'][row['index']])
         else:
             r=c['resources'];cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time=00:30:00','--partition='+r['partition'],'--account='+str(r['account'] or ''),'--qos='+str(r['qos'] or ''),'--chdir='+str(ROOT),'--job-name='+row['run_id'],'--output='+str(ROOT/'logs'/(row['run_id']+'-%j.out')),str(ROOT/'experiments/triad/parallel.sbatch'),action,row['config'],row['run_dir'],'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',str(row['request_cap']),str(prefix) if prefix is not None else '',str(segment_cap) if segment_cap is not None else '',str(path)]
         commands.append(cmd)
@@ -149,19 +154,21 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
 
 
 def certify(path):
-    path=Path(path).resolve();m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json');jobs=[];hosts=[]
+    path=Path(path).resolve();m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json');jobs=[];hosts=[];nodes=[]
     if info['STOP'] or s['active'] or s['jobs']:raise PermissionError('unknown/active evidence retained')
     expected_sends=sum(2 if r['group']=='fjsp-u' else 1 for r in m['members'])
     for i,row in enumerate(m['members']):
         d=Path(row['run_dir']);cp=read(d/'checkpoint.json');r=read(d/'latest-submission.json');job=r.get('job_id','')
         expected_prefix=2 if row['group']=='fjsp-u' else 1
         if cp['phase']!='paused' or cp.get('completed_tasks',cp.get('cursor'))!=expected_prefix or r['state']!='submitted' or not job.isdigit():raise PermissionError('two settled bounded Slurm prefixes required (EoH1, U whole init wave2)')
-        account=subprocess.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode'],check=True,text=True,capture_output=True)
-        if not any(x.split('|')[:3]==[job,'COMPLETED','0:0'] for x in account.stdout.splitlines()):raise PermissionError('terminal successful Slurm receipt required')
+        account=subprocess.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,NodeList'],check=True,text=True,capture_output=True)
+        actual=next((x.split('|') for x in account.stdout.splitlines() if x.split('|')[0]==job),None)
+        if not actual or actual[:3]!=[job,'COMPLETED','0:0'] or not actual[3] or any(ch not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.' for ch in actual[3]):raise PermissionError('terminal successful single-node Slurm receipt required')
+        nodes.append(actual[3])
         jobs.append(job);ready=read(path.parent/'preflight'/f'ready-{i}.json');hosts.append(ready['host'])
         if ready['job_id']!=job or not read(path.parent/'preflight'/f'fs-pass-{i}.json')['passed']:raise PermissionError('actual job filesystem preflight missing')
     if len(set(jobs))!=2 or len(s['requests'])!=expected_sends or s['peak']!=1 or any(r['state']!='completed' for r in s['requests'].values()):raise PermissionError('exact bounded successful prefix sends and shared peak1 required')
-    value={'manifest_sha256':sha(path),'adapter_sha256':sha(shared.__file__),'two_actual_Slurm_jobs':jobs,'hosts':hosts,'scope':'cross_node' if len(set(hosts))==2 else 'same_node','real_dispatch_path_verified':m['mode']=='real','compute_node_mock_verified':m['mode']=='mock','API_requests':expected_sends if m['mode']=='real' else 0,'solves_upper_bound':sum(2*(2 if r['group']=='fjsp-u' else 1)*configuration.load(r['config'],engineering=True)['instance_count'] for r in m['members']) if m['mode']=='real' else 0,'RUN_READY':False,'note':'finite specified topology only; no provider quota/max-throughput claim'}
+    value={'manifest_sha256':sha(path),'adapter_sha256':sha(shared.__file__),'two_actual_Slurm_jobs':jobs,'hosts':hosts,'validated_nodes':nodes,'scope':'cross_node' if len(set(nodes))==2 else 'same_node','real_dispatch_path_verified':m['mode']=='real','compute_node_mock_verified':m['mode']=='mock','API_requests':expected_sends if m['mode']=='real' else 0,'solves_upper_bound':sum(2*(2 if r['group']=='fjsp-u' else 1)*configuration.load(r['config'],engineering=True)['instance_count'] for r in m['members']) if m['mode']=='real' else 0,'RUN_READY':False,'note':'finite specified topology only; resumes pinned to these nodes, no provider quota/max-throughput claim'}
     claim(path.parent/'Acceptance.json',value);return value
 
 

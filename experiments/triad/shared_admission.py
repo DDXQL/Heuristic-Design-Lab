@@ -174,6 +174,13 @@ class Admission:
     def session(self,directory):
         verify_attachment(directory,self.b)
         d=Path(directory); token=str(os.getpid())+'-'+str(time.time_ns()); registered=False
+        if self.m['mode']=='real':
+            job=os.environ.get('SLURM_JOB_ID','');node=os.environ.get('SLURM_JOB_NODELIST') or os.environ.get('SLURM_NODELIST')
+            if not job.isdigit() or not node:raise PermissionError('shared real searches execute only in an explicit Slurm compute allocation')
+            certificate=self.path.parent/'Acceptance.json'
+            if certificate.exists():
+                role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
+                if node!=read(certificate)['validated_nodes'][role]:raise PermissionError('new topology not accepted; do not migrate or bypass the validated node binding')
         try:
             with self.transaction() as s:
                 if (self.folder/'STOP.json').exists():raise RuntimeError('shared STOP retained; no automatic recovery')
