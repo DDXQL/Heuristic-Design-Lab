@@ -1,6 +1,6 @@
 """Engineering vector-H ABI, selectable only after the OBP protocol approves it.
 
-Input is current item and current bin capacities, never an arrival stream.
+Input is current item and ALL FEASIBLE bin capacities in permanent-ID order, never an arrival stream.
 Only one bounded comprehension over the provided bin vector is admitted.
 """
 import ast
@@ -8,8 +8,8 @@ import math
 from heuristic_design.core.storage import digest
 from heuristic_design.problems.tsp.candidates import Candidate,CandidateError,BUILTINS
 ARGS=('item_size','remaining_capacities')
-ABI='obp-vector-h-v1'
-SAFE={**BUILTINS,'len':len,'range':range,'tuple':tuple}
+ABI='obp-vector-feasible-h-v2'
+SAFE={**BUILTINS,'sum':sum,'len':len,'range':range,'tuple':tuple}
 
 
 def validate(code,description=''):

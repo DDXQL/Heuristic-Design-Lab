@@ -31,6 +31,8 @@ def load(path,*,engineering=False):
         if c[k] and isinstance(c[k],str):c[k]=str((path.parent/c[k]).resolve())
     if isinstance(c['state_delivery'],dict):
         c['state_delivery']={**c['state_delivery'],'file':str((path.parent/c['state_delivery']['file']).resolve())}
+    if c['problem']=='obp' and c['mode']=='real' and c['obp_h_abi'] not in (None,'obp-vector-feasible-h-v2'):raise ValueError('preset-N formal OBP requires the shared feasible vector H ABI; scalar prototype is engineering-only')
+    if c['problem']=='obp' and c['obp_h_abi'] is not None and c['obp_h_abi'] not in ('obp-two-scalar-h-v1','obp-vector-feasible-h-v2'):raise ValueError('retired OBP input ABI; explicit asset/protocol migration required')
     r=c['resources']
     for k in ('cpus','memory_mib','segment_seconds','drain_seconds'):
         if r[k] is not None and (type(r[k]) is not int or r[k]<1):raise ValueError('invalid resource '+k)
@@ -49,6 +51,7 @@ def gaps(c):
     if c['problem']=='fjsp' and c['method']=='u' and not c['frozen_u_template']:missing.append('frozen_u_template')
     for k in ('cpus','memory_mib','segment_seconds','drain_seconds'):
         if c['resources'][k] is None:missing.append('resources.'+k)
+    if c['problem']=='obp' and c['mode']=='real' and isinstance(c['state_delivery'],dict) and c['state_delivery'].get('adoption')!='adopted':missing.append('state_delivery.adoption')
     if c['mode']=='real':
         for k in ('account_exclusion','account_gate','credential_file'):
             if not c[k]:missing.append(k)

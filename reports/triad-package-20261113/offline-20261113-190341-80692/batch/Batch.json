@@ -1,0 +1,364 @@
+{
+  "version": "triad-batch-plan-v1",
+  "campaign_id": "MOCK-20261113-190341-80692",
+  "campaign_sha256": "5a99886600813243fc859d844627eddb99769219eaa5c00d2042811c08427ec3",
+  "rows": [
+    {
+      "group": "fjsp-u",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-fjsp-u-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/fjsp-u.json",
+      "config_sha256": "01333d97265be1cca46da0a6d16a5553a47cfaa2cbc8c9c567a95f27107042b5",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 336,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-fjsp-u-seed-7.json",
+      "child_config_sha256": "8ef418059d9e0620c1e7586c6c4ad64e472002a69a52a65352d9e751b044fe6f",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-fjsp-u-seed-7"
+    },
+    {
+      "group": "fjsp-u",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-fjsp-u-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/fjsp-u.json",
+      "config_sha256": "01333d97265be1cca46da0a6d16a5553a47cfaa2cbc8c9c567a95f27107042b5",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 336,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-fjsp-u-seed-8.json",
+      "child_config_sha256": "9bd4f93ab4843e0824bd6e4da24ec9fd04f032fda0092a9e6d3b8954b9e28514",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-fjsp-u-seed-8"
+    },
+    {
+      "group": "fjsp-eoh",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-fjsp-eoh-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/fjsp-eoh.json",
+      "config_sha256": "3f069ba164997b81ba992d5cff58cdcb20b6607fd5d00fda3dbaa95ad9e87ae6",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 336,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-fjsp-eoh-seed-7.json",
+      "child_config_sha256": "5ffaf2c71ef1bcb3e8cbd0b3b95d168fdced936375b7134ccc89840ac33bfd5c",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-fjsp-eoh-seed-7"
+    },
+    {
+      "group": "fjsp-eoh",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-fjsp-eoh-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/fjsp-eoh.json",
+      "config_sha256": "3f069ba164997b81ba992d5cff58cdcb20b6607fd5d00fda3dbaa95ad9e87ae6",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 336,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-fjsp-eoh-seed-8.json",
+      "child_config_sha256": "ceeed35bb6b1afab724f908f715fc7593d9f8ad845518079c20c24cc928440f5",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-fjsp-eoh-seed-8"
+    },
+    {
+      "group": "tsp-u",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-tsp-u-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/tsp-u.json",
+      "config_sha256": "728d49d8bc61b334460d6a1478c3a8f775d23b0def4831344af26bf23f8d6191",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 320,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-tsp-u-seed-7.json",
+      "child_config_sha256": "36e4f6faab2cfd0673e287a43ceb4a4d211063e0a9bc8b6d5d274968be3f4c54",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-tsp-u-seed-7"
+    },
+    {
+      "group": "tsp-u",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-tsp-u-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/tsp-u.json",
+      "config_sha256": "728d49d8bc61b334460d6a1478c3a8f775d23b0def4831344af26bf23f8d6191",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 320,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-tsp-u-seed-8.json",
+      "child_config_sha256": "c0643bac193ad14419aee59eec4a0d6419b69dab35230a6a62dcfa8570dfd1a7",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-tsp-u-seed-8"
+    },
+    {
+      "group": "tsp-eoh",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-tsp-eoh-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/tsp-eoh.json",
+      "config_sha256": "3d2e12500c4ffaf1da7917d3e92e509682bbf2cbb581ce9e4b70da67a2794f2b",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 320,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-tsp-eoh-seed-7.json",
+      "child_config_sha256": "303e2eca944beb44e22770a021456634a0fa7d8338fdf0dd8c81030f20a20263",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-tsp-eoh-seed-7"
+    },
+    {
+      "group": "tsp-eoh",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-tsp-eoh-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/tsp-eoh.json",
+      "config_sha256": "3d2e12500c4ffaf1da7917d3e92e509682bbf2cbb581ce9e4b70da67a2794f2b",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 320,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-tsp-eoh-seed-8.json",
+      "child_config_sha256": "0e1f6c4229f8ea64aec737720397659cbace130f262a9dfa939e64aa96cf8011",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-tsp-eoh-seed-8"
+    },
+    {
+      "group": "obp-u",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-obp-u-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/obp-u.json",
+      "config_sha256": "ea40a74d2ea539281600424341cd5e2c67994b8c94a2e036fee82ac11dd5809b",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 16,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-obp-u-seed-7.json",
+      "child_config_sha256": "4eb7264f0fac6886258f393785af133373dbc4b9e242f7e9ef2325939c731952",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-obp-u-seed-7"
+    },
+    {
+      "group": "obp-u",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-obp-u-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/obp-u.json",
+      "config_sha256": "ea40a74d2ea539281600424341cd5e2c67994b8c94a2e036fee82ac11dd5809b",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 16,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-obp-u-seed-8.json",
+      "child_config_sha256": "2e5d9199a02fe98fba9fdfce347b8a764710d1cf86abf8cf4e6d235a19eeb524",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-obp-u-seed-8"
+    },
+    {
+      "group": "obp-eoh",
+      "index": 0,
+      "seed": 7,
+      "run_id": "MOCK-20261113-190341-80692-obp-eoh-seed-7",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/obp-eoh.json",
+      "config_sha256": "660bad3a51991c2d0173857d400d7f5f35f8d0e681933ed21b416399f5e18657",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 16,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-obp-eoh-seed-7.json",
+      "child_config_sha256": "8ff1a90b03531f0acf221055dd98612f18c26c38d9ad468d009460406c969a29",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-obp-eoh-seed-7"
+    },
+    {
+      "group": "obp-eoh",
+      "index": 1,
+      "seed": 8,
+      "run_id": "MOCK-20261113-190341-80692-obp-eoh-seed-8",
+      "source_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/obp-eoh.json",
+      "config_sha256": "660bad3a51991c2d0173857d400d7f5f35f8d0e681933ed21b416399f5e18657",
+      "status": "configured",
+      "pending": [],
+      "budget": {
+        "initialization_max": 4,
+        "evolution_attempts": 4,
+        "request_cap_per_seed": 8,
+        "requests_all_seeds": 16,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 16,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2",
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/offline-20261113-190341-80692/batch/configs/MOCK-20261113-190341-80692-obp-eoh-seed-8.json",
+      "child_config_sha256": "149fc7f614e2b0bf73fe14e42d798146ae038d6c82709fc6a84a47e7eb4d14a4",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/batch-OFFLINE-20261113-190341-80692/MOCK-20261113-190341-80692-obp-eoh-seed-8"
+    }
+  ],
+  "all_declared_request_cap": 96,
+  "same_account_generation_tasks": 1,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "credential_reads": 0
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/obp_contract_tests.py", line 99, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/obp_contract_tests.py", line 76, in main
+    assert 'ALL feasible' in hprompt and 'obp-R-code-half-up-v1' in hprompt
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

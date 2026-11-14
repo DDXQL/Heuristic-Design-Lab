@@ -32,13 +32,30 @@ def protocol_state(directory):
     return p,s
 
 
-def preflight(path,engineering=False):
-    c=load(path,engineering=engineering);todo=gaps(c)
-    if c.get('search_seed') is None:todo.append('select_independent_seed')
-    elif c['search_seeds'] is None or c['search_seed'] not in c['search_seeds']:raise ValueError('search seed outside frozen declaration')
+def h_build_config(c):
+    c=copy.deepcopy(c);h=c['h_build'];engineering=c['mode']=='mock'
+    c.update(search_seed=h.get('search_seed',c['search_seed'] if engineering else None),
+      window_seconds=h.get('window_seconds',c['window_seconds'] if engineering else None),
+      api_attempt_cap=h.get('request_cap'),initialization_request_cap=h.get('request_cap'),evolution_request_cap=0,
+      h_file=None,evaluation_concurrency=1)
+    return c
+
+
+def preflight(path,engineering=False,run_kind=None):
+    c=load(path,engineering=engineering)
+    if run_kind=='h-build':
+        c=h_build_config(c);todo=gaps(c)
+        ignored={'repeat_count','search_seeds','population_size','h_file','budget_basis','initialization_policy'}
+        todo=[key for key in todo if key not in ignored]
+        for key in ('request_cap','target_count','selection','search_seed','window_seconds'):
+            if c['h_build'].get(key) is None and c['mode']!='mock':todo.append('h_build.'+key)
+    else:
+        todo=gaps(c)
+        if c.get('search_seed') is None:todo.append('select_independent_seed')
+        elif c['search_seeds'] is None or c['search_seed'] not in c['search_seeds']:raise ValueError('search seed outside frozen declaration')
     if todo:return c,None,None,None,todo
     data,refs,hs=problems.load_inputs(c)
-    if c['method']=='u' and not hs:raise ValueError('U needs a frozen H asset')
+    if run_kind!='h-build' and c['method']=='u' and not hs:raise ValueError('U needs a frozen H asset')
     for n,h in c['client_binding']['files'].items():
         if sha(ROOT/n)!=h:raise ValueError('admitted V5 client changed')
     if c['provider']!=c['client_binding']['provider'] or c['client_binding']!=read(ROOT/'deploy/eoh-baseline/unified-inputs.json')['client_binding']:raise ValueError('provider/V5 binding differs from unified current U identity')
@@ -53,7 +70,7 @@ def preflight(path,engineering=False):
 
 
 def prepare(directory,path,*,engineering=False,allow_api=False,approve_budget=None,run_kind=None):
-    c,data,refs,hs,todo=preflight(path,engineering)
+    c,data,refs,hs,todo=preflight(path,engineering,run_kind)
     if todo:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo))
     expected=c['h_build']['request_cap'] if run_kind=='h-build' else c['api_attempt_cap']
     if c['mode']=='real' and (not allow_api or approve_budget!=expected):raise PermissionError('manual original cumulative request cap approval required')
@@ -66,7 +83,7 @@ def prepare(directory,path,*,engineering=False,allow_api=False,approve_budget=No
         if type(cap) is not int or cap<1 or type(c['h_build']['target_count']) is not int or c['h_build']['target_count']<1:raise ValueError('separate H-build budget and target required')
         if c['mode']=='real' and approve_budget!=cap:raise PermissionError('separate H-build request cap required')
     runtime={**c,'api_mode':c['mode'],'evaluation_mode':'mock' if c['mode']=='mock' else 'solve','real_requests_authorized':c['mode']=='real',
-      'candidate_cap':cap,'api_attempt_cap':cap,'evolution_request_cap':evo,'initialization_request_cap':init,'initialization_sample_cap':2*c['population_size'],
+      'candidate_cap':cap,'api_attempt_cap':cap,'evolution_request_cap':evo,'initialization_request_cap':init,'initialization_sample_cap':2*c['population_size'] if c['population_size'] is not None else None,
       'selection_num':2,'type':'triad-native','candidate_kind':'U' if kind=='u' else 'h','recording_mode':'compact','window':10,'enabled_groups':list(evolution_v1.GROUPS),'cross_parents':2}
     directory.mkdir(parents=True)
     write(directory/'Tasks.json',[{'id':f'SLOT-{i:07d}','stage':'new','generation':None,'operator':'adaptive_slot'} for i in range(cap)])
@@ -74,11 +91,30 @@ def prepare(directory,path,*,engineering=False,allow_api=False,approve_budget=No
       state_schema=state_a_v3.schema_id(c['problem']),tasks_sha256=sha(directory/'Tasks.json'),config_sha256=sha(path),
       metrics={'objective':'J=mean((raw_cost-reference)/reference)','direction':'min','internal_score':'-J','final_selection':'all complete valid candidates; J ascending, semantic ID ascending'},
       run_id=directory.name,source_cost={'H_attempts':None},budgets=dict(logical_generation=cap,API_attempts=cap,initialization=init,evolution=evo,max_program_instances=cap*len(data),max_solve_passes=2*cap*len(data)))
+    if c['problem']=='obp':p['obp_execution_contract']=problems.obp_contract(c);p['obp_contract_sha256']=digest(p['obp_execution_contract'])
     write(directory/'Protocol.json',p);(directory/'Protocol.sha256').write_text(sha(directory/'Protocol.json')+'\n')
     write(directory/'checkpoint.json',dict(identity=sha(directory/'Protocol.json'),phase='prepared',cursor=0,tasks={},evaluations={},population=[],children=[],seen={},generation=0,pause_ack=0,
       generations=[],u_rng=random.Random(c['search_seed']).getstate(),u_plan=None,
       eoh=dict(stage='initialization',native_generation=0,population=[],next_population=[],evaluated_samples=0,initialization_samples=0,initialization_requests=0,operator_cursor=0,evolution_survivals=0,np_rng=None)))
     return p
+
+
+def obp_u_prompt(c,task,parents,members):
+    import json
+    from heuristic_design.core.operators import CROSS,MUTATE
+    from heuristic_design.core import state_a
+    for row in parents:language.checked(row['candidate'],len(members))
+    instruction={'INIT':'Design one new pure H selector.','CROSS':CROSS,'MUTATE':MUTATE}[task['operator']]
+    return '\n'.join(['Problem obp; '+language.ABI+'; public state '+state_a_v3.SPEC_SHA256,
+       instruction,'Return a description and one fenced Python def use_heuristics(state). Return one built-in int H index in 0..'+str(len(members)-1)+'.',
+       'Read only literal scalar/per-H-array state paths and availability masks. No imports, loops, mutation, H calls, previews, lookahead or online model requests.',
+       'Only current arrival, public total count and current bin state are visible. The frozen host action/H-input/reference contract is:',
+       json.dumps(problems.obp_contract(c),sort_keys=True),
+       'The 14 information items are the ten numerical definitions plus four committed-history H arrays; auxiliary fields do not count as information items.',
+       json.dumps(state_a.DEFINITIONS,sort_keys=True),json.dumps(state_a_v3.H_DEFINITIONS,sort_keys=True),
+       'Guard missing entries using the matching availability mask. Minimize complete train J; ties use stable candidate ID.',
+       'Frozen H records in immutable order: '+json.dumps(members,sort_keys=True),
+       'Original frozen parents: '+json.dumps([{'id':r['id'],'candidate':r['candidate']} for r in parents],sort_keys=True)])
 
 
 class MockTransport:
@@ -94,7 +130,7 @@ class MockTransport:
         if kind=='U':code='def use_heuristics(state):\n    return '+str(n%len(self.p['members']))+'\n'
         else:
             args=problems.h_args(c['problem'],c.get('obp_h_abi'));expr='1/0' if fault=='invalid_evaluation' else '-'+args[0]+' + '+str(n/100)+' * '+args[1]
-            if c.get('obp_h_abi')=='obp-vector-h-v1':expr='[(1/0) for cap in remaining_capacities]' if fault=='invalid_evaluation' else '[-item_size + '+str(n/100)+' * cap for cap in remaining_capacities]'
+            if c.get('obp_h_abi')=='obp-vector-feasible-h-v2':expr='[(1/0) for cap in remaining_capacities]' if fault=='invalid_evaluation' else '[-item_size + '+str(n/100)+' * cap for cap in remaining_capacities]'
             code='def priority('+', '.join(args)+'):\n    return '+expr+'\n'
         return {'text':'{OFFLINE fixture; not model output}\n```python\n'+code+'```','usage':{'input_tokens':0,'output_tokens':0},'metadata':{'mock':True}}
 
@@ -106,23 +142,32 @@ class Adapter(old.Adapter):
     def check_run(self,d):
         p,s=protocol_state(d)
         if sha(Path(d)/'Tasks.json')!=p['tasks_sha256'] or any(sha(ROOT/n)!=h for n,h in p['source_files'].items()):raise ValueError('frozen tasks/source changed')
+        if p['config']['problem']=='obp' and (p.get('obp_execution_contract')!=problems.obp_contract(p['config']) or p.get('obp_contract_sha256')!=digest(problems.obp_contract(p['config']))):raise ValueError('OBP input/action/reference protocol changed; old cache/resume forbidden')
         self.p=p;self._engineering_mode=p['config']['api_mode']=='mock';return p
     def members(self,d):return read(Path(d)/'Protocol.json')['members']
     def transport(self,p):return MockTransport(self.client_config(p),p) if p['config']['api_mode']=='mock' else StrictNonstreamTransport(self.client_config(p))
     def parse_candidate(self,text,c):
         try:
             if self.p['run_kind']!='u' and old.old.EoHSampler.trim_thought_from_response(text) is None:raise ValueError('native boxed H description required')
-            return language.parse(text,len(self.p['members'])) if self.p['run_kind']=='u' else problems.parse_h(c['problem'],text)
+            if self.p['run_kind']=='u':return language.parse(text,len(self.p['members']))
+            candidate=problems.parse_h(c['problem'],text)
+            if c['problem']=='obp':
+                import ast
+                actual=tuple(arg.arg for arg in ast.parse(candidate.code).body[0].args.args)
+                if actual!=problems.h_args('obp',c['obp_h_abi']):raise ValueError('H signature differs from frozen OBP language')
+            return candidate
         except Exception as x:raise self.CandidateError(str(x)) from x
     def build_prompt(self,c,task,parents,members):
         if self.p['run_kind']=='u':
             semantic={**task,'operator':task['operator']}
+            if c['problem']=='obp':return obp_u_prompt(c,semantic,parents,members)
             return language.build_prompt(c['problem'],semantic,parents,members)
         args=problems.h_args(c['problem'],c.get('obp_h_abi'));template=old.old.Converter.text_to_function('def priority('+', '.join(args)+'):\n    return 0.0\n')
-        description=('Design ONE '+c['problem']+' action-scoring H with exact scalar arguments '+str(args)+'. Highest finite priority wins, stable original action order breaks exact ties. '
+        description=('Design ONE '+c['problem']+' action-scoring H with exact function arguments '+str(args)+'. Highest finite priority wins, stable original action order breaks exact ties. '
           'Minimize complete train objective J=mean((raw cost-reference)/reference). No imports, network, files, globals or lookahead. '
           +('Reference is externally frozen LKH, never nearest-neighbor. ' if c['problem']=='tsp' else '')
-          +('Return one list/tuple score per supplied bin, in the same order; use only one comprehension over remaining_capacities. ' if c.get('obp_h_abi')=='obp-vector-h-v1' else '')
+          +('Return one list/tuple score per supplied bin, in the same order; use only one comprehension over remaining_capacities. ' if c.get('obp_h_abi')=='obp-vector-feasible-h-v2' else '')
+          +(str(problems.obp_contract(c))+' ' if c['problem']=='obp' else '')
           +('Only current arrival and current bin remaining capacity are visible. Future items are not available. ' if c['problem']=='obp' else '')
           +'Return one boxed {description} and one complete fenced python function.')
         op=task['operator'];funcs=[old.old.native.make_function(r['candidate'],r['id'],r['fitness']) for r in parents]
@@ -133,7 +178,11 @@ class Adapter(old.Adapter):
         if getattr(self,'segment_deadline',None) and time.monotonic()+c['resources']['drain_seconds']>self.segment_deadline:
             s.update(phase='paused',pause_reason='segment drain before next reservation');return None,[]
         if p['run_kind']=='h-build':return {**task,'operator':'I1','semantic_id':f'H-{index:05d}','phase':'initialization'},[]
-        if p['run_kind']=='eoh':return super().task_context(d,s,p,task,index)
+        if p['run_kind']=='eoh':
+            row,parents=super().task_context(d,s,p,task,index)
+            if row is not None and c['initialization_policy']=='native_N_finite_or_fail' and s['eoh']['stage']=='evolution' and len(s['population'])!=c['population_size']:
+                s.update(phase='initialization_incomplete',pause_reason='native initialization ended with fewer than N finite distinct parents; no refill');return None,[]
+            return row,parents
         if v['stage']=='initialization':
             if len(s['population'])==c['population_size']:v['stage']='evolution';s['population']=ranked(s['population'])
             elif v['initialization_requests']>=min(c['initialization_request_cap'],c['population_size'] if c['initialization_policy']=='fixed_population_slots_no_refill' else c['initialization_request_cap']):
@@ -172,6 +221,7 @@ class Adapter(old.Adapter):
         if not r.get('mock'):
             for row,ref in zip(r['instances'],self.p['references']):
                 if row['reference']!=ref['reference']:raise ValueError('frozen reference differs')
+                if self.p['config']['problem']=='obp' and (row['B']!=row['raw_cost'] or row['S']!=ref['S'] or row['C']!=ref['C'] or row['R_code']!=ref['reference'] or row['reference_identity']!=ref['reference_identity']):raise ValueError('OBP B/S/C/R_code receipt differs from frozen reference')
     def commit_candidate(self,d,s,p,record,candidate,result):
         record['J']=-result['fitness'] if result and result['valid'] else None
         record['semantic_id']=record.get('semantic_id',record['id']);record['stage']=record.get('phase','initialization' if record['operator']=='I1' else 'evolution')
@@ -229,6 +279,15 @@ def export(directory):
         t['generation']=t.get('original_generation',0);t['id']=t.get('semantic_id',t['id'])
     shared_export(d,p,q)
     out=Adapter().summary(d);write(d/'exports/summary.json',out)
+    if p['config']['problem']=='obp':
+        import csv
+        rows=[]
+        for key,receipt in s['evaluations'].items():
+            if receipt['status']!='completed':continue
+            result=read(d/receipt['path'])
+            for row in result['instances']:rows.append({'candidate_key':key,'file':row['file'],'valid':result['valid'],'engineering_only':result.get('mock',False),'B':row.get('B'),'S':row.get('S'),'C':row.get('C'),'R_code':row.get('R_code'),'J':row['score'],'reference_version':(row.get('reference_identity') or {}).get('version')})
+        with (d/'exports/obp-instance-costs.csv').open('w',newline='') as f:
+            writer=csv.DictWriter(f,fieldnames=['candidate_key','file','valid','engineering_only','B','S','C','R_code','J','reference_version']);writer.writeheader();writer.writerows(rows)
     if s['phase']=='completed':
         valid=[t for t in q['tasks'].values() if t.get('valid')]
         if valid:

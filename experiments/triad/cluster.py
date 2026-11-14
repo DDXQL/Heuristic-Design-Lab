@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import sys
 import time
+import tempfile
 import uuid
 import zipfile
 ROOT=Path(__file__).resolve().parents[2]
@@ -15,8 +16,8 @@ spec=importlib.util.spec_from_file_location('admitted_cluster',ROOT/'deploy/clus
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import configuration,batch
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r2'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r2.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261113-r3'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r3.zip')
 EXPORT='''import hashlib,json,pathlib,sys,time,zipfile
 root=pathlib.Path(sys.argv[1]);run=pathlib.Path(sys.argv[2]);job=sys.argv[3]
 if not run.resolve().is_relative_to((root/'runs').resolve()) or not job.isdigit():raise SystemExit('invalid retrieval identity')
@@ -38,6 +39,24 @@ if not p.exists():
  with p.open('xb') as f:f.write(raw)
 print(hashlib.sha256(p.read_bytes()).hexdigest())
 '''
+ASSET_INSTALL='''import pathlib,sys,hashlib,json,zipfile
+archive=pathlib.Path(sys.argv[1]);root=pathlib.Path(sys.argv[2]).resolve()
+if hashlib.sha256(archive.read_bytes()).hexdigest()!=sys.argv[3]:raise SystemExit('asset ZIP hash differs')
+with zipfile.ZipFile(archive) as z:
+ manifest=json.loads(z.read('asset-manifest.json'))
+ for name,h in manifest.items():
+  p=pathlib.PurePosixPath(name)
+  if p.is_absolute() or '..' in p.parts or p.parts[0]!='preparations' or p.suffix not in ('.json','.fjsp'):raise SystemExit('unsafe runtime asset path')
+  target=root/name
+  if not target.resolve().is_relative_to(root) or target.is_symlink():raise SystemExit('asset path escapes release')
+  raw=z.read(name)
+  if hashlib.sha256(raw).hexdigest()!=h or target.exists() and target.read_bytes()!=raw:raise SystemExit('asset differs; original preserved')
+ for name,h in manifest.items():
+  target=root/name;target.parent.mkdir(parents=True,exist_ok=True)
+  if not target.exists():
+   with target.open('xb') as f:f.write(z.read(name))
+print(json.dumps({'asset_hashes_verified':True,'assets':manifest}))
+'''
 
 
 def remote_path(path):
@@ -46,8 +65,47 @@ def remote_path(path):
     return REMOTE+'/'+str(p.relative_to(ROOT))
 
 
+def input_assets(configs):
+    """Only bound read-only preparation assets; no credentials, runs or source."""
+    files={}
+    def add(path):
+        if Path(path).is_symlink():raise ValueError('symlink runtime input prohibited')
+        path=Path(path).resolve()
+        if not path.is_relative_to(ROOT/'preparations') or path.suffix not in ('.json','.fjsp') or path.is_symlink():raise ValueError('runtime input must be staged under preparations/, not a run or credential: '+str(path))
+        files[str(path.relative_to(ROOT))]=path
+    for c in configs:
+        for key in ('data_manifest','h_file','reference_file','frozen_u_template','compatible_fixed_results'):
+            if c.get(key):add(c[key])
+        if c.get('data_manifest'):
+            manifest=read(c['data_manifest'])
+            if manifest.get('split')!='train':raise ValueError('only bound training inputs may be uploaded')
+            for row in manifest['instances']:
+                path=(Path(c['data_manifest']).parent/row['path']).resolve()
+                if sha(path)!=row['sha256']:raise ValueError('runtime training file hash differs')
+                add(path)
+    return files
+
+
+def sync_assets(connection,configs,report):
+    files=input_assets(configs);manifest={n:sha(p) for n,p in sorted(files.items())}
+    with tempfile.TemporaryDirectory(prefix='triad-inputs-') as tmp:
+        archive=Path(tmp)/'inputs.zip'
+        with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_DEFLATED) as z:
+            for n,p in sorted(files.items()):z.write(p,n)
+            z.writestr('asset-manifest.json',json.dumps(manifest))
+        digest=sha(archive);incoming=REMOTE+'/input-packets';connection.run(['mkdir','-p',incoming]);target=incoming+'/'+digest+'.zip'
+        exists=connection.run(['test','-e',target],check=False)
+        if exists.returncode==1:connection.copy(str(archive),shared.HOST+':'+target)
+        elif exists.returncode:raise ValueError('cannot inspect remote input packet')
+        result=connection.run([shared.PY,'-s','-B','-c',ASSET_INSTALL,target,REMOTE,digest])
+        (report/'runtime-input-verification.json').write_text(result.stdout)
+    return manifest
+
+
 def sync_config(connection,campaign,report):
     source=Path(campaign).resolve();doc=read(source);digest=sha(source);folder=REMOTE+'/configurations/'+digest
+    configs=[configuration.load((source.parent/g['config']).resolve()) for g in doc['groups']]
+    assets=sync_assets(connection,configs,report)
     for group in doc['groups']:
         path=(source.parent/group['config']).resolve();c=configuration.load(path)
         for k in ('data_manifest','h_file','reference_file','frozen_u_template','compatible_fixed_results'):
@@ -55,16 +113,17 @@ def sync_config(connection,campaign,report):
         if isinstance(c['state_delivery'],dict):c['state_delivery']['file']=remote_path(c['state_delivery']['file'])
         # Credentials are referenced, NEVER copied. Account authority must be a cluster path.
         if c.get('account_gate') and not c['account_gate'].startswith('/public2/home/qiuqian/'):raise ValueError('cluster account gate must be explicitly configured; Mac gate is untouched')
+        if c.get('credential_file') and not c['credential_file'].startswith('/public2/home/qiuqian/'):raise ValueError('cluster credential must be an existing explicitly configured cluster path; never copied')
         target=folder+'/'+c['group']+'.json';raw=json.dumps(c,ensure_ascii=False,indent=2).encode();connection.run([shared.PY,'-s','-B','-c',SAVE,target,base64.b64encode(raw).decode()]);group['config']=target
     doc['run_root']=REMOTE+'/runs/'+doc['campaign_id'];target=folder+'/campaign.json'
     raw=json.dumps(doc,ensure_ascii=False,indent=2).encode();connection.run([shared.PY,'-s','-B','-c',SAVE,target,base64.b64encode(raw).decode()])
     result=connection.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','prepare','--campaign',target,'--batch',REMOTE+'/plans/'+doc['campaign_id']])
-    (report/'remote-batch.json').write_text(result.stdout);return {'remote_campaign':target,'remote_batch':REMOTE+'/plans/'+doc['campaign_id']}
+    (report/'remote-batch.json').write_text(result.stdout);return {'remote_campaign':target,'remote_batch':REMOTE+'/plans/'+doc['campaign_id'],'runtime_input_files_verified':len(assets)}
 
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['inspect','stage','prepare','submit','resume','query','pause','fetch','summary'])
-    ap.add_argument('--campaign',type=Path,default=ROOT/'experiments/triad/campaign.pending.json');ap.add_argument('--batch-name',default='triad-20261113');ap.add_argument('--experiment',choices=configuration.GROUPS);ap.add_argument('--seed',type=int)
+    ap.add_argument('--existing-receipt',type=Path);ap.add_argument('--campaign',type=Path,default=ROOT/'experiments/triad/campaign.pending.json');ap.add_argument('--batch-name',default='triad-20261113');ap.add_argument('--experiment',choices=configuration.GROUPS);ap.add_argument('--seed',type=int)
     ap.add_argument('--submit',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int)
     a=ap.parse_args()
     if a.action in ('submit','resume') and (not a.submit or not a.allow_api or not a.allow_solves or type(a.approve_budget) is not int):raise PermissionError('manual submission requires explicit API/solve/original-budget approval')
@@ -85,7 +144,13 @@ def main():
                 installed=c.run([shared.PY,'-s','-B','-c',shared.INSTALL,target,REMOTE,expected]);(d/'release-verification.json').write_text(installed.stdout)
                 checked=c.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','plan']);(d/'login-plan.json').write_text(checked.stdout)
                 value.update(uploaded=True,remote_manifest_verified=True,login_import_verified=True,formal_search_authorized=False)
-            elif a.action=='prepare':value.update(sync_config(c,a.campaign,d))
+            elif a.action=='prepare':
+                value.update(sync_config(c,a.campaign,d))
+                if a.existing_receipt:
+                    digest=sha(a.existing_receipt);target=REMOTE+'/registrations/existing-501-'+digest+'.json'
+                    c.run([shared.PY,'-s','-B','-c',SAVE,target,base64.b64encode(a.existing_receipt.read_bytes()).decode()])
+                    imported=c.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','import-existing','--batch',value['remote_batch'],'--experiment','fjsp-u','--seed','501','--receipt',target,'--receipt-sha256',digest,'--accept-existing-completed'])
+                    (d/'read-only-501-import.json').write_text(imported.stdout);value['existing_501_read_only_registered']=True
             elif a.action=='summary':
                 r=c.run([shared.PY,'-s','-B',REMOTE+'/experiments/triad/batch.py','summary','--batch',REMOTE+'/plans/'+a.batch_name]);(d/'batch-summary.json').write_text(r.stdout);value['summary_retrieved']=True
             elif a.action in ('submit','resume'):

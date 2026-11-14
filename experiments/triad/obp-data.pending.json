@@ -1,0 +1,19 @@
+{
+  "adopted": false,
+  "source_kind": "published_training_only",
+  "source_sha256": "6ef362b59973163225579e26e5e49f6196579287ff7a3eab0609693db4e25513",
+  "source_git_blob": "860afc93ecb15492b1d8c5f7781fc5d90adb0f47",
+  "expected_instances": 128,
+  "train_indices": null,
+  "validation_indices": null,
+  "reference": {
+    "version": "obp-R-code-int64-float64-v1",
+    "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+  },
+  "proposed_split": {
+    "train": "instance_0..95",
+    "validation": "instance_96..127",
+    "approved": false
+  },
+  "test_access": "protocol page performed numeric/reference-only precheck of published 50-instance test file; no H/solve/method scores; engineering importer never opens test file"
+}

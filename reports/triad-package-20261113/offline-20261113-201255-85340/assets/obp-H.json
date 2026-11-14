@@ -1,0 +1,17 @@
+{
+  "members": [
+    {
+      "description": "HANDWRITTEN MOCK ONLY",
+      "code": "def priority(item_size, remaining_capacities):\n    return [-cap for cap in remaining_capacities]\n",
+      "key": "b099abf7aa445f2a1e0e121a6686bd6f00368cd2a79614d22120d39b6de28f02",
+      "kind": "h"
+    },
+    {
+      "description": "HANDWRITTEN MOCK ONLY",
+      "code": "def priority(item_size, remaining_capacities):\n    return [cap for cap in remaining_capacities]\n",
+      "key": "bbef0d0583a113e858423ef72d82193b98e60bf8e653d3c7c82d8c005608cba6",
+      "kind": "h"
+    }
+  ],
+  "engineering_only": true
+}

@@ -14,7 +14,7 @@ from fjsp_usage.research import candidates as fjsp_h
 OBP_ARGS=('item_size','remaining_capacity')
 
 
-def h_args(problem,abi=None):return ('item_size','remaining_capacities') if problem=='obp' and abi=='obp-vector-h-v1' else fjsp_h.H_ARGS if problem=='fjsp' else tsp_h.H_ARGS if problem=='tsp' else OBP_ARGS
+def h_args(problem,abi=None):return ('item_size','remaining_capacities') if problem=='obp' and abi=='obp-vector-feasible-h-v2' else fjsp_h.H_ARGS if problem=='fjsp' else tsp_h.H_ARGS if problem=='tsp' else OBP_ARGS
 
 
 def validate_h(problem,code,description=''):
@@ -75,15 +75,86 @@ def compile_h(problem,row):
 
 
 def validate_obp_instance(value):
-    if set(value)!={'capacity','items'} or type(value['capacity']) not in (int,float) or not math.isfinite(value['capacity']) or value['capacity']<=0:raise ValueError('OBP instance requires capacity and ordered items')
+    if set(value) not in ({'capacity','items'},{'capacity','items','N'}) or type(value['capacity']) not in (int,float) or not math.isfinite(value['capacity']) or value['capacity']<=0:raise ValueError('OBP instance requires capacity and ordered items')
+    if 'N' in value and (type(value['N']) is not int or value['N']<=0 or value['N']!=len(value['items'])):raise ValueError('public N and actual arrival count differ')
     if not value['items'] or any(type(x) not in (int,float) or not math.isfinite(x) or not 0<x<=value['capacity'] for x in value['items']):raise ValueError('OBP arrivals must be finite in (0,capacity]')
 
 
-def obp_lower_bound(value,policy):
-    validate_obp_instance(value)
-    if policy!='volume_ceiling':raise ValueError('unapproved/unsupported OBP bound; no guessed reference')
-    ratio=sum((Fraction(str(x)) for x in value['items']),Fraction(0))/Fraction(str(value['capacity']))
-    return (ratio.numerator+ratio.denominator-1)//ratio.denominator
+OBP_CONTRACT_VERSION='obp-feasible-permanent-actions-v2'
+
+
+def obp_reference_spec(policy):
+    # Legacy string is retained ONLY for explicitly labelled engineering fixtures.
+    if policy=='volume_ceiling':return {'version':'obp-volume-ceiling-v1','rule':'ceil(S/C)'}
+    choices={'obp-volume-ceiling-v1':'ceil(S/C)','obp-R-code-int64-float64-v1':'int(float64(sum_int64(items))/float64(C)+0.5)'}
+    if not isinstance(policy,dict) or set(policy)!={'version','rule'} or choices.get(policy['version'])!=policy['rule']:
+        raise ValueError('explicit versioned OBP reference required; rounding rules are not interchangeable')
+    return policy
+
+
+def obp_reference_details(value,policy):
+    import numpy as np
+    validate_obp_instance(value);spec=obp_reference_spec(policy)
+    if spec['version']=='obp-R-code-int64-float64-v1':
+        limit=int(np.iinfo(np.int64).max)
+        if type(value['capacity']) is not int or value['capacity']>limit or any(type(x) is not int or x>limit for x in value['items']):raise ValueError('R_code formal domain requires positive integer sizes/capacity within int64, not general float inputs')
+        exact=sum(value['items'])
+        if exact>limit:raise ValueError('int64 full-sequence sum overflow; no wrapped reference')
+        total=np.sum(np.asarray(value['items'],dtype=np.int64),dtype=np.int64)
+        if int(total)!=exact:raise ValueError('int64 sum differs from overflow check')
+        scaled=np.float64(total)/np.float64(value['capacity'])+np.float64(0.5)
+        if not np.isfinite(scaled):raise ValueError('nonfinite float64 R_code calculation')
+        reference=int(scaled)
+        detail={'S':int(total),'C':value['capacity'],'reference':reference,'sum_dtype':str(total.dtype),'calculation_dtype':str(scaled.dtype),'cast':'Python int, positive truncation','numpy_version':np.__version__}
+    else:
+        ratio=sum((Fraction(str(x)) for x in value['items']),Fraction(0))/Fraction(str(value['capacity']))
+        reference=(ratio.numerator+ratio.denominator-1)//ratio.denominator
+        detail={'S':str(sum((Fraction(str(x)) for x in value['items']),Fraction(0))),'C':value['capacity'],'reference':reference,'arithmetic':'exact rational ceiling; separate reference identity'}
+    if reference<=0:raise ValueError('OBP reference is zero; J denominator invalid; never clamp or substitute ceiling')
+    return {**detail,'reference_identity':spec}
+
+
+def obp_lower_bound(value,policy):return obp_reference_details(value,policy)['reference']
+
+
+def obp_contract(c):
+    return {'version':OBP_CONTRACT_VERSION,'actions':c['obp_actions'],'H_ABI':c['obp_h_abi'],
+      'feasibility':'(capacity-used_load)-item >= 0 without epsilon; no infeasible bin enters H',
+      'capacity_representation':'used loads updated by +item; residual derived capacity-used; this is an explicit project adapter, not bitwise NumPy-run equivalence',
+      'vector_input':'immutable tuple of ALL feasible bin capacities; permanent IDs ascending; preserve every feasible empty bin',
+      'vector_output':'list/tuple of finite built-in real scores, exact legal-action length; local argmax maps to permanent ID',
+      'tie':'smallest feasible permanent bin ID','H_calls':('one selected vector H call per arrival; no nonselected H call' if c['obp_h_abi']=='obp-vector-feasible-h-v2' else 'selected scalar H per feasible action; no nonselected H call'),
+      'reference':obp_reference_spec(c['obp_bound']),
+      'public_state_spec':state.SPEC_SHA256,'state_delivery_sha256':(c.get('state_delivery') or {}).get('sha256'),
+      'language':'closed Python arithmetic and one bounded current-bin comprehension; no imports, numpy or future stream; NOT native NumPy candidate compatibility'}
+
+
+def legal_obp_actions(item,used,capacity,policy):
+    if type(item) not in (int,float) or not math.isfinite(item) or not 0<item<=capacity:raise ValueError('invalid current arrival')
+    if any(type(x) not in (int,float) or not math.isfinite(x) or not 0<=x<=capacity for x in used):raise ValueError('invalid bin loads')
+    fitting=tuple(i for i,x in enumerate(used) if capacity-x-item>=0)
+    if policy=='preallocated_empty_bins':return fitting
+    if policy=='fit_and_one_virtual_new':return fitting+(len(used),)
+    if policy=='fit_only_else_new':return fitting or (len(used),)
+    raise ValueError('unapproved / unsupported OBP action domain')
+
+
+def obp_choose_action(item,used,capacity,actions,selected_callback,abi,policy):
+    # Shared by U, single-rule EoH and fixed-H through solve_row -> solve_obp.
+    # This pure single-arrival boundary is also checked with recording callbacks.
+    actions=tuple(actions);expected=legal_obp_actions(item,used,capacity,policy)
+    if actions!=expected or not actions:raise ValueError('all feasible actions in permanent-ID order required before H')
+    capacities=tuple(capacity-used[b] if b<len(used) else capacity for b in actions)
+    if abi=='obp-vector-feasible-h-v2':
+        scores=selected_callback(item,capacities);calls=1
+        if not isinstance(scores,(tuple,list)) or len(scores)!=len(actions):raise ValueError('vector H output must match feasible input length')
+        scores=tuple(scores)
+    elif abi=='obp-two-scalar-h-v1':
+        scores=tuple(selected_callback(item,x) for x in capacities);calls=len(actions)
+    else:raise ValueError('retired or unsupported OBP H ABI; explicit migration required')
+    if any(type(x) not in (int,float) or not math.isfinite(x) for x in scores):raise ValueError('finite built-in real H scores required')
+    local=max(range(len(actions)),key=lambda i:scores[i])
+    return {'bin_index':actions[local],'local_index':local,'actions':actions,'capacities':capacities,'scores':scores,'H_calls':calls}
 
 
 def validate_obp_solution(instance,solution,action_policy):
@@ -91,7 +162,7 @@ def validate_obp_solution(instance,solution,action_policy):
     if set(solution)!={'placements','used','bin_count'} or len(solution['placements'])!=len(items):raise ValueError('one OBP placement per arrival required')
     for item,b in zip(items,solution['placements']):
         if type(b) is not int or not 0<=b<=(len(used)-1 if action_policy=='preallocated_empty_bins' else len(used)):raise ValueError('invalid / noncanonical OBP bin')
-        fitting=[i for i,x in enumerate(used) if x+item<=cap]
+        fitting=[i for i,x in enumerate(used) if cap-x-item>=0]
         if b==len(used):
             if action_policy=='fit_only_else_new' and fitting:raise ValueError('new bin forbidden while an old bin fits')
             used.append(item)
@@ -105,7 +176,7 @@ def state_provider(c):
     delivery=c.get('state_delivery')
     if c['problem']!='obp':return None
     if not isinstance(delivery,dict):raise ValueError('OBP state delivery required; action-domain change cannot reuse old assumptions')
-    if c['mode']=='real' and (delivery.get('status')!='delivered_code' or c['obp_actions'] not in delivery.get('supported_actions',[])):raise ValueError('D08 conditional definition is not a delivered action-compatible state module')
+    if c['mode']=='real' and (delivery.get('status')!='delivered_code' or delivery.get('adoption')!='adopted' or c['obp_actions'] not in delivery.get('supported_actions',[])):raise ValueError('D08 conditional definition is not a delivered action-compatible state module')
     module=delivery['module'];path=Path(delivery['file'])
     if sha(path)!=delivery['sha256'] or delivery['action_policy']!=c['obp_actions']:raise ValueError('OBP action/state binding mismatch')
     import importlib
@@ -121,28 +192,11 @@ def solve_obp(instance,hs,u,c):
     for item in instance['items']:
         packet,actions=provider.extract(item,tuple(used),instance['capacity'],history)
         state.validate_packet(packet,len(hs))
-        fitting=tuple(i for i,x in enumerate(used) if x+item<=instance['capacity'])
         policy=c['obp_actions']
-        if policy=='fit_only_else_new':expected=fitting or (len(used),)
-        elif policy=='fit_and_one_virtual_new':expected=fitting+(len(used),)
-        elif policy=='preallocated_empty_bins':expected=fitting
-        else:raise ValueError('OBP action domain still pending; preallocated-empty-bin ABI needs a delivered adapter')
-        if tuple(actions)!=expected:raise ValueError('delivered OBP state/action enumeration differs from frozen policy')
+        if tuple(actions)!=legal_obp_actions(item,used,instance['capacity'],policy):raise ValueError('delivered state/action domain differs from frozen protocol')
         member=u_language.language.route_token(u(packet),len(hs))
-        scores=[]
-        vector=None
-        if c['obp_h_abi']=='obp-vector-h-v1':
-            capacities=tuple(instance['capacity']-x for x in used)+( (instance['capacity'],) if policy!='preallocated_empty_bins' else ())
-            vector=hs[member](item,capacities);calls[member]+=1
-            if not isinstance(vector,(tuple,list)) or len(vector)!=len(capacities):raise ValueError('vector H must return one score per declared bin')
-        elif c['obp_h_abi']!='obp-two-scalar-h-v1':raise ValueError('OBP H ABI pending / unsupported')
-        for b in actions:
-            remaining=instance['capacity']-used[b] if b<len(used) else instance['capacity']
-            score=vector[b] if vector is not None else hs[member](item,remaining)
-            if vector is None:calls[member]+=1
-            if type(score) not in (int,float) or not math.isfinite(score):raise ValueError('nonfinite OBP H priority')
-            scores.append(score)
-        b=actions[max(range(len(actions)),key=lambda i:scores[i])];delta=int(b==len(used) or used[b]==0)
+        selected=obp_choose_action(item,used,instance['capacity'],actions,hs[member],c['obp_h_abi'],policy)
+        calls[member]+=selected['H_calls'];b=selected['bin_index'];delta=int(b==len(used) or used[b]==0)
         if b==len(used):used.append(item)
         else:used[b]+=item
         placements.append(b);sequence.append(member);history.commit(member,delta)
@@ -162,11 +216,15 @@ def load_inputs(c):
             from llm4ad.task.optimization.fjsp_set.instances import load_instance
             obj=load_instance(source);value={'machines':obj.machine_count,'jobs':[[[list(a) for a in op.alternatives] for op in job] for job in obj.jobs]}
         else:value=read(source)
-        if problem=='obp':validate_obp_instance(value)
+        if problem=='obp':
+            validate_obp_instance(value)
+            if c['mode']=='real' and 'N' not in value:raise ValueError('formal OBP instance must bind explicit public N')
         rows.append({'file':item.get('file',source.name),'split':'train','value':value,'sha256':digest(value),'source_sha256':item['sha256']})
     if not rows or c['instance_count']!=len(rows):raise ValueError('declared instance count differs')
     if problem=='fjsp':refs=fixtures.precheck_instances(problem,rows)
-    elif problem=='obp':refs=[{'file':r['file'],'reference':obp_lower_bound(r['value'],c['obp_bound'])} for r in rows];state_provider(c)
+    elif problem=='obp':
+        if c['mode']=='real' and not isinstance(c['obp_bound'],dict):raise ValueError('real OBP requires an explicitly versioned reference; old alias is engineering-only')
+        refs=[{'file':r['file'],**obp_reference_details(r['value'],c['obp_bound'])} for r in rows];state_provider(c)
     else:
         packet=read(c['reference_file'])
         if packet.get('kind')=='mock-reference-v1' and c['mode']=='mock':
@@ -188,10 +246,11 @@ def load_inputs(c):
         if c['mode']=='real' and isinstance(raw,dict) and raw.get('engineering_only'):raise ValueError('engineering H asset cannot enter real search')
         members=raw['members'] if isinstance(raw,dict) else raw
         hs=[r.get('candidate',r) for r in members]
+        if problem=='obp' and c['mode']=='real' and (not isinstance(raw,dict) or raw.get('obp_contract_sha256')!=digest(obp_contract(c))):raise ValueError('OBP H asset lacks current feasible-input/action/reference identity; no silent reuse')
         for row in hs:
             checked_h(problem,row)
             if problem=='obp':
-                actual='obp-vector-h-v1' if tuple(a.arg for a in ast.parse(row['code']).body[0].args.args)==('item_size','remaining_capacities') else 'obp-two-scalar-h-v1'
+                actual='obp-vector-feasible-h-v2' if tuple(a.arg for a in ast.parse(row['code']).body[0].args.args)==('item_size','remaining_capacities') else 'obp-two-scalar-h-v1'
                 if actual!=c['obp_h_abi']:raise ValueError('frozen OBP H ABI differs from configured protocol')
         if len({r['key'] for r in hs})!=len(hs):raise ValueError('frozen H must be AST distinct')
     return rows,refs,hs

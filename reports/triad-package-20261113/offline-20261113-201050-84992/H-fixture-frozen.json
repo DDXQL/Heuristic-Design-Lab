@@ -1,0 +1,166 @@
+{
+  "kind": "H_frozen",
+  "engineering_only": true,
+  "problem": "obp",
+  "identity": "bounded independent H construction + complete train J selection; NOT EoH-S",
+  "members": [
+    {
+      "id": "H-00001",
+      "candidate": {
+        "description": "OFFLINE fixture; not model output",
+        "code": "def priority(item_size, remaining_capacity):\n    return -item_size + 0.01 * remaining_capacity\n",
+        "key": "d527a76808142003e0800e1cd08aaec7e44831ced76b524d56e5bda115fc6392",
+        "kind": "h"
+      },
+      "train_J": 0.0
+    },
+    {
+      "id": "H-00000",
+      "candidate": {
+        "description": "OFFLINE fixture; not model output",
+        "code": "def priority(item_size, remaining_capacity):\n    return -item_size + 0.0 * remaining_capacity\n",
+        "key": "f1acd1edc0c3c73bb71034b385b804e46b4f05b6f72b712ba4a9a49a1953e197",
+        "kind": "h"
+      },
+      "train_J": 0.01
+    }
+  ],
+  "selection_policy": "complete train J ascending / ID ascending",
+  "selection_trace": [
+    {
+      "chosen_id": "H-00001",
+      "selection_objective": 0.0,
+      "envelope_J": 0.0,
+      "previous_envelope_J": null
+    },
+    {
+      "chosen_id": "H-00000",
+      "selection_objective": 0.01,
+      "envelope_J": 0.0,
+      "previous_envelope_J": 0.0
+    }
+  ],
+  "source_protocol_sha256": "e468d45a75c99e3ce21905e2b1debdaa98c4a462b7664f6bf8d28d1f62fef585",
+  "data": [
+    {
+      "file": "synthetic-arrivals",
+      "split": "train",
+      "value": {
+        "capacity": 10,
+        "items": [
+          2,
+          3,
+          5
+        ]
+      },
+      "sha256": "7717ae27fef599993a50cc2d963d482ed3842068e6beac4c3b18c47c6ba9d8b8",
+      "source_sha256": "76202c6418b57a40efb6acd91d1d7aa60427ab6581f6340d453bcf231dc34894"
+    }
+  ],
+  "references": [
+    {
+      "file": "synthetic-arrivals",
+      "S": "10",
+      "C": 10,
+      "reference": 1,
+      "arithmetic": "exact rational ceiling; separate reference identity",
+      "reference_identity": {
+        "version": "obp-volume-ceiling-v1",
+        "rule": "ceil(S/C)"
+      }
+    }
+  ],
+  "budget": {
+    "logical_generation": 3,
+    "API_attempts": 3,
+    "initialization": 3,
+    "evolution": 0,
+    "max_program_instances": 3,
+    "max_solve_passes": 6
+  },
+  "API_summary": {
+    "run_id": "triad-OFFLINE-20261113-201050-84992-Hbuild",
+    "problem": "obp",
+    "method": "h-build",
+    "phase": "completed",
+    "cursor": 3,
+    "engineering_only": true,
+    "initialization_attempts": 3,
+    "evolution_attempts": 0,
+    "request_reservations": 3,
+    "confirmed_sends": 0,
+    "unknown_sends": 0,
+    "valid_candidates": 3,
+    "unique_evaluation_reservations": 3,
+    "failures": 0,
+    "duplicates": 0,
+    "automatic_retries": 0,
+    "API_stop": null,
+    "requires_investigation": false,
+    "budgets": {
+      "logical_generation": 3,
+      "API_attempts": 3,
+      "initialization": 3,
+      "evolution": 0,
+      "max_program_instances": 3,
+      "max_solve_passes": 6
+    },
+    "best_J": 0.0,
+    "champion_id": "H-00001",
+    "actual_cost": null,
+    "known_usage_subtotal": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "unknown_usage_attempts": 0,
+    "writer_lock": false,
+    "pause_reason": null,
+    "phase_request_reservations": {
+      "initialization": 3,
+      "evolution": 0
+    },
+    "physical_passes": {
+      "first": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "recheck": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0
+      }
+    },
+    "native_solve_upper_reserved": 0,
+    "physical_passes_unsettled": 0,
+    "resources": {
+      "declared_model_concurrency": 1,
+      "declared_evaluation_concurrency": 1,
+      "CPUs": 2,
+      "memory_mib": 512,
+      "numeric_threads": 1,
+      "generation_tasks_across_devices": 1,
+      "real_throughput_verified": false
+    }
+  },
+  "obp_contract": {
+    "version": "obp-feasible-permanent-actions-v2",
+    "actions": "fit_only_else_new",
+    "H_ABI": "obp-two-scalar-h-v1",
+    "feasibility": "(capacity-used_load)-item >= 0 without epsilon; no infeasible bin enters H",
+    "capacity_representation": "used loads updated by +item; residual derived capacity-used; this is an explicit project adapter, not bitwise NumPy-run equivalence",
+    "vector_input": "immutable tuple of ALL feasible bin capacities; permanent IDs ascending; preserve every feasible empty bin",
+    "vector_output": "list/tuple of finite built-in real scores, exact legal-action length; local argmax maps to permanent ID",
+    "tie": "smallest feasible permanent bin ID",
+    "H_calls": "selected scalar H per feasible action; no nonselected H call",
+    "reference": {
+      "version": "obp-volume-ceiling-v1",
+      "rule": "ceil(S/C)"
+    },
+    "public_state_spec": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+    "state_delivery_sha256": "bf9e18f60f5db38f90c5437676982973cd74bb80040cea131b6a42252776a8fc",
+    "language": "closed Python arithmetic and one bounded current-bin comprehension; no imports, numpy or future stream; NOT native NumPy candidate compatibility"
+  },
+  "obp_contract_sha256": "82feceaa48590e0305dd51d4ce1b18c074d283fd105ddfd5f13bde1fb56706a1",
+  "H_language": "obp-two-scalar-h-v1"
+}

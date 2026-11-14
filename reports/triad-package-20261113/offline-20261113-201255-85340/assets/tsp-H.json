@@ -1,0 +1,17 @@
+{
+  "members": [
+    {
+      "description": "HANDWRITTEN MOCK ONLY",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return -distance_current\n",
+      "key": "3a3bf9b0342e03df321c9777e6a91786aa6a1a704b002713da7abfb4c2e2293d",
+      "kind": "h"
+    },
+    {
+      "description": "HANDWRITTEN MOCK ONLY",
+      "code": "def priority(distance_current, distance_start, mean_remaining_distance, nearest_remaining_distance, progress):\n    return distance_start\n",
+      "key": "48a11e2f56aa6666aac820b6b5ece3da60674eb4fb82b4b5549b1c870ceef1e4",
+      "kind": "h"
+    }
+  ],
+  "engineering_only": true
+}

@@ -59,18 +59,20 @@ def main():
     ap.add_argument('--config',type=Path,required=True);ap.add_argument('--run-dir',type=Path)
     ap.add_argument('--kind',choices=['search','h-build'],default='search');ap.add_argument('--engineering',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int)
     args=ap.parse_args();c=configuration.load(args.config,engineering=args.engineering)
+    if args.kind=='h-build':c=runtime.h_build_config(c)
     if args.action=='check-only':
         if args.allow_api or args.allow_solves or args.approve_budget is not None:raise PermissionError('check-only carries no execution approval')
-        c,data,refs,hs,todo=runtime.preflight(args.config,args.engineering)
+        c,data,refs,hs,todo=runtime.preflight(args.config,args.engineering,'h-build' if args.kind=='h-build' else None)
         print(json.dumps(dict(group=c['group'],pending=todo,ready=not todo,environment='not_fully_checked' if todo else 'passed',API_requests=0,actual_solves=0,credential_reads=0,budget=configuration.budget(c)),ensure_ascii=False,indent=2));return 0
     if args.run_dir is None:raise ValueError('explicit independent --run-dir required')
     d=args.run_dir.resolve()
     if not d.is_relative_to(ROOT/'runs'):raise ValueError('run must be inside this release runs/')
     if c.get('search_seed') is None:raise PermissionError('select a frozen independent seed before preparing')
-    if c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real':
+    if args.kind!='h-build' and c['mode']=='real' and c['group']=='fjsp-u' and c['search_seed']==501 and args.action in ('prepare','run','resume'):raise PermissionError('existing frozen U501 is protected: register completed evidence read-only, or exclude it and choose new seeds; never rerun/take over')
+    if args.kind!='h-build' and c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real':
         launch=d.parent/(d.name+'.launch.json')
         if args.action in ('prepare','run') and not d.exists():
-            _,_,_,_,todo=runtime.preflight(args.config,args.engineering)
+            _,_,_,_,todo=runtime.preflight(args.config,args.engineering,'h-build' if args.kind=='h-build' else None)
             if todo:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo))
             approve(c,args);v=frozen_launch(c,d,authorize=True)
             if launch.exists() and read(launch)!=v:raise ValueError('existing frozen child launch differs')
@@ -91,6 +93,8 @@ def main():
         value=adapter.summary(d) if args.action=='status' else execution.stop(d,adapter=adapter) if args.action=='pause' else runtime.export(d)
     else:
         if not d.exists():
+            _,_,_,_,todo=runtime.preflight(args.config,args.engineering,'h-build' if args.kind=='h-build' else None)
+            if todo:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo))
             approve(c,args);runtime.prepare(d,args.config,engineering=args.engineering,allow_api=args.allow_api,approve_budget=args.approve_budget,run_kind='h-build' if args.kind=='h-build' else None)
         p=adapter.check_run(d);_,s=runtime.protocol_state(d)
         if sha(args.config)!=p['config_sha256']:raise ValueError('original config changed; no reset or rebind')

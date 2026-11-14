@@ -1,0 +1,118 @@
+{
+  "version": "triad-independent-search-v1",
+  "group": "obp-eoh",
+  "problem": "obp",
+  "method": "eoh",
+  "mode": "real",
+  "freeze_status": "draft_unapproved",
+  "real_requests_authorized": false,
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "population_size": 10,
+  "initialization_request_cap": 20,
+  "evolution_request_cap": 1000,
+  "api_attempt_cap": 1020,
+  "per_candidate_attempt_cap": 1,
+  "initialization_policy": "native_N_finite_or_fail",
+  "solve_seed": 501,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1,
+  "window_seconds": null,
+  "instance_timeout_seconds": 30,
+  "instance_count": 96,
+  "data_manifest": null,
+  "h_file": null,
+  "reference_file": null,
+  "state_delivery": {
+    "module": "experiments.triad.obp_state_preset",
+    "file": "../obp_state_preset.py",
+    "sha256": "e1dd67152bb8353876ff6bbf865355a0e52da9ee23615957bf8ab8395416b43d",
+    "adapter_id": "obp-preset-N-v1-candidate",
+    "action_policy": "preallocated_empty_bins",
+    "supported_actions": [
+      "preallocated_empty_bins"
+    ],
+    "status": "delivered_code",
+    "adoption": "pending_user",
+    "public_schema": "common-state-a-v3-obp",
+    "public_spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+    "new_problem_contract": "obp-feasible-permanent-actions-v2"
+  },
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "client_binding": {
+    "wire_version": "bounded-wire-reliability-v5",
+    "caller_policy": "strict-nonstream-model-stop-usage-v1",
+    "files": {
+      "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+      "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc"
+    },
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "max_prompt_bytes": 262144,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "stream_response": false
+    }
+  },
+  "frozen_u_template": null,
+  "compatible_fixed_results": null,
+  "budget_basis": "D02 recommendation: equal evolution attempts; initialization/H separate; UNAPPROVED",
+  "protocol_receipt": null,
+  "data_usage_receipt": null,
+  "obp_actions": "preallocated_empty_bins",
+  "obp_h_abi": "obp-vector-feasible-h-v2",
+  "obp_bound": {
+    "version": "obp-R-code-int64-float64-v1",
+    "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+  },
+  "h_build": {
+    "request_cap": 40,
+    "target_count": 10,
+    "selection": "greedy-envelope-J-v1",
+    "source_cost": null,
+    "search_seed": 401,
+    "window_seconds": null
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_mib": null,
+    "segment_seconds": null,
+    "drain_seconds": null,
+    "numeric_threads": 1,
+    "partition": null,
+    "account": null,
+    "qos": null
+  },
+  "account_exclusion": null,
+  "account_gate": null,
+  "credential_file": null,
+  "mock_faults": {},
+  "pause_after_tasks": null,
+  "search_seed": null
+}

@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "kind": "MANUAL_SINGLE_ARRIVAL_CALLBACK_AND_ARITHMETIC_ONLY",
+  "contract_version": "obp-feasible-permanent-actions-v2",
+  "H_ABI": "obp-vector-feasible-h-v2",
+  "actual_input_record": [
+    {
+      "item": 3,
+      "capacities": [
+        6,
+        10,
+        10,
+        10
+      ],
+      "type": "tuple"
+    }
+  ],
+  "correct_selection": {
+    "bin_index": 2,
+    "local_index": 1,
+    "actions": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "capacities": [
+      6,
+      10,
+      10,
+      10
+    ],
+    "scores": [
+      -9.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "H_calls": 1
+  },
+  "old_all_bins_counterexample": {
+    "input": [
+      2,
+      6,
+      10,
+      10,
+      10
+    ],
+    "mean": 7.6,
+    "selected_permanent_bin": 1
+  },
+  "tie_selected_bin": 1,
+  "active_open_selected_bin": 2,
+  "rejected_output_cases": [
+    "global_length",
+    "short",
+    "nonfinite",
+    "boolean"
+  ],
+  "reference_options_are_distinct": [
+    {
+      "items": [
+        5
+      ],
+      "ceiling": 1,
+      "R_code": 1
+    },
+    {
+      "items": [
+        10,
+        1
+      ],
+      "ceiling": 2,
+      "R_code": 1
+    },
+    {
+      "items": [
+        10,
+        4
+      ],
+      "ceiling": 2,
+      "R_code": 1
+    },
+    {
+      "items": [
+        10,
+        5
+      ],
+      "ceiling": 2,
+      "R_code": 2
+    },
+    {
+      "items": [
+        10,
+        10
+      ],
+      "ceiling": 2,
+      "R_code": 2
+    }
+  ],
+  "R_code_actual_type_receipt": {
+    "S": 11,
+    "C": 10,
+    "reference": 1,
+    "sum_dtype": "int64",
+    "calculation_dtype": "float64",
+    "cast": "Python int, positive truncation",
+    "numpy_version": "2.2.6",
+    "reference_identity": {
+      "version": "obp-R-code-int64-float64-v1",
+      "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+    }
+  },
+  "zero_reference_rejected_without_substitution": true,
+  "protocol_reference_action_fingerprints_change": true,
+  "old_H_ABI_key_rejected": true,
+  "shared_U_EoH_fixed_H_path": true,
+  "H_selection_greedy_envelope_and_no_improvement_fill_checked": true,
+  "research_state_adopted": false,
+  "state_adapter_separate_evidence": "OBP_PRESET_STATE_ACCEPTANCE.json",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "generated_H_executions": 0,
+  "full_training_constructions": 0,
+  "recording_callback_invocations": 1
+}

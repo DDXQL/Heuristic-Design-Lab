@@ -16,9 +16,11 @@
   "group_configs": [
     {
       "group": "fjsp-u",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/fjsp-u.json",
+      "path": "experiments/triad/configs/fjsp-u.json",
+      "recommended_draft": "experiments/triad/recommended.draft/fjsp-u.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -41,9 +43,11 @@
     },
     {
       "group": "fjsp-eoh",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/fjsp-eoh.json",
+      "path": "experiments/triad/configs/fjsp-eoh.json",
+      "recommended_draft": "experiments/triad/recommended.draft/fjsp-eoh.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -66,9 +70,11 @@
     },
     {
       "group": "tsp-u",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/tsp-u.json",
+      "path": "experiments/triad/configs/tsp-u.json",
+      "recommended_draft": "experiments/triad/recommended.draft/tsp-u.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -94,9 +100,11 @@
     },
     {
       "group": "tsp-eoh",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/tsp-eoh.json",
+      "path": "experiments/triad/configs/tsp-eoh.json",
+      "recommended_draft": "experiments/triad/recommended.draft/tsp-eoh.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -122,9 +130,11 @@
     },
     {
       "group": "obp-u",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/obp-u.json",
+      "path": "experiments/triad/configs/obp-u.json",
+      "recommended_draft": "experiments/triad/recommended.draft/obp-u.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -141,13 +151,13 @@
         "obp_actions",
         "obp_h_abi",
         "obp_bound",
-        "state_delivery",
         "data_usage_receipt",
         "freeze_status",
         "resources.cpus",
         "resources.memory_mib",
         "resources.segment_seconds",
         "resources.drain_seconds",
+        "state_delivery.adoption",
         "account_exclusion",
         "account_gate",
         "credential_file"
@@ -155,9 +165,11 @@
     },
     {
       "group": "obp-eoh",
-      "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/configs/obp-eoh.json",
+      "path": "experiments/triad/configs/obp-eoh.json",
+      "recommended_draft": "experiments/triad/recommended.draft/obp-eoh.json",
       "evolution_attempts_per_seed": 1000,
-      "ready_for_real_start": false,
+      "CODE_READY": true,
+      "RUN_READY": false,
       "missing": [
         "repeat_count",
         "search_seeds",
@@ -173,13 +185,13 @@
         "obp_actions",
         "obp_h_abi",
         "obp_bound",
-        "state_delivery",
         "data_usage_receipt",
         "freeze_status",
         "resources.cpus",
         "resources.memory_mib",
         "resources.segment_seconds",
         "resources.drain_seconds",
+        "state_delivery.adoption",
         "account_exclusion",
         "account_gate",
         "credential_file"
@@ -187,21 +199,22 @@
     }
   ],
   "offline_checks": [
-    "six interfaces and J-min",
-    "independent seeds",
-    "no borrowed initialization",
-    "separate init/evolution caps",
-    "failure/duplicate accounting",
-    "safe pause/resume original deadline",
-    "unknown lock no replay",
-    "reverse-return stable settlement",
-    "full failure/unstarted summary",
-    "Slurm command generation",
-    "OBP scalar/vector closed H and action-domain pure legality",
-    "bounded H-build and freeze",
-    "guarded CLI run",
-    "unknown submission no resend",
-    "pending research refusal"
+    "six-group synthetic receipt lifecycle",
+    "independent seeds/no inherited population",
+    "original budget/deadline pause-resume",
+    "failure/duplicate/unknown accounting and no retry",
+    "stable reverse-return settlement",
+    "all-run failures/unstarted summary",
+    "single-job submit reservation/unknown receipt no resend",
+    "OBP feasible-only vector/permanent index counterexample",
+    "OBP preset-N partial-state statistics",
+    "OBP int64/float64/Python-int reference",
+    "greedy H envelope and zero-gain fill",
+    "six-draft review path assembly",
+    "synthetic completed-501 read-only registration/import and rerun refusal",
+    "synthetic NumPy training importer and no-test boundary",
+    "runtime input packet allowlist/hash/idempotence/no overwrite",
+    "frozen public source identity/AST/bash syntax"
   ],
   "offline_passed": true,
   "offline_evidence": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/reports/triad-package-20261113/latest-offline.json",
@@ -211,11 +224,37 @@
     "reference_status": "LKH_pending; no NN fallback"
   },
   "limitations": [
-    "D01-D04/D06 and actual D08 code delivery remain pending, no research values inferred",
-    "OBP action domain and scalar/vector H ABI are explicit options, none approved",
-    "FJSP existing 210 raw costs remain external; compatibility import exists; 420-pass rerun blocked",
-    "No new real EoH/TSP/OBP compute acceptance",
-    "No independent-job concurrency, Job Array or cross-device rate limiter acceptance"
+    "Study recommendations and candidate OBP state are unapproved; all saved request authorization OFF",
+    "Runtime resources, original calendar/segment/drain windows and all-device account exclusion must be explicit",
+    "TSP LKH binary/version/parameters/distance protocol and reference packet missing; no NN fallback",
+    "OBP official training import/split adoption and new H construction not executed; no test opened by this package",
+    "FJSP existing210 raw-cost compatibility packet remains external; no420-pass rerun",
+    "Existing501 completed status supplied by planner; actual registration is a future explicit read-only action",
+    "No new real EoH/TSP/OBP compute acceptance; no extra API, solve or LKH execution",
+    "No simultaneous-independent-job/Array/cross-device limiter acceptance; one generating run across devices"
   ],
-  "next_command": "/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/batch.py plan"
+  "next_command": "bash /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/mac.sh plan --campaign /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/experiments/triad/campaign.recommended.draft.json",
+  "delivery_date": "2026-11-14 Asia/Manila",
+  "release_revision": "r3",
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "source_commit_location": "release.json.engineering_commit in immutable ZIP",
+  "public_source_identity_verified": true,
+  "public_source_identity_file_count": 102,
+  "archive": "/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r3.zip",
+  "supersedes_OBP_packages": [
+    "r1",
+    "r2"
+  ],
+  "draft_review": "experiments/triad/study-review.draft.json",
+  "draft_recommendations": "experiments/triad/REVIEW_DRAFT.md",
+  "manual_commands": "experiments/triad/PREPARATION_ZH.md",
+  "root_readme_included": true,
+  "user_guide_included": true,
+  "existing_501": {
+    "source_status_reported_by_planner": "completed",
+    "registered_by_this_delivery": false,
+    "checkpoint_copied": false,
+    "new_run_prohibited": true
+  }
 }

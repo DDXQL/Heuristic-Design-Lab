@@ -31,7 +31,15 @@ def plan(path,engineering=False):
             todo=configuration.gaps(c)
             if seeds is not None:todo=[x for x in todo if x not in ('search_seeds','repeat_count')]
             run_id=campaign['campaign_id']+'-'+c['group']+'-seed-'+str(seed) if seed is not None else None
-            rows.append(dict(group=c['group'],index=i,seed=seed,run_id=run_id,source_config=str(source),config_sha256=sha(source),status='pending' if todo or seed is None else 'configured',pending=todo,budget=configuration.budget({**c,'repeat_count':repeats})))
+            rows.append(dict(protected_existing_501=(c['group']=='fjsp-u' and seed==501),group=c['group'],index=i,seed=seed,run_id=run_id,source_config=str(source),config_sha256=sha(source),status='pending' if todo or seed is None else 'configured',pending=todo,budget=configuration.budget({**c,'repeat_count':repeats})))
+    obp_configs={item['group']:configuration.load((path.parent/item['config']).resolve(),engineering=engineering) for item in campaign['groups'] if item['group'].startswith('obp-')}
+    if len(obp_configs)==2:
+        conditions=('obp_actions','obp_h_abi','obp_bound','data_manifest','solve_seed')
+        mismatch=[key for key in conditions if all(c.get(key) is not None for c in obp_configs.values()) and len({digest(c[key]) for c in obp_configs.values()})!=1]
+        for row in rows:
+            if row['group'].startswith('obp-'):
+                row['OBP_contract_version']='obp-feasible-permanent-actions-v2'
+                if mismatch:row['pending']+=['shared_OBP_condition:'+key for key in mismatch];row['status']='pending'
     return dict(version='triad-batch-plan-v1',campaign_id=campaign['campaign_id'],campaign_sha256=sha(path),rows=rows,
       all_declared_request_cap=None if any(r['seed'] is None or r['budget']['request_cap_per_seed'] is None for r in rows) else sum(r['budget']['request_cap_per_seed'] for r in rows),
       same_account_generation_tasks=1,API_requests=0,actual_solves=0,credential_reads=0)
@@ -64,6 +72,9 @@ def materialize(path,folder,engineering=False):
 
 
 def state(row):
+    if row.get('existing_registration'):
+        r=row['existing_registration'];return {**r['snapshot'],'phase':'completed','registered_existing':True,'execution_prohibited':True,'registration_source':r['source_directory']}
+    if row.get('protected_existing_501'):return {'phase':'existing_501_decision_pending','execution_prohibited':True,'requires_investigation':False}
     if not row.get('run_dir'):return {'phase':'not_started'}
     d=Path(row['run_dir']);p=d/'Protocol.json'
     submissions=[read(f) for f in (d/'submissions').glob('*.json')]
@@ -94,7 +105,9 @@ def summarize(p):
         import csv
         for member in members:
             curve={}
-            if member.get('run_dir'):
+            if member.get('existing_registration'):
+                curve={point['evolution_attempt']:point['best_J'] for point in member['existing_registration'].get('curve',[])}
+            if member.get('run_dir') and not member.get('existing_registration'):
                 path=Path(member['run_dir'])/'exports/candidates.csv'
                 if path.exists():
                     for point in csv.DictReader(path.open()):
@@ -138,10 +151,10 @@ def command(row,action,real=False):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['plan','prepare','check-only','status','summary','run','resume','pause','export','commands'])
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['plan','prepare','check-only','status','summary','run','resume','pause','export','commands','register-existing','import-existing'])
     ap.add_argument('--campaign',type=Path,default=DEFAULT);ap.add_argument('--batch',type=Path,default=ROOT/'plans/triad-20261113')
     ap.add_argument('--engineering',action='store_true');ap.add_argument('--experiment',choices=configuration.GROUPS);ap.add_argument('--seed',type=int)
-    ap.add_argument('--all',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-total',type=int)
+    ap.add_argument('--receipt',type=Path);ap.add_argument('--receipt-sha256');ap.add_argument('--accept-existing-completed',action='store_true');ap.add_argument('--all',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-total',type=int)
     a=ap.parse_args()
     if a.action=='plan':print(json.dumps(plan(a.campaign,a.engineering),ensure_ascii=False,indent=2));return 0
     if a.action=='prepare':print(json.dumps(materialize(a.campaign,a.batch,a.engineering),ensure_ascii=False,indent=2));return 0
@@ -158,6 +171,14 @@ def main():
                 w=csv.DictWriter(f,fieldnames=columns,extrasaction='ignore');w.writeheader();w.writerows(value['all_runs'])
         print(json.dumps(value,ensure_ascii=False,indent=2));return 0
     rows=select(p,a.experiment,a.seed)
+    if a.action in ('register-existing','import-existing'):
+        if len(rows)!=1:raise ValueError('register exactly one explicitly selected existing run')
+        from experiments.triad import registration
+        row=rows[0];c=configuration.load(row['config']);receipt=registration.register(row,c,a.accept_existing_completed) if a.action=='register-existing' else registration.accept_receipt(row,c,a.receipt,a.receipt_sha256,a.accept_existing_completed)
+        row['existing_registration']=receipt
+        # Only this batch registration is written. Never modify the source run.
+        write(a.batch/'registrations'/ (row['run_id']+'.json'),receipt);write(a.batch/'Batch.json',p)
+        print(json.dumps(receipt,ensure_ascii=False,indent=2));return 0
     if a.action=='check-only':
         output=[]
         for row in rows:

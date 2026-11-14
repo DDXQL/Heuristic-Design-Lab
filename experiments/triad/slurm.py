@@ -13,6 +13,7 @@ from experiments.triad import batch,runtime,configuration
 
 
 def command(row,action,python):
+    if row.get('protected_existing_501') or row.get('existing_registration'):raise PermissionError('existing 501 is read-only and cannot be submitted or resumed by this batch')
     c=configuration.load(row['config']);r=c['resources'];todo=configuration.gaps(c)
     if todo or r['partition'] is None:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo+(['resources.partition'] if r['partition'] is None else [])))
     h,left=divmod(r['segment_seconds'],3600);m,s=divmod(left,60)

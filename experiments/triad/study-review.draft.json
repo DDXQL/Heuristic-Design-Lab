@@ -1,0 +1,38 @@
+{
+  "adopt_study_parameters": false,
+  "adopt_obp_candidate_state": false,
+  "campaign_id": "triad-reviewed-20261113",
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "common": {
+    "window_seconds": null,
+    "credential_file": null,
+    "account_gate": null,
+    "account_exclusion": null,
+    "resources": {
+      "memory_mib": null,
+      "segment_seconds": null,
+      "drain_seconds": null,
+      "partition": null,
+      "account": null,
+      "qos": null
+    }
+  },
+  "groups": {
+    "fjsp-u": {},
+    "fjsp-eoh": {},
+    "tsp-u": {},
+    "tsp-eoh": {},
+    "obp-u": {},
+    "obp-eoh": {}
+  },
+  "notes": [
+    "All study numbers are recommendations, not approval; set adoption only after human review.",
+    "Unknown deployment resources, LKH and OBP data/H files remain pending.",
+    "Same-version FJSP U501 must be registered read-only after completion; never restarted by this package."
+  ]
+}

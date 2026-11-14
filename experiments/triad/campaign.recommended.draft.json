@@ -1,0 +1,38 @@
+{
+  "version": "triad-serial-batch-v1",
+  "campaign_id": "triad-recommended-DRAFT-20261113",
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "global_generation_tasks": 1,
+  "run_root": "../../runs/triad-recommended-DRAFT-20261113",
+  "groups": [
+    {
+      "group": "fjsp-u",
+      "config": "recommended.draft/fjsp-u.json"
+    },
+    {
+      "group": "fjsp-eoh",
+      "config": "recommended.draft/fjsp-eoh.json"
+    },
+    {
+      "group": "tsp-u",
+      "config": "recommended.draft/tsp-u.json"
+    },
+    {
+      "group": "tsp-eoh",
+      "config": "recommended.draft/tsp-eoh.json"
+    },
+    {
+      "group": "obp-u",
+      "config": "recommended.draft/obp-u.json"
+    },
+    {
+      "group": "obp-eoh",
+      "config": "recommended.draft/obp-eoh.json"
+    }
+  ]
+}

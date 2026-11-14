@@ -1,0 +1,493 @@
+{
+  "passed": true,
+  "kind": "SYNTHETIC_RECEIPTS_ONLY",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "credential_reads": 0,
+  "groups": {
+    "fjsp-u": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-fjsp-u-normal",
+        "problem": "fjsp",
+        "method": "u",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 2,
+        "unique_evaluation_reservations": 2,
+        "failures": 4,
+        "duplicates": 4,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 168,
+          "max_solve_passes": 336
+        },
+        "best_J": 0.0,
+        "champion_id": "INIT-0000",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-seed8"
+      ]
+    },
+    "fjsp-eoh": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-fjsp-eoh-normal",
+        "problem": "fjsp",
+        "method": "eoh",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 6,
+        "unique_evaluation_reservations": 6,
+        "failures": 0,
+        "duplicates": 0,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 168,
+          "max_solve_passes": 336
+        },
+        "best_J": 0.01,
+        "champion_id": "SLOT-0000001",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-seed8"
+      ]
+    },
+    "tsp-u": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-tsp-u-normal",
+        "problem": "tsp",
+        "method": "u",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 2,
+        "unique_evaluation_reservations": 2,
+        "failures": 4,
+        "duplicates": 4,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 160,
+          "max_solve_passes": 320
+        },
+        "best_J": 0.0,
+        "champion_id": "INIT-0000",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-seed8"
+      ]
+    },
+    "tsp-eoh": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-tsp-eoh-normal",
+        "problem": "tsp",
+        "method": "eoh",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 6,
+        "unique_evaluation_reservations": 6,
+        "failures": 0,
+        "duplicates": 0,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 160,
+          "max_solve_passes": 320
+        },
+        "best_J": 0.0,
+        "champion_id": "SLOT-0000002",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-seed8"
+      ]
+    },
+    "obp-u": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-obp-u-normal",
+        "problem": "obp",
+        "method": "u",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 2,
+        "unique_evaluation_reservations": 2,
+        "failures": 4,
+        "duplicates": 4,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 8,
+          "max_solve_passes": 16
+        },
+        "best_J": 0.0,
+        "champion_id": "INIT-0000",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-seed8"
+      ]
+    },
+    "obp-eoh": {
+      "passed": true,
+      "summary": {
+        "run_id": "triad-OFFLINE-20261114-121901-65822-obp-eoh-normal",
+        "problem": "obp",
+        "method": "eoh",
+        "phase": "completed",
+        "cursor": 6,
+        "engineering_only": true,
+        "initialization_attempts": 2,
+        "evolution_attempts": 4,
+        "request_reservations": 6,
+        "confirmed_sends": 0,
+        "unknown_sends": 0,
+        "valid_candidates": 6,
+        "unique_evaluation_reservations": 6,
+        "failures": 0,
+        "duplicates": 0,
+        "automatic_retries": 0,
+        "API_stop": null,
+        "requires_investigation": false,
+        "budgets": {
+          "logical_generation": 8,
+          "API_attempts": 8,
+          "initialization": 4,
+          "evolution": 4,
+          "max_program_instances": 8,
+          "max_solve_passes": 16
+        },
+        "best_J": 0.02,
+        "champion_id": "SLOT-0000001",
+        "actual_cost": null,
+        "known_usage_subtotal": {
+          "input_tokens": 0,
+          "output_tokens": 0
+        },
+        "unknown_usage_attempts": 0,
+        "writer_lock": false,
+        "pause_reason": null,
+        "phase_request_reservations": {
+          "initialization": 2,
+          "evolution": 4
+        },
+        "physical_passes": {
+          "first": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          },
+          "recheck": {
+            "started": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "native_solve_upper_reserved": 0,
+        "physical_passes_unsettled": 0,
+        "resources": {
+          "declared_model_concurrency": 1,
+          "declared_evaluation_concurrency": 1,
+          "CPUs": 2,
+          "memory_mib": 512,
+          "numeric_threads": 1,
+          "generation_tasks_across_devices": 1,
+          "real_throughput_verified": false
+        }
+      },
+      "source": [
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-normal",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-pause",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-seed8"
+      ]
+    }
+  },
+  "checks": [
+    "six interfaces and J-min",
+    "independent seeds",
+    "no borrowed initialization",
+    "separate init/evolution caps",
+    "failure/duplicate accounting",
+    "safe pause/resume original deadline",
+    "unknown lock no replay",
+    "reverse-return stable settlement",
+    "full failure/unstarted summary",
+    "Slurm command generation",
+    "OBP scalar/vector closed H and action-domain pure legality",
+    "bounded H-build and freeze",
+    "guarded CLI run",
+    "unknown submission no resend",
+    "pending research refusal"
+  ],
+  "evidence_directories": [
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-u-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-fjsp-eoh-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-u-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-u-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-normal",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-pause",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-seed8",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-faults",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-tsp-eoh-transport-streak",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-strict-N",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-unknown",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-obp-eoh-vector-ABI",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-Hbuild",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-CLI",
+    "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113/runs/triad-OFFLINE-20261114-121901-65822-unknown-submit"
+  ]
+}

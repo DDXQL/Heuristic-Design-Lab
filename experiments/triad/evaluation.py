@@ -36,7 +36,8 @@ def _worker(pipe,payload,members,instances,names,allowed_modes):
             after={n:sha(ROOT/n) for n in sources}
             if after!=before:raise RuntimeError('worker source changed during evaluation')
             rss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-            pipe.send({**results[0],'captured_solves':2,'semantic_sha256':digest(results[0]),'recheck_semantic_sha256':digest(results[1]),
+            extra={'B':results[0]['raw_cost'],'S':ref['S'],'C':ref['C'],'R_code':ref['reference'],'reference_identity':ref['reference_identity']} if payload['config']['problem']=='obp' else {}
+            pipe.send({**results[0],**extra,'captured_solves':2,'semantic_sha256':digest(results[0]),'recheck_semantic_sha256':digest(results[1]),
               'feasible':True,'worker_pid':os.getpid(),'worker_peak_rss_bytes':int(rss if sys.platform=='darwin' else rss*1024),
               'worker_CPU_seconds':time.process_time()-cpu,'complete_row_seconds':time.monotonic()-started,
               'source_before_sha256':digest(before),'source_after_sha256':digest(after)})

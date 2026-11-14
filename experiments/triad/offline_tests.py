@@ -25,11 +25,11 @@ def main():
     stamp=time.strftime('%Y%m%d-%H%M%S')+'-'+str(os.getpid());out=ROOT/'reports/triad-package-20261113'/('offline-'+stamp);out.mkdir(parents=True)
     data=out/'assets';data.mkdir();results={};configs={};dirs=[]
     for problem in ('fjsp','tsp','obp'):
-        args=problems.h_args(problem);hs=[asdict(problems.validate_h(problem,'def priority('+', '.join(args)+'):\n    return '+expr+'\n','HANDWRITTEN MOCK ONLY')) for expr in ('-'+args[0],args[1])]
+        args=problems.h_args(problem,'obp-vector-feasible-h-v2' if problem=='obp' else None);hs=[asdict(problems.validate_h(problem,'def priority('+', '.join(args)+'):\n    return '+expr+'\n','HANDWRITTEN MOCK ONLY')) for expr in (('[-cap for cap in remaining_capacities]','[cap for cap in remaining_capacities]') if problem=='obp' else ('-'+args[0],args[1]))]
         write(data/(problem+'-H.json'),{'members':hs,'engineering_only':True})
     # Mock references are explicitly NOT LKH results.
     m=read(ROOT/'preparations/triad/tsp/train20.manifest.json');write(data/'tsp-mock-refs.json',{'kind':'mock-reference-v1','engineering_only':True,'instances':[{'file':r['file'],'reference':1.0} for r in m['instances']]})
-    write(data/'obp-instance.json',{'capacity':10,'items':[2,3,5]});write(data/'obp.manifest.json',{'problem':'obp','split':'train','instances':[{'file':'synthetic-arrivals','path':'obp-instance.json','sha256':sha(data/'obp-instance.json')}]})
+    write(data/'obp-instance.json',{'N':3,'capacity':10,'items':[2,3,5]});write(data/'obp.manifest.json',{'problem':'obp','split':'train','instances':[{'file':'synthetic-arrivals','path':'obp-instance.json','sha256':sha(data/'obp-instance.json')}]})
     for group in configuration.GROUPS:
         c=read(ROOT/'experiments/triad/configs'/(group+'.json'));problem=c['problem']
         c.update(mode='mock',freeze_status='engineering_only',repeat_count=2,search_seeds=[7,8],search_seed=7,population_size=2,initialization_request_cap=4,evolution_request_cap=4,api_attempt_cap=8,
@@ -40,7 +40,7 @@ def main():
           reference_file=str(data/'tsp-mock-refs.json') if problem=='tsp' else None,instance_count=21 if problem=='fjsp' else 20 if problem=='tsp' else 1,
           resources=dict(cpus=2,memory_mib=512,segment_seconds=1800,drain_seconds=1000,numeric_threads=1,partition='OFFLINE',account=None,qos=None))
         if problem=='obp':
-            file=ROOT/'code/heuristic_design/problems/obp/state_a_v3.py';c.update(obp_actions='fit_only_else_new',obp_h_abi='obp-two-scalar-h-v1',obp_bound='volume_ceiling',state_delivery={'file':str(file),'sha256':sha(file),'module':'heuristic_design.problems.obp.state_a_v3','action_policy':'fit_only_else_new','engineering_only':True})
+            file=ROOT/'experiments/triad/obp_state_preset.py';c.update(obp_actions='preallocated_empty_bins',obp_h_abi='obp-vector-feasible-h-v2',obp_bound={'version':'obp-R-code-int64-float64-v1','rule':'int(float64(sum_int64(items))/float64(C)+0.5)'},state_delivery={'file':str(file),'sha256':sha(file),'module':'experiments.triad.obp_state_preset','action_policy':'preallocated_empty_bins','engineering_only':True})
         path=out/(group+'.json');write(path,c);configs[group]=path
     def run(group,label,**changes):
         c=read(configs[group]);c.update(changes);path=out/(group+'-'+label+'.json');write(path,c);d=ROOT/'runs'/('triad-OFFLINE-'+stamp+'-'+group+'-'+label);dirs.append(str(d))
@@ -64,6 +64,8 @@ def main():
         assert value['phase']=='completed';summary=runtime.Adapter().summary(d);assert summary['failures']>=3 and summary['duplicates']>=1 and summary['request_reservations']==6
         failed,value=run('tsp-eoh','transport-streak',mock_faults={'2':'failure','3':'failure','4':'failure'})
         assert value['phase']=='paused' and value['cursor']==5
+        strict,value=run('obp-eoh','strict-N',initialization_policy='native_N_finite_or_fail',mock_faults={'1':'duplicate'})
+        assert value['phase']=='initialization_incomplete' and value['cursor']==2
         # Unknown reservations are never replayed; keep the evidence lock.
         unknown=ROOT/'runs'/('triad-OFFLINE-'+stamp+'-unknown');runtime.prepare(unknown,configs['obp-eoh'],engineering=True);dirs.append(str(unknown));(unknown/'.execution.lock').write_text('{"state":"unknown"}')
         try:execution.start(unknown,adapter=runtime.Adapter())
@@ -80,8 +82,8 @@ def main():
         from experiments.triad import obp_h
         vector=obp_h.validate('def priority(item_size, remaining_capacities):\n    return [-cap for cap in remaining_capacities]\n','MOCK vector H')
         obp_h.compile_candidate(vector) # compilation only; never call H / construct
-        vc=read(configs['obp-eoh']);vc['obp_h_abi']='obp-vector-h-v1'
-        vd,vv=run('obp-eoh','vector-ABI',obp_h_abi='obp-vector-h-v1');assert vv['phase']=='completed'
+        vc=read(configs['obp-eoh']);vc['obp_h_abi']='obp-vector-feasible-h-v2'
+        vd,vv=run('obp-eoh','vector-ABI',obp_h_abi='obp-vector-feasible-h-v2');assert vv['phase']=='completed'
         problems.validate_obp_solution({'capacity':10,'items':[2,3,5]},{'placements':[2,0,2],'used':[3,0,7],'bin_count':2},'preallocated_empty_bins')
         # Exact arithmetic / pure legality validators, without constructing a solution.
         assert problems.obp_lower_bound({'capacity':10,'items':[2,3,5]},'volume_ceiling')==1

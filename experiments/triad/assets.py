@@ -16,7 +16,7 @@ from experiments.triad import configuration,problems,runtime,evaluation
 
 def identity(c,data,refs):
     # Search seed and optimizer are irrelevant to compatibility of fixed raw costs.
-    return dict(problem=c['problem'],instances=[{'file':r['file'],'sha256':r['sha256']} for r in data],references=refs,
+    return dict(obp_contract_sha256=digest(problems.obp_contract(c)) if c['problem']=='obp' else None,problem=c['problem'],instances=[{'file':r['file'],'sha256':r['sha256']} for r in data],references=refs,
       solve_seed=c['solve_seed'],instance_timeout_seconds=c['instance_timeout_seconds'],state_schema=problems.state.schema_id(c['problem']),
       public_state_spec=problems.state.SPEC_SHA256,obp_actions=c['obp_actions'],obp_h_abi=c['obp_h_abi'],obp_bound=c['obp_bound'],
       physical_sources={n:h for n,h in runtime.sources().items() if n in ('experiments/triad/problems.py','experiments/triad/evaluation.py') or n.startswith(('code/heuristic_design/problems/'+c['problem']+'/',))})
@@ -51,16 +51,19 @@ def import_fixed(c,source,review,output):
 def freeze_h(directory,output):
     p,s=runtime.protocol_state(directory)
     if p['run_kind']!='h-build' or s['phase']!='completed':raise ValueError('completed independent H-build required; old post-hoc candidates are not EoH-S')
+    adapter=runtime.Adapter();adapter.check_run(directory)
+    from heuristic_design.core import execution
+    execution.ledger(Path(directory),s,p,adapter=adapter)
     count=p['config']['h_build']['target_count'];valid=[t for t in s['tasks'].values() if t['valid']]
-    selected=[];seen=set()
-    for t in sorted(valid,key=lambda t:(t['J'],t.get('semantic_id',t['id']))):
-        if t['candidate']['key'] not in seen:selected.append(t);seen.add(t['candidate']['key'])
-    if len(selected)<count:raise ValueError('not enough valid distinct H; budget not refilled')
+    vectors={t['id']:[r['score'] for r in read(Path(directory)/s['evaluations'][t['evaluation_key']]['path'])['instances']] for t in valid}
+    from experiments.triad import h_selection
+    selected,selection_trace=h_selection.select(valid,vectors,count,p['config']['h_build']['selection'])
     output=Path(output)
     if output.exists():raise FileExistsError('frozen H output already exists; no overwrite')
     packet=dict(kind='H_frozen',engineering_only=p['config']['api_mode']=='mock',problem=p['config']['problem'],identity='bounded independent H construction + complete train J selection; NOT EoH-S',
       members=[{'id':t.get('semantic_id',t['id']),'candidate':t['candidate'],'train_J':t['J']} for t in selected[:count]],
-      source_protocol_sha256=s['identity'],data=p['instances'],references=p['references'],budget=p['budgets'],API_summary=runtime.Adapter().summary(directory))
+      selection_policy=p['config']['h_build']['selection'],selection_trace=selection_trace,source_protocol_sha256=s['identity'],data=p['instances'],references=p['references'],budget=p['budgets'],API_summary=runtime.Adapter().summary(directory))
+    if p['config']['problem']=='obp':packet.update(obp_contract=p['obp_execution_contract'],obp_contract_sha256=p['obp_contract_sha256'],H_language=p['config']['obp_h_abi'])
     write(output,packet);write(output.with_suffix('.receipt.json'),{'sha256':sha(output),'source_protocol':s['identity']});return {'output':str(output),'sha256':sha(output),'H_count':count,'new_solves':0,'API_requests':0}
 
 
@@ -132,12 +135,15 @@ def lkh_import(folder,output):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['check','fixed-plan','fixed-run','fixed-import','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run'])
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['obp-import','check','fixed-plan','fixed-run','fixed-import','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run'])
     ap.add_argument('--source',type=Path);ap.add_argument('--config',type=Path);ap.add_argument('--run-dir',type=Path);ap.add_argument('--output',type=Path);ap.add_argument('--spec',type=Path)
     ap.add_argument('--allow-lkh',action='store_true');ap.add_argument('--approve-lkh',type=int)
     ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int);ap.add_argument('--approve-solves',type=int)
     a=ap.parse_args()
-    if a.action=='freeze':value=freeze_h(a.run_dir,a.output)
+    if a.action=='obp-import':
+        from experiments.triad import obp_data
+        value=obp_data.prepare(a.source,a.spec,a.output)
+    elif a.action=='freeze':value=freeze_h(a.run_dir,a.output)
     elif a.action=='lkh-prepare':value=lkh_prepare(a.config,a.output,a.spec)
     elif a.action=='lkh-run':value=lkh_run(a.run_dir,a.allow_lkh,a.approve_lkh)
     elif a.action=='lkh-import':value=lkh_import(a.run_dir,a.output)
