@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-11-14T11:47:09.631237+00:00",
+  "legacy_cluster_launch_tests": {
+    "exit_code": 1,
+    "reason": "R5p1 Probe.pending.json binds the old entry.py engineering source hash; new entry correctly fails this guard",
+    "interpretation": "not reused as R6 acceptance; original R5p1 probe assets and API2 restrictions preserved",
+    "API_requests": 0,
+    "actual_solves": 0
+  },
+  "limits": [
+    "No new remote connection, upload, Slurm, API or real solver was executed.",
+    "New cross-job/cross-node API acceptance and throughput remain unverified.",
+    "Public U Mock21 exact-float mean issue avoided by one-row metadata fixture only; production validator unchanged.",
+    "Public U finite prefix1 splits initialization wave; new real adapter only permits the next complete init wave (first2), and refuses orphaned planned init tasks.",
+    "U502/503 scientific adoption remains pending.",
+    "Mac/other-device account exclusion remains operator-enforced."
+  ]
+}

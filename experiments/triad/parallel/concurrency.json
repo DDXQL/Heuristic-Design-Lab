@@ -1,0 +1,19 @@
+{
+  "version": "two-independent-searches-request-admission-v1",
+  "independent_searches_parallel_implemented": true,
+  "shared_request_limiter_implemented": true,
+  "max_active_searches": 2,
+  "global_API_width": 1,
+  "per_search_API_width": 1,
+  "per_search_CPU_evaluation_width": {"fjsp-eoh": 1, "fjsp-u": 2},
+  "implementation_scope": "new R6 explicit Shared.json batches only; legacy serial batch and serial_queue remain serial",
+  "actual_cross_job_API_verified": false,
+  "actual_cross_node_verified": false,
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "provider_RPM": null,
+  "provider_TPM": null,
+  "provider_max_concurrency": null,
+  "API2_adopted": false,
+  "Mac_and_other_devices": "operator exclusion still required; no online cross-device gateway"
+}

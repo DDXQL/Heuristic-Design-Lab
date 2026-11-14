@@ -55,7 +55,7 @@ def main():
         if info.get('requires_investigation') or info.get('unknown_sends',0) or info.get('writer_lock'):raise ValueError('active/unknown run blocks next submission')
     info=batch.state(row);d=Path(row['run_dir'])
     if a.action=='run' and info['phase']=='not_started':
-        subprocess.run(batch.command(row,'prepare',real=True),check=True)
+        subprocess.run(batch.command(row,'prepare',real=True),check=True,text=True,capture_output=True)
         info=batch.state(row)
     if info['phase']!=('prepared' if a.action=='run' else 'paused'):raise ValueError('run needs prepared, resume needs safely paused original run')
     claims=d/'submissions';claims.mkdir(exist_ok=True);claim=claims/(a.action+'-'+sha(d/'checkpoint.json')+'.json')

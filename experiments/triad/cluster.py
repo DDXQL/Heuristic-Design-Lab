@@ -16,8 +16,8 @@ spec=importlib.util.spec_from_file_location('admitted_cluster',ROOT/'deploy/clus
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import configuration,batch
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261114-r5p1'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r5p1.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-two-searches-20261114-r6.zip')
 EXPORT='''import hashlib,json,pathlib,sys,time,zipfile
 root=pathlib.Path(sys.argv[1]);run=pathlib.Path(sys.argv[2]);job=sys.argv[3]
 if not run.resolve().is_relative_to((root/'runs').resolve()) or not job.isdigit():raise SystemExit('invalid retrieval identity')
@@ -26,10 +26,15 @@ if s['phase'] in ('running','launching'):raise SystemExit('run not settled')
 out=root/'exports'/('result-'+job+'-'+str(time.time_ns())+'.zip');out.parent.mkdir(exist_ok=True)
 paths=[p for p in run.rglob('*') if p.is_file() and not p.is_symlink()]
 paths += list((root/'logs').glob(run.name+'-'+job+'.*'))
-files={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+if (run/'Shared_execution.json').exists():
+ shared=pathlib.Path(json.loads((run/'Shared_execution.json').read_text())['manifest'])
+ if not shared.resolve().is_relative_to((root/'plans').resolve()):raise SystemExit('shared evidence outside release plans')
+ paths += [p for p in shared.parent.rglob('*.json') if p.is_file() and not p.is_symlink() and 'configs' not in p.relative_to(shared.parent).parts and 'run-gates' not in p.relative_to(shared.parent).parts]
+payload={str(p.relative_to(root)):p.read_bytes() for p in paths}
+files={n:hashlib.sha256(raw).hexdigest() for n,raw in payload.items()}
 with zipfile.ZipFile(out,'x',compression=zipfile.ZIP_DEFLATED) as z:
- for n in files:z.write(root/n,n)
- z.writestr('retrieval-manifest.json',json.dumps({'files':files,'job_id':job,'run_id':run.name,'phase':s['phase']}))
+ for n,raw in payload.items():z.writestr(n,raw)
+ z.writestr('retrieval-manifest.json',json.dumps({'files':files,'job_id':job,'run_id':run.name,'phase':s['phase'],'shared_evidence_is_point_in_time_snapshot':True}))
 print(json.dumps({'path':str(out),'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'phase':s['phase']}))
 '''
 SAVE='''import pathlib,sys,base64,hashlib

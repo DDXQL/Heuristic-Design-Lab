@@ -1,0 +1,20 @@
+{
+  "batch_id": "two-u-502-503-20261114",
+  "mode": "real",
+  "min_request_interval_seconds": 1,
+  "queue_wait_seconds": 360,
+  "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+  "members": [
+    {
+      "group": "fjsp-u",
+      "seed": 502,
+      "config": "../../../plans/parallel-profiles/configs/fjsp-u.json"
+    },
+    {
+      "group": "fjsp-u",
+      "seed": 503,
+      "config": "../../../plans/parallel-profiles/configs/fjsp-u.json"
+    }
+  ],
+  "adoption": "EoH study adopted; U scientific profile still draft; resources are proposals until manual submission"
+}

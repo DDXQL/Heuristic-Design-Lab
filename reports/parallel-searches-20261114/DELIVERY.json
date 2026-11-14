@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-14",
+  "worktree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114",
+  "branch": "codex/fjsp-two-searches-20261114",
+  "source_parent": "7edeeb93691fb176025f4e676231578c899b4c56",
+  "public_execution": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "uploaded": false,
+  "compute_node_verified": false,
+  "actual_shared_API_verified": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submissions": 0,
+  "old_616362_latest_state": "unknown; not queried again",
+  "old_501_and_616362_modified": false,
+  "protected_r5p1_archive_sha256": "4851e37e52067e298eda18f596be31b097944ea9dc791e625515f5ed11fd6b1e",
+  "fjsp_eoh_science_adopted": true,
+  "new_U_science_adopted": false,
+  "independent_searches": 2,
+  "global_API_concurrency": 1,
+  "per_seed_API_concurrency": 1,
+  "CPU_evaluation_concurrency": {
+    "eoh": 1,
+    "u": 2
+  },
+  "proposed_aggregate_resources": {
+    "eoh": {
+      "cpus": 4,
+      "memory_mib": 4096
+    },
+    "u": {
+      "cpus": 6,
+      "memory_mib": 4096
+    }
+  },
+  "future_bounded_actual_acceptance": {
+    "EoH": {
+      "original_request_cap_each": 1020,
+      "original_total_cap": 2040,
+      "prefix_each": 1,
+      "physical_model_request_cap": 2,
+      "inclusive_solve_cap": 84
+    },
+    "U_after_scientific_adoption": {
+      "prefix_each": 2,
+      "physical_model_request_cap": 4,
+      "inclusive_solve_cap": 168
+    }
+  },
+  "future_API2_adopted": false,
+  "pending": [
+    "network access restored by operator; no repeat network diagnostics performed",
+    "new R6 upload and actual two-job filesystem/Mock evidence",
+    "current resources and fresh all-other-device/account exclusion",
+    "old generator616362 settled and common lease released normally before real activation",
+    "bounded actual new-path acceptance before full paired resume",
+    "new U scientific adoption; never inferred from EoH approval"
+  ]
+}

@@ -11,7 +11,7 @@ sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from experiments.triad import runtime
 BASE=Path('/Users/DDXQL/Developer/transfer-outbox/fjsp-cluster-noapi-923781f-20261113-r1.zip')
 BASE_SHA='b7941d16b82caa9929c644afd8d75500dddba260a5f0141cef96d010f2a92b7d'
-OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r5p1.zip')
+OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-two-searches-20261114-r6.zip')
 PUBLIC='923781f05686f1899c24fd7899fb3bc6b1df1562'
 
 
@@ -48,10 +48,11 @@ def main():
         payload['delivery/CLOSEOUT_'+name]=(ROOT/'reports/triad-closeout-20261114'/name).read_bytes()
     for name in ('OFFLINE_CHECKS.json','FIRST_FJSP_CHECK.json','DELIVERY.json'):
         payload['delivery/CLUSTER_START_'+name]=(ROOT/'reports/cluster-launch-20261114'/name).read_bytes()
+    payload['delivery/PARALLEL_OFFLINE_CHECKS.json']=(ROOT/'reports/parallel-searches-20261114/OFFLINE_CHECKS.json').read_bytes()
     forbidden=('runs','reports','logs','account-gate','.venv','.ssh','__pycache__','wire_responses','responses')
     for n in payload:
         if any(part in forbidden or part.endswith(('.lock','.key','.env','.pyc')) for part in Path(n).parts):raise ValueError('forbidden deployment member '+n)
-    release=dict(version='triad-six-groups-prepared-r5p1-fjsp-first',commit=PUBLIC,branch='codex/fjsp-execution-20261112',engineering_commit=commit,base_zip_sha256=BASE_SHA,code_ready=True,run_ready=False,formal_search_authorized=False,protocol_status='FJSP EoH study parameters adopted; fresh remote/account/probe admission pending; other studies partial',supersedes_OBP_packages=['r1','r2'],preserved_r3_sha256='bbecedc5b53810a1bd28da9455e0a090c71243da2e917e9297cec2bf93974429',execution_evidence='r3 base snapshot in delivery/DELIVERY.json; latest startup status is delivery/CLUSTER_START_*',files={n:digest(b) for n,b in sorted(payload.items())})
+    release=dict(version='triad-two-independent-searches-r6',commit=PUBLIC,branch='codex/fjsp-execution-20261112',engineering_commit=commit,base_zip_sha256=BASE_SHA,code_ready=True,run_ready=False,formal_search_authorized=False,protocol_status='two independent native searches, shared request API1; offline only, real admission pending; U profile still unadopted',supersedes_OBP_packages=['r1','r2'],preserved_r3_sha256='bbecedc5b53810a1bd28da9455e0a090c71243da2e917e9297cec2bf93974429',execution_evidence='delivery/PARALLEL_OFFLINE_CHECKS.json; historical delivery files retain their original scope',files={n:digest(b) for n,b in sorted(payload.items())})
     payload['release.json']=(json.dumps(release,ensure_ascii=False,indent=2)+'\n').encode()
     with zipfile.ZipFile(OUTPUT,'x',compression=zipfile.ZIP_DEFLATED) as z:
         for n,b in sorted(payload.items()):z.writestr(n,b)

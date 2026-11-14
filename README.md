@@ -1,5 +1,7 @@
 # Heuristic-Design-Lab：多问题实验与中文文档入口
 
+本工作树新增入口：[两个独立种子同时运行（R6）](experiments/triad/parallel/README_ZH.md)。两个搜索共享API总并发1的请求路径已接入并通过本地Mock；当前仅CODE_READY，尚未上传或取得集群／真实API验收。旧R5p1部署与616362保持原样。原`batch.py`及`serial_queue.py`仍属于串行方案，不能作为R6并发入口。
+
 ## 本轮实验：从这里开始
 
 先读[三问题实验运行入门](docs/三问题实验运行入门.md)：用通俗中文说明实验、真实命令和终端输出。更详细的参数与实现见[六组实验包说明](experiments/triad/README_ZH.md)。

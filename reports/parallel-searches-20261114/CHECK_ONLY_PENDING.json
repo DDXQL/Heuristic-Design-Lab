@@ -1,0 +1,119 @@
+{
+  "expected_protocol_rejections": {
+    "two-eoh-502-503": {
+      "members": [
+        {
+          "run_id": "two-eoh-502-503-20261114-fjsp-eoh-seed-502",
+          "seed": 502,
+          "group": "fjsp-eoh",
+          "phase": "not_started",
+          "pending": [
+            "account_exclusion"
+          ],
+          "original_request_cap": 1020,
+          "resources": {
+            "cpus": 2,
+            "memory_mib": 2048,
+            "segment_seconds": 43200,
+            "drain_seconds": 1620,
+            "numeric_threads": 1,
+            "partition": "128C_02",
+            "account": "wz",
+            "qos": "normal"
+          },
+          "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/runs/two-eoh-502-503-20261114/two-eoh-502-503-20261114-fjsp-eoh-seed-502",
+          "submissions": []
+        },
+        {
+          "run_id": "two-eoh-502-503-20261114-fjsp-eoh-seed-503",
+          "seed": 503,
+          "group": "fjsp-eoh",
+          "phase": "not_started",
+          "pending": [
+            "account_exclusion"
+          ],
+          "original_request_cap": 1020,
+          "resources": {
+            "cpus": 2,
+            "memory_mib": 2048,
+            "segment_seconds": 43200,
+            "drain_seconds": 1620,
+            "numeric_threads": 1,
+            "partition": "128C_02",
+            "account": "wz",
+            "qos": "normal"
+          },
+          "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/runs/two-eoh-502-503-20261114/two-eoh-502-503-20261114-fjsp-eoh-seed-503",
+          "submissions": []
+        }
+      ],
+      "total_original_request_cap": 2040,
+      "shared": null,
+      "STOP": false,
+      "RUN_READY": false,
+      "API_requests_by_inspection": 0,
+      "actual_solves_by_inspection": 0
+    },
+    "two-u-502-503": {
+      "members": [
+        {
+          "run_id": "two-u-502-503-20261114-fjsp-u-seed-502",
+          "seed": 502,
+          "group": "fjsp-u",
+          "phase": "not_started",
+          "pending": [
+            "protocol_receipt",
+            "freeze_status",
+            "account_exclusion"
+          ],
+          "original_request_cap": 1020,
+          "resources": {
+            "cpus": 3,
+            "memory_mib": 2048,
+            "segment_seconds": 43200,
+            "drain_seconds": 1980,
+            "numeric_threads": 1,
+            "partition": "128C_02",
+            "account": "wz",
+            "qos": "normal"
+          },
+          "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/runs/two-u-502-503-20261114/two-u-502-503-20261114-fjsp-u-seed-502",
+          "submissions": []
+        },
+        {
+          "run_id": "two-u-502-503-20261114-fjsp-u-seed-503",
+          "seed": 503,
+          "group": "fjsp-u",
+          "phase": "not_started",
+          "pending": [
+            "protocol_receipt",
+            "freeze_status",
+            "account_exclusion"
+          ],
+          "original_request_cap": 1020,
+          "resources": {
+            "cpus": 3,
+            "memory_mib": 2048,
+            "segment_seconds": 43200,
+            "drain_seconds": 1980,
+            "numeric_threads": 1,
+            "partition": "128C_02",
+            "account": "wz",
+            "qos": "normal"
+          },
+          "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/runs/two-u-502-503-20261114/two-u-502-503-20261114-fjsp-u-seed-503",
+          "submissions": []
+        }
+      ],
+      "total_original_request_cap": 2040,
+      "shared": null,
+      "STOP": false,
+      "RUN_READY": false,
+      "API_requests_by_inspection": 0,
+      "actual_solves_by_inspection": 0
+    }
+  },
+  "environment_error": false,
+  "API_requests": 0,
+  "actual_solves": 0
+}

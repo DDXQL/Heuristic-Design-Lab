@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "variant": "finite",
+      "passed": true,
+      "API_requests": 0,
+      "solves": 0,
+      "actual_srun": false
+    },
+    {
+      "variant": "full",
+      "passed": true,
+      "API_requests": 0,
+      "solves": 0,
+      "actual_srun": false
+    },
+    {
+      "variant": "mock",
+      "passed": true,
+      "API_requests": 0,
+      "solves": 0,
+      "actual_srun": false
+    }
+  ],
+  "real_mode_vectors_only": true,
+  "research_approval_created": false,
+  "Slurm_submitted": false
+}
