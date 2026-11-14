@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "zip": "/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r3.zip",
+  "zip_sha256": "bbecedc5b53810a1bd28da9455e0a090c71243da2e917e9297cec2bf93974429",
+  "source_commit": "6effcf95f222e72a06758fc84675e9a5e0022d81",
+  "member_hashes_verified": 313,
+  "files": 314,
+  "root_readme_and_user_guide_included": true,
+  "public_source_identity_matches": true,
+  "checks": {
+    "obp_contract_tests": true,
+    "obp_state_tests": true,
+    "delivery_tests": true,
+    "offline_tests": true
+  },
+  "recommended_plan_pending_runs": 18,
+  "extracted_evidence_root": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "uploaded": false,
+  "compute_node_verified": false
+}

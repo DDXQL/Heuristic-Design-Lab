@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "adapter_id": "obp-preset-N-v1-candidate",
+  "action_policy": "preallocated_empty_bins",
+  "adapter_file_sha256": "e1dd67152bb8353876ff6bbf865355a0e52da9ee23615957bf8ab8395416b43d",
+  "public_schema": "common-state-a-v3-obp",
+  "public_spec_sha256": "07592addf12a3a1fea9761dd648dcc50dab257daa6c9c615336b6a4b66eed3df",
+  "public_modules_modified": false,
+  "scope": "manual partial state and synthetic successful-history commits only; no H/U execution or full construction",
+  "checks": [
+    "first N actions and missing opened resource",
+    "k+m and m/(k+m), sqrt(k*m)/(k+m)",
+    "opened-only resource including full bins",
+    "per-H/global history/window/zero availability",
+    "no mutation by observe",
+    "invalid/terminal state rejection"
+  ],
+  "rejected_cases": 4,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "H_executions": 0,
+  "U_executions": 0,
+  "research_adopted": false
+}

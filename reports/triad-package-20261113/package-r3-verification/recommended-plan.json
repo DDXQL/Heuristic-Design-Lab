@@ -1,0 +1,753 @@
+{
+  "version": "triad-batch-plan-v1",
+  "campaign_id": "triad-recommended-DRAFT-20261113",
+  "campaign_sha256": "679ac8b6673eae59bb69eeae4b9625952add7e71779820a35317b706b118fb91",
+  "rows": [
+    {
+      "protected_existing_501": true,
+      "group": "fjsp-u",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-u-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-u.json",
+      "config_sha256": "ebfe6facd4d2909025b0be0d1a1ec9c51a3e7c2e2f9dc5865c2a1e3334377667",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "fjsp-u",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-u-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-u.json",
+      "config_sha256": "ebfe6facd4d2909025b0be0d1a1ec9c51a3e7c2e2f9dc5865c2a1e3334377667",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "fjsp-u",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-u-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-u.json",
+      "config_sha256": "ebfe6facd4d2909025b0be0d1a1ec9c51a3e7c2e2f9dc5865c2a1e3334377667",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "fjsp-eoh",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-eoh-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-eoh.json",
+      "config_sha256": "c32b9bf063f935812972725756f7421a95dc9d3301d9c05461508c9603c6d8e0",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "fjsp-eoh",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-eoh-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-eoh.json",
+      "config_sha256": "c32b9bf063f935812972725756f7421a95dc9d3301d9c05461508c9603c6d8e0",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "fjsp-eoh",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-fjsp-eoh-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/fjsp-eoh.json",
+      "config_sha256": "c32b9bf063f935812972725756f7421a95dc9d3301d9c05461508c9603c6d8e0",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-u",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-u-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-u.json",
+      "config_sha256": "347b60c1a9bf6967e9df3f757264da62c5089a5b49cf56a4c30e030454febd6e",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-u",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-u-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-u.json",
+      "config_sha256": "347b60c1a9bf6967e9df3f757264da62c5089a5b49cf56a4c30e030454febd6e",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-u",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-u-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-u.json",
+      "config_sha256": "347b60c1a9bf6967e9df3f757264da62c5089a5b49cf56a4c30e030454febd6e",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-eoh",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-eoh-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-eoh.json",
+      "config_sha256": "7493b99f12017bb58799f057b8f56feefc6a6b9329111a3f6995a61c9a5bb63f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-eoh",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-eoh-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-eoh.json",
+      "config_sha256": "7493b99f12017bb58799f057b8f56feefc6a6b9329111a3f6995a61c9a5bb63f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "tsp-eoh",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-tsp-eoh-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/tsp-eoh.json",
+      "config_sha256": "7493b99f12017bb58799f057b8f56feefc6a6b9329111a3f6995a61c9a5bb63f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "protocol_receipt",
+        "reference_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      }
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-u",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-u-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-u.json",
+      "config_sha256": "1a4715f174220c1b87bebe8a21b21d0afe0eea5abcc4584a437238274e79173f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "h_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-u",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-u-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-u.json",
+      "config_sha256": "1a4715f174220c1b87bebe8a21b21d0afe0eea5abcc4584a437238274e79173f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "h_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-u",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-u-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-u.json",
+      "config_sha256": "1a4715f174220c1b87bebe8a21b21d0afe0eea5abcc4584a437238274e79173f",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "h_file",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-eoh",
+      "index": 0,
+      "seed": 501,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-eoh-seed-501",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-eoh.json",
+      "config_sha256": "45d1daebc9ce9e7fbaa07064ea3f641f2d1e63ce6ffa0c13bf8ca628c722754a",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-eoh",
+      "index": 1,
+      "seed": 502,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-eoh-seed-502",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-eoh.json",
+      "config_sha256": "45d1daebc9ce9e7fbaa07064ea3f641f2d1e63ce6ffa0c13bf8ca628c722754a",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    },
+    {
+      "protected_existing_501": false,
+      "group": "obp-eoh",
+      "index": 2,
+      "seed": 503,
+      "run_id": "triad-recommended-DRAFT-20261113-obp-eoh-seed-503",
+      "source_config": "/Users/DDXQL/Developer/cluster-deployment/triad-r3-offline-extracted-20261114/experiments/triad/recommended.draft/obp-eoh.json",
+      "config_sha256": "45d1daebc9ce9e7fbaa07064ea3f641f2d1e63ce6ffa0c13bf8ca628c722754a",
+      "status": "pending",
+      "pending": [
+        "window_seconds",
+        "data_manifest",
+        "protocol_receipt",
+        "data_usage_receipt",
+        "freeze_status",
+        "resources.memory_mib",
+        "resources.segment_seconds",
+        "resources.drain_seconds",
+        "state_delivery.adoption",
+        "account_exclusion",
+        "account_gate",
+        "credential_file"
+      ],
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": null,
+          "search_seed": 401,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "OBP_contract_version": "obp-feasible-permanent-actions-v2"
+    }
+  ],
+  "all_declared_request_cap": 18360,
+  "same_account_generation_tasks": 1,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "credential_reads": 0
+}
