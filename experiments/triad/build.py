@@ -11,7 +11,7 @@ sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from experiments.triad import runtime
 BASE=Path('/Users/DDXQL/Developer/transfer-outbox/fjsp-cluster-noapi-923781f-20261113-r1.zip')
 BASE_SHA='b7941d16b82caa9929c644afd8d75500dddba260a5f0141cef96d010f2a92b7d'
-OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261113-r3.zip')
+OUTPUT=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-prepared-20261114-r4.zip')
 PUBLIC='923781f05686f1899c24fd7899fb3bc6b1df1562'
 
 
@@ -31,7 +31,7 @@ def main():
     names=set(runtime.sources())
     for folder in ('experiments/triad','deploy/eoh-baseline','preparations/eoh-gap','preparations/triad'):
         names.update(str(p.relative_to(ROOT)) for p in (ROOT/folder).rglob('*') if p.is_file() and p.suffix in ('.py','.json','.md','.fjsp','.sbatch','.sh'))
-    names.update(('experiments/common/_single_run.py','deploy/cluster-mock/control.py','deploy/cluster-mock/inspect_remote.py','AGENTS.md','docs/中文科研写作规范.md','README.md','docs/三问题实验运行入门.md'))
+    names.update(('experiments/common/_single_run.py','deploy/cluster-mock/control.py','deploy/cluster-mock/inspect_remote.py','AGENTS.md','docs/中文科研写作规范.md','README.md','docs/三问题实验运行入门.md','docs/实验结束与归档.md','requirements-closeout.txt'))
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     for n in sorted(names):
         p=ROOT/n
@@ -44,10 +44,12 @@ def main():
         payload[n]=b
     for name in ('DELIVERY.json','FINAL_DELIVERY_CHECKS.json','OBP_PRESET_STATE_ACCEPTANCE.json','OBP_V2_INTERFACE_ACCEPTANCE.json','latest-offline.json'):
         payload['delivery/'+name]=(ROOT/'reports/triad-package-20261113'/name).read_bytes()
+    for name in ('OFFLINE_CHECKS.json','DELIVERY.json'):
+        payload['delivery/CLOSEOUT_'+name]=(ROOT/'reports/triad-closeout-20261114'/name).read_bytes()
     forbidden=('runs','reports','logs','account-gate','.venv','.ssh','__pycache__','wire_responses','responses')
     for n in payload:
         if any(part in forbidden or part.endswith(('.lock','.key','.env','.pyc')) for part in Path(n).parts):raise ValueError('forbidden deployment member '+n)
-    release=dict(version='triad-six-groups-prepared-r3',commit=PUBLIC,branch='codex/fjsp-execution-20261112',engineering_commit=commit,base_zip_sha256=BASE_SHA,code_ready=True,run_ready=False,formal_search_authorized=False,protocol_status='pending',supersedes_OBP_packages=['r1','r2'],files={n:digest(b) for n,b in sorted(payload.items())})
+    release=dict(version='triad-six-groups-prepared-r4-closeout-v1',commit=PUBLIC,branch='codex/fjsp-execution-20261112',engineering_commit=commit,base_zip_sha256=BASE_SHA,code_ready=True,run_ready=False,formal_search_authorized=False,protocol_status='pending',supersedes_OBP_packages=['r1','r2'],preserved_r3_sha256='bbecedc5b53810a1bd28da9455e0a090c71243da2e917e9297cec2bf93974429',execution_evidence='delivery/DELIVERY.json is the r3 execution-preparation snapshot; new offline closeout evidence is delivery/CLOSEOUT_*',files={n:digest(b) for n,b in sorted(payload.items())})
     payload['release.json']=(json.dumps(release,ensure_ascii=False,indent=2)+'\n').encode()
     with zipfile.ZipFile(OUTPUT,'x',compression=zipfile.ZIP_DEFLATED) as z:
         for n,b in sorted(payload.items()):z.writestr(n,b)

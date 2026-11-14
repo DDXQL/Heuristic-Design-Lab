@@ -28,6 +28,18 @@ bash experiments/triad/mac.sh plan
 
 指南包括：Mac与集群的启动、查询、暂停、恢复、取回、汇总；best_J、尝试数、实际发送、失败、重复、未知用量、Slurm作业状态的含义；以及如何查看已有Mac U501而不重开一份运行。正式请求、求解和Slurm提交由用户手动执行。
 
+## 实验结束后：图表、复现与保存
+
+[实验结束与归档](docs/实验结束与归档.md)给出离线check-only、单次收尾、批次汇总和完整备份命令。新入口`experiments/triad/closeout.py`只读已有export／summary，不导入客户端或求解器。每张图有PNG、SVG、PDF及来源CSV；包括全部演化尝试、交叉／变异、父代／子代、生存选择、失败／重复、冠军局部关系、逐实例成本和按member_sequence统计的H选择。初始化另标，内部负J只转一次，缺记录不重跑补图。
+
+运行代码版本与后处理版本分别记录。完整原始ZIP在transfer-outbox，精简成果在独立results目录；GitHub待推送清单明确列出文件、版本、排除项和大文件。不会默认把runs入Git，不自动push或上传Release。原r3保留；r4增加离线收尾，正式搜索门禁不变。
+
+| 版本／运行 | 身份与结果 | 保存状态 |
+| --- | --- | --- |
+| r3工程包 | 源冻结6effcf9；公共执行923781f | 已本地打包核验，原ZIP保留 |
+| 已有Mac U501 | 运行提交19a86bf及实际源码清单；初始化8、演化1000，冠军G076-001-CROSS，训练J=1.028064685792435 | 原运行只读保留；离线成果见results/fjsp-u501-closeout-20261114-v1/REPORT_ZH.md，实际完整ZIP位置及SHA见其中archive-receipt.json |
+| r4／closeout-v1 | 后处理版本见成果reproduction.json，工程版本见新ZIP release.json | 本地生成／提交与远端上传分别记录；以交付回执为准 |
+
 ## 历史入口与工程交接
 
 以下记录保留原版本、当时状态和命令。阅读本轮三问题实验时，优先使用上面的指南；旧10项／13项、旧评分和已关闭验收不自动成为本轮协议。

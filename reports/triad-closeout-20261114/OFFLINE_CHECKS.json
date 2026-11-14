@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "all evolution attempts retained; init separate",
+    "exclusive outcome counts",
+    "internal -J converted once",
+    "H selections from sequence, not score-call counts",
+    "seven PNG/SVG/PDF charts",
+    "full ZIP/member hashes/source immutability",
+    "secret/lock/overwrite refusal",
+    "batch failures/unstarted retained and n=1 has no SD band"
+  ],
+  "API_requests": 0,
+  "actual_solves": 0,
+  "H_U_executions": 0
+}
