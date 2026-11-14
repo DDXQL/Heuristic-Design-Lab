@@ -1,0 +1,234 @@
+{
+  "remote": "git@github.com:DDXQL/Heuristic-Design-Lab.git",
+  "branch": "codex/fjsp-eoh-gap-prep-20261113",
+  "local_tool_commits": [
+    "e926be80eca06a49f3f59c78b771101033fa5454",
+    "2e93b8767fc51dc77c493dc69ec2799c7a92a275"
+  ],
+  "sample_postprocessing_commit": "e926be80eca06a49f3f59c78b771101033fa5454",
+  "original_run_commit": "19a86bf4f515077bbc7159a9e1559d1d6740095a",
+  "sample_file_manifest": {
+    "results/fjsp-u501-closeout-20261114-v1/H-selections.csv": {
+      "sha256": "639170bbd7c396d9343866142657622d5f3f15cbdac79334cd4ee6686f22d009",
+      "bytes": 100548
+    },
+    "results/fjsp-u501-closeout-20261114-v1/README.md": {
+      "sha256": "2ab53e99c071aa2a31223e71b8d5e705bce25ae56b32208985f9bd3732cf0775",
+      "bytes": 486
+    },
+    "results/fjsp-u501-closeout-20261114-v1/REPORT_ZH.md": {
+      "sha256": "be767adadb4416984737b615c37dbe831e15f20bd86a04a3b42e752ce61dc717",
+      "bytes": 3395
+    },
+    "results/fjsp-u501-closeout-20261114-v1/archive-receipt.json": {
+      "sha256": "7d211e008b4a4f9d3075142bf0032d5caba291e70aabb09364bc31d57953ac3d",
+      "bytes": 449
+    },
+    "results/fjsp-u501-closeout-20261114-v1/attempts.csv": {
+      "sha256": "04966c592642f58d169142fba80f487213ca665fbf5f9e85497bca141849d6d7",
+      "bytes": 207749
+    },
+    "results/fjsp-u501-closeout-20261114-v1/champion-changes.csv": {
+      "sha256": "fefe1f307d5fa52a153b4855f375ce06c8fe627cc185e24957badc28a50691bd",
+      "bytes": 443
+    },
+    "results/fjsp-u501-closeout-20261114-v1/champion-instances.csv": {
+      "sha256": "44a6cadcbfdf01215c9dca11208e741f3f214eb95584926383cb436c04bb823b",
+      "bytes": 19259
+    },
+    "results/fjsp-u501-closeout-20261114-v1/champion-local-edges.csv": {
+      "sha256": "c73cf09bc248f39a5782f6cb0f2b9c649619c21158dd44acbfa9f8481d2b69ab",
+      "bytes": 317
+    },
+    "results/fjsp-u501-closeout-20261114-v1/champion.json": {
+      "sha256": "8db9d81540b194b05c7523971f6cee1a065b6deecf3731beb041a058c5859aee",
+      "bytes": 3310
+    },
+    "results/fjsp-u501-closeout-20261114-v1/champion.py": {
+      "sha256": "ddcd852ed7fce0abbc683db4be25a7a324a5b83cf638e6ce5e9b0782bffd1833",
+      "bytes": 2514
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/01-best-J.pdf": {
+      "sha256": "f1b9a3f145b2f5713a7138b0676a2f87d4c4b7df1f71afc5f12bf1d0764fb0e8",
+      "bytes": 17789
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/01-best-J.png": {
+      "sha256": "4e700841a134cd6ffddb6f79375f878ffc59c0f77e9537527d84031cd37ce4de",
+      "bytes": 55676
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/01-best-J.svg": {
+      "sha256": "f09a8cef3ef55b01eee1e53aa86e0cda25f120d4bd43fec60a81a2cee8b79169",
+      "bytes": 13734
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/02-candidates-population.pdf": {
+      "sha256": "11d08e93dc963e20aee8ab7ff1c066bfe345a379735345618e0301211b687591",
+      "bytes": 26373
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/02-candidates-population.png": {
+      "sha256": "c32c9c9ca33b584c1398cce0b7e71a574d2d2b3dc1e797a103771daa32c2a48d",
+      "bytes": 154231
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/02-candidates-population.svg": {
+      "sha256": "509baccecad52bc455d59115c2def81708d16d9067657f8342518eb70aaffbaa",
+      "bytes": 288928
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/03-outcomes.pdf": {
+      "sha256": "e81343a20483b2d0908068991467c596e668d813ce2cd762286282bd8ae721d4",
+      "bytes": 19754
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/03-outcomes.png": {
+      "sha256": "ae07e1f19fb0b8eb368420096b757a373cac3ce8167d2110227daafa57914aa4",
+      "bytes": 69872
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/03-outcomes.svg": {
+      "sha256": "fefe91232ec0c715b0a169f3601789a6ebd064a8cc3be4c9ea4fad3803a85770",
+      "bytes": 167267
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/04-champion-changes.pdf": {
+      "sha256": "fade8976d5f61ce79694ea01d355151cb880ea628dd146e70f888d446d82df4e",
+      "bytes": 18058
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/04-champion-changes.png": {
+      "sha256": "63a089641d4367368c54a28086d126373fc4eb1386e9b4ee1dfd9b9db7a7f860",
+      "bytes": 46673
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/04-champion-changes.svg": {
+      "sha256": "1c3589e1c65bf2815f9633aab5dfd690755c159753b69c129d6b510de0427237",
+      "bytes": 9690
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/05-champion-local-lineage.pdf": {
+      "sha256": "437d512449870f078fc30614e02bf4dc82005e86dbb6da86ef2033ced16eb888",
+      "bytes": 16045
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/05-champion-local-lineage.png": {
+      "sha256": "8a04e1e7efd56e072b02cb626b0228c27ec138026980fe70d2f48e68187b482f",
+      "bytes": 54978
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/05-champion-local-lineage.svg": {
+      "sha256": "c2d4a2daaed56236f77bec18aa5c3eb317eee710db4524578ddd6814bba55329",
+      "bytes": 5236
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/06-champion-instances.pdf": {
+      "sha256": "fcd9811b703be16700dc6b06ffce4abdf5f1dcf5ae305babbba2651e48e9f07b",
+      "bytes": 18869
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/06-champion-instances.png": {
+      "sha256": "5a8e4cece4ef2d9e42cd831ea96302f558813ae12304b0150d1e20de506af375",
+      "bytes": 67824
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/06-champion-instances.svg": {
+      "sha256": "fc52d96cf99857f82cebaeb82cc0ed77c9467a2ab7d8f59ed13e68b28025f211",
+      "bytes": 22239
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/07-H-selections.pdf": {
+      "sha256": "7e0b0e008f52d04255611f23be005a4ade6b3dfb19cb217504ae8311f7baa127",
+      "bytes": 23348
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/07-H-selections.png": {
+      "sha256": "fdf0c28ddbf42ee6952f4cdddffbc78e3aa934cd58d2ee24504acbbc3893b7ed",
+      "bytes": 106157
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures/07-H-selections.svg": {
+      "sha256": "40bf25fffdaf964532ba46b4e8b42cbaebb930fef53539448a319be780793bd0",
+      "bytes": 36096
+    },
+    "results/fjsp-u501-closeout-20261114-v1/figures.json": {
+      "sha256": "9190a2f1997d8e0cd210d2fd4e9591567500d2ada1cac4a1c950a848a4c8a1dd",
+      "bytes": 1939
+    },
+    "results/fjsp-u501-closeout-20261114-v1/files.sha256.json": {
+      "sha256": "12717ec6e00f9f0a954ce4990c609373e3f6411b5979bfa45a0213781e4a99a0",
+      "bytes": 5582
+    },
+    "results/fjsp-u501-closeout-20261114-v1/generations-J.csv": {
+      "sha256": "1d3436e902a3e5c139b31cf6cdcc2b0809d71b0796377861abd603ed5775de05",
+      "bytes": 18819
+    },
+    "results/fjsp-u501-closeout-20261114-v1/github-pending.json": {
+      "sha256": "92e8eaec6fd05e806af75697fade36b7d4c29e5b8b37b2350cc5ef2617888daa",
+      "bytes": 4120
+    },
+    "results/fjsp-u501-closeout-20261114-v1/outcome-counts.csv": {
+      "sha256": "9b900b78c97b0496a72835c680139fd0eadb7bd3d8489379c2cf13255386f9f0",
+      "bytes": 446
+    },
+    "results/fjsp-u501-closeout-20261114-v1/parent-edges.csv": {
+      "sha256": "faf4fa12fe81020cce230f8cf76ca75da07084973b0bd31a148b0bd9dc48f54c",
+      "bytes": 148009
+    },
+    "results/fjsp-u501-closeout-20261114-v1/plot_and_closeout.py": {
+      "sha256": "0447d3f9803023199fe6adc2f3f7af954a1286f09110136e897e4903ba08b34c",
+      "bytes": 37377
+    },
+    "results/fjsp-u501-closeout-20261114-v1/reproduction.json": {
+      "sha256": "ca8a7aa5210720706259628376c13cfd19c1d475b4525ddb61cba42e99b785c5",
+      "bytes": 20923
+    },
+    "results/fjsp-u501-closeout-20261114-v1/source-file-manifest.json": {
+      "sha256": "47cb56978c08b2c0031aece7ec3028073648c28762a36f5c935c6b4bf01764bb",
+      "bytes": 1056499
+    }
+  },
+  "sample_already_committed": false,
+  "suggested_tag_after_result_commit": "closeout-fjsp-u501-20261114-v1",
+  "tag_created": false,
+  "remote_fetched": false,
+  "complete_outgoing_history_review_required": true,
+  "push_executed": false,
+  "Release_uploaded": false,
+  "privacy_license_approval": false,
+  "not_for_Git": [
+    "original runs/ and checkpoints",
+    "full raw evidence ZIP",
+    "credentials and environments",
+    "unrelated plans/triad-20261113/Summary.json and all-runs.csv",
+    "other worktree changes"
+  ],
+  "optional_manual_commands_after_review": [
+    [
+      "git",
+      "add",
+      "--",
+      "results/fjsp-u501-closeout-20261114-v1"
+    ],
+    [
+      "git",
+      "diff",
+      "--cached",
+      "--stat"
+    ],
+    [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    [
+      "git",
+      "commit",
+      "-m",
+      "Save FJSP U501 offline closeout v1"
+    ],
+    [
+      "git",
+      "tag",
+      "-a",
+      "closeout-fjsp-u501-20261114-v1",
+      "-m",
+      "Reviewed FJSP U501 closeout v1"
+    ],
+    [
+      "git",
+      "push",
+      "origin",
+      "codex/fjsp-eoh-gap-prep-20261113"
+    ],
+    [
+      "git",
+      "push",
+      "origin",
+      "closeout-fjsp-u501-20261114-v1"
+    ]
+  ],
+  "warning": "Commands are a pending review plan, not executed. A branch push publishes all reachable outgoing commits; inspect remote differences first. No force push."
+}
