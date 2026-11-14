@@ -1,4 +1,4 @@
-# 两个独立种子同时运行：R6准备交付
+# 两个独立种子同时运行：R6p1准备交付
 
 本版从R5p1源码7edeeb9建立，公共`code/`与冻结U入口不变。当前仅本地离线准备；没有上传、真实模型请求、真实求解或Slurm提交。616362仍使用原部署，不能接入这个批次，也不更换它的源码、配置或门禁。其最新远端进度仍未知。
 
@@ -44,13 +44,14 @@ EoH每作业2CPU、2048MiB；U每作业3CPU、2048MiB。单作业12小时、原�
 以下远端路径是R6预定安装位置，当前未上传。网络恢复后先在Mac终端手动部署新目录；原R5p1不覆盖。
 
 ```bash
+/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/experiments/triad/cluster.py inspect
 /Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114/experiments/triad/cluster.py stage
 ```
 
 在已登录的集群终端进入新目录。沿用原Python环境，不安装依赖。
 
 ```bash
-cd /public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6
+cd /public2/home/qiuqian/hdl-deploy/triad-two-searches-20261114-r6p1
 P=/public2/home/qiuqian/hdl-envs/portable-v2/bin/python
 "$P" -s -B experiments/triad/parallel.py mock-plan --directory plans/two-search-mock-acceptance
 "$P" -s -B experiments/triad/parallel.py activate --manifest plans/two-search-mock-acceptance/Shared.json
@@ -111,3 +112,9 @@ U的对应spec已提供，但采用草案前check-only／submit会报告协议�
 ```
 
 fetch保留原ZIP／成员哈希核验，并附共享清单、账本、停止原因、提交及文件系统证据的时点快照；一个作业取回不表示整批完成。不得把本地Mock或短工程probe耗时外推正式吞吐。账本记录每次API等待、保守间隔与线耗时，原评价回执保留求解CPU／墙钟／内存；未来只用实际相同前缀做串行与并行对比，所有额外请求／求解须另行声明并获授权。
+
+两成员都已结清且决定结束批次后，在集群终端明确关闭批次，才释放它拥有的公共账户锁。关闭后不能恢复这个批次；若尚未满1000次，仍保留原paused／expired等状态，不能改称completed。未知或STOP批次会拒绝关闭，需先人工核查，不提供自动解锁。
+
+```bash
+"$P" -s -B experiments/triad/parallel.py close --manifest plans/two-eoh-502-503/Shared.json
+```

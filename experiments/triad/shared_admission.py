@@ -151,14 +151,16 @@ class Admission:
         with self.transaction() as s:
             r=s['requests'][uid]
             if s['active'].get(uid)!=self.member or r['state']!='admitted':raise RuntimeError('send without owned permit')
-            if (self.folder/'STOP.json').exists():raise RuntimeError('STOP before physical dispatch')
+            # The V5 callback arrives AFTER the physical send. A peer STOP may
+            # have appeared meanwhile; account for this admitted send and drain
+            # its response rather than aborting a known in-flight request.
             r.update(state='sent',sent_at=time.time(),pacing_seconds=self.m['min_request_interval_seconds']);s['last_sent_at']=r['sent_at'];self.event(s,'sent',uid=uid,member=self.member)
 
     def settled(self,uid,value,wire_seconds):
         with self.transaction() as s:
             r=s['requests'][uid]
             if s['active'].get(uid)!=self.member or r['state']!='sent':raise RuntimeError('response without known owned send')
-            r.update(state='completed',finished_at=time.time(),usage=value.get('usage'),wire_seconds=wire_seconds)
+            r.update(state='completed',finished_at=time.time(),usage=value.get('usage'),wire_seconds=wire_seconds,wire_timing=(value.get('metadata') or {}).get('wire_timing'))
             del s['active'][uid];self.event(s,'settled',uid=uid,member=self.member)
 
     def failed(self,uid,error):
@@ -207,7 +209,6 @@ class GuardedTransport:
         except BaseException as error:
             error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
             raise
-        started=time.monotonic()
         inner_started=False
         try:
             # Hold the FREE permit, then wait using monotonic time. This is
@@ -222,8 +223,9 @@ class GuardedTransport:
                 raise TimeoutError('original calendar window cannot cover dispatch and evaluation after waiting')
             def sent():self.admission.sent(uid);on_sent()
             inner_started=True
+            wire_started=time.monotonic()
             value=self.inner.dispatch(key,prompt,kind=kind,on_sent=sent)
-            self.admission.settled(uid,value,time.monotonic()-started);return value
+            self.admission.settled(uid,value,time.monotonic()-wire_started);return value
         except BaseException as error:
             if not inner_started:error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
             self.admission.failed(uid,error);raise

@@ -130,6 +130,21 @@ def main():
             assert proof['peer_request_during_other_evaluation_observed'],group
             results[group]={'two_native_coordinators':True,'parallel_matches_alone':True,'independent_protocols_and_directories':True,'single_pause_resume_same_clock_cap_and_trace':True,'safe_initial_boundary':boundary,'Mock_instance_rows':1 if group.endswith('-u') else 21,'peer_continues_and_unchanged_on_other_resume':True,**proof}
         with patch.object(socket.socket,'connect',deny),patch.object(socket,'create_connection',deny):results['actual_transport_paths']=transport_paths(root)
+        # Peer STOP after a wire has begun cannot erase its send callback or
+        # interrupt settlement. It must still prohibit the next request.
+        p=fixture(root,'fjsp-eoh','peer-stop-drain',False);m=read(p);r=m['members'][0]
+        runtime.prepare(r['run_dir'],r['config'],engineering=True);b=shared.binding(p,r['run_dir'],r['config']);shared.attach(r['run_dir'],b)
+        cp=read(Path(r['run_dir'])/'checkpoint.json');cp['phase']='paused';write(Path(r['run_dir'])/'checkpoint.json',cp);confirmed=[]
+        class Inflight:
+            config=None;identity='SYNTHETIC_ADMITTED_BEFORE_PEER_STOP'
+            def dispatch(self,key,prompt,*,kind,on_sent):
+                shared.stop(p.parent/'gate','SYNTHETIC peer failure during admitted wire');on_sent();return {'text':'SYNTHETIC settled response'}
+        with shared.Admission(b).session(r['run_dir']):shared.GuardedTransport(Inflight(),shared.Admission(b)).dispatch('drain-existing','fixture',kind='h',on_sent=lambda:confirmed.append(True))
+        try:shared.GuardedTransport(Inflight(),shared.Admission(b)).dispatch('must-not-send','fixture',kind='h',on_sent=lambda:None)
+        except RuntimeError as e:assert e.metadata['send_status']=='not_sent'
+        else:raise AssertionError('new send after peer STOP')
+        s=read(p.parent/'gate/ledger.json');assert confirmed==[True] and not s['active'] and len(s['requests'])==1 and next(iter(s['requests'].values()))['state']=='completed'
+        results['peer_STOP_drains_existing']={'send_callback_preserved':True,'existing_response_settled':True,'next_request_known_not_sent':True,'no_refund':True}
         # At the exact declared cap, one additional logical key cannot send.
         p=fixture(root,'fjsp-eoh','caps',False);m=read(p);calls=[]
         class Wire:

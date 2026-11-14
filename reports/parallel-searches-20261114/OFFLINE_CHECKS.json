@@ -21,7 +21,7 @@
       "FIFO": true,
       "spacing": true,
       "per_seed_caps": true,
-      "API_wait_seconds": 0.35960708404309116,
+      "API_wait_seconds": 0.3546171690104529,
       "peer_request_during_other_evaluation_observed": true
     },
     "fjsp-u": {
@@ -37,7 +37,7 @@
       "FIFO": true,
       "spacing": true,
       "per_seed_caps": true,
-      "API_wait_seconds": 0.7433822969614994,
+      "API_wait_seconds": 0.7338788739871234,
       "peer_request_during_other_evaluation_observed": true
     },
     "actual_transport_paths": {
@@ -45,6 +45,12 @@
       "unchanged_U_routing_generate_factory": true,
       "synthetic_dispatches": 2,
       "real_API_requests": 0
+    },
+    "peer_STOP_drains_existing": {
+      "send_callback_preserved": true,
+      "existing_response_settled": true,
+      "next_request_known_not_sent": true,
+      "no_refund": true
     },
     "exact_budget_boundary": {
       "no_extra_dispatch": true,
