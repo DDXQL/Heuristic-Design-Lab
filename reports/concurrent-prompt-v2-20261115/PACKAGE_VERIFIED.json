@@ -1,0 +1,332 @@
+{
+  "passed": true,
+  "source_commit": "cbc2ee4a04b4a2a426d790a3a269b284ad9735c6",
+  "ZIP": {
+    "zip": "/Users/DDXQL/Developer/transfer-outbox/triad-concurrent-prompt-v2-20261115-r8.zip",
+    "sha256": "6cfed839eac4042934fac275b1dd40a59acd94c72dd61e6f4560edeb6e0b93ec",
+    "bytes": 1165199,
+    "files": 515,
+    "engineering_commit": "cbc2ee4a04b4a2a426d790a3a269b284ad9735c6",
+    "public_commit": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+    "public_code_files_unchanged": 177,
+    "old_runs_included": false,
+    "credentials_included": false,
+    "account_authority_included": false,
+    "uploaded": false,
+    "compute_node_verified": false,
+    "API_requests": 0,
+    "actual_solves": 0,
+    "LKH_runs": 0
+  },
+  "manifest_members_verified": 515,
+  "public_code_unchanged": 177,
+  "fresh_extraction": {
+    "check_only": {
+      "中文名称": "三问题独立搜索与共享请求准入准备包",
+      "prepared": true,
+      "uploaded": "not_checked",
+      "two_actual_searches_verified": false,
+      "API2_adopted": false,
+      "API_requests": 0,
+      "actual_solves": 0,
+      "next_manual_Mock_budget": {
+        "jobs": 2,
+        "CPUs_total": 4,
+        "memory_MiB_total": 2048,
+        "API_requests": 0,
+        "actual_solves": 0,
+        "wall_seconds_per_job": 1800
+      }
+    },
+    "six_group_checks": {
+      "completed_read_only": 2,
+      "remaining": 16,
+      "groups": [
+        {
+          "group": "fjsp-u",
+          "pending": [
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": true,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": 20,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": 1020,
+            "requests_all_seeds": 3060,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": 42840,
+            "H_build_separate": {
+              "request_cap": null,
+              "target_count": null,
+              "selection": null,
+              "source_cost": null,
+              "search_seed": null,
+              "window_seconds": null
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        },
+        {
+          "group": "fjsp-eoh",
+          "pending": [
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": false,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": 20,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": 1020,
+            "requests_all_seeds": 3060,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": 42840,
+            "H_build_separate": {
+              "request_cap": null,
+              "target_count": null,
+              "selection": null,
+              "source_cost": null,
+              "search_seed": null,
+              "window_seconds": null
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        },
+        {
+          "group": "tsp-u",
+          "pending": [
+            "population_size",
+            "initialization_request_cap",
+            "api_attempt_cap",
+            "budget_basis",
+            "initialization_policy",
+            "reference_file",
+            "freeze_status",
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": true,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": null,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": null,
+            "requests_all_seeds": null,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": null,
+            "H_build_separate": {
+              "request_cap": null,
+              "target_count": null,
+              "selection": null,
+              "source_cost": null,
+              "search_seed": null,
+              "window_seconds": null
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        },
+        {
+          "group": "tsp-eoh",
+          "pending": [
+            "population_size",
+            "initialization_request_cap",
+            "api_attempt_cap",
+            "budget_basis",
+            "initialization_policy",
+            "reference_file",
+            "freeze_status",
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": false,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": null,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": null,
+            "requests_all_seeds": null,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": null,
+            "H_build_separate": {
+              "request_cap": null,
+              "target_count": null,
+              "selection": null,
+              "source_cost": null,
+              "search_seed": null,
+              "window_seconds": null
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        },
+        {
+          "group": "obp-u",
+          "pending": [
+            "h_file",
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": false,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": 20,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": 1020,
+            "requests_all_seeds": 3060,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": 195840,
+            "H_build_separate": {
+              "request_cap": 40,
+              "target_count": 10,
+              "selection": "greedy-envelope-J-v1",
+              "source_cost": {
+                "budget": "independent cap40; shared once by3 U runs"
+              },
+              "search_seed": 401,
+              "window_seconds": 172800
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        },
+        {
+          "group": "obp-eoh",
+          "pending": [
+            "account_exclusion"
+          ],
+          "data_exists": true,
+          "H_exists": false,
+          "reference_exists": false,
+          "budget": {
+            "initialization_max": 20,
+            "evolution_attempts": 1000,
+            "request_cap_per_seed": 1020,
+            "requests_all_seeds": 3060,
+            "native_passes_per_instance": 2,
+            "native_solve_cap_per_seed": 195840,
+            "H_build_separate": {
+              "request_cap": 40,
+              "target_count": 10,
+              "selection": "greedy-envelope-J-v1",
+              "source_cost": {
+                "budget": "independent cap40; shared once by3 U runs"
+              },
+              "search_seed": 401,
+              "window_seconds": 172800
+            },
+            "automatic_retries": 0,
+            "unknown_attempts_charged": true
+          }
+        }
+      ],
+      "API_requests": 0,
+      "actual_solves": 0
+    },
+    "API2_queue_STOP_CPU_limit_tests": {
+      "passed": true,
+      "checks": [
+        "two real local processes, synthetic sends overlap at2, global send-turn spacing, no third finite reservation, original caps unchanged",
+        "persistent frozen-U transport gets fresh bounded queue deadline per request, not process-age360s",
+        "known read-only STOP refusal releases only its owned unmodified writer mutex; peer physical-send callback/settlement drains; unknown leases still sticky",
+        "fake LKH child gets CPU hard120, wall150, private process group killed and joined on timeout; stopped receipt prevents automatic retry"
+      ],
+      "API_requests": 0,
+      "actual_solves": 0,
+      "LKH_runs": 0,
+      "Slurm_submitted": false,
+      "API2_actual_verified": false,
+      "RUN_READY": false
+    },
+    "native_independent_searches_Mock": {
+      "CODE_READY": true,
+      "RUN_READY": false,
+      "scope": "LOCAL TWO PROCESSES AND SYNTHETIC NATIVE COORDINATORS ONLY",
+      "API_requests": 0,
+      "actual_solves": 0,
+      "Slurm_submitted": false,
+      "credential_values_read": 0,
+      "actual_cross_job_or_cross_node_verified": false,
+      "results": {
+        "fjsp-eoh": {
+          "two_native_coordinators": true,
+          "parallel_matches_alone": true,
+          "independent_protocols_and_directories": true,
+          "single_pause_resume_same_clock_cap_and_trace": true,
+          "safe_initial_boundary": 1,
+          "Mock_instance_rows": 21,
+          "peer_continues_and_unchanged_on_other_resume": true,
+          "reserved_synthetic_dispatches": 16,
+          "peak": 1,
+          "FIFO": true,
+          "spacing": true,
+          "per_seed_caps": true,
+          "API_wait_seconds": 0.4142337490338832,
+          "peer_request_during_other_evaluation_observed": true
+        },
+        "fjsp-u": {
+          "two_native_coordinators": true,
+          "parallel_matches_alone": true,
+          "independent_protocols_and_directories": true,
+          "single_pause_resume_same_clock_cap_and_trace": true,
+          "safe_initial_boundary": 2,
+          "Mock_instance_rows": 1,
+          "peer_continues_and_unchanged_on_other_resume": true,
+          "reserved_synthetic_dispatches": 32,
+          "peak": 1,
+          "FIFO": true,
+          "spacing": true,
+          "per_seed_caps": true,
+          "API_wait_seconds": 1.715691541088745,
+          "peer_request_during_other_evaluation_observed": true
+        },
+        "actual_transport_paths": {
+          "real_mode_EoH_transport_factory": true,
+          "unchanged_U_routing_generate_factory": true,
+          "synthetic_dispatches": 2,
+          "real_API_requests": 0
+        },
+        "peer_STOP_drains_existing": {
+          "send_callback_preserved": true,
+          "existing_response_settled": true,
+          "next_request_known_not_sent": true,
+          "no_refund": true
+        },
+        "node_scope": {
+          "real_login_execution_refused": true,
+          "unverified_node_migration_refused": true,
+          "synthetic_branch_only": true,
+          "API_requests": 0
+        },
+        "exact_budget_boundary": {
+          "no_extra_dispatch": true,
+          "reserved": 24,
+          "refunds": 0
+        },
+        "unknown_submission": {
+          "synthetic_sbatch_calls": 1,
+          "claims_retained": 2,
+          "automatic_retry": false,
+          "actual_Slurm_submissions": 0
+        },
+        "unknown": {
+          "shared_STOP": true,
+          "permit_and_budget_retained": true,
+          "no_peer_send_or_replay": true
+        }
+      }
+    }
+  },
+  "uploaded": false,
+  "compute_node_verified": false,
+  "actual_two_searches_API1_verified": false,
+  "API2_actual_verified": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "Slurm_submitted": false
+}
