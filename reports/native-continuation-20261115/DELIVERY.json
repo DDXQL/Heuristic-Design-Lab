@@ -1,0 +1,62 @@
+{
+  "frozen_commit": "e46d2cc91856d08d1b3231f035f220092356aa22",
+  "zip": "/Users/DDXQL/Developer/transfer-outbox/triad-fjsp-native-continuation-20261115-r9.zip",
+  "sha256": "9361b94d8b3812cdef8a49f79876f9fba765cf60b2cc740307fe8bfaa0512a2f",
+  "bytes": 1214745,
+  "manifest_files_verified": 521,
+  "extracted_check_only": {
+    "group": "fjsp-eoh",
+    "pending": [],
+    "ready": true,
+    "environment": "passed",
+    "API_requests": 0,
+    "actual_solves": 0,
+    "credential_reads": 0,
+    "budget": {
+      "initialization_max": 20,
+      "evolution_attempts": 1000,
+      "request_cap_per_seed": 1020,
+      "requests_all_seeds": 3060,
+      "native_passes_per_instance": 2,
+      "native_solve_cap_per_seed": 42840,
+      "H_build_separate": {
+        "request_cap": null,
+        "target_count": null,
+        "selection": null,
+        "source_cost": null,
+        "search_seed": null,
+        "window_seconds": null
+      },
+      "automatic_retries": 0,
+      "unknown_attempts_charged": true
+    }
+  },
+  "offline_evidence": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/reports/native-continuation-20261115/OFFLINE_CHECKS.json",
+  "prepared": true,
+  "uploaded": false,
+  "new_compute_verification": false,
+  "Slurm_submitted": false,
+  "new_API_requests": 0,
+  "new_actual_solves": 0,
+  "parent_runs_unchanged": true,
+  "original_clock_deadline_plus08": "2026-11-17 18:59:15 (original fractional seconds retained)",
+  "cumulative_request_caps": [
+    1020,
+    1020
+  ],
+  "inherited_requests": [
+    10,
+    10
+  ],
+  "inherited_solves_including_recheck": [
+    378,
+    420
+  ],
+  "new_requests_upper_bound": 2000,
+  "new_solves_including_recheck_upper_bound": 84000,
+  "seeds_under_amendment": [
+    501,
+    502,
+    503
+  ]
+}
