@@ -1,0 +1,26 @@
+{
+  "version": "fjsp-eoh-native-admission-amendment-20261115-v1",
+  "scope": {
+    "group": "fjsp-eoh",
+    "search_seeds": [
+      501,
+      502,
+      503
+    ],
+    "repeat_count": 3
+  },
+  "user_decision": "采用原生门槛，统一用于FJSP单规则EoH的全部3次独立重复。总种群目标仍为10，保留原生重复／同分惩罚，允许从当前8／9个可选父代继续演化，不额外生成来凑齐10个。",
+  "old_policy": "native_N_finite_or_fail",
+  "new_policy": "native_EoH",
+  "population_target": 10,
+  "native_admission": "native total population >= selection_num(2), with finite selectable parents; native sampling with replacement",
+  "duplicates": "unchanged canonical code OR equal score => negative infinity; filtered from parent selection",
+  "initialization_request_cap": 20,
+  "evolution_attempts": 1000,
+  "original_request_cap": 1020,
+  "retry_per_slot": 0,
+  "no_refill": true,
+  "preserve_original_budget_clock_and_failure": true,
+  "continuation": "explicit new protocol, same logical search; import 10 settled initialization attempts per seed; restore pre-first-E1 RNG snapshot; no reinitialization",
+  "seed503": "fresh independent initialization under the same amended native policy, not started by continuation commands"
+}

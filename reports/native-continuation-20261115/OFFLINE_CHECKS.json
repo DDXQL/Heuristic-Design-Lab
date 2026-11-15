@@ -1,0 +1,160 @@
+{
+  "import": {
+    "members": [
+      {
+        "seed": 501,
+        "phase": "prepared",
+        "cursor": 10,
+        "initialization_requests": 10,
+        "evolution_attempts": 0,
+        "charged_requests": 10,
+        "remaining_original_cap": 1010,
+        "native_population": 10,
+        "finite_parents": 8,
+        "clock": {
+          "start": 1794740355.9676547,
+          "deadline": 1794913155.9676547
+        },
+        "first_E1_parents": [
+          "SLOT-0000001",
+          "SLOT-0000004"
+        ]
+      },
+      {
+        "seed": 502,
+        "phase": "prepared",
+        "cursor": 10,
+        "initialization_requests": 10,
+        "evolution_attempts": 0,
+        "charged_requests": 10,
+        "remaining_original_cap": 1010,
+        "native_population": 10,
+        "finite_parents": 9,
+        "clock": {
+          "start": 1794740355.8347313,
+          "deadline": 1794913155.8347313
+        },
+        "first_E1_parents": [
+          "SLOT-0000003",
+          "SLOT-0000004"
+        ]
+      }
+    ],
+    "shared_charged_requests": 20,
+    "global_API_width": 1,
+    "new_API_requests": 0,
+    "new_solves": 0,
+    "new_compute_verification": false,
+    "manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000/Shared.json"
+  },
+  "duplicate_import_and_expired_deadline_rejected": true,
+  "native_RNG_and_population": [
+    {
+      "seed": 501,
+      "first_E1_parents": [
+        "SLOT-0000001",
+        "SLOT-0000004"
+      ],
+      "64_operator_parent_rng_steps_equal_native_and_reload": true,
+      "trace_sha256": "d02b2499485d5769f04fcb2eb0c7c1627e630f2ca486d209570904995c6cf07a"
+    },
+    {
+      "seed": 502,
+      "first_E1_parents": [
+        "SLOT-0000003",
+        "SLOT-0000004"
+      ],
+      "64_operator_parent_rng_steps_equal_native_and_reload": true,
+      "trace_sha256": "5e2a189d30ba8768cfe656f0f2a1268e82da81dd73ce50975467e2d10d0c644c"
+    }
+  ],
+  "dry_run_submission": {
+    "submitted": false,
+    "commands": [
+      [
+        "sbatch",
+        "--parsable",
+        "--no-requeue",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=2",
+        "--mem=2048M",
+        "--time=12:00:00",
+        "--partition=128C_02",
+        "--signal=B:USR1@1620",
+        "--chdir=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115",
+        "--job-name=first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501",
+        "--comment=first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501:b852af24862608d051af95ed713479491ee91cf318720dcbbd2d1255b2001d68",
+        "--output=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/logs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501-%j.out",
+        "--error=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/logs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501-%j.err",
+        "--account=wz",
+        "--qos=normal",
+        "--nodelist=node15",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/experiments/triad/parallel.sbatch",
+        "run",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000/configs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501.json",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/runs/OFFLINE-native-1794750343936587000/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501",
+        "/public2/home/qiuqian/hdl-envs/portable-v2/bin/python",
+        "1020",
+        "",
+        "",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000/Shared.json"
+      ],
+      [
+        "sbatch",
+        "--parsable",
+        "--no-requeue",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=2",
+        "--mem=2048M",
+        "--time=12:00:00",
+        "--partition=128C_02",
+        "--signal=B:USR1@1620",
+        "--chdir=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115",
+        "--job-name=first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502",
+        "--comment=first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502:4f95275d1a084b5f10e1811632246e748c801e2e1c7c43f5746c1da079f06980",
+        "--output=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/logs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502-%j.out",
+        "--error=/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/logs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502-%j.err",
+        "--account=wz",
+        "--qos=normal",
+        "--nodelist=node15",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/experiments/triad/parallel.sbatch",
+        "run",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000/configs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502.json",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/runs/OFFLINE-native-1794750343936587000/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502",
+        "/public2/home/qiuqian/hdl-envs/portable-v2/bin/python",
+        "1020",
+        "",
+        "",
+        "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000/Shared.json"
+      ]
+    ],
+    "original_total_request_cap": 2040,
+    "finite_segment_solve_cap": null
+  },
+  "mock_full_pause_resume": {
+    "seed": 503,
+    "initialization": 10,
+    "evolution": 12,
+    "native_population": 10,
+    "finite_parents": 5,
+    "same_semantics_and_rng": true,
+    "independent_initialization": true,
+    "program_executions": 0,
+    "model_requests": 0
+  },
+  "unknown_request_clock_tamper_and_journal_no_replay": true,
+  "accounting_unknown_refusal_lease_ownership_one_time_activation_shared_charged20_to21": true,
+  "scratch_plan": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115/plans/OFFLINE-native-1794750343936587000",
+  "passed": true,
+  "old_evidence_unchanged": true,
+  "public_923781f_unchanged": true,
+  "real_API_requests": 0,
+  "actual_solves": 0,
+  "H_executions": 0,
+  "Slurm_submitted": false,
+  "uploaded": false,
+  "new_compute_verification": false,
+  "accounting_in_offline_test": "not queried; actual sacct terminal check remains mandatory at remote prepare/activate"
+}

@@ -17,7 +17,7 @@
   "evolution_request_cap": 1000,
   "api_attempt_cap": 1020,
   "per_candidate_attempt_cap": 1,
-  "initialization_policy": "native_N_finite_or_fail",
+  "initialization_policy": "native_EoH",
   "solve_seed": 501,
   "api_concurrency": 1,
   "evaluation_concurrency": 1,

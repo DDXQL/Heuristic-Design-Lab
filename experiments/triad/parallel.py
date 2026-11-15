@@ -129,7 +129,10 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
     if prefix is not None and solve_cap!=new_solves:raise PermissionError('exact inclusive aggregate first+recheck solve cap required')
     if m['mode']=='real' and prefix is None:
         certificate=read(path.parent/'Acceptance.json')
-        if not certificate.get('real_dispatch_path_verified') or certificate.get('manifest_sha256')!=sha(path) or certificate.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('new-version bounded real dispatch acceptance required before full resume')
+        if certificate.get('kind')=='inherited_admission_not_new_compute_verification':
+            from experiments.triad.native_continuation import verify_inherited_acceptance
+            verify_inherited_acceptance(path,certificate)
+        elif not certificate.get('real_dispatch_path_verified') or certificate.get('manifest_sha256')!=sha(path) or certificate.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('new-version bounded real dispatch acceptance required before full resume')
         if (path.parent/'API2.finite.json').exists() and not (path.parent/'API2.decision.json').exists():raise PermissionError('API2 finite phase must be explicitly adopted or returned to API1 before full resume')
     shared.Admission({**{'manifest':str(path),'sha256':sha(path)},'run_id':m['members'][0]['run_id']}).verify()
     # All durable submission claims exist before the first sbatch. Unknowns stop

@@ -10,11 +10,11 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha
 from experiments.triad import cluster
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-concurrent-prompt-v2-20261115-r8'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-concurrent-prompt-v2-20261115-r8.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-fjsp-native-continuation-20261115-r9'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-fjsp-native-continuation-20261115-r9.zip')
 REPORT=ROOT/'reports/concurrent-prompt-v2-20261115'
 MOCK='two-search-mock-acceptance'
-REAL='first-eoh-501-502'
+REAL='native-eoh-501-502'
 
 
 def invoke(connection,args):
@@ -26,10 +26,10 @@ def fetch(connection,name,report):
     for row in m['members']:
         receipt=json.loads(connection.run(['cat',row['run_dir']+'/latest-submission.json']).stdout);job=receipt.get('job_id','')
         if receipt['state']!='submitted' or not job.isdigit():raise ValueError('unknown submission; preserve claims, never retry')
-        q=connection.run(['squeue','-h','-j',job,'-o','%i|%T']);a=connection.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,Elapsed,AllocCPUS,MaxRSS,NodeList'])
+        q=connection.run(['squeue','-h','-u','qiuqian','-o','%i|%T']);a=connection.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,Elapsed,AllocCPUS,MaxRSS,NodeList'])
         (report/(job+'-sacct.psv')).write_text(a.stdout);(report/(job+'-squeue.txt')).write_text(q.stdout)
         state=next((line.split('|') for line in a.stdout.splitlines() if line.split('|')[0]==job),None)
-        if q.stdout.strip() or not state or state[1].split()[0] not in {'COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED','BOOT_FAIL','DEADLINE','REVOKED'}:raise PermissionError('both jobs must be terminal before batch retrieval; no automatic retry')
+        if any(line.split('|')[0].strip()==job for line in q.stdout.splitlines()) or not state or state[1].split()[0] not in {'COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED','BOOT_FAIL','DEADLINE','REVOKED'}:raise PermissionError('both jobs must be terminal before batch retrieval; no automatic retry')
         exported=json.loads(connection.run([cluster.shared.PY,'-s','-B','-c',cluster.EXPORT,REMOTE,row['run_dir'],job]).stdout)
         archive=report/(job+'.zip');connection.copy(cluster.shared.HOST+':'+exported['path'],str(archive))
         if sha(archive)!=exported['sha256']:raise ValueError('retrieval ZIP hash differs')
