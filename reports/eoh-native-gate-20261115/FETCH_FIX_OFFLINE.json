@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "purpose": "Mac-only terminal-result retrieval compatibility fix",
+  "test": {
+    "passed": true,
+    "checks": [
+      "terminal job absent from squeue but exact FAILED sacct record -> two ZIPs retrieved and hashes verified",
+      "unrelated queued job does not block exact settled jobs",
+      "active job refused",
+      "missing terminal accounting refused",
+      "SSH/queue failure refused"
+    ],
+    "network_calls": 0,
+    "API_requests": 0,
+    "actual_solves": 0,
+    "Slurm_submitted": false
+  },
+  "protected_R8_sources_unchanged": {
+    "experiments/triad/launch_concurrent.py": true,
+    "experiments/triad/shared_admission.py": true,
+    "experiments/triad/runtime.py": true,
+    "experiments/triad/parallel.py": true,
+    "experiments/triad/entry.py": true
+  },
+  "remote_connections_made": 0,
+  "remote_sources_modified": false,
+  "research_protocol_changed": false,
+  "native_gate_adopted": false,
+  "new_API_requests": 0,
+  "new_solves": 0,
+  "manual_command": "/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python -s -B /Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/eoh-native-gate-20261115/fetch_settled.py"
+}

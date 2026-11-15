@@ -1,0 +1,45 @@
+{
+  "status": "proposal_only_not_applied",
+  "seeds": {
+    "501": {
+      "initialization_attempts": 10,
+      "evolution_attempts": 0,
+      "native_total_population": 10,
+      "finite_parents": 8,
+      "native_duplicate_or_tie_penalties": 2
+    },
+    "502": {
+      "initialization_attempts": 10,
+      "evolution_attempts": 0,
+      "native_total_population": 10,
+      "finite_parents": 9,
+      "native_duplicate_or_tie_penalties": 1
+    }
+  },
+  "root_cause": "project extra native_N_finite_or_fail gate requires all N population records finite, while original native population retains total N including -inf and selects only finite members",
+  "proposed_configuration_change": {
+    "initialization_policy": {
+      "from": "native_N_finite_or_fail",
+      "to": "native_EoH"
+    }
+  },
+  "unchanged": [
+    "total population size10",
+    "initialization HTTP upper bound20",
+    "evolution1000",
+    "original total1020 per seed",
+    "native equal-score/code duplicate -inf penalty",
+    "native rank sampling with replacement",
+    "actual H Prompt and closed parser",
+    "train21/LB_v5/J and final tie selection",
+    "global API1"
+  ],
+  "spent_requests_per_seed": 10,
+  "spent_requests_total": 20,
+  "recorded_physical_solves_including_recheck": 798,
+  "old_runs_to_preserve": true,
+  "continuation_requires_explicit_protocol_amendment_and_audited_handoff": true,
+  "continuation_implemented": false,
+  "new_model_requests": 0,
+  "new_solves": 0
+}
