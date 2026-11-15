@@ -1,0 +1,101 @@
+{
+  "verified": true,
+  "source_fetch": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/concurrent-prompt-v2-20261115/settled-fetch-1794747980856004000",
+  "members": [
+    {
+      "seed": 501,
+      "job_id": "618885",
+      "Slurm_state": "FAILED",
+      "exit_code": "2:0",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/concurrent-prompt-v2-20261115/settled-fetch-1794747980856004000/618885/runs/first-eoh-501-502-prompt-v2-20261115/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501",
+      "phase": "initialization_incomplete",
+      "reason": "native initialization ended with fewer than N finite distinct parents; no refill",
+      "initialization_requests": 10,
+      "evolution_requests": 0,
+      "remaining_cumulative_cap": 1010,
+      "native_population_total": 10,
+      "finite_parents": 8,
+      "native_tie_or_duplicate_penalties": 2,
+      "AST_duplicate_attempts": 1,
+      "unique_evaluations_within_seed": 9,
+      "physical_solves_including_recheck": 378,
+      "initial_best_training_J": 0.9862510418516018,
+      "unknown_sends": 0,
+      "automatic_retries": 0,
+      "known_usage": {
+        "input_tokens": 52820,
+        "output_tokens": 2782
+      },
+      "all_actual_responses_valid_and_confirmed": true,
+      "shared_confirmed_send_peak": 1,
+      "locks": [],
+      "initial_snapshot_preserved_population": true,
+      "pre_first_E1_RNG_snapshot_available": true,
+      "checkpoint_has_two_unsubmitted_parent_draws": true,
+      "pure_replay_first_E1_parent_ids": [
+        "SLOT-0000001",
+        "SLOT-0000004"
+      ],
+      "pure_replay_matches_checkpoint_rng": true,
+      "Run_clock": {
+        "start": 1794740355.9676547,
+        "deadline": 1794913155.9676547
+      },
+      "ZIP_sha256": "ed31cfedf68377b39a50e15395daa940f88a99fc847f2039405bf11962c01f97",
+      "manifest_verified_files": 103
+    },
+    {
+      "seed": 502,
+      "job_id": "618886",
+      "Slurm_state": "FAILED",
+      "exit_code": "2:0",
+      "run_dir": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/concurrent-prompt-v2-20261115/settled-fetch-1794747980856004000/618886/runs/first-eoh-501-502-prompt-v2-20261115/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502",
+      "phase": "initialization_incomplete",
+      "reason": "native initialization ended with fewer than N finite distinct parents; no refill",
+      "initialization_requests": 10,
+      "evolution_requests": 0,
+      "remaining_cumulative_cap": 1010,
+      "native_population_total": 10,
+      "finite_parents": 9,
+      "native_tie_or_duplicate_penalties": 1,
+      "AST_duplicate_attempts": 0,
+      "unique_evaluations_within_seed": 10,
+      "physical_solves_including_recheck": 420,
+      "initial_best_training_J": 1.0369271373411313,
+      "unknown_sends": 0,
+      "automatic_retries": 0,
+      "known_usage": {
+        "input_tokens": 52820,
+        "output_tokens": 3267
+      },
+      "all_actual_responses_valid_and_confirmed": true,
+      "shared_confirmed_send_peak": 1,
+      "locks": [],
+      "initial_snapshot_preserved_population": true,
+      "pre_first_E1_RNG_snapshot_available": true,
+      "checkpoint_has_two_unsubmitted_parent_draws": true,
+      "pure_replay_first_E1_parent_ids": [
+        "SLOT-0000003",
+        "SLOT-0000004"
+      ],
+      "pure_replay_matches_checkpoint_rng": true,
+      "Run_clock": {
+        "start": 1794740355.8347313,
+        "deadline": 1794913155.8347313
+      },
+      "ZIP_sha256": "337496a4354b577d7a11a93d6d141a2d465b5b37152d03b70aecc60777e824b4",
+      "manifest_verified_files": 106
+    }
+  ],
+  "total_confirmed_model_requests": 20,
+  "total_recorded_solves_including_recheck": 798,
+  "all_original_manifest_files_unchanged": true,
+  "new_API_requests": 0,
+  "new_solves": 0,
+  "new_model_generations": 0,
+  "RNG_replay_scope": "saved numerical RNG state and rank indices only; no candidate/H/model executed",
+  "protocol_amendment_adopted": false,
+  "continuation_implemented": false,
+  "old_runs_modified": false,
+  "next_decision": "strict all10 finite gate versus original native population admission; continuation needs explicit new identity/budget/RNG audit, not a phase edit"
+}
