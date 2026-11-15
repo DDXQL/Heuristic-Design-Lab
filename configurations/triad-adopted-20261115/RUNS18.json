@@ -1,0 +1,742 @@
+{
+  "runs": [
+    {
+      "中文名称": "FJSP双层方法：第1次独立搜索",
+      "group": "fjsp-u",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-u.json",
+      "state": "completed_read_only",
+      "job_id": null,
+      "existing_completed_run_id": "fjsp-u1000-20261112-mac-seed-501",
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/fjsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": null,
+      "planned_output": "existing read-only receipt",
+      "pending": []
+    },
+    {
+      "中文名称": "FJSP双层方法：第2次独立搜索",
+      "group": "fjsp-u",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-u.json",
+      "state": "completed_read_only",
+      "job_id": "617156",
+      "existing_completed_run_id": "fjsp-u-repeat-20261115-fjsp-u-seed-502",
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/fjsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": null,
+      "planned_output": "existing read-only receipt",
+      "pending": []
+    },
+    {
+      "中文名称": "FJSP双层方法：第3次独立搜索",
+      "group": "fjsp-u",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/fjsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "fjsp-remaining503-prompt-v2-20261115-fjsp-u-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/fjsp-remaining503-prompt-v2-20261115/fjsp-remaining503-prompt-v2-20261115-fjsp-u-seed-503",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "fjsp-remaining503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/fjsp-remaining503/configs/fjsp-remaining503-prompt-v2-20261115-fjsp-u-seed-503.json"
+    },
+    {
+      "中文名称": "FJSP单规则EoH：第1次独立搜索",
+      "group": "fjsp-eoh",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/first-eoh-501-502-prompt-v2-20261115/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "first-eoh-501-502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/first-eoh-501-502/configs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-501.json"
+    },
+    {
+      "中文名称": "FJSP单规则EoH：第2次独立搜索",
+      "group": "fjsp-eoh",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/first-eoh-501-502-prompt-v2-20261115/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "first-eoh-501-502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/first-eoh-501-502/configs/first-eoh-501-502-prompt-v2-20261115-fjsp-eoh-seed-502.json"
+    },
+    {
+      "中文名称": "FJSP单规则EoH：第3次独立搜索",
+      "group": "fjsp-eoh",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/fjsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/eoh-gap/train21.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 42840,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "fjsp-remaining503-prompt-v2-20261115-fjsp-eoh-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/fjsp-remaining503-prompt-v2-20261115/fjsp-remaining503-prompt-v2-20261115-fjsp-eoh-seed-503",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "fjsp-remaining503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/fjsp-remaining503/configs/fjsp-remaining503-prompt-v2-20261115-fjsp-eoh-seed-503.json"
+    },
+    {
+      "中文名称": "TSP双层方法：第1次独立搜索",
+      "group": "tsp-u",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed501-prompt-v2-20261115-tsp-u-seed-501",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed501-prompt-v2-20261115/tsp-seed501-prompt-v2-20261115-tsp-u-seed-501",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed501",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed501/configs/tsp-seed501-prompt-v2-20261115-tsp-u-seed-501.json"
+    },
+    {
+      "中文名称": "TSP双层方法：第2次独立搜索",
+      "group": "tsp-u",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed502-prompt-v2-20261115-tsp-u-seed-502",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed502-prompt-v2-20261115/tsp-seed502-prompt-v2-20261115-tsp-u-seed-502",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed502/configs/tsp-seed502-prompt-v2-20261115-tsp-u-seed-502.json"
+    },
+    {
+      "中文名称": "TSP双层方法：第3次独立搜索",
+      "group": "tsp-u",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/H_frozen.json",
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed503-prompt-v2-20261115-tsp-u-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed503-prompt-v2-20261115/tsp-seed503-prompt-v2-20261115-tsp-u-seed-503",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed503/configs/tsp-seed503-prompt-v2-20261115-tsp-u-seed-503.json"
+    },
+    {
+      "中文名称": "TSP单规则EoH：第1次独立搜索",
+      "group": "tsp-eoh",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed501-prompt-v2-20261115-tsp-eoh-seed-501",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed501-prompt-v2-20261115/tsp-seed501-prompt-v2-20261115-tsp-eoh-seed-501",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed501",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed501/configs/tsp-seed501-prompt-v2-20261115-tsp-eoh-seed-501.json"
+    },
+    {
+      "中文名称": "TSP单规则EoH：第2次独立搜索",
+      "group": "tsp-eoh",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed502-prompt-v2-20261115-tsp-eoh-seed-502",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed502-prompt-v2-20261115/tsp-seed502-prompt-v2-20261115-tsp-eoh-seed-502",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed502/configs/tsp-seed502-prompt-v2-20261115-tsp-eoh-seed-502.json"
+    },
+    {
+      "中文名称": "TSP单规则EoH：第3次独立搜索",
+      "group": "tsp-eoh",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/tsp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/tsp/train20.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": null,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": null,
+        "requests_all_seeds": null,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": null,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "tsp-seed503-prompt-v2-20261115-tsp-eoh-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/tsp-seed503-prompt-v2-20261115/tsp-seed503-prompt-v2-20261115-tsp-eoh-seed-503",
+      "pending": [
+        "population_size",
+        "initialization_request_cap",
+        "api_attempt_cap",
+        "budget_basis",
+        "initialization_policy",
+        "reference_file",
+        "freeze_status",
+        "account_exclusion"
+      ],
+      "pair": "tsp-seed503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/tsp-seed503/configs/tsp-seed503-prompt-v2-20261115-tsp-eoh-seed-503.json"
+    },
+    {
+      "中文名称": "在线装箱双层方法：第1次独立搜索",
+      "group": "obp-u",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed501-prompt-v2-20261115-obp-u-seed-501",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed501-prompt-v2-20261115/obp-seed501-prompt-v2-20261115-obp-u-seed-501",
+      "pending": [
+        "h_file",
+        "account_exclusion"
+      ],
+      "pair": "obp-seed501",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed501/configs/obp-seed501-prompt-v2-20261115-obp-u-seed-501.json"
+    },
+    {
+      "中文名称": "在线装箱双层方法：第2次独立搜索",
+      "group": "obp-u",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed502-prompt-v2-20261115-obp-u-seed-502",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed502-prompt-v2-20261115/obp-seed502-prompt-v2-20261115-obp-u-seed-502",
+      "pending": [
+        "h_file",
+        "account_exclusion"
+      ],
+      "pair": "obp-seed502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed502/configs/obp-seed502-prompt-v2-20261115-obp-u-seed-502.json"
+    },
+    {
+      "中文名称": "在线装箱双层方法：第3次独立搜索",
+      "group": "obp-u",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-u.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed503-prompt-v2-20261115-obp-u-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed503-prompt-v2-20261115/obp-seed503-prompt-v2-20261115-obp-u-seed-503",
+      "pending": [
+        "h_file",
+        "account_exclusion"
+      ],
+      "pair": "obp-seed503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed503/configs/obp-seed503-prompt-v2-20261115-obp-u-seed-503.json"
+    },
+    {
+      "中文名称": "在线装箱单规则EoH：第1次独立搜索",
+      "group": "obp-eoh",
+      "search_seed": 501,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed501-prompt-v2-20261115-obp-eoh-seed-501",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed501-prompt-v2-20261115/obp-seed501-prompt-v2-20261115-obp-eoh-seed-501",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "obp-seed501",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed501/configs/obp-seed501-prompt-v2-20261115-obp-eoh-seed-501.json"
+    },
+    {
+      "中文名称": "在线装箱单规则EoH：第2次独立搜索",
+      "group": "obp-eoh",
+      "search_seed": 502,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed502-prompt-v2-20261115-obp-eoh-seed-502",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed502-prompt-v2-20261115/obp-seed502-prompt-v2-20261115-obp-eoh-seed-502",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "obp-seed502",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed502/configs/obp-seed502-prompt-v2-20261115-obp-eoh-seed-502.json"
+    },
+    {
+      "中文名称": "在线装箱单规则EoH：第3次独立搜索",
+      "group": "obp-eoh",
+      "search_seed": 503,
+      "solve_seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/configurations/triad-adopted-20261115/configs/obp-eoh.json",
+      "state": "not_started",
+      "job_id": null,
+      "existing_completed_run_id": null,
+      "data_manifest": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/preparations/triad/obp-official-20261115/train.manifest.json",
+      "H_file": null,
+      "reference_file": null,
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 195840,
+        "H_build_separate": {
+          "request_cap": 40,
+          "target_count": 10,
+          "selection": "greedy-envelope-J-v1",
+          "source_cost": {
+            "budget": "independent cap40; shared once by3 U runs"
+          },
+          "search_seed": 401,
+          "window_seconds": 172800
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "run_id": "obp-seed503-prompt-v2-20261115-obp-eoh-seed-503",
+      "planned_output": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/runs/obp-seed503-prompt-v2-20261115/obp-seed503-prompt-v2-20261115-obp-eoh-seed-503",
+      "pending": [
+        "account_exclusion"
+      ],
+      "pair": "obp-seed503",
+      "planned_child_config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/plans/obp-seed503/configs/obp-seed503-prompt-v2-20261115-obp-eoh-seed-503.json"
+    }
+  ],
+  "completed_read_only": 2,
+  "remaining": 16,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "execution_authorized": false
+}

@@ -1,0 +1,423 @@
+{
+  "passed": true,
+  "contract_version": "closed-H-prompt-contract-v2-20261115",
+  "checks": [
+    "actual triad five native operators and H-build I1 include exact contract for FJSP/TSP/OBP scalar+vector",
+    "standalone FJSP J-min adapter uses same contract in all five operators",
+    "old version and missing contract fingerprint cannot resume under new adapter",
+    "original 20 response replay: identical 2 valid/18 rejects; old protocol/checkpoint/prompts/replies byte-preserved",
+    "public code and run_frozen exactly 923781f; problem parsers/evaluator unchanged from repair parent"
+  ],
+  "parser_cases": [
+    {
+      "case": "fjsp-scalar:0",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "fjsp-scalar:1e9",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "fjsp-scalar:processing_time ** 2",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "fjsp-scalar:processing_time ** 0.5",
+      "accepted_by_parser": false,
+      "reason": "power exponent must be a literal integer in [0,8]"
+    },
+    {
+      "case": "fjsp-scalar:processing_time ** -1",
+      "accepted_by_parser": false,
+      "reason": "power exponent must be a literal integer in [0,8]"
+    },
+    {
+      "case": "fjsp-scalar:processing_time ** 2.0",
+      "accepted_by_parser": false,
+      "reason": "power exponent must be a literal integer in [0,8]"
+    },
+    {
+      "case": "fjsp-scalar:processing_time ** processing_time",
+      "accepted_by_parser": false,
+      "reason": "power exponent must be a literal integer in [0,8]"
+    },
+    {
+      "case": "fjsp-scalar:float(\"inf\")",
+      "accepted_by_parser": false,
+      "reason": "only bounded numeric/boolean constants allowed"
+    },
+    {
+      "case": "fjsp-scalar:1e300",
+      "accepted_by_parser": false,
+      "reason": "only bounded numeric/boolean constants allowed"
+    },
+    {
+      "case": "fjsp-scalar:1000000001",
+      "accepted_by_parser": false,
+      "reason": "only bounded numeric/boolean constants allowed"
+    },
+    {
+      "case": "tsp-scalar:0",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "tsp-scalar:1e9",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "tsp-scalar:distance_current ** 2",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "tsp-scalar:distance_current ** 0.5",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "tsp-scalar:distance_current ** -1",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "tsp-scalar:distance_current ** 2.0",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "tsp-scalar:distance_current ** distance_current",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "tsp-scalar:float(\"inf\")",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "tsp-scalar:1e300",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "tsp-scalar:1000000001",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "obp-scalar:0",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-scalar:1e9",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-scalar:item_size ** 2",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-scalar:item_size ** 0.5",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "obp-scalar:item_size ** -1",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "obp-scalar:item_size ** 2.0",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "obp-scalar:item_size ** item_size",
+      "accepted_by_parser": false,
+      "reason": "literal exponent 0..8"
+    },
+    {
+      "case": "obp-scalar:float(\"inf\")",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "obp-scalar:1e300",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "obp-scalar:1000000001",
+      "accepted_by_parser": false,
+      "reason": "bounded numeric constants only"
+    },
+    {
+      "case": "obp-vector:0",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-vector:1e6",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-vector:item_size ** 2",
+      "accepted_by_parser": true,
+      "H_executed": false
+    },
+    {
+      "case": "obp-vector:item_size ** 0.5",
+      "accepted_by_parser": false,
+      "reason": "bounded literal exponent"
+    },
+    {
+      "case": "obp-vector:item_size ** -1",
+      "accepted_by_parser": false,
+      "reason": "bounded literal exponent"
+    },
+    {
+      "case": "obp-vector:item_size ** 2.0",
+      "accepted_by_parser": false,
+      "reason": "bounded literal exponent"
+    },
+    {
+      "case": "obp-vector:item_size ** item_size",
+      "accepted_by_parser": false,
+      "reason": "bounded literal exponent"
+    },
+    {
+      "case": "obp-vector:float(\"inf\")",
+      "accepted_by_parser": false,
+      "reason": "bounded numerical literals only"
+    },
+    {
+      "case": "obp-vector:1e300",
+      "accepted_by_parser": false,
+      "reason": "bounded numerical literals only"
+    },
+    {
+      "case": "obp-vector:1000001",
+      "accepted_by_parser": false,
+      "reason": "bounded numerical literals only"
+    }
+  ],
+  "actual_prompt_fingerprints": {
+    "fjsp-scalar-I1": {
+      "sha256": "8445b57f818b649d57c3973085576fc2b11b418b718153729329d23ae41ecc51",
+      "bytes": 4179,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "fjsp",
+        "H_ABI": null,
+        "sha256": "e33576cf0aae4481b3df7617efe4bc3d05d13887501e6c0a3a0befd1cb0a4850"
+      }
+    },
+    "fjsp-scalar-E1": {
+      "sha256": "9bb127a4c8fc76a1eb1d0f7aa228bda8430aa3020dbb9584586a9791017f5cbf",
+      "bytes": 4869,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "fjsp",
+        "H_ABI": null,
+        "sha256": "e33576cf0aae4481b3df7617efe4bc3d05d13887501e6c0a3a0befd1cb0a4850"
+      }
+    },
+    "fjsp-scalar-E2": {
+      "sha256": "da510615b5670eb678c97d8e2d167e9876a1ef6cf2ffae760cbb637725d847b1",
+      "bytes": 4992,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "fjsp",
+        "H_ABI": null,
+        "sha256": "e33576cf0aae4481b3df7617efe4bc3d05d13887501e6c0a3a0befd1cb0a4850"
+      }
+    },
+    "fjsp-scalar-M1": {
+      "sha256": "2ad6f288b2fbe5785601b5fff707fdc2335e224b0ff067070b91a6425a272180",
+      "bytes": 4604,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "fjsp",
+        "H_ABI": null,
+        "sha256": "e33576cf0aae4481b3df7617efe4bc3d05d13887501e6c0a3a0befd1cb0a4850"
+      }
+    },
+    "fjsp-scalar-M2": {
+      "sha256": "c8a8822d69b2bbb9556d84ccc36473e391b4179e25a416c4db3b32bb09b20521",
+      "bytes": 4636,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "fjsp",
+        "H_ABI": null,
+        "sha256": "e33576cf0aae4481b3df7617efe4bc3d05d13887501e6c0a3a0befd1cb0a4850"
+      }
+    },
+    "tsp-scalar-I1": {
+      "sha256": "0723693ff23d3fce0371513bfc7d52fecd25b86cf31c648fabe100bcd05a3424",
+      "bytes": 3853,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "tsp",
+        "H_ABI": null,
+        "sha256": "a474e685523242c6e20afe94a2368f4878b1bfcf93f14815d911f339f2b140a4"
+      }
+    },
+    "tsp-scalar-E1": {
+      "sha256": "91c5e47a2085f65807c21c70d997b7f74c16228bfc04136fd121624ace1a229b",
+      "bytes": 4489,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "tsp",
+        "H_ABI": null,
+        "sha256": "a474e685523242c6e20afe94a2368f4878b1bfcf93f14815d911f339f2b140a4"
+      }
+    },
+    "tsp-scalar-E2": {
+      "sha256": "7888e91b934d3d6ff4d60873efc21d00f84130be5eb0cc13ca7ae4ab04f68bdd",
+      "bytes": 4612,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "tsp",
+        "H_ABI": null,
+        "sha256": "a474e685523242c6e20afe94a2368f4878b1bfcf93f14815d911f339f2b140a4"
+      }
+    },
+    "tsp-scalar-M1": {
+      "sha256": "c3edd8a56603d938eccc6de9a9a89fe47ed254b1ddb170be5141ea3c93f86b83",
+      "bytes": 4251,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "tsp",
+        "H_ABI": null,
+        "sha256": "a474e685523242c6e20afe94a2368f4878b1bfcf93f14815d911f339f2b140a4"
+      }
+    },
+    "tsp-scalar-M2": {
+      "sha256": "e1f75c2f65c3d8de2e5ad5023c86dd990c6c32241fabc6e52235b9b7cb8e0695",
+      "bytes": 4283,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "tsp",
+        "H_ABI": null,
+        "sha256": "a474e685523242c6e20afe94a2368f4878b1bfcf93f14815d911f339f2b140a4"
+      }
+    },
+    "obp-scalar-I1": {
+      "sha256": "fd91cd4c1f0895840c26cf779ad322574b359b5142165ef0e3617c58c9e17df2",
+      "bytes": 4504,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-two-scalar-h-v1",
+        "sha256": "02673d9d0b9a93b9f02175f09a0484c64e6e9f624358f13c30ff971c781eefb8"
+      }
+    },
+    "obp-scalar-E1": {
+      "sha256": "e49c8bfa5cc7c128c2deb8eabec1581e79183686f062ebb65ebb2a72962aa040",
+      "bytes": 5008,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-two-scalar-h-v1",
+        "sha256": "02673d9d0b9a93b9f02175f09a0484c64e6e9f624358f13c30ff971c781eefb8"
+      }
+    },
+    "obp-scalar-E2": {
+      "sha256": "dc8720f84145982ea20a28a641e47414941707b41c0c3bf726b4e6ed1a7292e4",
+      "bytes": 5131,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-two-scalar-h-v1",
+        "sha256": "02673d9d0b9a93b9f02175f09a0484c64e6e9f624358f13c30ff971c781eefb8"
+      }
+    },
+    "obp-scalar-M1": {
+      "sha256": "b69104ef74173383ea47e851911b4d859905c0137f5936cdd2222926be107c4e",
+      "bytes": 4836,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-two-scalar-h-v1",
+        "sha256": "02673d9d0b9a93b9f02175f09a0484c64e6e9f624358f13c30ff971c781eefb8"
+      }
+    },
+    "obp-scalar-M2": {
+      "sha256": "6374edecc1ce7b86f790dcef3880fdae684b1ac1856930e3f20b650033a853a9",
+      "bytes": 4868,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-two-scalar-h-v1",
+        "sha256": "02673d9d0b9a93b9f02175f09a0484c64e6e9f624358f13c30ff971c781eefb8"
+      }
+    },
+    "obp-vector-I1": {
+      "sha256": "995e01ffb5d473473e67a37ff818c7f926ff4ed18662ce703beb8c6c0d025e65",
+      "bytes": 5293,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-vector-feasible-h-v2",
+        "sha256": "1e41128085a2076a7d72ce822ebdae7364e7596366a1c1e2693678af18624297"
+      }
+    },
+    "obp-vector-E1": {
+      "sha256": "f26ed97f892c7d0a3e46504394788664b237304381b268f324a1c98e52bc229f",
+      "bytes": 5869,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-vector-feasible-h-v2",
+        "sha256": "1e41128085a2076a7d72ce822ebdae7364e7596366a1c1e2693678af18624297"
+      }
+    },
+    "obp-vector-E2": {
+      "sha256": "b74c4478acb1f35828545e590368eb2113492a2b26ad6d51c31470d3f476f947",
+      "bytes": 5992,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-vector-feasible-h-v2",
+        "sha256": "1e41128085a2076a7d72ce822ebdae7364e7596366a1c1e2693678af18624297"
+      }
+    },
+    "obp-vector-M1": {
+      "sha256": "61c42a88a6bbc816e1868e38bdac07d8edc23a81774f911cd0d1442f2a563419",
+      "bytes": 5661,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-vector-feasible-h-v2",
+        "sha256": "1e41128085a2076a7d72ce822ebdae7364e7596366a1c1e2693678af18624297"
+      }
+    },
+    "obp-vector-M2": {
+      "sha256": "39d930a31af7a4bb3d8d21e261e6c1e804ba2f4d02d47e807c91cac429986a35",
+      "bytes": 5693,
+      "contract": {
+        "version": "closed-H-prompt-contract-v2-20261115",
+        "problem": "obp",
+        "H_ABI": "obp-vector-feasible-h-v2",
+        "sha256": "1e41128085a2076a7d72ce822ebdae7364e7596366a1c1e2693678af18624297"
+      }
+    }
+  },
+  "public_files_unchanged": 177,
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "credential_reads": 0,
+  "claim_limit": "Parser/prompt wiring only; no evidence of improved real model success rate"
+}

@@ -11,13 +11,14 @@ import time
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'deploy/eoh-baseline'))
 import eoh_gap as old
+import prompt_contract as h_contract
 from heuristic_design.core import execution,evolution_v1,routing_state_a_v3 as language,state_a_v3
 from heuristic_design.core.storage import read,write,sha,digest
 from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
 from . import problems,evaluation
 from .configuration import load,gaps
-VERSION='triad-shared-native-adapter-v1'
+VERSION='triad-shared-native-adapter-prompt-v2'
 
 
 def sources():
@@ -92,6 +93,7 @@ def prepare(directory,path,*,engineering=False,allow_api=False,approve_budget=No
       metrics={'objective':'J=mean((raw_cost-reference)/reference)','direction':'min','internal_score':'-J','final_selection':'all complete valid candidates; J ascending, semantic ID ascending'},
       run_id=directory.name,source_cost={'H_attempts':None},budgets=dict(logical_generation=cap,API_attempts=cap,initialization=init,evolution=evo,max_program_instances=cap*len(data),max_solve_passes=2*cap*len(data)))
     if c['problem']=='obp':p['obp_execution_contract']=problems.obp_contract(c);p['obp_contract_sha256']=digest(p['obp_execution_contract'])
+    if kind!='u':p['H_prompt_contract']=h_contract.identity(c['problem'],c.get('obp_h_abi'),problems.obp_contract(c) if c['problem']=='obp' else None)
     write(directory/'Protocol.json',p);(directory/'Protocol.sha256').write_text(sha(directory/'Protocol.json')+'\n')
     write(directory/'checkpoint.json',dict(identity=sha(directory/'Protocol.json'),phase='prepared',cursor=0,tasks={},evaluations={},population=[],children=[],seen={},generation=0,pause_ack=0,
       generations=[],u_rng=random.Random(c['search_seed']).getstate(),u_plan=None,
@@ -142,6 +144,7 @@ class Adapter(old.Adapter):
     def check_run(self,d):
         p,s=protocol_state(d)
         if sha(Path(d)/'Tasks.json')!=p['tasks_sha256'] or any(sha(ROOT/n)!=h for n,h in p['source_files'].items()):raise ValueError('frozen tasks/source changed')
+        if p['run_kind']!='u' and p.get('H_prompt_contract')!=h_contract.identity(p['config']['problem'],p['config'].get('obp_h_abi'),problems.obp_contract(p['config']) if p['config']['problem']=='obp' else None):raise ValueError('new H prompt contract changed; old protocols cannot be reinterpreted')
         if p['config']['problem']=='obp' and (p.get('obp_execution_contract')!=problems.obp_contract(p['config']) or p.get('obp_contract_sha256')!=digest(problems.obp_contract(p['config']))):raise ValueError('OBP input/action/reference protocol changed; old cache/resume forbidden')
         self.p=p;self._engineering_mode=p['config']['api_mode']=='mock';return p
     def members(self,d):return read(Path(d)/'Protocol.json')['members']
@@ -163,16 +166,11 @@ class Adapter(old.Adapter):
             if c['problem']=='obp':return obp_u_prompt(c,semantic,parents,members)
             return language.build_prompt(c['problem'],semantic,parents,members)
         args=problems.h_args(c['problem'],c.get('obp_h_abi'));template=old.old.Converter.text_to_function('def priority('+', '.join(args)+'):\n    return 0.0\n')
-        description=('Design ONE '+c['problem']+' action-scoring H with exact function arguments '+str(args)+'. Highest finite priority wins, stable original action order breaks exact ties. '
-          'Minimize complete train objective J=mean((raw cost-reference)/reference). No imports, network, files, globals or lookahead. '
-          +('Reference is externally frozen LKH, never nearest-neighbor. ' if c['problem']=='tsp' else '')
-          +('Return one list/tuple score per supplied bin, in the same order; use only one comprehension over remaining_capacities. ' if c.get('obp_h_abi')=='obp-vector-feasible-h-v2' else '')
-          +(str(problems.obp_contract(c))+' ' if c['problem']=='obp' else '')
-          +('Only current arrival and current bin remaining capacity are visible. Future items are not available. ' if c['problem']=='obp' else '')
-          +'Return one boxed {description} and one complete fenced python function.')
+        description=h_contract.description(c['problem'],c.get('obp_h_abi'),problems.obp_contract(c) if c['problem']=='obp' else None)
         op=task['operator'];funcs=[old.old.native.make_function(r['candidate'],r['id'],r['fitness']) for r in parents]
         fn=getattr(old.old.EoHPrompt,'get_prompt_'+op.lower())
-        return fn(description,template) if op=='I1' else fn(description,funcs if op in ('E1','E2') else funcs[0],template)
+        text=fn(description,template) if op=='I1' else fn(description,funcs if op in ('E1','E2') else funcs[0],template)
+        return text+'\nHere boxed {} means literal ASCII braces, NOT LaTeX. Return only {description} and one complete python fence as specified above.\n'
     def task_context(self,d,s,p,task,index):
         c=p['config'];v=s['eoh']
         boundary=Path(d)/'Current_manual_boundary.json'

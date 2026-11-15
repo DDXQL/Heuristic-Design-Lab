@@ -1,0 +1,19 @@
+{
+  "batch_id": "obp-seed503-prompt-v2-20261115",
+  "mode": "real",
+  "min_request_interval_seconds": 1,
+  "queue_wait_seconds": 360,
+  "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+  "members": [
+    {
+      "group": "obp-u",
+      "seed": 503,
+      "config": "../configs/obp-u.json"
+    },
+    {
+      "group": "obp-eoh",
+      "seed": 503,
+      "config": "../configs/obp-eoh.json"
+    }
+  ]
+}

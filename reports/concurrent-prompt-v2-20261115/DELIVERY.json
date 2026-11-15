@@ -1,0 +1,111 @@
+{
+  "CODE_READY": true,
+  "RUN_READY": false,
+  "source_tree": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115",
+  "engineering_branch": "codex/triad-concurrent-prompt-v2-20261115",
+  "base_shared_source": "a41c542b9b55c490db5bec3651f00ff5fd1a90f3",
+  "H_prompt_repair_source": "cb6add99a10c03d25bf354f5e6600a3a7c41f67a",
+  "public_source": "923781f05686f1899c24fd7899fb3bc6b1df1562",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "Slurm_submitted": false,
+  "uploaded": false,
+  "two_actual_Slurm_jobs_Mock_verified": false,
+  "two_actual_searches_API1_verified": false,
+  "API2_implemented_and_offline_checked": true,
+  "API2_actual_verified": false,
+  "API2_adopted": false,
+  "CPU_LKH120_wall150_implemented_fake_child_checked": true,
+  "LKH_source_retrieved": false,
+  "LKH_official_page_access": "two web fetches timed out; no archive/build/version/hash claimed verified",
+  "LKH_spec_adopted": true,
+  "OBP_spec_adopted": true,
+  "OBP_official_training_import": {
+    "source_sha256": "6ef362b59973163225579e26e5e49f6196579287ff7a3eab0609693db4e25513",
+    "train": 96,
+    "validation": 32,
+    "H_called": false,
+    "actual_solves": 0,
+    "test_file_opened": false
+  },
+  "OBP_H40_executed": false,
+  "runs_total": 18,
+  "completed_read_only": 2,
+  "remaining": 16,
+  "real_prefix_first": {
+    "jobs": 2,
+    "members": [
+      "fjsp-eoh501",
+      "fjsp-eoh502"
+    ],
+    "original_request_cap_each": 1020,
+    "original_total": 2040,
+    "new_requests_cap": 2,
+    "solves_cap_including_recheck": 84,
+    "initialization_prefix_each": 1,
+    "same_protocol_and_budget_on_resume": true
+  },
+  "API2_optional_next": {
+    "new_requests_cap": 2,
+    "solves_cap_including_recheck": 84,
+    "cumulative_prefix_requests": 4,
+    "new_per_seed_prefix": 2,
+    "manifest_unchanged": true,
+    "phase_receipts_hash_bound_in_ledger": true
+  },
+  "new_known_fixes": [
+    "queue wait per request instead of adapter process age",
+    "read-only known refusal releases only its owned unchanged writer mutex, allowing in-flight peer to settle",
+    "separate send turn preserves global physical-send pacing at width2",
+    "confirmed sent-to-settled overlap distinguished from merely admitted permits",
+    "completed U501/U502 protected from new prepares and shared plans"
+  ],
+  "pending_real_assets": [
+    "official LKH source receipt/license review/compiled binary and20 reference solves",
+    "OBP40 bounded H construction,10 distinct frozen H",
+    "post-freeze30Weibull method evaluation not performed"
+  ],
+  "remaining_protocol_input_only": [
+    "TSP search N/init/cap/initialization policy adoption not found in supplied decision; one --adopt-tsp-search-profile flag materializes U5/EoH10/init20/cap1020 if user chooses it; data/LKH already adopted"
+  ],
+  "resource_limits": {
+    "active_searches": 2,
+    "per_search_API": 1,
+    "global_API_initial": 1,
+    "global_API2": "finite separately authorized then actually certified before adoption",
+    "CPU_EoH_pair": 4,
+    "CPU_mixed_FJSP_U_EoH_pair": 5,
+    "memory_MiB_pair": 4096,
+    "default_CPUs_numeric_threads": 1,
+    "RPM": null,
+    "TPM": null
+  },
+  "tests": {
+    "shared_native": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/parallel-searches-20261114/OFFLINE_CHECKS.json",
+    "current_prompt": "/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115/reports/eoh-prompt-contract-20261115/OFFLINE_CHECKS.json",
+    "additional": {
+      "passed": true,
+      "checks": [
+        "two real local processes, synthetic sends overlap at2, global send-turn spacing, no third finite reservation, original caps unchanged",
+        "persistent frozen-U transport gets fresh bounded queue deadline per request, not process-age360s",
+        "known read-only STOP refusal releases only its owned unmodified writer mutex; peer physical-send callback/settlement drains; unknown leases still sticky",
+        "fake LKH child gets CPU hard120, wall150, private process group killed and joined on timeout; stopped receipt prevents automatic retry"
+      ],
+      "API_requests": 0,
+      "actual_solves": 0,
+      "LKH_runs": 0,
+      "Slurm_submitted": false,
+      "API2_actual_verified": false,
+      "RUN_READY": false
+    }
+  },
+  "full_script_package_note": "All training/admission/front-asset/Slurm commands prepared; code delivery != runtime ready or real studies complete. Post-freeze OBP30Weibull method evaluation is explicitly still unexecuted; exact holdout manifest/selection must be supplied by protocol handoff before that stage.",
+  "capacity_48h": {
+    "remaining_searches": 16,
+    "U502_wall_seconds": 31949,
+    "same_duration_serial_hours": 141.99555555555557,
+    "required_throughput_factor_for48h": 2.958240740740741,
+    "claim": "capacity illustration only; heterogenous studies, asset generation, scheduler and API verification not predicted"
+  }
+}

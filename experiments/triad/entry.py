@@ -77,7 +77,7 @@ def main():
     if args.shared_manifest:
         from experiments.triad import shared_admission
         shared=shared_admission.binding(args.shared_manifest,d,args.config)
-    if args.kind!='h-build' and c['mode']=='real' and c['group']=='fjsp-u' and c['search_seed']==501 and args.action in ('prepare','run','resume'):raise PermissionError('existing frozen U501 is protected: register completed evidence read-only, or exclude it and choose new seeds; never rerun/take over')
+    if args.kind!='h-build' and c['mode']=='real' and c['group']=='fjsp-u' and c['search_seed'] in (501,502) and args.action in ('prepare','run','resume'):raise PermissionError('completed frozen U501/U502 are protected read-only; never rerun/take over')
     if args.kind!='h-build' and c['problem']=='fjsp' and c['method']=='u' and (c['mode']=='real' or shared):
         launch=d.parent/(d.name+'.launch.json')
         if args.action in ('prepare','run') and not d.exists():

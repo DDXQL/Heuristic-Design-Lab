@@ -21,10 +21,11 @@ from heuristic_design.llm.legacy import ClientConfig
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport, POLICY, STOP_POLICY
 from fjsp_usage.research_real.real_transport import WIRE_VERSION
 from fjsp_usage.offline_v2 import lower_bound_v5
+import prompt_contract
 
 ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
-VERSION='fjsp-eoh-single-J-min-v1'
+VERSION='fjsp-eoh-single-J-min-prompt-v2'
 METRICS={'objective':'J=mean((Cmax-LB_v5)/LB_v5)', 'direction':'min',
  'internal_native_score':'-J; implementation bridge only, NOT historical negative Fitness',
  'legacy_identity':'fjsp-eoh-single-native-http-v2; mean(-Cmax/LB_v5), maximize; immutable',
@@ -35,9 +36,7 @@ REQUIRED=('candidate_cap','api_attempt_cap','initialization_request_cap','evolut
 
 
 def task_description():
-    return old.task_description().replace('ascending job then machine order','ascending job order and original eligible-machine enumeration order').replace(
-      'Complete train21 Fitness is mean(-Cmax/LB), maximized;',
-      'Complete train21 objective J is mean((Cmax-LB)/LB), minimized; the native rank machinery uses -J internally;')
+    return prompt_contract.description('fjsp')
 
 
 def sources():
@@ -149,7 +148,7 @@ def prepare(directory,path,*,approve_budget=None,allow_api=False):
     runtime={**c,'type':'native_eoh','candidate_kind':'h','problem':'fjsp','recording_mode':'compact','window':10,
       'enabled_groups':list(evolution_v1.GROUPS),'cross_parents':2,'execution_contract':{'version':VERSION,'allocated_cpus':c['resources']['cpus']}}
     p=dict(version=VERSION,config=runtime,instances=data,references=refs,input_provenance=origin,source_files=sources(),
-       tasks_sha256=sha(directory/'Tasks.json'),prompt_sha256=digest(task_description()),metrics=METRICS,
+       tasks_sha256=sha(directory/'Tasks.json'),prompt_sha256=digest(task_description()),H_prompt_contract=prompt_contract.identity('fjsp'),metrics=METRICS,
        state_schema=state_a_v3.schema_id('fjsp'),u_abi=routing_state_a_v3.ABI,
        caller_acceptance_policy=POLICY,infrastructure_policy=STOP_POLICY,
        algorithm=dict(implementation='unchanged native LLM4AD EoH + existing durable adapter',
@@ -180,6 +179,7 @@ class Adapter(old.Adapter):
     def check_run(self,directory):
         p,s=protocol_state(directory)
         if sha(Path(directory)/'Tasks.json')!=p['tasks_sha256'] or digest(task_description())!=p['prompt_sha256']:raise ValueError('frozen task plan/prompt changed')
+        if p.get('H_prompt_contract')!=prompt_contract.identity('fjsp'):raise ValueError('new prompt identity required; never reinterpret old EoH')
         if any(sha(ROOT/n)!=h for n,h in p['source_files'].items()):raise ValueError('frozen source changed')
         if p['metrics']!=METRICS or p['caller_acceptance_policy']!=POLICY:raise ValueError('metric/client identity changed')
         if p['budgets']['API_attempts']!=p['budgets']['initialization']+p['budgets']['evolution']:raise ValueError('budget identity differs')
@@ -193,7 +193,7 @@ class Adapter(old.Adapter):
         funcs=[old.native.make_function(r['candidate'],r['id'],r['fitness']) for r in parents]
         fn=getattr(old.EoHPrompt,'get_prompt_'+task['operator'].lower())
         text=fn(task_description(),template) if task['operator']=='I1' else fn(task_description(),funcs if task['operator'] in ('E1','E2') else funcs[0],template)
-        return text+'\nSerialization requirement: one boxed {description}, then exactly one fenced python block containing the complete function. No other text.\n'
+        return text+'\nUse literal ASCII {description}, NOT LaTeX, followed by exactly one complete fenced python function, as specified above.\n'
     def task_context(self,directory,state,p,task,index):
         if state['eoh']['stage']=='evolution' and state['eoh']['operator_cursor']>=p['config']['evolution_request_cap']:
             state['phase']='completed';return None,[]

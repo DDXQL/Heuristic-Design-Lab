@@ -1,0 +1,19 @@
+{
+  "batch_id": "first-eoh-501-502-prompt-v2-20261115",
+  "mode": "real",
+  "min_request_interval_seconds": 1,
+  "queue_wait_seconds": 360,
+  "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+  "members": [
+    {
+      "group": "fjsp-eoh",
+      "seed": 501,
+      "config": "../configs/fjsp-eoh.json"
+    },
+    {
+      "group": "fjsp-eoh",
+      "seed": 502,
+      "config": "../configs/fjsp-eoh.json"
+    }
+  ]
+}

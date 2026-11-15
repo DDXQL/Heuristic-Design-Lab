@@ -31,7 +31,13 @@ def plan(path,engineering=False):
             todo=configuration.gaps(c)
             if seeds is not None:todo=[x for x in todo if x not in ('search_seeds','repeat_count')]
             run_id=campaign['campaign_id']+'-'+c['group']+'-seed-'+str(seed) if seed is not None else None
-            rows.append(dict(protected_existing_501=(c['group']=='fjsp-u' and seed==501),group=c['group'],index=i,seed=seed,run_id=run_id,source_config=str(source),config_sha256=sha(source),status='pending' if todo or seed is None else 'configured',pending=todo,budget=configuration.budget({**c,'repeat_count':repeats})))
+            row=dict(protected_existing_501=(c['group']=='fjsp-u' and seed in (501,502)),group=c['group'],index=i,seed=seed,run_id=run_id,source_config=str(source),config_sha256=sha(source),status='pending' if todo or seed is None else 'configured',pending=todo,budget=configuration.budget({**c,'repeat_count':repeats}))
+            existing=ROOT/'preparations/triad/completed'/('FJSP-U'+str(seed)+'.json')
+            if c['mode']=='real' and row['protected_existing_501'] and existing.exists():
+                record=read(existing);snapshot=record['summary']
+                if not record['read_only'] or snapshot['phase']!='completed' or snapshot['evolution_attempts']!=1000:raise ValueError('completed registration receipt invalid')
+                row.update(status='completed_read_only',pending=[],existing_registration={'snapshot':snapshot,'source_directory':record.get('source',snapshot.get('source_fetch')),'source_receipt_sha256':sha(existing),'execution_prohibited':True})
+            rows.append(row)
     obp_configs={item['group']:configuration.load((path.parent/item['config']).resolve(),engineering=engineering) for item in campaign['groups'] if item['group'].startswith('obp-')}
     if len(obp_configs)==2:
         conditions=('obp_actions','obp_h_abi','obp_bound','data_manifest','solve_seed')

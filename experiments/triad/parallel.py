@@ -20,7 +20,7 @@ def plan(spec,folder,hours=None,confirmed=False):
     if not folder.is_relative_to(ROOT/'plans') or not doc['batch_id'] or any(v not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_' for v in doc['batch_id']):raise ValueError('safe new batch under this release plans/ required')
     if folder.exists():raise FileExistsError('new plan directory required; never replace a submitted plan')
     if len(doc['members'])!=2:raise ValueError('exactly two selected independent runs required')
-    if any(v['group']=='fjsp-u' and v['seed']==501 for v in doc['members']):raise PermissionError('U501 is registered read-only, never scheduled')
+    if doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
     exclusion=None
     if hours is not None:
         if not confirmed or not 48<=hours<=168:raise PermissionError('explicit all-device exclusion of 48..168 hours required')
@@ -34,7 +34,7 @@ def plan(spec,folder,hours=None,confirmed=False):
         if c['mode']!=doc['mode']:raise ValueError('Mock and real cannot share an admission batch')
         if c['api_attempt_cap'] is None:raise PermissionError('explicit member cap required even for a pending plan')
         write(dest,c); rows.append({'group':c['group'],'seed':item['seed'],'index':index,'run_id':run_id,'run_dir':str(run_root/run_id),'config':str(dest),'config_sha256':sha(dest),'child_config_sha256':sha(dest),'request_cap':c['api_attempt_cap'],'pending':configuration.gaps(c)})
-    m={'version':shared.VERSION,'batch_id':doc['batch_id'],'mode':doc['mode'],'max_active_searches':2,'global_API_width':1,'API2':'pending explicit future validation; prohibited by this version',
+    m={'version':shared.VERSION,'batch_id':doc['batch_id'],'mode':doc['mode'],'max_active_searches':2,'global_API_width':1,'API2':'implemented bounded extension; requires API1 actual acceptance and separate manual phase authorization; not adopted',
        'min_request_interval_seconds':doc['min_request_interval_seconds'],'queue_wait_seconds':doc['queue_wait_seconds'],'require_initial_preflight':True,
        'account_gate':doc['account_gate'],'account_exclusion':exclusion,'total_request_cap':sum(r['request_cap'] for r in rows),'members':rows,'real_requests_authorized':False}
     cs=[read(r['config']) for r in rows]
@@ -61,7 +61,9 @@ def inspect(path):
         d=Path(row['run_dir']);c=configuration.load(row['config'],engineering=m['mode']=='mock')
         if sha(row['config'])!=row['config_sha256']:raise ValueError('member config changed')
         cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
-        item={'run_id':row['run_id'],'seed':row['seed'],'group':row['group'],'phase':cp.get('phase','not_started'),'pending':configuration.gaps(c),'original_request_cap':row['request_cap'],'resources':c['resources'],'run_dir':str(d)}
+        names={'fjsp':'FJSP','tsp':'TSP','obp':'在线装箱'}
+        label=names[c['problem']]+('双层方法' if c['method']=='u' else '单规则EoH')+'：第'+str([501,502,503].index(row['seed'])+1)+'次独立搜索'
+        item={'中文名称':label,'run_id':row['run_id'],'seed':row['seed'],'group':row['group'],'phase':cp.get('phase','not_started'),'pending':configuration.gaps(c),'original_request_cap':row['request_cap'],'resources':c['resources'],'run_dir':str(d)}
         if cp:
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
             item['initialization_requests']=cp.get('initialization_requests',cp.get('eoh',{}).get('initialization_requests'))
@@ -71,7 +73,16 @@ def inspect(path):
             item['reported_metrics']={k:progress.get(k) for k in ('best_J','champion_id','valid_candidates','failures','duplicates','confirmed_sends','unknown_sends','physical_passes')}
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
-    return {'members':rows,'total_original_request_cap':m['total_request_cap'],'shared':None if state is None else {'reserved':len(state['requests']),'peak_permits':state['peak'],'active':state['active'],'active_searches':state['jobs'],'states':{k:sum(r['state']==k for r in state['requests'].values()) for k in ('waiting','admitted','sent','completed','failed_or_unknown')},'API_wait_seconds':sum(r.get('wait_seconds',0) for r in state['requests'].values()),'wire_seconds':sum(r.get('wire_seconds',0) for r in state['requests'].values())},'STOP':(path.parent/'gate/STOP.json').exists(),'RUN_READY':False,'API_requests_by_inspection':0,'actual_solves_by_inspection':0}
+    width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else 1
+    return {'members':rows,'effective_global_API_width':width,'total_original_request_cap':m['total_request_cap'],'shared':None if state is None else {'reserved':len(state['requests']),'peak_permits':state['peak'],'confirmed_send_to_settlement_peak':sent_peak(state),'active':state['active'],'active_searches':state['jobs'],'states':{k:sum(r['state']==k for r in state['requests'].values()) for k in ('waiting','admitted','sent','completed','failed_or_unknown')},'API_wait_seconds':sum(r.get('wait_seconds',0) for r in state['requests'].values()),'wire_seconds':sum(r.get('wire_seconds',0) for r in state['requests'].values())},'STOP':(path.parent/'gate/STOP.json').exists(),'RUN_READY':False,'API_requests_by_inspection':0,'actual_solves_by_inspection':0}
+
+
+def sent_peak(state):
+    active=set();peak=0
+    for event in state['events']:
+        if event['event']=='sent':active.add(event['uid']);peak=max(peak,len(active))
+        elif event['event']=='settled':active.discard(event['uid'])
+    return peak
 
 
 def argv(row,action,path,prefix=None):
@@ -119,6 +130,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
     if m['mode']=='real' and prefix is None:
         certificate=read(path.parent/'Acceptance.json')
         if not certificate.get('real_dispatch_path_verified') or certificate.get('manifest_sha256')!=sha(path) or certificate.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('new-version bounded real dispatch acceptance required before full resume')
+        if (path.parent/'API2.finite.json').exists() and not (path.parent/'API2.decision.json').exists():raise PermissionError('API2 finite phase must be explicitly adopted or returned to API1 before full resume')
     shared.Admission({**{'manifest':str(path),'sha256':sha(path)},'run_id':m['members'][0]['run_id']}).verify()
     # All durable submission claims exist before the first sbatch. Unknowns stop
     # the batch, retain both claims, and are never retried or re-reserved.
@@ -141,7 +153,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         if cp['phase']!=('prepared' if action=='run' else 'paused') or any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json')):raise PermissionError('run needs prepared; resume needs safely paused original state')
         claim_path=d/'submissions'/('shared-'+action+'-'+sha(d/'checkpoint.json')+'.json')
         run_claims.append(claim_path)
-    for row,p,cmd in zip(selected,run_claims,commands):claim(p,{'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':row['request_cap'],'automatic_retry':False})
+    for row,p,cmd in zip(selected,run_claims,commands):claim(p,{'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':row['request_cap'],'finite_settled_prefix':prefix,'automatic_retry':False})
     (ROOT/'logs').mkdir(exist_ok=True);receipts=[]
     try:
         for row,p,cmd in zip(selected,run_claims,commands):
@@ -150,30 +162,80 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
             record={**read(p),'state':'submitted','job_id':job};write(p,record);write(Path(row['run_dir'])/'latest-submission.json',record);receipts.append(record)
     except BaseException:
         stop(path.parent/'gate','unknown/failed submission; all claims retained');raise
-    return {'submitted':True,'receipts':receipts,'original_aggregate_cap':m['total_request_cap'],'finite_new_solve_cap':new_solves if prefix is not None else None,'global_API_width':1,'max_active_searches':2}
+    width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(None)[0]
+    return {'submitted':True,'receipts':receipts,'original_aggregate_cap':m['total_request_cap'],'finite_new_solve_cap':new_solves if prefix is not None else None,'global_API_width':width,'max_active_searches':2}
 
 
-def certify(path):
-    path=Path(path).resolve();m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json');jobs=[];hosts=[];nodes=[]
+def certify(path,phase=1):
+    path=Path(path).resolve();m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json');jobs=[];hosts=[];nodes=[];actual_solves=0
     if info['STOP'] or s['active'] or s['jobs']:raise PermissionError('unknown/active evidence retained')
-    expected_sends=sum(2 if r['group']=='fjsp-u' else 1 for r in m['members'])
+    if phase not in (1,2):raise ValueError('bounded acceptance phase1/API1 or phase2/API2 only')
+    if phase==2 and not (path.parent/'API2.finite.json').exists():raise PermissionError('explicit finite API2 authorization required')
+    prefixes=[read(Path(r['run_dir'])/'latest-submission.json').get('finite_settled_prefix') for r in m['members']]
+    if any(type(v) is not int or v<1 for v in prefixes):raise PermissionError('explicit finite original-prefix submission receipts required')
+    expected_sends=sum(prefixes)
     for i,row in enumerate(m['members']):
         d=Path(row['run_dir']);cp=read(d/'checkpoint.json');r=read(d/'latest-submission.json');job=r.get('job_id','')
-        expected_prefix=2 if row['group']=='fjsp-u' else 1
+        expected_prefix=prefixes[i]
         if cp['phase']!='paused' or cp.get('completed_tasks',cp.get('cursor'))!=expected_prefix or r['state']!='submitted' or not job.isdigit():raise PermissionError('two settled bounded Slurm prefixes required (EoH1, U whole init wave2)')
         account=subprocess.run(['sacct','-n','-P','-j',job,'--format=JobIDRaw,State,ExitCode,NodeList'],check=True,text=True,capture_output=True)
         actual=next((x.split('|') for x in account.stdout.splitlines() if x.split('|')[0]==job),None)
         if not actual or actual[:3]!=[job,'COMPLETED','0:0'] or not actual[3] or any(ch not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.' for ch in actual[3]):raise PermissionError('terminal successful single-node Slurm receipt required')
         nodes.append(actual[3])
         jobs.append(job);ready=read(path.parent/'preflight'/f'ready-{i}.json');hosts.append(ready['host'])
-        if ready['job_id']!=job or not read(path.parent/'preflight'/f'fs-pass-{i}.json')['passed']:raise PermissionError('actual job filesystem preflight missing')
-    if len(set(jobs))!=2 or len(s['requests'])!=expected_sends or s['peak']!=1 or any(r['state']!='completed' for r in s['requests'].values()):raise PermissionError('exact bounded successful prefix sends and shared peak1 required')
-    value={'manifest_sha256':sha(path),'adapter_sha256':sha(shared.__file__),'two_actual_Slurm_jobs':jobs,'hosts':hosts,'validated_nodes':nodes,'scope':'cross_node' if len(set(nodes))==2 else 'same_node','real_dispatch_path_verified':m['mode']=='real','compute_node_mock_verified':m['mode']=='mock','API_requests':expected_sends if m['mode']=='real' else 0,'solves_upper_bound':sum(2*(2 if r['group']=='fjsp-u' else 1)*configuration.load(r['config'],engineering=True)['instance_count'] for r in m['members']) if m['mode']=='real' else 0,'RUN_READY':False,'note':'finite specified topology only; resumes pinned to these nodes, no provider quota/max-throughput claim'}
-    claim(path.parent/'Acceptance.json',value);return value
+        expected_job=job if phase==1 else read(path.parent/'Acceptance.json')['two_actual_Slurm_jobs'][i]
+        if ready['job_id']!=expected_job or not read(path.parent/'preflight'/f'fs-pass-{i}.json')['passed']:raise PermissionError('actual job filesystem preflight missing')
+        if phase==2 and nodes[i]!=read(path.parent/'Acceptance.json')['validated_nodes'][i]:raise PermissionError('API2 must retain accepted node topology')
+        if m['mode']=='real':
+            tasks=list(cp['tasks'].values())
+            if len(tasks)!=expected_prefix or any(not t.get('valid') or t.get('failure') for t in tasks):raise PermissionError('finite real prefix must be valid/unique and completely evaluated; do not refill failures')
+            if c:=read(d/'Protocol.json'):
+                if c.get('run_kind')=='eoh' and c.get('H_prompt_contract')!=runtime.h_contract.identity(c['config']['problem'],c['config'].get('obp_h_abi'),runtime.problems.obp_contract(c['config']) if c['config']['problem']=='obp' else None):raise PermissionError('actual repaired H prompt identity required')
+            member_solves=0
+            for receipt in cp['evaluations'].values():
+                result_path=d/receipt['path']
+                if sha(result_path)!=receipt['sha256']:raise ValueError('finite evaluation receipt changed')
+                result=read(result_path)
+                if not result['valid'] or result.get('mock') or len(result['instances'])!=len(c['instances']):raise PermissionError('complete real evaluation required')
+                for result_row in result['instances']:
+                    if result_row.get('captured_solves')!=2 or result_row['semantic_sha256']!=result_row['recheck_semantic_sha256']:raise PermissionError('exact independent first/recheck receipts required')
+                    member_solves+=2
+            if member_solves!=2*expected_prefix*len(c['instances']):raise PermissionError('bounded physical solve count differs; no hidden repeat or cached duplicate acceptance')
+            actual_solves+=member_solves
+    if len(set(jobs))!=2 or len(s['requests'])!=expected_sends or s['peak']!=phase or sent_peak(s)!=phase or any(r['state']!='completed' for r in s['requests'].values()):raise PermissionError('exact bounded successful prefix sends and actual sent-to-settled overlap required')
+    value={'manifest_sha256':sha(path),'adapter_sha256':sha(shared.__file__),'phase':phase,'two_actual_Slurm_jobs':jobs,'hosts':hosts,'validated_nodes':nodes,'scope':'cross_node' if len(set(nodes))==2 else 'same_node','real_dispatch_path_verified':m['mode']=='real','compute_node_mock_verified':m['mode']=='mock','API_requests':expected_sends if m['mode']=='real' else 0,'solves_upper_bound':sum(2*n*configuration.load(r['config'],engineering=True)['instance_count'] for n,r in zip(prefixes,m['members'])) if m['mode']=='real' else 0,'RUN_READY':False,'note':'finite specified topology only; API2 counts include API1 prefix; no provider maximum/RPM/TPM claim'}
+    value['actual_solves_including_recheck']=actual_solves
+    claim(path.parent/('Acceptance.json' if phase==1 else 'API2.Acceptance.json'),value);return value
+
+
+def authorize_api2(path,additional,solves):
+    path=Path(path).resolve();m=shared.load(path);proof=read(path.parent/'Acceptance.json');info=inspect(path);s=read(path.parent/'gate/ledger.json')
+    if m['mode']!='real' or any(r['group']!='fjsp-eoh' for r in m['members']):raise PermissionError('first bounded API2 extension is only the already-admitted two FJSP EoH searches')
+    if not proof['real_dispatch_path_verified'] or proof['manifest_sha256']!=sha(path) or proof['adapter_sha256']!=sha(shared.__file__):raise PermissionError('matching actual API1 acceptance required')
+    if additional!=2 or solves!=84 or info['STOP'] or s['active'] or s['jobs'] or len(s['requests'])!=2 or any(r['state']!='completed' for r in s['requests'].values()) or any(r['phase']!='paused' or r['used_logical_attempts']!=1 or r['writer_lock'] for r in info['members']):raise PermissionError('two safely paused first attempts, no unknowns; exactly2 additional requests/84 inclusive solves required')
+    value={'manifest_sha256':sha(path),'adapter_sha256':sha(shared.__file__),'before_reservations':2,'reservation_stop_at':4,'additional_requests':2,'additional_solves_upper':84,'width':2,'adopted_for_full_search':False,'automatic_retry':False}
+    b={'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}
+    with shared.Admission(b).transaction() as current:
+        if current['active'] or current['jobs'] or len(current['requests'])!=2:raise PermissionError('phase changed during authorization')
+        claim(path.parent/'API2.finite.json',value);current['API2_finite_sha256']=sha(path.parent/'API2.finite.json')
+    return value
+
+
+def decide_api2(path,width,approved):
+    path=Path(path).resolve();m=shared.load(path);s=read(path.parent/'gate/ledger.json');info=inspect(path)
+    if width not in (1,2) or approved!=m['total_request_cap'] or info['STOP'] or s['active'] or s['jobs'] or len(s['requests'])!=4 or any(r['state']!='completed' for r in s['requests'].values()):raise PermissionError('settled finite phase and explicit original aggregate approval required')
+    certificate=path.parent/'API2.Acceptance.json'
+    if width==2 and (not read(certificate)['real_dispatch_path_verified'] or read(certificate)['manifest_sha256']!=sha(path)):raise PermissionError('actual API2 acceptance required before adoption')
+    value={'finite_sha256':sha(path.parent/'API2.finite.json'),'width':width,'acceptance_sha256':sha(certificate) if width==2 else None,'original_aggregate_cap':approved}
+    b={'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}
+    with shared.Admission(b).transaction() as current:
+        if current['active'] or current['jobs'] or len(current['requests'])!=4:raise PermissionError('phase changed during decision')
+        claim(path.parent/'API2.decision.json',value);current['API2_decision_sha256']=sha(path.parent/'API2.decision.json')
+    return value
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['plan','mock-plan','check-only','activate','submit','resume','certify','status','pause','close']);ap.add_argument('--spec',type=Path);ap.add_argument('--directory',type=Path);ap.add_argument('--manifest',type=Path);ap.add_argument('--exclusive-hours',type=float);ap.add_argument('--confirm-exclusive-account',action='store_true');ap.add_argument('--submit',action='store_true');ap.add_argument('--approve-requests',type=int);ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--settled-prefix',type=int);ap.add_argument('--approve-segment-solves',type=int);ap.add_argument('--member',type=int,choices=[0,1]);a=ap.parse_args()
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['plan','mock-plan','check-only','activate','submit','resume','certify','status','pause','close','authorize-api2','decide-api2']);ap.add_argument('--spec',type=Path);ap.add_argument('--directory',type=Path);ap.add_argument('--manifest',type=Path);ap.add_argument('--exclusive-hours',type=float);ap.add_argument('--confirm-exclusive-account',action='store_true');ap.add_argument('--submit',action='store_true');ap.add_argument('--approve-requests',type=int);ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--settled-prefix',type=int);ap.add_argument('--approve-segment-solves',type=int);ap.add_argument('--member',type=int,choices=[0,1]);ap.add_argument('--phase',type=int,choices=[1,2],default=1);ap.add_argument('--additional-requests',type=int);ap.add_argument('--width',type=int,choices=[1,2]);a=ap.parse_args()
     if a.action=='plan':value=plan(a.spec,a.directory,a.exclusive_hours,a.confirm_exclusive_account)
     elif a.action=='mock-plan':value=mock_plan(a.directory)
     elif a.action in ('check-only','status'):value=inspect(a.manifest)
@@ -181,7 +243,9 @@ def main():
         if shared.load(a.manifest)['mode']=='real' and not a.confirm_exclusive_account:raise PermissionError('explicit all-other-generators-stopped confirmation required')
         shared.activate(a.manifest);value={'activated':True,'API_requests':0,'actual_solves':0}
     elif a.action in ('submit','resume'):value=submit(a.manifest,'resume' if a.action=='resume' else 'run',a.submit,a.approve_requests,a.allow_api,a.allow_solves,a.settled_prefix,a.approve_segment_solves,a.member)
-    elif a.action=='certify':value=certify(a.manifest)
+    elif a.action=='certify':value=certify(a.manifest,a.phase)
+    elif a.action=='authorize-api2':value=authorize_api2(a.manifest,a.additional_requests,a.approve_segment_solves)
+    elif a.action=='decide-api2':value=decide_api2(a.manifest,a.width,a.approve_requests)
     elif a.action=='pause':
         m=shared.load(a.manifest);rows=m['members'] if a.member is None else [m['members'][a.member]]
         value={'pause_requested':[]}

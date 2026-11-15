@@ -1,0 +1,651 @@
+{
+  "problem": "obp",
+  "split": "validation",
+  "instances": [
+    {
+      "file": "instance_96",
+      "path": "instances/instance_96.json",
+      "sha256": "1b2fee3ac81ca2c0ea6afcbdb877c177f0ec32bbe1b161d09efa5748ad8d12de",
+      "source_instance_id": 96,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 17096,
+        "C": 100,
+        "reference": 171,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_97",
+      "path": "instances/instance_97.json",
+      "sha256": "49be9a9487194a3c4c51d3ef51ef45541a735b536322a04a31dda1bf7ff179d7",
+      "source_instance_id": 97,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 48056,
+        "C": 100,
+        "reference": 481,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_98",
+      "path": "instances/instance_98.json",
+      "sha256": "f01720663713520750048dd2626a47561250ed52927e2f43aa756b8433868daf",
+      "source_instance_id": 98,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 13497,
+        "C": 100,
+        "reference": 135,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_99",
+      "path": "instances/instance_99.json",
+      "sha256": "5e777538a222c74c46b488af3d5e18eceab337fd0bf8b4f7d03c8673ac5f853c",
+      "source_instance_id": 99,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 58497,
+        "C": 100,
+        "reference": 585,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_100",
+      "path": "instances/instance_100.json",
+      "sha256": "590a0561f9937650c12865c01986d5e551d8aadebae99e84ce94bed789d12e5e",
+      "source_instance_id": 100,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 7954,
+        "C": 100,
+        "reference": 80,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_101",
+      "path": "instances/instance_101.json",
+      "sha256": "bbad259fb021630bd332e4e3ac6152f37b0b49ac94a370c063a07b746d79d35a",
+      "source_instance_id": 101,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 101754,
+        "C": 100,
+        "reference": 1018,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_102",
+      "path": "instances/instance_102.json",
+      "sha256": "e45393205204182c429d0e34215e8ea0b06ffca0c4128b11b5574144896bf12c",
+      "source_instance_id": 102,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 3432,
+        "C": 100,
+        "reference": 34,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_103",
+      "path": "instances/instance_103.json",
+      "sha256": "90b8f275682bb751cb12e8d272c5712e3e4548098a3a237cf7df4d9e8a05c2c7",
+      "source_instance_id": 103,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 36631,
+        "C": 100,
+        "reference": 366,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_104",
+      "path": "instances/instance_104.json",
+      "sha256": "5f0aebdbc400b0ca5c70f90ae933b584a12cf5c23e98c48b51e7ec6be25ffe2f",
+      "source_instance_id": 104,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 11455,
+        "C": 100,
+        "reference": 115,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_105",
+      "path": "instances/instance_105.json",
+      "sha256": "bbcf7819fbde7370356dd4be0023d1ba68ef3f728b9d88aec1ed29225f9aaff8",
+      "source_instance_id": 105,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 15888,
+        "C": 100,
+        "reference": 159,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_106",
+      "path": "instances/instance_106.json",
+      "sha256": "1970c4b5c73907368156c005329eb298e3c4a26edab4f057cc06ad300bf2d399",
+      "source_instance_id": 106,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 4506,
+        "C": 100,
+        "reference": 45,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_107",
+      "path": "instances/instance_107.json",
+      "sha256": "fee0db1ad1dc48c17da918299b6da312da5ac5c20fe3b9e3fbe53fd52e29138f",
+      "source_instance_id": 107,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 2262,
+        "C": 100,
+        "reference": 23,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_108",
+      "path": "instances/instance_108.json",
+      "sha256": "2e98534aac219a5ab1f35026bf27814ed1212a615633db614790d5eb5b590e7d",
+      "source_instance_id": 108,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 16339,
+        "C": 100,
+        "reference": 163,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_109",
+      "path": "instances/instance_109.json",
+      "sha256": "53c3f480fe6392bb6545a2a4ca3768a0ae148f59e37fad4e1a6d67983ed44782",
+      "source_instance_id": 109,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 90615,
+        "C": 100,
+        "reference": 906,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_110",
+      "path": "instances/instance_110.json",
+      "sha256": "be56de24ea410306119400853ffb858185933502c95e4af6310378a2f66ff486",
+      "source_instance_id": 110,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 118215,
+        "C": 100,
+        "reference": 1182,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_111",
+      "path": "instances/instance_111.json",
+      "sha256": "e20ff21c6c084723a93d0d8bbfb228560ab37d72871b15f455c317465ac2592d",
+      "source_instance_id": 111,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 116190,
+        "C": 100,
+        "reference": 1162,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_112",
+      "path": "instances/instance_112.json",
+      "sha256": "74987bcaf1e3edb16032b2278bd2b0270f804c68eef318e6901a12d254a6de47",
+      "source_instance_id": 112,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 96844,
+        "C": 100,
+        "reference": 968,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_113",
+      "path": "instances/instance_113.json",
+      "sha256": "2dd1864734e24587af92e55a72b1753ba8911b4a646f9397b539bd87d8d92c85",
+      "source_instance_id": 113,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 39550,
+        "C": 100,
+        "reference": 396,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_114",
+      "path": "instances/instance_114.json",
+      "sha256": "8e87446e5ffff7670c2d1b170f20aebc0f1a886e9e14b4594f9234a8849acf2c",
+      "source_instance_id": 114,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 12367,
+        "C": 100,
+        "reference": 124,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_115",
+      "path": "instances/instance_115.json",
+      "sha256": "da58f0ba6238a741ce03c31a5b4b1153fb4531b79367f7e3e15b433fdcb72560",
+      "source_instance_id": 115,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 8068,
+        "C": 100,
+        "reference": 81,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_116",
+      "path": "instances/instance_116.json",
+      "sha256": "95e8a6a28aa3b31a55ddfedec1ced2c9ef5bd313b0fc4d30832afba26d83b8ea",
+      "source_instance_id": 116,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 35735,
+        "C": 100,
+        "reference": 357,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_117",
+      "path": "instances/instance_117.json",
+      "sha256": "b85f8ef423154d2644b7ce17a08a9c7eab361141801cb92b5a792b88d154db2a",
+      "source_instance_id": 117,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 35583,
+        "C": 100,
+        "reference": 356,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_118",
+      "path": "instances/instance_118.json",
+      "sha256": "5ec637c7790106733a41ca9818eaaac0e94c6b7ae7de4accfcfdd0e5be83f313",
+      "source_instance_id": 118,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 93714,
+        "C": 100,
+        "reference": 937,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_119",
+      "path": "instances/instance_119.json",
+      "sha256": "5c972e65db78e092f2cfb2246ee8385287d6765d0492e6eb5aa66a718795e543",
+      "source_instance_id": 119,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 2096,
+        "C": 100,
+        "reference": 21,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_120",
+      "path": "instances/instance_120.json",
+      "sha256": "510c76a8b1fa3623dad26a4099ecc40c5d8021a69da32a03c918275264d8fce8",
+      "source_instance_id": 120,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 31277,
+        "C": 100,
+        "reference": 313,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_121",
+      "path": "instances/instance_121.json",
+      "sha256": "1763f9bfa72d9e2a53e18344c30aa6013b9822f96941649049c9bb445c89f4e3",
+      "source_instance_id": 121,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 7801,
+        "C": 100,
+        "reference": 78,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_122",
+      "path": "instances/instance_122.json",
+      "sha256": "fd64055e5a57ed9b38f76a54f13d399d0c3b138803d7139bb697f933ce6a6d3b",
+      "source_instance_id": 122,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 10933,
+        "C": 100,
+        "reference": 109,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_123",
+      "path": "instances/instance_123.json",
+      "sha256": "b94be8a7bd59f4455cb82350825940095d0bab3a982c1db967b08d5a7a588791",
+      "source_instance_id": 123,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 68804,
+        "C": 100,
+        "reference": 688,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_124",
+      "path": "instances/instance_124.json",
+      "sha256": "295e9a44dd81ac5217a48aca153b68f141ad1a192ec6454c79333a0d635b0325",
+      "source_instance_id": 124,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 69200,
+        "C": 100,
+        "reference": 692,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_125",
+      "path": "instances/instance_125.json",
+      "sha256": "b8a30dc99f26288926141c61881945213cead80720ed8a489fdca83ee0957a22",
+      "source_instance_id": 125,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 26585,
+        "C": 100,
+        "reference": 266,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_126",
+      "path": "instances/instance_126.json",
+      "sha256": "69ee72d504429bb7d1f09f100e6dbd87dc84677c2c4fd76a96dfa52888476043",
+      "source_instance_id": 126,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 36550,
+        "C": 100,
+        "reference": 366,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    },
+    {
+      "file": "instance_127",
+      "path": "instances/instance_127.json",
+      "sha256": "54d9dfef238a7ea9f0d365e5224017b19a1e2cecce2efff10140fb373ce3cd0f",
+      "source_instance_id": 127,
+      "source_items_dtype": "int32",
+      "reference_precheck": {
+        "S": 24629,
+        "C": 100,
+        "reference": 246,
+        "sum_dtype": "int64",
+        "calculation_dtype": "float64",
+        "cast": "Python int, positive truncation",
+        "numpy_version": "2.2.6",
+        "reference_identity": {
+          "version": "obp-R-code-int64-float64-v1",
+          "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+        }
+      }
+    }
+  ],
+  "source_sha256": "6ef362b59973163225579e26e5e49f6196579287ff7a3eab0609693db4e25513",
+  "source_git_blob": "860afc93ecb15492b1d8c5f7781fc5d90adb0f47",
+  "adopted_spec_sha256": "6c6e672bc7e358761e66ba29182e8a1af3d8ea2f2b6fb906193f8eb884351da0",
+  "numeric_precheck_only": true,
+  "no_method_scores": true
+}

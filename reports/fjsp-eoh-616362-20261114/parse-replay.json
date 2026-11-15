@@ -1,0 +1,136 @@
+[
+  {
+    "slot": 0,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 1,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1.7976931348623157e+308",
+      "'inf'",
+      "'inf'"
+    ]
+  },
+  {
+    "slot": 2,
+    "recorded": "forbidden syntax: Tuple",
+    "replayed": "forbidden syntax: Tuple"
+  },
+  {
+    "slot": 3,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 4,
+    "recorded": "forbidden syntax: Tuple",
+    "replayed": "forbidden syntax: Tuple"
+  },
+  {
+    "slot": 5,
+    "recorded": "valid",
+    "replayed": "valid"
+  },
+  {
+    "slot": 6,
+    "recorded": "expected one {description} and one python block only",
+    "replayed": "expected one {description} and one python block only",
+    "code_only_result": "forbidden syntax: Tuple"
+  },
+  {
+    "slot": 7,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1e+300",
+      "1e+300",
+      "1e+300"
+    ]
+  },
+  {
+    "slot": 8,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 9,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1e+300",
+      "1e+300",
+      "1e+300"
+    ]
+  },
+  {
+    "slot": 10,
+    "recorded": "expected one {description} and one python block only",
+    "replayed": "expected one {description} and one python block only",
+    "code_only_result": "forbidden syntax: Tuple"
+  },
+  {
+    "slot": 11,
+    "recorded": "valid",
+    "replayed": "valid"
+  },
+  {
+    "slot": 12,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 13,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1e+300",
+      "1e+300",
+      "1e+300"
+    ]
+  },
+  {
+    "slot": 14,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1.7976931348623157e+308",
+      "'inf'",
+      "'inf'"
+    ]
+  },
+  {
+    "slot": 15,
+    "recorded": "expected one {description} and one python block only",
+    "replayed": "expected one {description} and one python block only",
+    "code_only_result": "forbidden syntax: Tuple"
+  },
+  {
+    "slot": 16,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 17,
+    "recorded": "power exponent must be a literal integer in [0,8]",
+    "replayed": "power exponent must be a literal integer in [0,8]"
+  },
+  {
+    "slot": 18,
+    "recorded": "expected one {description} and one python block only",
+    "replayed": "expected one {description} and one python block only",
+    "code_only_result": "only bounded numeric/boolean constants allowed"
+  },
+  {
+    "slot": 19,
+    "recorded": "only bounded numeric/boolean constants allowed",
+    "replayed": "only bounded numeric/boolean constants allowed",
+    "offending_constants": [
+      "1.7976931348623157e+308",
+      "1.7976931348623157e+308",
+      "1.7976931348623157e+308"
+    ]
+  }
+]

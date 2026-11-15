@@ -1,13 +1,22 @@
 {
-  "approved": false,
+  "approved": true,
   "lkh_binary": null,
   "lkh_binary_sha256": null,
-  "version": null,
-  "integer_scale": null,
-  "runs": null,
-  "max_trials": null,
-  "seed": null,
-  "distance_protocol": null,
-  "timeout_seconds": null,
-  "additional_parameters": null
+  "version": "LKH-3.0.13",
+  "integer_scale": 1000000,
+  "runs": 10,
+  "max_trials": 1000,
+  "seed": 1,
+  "cpu_seconds": 120,
+  "timeout_seconds": 150,
+  "distance_protocol": {
+    "input": "unit-square-float64-euclidean",
+    "LKH_edge_type": "EXPLICIT",
+    "integer_rounding": "floor(scale*d+0.5)",
+    "reference_cost": "recomputed-original-distance-closed-tour"
+  },
+  "additional_parameters": {
+    "TIME_LIMIT": 10
+  },
+  "adoption_source": "explicit user reply adopted D06 parameters2026-11-15; binary/source receipt still required"
 }

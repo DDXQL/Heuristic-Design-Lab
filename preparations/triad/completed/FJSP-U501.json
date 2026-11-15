@@ -1,0 +1,43 @@
+{
+  "read_only": true,
+  "source": "/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-mac-20261112/runs/fjsp-u1000-20261112-mac-seed-501/exports/summary.json",
+  "source_sha256": "626a99ac98d6f8f189d603788415681e51262fb9115e6095effd7f5014c1c552",
+  "summary": {
+    "label": "TRAINING_SEARCH",
+    "run_id": "fjsp-u1000-20261112-mac-seed-501",
+    "phase": "completed",
+    "protocol_sha256": "cb412de468a1f079ff86a6ccdf7ed0f40a0abcb05552c32b15e1fc22e14c505d",
+    "initialization_attempts": 8,
+    "evolution_attempts": 1000,
+    "request_reservations": 1008,
+    "confirmed_sends": 1006,
+    "unknown_sends": 0,
+    "valid_unique_evaluations": 789,
+    "evaluation_reservations": 789,
+    "candidate_failures": 53,
+    "duplicates": 162,
+    "cancelled_before_dispatch": 0,
+    "known_usage_subtotal": {
+      "input_tokens": 10544096,
+      "output_tokens": 867171
+    },
+    "unknown_usage_attempts": 4,
+    "actual_cost": null,
+    "currency_hard_cap_verified": false,
+    "automatic_retries": 0,
+    "source_H_cost": {
+      "H_attempts": 34,
+      "scope": "shared historical H provenance; counted once, not added again on resume",
+      "actual_cost": null
+    },
+    "best_J": 1.028064685792435,
+    "champion_id": "G076-001-CROSS",
+    "calendar_clock": {
+      "started_at": 1794530425.8808398,
+      "deadline": 1794703225.8808398
+    },
+    "timing_scope": "task timings are per function; batch durations are shared, never summed as wall time",
+    "real_requests": "see confirmed/unknown sends",
+    "real_solves": "see lifecycle receipts"
+  }
+}

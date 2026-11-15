@@ -12,7 +12,7 @@ import time
 from heuristic_design.core.storage import read, write, sha, digest
 from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
 
-VERSION = 'two-independent-searches-request-admission-v1'
+VERSION = 'two-independent-searches-prompt-v2-admission-v2'
 
 
 def durable(path,value):
@@ -32,11 +32,13 @@ def load(path):
     if m['version']!=VERSION or m['max_active_searches']!=2 or m['global_API_width']!=1:
         raise ValueError('this release supports at most two searches and global API1 only')
     rows=m['members']
-    if len(rows)!=2 or len({r['run_id'] for r in rows})!=2 or len({r['seed'] for r in rows})!=2:
-        raise ValueError('two distinct run IDs and independent seeds required')
+    if len(rows)!=2 or len({r['run_id'] for r in rows})!=2 or len({(r['group'],r['seed']) for r in rows})!=2:
+        raise ValueError('two distinct run IDs and independent group/seed identities required')
     if len({r['run_dir'] for r in rows})!=2 or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
         raise ValueError('distinct directories required; existing U501 is read-only')
-    if any(r['group'] not in ('fjsp-u','fjsp-eoh') or r['seed'] not in (502,503) or Path(r['run_dir']).name!=r['run_id'] for r in rows):raise ValueError('this FJSP release selects new independent seeds502/503 only')
+    from experiments.triad.configuration import GROUPS
+    if any(r['group'] not in GROUPS or r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id'] for r in rows):raise ValueError('declared triad group and seed501/502/503 required')
+    if m['mode']=='real' and any(r['group']=='fjsp-u' and r['seed'] in (501,502) for r in rows):raise PermissionError('completed FJSP U501/U502 are read-only; never rerun or migrate')
     if m['mode']=='real':
         expected=read(Path(__file__).resolve().parents[2]/'preparations/cluster-concurrency-20261114/phase1/Probe.pending.json')['account_gate']
         if m['account_gate']!=expected:raise ValueError('retain the original common account gate; no independent account locks')
@@ -98,7 +100,7 @@ def activate(path):
 class Admission:
     def __init__(self,b,deadline=None):
         self.b=b; self.path=Path(b['manifest']); self.m=load(self.path); self.folder=self.path.parent/'gate'
-        self.member=b['run_id']; self.deadline=deadline or time.time()+self.m['queue_wait_seconds']
+        self.member=b['run_id']; self.deadline=deadline
         self.row=next(r for r in self.m['members'] if r['run_id']==self.member)
 
     def verify(self):
@@ -112,12 +114,21 @@ class Admission:
     def transaction(self):
         # Reuse the already tested exclusive writer; timeout never steals it.
         g=ProbeGate(self.folder,1,time.time()+10,0)
+        refused=None
         with g.transaction():
             self.verify(); s=read(self.folder/'ledger.json')
             if s['manifest_sha256']!=self.b['sha256']:raise ValueError('shared ledger identity differs')
             before=digest(s)
-            yield s
+            try:yield s
+            except Exception as error:
+                # A known read-only refusal (STOP, exhausted budget) has no
+                # uncertain write to recover. Release THIS owned mutex normally
+                # so an already-sent peer can still settle. Mutated/uncertain
+                # transactions keep the original sticky-writer semantics.
+                if digest(s)!=before:raise
+                refused=error
             if digest(s)!=before:durable(self.folder/'ledger.json',s)
+        if refused is not None:raise refused
 
     @staticmethod
     def event(s,event,**values):
@@ -125,27 +136,72 @@ class Admission:
 
     def acquire(self,key):
         started=time.monotonic(); uid=digest({'member':self.member,'key':key})
+        # One frozen U transport adapter survives the whole search. Queue time
+        # is bounded PER REQUEST, not 360 seconds after process construction.
+        self.wait_deadline=self.deadline if self.deadline is not None else time.time()+self.m['queue_wait_seconds']
         with self.transaction() as s:
             if (self.folder/'STOP.json').exists():raise RuntimeError('shared STOP: no new requests')
             if self.member not in s['jobs']:raise RuntimeError('request without active admitted search')
             if uid in s['requests']:raise RuntimeError('attempt already reserved; never replay or refund')
             if sum(r['member']==self.member for r in s['requests'].values())>=self.row['request_cap'] or len(s['requests'])>=self.m['total_request_cap']:
                 raise RuntimeError('original member/aggregate request cap exhausted')
+            width,phase_cap=self.phase(s)
+            if phase_cap is not None and len(s['requests'])>=phase_cap:raise PermissionError('finite API2 phase cap reached; no extra reservations or automatic full search')
             s['requests'][uid]={'member':self.member,'key':key,'ticket':s['next_ticket'],'state':'waiting','reserved_at':time.time()}
             s['next_ticket']+=1; self.event(s,'waiting',uid=uid,member=self.member)
         while True:
-            if time.time()>=self.deadline:
+            if time.time()>=self.wait_deadline:
                 stop(self.folder,'bounded queue wait ended; reservations retained, no replay')
                 raise TimeoutError('request admission wait exceeded; no refund')
             with self.transaction() as s:
                 if (self.folder/'STOP.json').exists():raise RuntimeError('shared STOP while waiting; reservation retained')
                 waiting=[(v['ticket'],k) for k,v in s['requests'].items() if v['state']=='waiting']
                 first=min(waiting)[1] if waiting else None
-                if not s['active'] and first==uid:
+                width,_=self.phase(s)
+                if len(s['active'])<width and self.member not in s['active'].values() and first==uid:
                     s['active'][uid]=self.member; s['peak']=max(s['peak'],len(s['active']))
                     s['requests'][uid].update(state='admitted',wait_seconds=time.monotonic()-started)
                     self.event(s,'admitted',uid=uid,member=self.member);return uid
             time.sleep(.1)
+
+    def phase(self,s):
+        path=self.path.parent/'API2.finite.json'
+        if not path.exists():return 1,None
+        r=read(path)
+        if r['manifest_sha256']!=self.b['sha256'] or r['adapter_sha256']!=sha(__file__):raise ValueError('API2 finite authorization binding changed')
+        s=read(self.folder/'ledger.json') if s is None else s
+        if s.get('API2_finite_sha256')!=sha(path):raise ValueError('original API2 finite authorization bytes changed or were never durably admitted')
+        if self.m['mode']=='real' and (r.get('before_reservations')!=2 or r.get('reservation_stop_at')!=4 or r.get('additional_requests')!=2 or r.get('additional_solves_upper')!=84):raise PermissionError('only the explicit2 additional requests/84 solves phase is implemented')
+        decision=self.path.parent/'API2.decision.json'
+        if decision.exists():
+            v=read(decision)
+            if s.get('API2_decision_sha256')!=sha(decision):raise ValueError('original API2 decision bytes changed')
+            if v['finite_sha256']!=sha(path) or v['width'] not in (1,2):raise ValueError('API2 decision binding changed')
+            if v['width']==2 and v['acceptance_sha256']!=sha(self.path.parent/'API2.Acceptance.json'):raise ValueError('actual API2 acceptance required')
+            return v['width'],None
+        return 2,r['reservation_stop_at']
+
+    def send_turn(self,uid):
+        """Serialize send starts without blocking ledger settlement or peer STOP.
+
+        The next holder waits a local monotonic interval AFTER the previous
+        physical-send callback releases this file. No cross-node clock sync is
+        assumed. Unknown owners are sticky; no TTL stealing.
+        """
+        path=self.folder/'send-turn.lock'
+        while time.time()<self.wait_deadline:
+            if (self.folder/'STOP.json').exists():raise RuntimeError('STOP before send turn; no new wire')
+            try:claim(path,{'uid':uid,'member':self.member});break
+            except FileExistsError:time.sleep(.05)
+        else:raise TimeoutError('bounded send-turn wait ended; unknown owner retained')
+        time.sleep(self.m['min_request_interval_seconds'])
+        self.verify()
+        if (self.folder/'STOP.json').exists():raise RuntimeError('STOP while pacing; owned turn retained')
+        return path
+
+    def release_send_turn(self,path,uid):
+        if read(path)!=dict(uid=uid,member=self.member):raise RuntimeError('send turn ownership changed')
+        path.unlink()
 
     def sent(self,uid):
         with self.transaction() as s:
@@ -218,9 +274,7 @@ class GuardedTransport:
             raise
         inner_started=False
         try:
-            # Hold the FREE permit, then wait using monotonic time. This is
-            # conservative inter-send spacing even when node wall clocks differ.
-            time.sleep(self.admission.m['min_request_interval_seconds'])
+            turn=self.admission.send_turn(uid)
             self.admission.verify()
             if (self.admission.folder/'STOP.json').exists():raise RuntimeError('shared STOP before wire dispatch')
             clock=Path(self.admission.row['run_dir'])/'Run_clock.json'
@@ -228,7 +282,9 @@ class GuardedTransport:
             reserve=c['provider']['total_timeout']+c['instance_timeout_seconds']*c['instance_count']+5
             if clock.exists() and time.time()+reserve>read(clock)['deadline']:
                 raise TimeoutError('original calendar window cannot cover dispatch and evaluation after waiting')
-            def sent():self.admission.sent(uid);on_sent()
+            def sent():
+                self.admission.sent(uid);on_sent()
+                self.admission.release_send_turn(turn,uid)
             inner_started=True
             wire_started=time.monotonic()
             value=self.inner.dispatch(key,prompt,kind=kind,on_sent=sent)

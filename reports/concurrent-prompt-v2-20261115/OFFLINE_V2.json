@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": [
+    "two real local processes, synthetic sends overlap at2, global send-turn spacing, no third finite reservation, original caps unchanged",
+    "persistent frozen-U transport gets fresh bounded queue deadline per request, not process-age360s",
+    "known read-only STOP refusal releases only its owned unmodified writer mutex; peer physical-send callback/settlement drains; unknown leases still sticky",
+    "fake LKH child gets CPU hard120, wall150, private process group killed and joined on timeout; stopped receipt prevents automatic retry"
+  ],
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "Slurm_submitted": false,
+  "API2_actual_verified": false,
+  "RUN_READY": false
+}
