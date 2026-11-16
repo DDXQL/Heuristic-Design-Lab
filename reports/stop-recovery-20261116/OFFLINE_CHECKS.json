@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "results": {
+    "legacy_charge_removal_or_failure_relabelled_success_refused": true,
+    "current_checkpoint_import_and_future_random_plan": [
+      {
+        "seed": 501,
+        "next_operator": "M1",
+        "next_parents": [
+          "SLOT-0000092"
+        ],
+        "32_step_parent_operator_rng_trace_equal_original_native": true,
+        "trace_sha256": "50903725c100eea240e2a35f7f4dff1811736ec124781ca2a99ea593a63801c0"
+      },
+      {
+        "seed": 502,
+        "next_operator": "E2",
+        "next_parents": [
+          "SLOT-0000333",
+          "SLOT-0000233"
+        ],
+        "32_step_parent_operator_rng_trace_equal_original_native": true,
+        "trace_sha256": "51f82e69d55ddefb9eda72b6b326902b78b1535011db6858cb843c44899757bd"
+      }
+    ],
+    "STOP_before_native_draw_request_reservation_and_operator_count": true,
+    "unknown_journal_and_clock_extension_refused": true,
+    "expiry_refused_no_implicit_renewal": true,
+    "exact_original_and_U503_terminal_accounting_required": true,
+    "owned_atomic_handoff_idempotent_preserves_old_STOP_ledger_and_lease_bytes": true,
+    "finite_bounds_exactly_one_each_two_requests_84_including_recheck_full_requires_actual_cert": true,
+    "finite_submission_duplicate_operation_does_not_submit_or_spend_again": true,
+    "unknown_submission_stays_reserved_no_resubmit": true,
+    "two_actual_local_Mock_coordinators_with_legacy_failed_slots_pause_resume_no_unknown": true
+  },
+  "old_bytes_unchanged": true,
+  "public_923781f_unchanged": true,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "compute_node_verified": false,
+  "finite_actual_requests_authorized_by_test": false
+}

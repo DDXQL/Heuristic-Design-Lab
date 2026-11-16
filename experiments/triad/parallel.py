@@ -74,14 +74,14 @@ def inspect(path):
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
     width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else 1
-    return {'members':rows,'effective_global_API_width':width,'total_original_request_cap':m['total_request_cap'],'shared':None if state is None else {'reserved':len(state['requests']),'peak_permits':state['peak'],'confirmed_send_to_settlement_peak':sent_peak(state),'active':state['active'],'active_searches':state['jobs'],'states':{k:sum(r['state']==k for r in state['requests'].values()) for k in ('waiting','admitted','sent','completed','failed_or_unknown')},'API_wait_seconds':sum(r.get('wait_seconds',0) for r in state['requests'].values()),'wire_seconds':sum(r.get('wire_seconds',0) for r in state['requests'].values())},'STOP':(path.parent/'gate/STOP.json').exists(),'RUN_READY':False,'API_requests_by_inspection':0,'actual_solves_by_inspection':0}
+    return {'members':rows,'effective_global_API_width':width,'total_original_request_cap':m['total_request_cap'],'shared':None if state is None else {'reserved':len(state['requests']),'peak_permits':state['peak'],'confirmed_send_to_settlement_peak':sent_peak(state),'active':state['active'],'active_searches':state['jobs'],'states':{k:sum(r['state']==k for r in state['requests'].values()) for k in ('waiting','admitted','sent','completed','reconciled_failed','failed_or_unknown')},'API_wait_seconds':sum(r.get('wait_seconds',0) for r in state['requests'].values()),'wire_seconds':sum(r.get('wire_seconds',0) for r in state['requests'].values())},'STOP':(path.parent/'gate/STOP.json').exists(),'RUN_READY':False,'API_requests_by_inspection':0,'actual_solves_by_inspection':0}
 
 
 def sent_peak(state):
     active=set();peak=0
     for event in state['events']:
         if event['event']=='sent':active.add(event['uid']);peak=max(peak,len(active))
-        elif event['event']=='settled':active.discard(event['uid'])
+        elif event['event'] in ('settled','reconciled_terminal'):active.discard(event['uid'])
     return peak
 
 
@@ -100,6 +100,8 @@ def argv(row,action,path,prefix=None):
 def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=False,prefix=None,solve_cap=None,member=None):
     path=Path(path).resolve();m=shared.load(path);commands=[];new_solves=0
     selected=m['members'] if member is None else [m['members'][member]]
+    pf=lambda r: prefix[r['index']] if isinstance(prefix,dict) else prefix
+    if isinstance(prefix,dict) and set(prefix)!={r['index'] for r in selected}:raise ValueError('one explicit finite boundary for every selected member')
     for row in selected:
         c=configuration.load(row['config'],engineering=m['mode']=='mock')
         pending=configuration.gaps(c)
@@ -107,12 +109,13 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         if sha(row['config'])!=row['config_sha256']:raise ValueError('configuration changed')
         d=Path(row['run_dir']);cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
         used=cp.get('completed_tasks',cp.get('cursor',0))
-        if prefix is not None and not used<prefix<=row['request_cap']:raise ValueError('finite prefix must extend the original settled cursor')
-        segment_cap=(0 if c['mode']=='mock' else 2*(prefix-used)*c['instance_count']) if prefix is not None else None
+        bound=pf(row)
+        if bound is not None and not used<bound<=row['request_cap']:raise ValueError('finite prefix must extend the original settled cursor')
+        segment_cap=(0 if c['mode']=='mock' else 2*(bound-used)*c['instance_count']) if bound is not None else None
         new_solves+=segment_cap or 0
         # Reuse the existing resource and command builder; use the new thin shell.
         if m['mode']=='real':
-            cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',prefix,segment_cap)
+            cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',bound,segment_cap)
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
             certificate=path.parent/'Acceptance.json'
@@ -121,7 +124,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
                 if accepted.get('manifest_sha256')!=sha(path) or accepted.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('original bounded acceptance changed')
                 cmd.insert(cmd.index(str(ROOT/'experiments/triad/parallel.sbatch')),'--nodelist='+accepted['validated_nodes'][row['index']])
         else:
-            r=c['resources'];cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time=00:30:00','--partition='+r['partition'],'--account='+str(r['account'] or ''),'--qos='+str(r['qos'] or ''),'--chdir='+str(ROOT),'--job-name='+row['run_id'],'--output='+str(ROOT/'logs'/(row['run_id']+'-%j.out')),str(ROOT/'experiments/triad/parallel.sbatch'),action,row['config'],row['run_dir'],'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',str(row['request_cap']),str(prefix) if prefix is not None else '',str(segment_cap) if segment_cap is not None else '',str(path)]
+            r=c['resources'];cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time=00:30:00','--partition='+r['partition'],'--account='+str(r['account'] or ''),'--qos='+str(r['qos'] or ''),'--chdir='+str(ROOT),'--job-name='+row['run_id'],'--output='+str(ROOT/'logs'/(row['run_id']+'-%j.out')),str(ROOT/'experiments/triad/parallel.sbatch'),action,row['config'],row['run_dir'],'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',str(row['request_cap']),str(bound) if bound is not None else '',str(segment_cap) if segment_cap is not None else '',str(path)]
         commands.append(cmd)
     if not send:return {'submitted':False,'commands':commands,'original_total_request_cap':m['total_request_cap'],'finite_segment_solve_cap':new_solves if prefix is not None else None}
     if m['mode']=='real' and (approved!=m['total_request_cap'] or not allow_api or not allow_solves):raise PermissionError('explicit original aggregate cap/API/solve approval required')
@@ -129,7 +132,10 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
     if prefix is not None and solve_cap!=new_solves:raise PermissionError('exact inclusive aggregate first+recheck solve cap required')
     if m['mode']=='real' and prefix is None:
         certificate=read(path.parent/'Acceptance.json')
-        if certificate.get('kind')=='inherited_admission_not_new_compute_verification':
+        if certificate.get('kind')=='audited-R9-stop-recovery-topology':
+            from experiments.triad.stop_recovery import verify_acceptance
+            verify_acceptance(path,certificate,require_finite=True)
+        elif certificate.get('kind')=='inherited_admission_not_new_compute_verification':
             from experiments.triad.native_continuation import verify_inherited_acceptance
             verify_inherited_acceptance(path,certificate)
         elif not certificate.get('real_dispatch_path_verified') or certificate.get('manifest_sha256')!=sha(path) or certificate.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('new-version bounded real dispatch acceptance required before full resume')
@@ -156,7 +162,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         if cp['phase']!=('prepared' if action=='run' else 'paused') or any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json')):raise PermissionError('run needs prepared; resume needs safely paused original state')
         claim_path=d/'submissions'/('shared-'+action+'-'+sha(d/'checkpoint.json')+'.json')
         run_claims.append(claim_path)
-    for row,p,cmd in zip(selected,run_claims,commands):claim(p,{'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':row['request_cap'],'finite_settled_prefix':prefix,'automatic_retry':False})
+    for row,p,cmd in zip(selected,run_claims,commands):claim(p,{'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':row['request_cap'],'finite_settled_prefix':pf(row),'automatic_retry':False})
     (ROOT/'logs').mkdir(exist_ok=True);receipts=[]
     try:
         for row,p,cmd in zip(selected,run_claims,commands):

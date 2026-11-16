@@ -18,7 +18,7 @@ from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
 from . import problems,evaluation
 from .configuration import load,gaps
-VERSION='triad-native-admission-continuation-v3'
+VERSION='triad-audited-stop-recovery-v4'
 
 
 def sources():
@@ -146,13 +146,19 @@ class Adapter(old.Adapter):
         if sha(Path(d)/'Tasks.json')!=p['tasks_sha256'] or any(sha(ROOT/n)!=h for n,h in p['source_files'].items()):raise ValueError('frozen tasks/source changed')
         if p['run_kind']!='u' and p.get('H_prompt_contract')!=h_contract.identity(p['config']['problem'],p['config'].get('obp_h_abi'),problems.obp_contract(p['config']) if p['config']['problem']=='obp' else None):raise ValueError('new H prompt contract changed; old protocols cannot be reinterpreted')
         if p['config']['problem']=='obp' and (p.get('obp_execution_contract')!=problems.obp_contract(p['config']) or p.get('obp_contract_sha256')!=digest(problems.obp_contract(p['config']))):raise ValueError('OBP input/action/reference protocol changed; old cache/resume forbidden')
-        if 'continuation' in p:
+        if 'stop_recovery' in p:
+            from .stop_recovery import verify
+            verify(d,p)
+        elif 'continuation' in p:
             from .native_continuation import verify
             verify(d,p)
         self.p=p;self._engineering_mode=p['config']['api_mode']=='mock';return p
     def members(self,d):return read(Path(d)/'Protocol.json')['members']
     def transport(self,p):return MockTransport(self.client_config(p),p) if p['config']['api_mode']=='mock' else StrictNonstreamTransport(self.client_config(p))
     def journal(self,d,s,p,deadline):
+        if 'stop_recovery' in p:
+            from .stop_recovery import journal
+            return journal(self,d,s,p,deadline)
         if 'continuation' in p:
             from .native_continuation import journal
             return journal(self,d,s,p,deadline)
@@ -281,6 +287,9 @@ class Adapter(old.Adapter):
         out['resources']={'declared_model_concurrency':p['config']['api_concurrency'],'declared_evaluation_concurrency':p['config']['evaluation_concurrency'],'CPUs':p['config']['resources']['cpus'],'memory_mib':p['config']['resources']['memory_mib'],'numeric_threads':1,'generation_tasks_across_devices':1,'real_throughput_verified':False}
         if p['config'].get('shared_manifest'):
             out['resources'].update(generation_tasks_across_devices=2,global_API_width=1)
+        if 'stop_recovery' in p:
+            v=p['stop_recovery'];done=sum(out['physical_passes'][phase]['completed'] for phase in ('first','recheck'))
+            out['stop_recovery']={'parent_protocol_sha256':v['parent_protocol_sha256'],'inherited_requests':v['inherited_requests'],'inherited_solves':v['inherited_solves'],'new_request_reservations':len(attempts)-v['inherited_requests'],'new_completed_physical_solves':done-v['inherited_solves'],'original_deadline':read(Path(d)/'Run_clock.json')['deadline'],'no_reinitialization':True}
         if 'continuation' in p:
             v=p['continuation'];done=sum(out['physical_passes'][phase]['completed'] for phase in ('first','recheck'))
             out['continuation']={'parent_protocol_sha256':v['parent_protocol_sha256'],'imported_requests':v['imported_requests'],'imported_solves':v['imported_solves'],

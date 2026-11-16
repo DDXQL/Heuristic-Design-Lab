@@ -12,7 +12,7 @@ import time
 from heuristic_design.core.storage import read, write, sha, digest
 from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
 
-VERSION = 'two-independent-searches-prompt-v2-admission-v2'
+VERSION = 'two-searches-audited-terminal-failure-v3'
 
 
 def durable(path,value):
@@ -253,7 +253,7 @@ class Admission:
             if registered:
                 cp=read(d/'checkpoint.json');safe=cp['phase'] in ('completed','paused','initialization_incomplete','expired') and not (d/'Stop.json').exists()
                 with self.transaction() as s:
-                    safe=safe and not any(v==self.member for v in s['active'].values()) and not any(v['member']==self.member and v['state']!='completed' for v in s['requests'].values())
+                    safe=safe and not any(v==self.member for v in s['active'].values()) and not any(v['member']==self.member and v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values())
                     if safe and s['jobs'].get(self.member,{}).get('token')==token:
                         del s['jobs'][self.member];self.event(s,'search_settled',member=self.member,phase=cp['phase'])
                     else:stop(self.folder,'search ended without certified settlement; keep job/request reservations')
@@ -301,6 +301,8 @@ def adapter(b):
             p=super().check_run(d);verify_attachment(d,b);return p
         def transport(self,p):return GuardedTransport(super().transport(p),Admission(b))
         def task_context(self,d,s,p,task,index):
+            if (Path(b['manifest']).parent/'gate/STOP.json').exists():
+                s.update(phase='paused',pause_reason='shared STOP before candidate planning/reservation; manual audited recovery required');return None,[]
             clock=Path(d)/'Run_clock.json'
             if clock.exists() and time.time()+p['config']['resources']['drain_seconds']>=read(clock)['deadline']:
                 s.update(phase='expired',pause_reason='shared queue/evaluation drain before original deadline');return None,[]
