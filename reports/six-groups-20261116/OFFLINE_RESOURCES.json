@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "groups": {
+    "fjsp-u": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 2,
+      "conservative_minimum_drain_seconds": 2439,
+      "configured_drain_seconds": 2700,
+      "resource_allocation": {
+        "cpus": 3,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 2700,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    },
+    "fjsp-eoh": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 1,
+      "conservative_minimum_drain_seconds": 1538,
+      "configured_drain_seconds": 1620,
+      "resource_allocation": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 1620,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    },
+    "tsp-u": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 1,
+      "conservative_minimum_drain_seconds": 1508,
+      "configured_drain_seconds": 1620,
+      "resource_allocation": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 1620,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    },
+    "tsp-eoh": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 1,
+      "conservative_minimum_drain_seconds": 1508,
+      "configured_drain_seconds": 1620,
+      "resource_allocation": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 1620,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    },
+    "obp-u": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 1,
+      "conservative_minimum_drain_seconds": 3788,
+      "configured_drain_seconds": 4000,
+      "resource_allocation": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 4000,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    },
+    "obp-eoh": {
+      "queue_seconds_per_opportunity": 600,
+      "opportunities_in_bounded_wave": 1,
+      "conservative_minimum_drain_seconds": 3788,
+      "configured_drain_seconds": 4000,
+      "resource_allocation": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 4000,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      }
+    }
+  },
+  "new_runs_only": true,
+  "current_R11_modified": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false
+}

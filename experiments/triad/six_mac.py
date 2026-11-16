@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import write
 from experiments.triad import cluster,launch_concurrent
-REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261116-r12p1'
-BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-20261116-r12p1.zip')
+REMOTE='/public2/home/qiuqian/hdl-deploy/triad-six-groups-20261116-r12p2'
+BUNDLE=Path('/Users/DDXQL/Developer/transfer-outbox/triad-six-groups-20261116-r12p2.zip')
 R11='/public2/home/qiuqian/hdl-deploy/triad-fjsp-stop-recovery-20261116-r11'
 
 
