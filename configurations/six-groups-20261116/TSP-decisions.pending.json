@@ -1,0 +1,21 @@
+{
+  "approved": false,
+  "population_U": null,
+  "initialization_U": null,
+  "population_EoH": null,
+  "initialization_EoH": null,
+  "initialization_policy_U": null,
+  "initialization_policy_EoH": null,
+  "recommendation_only": {
+    "values": [
+      5,
+      20,
+      10,
+      20,
+      1,
+      2
+    ],
+    "meaning": "U N5/init20/bounded; EoH N10/init20/strict finite parents; total cap1020 each. Native EoH policy3 is a separate choice."
+  },
+  "reference_D06_already_adopted": true
+}

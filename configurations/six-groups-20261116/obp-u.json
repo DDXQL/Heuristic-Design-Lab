@@ -1,0 +1,125 @@
+{
+  "version": "triad-independent-search-v1",
+  "group": "obp-u",
+  "problem": "obp",
+  "method": "u",
+  "mode": "real",
+  "freeze_status": "frozen",
+  "real_requests_authorized": false,
+  "repeat_count": 3,
+  "search_seeds": [
+    501,
+    502,
+    503
+  ],
+  "population_size": 5,
+  "initialization_request_cap": 20,
+  "evolution_request_cap": 1000,
+  "api_attempt_cap": 1020,
+  "per_candidate_attempt_cap": 1,
+  "initialization_policy": "bounded_initialization_until_population",
+  "solve_seed": 501,
+  "api_concurrency": 1,
+  "evaluation_concurrency": 1,
+  "window_seconds": 172800,
+  "instance_timeout_seconds": 30,
+  "instance_count": 96,
+  "data_manifest": "../../preparations/triad/obp-official-20261115/train.manifest.json",
+  "h_file": null,
+  "reference_file": null,
+  "state_delivery": {
+    "file": "../../experiments/triad/obp_state_preset.py",
+    "sha256": "e1dd67152bb8353876ff6bbf865355a0e52da9ee23615957bf8ab8395416b43d",
+    "module": "experiments.triad.obp_state_preset",
+    "action_policy": "preallocated_empty_bins",
+    "adoption": "adopted",
+    "status": "delivered_code",
+    "supported_actions": [
+      "preallocated_empty_bins"
+    ]
+  },
+  "provider": {
+    "endpoint": "https://leafapi.cc/v1/chat/completions",
+    "model": "gpt-6.1-sol",
+    "protocol": "openai-chat-v1",
+    "api_key_env": "LEAFAPI_API_KEY",
+    "connect_timeout": 10,
+    "read_timeout": 240,
+    "total_timeout": 300,
+    "max_output_tokens": 8192,
+    "max_prompt_bytes": 262144,
+    "temperature": null,
+    "reasoning_effort": null,
+    "expected_response_model": "gpt-6.1-sol",
+    "stream_response": false
+  },
+  "client_binding": {
+    "wire_version": "bounded-wire-reliability-v5",
+    "caller_policy": "strict-nonstream-model-stop-usage-v1",
+    "files": {
+      "code/fjsp_usage/research_real/real_transport.py": "592e531494407644de13688101dcee224045ecdc5c155583dc75039966767618",
+      "code/heuristic_design/llm/strict_nonstream.py": "c9d3f08ff4daace3e6a6d05ea1de73687cf5d94782eff0501ae01f5a71e9dcbc"
+    },
+    "provider": {
+      "endpoint": "https://leafapi.cc/v1/chat/completions",
+      "model": "gpt-6.1-sol",
+      "protocol": "openai-chat-v1",
+      "api_key_env": "LEAFAPI_API_KEY",
+      "connect_timeout": 10,
+      "read_timeout": 240,
+      "total_timeout": 300,
+      "max_output_tokens": 8192,
+      "max_prompt_bytes": 262144,
+      "temperature": null,
+      "reasoning_effort": null,
+      "expected_response_model": "gpt-6.1-sol",
+      "stream_response": false
+    }
+  },
+  "frozen_u_template": null,
+  "compatible_fixed_results": null,
+  "budget_basis": "Adopted N5 U/N10 EoH,init<=20/evolution1000/cap1020; H build separate; no end-to-end equal-cost claim",
+  "protocol_receipt": {
+    "source": "explicit user decisions recorded2026-11-14/15",
+    "execution_authorized": false,
+    "new_prompt_version": "closed-H-prompt-contract-v2-20261115"
+  },
+  "data_usage_receipt": {
+    "adopted": true,
+    "train": "official instance0..95",
+    "validation": "official instance96..127",
+    "test": "30Weibull after frozen champions only; not opened here"
+  },
+  "obp_actions": "preallocated_empty_bins",
+  "obp_h_abi": "obp-vector-feasible-h-v2",
+  "obp_bound": {
+    "version": "obp-R-code-int64-float64-v1",
+    "rule": "int(float64(sum_int64(items))/float64(C)+0.5)"
+  },
+  "h_build": {
+    "request_cap": 40,
+    "target_count": 10,
+    "selection": "greedy-envelope-J-v1",
+    "source_cost": {
+      "budget": "independent cap40; shared once by3 U runs"
+    },
+    "search_seed": 401,
+    "window_seconds": 172800
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_mib": 2048,
+    "segment_seconds": 43200,
+    "drain_seconds": 4000,
+    "numeric_threads": 1,
+    "partition": "128C_02",
+    "account": "wz",
+    "qos": "normal"
+  },
+  "account_exclusion": null,
+  "account_gate": "/public2/home/qiuqian/hdl-account-gates/leafapi-gpt61sol-serial-v1",
+  "credential_file": "/public2/home/qiuqian/.config/hdl/leafapi.key",
+  "mock_faults": {},
+  "pause_after_tasks": null,
+  "search_seed": null
+}

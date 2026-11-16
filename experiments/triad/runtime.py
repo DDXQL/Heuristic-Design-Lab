@@ -18,7 +18,7 @@ from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
 from . import problems,evaluation
 from .configuration import load,gaps
-VERSION='triad-audited-stop-recovery-v4'
+VERSION='triad-six-groups-operations-v5'
 
 
 def sources():

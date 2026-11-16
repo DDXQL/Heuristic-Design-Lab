@@ -1,0 +1,73 @@
+{
+  "evidence": "/Users/DDXQL/Developer/Heuristic-Design-Lab-six-groups-delivery-20261116/reports/six-groups-20261116/offline-1794833352378051000/OFFLINE.json",
+  "passed": true,
+  "scope": "18 tiny synthetic runs +6 pause/resume +FJSP gate regression; existing admission/failure evidence reused",
+  "results": {
+    "fjsp-u": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "fjsp-eoh": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "tsp-u": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "tsp-eoh": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "obp-u": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "obp-eoh": {
+      "three_fresh_initializations": true,
+      "seed_directory_protocol_isolation": true,
+      "budget4_not6_actual": true,
+      "pause_resume_same_rng_trace_and_deadline": true,
+      "Slurm_args_passed": true,
+      "real_config_evolution_target": 1000
+    },
+    "FJSP_native_gate": {
+      "init_requests": 10,
+      "evolution_attempts": 2,
+      "duplicate_or_tie_penalties_preserved": 8,
+      "no_refill": true
+    }
+  },
+  "public_923781f_unchanged": true,
+  "credential_values_read": 0,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "LKH_runs": 0,
+  "Slurm_submitted": false,
+  "current_R11_modified": false,
+  "reused_evidence": [
+    "R11 finite recovery622833/622834 user supplied passed certificate",
+    "Mock614258 and real evaluator614474 closed",
+    "R10 three process Mock only, no new pressure test"
+  ]
+}

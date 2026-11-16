@@ -12,7 +12,7 @@ import time
 from heuristic_design.core.storage import read, write, sha, digest
 from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
 
-VERSION = 'two-searches-audited-terminal-failure-v3'
+VERSION = 'two-searches-six-groups-api1-v4'
 
 
 def durable(path,value):

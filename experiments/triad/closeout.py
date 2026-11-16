@@ -69,7 +69,7 @@ def outcome(row):
 def inspect(source,allow_incomplete=False):
     source=Path(source).resolve()
     p=read(source/'Protocol.json');s=read(source/'checkpoint.json');summary=read(source/'exports/summary.json')
-    if p['version'] not in ('parent-coverage-routing-v1','triad-shared-native-adapter-v1'):raise ValueError('only explicit J protocol exports are supported; legacy Fitness is not reinterpreted')
+    if p['version'] not in ('parent-coverage-routing-v1','triad-shared-native-adapter-v1','triad-audited-stop-recovery-v4','triad-six-groups-operations-v5'):raise ValueError('only explicit J protocol exports are supported; legacy Fitness is not reinterpreted')
     if p['version']=='parent-coverage-routing-v1':
         explicit_J=p.get('objective')=='mean((raw_cost-reference)/reference); minimize J; internal fitness=-J'
     else:
@@ -210,7 +210,7 @@ def render(info,data,out):
         for n,(x,y) in positions.items():ax.text(x,y,n,ha='center',va='center',fontsize=8,bbox={'boxstyle':'round,pad=.4','facecolor':'#f4b860' if n==champ else '#dbe9f6','edgecolor':'#888'})
         ax.set(xlim=(-max(2,len(nodes)/3),max(2,len(nodes)/3)),ylim=(-2.6,.5),title='Champion + two parent hops only; full graph is in CSV');ax.axis('off')
         save(fig,'05-champion-local-lineage',['champion-local-edges.csv','parent-edges.csv'],'Local parent ancestry only; not a model reasoning explanation.')
-    if data['instances']:
+    if data['instances'] and all(number(r.get('raw_cost')) is not None and number(r.get('reference')) is not None for r in data['instances']):
         fig,ax=plt.subplots(figsize=(12,4.5));records=data['instances'];x=np.arange(len(records));ax.bar(x-.2,[number(r['raw_cost']) for r in records],.4,label='Champion raw cost');ax.bar(x+.2,[number(r['reference']) for r in records],.4,label='Frozen reference');ax.set_xticks(x,[r['file'] for r in records],rotation=60,ha='right',fontsize=7);ax.set(ylabel='Raw cost / reference',title='Recorded champion results only; no test evaluation or baseline overlay');ax.legend()
         save(fig,'06-champion-instances',['champion-instances.csv'],'Dataset split is retained per row; sample is train21 only.')
     if data['selections']:

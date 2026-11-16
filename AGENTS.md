@@ -1,5 +1,7 @@
 # 实验运行与归档规则
 
+本轮唯一新增交付来源为本工作树`Heuristic-Design-Lab-six-groups-delivery-20261116`、分支`codex/six-groups-delivery-20261116`。只用于后续新实验；R11正在运行的622861/622862及其所有原件不改。用户授权必要实现、文档和纯离线Mock；禁止代发真实API、求解/LKH、Slurm或push。公共`code/`及`run_frozen.py`保持923781f。TSP未批准的搜索参数保持待定；FJSP EoH503落实已采用原生门槛。API压力测试搁置。
+
 本文件适用于本项目及其子目录中的后续Codex任务。
 
 - Mac用于本地开发和运行实验；实验室Windows电脑保存历史实验归档，通过UU由用户手动传输。
