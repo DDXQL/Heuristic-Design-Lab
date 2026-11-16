@@ -8,7 +8,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[2]
 OUTBOX=Path('/Users/DDXQL/Developer/transfer-outbox')
 BASE=OUTBOX/'triad-fjsp-stop-recovery-20261116-r11.zip'
-TARGET=OUTBOX/'triad-six-groups-20261116-r12.zip'
+TARGET=OUTBOX/'triad-six-groups-20261116-r12p1.zip'
 
 
 def build():
@@ -35,7 +35,7 @@ def build():
     forbidden=('generation.lock','.execution.lock','.coordinator.lock','API_attempts.json','checkpoint.json','.key','.env','STOP.json')
     assert not any(Path(n).name in forbidden or n.startswith(('runs/','logs/','.venv/')) for n in names)
     payload={n:(ROOT/n).read_bytes() for n in sorted(names)}
-    release={'version':'triad-six-groups-20261116-r12','engineering_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+    release={'version':'triad-six-groups-20261116-r12p1','engineering_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'public_commit':'923781f05686f1899c24fd7899fb3bc6b1df1562','files':{n:hashlib.sha256(v).hexdigest() for n,v in payload.items()},
         'entry':'docs/六组实验按序运行.md','API_execution_authorized':False,'existing_R11_included':False}
     assert not TARGET.exists(),'preserve existing frozen package; choose explicit new revision instead'

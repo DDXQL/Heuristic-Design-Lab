@@ -183,7 +183,7 @@ def settle_known(name,acknowledged):
     a=shared.Admission({'manifest':str(p),'sha256':sha(p),'run_id':m['members'][0]['run_id']})
     a.verify();g=p.parent/'gate'
     need((g/'STOP.json').exists() and not any((g/n).exists() for n in ('metrics.lock','send-turn.lock')),'STOP required, unknown writer/send turn cannot be settled')
-    original=read(g/'ledger.json');known={};snapshots={};total=0
+    original=read(g/'ledger.json');known={};attempts={};snapshots={};total=0
     for row in m['members']:
         d=Path(row['run_dir']);s=read(d/'checkpoint.json')
         protocol=read(d/'Protocol.json')
@@ -199,6 +199,7 @@ def settle_known(name,acknowledged):
             journal_path=candidates[0]
         j=read(journal_path)
         need(s['phase'] in ('paused','completed') and not any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json')),'unsettled/blocked source; never rewrite phase')
+        need(all(e.get('status')=='completed' for e in s.get('evaluations',{}).values()),'unsettled evaluation retained; never re-solve')
         need(not j.get('halt_reason'),'persistent client stop requires separate diagnosis; do not clear it')
         snapshots[str(d)]={n:sha(d/n) for n in ('checkpoint.json','Protocol.json','Run_clock.json',str(journal_path.relative_to(d)))}
         need(all(t.get('status') in ('completed','planned') for t in s['tasks'].values()),'unsettled task; no replay')
@@ -206,28 +207,43 @@ def settle_known(name,acknowledged):
         for x in j['api_attempts'].values():
             uid=digest({'member':row['run_id'],'key':x['id']})
             need(x['number']==1 and x['status'] in ('completed','failed'),'unknown attempt or retry')
+            need(uid not in attempts,'duplicate original attempt identity')
+            attempts[uid]={'member':row['run_id'],'key':x['id'],'attempt':x}
             if x['status']=='failed':
                 meta=x.get('metadata',{});sent=meta.get('send_status')
-                no_send=not x.get('send_confirmed') and sent=='not_sent' and meta.get('failure_stage')=='shared_admission'
+                no_send=not x.get('send_confirmed') and sent=='not_sent' and meta.get('failure_stage')=='shared_admission' and x.get('finished_at') is not None
                 http=x.get('send_confirmed') and sent=='confirmed' and meta.get('failure_stage')=='http_receive' and meta.get('http_status') in (429,500,502,503,504,522,524) and x.get('finished_at') is not None
                 need(no_send or http,'truly unknown/network/persistent error retained; no automatic resolution')
                 known[uid]={'member':row['run_id'],'key':x['id'],'classification':'confirmed_not_sent' if no_send else 'confirmed_HTTP'+str(meta['http_status'])}
     need(known and set(original['active']).issubset(known),'unexplained active permit; retain')
-    need(total==len(original['requests']),'journal/shared budget discrepancy; retain for diagnosis')
-    need(all(uid in original['requests'] for uid in known),'orphan charged request; retain')
+    need(set(original['requests']).issubset(attempts),'orphan shared request; retain for diagnosis')
+    missing=set(attempts)-set(original['requests'])
+    need(all(uid in known and known[uid]['classification']=='confirmed_not_sent' for uid in missing),
+         'only journal-only confirmed not_sent charges can be reconciled; unknown/physical send retained')
+    for uid,r in original['requests'].items():
+        need((r['member'],r['key'])==(attempts[uid]['member'],attempts[uid]['key']),'shared/journal identity differs')
+        need(uid in known or r['state'] in ('completed','reconciled_failed'),'unknown shared settlement retained')
+    need(total<=m['total_request_cap'] and all(sum(x['member']==r['run_id'] for x in attempts.values())<=r['request_cap'] for r in m['members']),
+         'original per-member/aggregate budget exceeded')
     audit=p.parent/'known-failures'/str(time.time_ns())
     audit.mkdir(parents=True)
-    write(audit/'Before.json',original);write(audit/'Audit.json',{'known':known,'scheduler':account,'sources':snapshots,'charged':total,'refunds':0})
+    write(audit/'Before.json',original);write(audit/'Audit.json',{'known':known,'journal_only_confirmed_not_sent':sorted(missing),'scheduler':account,'sources':snapshots,'charged':total,'refunds':0})
     with a.transaction() as s:
         need(s==original,'concurrent ledger change; STOP retained')
         for uid in known:
+            if uid in missing:
+                s['requests'][uid]={'member':known[uid]['member'],'key':known[uid]['key'],
+                    'ticket':s['next_ticket'],'state':'reconciled_failed','send_state':'not_sent',
+                    'reserved_at':attempts[uid]['attempt'].get('started_at'),
+                    'journal_only_charge_preserved':True}
+                s['next_ticket']+=1
             s['requests'][uid].update(state='reconciled_failed',reconciliation=str(audit/'Audit.json'))
             s['active'].pop(uid,None);a.event(s,'reconciled_terminal',uid=uid,member=known[uid]['member'])
         need(all(r['state'] in ('completed','reconciled_failed') for r in s['requests'].values()),'waiting/unknown request retained')
         s['jobs']={};a.event(s,'manual_known_failure_settlement',charged_retained=total)
     for d,files in snapshots.items():need(all(sha(Path(d)/n)==h for n,h in files.items()),'original identity/RNG/budget changed; stop')
     os.replace(g/'STOP.json',audit/'Original-STOP.json')
-    return {'settled_known_failures':len(known),'charged_retained':total,'refunds':0,'phase_or_rng_writes':0,'API_requests':0,'solves':0,'next':'manual continue; no failed slot replay'}
+    return {'settled_known_failures':len(known),'journal_only_not_sent_preserved':len(missing),'charged_retained':total,'refunds':0,'phase_or_rng_writes':0,'API_requests':0,'solves':0,'next':'manual continue; no failed slot replay'}
 
 
 def bind_asset(problem,path):
