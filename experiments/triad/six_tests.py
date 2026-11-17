@@ -76,9 +76,10 @@ def main():
     try:six_ops.continue_batch('fjsp503',2040,False,True,True)
     except (PermissionError,FileNotFoundError):pass
     else:raise AssertionError('missing approval accepted')
-    # All research configs remain unapproved for execution; TSP pending is expected.
+    # Execution stays unapproved. R12 has pending TSP choices; R13 has adopted bindings.
     check=six_ops.check_only();assert len(check['runs'])==18 and not check['all_runs_ready']
-    assert all('population_size' in x['pending'] for x in check['runs'] if x['group'].startswith('tsp'))
+    adopted=(ROOT/'preparations/operations/TSP-adoption.json').exists()
+    assert all(('population_size' not in x['pending']) if adopted else ('population_size' in x['pending']) for x in check['runs'] if x['group'].startswith('tsp'))
     assert six_ops.config('obp-eoh')['initialization_policy']=='native_N_finite_or_fail'
     assert not __import__('subprocess').check_output(['git','diff','923781f','--','code/','experiments/common/run_frozen.py'],cwd=ROOT)
     value={'passed':True,'scope':'18 tiny synthetic runs +6 pause/resume +FJSP gate regression; existing admission/failure evidence reused','results':results,

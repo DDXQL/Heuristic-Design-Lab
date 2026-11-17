@@ -73,7 +73,7 @@ def lkh_prepare(config,output,spec):
     s=read(spec)
     required=('lkh_binary','lkh_binary_sha256','version','integer_scale','runs','max_trials','seed','distance_protocol','timeout_seconds','additional_parameters')
     if s.get('approved') is not True:raise PermissionError('PROTOCOL_PENDING: LKH specification not adopted')
-    if not s.get('lkh_binary') or not s.get('lkh_binary_sha256'):raise PermissionError('ASSET_MISSING: adopted D06 still needs official source/compiled binary identity; run lkh-source and lkh-bind')
+    if not s.get('lkh_binary') or not s.get('lkh_binary_sha256'):raise PermissionError('ASSET_MISSING: adopted D06 needs an accepted source/compiled binary identity; import/download source, then build and lkh-bind')
     if any(s.get(k) is None for k in required):raise ValueError('incomplete adopted LKH specification')
     reserved={'PROBLEM_FILE','OUTPUT_TOUR_FILE','RUNS','MAX_TRIALS','SEED'}
     if s.get('additional_parameters') is not None and any(k in reserved or not str(k).replace('_','').isalpha() or '\n' in str(v) or '\r' in str(v) for k,v in s['additional_parameters'].items()):raise ValueError('duplicate/unsafe LKH parameters')
@@ -115,7 +115,7 @@ def lkh_run(folder,allow_lkh,approve_lkh):
         try:
             log=Path(row['parameter_file']).parent/'LKH.log'
             before=resource.getrusage(resource.RUSAGE_CHILDREN);started=time.monotonic()
-            # Fresh single-process official LKH, Python child sets the limit
+            # Fresh single-process source-bound LKH, Python child sets the limit
             # before exec; no thread-unsafe preexec_fn in the parent.
             child='import os,resource,sys;resource.setrlimit(resource.RLIMIT_CPU,(120,120));os.execv(sys.argv[1],sys.argv[1:])'
             with log.open('x') as output:
@@ -136,40 +136,14 @@ def lkh_run(folder,allow_lkh,approve_lkh):
 
 
 def lkh_source(output,download=False,build=False,academic=False):
-    """Operator-invoked official download/build only; never execute LKH."""
-    import tarfile,urllib.request,hashlib
-    out=Path(output).resolve();archive=out/'LKH-3.0.13.tgz';receipt=out/'source-receipt.json'
-    url='https://webhotel4.ruc.dk/~keld/research/LKH-3/LKH-3.0.13.tgz'
-    if not (download or build) or build and not academic:raise PermissionError('explicit download/build action required; compiling requires manual source-license acceptance')
-    if download:
-        if out.exists():raise FileExistsError('new LKH source folder required; no overwrite/retry')
-        out.mkdir(parents=True);write(receipt,{'state':'download_reserved','official_URL':url,'automatic_retry':False})
-        with urllib.request.urlopen(url,timeout=30) as response:raw=response.read(20*1024*1024+1)
-        if len(raw)>20*1024*1024:raise ValueError('bounded official source download exceeded20MiB')
-        archive.write_bytes(raw)
-        with tarfile.open(archive,'r:gz') as tf:
-            for member in tf.getmembers():
-                p=Path(member.name)
-                if p.is_absolute() or '..' in p.parts or p.parts[0]!='LKH-3.0.13' or not (member.isfile() or member.isdir()):raise ValueError('unexpected archive root, links or device entries')
-            tf.extractall(out,filter='data')
-        write(receipt,{'state':'downloaded','official_URL':url,'observed_archive_sha256':sha(archive),'independent_official_digest':'not available; observed official-origin bytes only','license_scope':'operator accepted academic/noncommercial; preserve source notices','version':'3.0.13','LKH_runs':0})
-    if build:
-        record=read(receipt)
-        if record['state']!='downloaded' or sha(archive)!=record['observed_archive_sha256']:raise PermissionError('matching official source receipt required')
-        claim=out/'build-reservation.json'
-        if claim.exists():raise FileExistsError('prior build attempt retained; no automatic rebuild')
-        write(claim,{'state':'reserved','automatic_retry':False})
-        with (out/'build.log').open('x') as log:subprocess.run(['make'],cwd=out/'LKH-3.0.13',stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
-        binary=out/'LKH-3.0.13/LKH';record.update(state='built',binary=str(binary),binary_sha256=sha(binary));write(receipt,record)
-    return {**read(receipt),'LKH_executed':False}
+    """Existing explicit source/build entry; candidate and official origins stay distinct."""
+    from experiments.triad.lkh_sources import prepare_source
+    return prepare_source(output,download,build,academic)
 
 
 def lkh_bind(source,output):
-    record=read(Path(source)/'source-receipt.json');spec=read(ROOT/'experiments/triad/lkh.pending.json')
-    if record['state']!='built' or sha(record['binary'])!=record['binary_sha256']:raise PermissionError('actual compiled official source identity required')
-    spec.update(lkh_binary=record['binary'],lkh_binary_sha256=record['binary_sha256'])
-    if Path(output).exists():raise FileExistsError('preserve prior bound LKH spec')
-    write(output,spec);return {'bound_spec':str(output),'LKH_executed':False}
+    from experiments.triad.lkh_sources import bind
+    return bind(source,output)
 
 
 def job_submit(a):
@@ -218,15 +192,17 @@ def lkh_import(folder,output):
         observed=next((r for r in receipt['attempts'] if r['file']==row['file']),None)
         if not observed or observed['state']!='completed' or observed['tour_sha256']!=sha(row['tour']):raise ValueError('LKH tour differs from bounded execution receipt')
         text=Path(row['tour']).read_text();part=text.split('TOUR_SECTION',1)[1].split('-1',1)[0];tour=[int(x)-1 for x in part.split()]
-        if len(tour)!=len(set(tour)) or 0 not in tour:raise ValueError('invalid LKH tour')
-        i=tour.index(0);tour=tour[i:]+tour[:i]+[0];cost=tour_length(distances(read(row['input'])['coordinates']),tour)
+        value=read(row['input']);n=len(value['coordinates'])
+        if digest(value)!=row['instance_sha256']:raise ValueError('LKH source instance changed')
+        if len(tour)!=n or set(tour)!=set(range(n)):raise ValueError('invalid or incomplete LKH tour')
+        i=tour.index(0);tour=tour[i:]+tour[:i]+[0];cost=tour_length(distances(value['coordinates']),tour)
         rows.append({'file':row['file'],'instance_sha256':row['instance_sha256'],'reference':cost,'tour':tour,'source':'LKH','tour_file_sha256':sha(row['tour'])})
     if Path(output).exists():raise FileExistsError('reference output already frozen')
-    s=p['spec'];write(output,{'kind':'fixed-LKH-reference-v1','lkh_identity':{'version':s['version'],'binary_sha256':s['lkh_binary_sha256']},'parameters':{k:s[k] for k in ('runs','max_trials','seed','integer_scale')},'distance_protocol':s['distance_protocol'],'execution_receipt_sha256':sha(Path(folder)/'LKH-run-receipt.json'),'instances':rows});return {'output':str(output),'sha256':sha(output),'LKH_executed':False}
+    s=p['spec'];write(output,{'kind':'fixed-LKH-reference-v1','lkh_identity':{'version':s['version'],'binary_sha256':s['lkh_binary_sha256'],'source_identity':s.get('source_identity'),'source_receipt_sha256':s.get('source_receipt_sha256')},'parameters':{k:s[k] for k in ('runs','max_trials','seed','integer_scale')},'distance_protocol':s['distance_protocol'],'execution_receipt_sha256':sha(Path(folder)/'LKH-run-receipt.json'),'instances':rows});return {'output':str(output),'sha256':sha(output),'LKH_executed':False}
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['obp-import','check','fixed-plan','fixed-run','fixed-import','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run','lkh-source','lkh-bind','job-submit'])
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['obp-import','check','fixed-plan','fixed-run','fixed-import','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run','lkh-source','lkh-candidate-import','lkh-bind','job-submit'])
     ap.add_argument('--source',type=Path);ap.add_argument('--config',type=Path);ap.add_argument('--run-dir',type=Path);ap.add_argument('--output',type=Path);ap.add_argument('--spec',type=Path)
     ap.add_argument('--allow-lkh',action='store_true');ap.add_argument('--approve-lkh',type=int)
     ap.add_argument('--download',action='store_true');ap.add_argument('--build',action='store_true');ap.add_argument('--accept-academic-license',action='store_true')
@@ -234,6 +210,9 @@ def main():
     ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int);ap.add_argument('--approve-solves',type=int)
     a=ap.parse_args()
     if a.action=='job-submit':value=job_submit(a)
+    elif a.action=='lkh-candidate-import':
+        from experiments.triad.lkh_sources import import_candidate
+        value=import_candidate(a.source,a.output)
     elif a.action=='lkh-source':value=lkh_source(a.output,a.download,a.build,a.accept_academic_license)
     elif a.action=='lkh-bind':value=lkh_bind(a.source,a.output)
     elif a.action=='obp-import':

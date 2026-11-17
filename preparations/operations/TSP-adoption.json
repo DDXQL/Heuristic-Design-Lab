@@ -1,0 +1,23 @@
+{
+  "at": 1794909930.5944152,
+  "approved": true,
+  "explicit_values": [
+    5,
+    20,
+    10,
+    20,
+    1,
+    3
+  ],
+  "population_U": 5,
+  "initialization_U": 20,
+  "population_EoH": 10,
+  "initialization_EoH": 20,
+  "initialization_policy_U": "bounded_initialization_until_population",
+  "initialization_policy_EoH": "native_EoH",
+  "evolution_each": 1000,
+  "request_cap_U": 1020,
+  "request_cap_EoH": 1020,
+  "unused_initialization_transfers_to_evolution": false,
+  "API_execution_authorized": false
+}

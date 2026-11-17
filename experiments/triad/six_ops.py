@@ -271,7 +271,11 @@ def adopt_tsp(values):
         c=config('tsp-'+method)
         c.update(population_size=n,initialization_request_cap=init,api_attempt_cap=init+1000,initialization_policy=policies[policy],freeze_status='frozen',budget_basis='operator explicitly adopted TSP parameters via six_ops; equal1000 evolution, init/H separate')
         save_bound('tsp-'+method,c)
-    write(ROOT/'preparations/operations/TSP-adoption.json',{'at':time.time(),'explicit_values':values,'API_execution_authorized':False})
+    write(ROOT/'preparations/operations/TSP-adoption.json',{'at':time.time(),'approved':True,'explicit_values':values,
+        'population_U':un,'initialization_U':ui,'population_EoH':en,'initialization_EoH':ei,
+        'initialization_policy_U':policies[up],'initialization_policy_EoH':policies[ep],
+        'evolution_each':1000,'request_cap_U':ui+1000,'request_cap_EoH':ei+1000,
+        'unused_initialization_transfers_to_evolution':False,'API_execution_authorized':False})
     return {'TSP_parameters_adopted':True,'API_requests':0,'solves':0}
 
 

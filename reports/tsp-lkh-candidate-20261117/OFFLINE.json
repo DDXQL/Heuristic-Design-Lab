@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "results": {
+    "candidate_import": {
+      "pin_and_commit_retained": true,
+      "no_official_relabel": true,
+      "wrong_SHA_gzip_paths_links_duplicates_version_expansion_rejected": true,
+      "old_download_reserved_preserved": true,
+      "binding_before_build_rejected": true
+    },
+    "reference_import": {
+      "synthetic_only": true,
+      "incomplete_tour_rejected": true,
+      "candidate_origin_retained": true
+    },
+    "build_and_bind": {
+      "mock_receipt_only": true,
+      "no_make_or_binary_execution": true,
+      "D06_unchanged": true,
+      "log_tampering_and_rebuild_rejected": true
+    },
+    "TSP_u": {
+      "three_independent_initializations": true,
+      "target_population": 5,
+      "initialization_max": 20,
+      "engineering_evolution_attempts": 2,
+      "unused_initialization_not_transferred": true,
+      "synthetic_scores_only": true
+    },
+    "TSP_eoh": {
+      "three_independent_initializations": true,
+      "target_population": 10,
+      "initialization_max": 20,
+      "engineering_evolution_attempts": 2,
+      "unused_initialization_not_transferred": true,
+      "synthetic_scores_only": true
+    },
+    "policy_separation": {
+      "TSP_native_continues_with_fewer_finite_parents": true,
+      "strict_stops_without_refill": true,
+      "OBP_strict_preserved": true
+    }
+  },
+  "public_923781f_unchanged": true,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "make_executed": false,
+  "LKH_runs": 0,
+  "Slurm_submitted": false,
+  "source_candidate_preserved": true,
+  "scope": "changed paths only; historical full Mock evidence reused; no live account or R11 inspected/modified"
+}

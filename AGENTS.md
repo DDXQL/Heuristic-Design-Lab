@@ -1,5 +1,11 @@
 # 实验运行与归档规则
 
+## 当前唯一维护来源（2026-11-17）
+
+本轮从R12p2源码冻结提交`e17fef9d444d540b9fec875a260fa4ac1c104a32`派生到`/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-lkh-candidate-20261117`、分支`codex/tsp-lkh-candidate-20261117`，交付身份R13。以下旧工作树说明保留为历史。用户通过总控明确采用TSP U5/init20/policy1、EoH10/init20/policy3，各1000演化/累计1020、种子501/502/503，以及指定SHA的第三方LKH候选作为待工程验收来源；官方同一性未验证，D06求解参数不变。OBP继续严格有限父代政策。
+
+本轮授权必要实现、本地候选源码导入和纯离线Mock。禁止make、LKH/H/U真实求解、模型请求、Slurm、上传切换或操作R11；不修改主项目总控文档、旧树dirty文档、旧包及任何运行/锁/预算。公共`code/`与`experiments/common/run_frozen.py`保持923781f。采用记录见`configurations/tsp-lkh-candidate-20261117/Adoption.json`；不从历史批准推导运行授权。
+
 本轮唯一新增交付来源为本工作树`Heuristic-Design-Lab-six-groups-delivery-20261116`、分支`codex/six-groups-delivery-20261116`。只用于后续新实验；R11正在运行的622861/622862及其所有原件不改。用户授权必要实现、文档和纯离线Mock；禁止代发真实API、求解/LKH、Slurm或push。公共`code/`及`run_frozen.py`保持923781f。TSP未批准的搜索参数保持待定；FJSP EoH503落实已采用原生门槛。API压力测试搁置。
 
 本文件适用于本项目及其子目录中的后续Codex任务。
