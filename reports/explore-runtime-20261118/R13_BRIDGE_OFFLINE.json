@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "existing_R13_unchanged": true,
+  "scope": "fake SSH + exact command render only",
+  "menus": 6,
+  "no_automatic_prepare_or_activation": true,
+  "existing_plan_never_recreated": true,
+  "handoff_verifier_contract_checked": true,
+  "prefix_requests_max": 2,
+  "inclusive_prefix_solves_max": 80,
+  "original_cap": 2040,
+  "certify_side_effect": "no API; writes original batch Acceptance.json",
+  "same_R13_identity_resume": true,
+  "SSH_attempts": 0,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "current_remote_account_or_plan_state": "not inspected"
+}
