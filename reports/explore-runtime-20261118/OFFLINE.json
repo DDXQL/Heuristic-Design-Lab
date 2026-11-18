@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "results": {
+    "ok": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "completed"
+    },
+    "http520": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "http522": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "http524": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "http401": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "http429": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "not_sent": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "reconciled_failed"
+    },
+    "unknown": {
+      "charged": 1,
+      "refund": 0,
+      "wire_calls": 1,
+      "state": "failed_or_unknown"
+    },
+    "acquire_reserved_error": {
+      "charged": 1,
+      "wire_calls": 0,
+      "own_reservation_settled": true
+    },
+    "strict_policy_preserved": true,
+    "unknown_worker_retained": true,
+    "two_processes": {
+      "logical_sends": 6,
+      "API_peak": 1,
+      "probe_scope": "local OS processes; not Slurm/cross-node acceptance",
+      "fresh_job_pid_node_receipts": true
+    },
+    "old_fs_pass_not_reused": true,
+    "single_member_new_allocation": {
+      "local_helper_only": true,
+      "scope_not_cross_node": true,
+      "new_job_pid_receipt": true
+    },
+    "precredential_checks": {
+      "exact_owner_only_cleanup": true,
+      "foreign_lock_preserved": true,
+      "actual_resource_metadata_checked": true,
+      "credential_value_reads": 0
+    },
+    "safe_close": {
+      "paused_expired_not1000_allowed": true,
+      "unknown_request_refused_even_without_STOP": true,
+      "only_owned_account_released": true
+    },
+    "three_failures": {
+      "member_paused_after3": true,
+      "charged3": true,
+      "wire_calls3_no_retries": true,
+      "shared_STOP": false
+    },
+    "search_identity": {
+      "same_mock_sequence_parents_ids_operators_population_J_ties_rng": true,
+      "core_engine_unmodified": true
+    }
+  },
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submitted": false,
+  "remote_accesses": 0,
+  "R11_changes": 0,
+  "scope": "changed-path synthetic checks; no asset reacceptance; no real compute-node claims"
+}

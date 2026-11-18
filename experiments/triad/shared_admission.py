@@ -9,10 +9,41 @@ import json
 import os
 from pathlib import Path
 import time
+import multiprocessing
+import stat
+import math
 from heuristic_design.core.storage import read, write, sha, digest
 from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
 
 VERSION = 'two-searches-six-groups-api1-v4'
+EXPLORE = 'explore-light-v1'
+
+
+def exploration(m):return m.get('runtime_policy') == EXPLORE
+
+
+def local_filesystem_probe(folder,role,deadline):
+    claim(Path(folder)/f'participant-{role}.json',{'job_id':os.environ.get('SLURM_JOB_ID'),'pid':os.getpid(),'host':__import__('socket').gethostname(),'member':'filesystem-helper-only'})
+    filesystem_check(folder,role,deadline)
+
+
+def allocation_check(c):
+    """Actual allocation and credential permission metadata only; never read the key."""
+    if not os.environ.get('SLURM_JOB_ID','').isdigit():raise PermissionError('real execution requires a compute allocation')
+    cpus=int(os.environ.get('SLURM_CPUS_PER_TASK','0'))
+    def mib(value):
+        if value is None:return None
+        text=str(value).upper();factor=1
+        if text.endswith(('K','M','G')):
+            factor={'K':1/1024,'M':1,'G':1024}[text[-1]];text=text[:-1]
+        return float(text)*factor
+    memory=mib(os.environ.get('SLURM_MEM_PER_NODE'))
+    if memory is None and os.environ.get('SLURM_MEM_PER_CPU'):memory=mib(os.environ['SLURM_MEM_PER_CPU'])*cpus
+    if cpus<c['resources']['cpus'] or memory is None or not math.isfinite(memory) or memory<c['resources']['memory_mib']:
+        raise PermissionError('actual allocation CPU/memory evidence missing or insufficient; never export invented values')
+    info=Path(c['credential_file']).lstat()
+    if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode) or info.st_uid!=os.getuid() or stat.S_IMODE(info.st_mode)!=0o600:
+        raise PermissionError('credential permission metadata invalid; no secret read')
 
 
 def durable(path,value):
@@ -29,6 +60,8 @@ def durable(path,value):
 def load(path):
     path=Path(path).resolve(); m=read(path)
     if m['mode'] not in ('mock','real'):raise ValueError('explicit Mock/real admission identity required')
+    if m.get('runtime_policy') not in (None,EXPLORE):raise ValueError('unknown runtime policy')
+    if exploration(m) and m.get('require_initial_preflight') is not True:raise ValueError('exploration requires fresh allocation selfcheck')
     if m['version']!=VERSION or m['max_active_searches']!=2 or m['global_API_width']!=1:
         raise ValueError('this release supports at most two searches and global API1 only')
     rows=m['members']
@@ -151,7 +184,7 @@ class Admission:
             s['next_ticket']+=1; self.event(s,'waiting',uid=uid,member=self.member)
         while True:
             if time.time()>=self.wait_deadline:
-                stop(self.folder,'bounded queue wait ended; reservations retained, no replay')
+                if not exploration(self.m):stop(self.folder,'bounded queue wait ended; reservations retained, no replay')
                 raise TimeoutError('request admission wait exceeded; no refund')
             with self.transaction() as s:
                 if (self.folder/'STOP.json').exists():raise RuntimeError('shared STOP while waiting; reservation retained')
@@ -165,6 +198,7 @@ class Admission:
             time.sleep(.1)
 
     def phase(self,s):
+        if exploration(self.m):return 1,None
         path=self.path.parent/'API2.finite.json'
         if not path.exists():return 1,None
         r=read(path)
@@ -220,11 +254,53 @@ class Admission:
             del s['active'][uid];self.event(s,'settled',uid=uid,member=self.member)
 
     def failed(self,uid,error):
+        if exploration(self.m):
+            return self.known_failure(uid,error)
         # No classification releases a failed permit in this conservative first release.
         stop(self.folder,'first transport/admission failure; shared sends stopped; inspect retained reservation')
         with self.transaction() as s:
             s['requests'][uid].update(state='failed_or_unknown',error_type=type(error).__name__,send_state=(getattr(error,'metadata',{}) or {}).get('send_status','unknown'),finished_at=time.time())
             self.event(s,'failed_or_unknown',uid=uid,member=self.member)
+
+    def known_failure(self,uid,error):
+        """Only terminal, owned attempts are settled. Charges and failed evidence remain."""
+        from fjsp_usage.research_real.attempt_budget import failure_policy
+        meta=getattr(error,'metadata',{}) or {}
+        _,category,permanent=failure_policy(str(error),meta,type(error).__name__)
+        account_error=bool(meta.get('caller_hard_stop') or permanent or meta.get('http_status')==429 or meta.get('upstream_http_status')==429 or meta.get('failure_class') in ('protocol_incompatible','permanent'))
+        not_sent=meta.get('send_status') in ('not_sent','not_started')
+        http_terminal=type(meta.get('http_status')) is int and 400<=meta['http_status']<=599 and meta.get('send_status')=='confirmed'
+        known=bool(meta.get('dispatch_children_settled') is True and (not_sent or http_terminal))
+        if account_error or not known:stop(self.folder,'account-level failure' if account_error else 'unknown send/worker; reservation retained')
+        turn=self.folder/'send-turn.lock';owned_turn=False
+        if turn.exists():
+            owned_turn=read(turn)=={'uid':uid,'member':self.member}
+            if not owned_turn:stop(self.folder,'foreign/unknown send turn retained')
+        with self.transaction() as s:
+            r=s['requests'].get(uid)
+            if r is None:
+                # The local journal already charged this slot before admission.
+                if not known or not not_sent or self.member not in s['jobs'] or len(s['requests'])>=self.m['total_request_cap'] or sum(x['member']==self.member for x in s['requests'].values())>=self.row['request_cap']:
+                    stop(self.folder,'unmatched charged attempt retained')
+                    raise RuntimeError('unmatched charged attempt; retain original journal and STOP')
+                r={'member':self.member,'key':meta['request_key'],'ticket':s['next_ticket'],'reserved_at':time.time(),'state':'waiting'}
+                s['next_ticket']+=1;s['requests'][uid]=r
+            if r['member']!=self.member or r['state'] not in ('waiting','admitted','sent') or s['active'].get(uid) not in (None,self.member):
+                stop(self.folder,'request ownership/state mismatch; no cleanup')
+                raise RuntimeError('failure does not own an unsettled attempt')
+            if not_sent and r['state']=='sent':
+                known=False;stop(self.folder,'wire/ledger send evidence differs; retain permit')
+            r.update(state='reconciled_failed' if known else 'failed_or_unknown',error_type=type(error).__name__,
+                send_state=meta.get('send_status','unknown'),finished_at=time.time(),usage=getattr(error,'usage',None),
+                failure_category=category,account_stop=account_error,metadata={k:meta.get(k) for k in
+                ('http_status','upstream_http_status','failure_stage','send_status','caller_hard_stop','dispatch_children_settled')})
+            if known and s['active'].get(uid)==self.member:del s['active'][uid]
+            self.event(s,r['state'],uid=uid,member=self.member)
+        if known and owned_turn:
+            try:self.release_send_turn(turn,uid)
+            except BaseException:
+                stop(self.folder,'owned send turn changed during settlement; no cleanup')
+                raise
 
     @contextmanager
     def session(self,directory):
@@ -234,7 +310,7 @@ class Admission:
             job=os.environ.get('SLURM_JOB_ID','');node=os.environ.get('SLURM_JOB_NODELIST') or os.environ.get('SLURM_NODELIST')
             if not job.isdigit() or not node:raise PermissionError('shared real searches execute only in an explicit Slurm compute allocation')
             certificate=self.path.parent/'Acceptance.json'
-            if certificate.exists():
+            if certificate.exists() and not exploration(self.m):
                 role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
                 if node!=read(certificate)['validated_nodes'][role]:raise PermissionError('new topology not accepted; do not migrate or bypass the validated node binding')
         try:
@@ -246,17 +322,67 @@ class Admission:
             if self.m.get('require_initial_preflight'):
                 role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
                 preflight=self.path.parent/'preflight';preflight.mkdir(exist_ok=True)
-                if not (preflight/f'fs-pass-{role}.json').exists():
+                if exploration(self.m):
+                    try:self.startup(directory)
+                    except BaseException:
+                        stop(self.folder,'allocation selfcheck failed; no new sends')
+                        raise
+                elif not (preflight/f'fs-pass-{role}.json').exists():
                     filesystem_check(preflight,role,time.time()+self.m['queue_wait_seconds'])
             yield
         finally:
             if registered:
-                cp=read(d/'checkpoint.json');safe=cp['phase'] in ('completed','paused','initialization_incomplete','expired') and not (d/'Stop.json').exists()
+                cp=read(d/'checkpoint.json');safe=cp['phase'] in (('prepared','completed','paused','initialization_incomplete','expired') if exploration(self.m) else ('completed','paused','initialization_incomplete','expired')) and not (d/'Stop.json').exists()
                 with self.transaction() as s:
                     safe=safe and not any(v==self.member for v in s['active'].values()) and not any(v['member']==self.member and v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values())
                     if safe and s['jobs'].get(self.member,{}).get('token')==token:
                         del s['jobs'][self.member];self.event(s,'search_settled',member=self.member,phase=cp['phase'])
                     else:stop(self.folder,'search ended without certified settlement; keep job/request reservations')
+
+    def startup(self,directory):
+        """Fresh allocation rendezvous. No credential value, model or solver is read."""
+        self.verify()
+        c=read(self.row['config']);job=os.environ.get('SLURM_JOB_ID','')
+        if self.m['mode']=='real':
+            allocation_check(c)
+            private=Path(c['account_gate'])/'generation.lock'
+            if private.exists():
+                owner=read(private);state=read(Path(directory)/'checkpoint.json')
+                if owner.get('pid')!=os.getpid() or owner.get('run_id')!=self.member or owner.get('protocol')!=state['identity']:
+                    raise PermissionError('foreign/unknown member writer retained before credential read')
+        end=time.time()+self.m['queue_wait_seconds'];allocation=None
+        while time.time()<end:
+            self.verify()
+            if (self.folder/'STOP.json').exists():raise PermissionError('STOP before startup; no credential read')
+            current=self.path.parent/'Current_allocation.json'
+            if current.exists():
+                allocation=read(current)
+                if allocation.get('state')=='submitted' and allocation.get('jobs',{}).get(self.member)==job:break
+            time.sleep(.05)
+        else:raise TimeoutError('bounded allocation receipt wait; no secret read')
+        jobs=allocation.get('jobs',{})
+        if allocation.get('manifest_sha256')!=self.b['sha256'] or len(jobs) not in (1,2) or any(not str(j).isdigit() for j in jobs.values()) or not set(jobs).issubset({r['run_id'] for r in self.m['members']}) or any(ch not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_' for ch in allocation['identity']):
+            raise ValueError('fresh allocation identity differs; no reused preflight')
+        ledger=read(self.folder/'ledger.json')
+        if self.member in ledger['active'].values() or any(r['state'] not in ('waiting','admitted','sent','completed','reconciled_failed') for r in ledger['requests'].values()):
+            raise PermissionError('unknown/retained request before credential read')
+        if set(ledger['jobs'])-set(jobs):raise PermissionError('active peer outside this fresh allocation')
+        role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
+        folder=self.path.parent/'preflight'/allocation['identity'];folder.mkdir(parents=True,exist_ok=True)
+        claim(folder/f'participant-{role}.json',{'job_id':job,'pid':os.getpid(),'host':__import__('socket').gethostname(),'member':self.member})
+        if len(allocation['jobs'])==2:
+            filesystem_check(folder,role,end)
+        else:
+            # Only one paused member remains; exercise both roles locally, without API.
+            context=multiprocessing.get_context('fork')
+            child=context.Process(target=local_filesystem_probe,args=(folder,1-role,end));child.start()
+            try:
+                filesystem_check(folder,role,end);child.join(max(0,end-time.time()))
+                if child.is_alive() or child.exitcode!=0:raise RuntimeError('local filesystem probe incomplete')
+            finally:
+                if child.is_alive():child.terminate();child.join()
+        claim(folder/f'startup-pass-{role}.json',{'job_id':job,'pid':os.getpid(),'member':self.member,'API_requests':0,'scope':'two_jobs' if len(allocation['jobs'])==2 else 'one_job_local_probe'})
+        self.verify()
 
 
 class GuardedTransport:
@@ -268,11 +394,17 @@ class GuardedTransport:
     def preflight(self,prompt):return self.inner.preflight(prompt)
     def dispatch(self,key,prompt,*,kind,on_sent):
         verify_attachment(self.admission.row['run_dir'],self.admission.b)
+        light=exploration(self.admission.m)
+        uid=digest({'member':self.admission.member,'key':key})
         try:uid=self.admission.acquire(key)
         except BaseException as error:
             error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
+            if light:
+                error.metadata.update(dispatch_children_settled=True,request_key=key)
+                self.admission.failed(uid,error)
             raise
         inner_started=False
+        children={p.pid for p in multiprocessing.active_children()} if light else set()
         try:
             turn=self.admission.send_turn(uid)
             self.admission.verify()
@@ -291,12 +423,15 @@ class GuardedTransport:
             self.admission.settled(uid,value,time.monotonic()-wire_started);return value
         except BaseException as error:
             if not inner_started:error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
+            if light:
+                error.metadata={**(getattr(error,'metadata',{}) or {}),'dispatch_children_settled':not any(p.pid not in children for p in multiprocessing.active_children()),'request_key':key}
             self.admission.failed(uid,error);raise
 
 
 def adapter(b):
     from experiments.triad.runtime import Adapter
     class AdmittedAdapter(Adapter):
+        pause_on_transport_streak=exploration(load(b['manifest']))
         def check_run(self,d):
             p=super().check_run(d);verify_attachment(d,b);return p
         def transport(self,p):return GuardedTransport(super().transport(p),Admission(b))

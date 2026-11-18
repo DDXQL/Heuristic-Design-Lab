@@ -1,0 +1,94 @@
+{
+  "runtime_policy": "explore-light-v1",
+  "batch": "tsp501",
+  "members": [
+    {
+      "group": "tsp-u",
+      "seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118/preparations/operations/configs/tsp-u.json",
+      "config_sha256": "8665fc5012a41760b1d51a7a5424375b04cbc8c6b8d57bf3987cc52d5fc521cb",
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "resources": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 1620,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      },
+      "pending": [
+        "asset:D06_LKH_reference",
+        "reference_file"
+      ]
+    },
+    {
+      "group": "tsp-eoh",
+      "seed": 501,
+      "config": "/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118/preparations/operations/configs/tsp-eoh.json",
+      "config_sha256": "f6edab2b29f2e1e4fd93e9f21161bf9320ac24bbef25520f5f05cc5fa2447246",
+      "budget": {
+        "initialization_max": 20,
+        "evolution_attempts": 1000,
+        "request_cap_per_seed": 1020,
+        "requests_all_seeds": 3060,
+        "native_passes_per_instance": 2,
+        "native_solve_cap_per_seed": 40800,
+        "H_build_separate": {
+          "request_cap": null,
+          "target_count": null,
+          "selection": null,
+          "source_cost": null,
+          "search_seed": null,
+          "window_seconds": null
+        },
+        "automatic_retries": 0,
+        "unknown_attempts_charged": true
+      },
+      "resources": {
+        "cpus": 2,
+        "memory_mib": 2048,
+        "segment_seconds": 43200,
+        "drain_seconds": 1620,
+        "numeric_threads": 1,
+        "partition": "128C_02",
+        "account": "wz",
+        "qos": "normal"
+      },
+      "pending": [
+        "asset:D06_LKH_reference",
+        "reference_file"
+      ]
+    }
+  ],
+  "total_request_cap": 2040,
+  "API_width": 1,
+  "separate_sbatch_jobs": 2,
+  "manual_prefix_certificate_required": false,
+  "automatic_no_API_allocation_selfcheck": true,
+  "original_account_gate_required": true,
+  "current_remote_account_state": "not inspected",
+  "account_exclusion": "fresh explicit user confirmation required; not granted by preview",
+  "API_requests": 0,
+  "actual_solves": 0,
+  "writes": 0,
+  "submitted": false
+}

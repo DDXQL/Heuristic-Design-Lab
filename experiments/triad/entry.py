@@ -8,13 +8,42 @@ import stat
 import subprocess
 import sys
 import time
-from contextlib import nullcontext
+from contextlib import nullcontext,contextmanager
 ROOT=Path(__file__).resolve().parents[2]
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 for n in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS','VECLIB_MAXIMUM_THREADS','BLIS_NUM_THREADS'):os.environ[n]='1'
 from heuristic_design.core.storage import read,write,sha
 from heuristic_design.core import execution
 from experiments.triad import runtime,configuration
+
+
+@contextmanager
+def owned_writer(c,d,s,shared=None):
+    """Acquire before key access; only remove this exact, safely settled ownership."""
+    if c['mode']=='mock':
+        yield;return
+    from experiments.triad import shared_admission as admission
+    if shared:admission.Admission(shared).verify()
+    gate=Path(c['account_gate']);gate.mkdir(parents=True,exist_ok=True)
+    lock=gate/'generation.lock'
+    owner={'run_id':d.name,'protocol':s['identity'],'pid':os.getpid(),'token':str(time.time_ns())}
+    fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
+    with os.fdopen(fd,'w') as f:json.dump(owner,f);f.flush();os.fsync(f.fileno())
+    try:yield
+    finally:
+        state=read(d/'checkpoint.json');safe=state['phase'] in ('prepared','completed','paused','initialization_incomplete','expired') and not (d/'Stop.json').exists()
+        safe=safe and all(e['status']=='completed' for e in state['evaluations'].values())
+        journal=read(d/'API_attempts.json') if (d/'API_attempts.json').exists() else {'api_attempts':{}}
+        safe=safe and all(a['status'] in ('completed','failed') for a in journal['api_attempts'].values())
+        if shared:
+            ledger=read(Path(shared['manifest']).parent/'gate/ledger.json')
+            for a in journal['api_attempts'].values():
+                uid=admission.digest({'member':d.name,'key':a['id']})
+                safe=safe and ledger['requests'].get(uid,{}).get('state') in ('completed','reconciled_failed')
+            safe=safe and d.name not in ledger['active'].values()
+        if safe and lock.exists() and read(lock)==owner:lock.unlink()
+        elif shared and (not lock.exists() or read(lock)!=owner):
+            admission.stop(Path(shared['manifest']).parent/'gate','inner writer ownership changed; foreign/unknown state retained')
 
 
 def key(c):
@@ -136,20 +165,22 @@ def main():
             write(d/'manual-boundaries'/f'{seq:04d}.json',control);write(d/'Current_manual_boundary.json',control)
             if p['config']['api_mode']=='real':
                 if os.environ.get('SLURM_JOB_ID') and int(os.environ.get('SLURM_CPUS_PER_TASK','0'))<c['resources']['cpus']:raise ValueError('allocation below declared CPUs')
-                key(c);gate=Path(c['account_gate']);gate.mkdir(parents=True,exist_ok=True)
-                fd=os.open(gate/'generation.lock',os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
-                with os.fdopen(fd,'w') as f:json.dump({'run_id':d.name,'protocol':s['identity']},f);f.flush();os.fsync(f.fileno())
                 adapter.segment_deadline=time.monotonic()+c['resources']['segment_seconds']
-            with (d/'terminal.log').open('a') as log:
+            with owned_writer(c,d,s,shared), (d/'terminal.log').open('a') as log:
                 from contextlib import redirect_stdout,redirect_stderr
                 from experiments.common._single_run import _Tee
                 with redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
                     with shared_admission.Admission(shared).session(d) if shared else nullcontext():
+                        if p['config']['api_mode']=='real':
+                            if not shared:
+                                from experiments.triad.shared_admission import allocation_check
+                                allocation_check(c)
+                            try:key(c)
+                            except BaseException:
+                                if shared:shared_admission.stop(Path(shared['manifest']).parent/'gate','credential admission failed; no new shared sends')
+                                raise
                         value=execution.start(d,adapter=adapter,resume=args.action=='resume',allow_api=args.allow_api)
             runtime.export(d)
-            if p['config']['api_mode']=='real' and value['phase'] in ('completed','paused','initialization_incomplete','expired') and not (d/'Stop.json').exists() and not adapter.summary(d)['requires_investigation']:
-                lock=Path(c['account_gate'])/'generation.lock'
-                if read(lock)['protocol']==s['identity']:lock.unlink()
     print(json.dumps(value,ensure_ascii=False,indent=2));return 0 if value.get('phase') not in ('stopped','initialization_incomplete','expired') else 2
 
 

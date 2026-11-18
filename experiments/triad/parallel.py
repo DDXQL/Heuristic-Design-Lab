@@ -37,6 +37,9 @@ def plan(spec,folder,hours=None,confirmed=False):
     m={'version':shared.VERSION,'batch_id':doc['batch_id'],'mode':doc['mode'],'max_active_searches':2,'global_API_width':1,'API2':'implemented bounded extension; requires API1 actual acceptance and separate manual phase authorization; not adopted',
        'min_request_interval_seconds':doc['min_request_interval_seconds'],'queue_wait_seconds':doc['queue_wait_seconds'],'require_initial_preflight':True,
        'account_gate':doc['account_gate'],'account_exclusion':exclusion,'total_request_cap':sum(r['request_cap'] for r in rows),'members':rows,'real_requests_authorized':False}
+    if doc.get('runtime_policy') is not None:
+        if doc['runtime_policy']!=shared.EXPLORE:raise ValueError('unknown new runtime policy')
+        m['runtime_policy']=shared.EXPLORE
     cs=[read(r['config']) for r in rows]
     m['aggregate_resources']={k:sum(c['resources'][k] for c in cs) if all(c['resources'][k] is not None for c in cs) else None for k in ('cpus','memory_mib')}
     m['native_solve_cap']=sum(2*c['api_attempt_cap']*c['instance_count'] for c in cs) if doc['mode']=='real' else 0
@@ -68,7 +71,7 @@ def inspect(path):
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
             item['initialization_requests']=cp.get('initialization_requests',cp.get('eoh',{}).get('initialization_requests'))
             item['evolution_requests']=cp.get('generation_requests',cp.get('eoh',{}).get('operator_cursor'))
-            item['writer_lock']=any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json'))
+            item['writer_lock']=any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json')) or bool(c.get('account_gate') and (Path(c['account_gate'])/'generation.lock').exists())
             progress=read(d/'Progress.json') if (d/'Progress.json').exists() else read(d/'exports/summary.json') if (d/'exports/summary.json').exists() else {}
             item['reported_metrics']={k:progress.get(k) for k in ('best_J','champion_id','valid_candidates','failures','duplicates','confirmed_sends','unknown_sends','physical_passes')}
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
@@ -119,7 +122,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
             certificate=path.parent/'Acceptance.json'
-            if certificate.exists():
+            if certificate.exists() and not shared.exploration(m):
                 accepted=read(certificate)
                 if accepted.get('manifest_sha256')!=sha(path) or accepted.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('original bounded acceptance changed')
                 cmd.insert(cmd.index(str(ROOT/'experiments/triad/parallel.sbatch')),'--nodelist='+accepted['validated_nodes'][row['index']])
@@ -130,7 +133,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
     if m['mode']=='real' and (approved!=m['total_request_cap'] or not allow_api or not allow_solves):raise PermissionError('explicit original aggregate cap/API/solve approval required')
     if (path.parent/'gate/STOP.json').exists() or (path.parent/'Closed.json').exists():raise PermissionError('stopped/closed batch cannot submit')
     if prefix is not None and solve_cap!=new_solves:raise PermissionError('exact inclusive aggregate first+recheck solve cap required')
-    if m['mode']=='real' and prefix is None:
+    if m['mode']=='real' and prefix is None and not shared.exploration(m):
         certificate=read(path.parent/'Acceptance.json')
         if certificate.get('kind')=='audited-R9-stop-recovery-topology':
             from experiments.triad.stop_recovery import verify_acceptance
@@ -164,11 +167,19 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         run_claims.append(claim_path)
     for row,p,cmd in zip(selected,run_claims,commands):claim(p,{'state':'submission_reserved','run_id':row['run_id'],'command':cmd,'original_cap':row['request_cap'],'finite_settled_prefix':pf(row),'automatic_retry':False})
     (ROOT/'logs').mkdir(exist_ok=True);receipts=[]
+    allocation={'identity':'allocation-'+str(time.time_ns()),'manifest_sha256':sha(path),'state':'reserved','jobs':{},'members':[r['run_id'] for r in selected]}
+    if shared.exploration(m):
+        claim(path.parent/'allocations'/(allocation['identity']+'.json'),allocation)
+        shared.durable(path.parent/'Current_allocation.json',allocation)
     try:
         for row,p,cmd in zip(selected,run_claims,commands):
             result=subprocess.run(cmd,check=True,text=True,capture_output=True);job=result.stdout.strip().split(';')[0]
             if not job.isdigit():raise RuntimeError('unknown sbatch receipt; inspect, do not resubmit')
             record={**read(p),'state':'submitted','job_id':job};write(p,record);write(Path(row['run_dir'])/'latest-submission.json',record);receipts.append(record)
+        if shared.exploration(m):
+            allocation.update(state='submitted',jobs={r['run_id']:r['job_id'] for r in receipts})
+            shared.durable(path.parent/'allocations'/(allocation['identity']+'.json'),allocation)
+            shared.durable(path.parent/'Current_allocation.json',allocation)
     except BaseException:
         stop(path.parent/'gate','unknown/failed submission; all claims retained');raise
     width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(None)[0]
@@ -261,7 +272,7 @@ def main():
         for row in rows:subprocess.run(argv(row,'pause',a.manifest),check=True);value['pause_requested'].append(row['run_id'])
     else:
         m=shared.load(a.manifest);info=inspect(a.manifest);s=read(a.manifest.parent/'gate/ledger.json')
-        if info['STOP'] or (a.manifest.parent/'gate/metrics.lock').exists() or s['active'] or s['jobs'] or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members']):raise PermissionError('unsafe/unknown batch retained; no close')
+        if info['STOP'] or (a.manifest.parent/'gate/metrics.lock').exists() or s['active'] or s['jobs'] or any(v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values()) or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members']):raise PermissionError('unsafe/unknown batch retained; no close')
         lease=Path(m['account_gate'])/'generation.lock'
         if read(lease).get('protocol')!='SHARED:'+sha(a.manifest):raise PermissionError('not this batch lease')
         claim(a.manifest.parent/'Closed.json',{'at':time.time(),'manifest_sha256':sha(a.manifest)});lease.unlink();value={'closed':True,'resume_prohibited':True}

@@ -1,5 +1,11 @@
 # 实验运行与归档规则
 
+## 当前公共轻量流程工程（2026-11-18）
+
+唯一新增公共工程树`/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118`、分支`codex/explore-runtime-20261118`，从963499d派生。用户通过总控明确批准已审查最小方案的代码实现及无API离线验证：新探索身份、两份sbatch/API总并发1、已知失败只结算自己的许可与预留且不退款不重试、自动现场自检、科研完成与安全关闭解耦、执行节点读密钥前核归属和资源。保留严格路径，缓存后置。
+
+本轮不授权部署、SSH、真实API/求解/Slurm、R11账本/lease/STOP处理。旧R13、TSP/OBP专用成果、Mac503未完成树及所有旧运行保持原样；公共code/、run_frozen.py、演化/评价/V5/状态/研究参数不得修改。后续新部署根为`/public2/home/qiuqian/hdl-deploy/triad-explore-runtime-20261118-r14`；冻结交付不代表已部署或已现场验证。
+
 ## 当前唯一维护来源（2026-11-17）
 
 本轮从R12p2源码冻结提交`e17fef9d444d540b9fec875a260fa4ac1c104a32`派生到`/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-lkh-candidate-20261117`、分支`codex/tsp-lkh-candidate-20261117`，交付身份R13。以下旧工作树说明保留为历史。用户通过总控明确采用TSP U5/init20/policy1、EoH10/init20/policy3，各1000演化/累计1020、种子501/502/503，以及指定SHA的第三方LKH候选作为待工程验收来源；官方同一性未验证，D06求解参数不变。OBP继续严格有限父代政策。

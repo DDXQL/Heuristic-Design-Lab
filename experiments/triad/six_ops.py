@@ -95,7 +95,7 @@ def check_only():
         'TSP_decisions':read(ROOT/'preparations/operations/TSP-adoption.json') if (ROOT/'preparations/operations/TSP-adoption.json').exists() else read(CONFIGS/'TSP-decisions.pending.json')}
 
 
-def prepare(name,hours,confirmed):
+def prepare(name,hours,confirmed,explore=False):
     p=manifest(name)
     need(hours is not None and confirmed,'fresh all-device agreement required for NEW batch; no auto renewal')
     rows=[]
@@ -106,7 +106,9 @@ def prepare(name,hours,confirmed):
     spec=ROOT/'plans'/('six-'+name+'.spec.json')
     need(not p.parent.exists() and not spec.exists(),'plan exists; inspect/resume its original identity, never recreate')
     gate=config(rows[0]['group'])['account_gate']
-    write(spec,{'batch_id':'six-'+name,'mode':'real','min_request_interval_seconds':1,'queue_wait_seconds':600,'account_gate':gate,'members':rows})
+    spec_doc={'batch_id':'six-'+name,'mode':'real','min_request_interval_seconds':1,'queue_wait_seconds':600,'account_gate':gate,'members':rows}
+    if explore:spec_doc['runtime_policy']=shared.EXPLORE
+    write(spec,spec_doc)
     return parallel.plan(spec,p.parent,hours,confirmed)
 
 
@@ -132,7 +134,7 @@ def finish_check(path,require_complete=True):
         need(s['phase'] in ('completed','paused','initialization_incomplete','expired'),'unsettled run')
         evo=s.get('generation_requests',s.get('eoh',{}).get('operator_cursor'))
         if require_complete:need(s['phase']=='completed' and evo==1000,'not a full1000 completion; do not close as success')
-        result.append({'seed':row['seed'],'phase':s['phase'],'evolution_attempts':evo,'checkpoint_sha256':sha(d/'checkpoint.json')})
+        result.append({'seed':row['seed'],'phase':s['phase'],'evolution_attempts':evo,'scientific_complete':s['phase']=='completed' and evo==1000,'checkpoint_sha256':sha(d/'checkpoint.json')})
     return m,{'runs':result,'scheduler':account,'API_requests':0,'actual_solves':0}
 
 
@@ -146,8 +148,8 @@ def continue_batch(name,approved,allow_api,allow_solves,send,prefix=False):
     p=manifest(name);m=shared.load(p)
     need(send and allow_api and allow_solves and approved==m['total_request_cap'],'explicit submit/API/solves/original aggregate budget required')
     if prefix:
-        bounds={r['run_id']:(2 if r['group']=='fjsp-u' else 1) for r in m['members']}
-        solves=sum(2*bounds[r['run_id']]*read(r['config'])['instance_count'] for r in m['members'])
+        bounds={r['index']:(2 if r['group']=='fjsp-u' else 1) for r in m['members']}
+        solves=sum(2*bounds[r['index']]*read(r['config'])['instance_count'] for r in m['members'])
         return parallel.submit(p,'run',True,approved,True,True,bounds,solves)
     finish_check(p,False)
     info=parallel.inspect(p)
@@ -158,7 +160,7 @@ def continue_batch(name,approved,allow_api,allow_solves,send,prefix=False):
 
 
 def close(name,confirmed):
-    p=manifest(name);m,v=finish_check(p)
+    p=manifest(name);m,v=finish_check(p,False)
     need(confirmed,'retrieve and verify originals first; explicitly --confirm-retrieved')
     result=invoke('parallel.py',['close','--manifest',p])
     write(p.parent/'Finished.json',{**v,'closed':result,'at':time.time()})
@@ -166,7 +168,7 @@ def close(name,confirmed):
 
 
 def r11(action,confirmed=False):
-    m,v=finish_check(R11_PLAN,action!='r11-status')
+    m,v=finish_check(R11_PLAN,False)
     if action=='r11-status':return v
     if action=='r11-export':
         for row in m['members']:
@@ -174,6 +176,32 @@ def r11(action,confirmed=False):
         return {**v,'original_frozen_export_completed':True,'next':'Mac six_mac.py fetch-r11; then r11-close --confirm-retrieved'}
     need(confirmed,'fetch and verify R11 results first; require --confirm-retrieved')
     return invoke('parallel.py',['close','--manifest',R11_PLAN],R11)
+
+
+def explore_preview(name):
+    rows=[]
+    for group,seed in PAIRS[name]:
+        c=config(group)
+        rows.append({'group':group,'seed':seed,'config':str(config_path(group)),'config_sha256':sha(config_path(group)),
+            'budget':configuration.budget(c),'resources':c['resources'],'pending':check_assets(c)})
+    return {'runtime_policy':shared.EXPLORE,'batch':name,'members':rows,'total_request_cap':sum(r['budget']['request_cap_per_seed'] for r in rows),
+        'API_width':1,'separate_sbatch_jobs':2,'manual_prefix_certificate_required':False,
+        'automatic_no_API_allocation_selfcheck':True,'original_account_gate_required':True,'current_remote_account_state':'not inspected',
+        'account_exclusion':'fresh explicit user confirmation required; not granted by preview',
+        'API_requests':0,'actual_solves':0,'writes':0,'submitted':False}
+
+
+def explore_submit(name,hours,confirmed,approved,allow_api,allow_solves,send):
+    view=explore_preview(name)
+    if not send:return view
+    need(allow_api and allow_solves and approved==view['total_request_cap'],'explicit original aggregate API/solve budget approval required')
+    need(all(not r['pending'] for r in view['members']),'protocol/asset missing; do not rebuild validated references')
+    prior=Path('/public2/home/qiuqian/hdl-deploy/triad-tsp-lkh-candidate-20261117-r13')
+    need((prior/'release.json').is_file(),'prior R13 registry not readable; local absence is not evidence of an unstarted batch')
+    need(not (prior/'plans'/('six-'+name)).exists(),'R13 batch already planned/started; retain its original identity, never migrate or recreate in R14')
+    prepare(name,hours,confirmed,True)
+    p=manifest(name);shared.activate(p)
+    return parallel.submit(p,'run',True,approved,True,True)
 
 
 def settle_known(name,acknowledged):
@@ -305,11 +333,12 @@ def summarize():
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('action',choices=['check-only','prepare','activate','prefix-submit','certify','status','continue','pause','close','settle-known','r11-status','r11-export','r11-close','bind-tsp','bind-obp','adopt-tsp','obp-h-prepare','summary'])
+    ap.add_argument('action',choices=['check-only','prepare','explore-preview','explore-submit','activate','prefix-submit','certify','status','continue','pause','close','settle-known','r11-status','r11-export','r11-close','bind-tsp','bind-obp','adopt-tsp','obp-h-prepare','summary'])
     ap.add_argument('--batch',choices=tuple(PAIRS));ap.add_argument('--exclusive-hours',type=float);ap.add_argument('--confirm-exclusive-account',action='store_true');ap.add_argument('--confirm-retrieved',action='store_true')
     ap.add_argument('--submit',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-requests',type=int);ap.add_argument('--acknowledge-charged-failures',action='store_true');ap.add_argument('--asset',type=Path);ap.add_argument('--values',nargs=6,type=int)
     a=ap.parse_args()
     if a.action=='check-only':v=check_only()
+    elif a.action in ('explore-preview','explore-submit'):v=explore_submit(a.batch,a.exclusive_hours,a.confirm_exclusive_account,a.approve_requests,a.allow_api,a.allow_solves,a.submit) if a.action=='explore-submit' else explore_preview(a.batch)
     elif a.action=='prepare':v=prepare(a.batch,a.exclusive_hours,a.confirm_exclusive_account)
     elif a.action=='activate':
         need(a.confirm_exclusive_account,'explicit all-device agreement required');shared.activate(manifest(a.batch));v={'activated':True,'API_requests':0,'solves':0}
