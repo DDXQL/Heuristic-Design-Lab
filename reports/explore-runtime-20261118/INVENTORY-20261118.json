@@ -1,0 +1,90 @@
+{
+  "checked_scope": "local source/configuration and existing local receipts only; no remote query",
+  "engineering_HEAD": "be289cf48076b63b2590cc43e147ae3a1a8e99f1",
+  "source_freeze": "74e47d6bca38e78d87da90285599a312d7009ace",
+  "R14_prepared": true,
+  "R14_uploaded": false,
+  "R14_compute_verified": false,
+  "R13_long_receipt": {
+    "jobs": [
+      "627138",
+      "627139"
+    ],
+    "finite_prefix": null,
+    "receipt": "reports/r13-tsp-mac-20261118/continue-1794991327349923000/status.json",
+    "status_snapshot": "reports/r13-tsp-mac-20261118/status-1794991455177575000/status.json",
+    "not_live_query": true
+  },
+  "H401": {
+    "existing_entry": "six_ops.py obp-h-prepare; assets.py job-submit --asset obp-H",
+    "request_cap": 40,
+    "inclusive_solve_cap": 7680,
+    "seed": 401,
+    "target_H": 10,
+    "resources": {
+      "cpus": 2,
+      "memory_mib": 2048
+    },
+    "actual_H_binding_in_this_tree": false,
+    "not_shared_with_active_R13": true
+  },
+  "FJSP_U503": {
+    "cluster_pair_entry_exists": true,
+    "cluster_pair_resources": {
+      "cpus": 5,
+      "memory_mib": 4096
+    },
+    "Mac_wrapper_accepted": false,
+    "Mac_free_GiB_at_local_check": 20.27,
+    "Mac_required_startup_GiB": 6,
+    "Mac_pause_GiB": 4,
+    "Mac_resume_fixture_and_handoff_contract_alignment_pending": true,
+    "Mac_handoff_contract_hard_gap": "prototype requires Closed.at, but sealed-incomplete R11 management Closed has no at; must integrate existing verify-handoff contract before acceptance",
+    "Mac_disk_blocked_now": false
+  },
+  "TSP": {
+    "seeds": [
+      501,
+      502,
+      503
+    ],
+    "pair_entry_exists": true,
+    "pair_resources": {
+      "cpus": 4,
+      "memory_mib": 4096
+    },
+    "R13_501_retained": true,
+    "R14_verified_reference_reuse_binding_pending": true
+  },
+  "OBP": {
+    "seeds": [
+      501,
+      502,
+      503
+    ],
+    "pair_entry_exists": true,
+    "pair_resources": {
+      "cpus": 4,
+      "memory_mib": 4096
+    },
+    "strict_finite_EoH_policy_preserved": true,
+    "U_H_pool_unbound_in_this_tree": true,
+    "paired_explore_entry_requires_both_assets": "EoH standalone uses existing entry/slurm, not the hardcoded pair wrapper"
+  },
+  "global_API_width": 1,
+  "cross_Mac_cluster_automatic_limiter": false,
+  "provider_RPM_TPM_maximum": "unknown",
+  "counter_policy": "1000 evolution attempts, init<=20, total<=1020; no retry",
+  "new_success_return_limit": "pending; not implemented",
+  "retrieval_routes": {
+    "R13_TSP": "r13_tsp_mac.py fetch after both exact terminal states",
+    "R11": "six_mac.py fetch-r11 uses original R11 root",
+    "R13_H401_or_LKH": "six_mac.py fetch-h/fetch-lkh only for asset receipts under R13",
+    "future_R14": "explore_mac.py fetch --batch <original batch>; do not use for R13 results"
+  },
+  "API_requests": 0,
+  "actual_solves": 0,
+  "SSH_attempts": 0,
+  "Slurm_submitted": false,
+  "resource_scope": "configured requests; no new squeue/sacct/allocation query"
+}
