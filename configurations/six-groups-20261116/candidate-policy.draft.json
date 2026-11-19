@@ -1,0 +1,13 @@
+{
+  "version": "successful-evolution-responses-v1",
+  "adoption": "draft",
+  "research_record": null,
+  "empty": "exclude",
+  "truncated": "exclude",
+  "evolution_attempt_cap": 1100,
+  "per_slot_attempt_cap": 2,
+  "backoff_seconds": [5],
+  "failure_streak_limit": 5,
+  "retry_explicit_429": false,
+  "rate_limit_backoff_seconds": 30
+}

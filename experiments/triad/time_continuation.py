@@ -17,11 +17,15 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha,digest
 from heuristic_design.core import execution
-from experiments.triad import configuration,parallel,shared_admission as shared
+from experiments.triad import candidate_policy,configuration,parallel,shared_admission as shared
 from experiments.triad.concurrency_probe import claim
 
 TIME_PAUSE='segment drain before next reservation'
 TERMINAL={'COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED','BOOT_FAIL','DEADLINE','REVOKED'}
+
+
+class AccountingPending(PermissionError):
+    """Slurm may release dependencies before the accounting row is visible."""
 
 
 def check_calendar(c,clock,now,*,full_segment):
@@ -60,7 +64,7 @@ def accounting_for(m):
         if len(cols)>=3 and cols[0] in ids:
             if cols[0] in found:raise PermissionError('ambiguous accounting rows; no automatic continuation')
             found[cols[0]]={'state':cols[1].split()[0],'exit_code':cols[2]}
-    if set(found)!=ids:raise PermissionError('accounting missing exact job IDs')
+    if set(found)!=ids:raise AccountingPending('accounting missing exact job IDs')
     return found
 
 
@@ -75,7 +79,7 @@ def inspect(path,*,accounting=None,now=None):
     """Read-only assessment. Missing scheduler facts never become permission."""
     now=time.time() if now is None else now;path=Path(path).resolve();m=shared.load(path)
     if not shared.exploration(m):raise PermissionError('future exploration freeze only; never migrate R13/strict runs')
-    blockers=[];members=[];selected=[]
+    policy=m.get('candidate_policy');blockers=[];members=[];selected=[]
     for f in ('Closed.json','gate/STOP.json','gate/metrics.lock','gate/send-turn.lock'):
         if (path.parent/f).exists():blockers.append('retained '+f)
     gate=Path(m['account_gate'])/'generation.lock'
@@ -93,16 +97,30 @@ def inspect(path,*,accounting=None,now=None):
             raise PermissionError('frozen FJSP U automatic continuation not implemented')
         s=check_run(row,path,c);v=s['eoh'];clock=read(d/'Run_clock.json')
         if s.get('clock_sha256')!=sha(d/'Run_clock.json'):blockers.append(row['run_id']+': original clock binding differs')
-        evo=v['operator_cursor'];complete=s['phase']=='completed' and evo==c['evolution_request_cap']
-        if not complete:
-            try:check_calendar(c,clock,now,full_segment=True)
-            except PermissionError as e:blockers.append(row['run_id']+': '+str(e))
+        evo=v['operator_cursor'];progress=s.get('successful_evolution_responses',0) if policy else evo
+        complete=s['phase']=='completed' and progress==c['evolution_request_cap']
+        reason=s.get('pause_reason');local_terminal=bool(policy and (
+            s['phase'] in ('initialization_incomplete','expired')
+            or s['phase']=='paused' and reason in (candidate_policy.BUDGET_PAUSE,candidate_policy.STREAK_PAUSE)))
+        window_closed=False
+        if not complete and not local_terminal:
+            try:check_calendar(c,clock,now,full_segment=not policy)
+            except PermissionError as e:
+                if policy and str(e)=='original window cannot cover next drain':window_closed=True
+                else:blockers.append(row['run_id']+': '+str(e))
         names=('.execution.lock','.coordinator.lock','Stop.json','Clock_quarantine.json')
         if any((d/n).exists() for n in names) or (Path(c['account_gate'])/'generation.lock').exists():blockers.append(row['run_id']+': writer/stop/quarantine retained')
         j=read(d/'API_attempts.json');attempts=j['api_attempts']
         if j.get('halt_reason') or any(a['status'] not in ('completed','failed') for a in attempts.values()):blockers.append(row['run_id']+': local API halt/unknown retained')
-        if len(attempts)>row['request_cap'] or len(attempts)!=s['cursor'] or s['cursor']!=v['initialization_requests']+v['operator_cursor']:
+        logical_count=len(j['requests']) if policy else len(attempts)
+        if len(attempts)>row['request_cap'] or logical_count!=s['cursor'] or s['cursor']!=v['initialization_requests']+v['operator_cursor']:
             blockers.append(row['run_id']+': original attempt accounting differs')
+        if policy:
+            reservations=candidate_policy.costs(j)['reservations_by_stage']
+            if (reservations.get('initialization',0)>c['initialization_request_cap']
+                    or reservations.get('evolution',0)>policy['evolution_attempt_cap']
+                    or progress!=sum(t.get('successful_evolution_response',False) for t in s['tasks'].values())):
+                blockers.append(row['run_id']+': successful-response or phase cap mismatch')
         for a in attempts.values():
             record=state['requests'].get(digest({'member':row['run_id'],'key':a['id']}),{})
             if record.get('member')!=row['run_id'] or record.get('key')!=a['id'] or record.get('state') not in ('completed','reconciled_failed'):
@@ -114,16 +132,20 @@ def inspect(path,*,accounting=None,now=None):
             if r.get('state')!='submitted' or (accounting is not None and a.get('state') not in TERMINAL):blockers.append(row['run_id']+': prior submission active/unknown')
         latest=read(d/'latest-submission.json');a=(accounting or {}).get(latest.get('job_id'),{})
         if latest not in receipts:blockers.append(row['run_id']+': latest receipt not in durable submissions')
-        if accounting is not None and (a.get('state')!='COMPLETED' or a.get('exit_code')!='0:0'):
+        wanted_state,wanted_exit=('FAILED','2:0') if policy and s['phase'] in ('initialization_incomplete','expired') else ('COMPLETED','0:0')
+        if accounting is not None and (a.get('state')!=wanted_state or a.get('exit_code')!=wanted_exit):
             blockers.append(row['run_id']+': last Slurm segment not clean COMPLETED 0:0')
-        if not complete:
-            if s['phase']!='paused' or s.get('pause_reason')!=TIME_PAUSE or latest.get('finite_settled_prefix') is not None:
+        if not complete and not local_terminal:
+            allowed_pause=candidate_policy.TIME_PAUSE if policy else TIME_PAUSE
+            if s['phase']!='paused' or reason!=allowed_pause or latest.get('finite_settled_prefix') is not None:
                 blockers.append(row['run_id']+': not an unrestricted clean time pause')
-            elif evo>=c['evolution_request_cap'] or len(attempts)>=row['request_cap']:
+            elif progress>=c['evolution_request_cap'] or len(attempts)>=row['request_cap']:
                 blockers.append(row['run_id']+': original budget exhausted')
-            else:selected.append(row['index'])
+            elif not window_closed:selected.append(row['index'])
         members.append({'index':row['index'],'run_id':row['run_id'],'phase':s['phase'],
-            'evolution_attempts':evo,'remaining_evolution':max(0,c['evolution_request_cap']-evo),
+            'evolution_attempts':evo,'successful_evolution_responses':progress if policy else None,
+            'remaining_evolution':max(0,c['evolution_request_cap']-progress),
+            'pause_reason':reason,'local_terminal':local_terminal,'window_closed':window_closed,
             'charged_requests':len(attempts),'original_request_cap':row['request_cap'],
             'deadline':clock['deadline'],'checkpoint_sha256':sha(d/'checkpoint.json')})
     if len(state['requests'])>m['total_request_cap']:blockers.append('aggregate original cap exceeded')

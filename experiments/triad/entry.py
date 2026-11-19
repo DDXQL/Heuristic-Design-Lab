@@ -17,6 +17,22 @@ from heuristic_design.core import execution
 from experiments.triad import runtime,configuration
 
 
+def allocation_deadline():
+    job=os.environ.get('SLURM_JOB_ID','')
+    if not job.isdigit():raise PermissionError('real candidate search requires a Slurm allocation')
+    started=time.monotonic()
+    result=subprocess.run(['squeue','-h','-j',job,'-o','%L'],check=True,text=True,capture_output=True,timeout=15)
+    return started+slurm_time_left(result.stdout.strip())
+
+
+def slurm_time_left(value):
+    days,sep,clock=value.partition('-')
+    parts=(clock if sep else days).split(':')
+    if len(parts) not in (2,3) or any(not p.isdigit() for p in parts) or sep and not days.isdigit():
+        raise ValueError('finite Slurm time remaining required')
+    return (int(days)*86400 if sep else 0)+sum(int(v)*60**i for i,v in enumerate(reversed(parts)))
+
+
 @contextmanager
 def owned_writer(c,d,s,shared=None):
     """Acquire before key access; only remove this exact, safely settled ownership."""
@@ -90,7 +106,8 @@ def main():
     ap.add_argument('--kind',choices=['search','h-build'],default='search');ap.add_argument('--engineering',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-budget',type=int)
     ap.add_argument('--pause-after-attempts',type=int,help='absolute cumulative settled-attempt prefix within original cap')
     ap.add_argument('--approve-segment-solves',type=int,help='inclusive first/recheck upper bound for this finite segment')
-    ap.add_argument('--shared-manifest',type=Path,help='new-version two-search request admission; never use to take over an old run')
+    ap.add_argument('--shared-manifest',type=Path,help='new-version request admission; never use to take over an old run')
+    ap.add_argument('--slurm-drain',action='store_true',help=argparse.SUPPRESS)
     args=ap.parse_args();c=configuration.load(args.config,engineering=args.engineering)
     if c.get('shared_manifest') and (args.shared_manifest is None or str(args.shared_manifest.resolve())!=c['shared_manifest']):raise PermissionError('this new-version shared child requires its original --shared-manifest')
     if args.kind=='h-build':c=runtime.h_build_config(c)
@@ -106,6 +123,10 @@ def main():
     if args.shared_manifest:
         from experiments.triad import shared_admission
         shared=shared_admission.binding(args.shared_manifest,d,args.config)
+    if c.get('candidate_policy') and not shared:
+        raise PermissionError('candidate protocol is only admitted through its original shared plan')
+    if args.slurm_drain and args.action!='pause':
+        raise PermissionError('Slurm drain is only a pause action')
     if args.kind!='h-build' and c['mode']=='real' and c['group']=='fjsp-u' and c['search_seed'] in (501,502) and args.action in ('prepare','run','resume'):raise PermissionError('completed frozen U501/U502 are protected read-only; never rerun/take over')
     if args.kind!='h-build' and c['problem']=='fjsp' and c['method']=='u' and (c['mode']=='real' or shared):
         launch=d.parent/(d.name+'.launch.json')
@@ -143,7 +164,16 @@ def main():
     adapter=shared_admission.adapter(shared) if shared else runtime.Adapter()
     if args.action in ('status','pause','export'):
         adapter.check_run(d)
-        value=adapter.summary(d) if args.action=='status' else execution.stop(d,adapter=adapter) if args.action=='pause' else runtime.export(d)
+        if args.action=='pause':
+            reason='user_control'
+            if args.slurm_drain and c.get('candidate_policy'):
+                from experiments.triad.candidate_policy import TIME_PAUSE
+                allocation=read(Path(shared['manifest']).parent/'Current_allocation.json')
+                if allocation.get('jobs',{}).get(d.name)!=os.environ.get('SLURM_JOB_ID'):
+                    raise PermissionError('Slurm drain must identify the active original allocation')
+                reason=TIME_PAUSE
+            value=execution.stop(d,adapter=adapter,reason=reason)
+        else:value=adapter.summary(d) if args.action=='status' else runtime.export(d)
     else:
         if not d.exists():
             _,_,_,_,todo=runtime.preflight(args.config,args.engineering,'h-build' if args.kind=='h-build' else None)
@@ -168,7 +198,7 @@ def main():
             write(d/'manual-boundaries'/f'{seq:04d}.json',control);write(d/'Current_manual_boundary.json',control)
             if p['config']['api_mode']=='real':
                 if os.environ.get('SLURM_JOB_ID') and int(os.environ.get('SLURM_CPUS_PER_TASK','0'))<c['resources']['cpus']:raise ValueError('allocation below declared CPUs')
-                adapter.segment_deadline=time.monotonic()+c['resources']['segment_seconds']
+                adapter.segment_deadline=allocation_deadline() if c.get('candidate_policy') else time.monotonic()+c['resources']['segment_seconds']
             with owned_writer(c,d,s,shared), (d/'terminal.log').open('a') as log:
                 from contextlib import redirect_stdout,redirect_stderr
                 from experiments.common._single_run import _Tee

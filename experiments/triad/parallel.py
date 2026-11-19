@@ -19,7 +19,8 @@ def plan(spec,folder,hours=None,confirmed=False):
     spec=Path(spec).resolve();folder=Path(folder).resolve();doc=read(spec)
     if not folder.is_relative_to(ROOT/'plans') or not doc['batch_id'] or any(v not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_' for v in doc['batch_id']):raise ValueError('safe new batch under this release plans/ required')
     if folder.exists():raise FileExistsError('new plan directory required; never replace a submitted plan')
-    if len(doc['members'])!=2:raise ValueError('exactly two selected independent runs required')
+    policy=doc.get('candidate_policy')
+    if len(doc['members']) not in ((1,2) if policy else (2,)):raise ValueError('select the supported number of independent runs')
     if doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
     exclusion=None
     if hours is not None:
@@ -32,6 +33,17 @@ def plan(spec,folder,hours=None,confirmed=False):
         run_id=doc['batch_id']+'-'+c['group']+'-seed-'+str(item['seed']);dest=folder/'configs'/(run_id+'.json')
         c.update(search_seed=item['seed'],account_gate=str(folder/'run-gates'/run_id),account_exclusion=exclusion,shared_manifest=str(manifest))
         if c['mode']!=doc['mode']:raise ValueError('Mock and real cannot share an admission batch')
+        if policy:
+            from .candidate_policy import validate
+            validate(policy,c['evolution_request_cap'],real=c['mode']=='real')
+            if c['group']=='fjsp-u':raise PermissionError('frozen FJSP U needs a separate same-algorithm integration')
+            c.update(candidate_policy=policy,api_attempt_cap=c['initialization_request_cap']+policy['evolution_attempt_cap'],
+                     per_candidate_attempt_cap=policy['per_slot_attempt_cap'],window_seconds=doc['window_seconds'])
+            drain=policy['per_slot_attempt_cap']*(c['provider']['total_timeout']+doc['queue_wait_seconds'])+c['instance_count']*30+sum(policy['backoff_seconds'])+30
+            c['resources'].update(segment_seconds=doc['segment_seconds'],request_queue_seconds=doc['queue_wait_seconds'],
+                                  drain_seconds=max(drain,c['resources']['drain_seconds']))
+            if min(c['window_seconds'],c['resources']['segment_seconds'])<=c['resources']['drain_seconds']:
+                raise ValueError('requested window/walltime does not cover drain')
         if c['api_attempt_cap'] is None:raise PermissionError('explicit member cap required even for a pending plan')
         write(dest,c); rows.append({'group':c['group'],'seed':item['seed'],'index':index,'run_id':run_id,'run_dir':str(run_root/run_id),'config':str(dest),'config_sha256':sha(dest),'child_config_sha256':sha(dest),'request_cap':c['api_attempt_cap'],'pending':configuration.gaps(c)})
     m={'version':shared.VERSION,'batch_id':doc['batch_id'],'mode':doc['mode'],'max_active_searches':2,'global_API_width':1,'API2':'implemented bounded extension; requires API1 actual acceptance and separate manual phase authorization; not adopted',
@@ -40,9 +52,10 @@ def plan(spec,folder,hours=None,confirmed=False):
     if doc.get('runtime_policy') is not None:
         if doc['runtime_policy']!=shared.EXPLORE:raise ValueError('unknown new runtime policy')
         m['runtime_policy']=shared.EXPLORE
+    if policy:m['candidate_policy']=policy
     cs=[read(r['config']) for r in rows]
     m['aggregate_resources']={k:sum(c['resources'][k] for c in cs) if all(c['resources'][k] is not None for c in cs) else None for k in ('cpus','memory_mib')}
-    m['native_solve_cap']=sum(2*c['api_attempt_cap']*c['instance_count'] for c in cs) if doc['mode']=='real' else 0
+    m['native_solve_cap']=sum(configuration.budget(c)['native_solve_cap_per_seed'] for c in cs) if doc['mode']=='real' else 0
     write(manifest,m);shared.load(manifest)
     write(folder/'Batch.json',{'version':'triad-shared-two-batch-plan-v1','campaign_id':doc['batch_id'],'rows':rows,'same_account_generation_tasks':2,'shared_manifest':str(manifest)})
     return {'manifest':str(manifest),'members':rows,'total_original_request_cap':m['total_request_cap'],'CODE_READY':True,'RUN_READY':False,'API_requests':0,'actual_solves':0}
@@ -71,9 +84,16 @@ def inspect(path):
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
             item['initialization_requests']=cp.get('initialization_requests',cp.get('eoh',{}).get('initialization_requests'))
             item['evolution_requests']=cp.get('generation_requests',cp.get('eoh',{}).get('operator_cursor'))
+            if m.get('candidate_policy'):
+                item.update(successful_evolution_responses=cp.get('successful_evolution_responses',0),
+                            successful_evolution_target=c['evolution_request_cap'],pause_reason=cp.get('pause_reason'))
             item['writer_lock']=any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json')) or bool(c.get('account_gate') and (Path(c['account_gate'])/'generation.lock').exists())
             progress=read(d/'Progress.json') if (d/'Progress.json').exists() else read(d/'exports/summary.json') if (d/'exports/summary.json').exists() else {}
             item['reported_metrics']={k:progress.get(k) for k in ('best_J','champion_id','valid_candidates','failures','duplicates','confirmed_sends','unknown_sends','physical_passes')}
+            if m.get('candidate_policy'):
+                item['reported_metrics'].update({k:progress.get(k) for k in
+                    ('reservations_by_stage','retry_reservations','retry_physical_sends_confirmed',
+                     'confirmed_sends_usage_unknown','known_tokens')})
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
     width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else 1
@@ -118,7 +138,13 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         new_solves+=segment_cap or 0
         # Reuse the existing resource and command builder; use the new thin shell.
         if m['mode']=='real':
-            cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',bound,segment_cap)
+            if m.get('candidate_policy') and action=='resume':
+                remaining=int(read(d/'Run_clock.json')['deadline']-time.time())
+                if remaining<=c['resources']['drain_seconds']:raise PermissionError('remaining calendar cannot cover drain')
+                wall=min(remaining,c['resources']['segment_seconds'])
+            else:wall=None
+            wall_override={'wall_seconds':wall} if wall is not None else {}
+            cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',bound,segment_cap,**wall_override)
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
             certificate=path.parent/'Acceptance.json'

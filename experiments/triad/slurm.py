@@ -12,7 +12,7 @@ from heuristic_design.core.storage import read,write,sha
 from experiments.triad import batch,runtime,configuration
 
 
-def command(row,action,python,prefix=None,solve_cap=None):
+def command(row,action,python,prefix=None,solve_cap=None,*,wall_seconds=None):
     if row.get('protected_existing_501') or row.get('existing_registration'):raise PermissionError('existing 501 is read-only and cannot be submitted or resumed by this batch')
     c=configuration.load(row['config']);r=c['resources'];todo=configuration.gaps(c)
     if todo or r['partition'] is None:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo+(['resources.partition'] if r['partition'] is None else [])))
@@ -20,7 +20,7 @@ def command(row,action,python,prefix=None,solve_cap=None):
         cp=Path(row['run_dir'])/'checkpoint.json';state=read(cp) if cp.exists() else {}
         used=state.get('initialization_requests',0)+state.get('generation_requests',0) if 'eoh' not in state else state['eoh']['initialization_requests']+state['eoh']['operator_cursor']
         if not used<prefix<=c['api_attempt_cap'] or solve_cap!=2*(prefix-used)*c['instance_count']:raise PermissionError('finite segment prefix/first+recheck solve cap must match original ledger')
-    h,left=divmod(r['segment_seconds'],3600);m,s=divmod(left,60)
+    h,left=divmod(r['segment_seconds'] if wall_seconds is None else wall_seconds,3600);m,s=divmod(left,60)
     cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time='+f'{h:02d}:{m:02d}:{s:02d}',
       '--partition='+r['partition'],'--signal=B:USR1@'+str(r['drain_seconds']),'--chdir='+str(ROOT),'--job-name='+row['run_id'],
       '--comment='+row['run_id']+':'+row['child_config_sha256'],

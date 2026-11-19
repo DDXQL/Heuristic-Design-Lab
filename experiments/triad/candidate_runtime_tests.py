@@ -1,0 +1,262 @@
+"""Offline failure injection and actual 1000-response executor simulations."""
+
+import argparse
+import json
+import os
+from pathlib import Path
+import socket
+import sys
+import tempfile
+import time
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path[:0] = [str(ROOT / "code"), str(ROOT)]
+from fjsp_usage.research_real.real_transport import JsonCandidateTransport, TransportError
+from heuristic_design.core import execution
+from heuristic_design.core.storage import read, sha, write
+from experiments.triad import campaign, candidate_policy, entry, evaluation, problems, runtime, shared_admission as shared, six_ops, time_continuation
+from experiments.triad.explore_tests import deny, fixture, refused
+
+POLICY = ROOT / "configurations/six-groups-20261116/candidate-policy.draft.json"
+
+
+def configure(folder, reference, target):
+    path, m, _ = fixture(folder)
+    policy = read(POLICY)
+    policy["evolution_attempt_cap"] = target + max(10, target // 10)
+    policy["rate_limit_backoff_seconds"] = 1
+    m["candidate_policy"] = policy
+    for row in m["members"]:
+        c = six_ops.config(row["group"])
+        cap = 20 + policy["evolution_attempt_cap"]
+        c.update(mode="mock", freeze_status="engineering_only", search_seed=501, window_seconds=7200,
+                 account_exclusion={"scope": "all_devices_sharing_account", "confirmation": "offline",
+                                    "valid_until": time.time() + 14400}, credential_file=None, evaluation_concurrency=1,
+                 account_gate=str(path.parent / "run-gates" / row["run_id"]),
+                 reference_file=str(reference), shared_manifest=str(path), candidate_policy=policy,
+                 evolution_request_cap=target, api_attempt_cap=cap, per_candidate_attempt_cap=2,
+                 mock_faults={"5": "invalid", "6": "duplicate", "11": "invalid_evaluation",
+                              "16": "invalid_evaluation"})
+        c["resources"].update(drain_seconds=2000, request_queue_seconds=2)
+        write(Path(row["config"]), c)
+        row.update(request_cap=cap, config_sha256=sha(row["config"]))
+        d = Path(row["run_dir"])
+        (d / "checkpoint.json").unlink()
+        d.rmdir()
+        runtime.prepare(d, row["config"], engineering=True)
+    m["total_request_cap"] = sum(row["request_cap"] for row in m["members"])
+    write(path, m)
+    write(Path(m["account_gate"]) / "generation.lock", {"protocol": "SHARED:" + sha(path)})
+    log = path.parent / "gate/ledger.json"
+    s = read(log)
+    s["manifest_sha256"] = sha(path)
+    write(log, s)
+    for r in m["members"]:
+        d = Path(r["run_dir"])
+        shared.attach(d, shared.binding(path, d, r["config"]))
+    return path, m
+
+
+def transport_fault(code, send, stage):
+    e = TransportError("offline synthetic failure")
+    e.metadata = {"send_status": send, "failure_stage": stage, "http_status": code}
+    if send == "not_started":
+        e.metadata["temporary_network_failure"] = True
+    e.usage = None
+    return e
+
+
+def inject(base, response_plan, calls):
+    def dispatch(self, key, prompt, *, kind, on_sent):
+        slot, attempt = (int(v) for v in key.rsplit("SLOT-", 1)[1].split("/attempt/"))
+        c = self.p["config"]
+        group = c["group"]
+        calls[group, slot, attempt] = calls.get((group, slot, attempt), 0) + 1
+        behavior = response_plan.get((group, slot, attempt))
+        if behavior == "known_not_sent":
+            raise transport_fault(None, "not_started", "connect")
+        if behavior == "unknown":
+            raise transport_fault(None, "unknown", "http_send")
+        if isinstance(behavior, int):
+            on_sent()
+            raise transport_fault(behavior, "confirmed", "http_receive")
+        if behavior in ("empty", "truncated"):
+            on_sent()
+            return {"text": "", "usage": None, "metadata": {"response_class": behavior}}
+        return base(self, key, prompt, kind=kind, on_sent=on_sent)
+    return dispatch
+
+
+def run_member(path, row, *, resume=False, pause_at=None):
+    d = Path(row["run_dir"])
+    job = "910" + str(row["index"])
+    b = shared.binding(path, d, row["config"])
+    a = shared.adapter(b)
+    original = a.task_context
+    if pause_at is not None:
+        def task_context(directory, state, p, task, index):
+            if state.get("successful_evolution_responses", 0) == pause_at:
+                a.segment_deadline = time.monotonic()
+            return original(directory, state, p, task, index)
+        a.task_context = task_context
+    with patch.dict(os.environ, {"SLURM_JOB_ID": job}), patch.object(shared.Admission, "startup"):
+        with shared.Admission(b).session(d):
+            result = execution.start(d, adapter=a, resume=resume)
+    return result, read(d / "checkpoint.json")
+
+
+def receipt(row, job):
+    d = Path(row["run_dir"])
+    r = {"state": "submitted", "job_id": job, "finite_settled_prefix": None}
+    write(d / "latest-submission.json", r)
+    write(d / "submissions" / ("shared-mock-" + job + ".json"), r)
+    return {"state": "COMPLETED", "exit_code": "0:0"}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--target", type=int, default=1000)
+    args = parser.parse_args()
+    target = args.target
+    assert target >= 10
+    policy = read(POLICY)
+    candidate_policy.validate(policy, 1000)
+    refused(candidate_policy.validate, policy, 1000, real=True)
+    assert entry.slurm_time_left("1-02:30:00") == 95400
+    assert entry.slurm_time_left("11:33") == 693
+    refused(entry.slurm_time_left, "UNLIMITED")
+    # Test actual V5 normalization and policy admission without opening a socket.
+    fake = object.__new__(candidate_policy.CandidateTransport)
+    fake.provider = type("Provider", (), {"expected_response_model": "synthetic"})()
+    error = transport_fault(200, "confirmed", "schema")
+    error.metadata.update(model="synthetic", finish_reason="length", content_type="str")
+    with patch.object(JsonCandidateTransport, "dispatch", side_effect=error):
+        assert fake.dispatch()["metadata"]["response_class"] == "truncated"
+    with patch.object(JsonCandidateTransport, "dispatch", return_value={"text": "", "metadata": {}, "usage": None}):
+        assert fake.dispatch()["metadata"]["response_class"] == "empty"
+    processed = ROOT / "runs"
+    processed.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="OFFLINE-successful-", dir=processed) as td:
+        tmp = Path(td)
+        source = read(ROOT / "preparations/triad/tsp/train20.manifest.json")
+        ref = tmp / "mock-reference.json"
+        write(ref, {"kind": "mock-reference-v1", "engineering_only": True,
+                    "instances": [{"file": x["file"], "reference": 1.0} for x in source["instances"]]})
+        (tmp / "plans").mkdir()
+        path, manifest = configure(tmp / "plans/candidate-e2e", ref, target)
+        u, eoh = manifest["members"]
+        calls = {}
+        injected = {
+            ("tsp-u", 5, 1): "known_not_sent",
+            ("tsp-u", 6, 1): 520, ("tsp-u", 7, 1): 522, ("tsp-u", 8, 1): 524,
+            ("tsp-u", 9, 1): 429, ("tsp-u", 10, 1): "empty", ("tsp-u", 11, 1): "truncated",
+        }
+        report = {}
+        with (patch.object(socket.socket, "connect", deny), patch.object(socket, "create_connection", deny),
+              patch.object(JsonCandidateTransport, "__init__", deny), patch.object(problems, "solve_row", deny),
+              patch.object(evaluation, "evaluate", deny), patch.object(execution.sys, "platform", "linux"),
+              patch.object(runtime.MockTransport, "dispatch", inject(runtime.MockTransport.dispatch, injected, calls)),
+              patch.object(candidate_policy.CandidateJournal, "__init__", sync_journal_for_fixture),
+              patch.object(runtime.Adapter, "on_commit")):
+            # Backoff in this fixture is recorded, but waiting for real time or contacting Slurm is unnecessary.
+            cap = min(500, target // 2)
+            for row in (u, eoh):
+                result, s = run_member(path, row, pause_at=cap)
+                assert result["phase"] == "paused", result
+                assert s["pause_reason"] == candidate_policy.TIME_PAUSE and s.get("successful_evolution_responses") == cap, (
+                    row["group"], s.get("pause_reason"), s.get("successful_evolution_responses"), s["cursor"],
+                    (path.parent / "gate/STOP.json").read_text() if (path.parent / "gate/STOP.json").exists() else None,
+                    list(read(path.parent / "gate/ledger.json")["requests"].values())[-2:])
+            accounting = {"9100": receipt(u, "9100"), "9101": receipt(eoh, "9101")}
+            assessed = time_continuation.inspect(path, accounting=accounting)
+            assert assessed["eligible"] and assessed["selected"] == [0, 1], assessed
+            controller(path, manifest, accounting, resume=True)
+            for row in (u, eoh):
+                d = Path(row["run_dir"])
+                earlier = read(d / "checkpoint.json")
+                result, s = run_member(path, row, resume=True)
+                assert result["phase"] == "completed", result
+                assert s["successful_evolution_responses"] == target
+                assert {k: s["tasks"][k] for k in earlier["tasks"]} == earlier["tasks"]
+                if row["group"] == "tsp-u":
+                    assert s["tasks"]["SLOT-0000005"]["failure"] == "parse_or_constraint_error"
+                    assert s["tasks"]["SLOT-0000005"]["successful_evolution_response"] is True
+                    assert any(t.get("AST_duplicate") and t.get("successful_evolution_response")
+                               for t in s["tasks"].values())
+                out = runtime.export(d)
+                assert (d / "exports/API-physical-attempts.csv").is_file()
+                assert (d / "exports/best-J-by-successful-response.svg").is_file()
+                assert (d / "exports/frozen_engineering_candidate.json").is_file()
+                report[row["group"]] = {"target": target, "final": out["successful_evolution_responses"],
+                                        "settled_checkpoint": cap, "reservations": out["request_reservations"],
+                                        "simulated_sends": out["physical_sends_confirmed"],
+                                        "retries": out["retry_reservations"]}
+            j = read(Path(u["run_dir"]) / "API_attempts.json")
+            assert len(j["requests"]["SLOT-0000005"]["attempt_ids"]) == 2
+            for i in range(6, 12):
+                assert calls["tsp-u", i, 1] == 1 and ("tsp-u", i, 2) not in calls
+            assert all(n == 1 for n in calls.values())
+            s = read(path.parent / "gate/ledger.json")
+            assert not s["jobs"] and not s["active"] and not (path.parent / "gate/STOP.json").exists()
+            assert s["peak"] == 1 and any(r.get("send_state") == "confirmed" and r.get("usage") is None
+                                          and r["state"] == "reconciled_failed" for r in s["requests"].values())
+            final = time_continuation.inspect(path, accounting=accounting)
+            assert final["scientific_complete"] and not final["eligible"] and not final["blockers"], final
+        controller(path, manifest, accounting, resume=False)
+        protections(tmp, ref)
+        print(json.dumps({"passed": True, "searches": report, "real_api": 0, "real_solves": 0,
+                          "real_slurm": 0, "tracked_attempts_are_not_model_results": True}, indent=2))
+
+
+original_journal = candidate_policy.CandidateJournal.__init__
+
+
+def sync_journal_for_fixture(self, *args, **kwargs):
+    original_journal(self, *args, **kwargs)
+    self.sleep = lambda _: None
+
+
+def controller(path, m, accounting, *, resume):
+    # Exercise the actual durable controller claim/decision logic, with fake Slurm only.
+    auth = {"manifest_sha256": sha(path), "max_segments": 2, "allow_api": True, "allow_solves": True,
+            "approve_requests": m["total_request_cap"], "expires_at": time.time()+300, "release_account": False}
+    write(path.parent / "Campaign_authorization.json", auth)
+    worker_ids = {"receipts": [{"job_id": j} for j in accounting]}
+    from types import SimpleNamespace
+    segment = 1 if resume else 2
+    with (patch.object(campaign, "ROOT", path.parent.parent.parent),
+          patch.object(campaign, "account_when_visible", return_value=accounting),
+          patch.dict(os.environ, {"SLURM_JOB_ID": "9300" if resume else "9301"})):
+        if resume:
+            followup = {"receipts": [{"job_id": "9100"}, {"job_id": "9101"}]}
+            with (patch.object(campaign.subprocess, "run", side_effect=[SimpleNamespace(stdout="9300\n"), SimpleNamespace(stdout="9301\n")]) as sbatch,
+                  patch.object(campaign.parallel, "submit", return_value=followup) as fake_resume):
+                r = campaign.queue_followup(path, 1, worker_ids)
+                assert r["job_id"] == "9300" and "--dependency=afterany:9100:9101" in sbatch.call_args.args[0]
+                refused(campaign.queue_followup, path, 1, worker_ids)
+                result = campaign.advance(path, segment)
+                assert result["submitted"] and result["next"]["job_id"] == "9301"
+                assert fake_resume.call_count == 1 and sbatch.call_count == 2
+        else:
+            result = campaign.advance(path, segment)
+            assert result["reason"] == "scientific_complete" and not result["submitted"]
+        refused(campaign.advance, path, segment)
+
+
+def protections(tmp, ref):
+    path, m = configure(tmp / "candidate-unknown", ref, 10)
+    row = m["members"][0]
+    calls = {}
+    base = runtime.MockTransport.dispatch
+    with (patch.object(socket.socket, "connect", deny), patch.object(execution.sys, "platform", "linux"),
+          patch.object(runtime.MockTransport, "dispatch", inject(base, {("tsp-u", 0, 1): "unknown"}, calls))):
+        _, current = run_member(path, row)
+    s = read(path.parent / "gate/ledger.json")
+    assert current["phase"] in ("paused", "stopped")
+    assert (path.parent / "gate/STOP.json").exists() and s["active"]
+    assert len(s["requests"]) == 1 and calls == {("tsp-u", 0, 1): 1}
+
+
+if __name__ == "__main__":
+    main()

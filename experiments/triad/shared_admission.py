@@ -12,6 +12,7 @@ import time
 import multiprocessing
 import stat
 import math
+import subprocess
 from heuristic_design.core.storage import read, write, sha, digest
 from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
 
@@ -39,6 +40,14 @@ def allocation_check(c):
         return float(text)*factor
     memory=mib(os.environ.get('SLURM_MEM_PER_NODE'))
     if memory is None and os.environ.get('SLURM_MEM_PER_CPU'):memory=mib(os.environ['SLURM_MEM_PER_CPU'])*cpus
+    if memory is None and c.get('candidate_policy'):
+        job=os.environ['SLURM_JOB_ID']
+        result=subprocess.run(['scontrol','-o','show','job',job],check=True,capture_output=True,text=True,timeout=15)
+        fields=dict(word.split('=',1) for word in result.stdout.split() if '=' in word)
+        if fields.get('JobId')==job and fields.get('JobState')=='RUNNING' and fields.get('NumNodes')=='1':
+            memory=mib(fields.get('MinMemoryNode'))
+            if memory is None and fields.get('MinMemoryCPU'):
+                memory=mib(fields['MinMemoryCPU'])*int(fields['NumCPUs'])
     if cpus<c['resources']['cpus'] or memory is None or not math.isfinite(memory) or memory<c['resources']['memory_mib']:
         raise PermissionError('actual allocation CPU/memory evidence missing or insufficient; never export invented values')
     info=Path(c['credential_file']).lstat()
@@ -65,9 +74,10 @@ def load(path):
     if m['version']!=VERSION or m['max_active_searches']!=2 or m['global_API_width']!=1:
         raise ValueError('this release supports at most two searches and global API1 only')
     rows=m['members']
-    if len(rows)!=2 or len({r['run_id'] for r in rows})!=2 or len({(r['group'],r['seed']) for r in rows})!=2:
-        raise ValueError('two distinct run IDs and independent group/seed identities required')
-    if len({r['run_dir'] for r in rows})!=2 or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
+    policy=m.get('candidate_policy')
+    if len(rows) not in ((1,2) if policy else (2,)) or len({r['run_id'] for r in rows})!=len(rows) or len({(r['group'],r['seed']) for r in rows})!=len(rows):
+        raise ValueError('explicit independent group/seed identities required')
+    if len({r['run_dir'] for r in rows})!=len(rows) or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
         raise ValueError('distinct directories required; existing U501 is read-only')
     from experiments.triad.configuration import GROUPS
     if any(r['group'] not in GROUPS or r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id'] for r in rows):raise ValueError('declared triad group and seed501/502/503 required')
@@ -79,6 +89,13 @@ def load(path):
     for row in rows:
         c=read(row['config'])
         if sha(row['config'])!=row['config_sha256'] or c['mode']!=m['mode'] or c['api_attempt_cap']!=row['request_cap'] or c['search_seed']!=row['seed'] or c.get('shared_manifest')!=str(path):raise ValueError('member configuration/mode/cap/seed binding changed')
+        if c.get('candidate_policy')!=policy or policy and (not exploration(m) or row['group']=='fjsp-u'):
+            raise ValueError('shared candidate policy differs or needs the native exploration adapter')
+        if policy:
+            from experiments.triad.candidate_policy import validate
+            validate(policy,c['evolution_request_cap'],real=m['mode']=='real')
+            if c['resources'].get('request_queue_seconds',600)!=m['queue_wait_seconds']:
+                raise ValueError('request queue wait differs from the drain calculation')
     if not 0<=m['min_request_interval_seconds']<=60:raise ValueError('invalid global pacing')
     if type(m['queue_wait_seconds']) is not int or not 1<=m['queue_wait_seconds']<=600:raise ValueError('bounded positive queue wait required')
     return m
@@ -138,7 +155,9 @@ class Admission:
 
     def verify(self):
         if sha(self.path)!=self.b['sha256']:raise ValueError('shared manifest identity changed')
-        if read(Path(self.m['account_gate'])/'generation.lock').get('protocol')!='SHARED:'+self.b['sha256']:
+        lease=Path(self.m['account_gate'])/'generation.lock'
+        if not lease.is_file() or read(lease).get('protocol')!='SHARED:'+self.b['sha256']:
+            if self.m.get('candidate_policy'):stop(self.folder,'original whole-account lease missing or changed')
             raise PermissionError('original whole-account batch lease missing/different')
         if self.m['mode']=='real' and self.m['account_exclusion']['valid_until']<time.time():
             stop(self.folder,'account exclusion expired');raise PermissionError('account exclusion expired; no renewal')
@@ -191,7 +210,8 @@ class Admission:
                 waiting=[(v['ticket'],k) for k,v in s['requests'].items() if v['state']=='waiting']
                 first=min(waiting)[1] if waiting else None
                 width,_=self.phase(s)
-                if len(s['active'])<width and self.member not in s['active'].values() and first==uid:
+                if (len(s['active'])<width and self.member not in s['active'].values() and first==uid
+                    and time.time()>=s.get('rate_resume_at',0)):
                     s['active'][uid]=self.member; s['peak']=max(s['peak'],len(s['active']))
                     s['requests'][uid].update(state='admitted',wait_seconds=time.monotonic()-started)
                     self.event(s,'admitted',uid=uid,member=self.member);return uid
@@ -270,11 +290,17 @@ class Admission:
         account_error=bool(meta.get('caller_hard_stop') or permanent or meta.get('http_status')==429 or meta.get('upstream_http_status')==429 or meta.get('failure_class') in ('protocol_incompatible','permanent'))
         not_sent=meta.get('send_status') in ('not_sent','not_started')
         http_terminal=type(meta.get('http_status')) is int and 400<=meta['http_status']<=599 and meta.get('send_status')=='confirmed'
+        policy=self.m.get('candidate_policy')
+        if policy:
+            from experiments.triad.candidate_policy import failure
+            _,category,account_error=failure(policy,str(error),meta,type(error).__name__)
+            http_terminal=http_terminal and meta.get('failure_stage')=='http_receive'
         usage=getattr(error,'usage',None)
         usage_known=isinstance(usage,dict) and all(type(usage.get(k)) is int and usage[k]>=0 for k in ('input_tokens','output_tokens'))
         # An HTTP error and a reaped local process do not establish provider
         # usage. Unknown usage remains reserved; there is never an automatic resend.
-        known=bool(meta.get('dispatch_children_settled') is True and (not_sent or (http_terminal and usage_known)))
+        known=bool(meta.get('dispatch_children_settled') is True and
+                   (not_sent or http_terminal and (usage_known or policy)))
         if account_error or not known:stop(self.folder,'account-level failure' if account_error else 'unknown send/worker/usage; reservation retained')
         turn=self.folder/'send-turn.lock';owned_turn=False
         if turn.exists():
@@ -296,6 +322,8 @@ class Admission:
                 known=False;stop(self.folder,'wire/ledger send evidence differs; retain permit')
             if http_terminal and (r['state']!='sent' or s['active'].get(uid)!=self.member):
                 known=False;stop(self.folder,'HTTP metadata without owned sent permit; retain evidence')
+            if policy and known and http_terminal and meta['http_status']==429:
+                s['rate_resume_at']=max(s.get('rate_resume_at',0),time.time()+policy['rate_limit_backoff_seconds'])
             r.update(state='reconciled_failed' if known else 'failed_or_unknown',error_type=type(error).__name__,
                 send_state=meta.get('send_status','unknown'),finished_at=time.time(),usage=getattr(error,'usage',None),
                 failure_category=category,account_stop=account_error,metadata={k:meta.get(k) for k in
@@ -399,14 +427,16 @@ class GuardedTransport:
     def __getattr__(self,name):return getattr(self.inner,name)
     def preflight(self,prompt):return self.inner.preflight(prompt)
     def dispatch(self,key,prompt,*,kind,on_sent):
-        verify_attachment(self.admission.row['run_dir'],self.admission.b)
+        if not self.admission.m.get('candidate_policy'):
+            verify_attachment(self.admission.row['run_dir'],self.admission.b)
         light=exploration(self.admission.m)
         uid=digest({'member':self.admission.member,'key':key})
         try:uid=self.admission.acquire(key)
         except BaseException as error:
             error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
             if light:
-                error.metadata.update(dispatch_children_settled=True,request_key=key)
+                error.metadata.update(dispatch_children_settled=True,request_key=key,
+                    shared_stop=(self.admission.folder/'STOP.json').exists())
                 self.admission.failed(uid,error)
             raise
         inner_started=False
@@ -430,14 +460,32 @@ class GuardedTransport:
         except BaseException as error:
             if not inner_started:error.metadata={**(getattr(error,'metadata',{}) or {}),'send_status':'not_sent','failure_stage':'shared_admission'}
             if light:
-                error.metadata={**(getattr(error,'metadata',{}) or {}),'dispatch_children_settled':not any(p.pid not in children for p in multiprocessing.active_children()),'request_key':key}
+                error.metadata={**(getattr(error,'metadata',{}) or {}),'dispatch_children_settled':not any(p.pid not in children for p in multiprocessing.active_children()),'request_key':key,
+                    'shared_stop':(self.admission.folder/'STOP.json').exists()}
             self.admission.failed(uid,error);raise
 
 
 def adapter(b):
     from experiments.triad.runtime import Adapter
+    from experiments.triad import candidate_policy
+    manifest=load(b['manifest']);policy=manifest.get('candidate_policy')
     class AdmittedAdapter(Adapter):
-        pause_on_transport_streak=exploration(load(b['manifest']))
+        pause_on_transport_streak=exploration(manifest)
+        validate_once_per_segment=bool(policy)
+        transport_streak_limit=policy['failure_streak_limit'] if policy else 3
+        def request_candidate(self,journal,key,prompt,kind,record):
+            if policy:return journal.request_candidate(key,prompt,kind,record)
+            return journal.request(key,prompt,kind=kind)
+        def stop_after_task(self,s,p):
+            if not policy:return False
+            if s.get('successful_evolution_responses',0)==p['config']['evolution_request_cap']:
+                s.update(phase='completed',pause_reason=None)
+            elif s['tasks'][next(reversed(s['tasks']))].get('attempt_stage_exhausted') and s['eoh']['stage']=='evolution':
+                s.update(phase='paused',pause_reason=candidate_policy.BUDGET_PAUSE)
+            elif s.get('transport_failure_streak',0)>=self.transport_streak_limit:
+                s.update(phase='paused',pause_reason=candidate_policy.STREAK_PAUSE)
+            else:return False
+            return True
         def check_run(self,d):
             p=super().check_run(d);verify_attachment(d,b);return p
         def transport(self,p):return GuardedTransport(super().transport(p),Admission(b))

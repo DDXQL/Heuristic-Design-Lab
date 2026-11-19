@@ -130,6 +130,15 @@ class AttemptJournal:
     def attempt_count(self):
         return len(self.data['api_attempts'])
 
+    classify_failure = staticmethod(failure_policy)
+    retain_prompt = True
+
+    def request_fields(self):
+        return {}
+
+    def attempt_allowed(self, record):
+        return True
+
     def save(self):
         if digest(self.config.payload()) != self._config_key:
             raise ValueError('batch configuration changed during execution')
@@ -208,7 +217,7 @@ class AttemptJournal:
                 if raw['status'] == 'wire_completed_before_settlement':
                     self._accept(record,a,raw['reply']);self.save();return
                 if raw['status'] == 'wire_failed':
-                    retry,reason,halt = failure_policy(raw.get('error',''),raw.get('metadata'),raw.get('error_type',''))
+                    retry,reason,halt = self.classify_failure(raw.get('error',''),raw.get('metadata'),raw.get('error_type',''))
                     a.update(status='failed',error=raw.get('error'),error_type=raw.get('error_type'),
                              metadata=raw.get('metadata',{}),usage=validate_usage(raw.get('usage')),
                              retryable=retry,retry_reason=reason)
@@ -245,8 +254,10 @@ class AttemptJournal:
             if self.calls >= self.policy['logical_candidate_cap']:
                 raise BudgetStop('logical candidate cap exhausted')
             self.transport.preflight(prompt)  # no attempt is charged for a local preflight failure
-            record = {'status':'pending','prompt':prompt,'prompt_key':prompt_key,'kind':kind,
-                      'global_key':self.phase+'/'+key,'logical_id':key,'attempt_ids':[],'usage':None}
+            record = {'status':'pending','prompt_key':prompt_key,'kind':kind,
+                      'global_key':self.phase+'/'+key,'logical_id':key,'attempt_ids':[],'usage':None,
+                      **self.request_fields()}
+            if self.retain_prompt:record['prompt']=prompt
             self.data['requests'][key] = record
             self.save()
         while True:
@@ -254,7 +265,8 @@ class AttemptJournal:
             if (prior and not prior['retryable']) or self.data['halt_reason']:
                 break
             n = len(record['attempt_ids'])
-            if n >= self.policy['per_candidate_attempt_cap'] or self.attempt_count >= self.policy['api_attempt_cap']:
+            if (n >= self.policy['per_candidate_attempt_cap'] or self.attempt_count >= self.policy['api_attempt_cap']
+                    or not self.attempt_allowed(record)):
                 break
             if prior:
                 delay = self.policy['retry_backoff_seconds'][n-1]
@@ -273,7 +285,7 @@ class AttemptJournal:
             except Exception as exc:
                 metadata = getattr(exc,'metadata',{}) or {}
                 message = self.transport.redact(str(exc))[:500]
-                retry,reason,halt = failure_policy(message,metadata,type(exc).__name__)
+                retry,reason,halt = self.classify_failure(message,metadata,type(exc).__name__)
                 a.update(status='failed',error=message,error_type=type(exc).__name__,metadata=metadata,
                          usage=validate_usage(getattr(exc,'usage',None)),retryable=retry,retry_reason=reason)
                 if halt:self.data['halt_reason'] = reason

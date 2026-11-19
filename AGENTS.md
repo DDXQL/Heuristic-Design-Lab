@@ -1,5 +1,9 @@
 # 实验运行与归档规则
 
+## 成功返回候选协议的独立工程树（2026-11-19）
+
+独立树 `/Users/DDXQL/Developer/Heuristic-Design-Lab-successful-runtime-20261119`、分支 `codex/successful-candidate-runtime-20261119` 从 ad59509 起步。当前授权覆盖新协议的执行、请求计数、Slurm 续跑、离线故障注入、文档和本地 Git 提交。必要的公共执行改动只在此树生效。保留 V5 传输、搜索算子、提示、数据、评价器和历史运行身份。R11、R13、R14 原版本及远端状态均不在此树维护。草案参数需要研究采用记录才可编排真实作业。
+
 ## 本轮公共离线维护（2026-11-19）
 
 本轮唯一写入树为`/Users/DDXQL/Developer/Heuristic-Design-Lab-independent-delivery-20261118`、分支`codex/independent-delivery-20261118`。按用户经总控交接的授权，核查冻结R13恢复边界，在本树实施最小时间门禁及有界续跑适配、针对性无API Mock。新工具仅适用于未来冻结的新轻量身份，不能导入或恢复R13旧检查点。保留原1000次演化尝试、初始化最多20、累计1020口径；不实施成功返回替补政策。未知发送、未知用量、未知提交均保留，不凭HTTP状态码重发。

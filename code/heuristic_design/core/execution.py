@@ -43,11 +43,12 @@ def pause_sequence(directory,*,adapter):
     return o.read(directory/'Pause_request.json')['sequence'] if (directory/'Pause_request.json').exists() else 0
 
 
-def stop(directory,*,adapter):
+def stop(directory,*,adapter,reason='user_control'):
     o=adapter
     o.check_run(directory);s=o.read(directory/'checkpoint.json')
     if s['phase'] in ('completed','stopped','expired'):raise ValueError('already terminal; no stop action')
     record={'sequence':pause_sequence(directory,adapter=o)+1,'requested_at':time.time(),'action':'pause_at_candidate_boundary'}
+    if reason!='user_control':record['pause_reason']=reason
     (directory/'control').mkdir(exist_ok=True);o.write(directory/'control'/f"pause_{record['sequence']:04d}.json",record)
     o.write(directory/'Pause_request.json',record)
     return {'requested':True,'instruction':'wait for phase=paused and writer lock removal; never kill worker'}
@@ -112,11 +113,15 @@ def work(directory,*,adapter):
         members=o.members(directory)
         plan=o.read(directory/'Tasks.json');rng=random.Random(p['config']['search_seed'])
         if s.get('rng'):rng.setstate(_tuple_tree(s['rng']))
-        s['phase']='running';o.write(directory/'checkpoint.json',s)
+        s['phase']='running'
+        if p['config'].get('candidate_policy'):s.pop('pause_reason',None)
+        o.write(directory/'checkpoint.json',s)
         for index in range(s['cursor'],len(plan)):
-            o.check_run(directory);ledger(directory,s,p,adapter=o)
+            if not getattr(o,'validate_once_per_segment',False):
+                o.check_run(directory);ledger(directory,s,p,adapter=o)
             if requested[0] or pause_sequence(directory,adapter=o)>s['pause_ack']:
-                s['phase']='paused';s['pause_reason']='user_control';break
+                reason='user_control' if requested[0] else o.read(directory/'Pause_request.json').get('pause_reason','user_control')
+                s['phase']='paused';s['pause_reason']=reason;break
             reserve=30*len(p['instances'])+5
             if plan[index]['stage']=='new':reserve+=p['config']['per_candidate_attempt_cap']*p['config']['provider']['total_timeout']+2
             if time.time()+reserve>clock['deadline']:s['phase']='expired';break
@@ -135,18 +140,28 @@ def work(directory,*,adapter):
                 elif p['config']['type']=='cross_ab':parents=[next(r for r in o.read(directory/'Parents.json') if r['id']==pid) for pid in task['parents']]
                 else:parents=[]
                 record['parents']=[r['id'] for r in parents];record['parent_keys']=[r['candidate']['key'] for r in parents]
-                prompt=o.build_prompt(p['config'],task,parents,members);record['prompt']=prompt
-                (directory/'prompts').mkdir(exist_ok=True);o.write(directory/'prompts'/(f'{index:05d}.json'),{'id':tid,'prompt':prompt})
-                reply=journal.request(tid,prompt,kind=p['config'].get('candidate_kind','U'));record['generation_status']=reply['status']
+                prompt=o.build_prompt(p['config'],task,parents,members)
+                prompt_path=directory/'prompts'/f'{index:05d}.json'
+                o.write(prompt_path,{'id':tid,'prompt':prompt})
+                if p['config'].get('candidate_policy'):
+                    record.update(prompt_path=str(prompt_path.relative_to(directory)),prompt_sha256=o.sha(prompt_path))
+                else:record['prompt']=prompt
+                request=getattr(o,'request_candidate',None)
+                kind=p['config'].get('candidate_kind','U')
+                reply=request(journal,tid,prompt,kind,record) if request else journal.request(tid,prompt,kind=kind)
+                record['generation_status']=reply['status']
                 if journal.data['halt_reason'] and not (getattr(o,'settle_known_api_stop',False)
                     and reply['status']=='failed' and all(journal.data['api_attempts'][k]['status']=='failed' for k in reply['attempt_ids'])):
                     raise ValueError('API Stop: '+journal.data['halt_reason'])
                 if reply['status']=='completed':
                     s['transport_failure_streak']=0
                     (directory/'responses').mkdir(exist_ok=True);o.write(directory/'responses'/f'{index:05d}.json',reply)
-                    try:
-                        c=o.parse_candidate(reply['text'],p['config'])
-                    except o.CandidateError as exc:record['failure']='parse_or_constraint_error';record['error']=str(exc)
+                    if record.get('excluded_response'):
+                        record['failure']='response_excluded_by_policy'
+                    else:
+                        try:
+                            c=o.parse_candidate(reply['text'],p['config'])
+                        except o.CandidateError as exc:record['failure']='parse_or_constraint_error';record['error']=str(exc)
                 else:
                     record['failure']='HTTP_or_transport_failure';s['transport_failure_streak']=s.get('transport_failure_streak',0)+1
             child=None
@@ -193,7 +208,8 @@ def work(directory,*,adapter):
                 break
             if journal and journal.data['halt_reason']:
                 s['phase']='paused';s['pause_reason']='persistent API Stop: '+journal.data['halt_reason'];break
-            if s.get('transport_failure_streak',0)>=3:
+            if getattr(o,'stop_after_task',None) and o.stop_after_task(s,p):break
+            if s.get('transport_failure_streak',0)>=getattr(o,'transport_streak_limit',3):
                 if getattr(o,'pause_on_transport_streak',False):
                     s['phase']='paused';s['pause_reason']='three consecutive failed transports; resume requires user action';break
                 raise ValueError('three consecutive failed logical transports; Stop without refill')

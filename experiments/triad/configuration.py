@@ -10,7 +10,7 @@ GROUPS=tuple(p+'-'+m for p in ('fjsp','tsp','obp') for m in ('u','eoh'))
 def load(path,*,engineering=False):
     path=Path(path).resolve();c=read(path)
     template=read(ROOT/'experiments/triad/configs'/ (c['group']+'.json'))
-    if set(c)-{'shared_manifest'}!=set(template) or c['version']!=VERSION or c['group'] not in GROUPS:raise ValueError('explicit triad config fields/identity required')
+    if set(c)-{'shared_manifest','candidate_policy'}!=set(template) or c['version']!=VERSION or c['group'] not in GROUPS:raise ValueError('explicit triad config fields/identity required')
     if 'shared_manifest' in c and (not isinstance(c['shared_manifest'],str) or not Path(c['shared_manifest']).is_absolute()):raise ValueError('explicit absolute shared execution manifest required')
     if c['problem']+'-'+c['method']!=c['group']:raise ValueError('group/problem/method mismatch')
     if c['real_requests_authorized'] is not False:raise ValueError('saved request authorization must remain OFF')
@@ -23,8 +23,16 @@ def load(path,*,engineering=False):
         if c[k] is not None and (type(c[k]) is not int or c[k]<(0 if k=='solve_seed' else 1)):raise ValueError('invalid integer '+k)
     if c['population_size'] is not None and c['population_size']<2:raise ValueError('population N>=2')
     if c['population_size'] is not None and c['initialization_request_cap'] is not None and c['initialization_request_cap']<c['population_size']:raise ValueError('independent initialization cap below N')
-    if c['api_attempt_cap'] is not None and c['initialization_request_cap'] is not None and c['api_attempt_cap']!=c['initialization_request_cap']+c['evolution_request_cap']:raise ValueError('cumulative cap = init maximum + evolution attempts')
-    if c['api_concurrency']!=1 or c['per_candidate_attempt_cap']!=1:raise ValueError('one generation worker; one attempt; no automatic retry')
+    policy=c.get('candidate_policy')
+    evolution_cap=c['evolution_request_cap'];per_slot=1
+    if policy is not None:
+        from .candidate_policy import validate
+        validate(policy,evolution_cap,real=c['mode']=='real')
+        if c['group']=='fjsp-u':
+            raise ValueError('new counter is not admitted to the frozen FJSP U coordinator')
+        evolution_cap=policy['evolution_attempt_cap'];per_slot=policy['per_slot_attempt_cap']
+    if c['api_attempt_cap'] is not None and c['initialization_request_cap'] is not None and c['api_attempt_cap']!=c['initialization_request_cap']+evolution_cap:raise ValueError('cumulative cap must equal the two phase reservation caps')
+    if c['api_concurrency']!=1 or c['per_candidate_attempt_cap']!=per_slot:raise ValueError('model worker or per-slot cap differs from the frozen policy')
     if c['evaluation_concurrency'] is not None and (type(c['evaluation_concurrency']) is not int or c['evaluation_concurrency']<1):raise ValueError('invalid evaluation width')
     if c['instance_timeout_seconds']!=30:raise ValueError('shared first/recheck complete-row T30 required')
     if c['mode']=='real' and (c['mock_faults'] or c['pause_after_tasks'] is not None):raise ValueError('engineering controls prohibited in real profile')
@@ -61,6 +69,12 @@ def gaps(c):
 
 def budget(c):
     a=c['api_attempt_cap'];n=c['instance_count'];r=c['repeat_count']
+    if policy:=c.get('candidate_policy'):
+        return dict(initialization_max=c['initialization_request_cap'],successful_evolution_target=c['evolution_request_cap'],
+            evolution_reservation_cap=policy['evolution_attempt_cap'],request_cap_per_seed=a,
+            requests_all_seeds=None if r is None else a*r,per_slot_attempt_cap=policy['per_slot_attempt_cap'],
+            native_passes_per_instance=2,native_solve_cap_per_seed=2*(c['initialization_request_cap']+c['evolution_request_cap'])*n,
+            H_build_separate=c['h_build'],unknown_attempts_charged=True)
     return dict(initialization_max=c['initialization_request_cap'],evolution_attempts=c['evolution_request_cap'],request_cap_per_seed=a,
       requests_all_seeds=None if a is None or r is None else a*r,
       native_passes_per_instance=2,native_solve_cap_per_seed=None if a is None or n is None else 2*a*n,

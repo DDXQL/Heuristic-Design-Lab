@@ -16,7 +16,7 @@ from heuristic_design.core import execution,evolution_v1,routing_state_a_v3 as l
 from heuristic_design.core.storage import read,write,sha,digest
 from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
-from . import problems,evaluation
+from . import problems,evaluation,candidate_policy
 from .configuration import load,gaps
 VERSION='triad-six-groups-operations-v5'
 
@@ -45,6 +45,7 @@ def h_build_config(c):
 def preflight(path,engineering=False,run_kind=None):
     c=load(path,engineering=engineering)
     if run_kind=='h-build':
+        if c.get('candidate_policy'):raise ValueError('H construction has its own frozen budget and runner')
         c=h_build_config(c);todo=gaps(c)
         ignored={'repeat_count','search_seeds','population_size','h_file','budget_basis','initialization_policy'}
         todo=[key for key in todo if key not in ignored]
@@ -65,6 +66,8 @@ def preflight(path,engineering=False,run_kind=None):
         if [{'file':r['file'],'source_sha256':r['source_sha256']} for r in data]!=expected:raise ValueError('frozen train21 order/content differs')
     r=c['resources'];width=max(c['api_concurrency'],c['evaluation_concurrency'])
     drain=math.ceil(width/c['api_concurrency'])*c['provider']['total_timeout']+len(data)*30+width+7
+    if policy:=c.get('candidate_policy'):
+        drain=policy['per_slot_attempt_cap']*(c['provider']['total_timeout']+r.get('request_queue_seconds',600))+len(data)*30+sum(policy['backoff_seconds'])+30
     if r['drain_seconds']<drain or min(r['segment_seconds'],c['window_seconds'])<=r['drain_seconds']:raise ValueError('resource window/drain cannot cover bounded staged wave')
     if not (c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real') and c['evaluation_concurrency']!=1:raise ValueError('native EoH preserves serial evaluation/feedback')
     return c,data,refs,hs,[]
@@ -88,11 +91,19 @@ def prepare(directory,path,*,engineering=False,allow_api=False,approve_budget=No
       'selection_num':2,'type':'triad-native','candidate_kind':'U' if kind=='u' else 'h','recording_mode':'compact','window':10,'enabled_groups':list(evolution_v1.GROUPS),'cross_parents':2}
     directory.mkdir(parents=True)
     write(directory/'Tasks.json',[{'id':f'SLOT-{i:07d}','stage':'new','generation':None,'operator':'adaptive_slot'} for i in range(cap)])
+    evaluation_cap=init+evo if c.get('candidate_policy') else cap
     p=dict(version=VERSION,run_kind=kind,config=runtime,members=hs if kind=='u' else [],instances=data,references=refs,source_files=sources(),
       state_schema=state_a_v3.schema_id(c['problem']),tasks_sha256=sha(directory/'Tasks.json'),config_sha256=sha(path),
       metrics={'objective':'J=mean((raw_cost-reference)/reference)','direction':'min','internal_score':'-J','final_selection':'all complete valid candidates; J ascending, semantic ID ascending'},
-      run_id=directory.name,source_cost={'H_attempts':None},budgets=dict(logical_generation=cap,API_attempts=cap,initialization=init,evolution=evo,max_program_instances=cap*len(data),max_solve_passes=2*cap*len(data)))
+      run_id=directory.name,source_cost={'H_attempts':None},budgets=dict(logical_generation=cap,API_attempts=cap,initialization=init,evolution=evo,max_program_instances=evaluation_cap*len(data),max_solve_passes=2*evaluation_cap*len(data)))
     if c['problem']=='obp':p['obp_execution_contract']=problems.obp_contract(c);p['obp_contract_sha256']=digest(p['obp_execution_contract'])
+    if c.get('candidate_policy') and kind=='u':
+        source=read(Path(c['h_file']))
+        h_summary=source.get('API_summary',{}) if isinstance(source,dict) else {}
+        p['source_cost'].update(H_file_sha256=sha(Path(c['h_file'])),
+                                H_attempts=h_summary.get('request_reservations'),
+                                H_sends=h_summary.get('confirmed_sends'),
+                                H_usage=h_summary.get('known_usage_subtotal'))
     if kind!='u':p['H_prompt_contract']=h_contract.identity(c['problem'],c.get('obp_h_abi'),problems.obp_contract(c) if c['problem']=='obp' else None)
     write(directory/'Protocol.json',p);(directory/'Protocol.sha256').write_text(sha(directory/'Protocol.json')+'\n')
     write(directory/'checkpoint.json',dict(identity=sha(directory/'Protocol.json'),phase='prepared',cursor=0,tasks={},evaluations={},population=[],children=[],seen={},generation=0,pause_ack=0,
@@ -154,8 +165,14 @@ class Adapter(old.Adapter):
             verify(d,p)
         self.p=p;self._engineering_mode=p['config']['api_mode']=='mock';return p
     def members(self,d):return read(Path(d)/'Protocol.json')['members']
-    def transport(self,p):return MockTransport(self.client_config(p),p) if p['config']['api_mode']=='mock' else StrictNonstreamTransport(self.client_config(p))
+    def transport(self,p):
+        c=p['config']
+        if c['api_mode']=='mock':return MockTransport(self.client_config(p),p)
+        if c.get('candidate_policy'):return candidate_policy.CandidateTransport(self.client_config(p),c['candidate_policy'])
+        return StrictNonstreamTransport(self.client_config(p))
     def journal(self,d,s,p,deadline):
+        if p['config'].get('candidate_policy'):
+            return candidate_policy.journal(self,Path(d),s,p,deadline)
         if 'stop_recovery' in p:
             from .stop_recovery import journal
             return journal(self,d,s,p,deadline)
@@ -194,7 +211,8 @@ class Adapter(old.Adapter):
             if control['settled_prefix'] is not None and s['cursor']>=control['settled_prefix']:
                 s.update(phase='paused',pause_reason='manual finite settled-attempt boundary; original budget retained');return None,[]
         if getattr(self,'segment_deadline',None) and time.monotonic()+c['resources']['drain_seconds']>self.segment_deadline:
-            s.update(phase='paused',pause_reason='segment drain before next reservation');return None,[]
+            reason=candidate_policy.TIME_PAUSE if c.get('candidate_policy') else 'segment drain before next reservation'
+            s.update(phase='paused',pause_reason=reason);return None,[]
         if p['run_kind']=='h-build':return {**task,'operator':'I1','semantic_id':f'H-{index:05d}','phase':'initialization'},[]
         if p['run_kind']=='eoh':
             row,parents=super().task_context(d,s,p,task,index)
@@ -206,10 +224,11 @@ class Adapter(old.Adapter):
             elif v['initialization_requests']>=min(c['initialization_request_cap'],c['population_size'] if c['initialization_policy']=='fixed_population_slots_no_refill' else c['initialization_request_cap']):
                 s.update(phase='initialization_incomplete',pause_reason='bounded independent initialization exhausted; no imported parents');return None,[]
             else:return {**task,'operator':'INIT','semantic_id':f'INIT-{v["initialization_requests"]:04d}','phase':'initialization'},[]
-        if v['operator_cursor']>=c['evolution_request_cap']:s['phase']='completed';return None,[]
+        if not c.get('candidate_policy') and v['operator_cursor']>=c['evolution_request_cap']:s['phase']='completed';return None,[]
         if s['u_plan'] is None:
             rng=random.Random();rng.setstate(_tuple_tree(s['u_rng']));g=s['generation']+1
-            rows=evolution_v1.plan_generation(s['population'],g,rng)[:c['evolution_request_cap']-v['operator_cursor']]
+            rows=evolution_v1.plan_generation(s['population'],g,rng)
+            if not c.get('candidate_policy'):rows=rows[:c['evolution_request_cap']-v['operator_cursor']]
             s['u_rng']=rng.getstate();s['u_plan']={'generation':g,'offset':0,'tasks':rows,'parents':copy.deepcopy(s['population'])}
             write(Path(d)/f'plans/G{g:04d}.json',s['u_plan'])
         row=s['u_plan']['tasks'][s['u_plan']['offset']]
@@ -248,6 +267,10 @@ class Adapter(old.Adapter):
         if attempts:
             a=attempts[-1];record.update(usage=a.get('usage'),sent_confirmed=a.get('send_confirmed',False) if p['config']['api_mode']=='real' else False,request_key=a['id'],send_state='confirmed' if a.get('send_confirmed') else 'unknown' if a['status'] not in ('completed','failed') else 'not_sent')
         v=s['eoh']
+        if p['config'].get('candidate_policy') and record['stage']=='evolution':
+            counted=record['generation_status']=='completed' and not record['excluded_response']
+            record['successful_evolution_response']=counted
+            s['successful_evolution_responses']=s.get('successful_evolution_responses',0)+int(counted)
         if p['run_kind']=='eoh':return super().commit_candidate(d,s,p,record,candidate,result)
         if record['stage']=='initialization':v['initialization_requests']+=1
         else:v['operator_cursor']+=1
@@ -264,9 +287,9 @@ class Adapter(old.Adapter):
                 s['population']=survive(s['population'],s['children'],p['config']['population_size']);s['children']=[];s['generation']+=1;s['u_plan']=None
                 write(Path(d)/f'populations/P{s["generation"]:04d}.json',s['population'])
     def on_commit(self,d,s,p):
-        write(Path(d)/'Progress.json',self.summary(d))
+        write(Path(d)/'Progress.json',self.summary(d,live=bool(p['config'].get('candidate_policy'))))
         if p['config']['pause_after_tasks']==s['cursor']:execution.stop(d,adapter=self)
-    def summary(self,d,write_files=False):
+    def summary(self,d,write_files=False,*,live=False):
         p,s=protocol_state(d);values=list(s['tasks'].values())[:s['cursor']];j=read(Path(d)/'API_attempts.json') if (Path(d)/'API_attempts.json').exists() else {'api_attempts':{}}
         attempts=list(j['api_attempts'].values());valid=[t for t in values if t['valid']];best=min(valid,key=lambda t:(t['J'],t.get('semantic_id',t['id']))) if valid else None
         real=p['config']['api_mode']=='real'
@@ -277,13 +300,19 @@ class Adapter(old.Adapter):
           automatic_retries=0,API_stop=j.get('halt_reason'),requires_investigation=bool(j.get('halt_reason')) or s['phase']=='stopped',budgets=p['budgets'],best_J=best['J'] if best else None,champion_id=best.get('semantic_id',best['id']) if best else None,
           actual_cost=None,known_usage_subtotal={k:sum((a.get('usage') or {}).get(k,0) for a in attempts) for k in ('input_tokens','output_tokens')},unknown_usage_attempts=sum(a.get('usage') is None for a in attempts),writer_lock=(Path(d)/'.execution.lock').exists(),pause_reason=s.get('pause_reason'))
         out['phase_request_reservations']={phase:sum((s['tasks'].get(a['logical_id'],{}).get('operator') in ('INIT','I1'))==(phase=='initialization') for a in attempts) for phase in ('initialization','evolution')}
-        physical=[]
-        import json
-        for path in (Path(d)/'worker-receipts').rglob('physical-solves.jsonl'):
-            physical.extend(json.loads(line) for line in path.read_text().splitlines())
-        out['physical_passes']={phase:{event:sum(r.get('pass')==phase and r['event']==event for r in physical) for event in ('started','completed','failed')} for phase in ('first','recheck')}
+        if not live:
+            import json
+            physical=[]
+            for path in (Path(d)/'worker-receipts').rglob('physical-solves.jsonl'):
+                physical.extend(json.loads(line) for line in path.read_text().splitlines())
+            out['physical_passes']={phase:{event:sum(r.get('pass')==phase and r['event']==event for r in physical) for event in ('started','completed','failed')} for phase in ('first','recheck')}
+            out['physical_passes_unsettled']=sum(r['event']=='started' for r in physical)-sum(r['event'] in ('completed','failed') for r in physical)
         out['native_solve_upper_reserved']=len(s['evaluations'])*len(p['instances'])*2 if real else 0
-        out['physical_passes_unsettled']=sum(r['event']=='started' for r in physical)-sum(r['event'] in ('completed','failed') for r in physical)
+        if policy:=p['config'].get('candidate_policy'):
+            costs=candidate_policy.costs(j)
+            out.update(candidate_policy_version=policy['version'],successful_evolution_responses=s.get('successful_evolution_responses',0),
+                       successful_evolution_target=p['config']['evolution_request_cap'],
+                       automatic_retries=costs['retry_reservations'],**costs)
         out['resources']={'declared_model_concurrency':p['config']['api_concurrency'],'declared_evaluation_concurrency':p['config']['evaluation_concurrency'],'CPUs':p['config']['resources']['cpus'],'memory_mib':p['config']['resources']['memory_mib'],'numeric_threads':1,'generation_tasks_across_devices':1,'real_throughput_verified':False}
         if p['config'].get('shared_manifest'):
             out['resources'].update(generation_tasks_across_devices=2,global_API_width=1)
@@ -300,13 +329,35 @@ class Adapter(old.Adapter):
 
 
 def export(directory):
-    from heuristic_design.core.execution_export import export as shared_export
+    from heuristic_design.core.execution_export import export as shared_export, plot, table
     d=Path(directory);p,s=protocol_state(d);q=copy.deepcopy(s)
     q.update(initialization_requests=s['eoh']['initialization_requests'],generation_requests=s['eoh']['operator_cursor'])
     for t in q['tasks'].values():
         t['generation']=t.get('original_generation',0);t['id']=t.get('semantic_id',t['id'])
     shared_export(d,p,q)
     out=Adapter().summary(d);write(d/'exports/summary.json',out)
+    if p['config'].get('candidate_policy'):
+        out['source_H_cost']=p['source_cost'] if p['run_kind']=='u' else None
+        j=read(d/'API_attempts.json') if (d/'API_attempts.json').exists() else {}
+        attempts=[]
+        for a in j.get('api_attempts',{}).values():
+            meta=a.get('metadata') or {};usage=a.get('usage') or {}
+            attempts.append(dict(id=a['id'],stage=j['requests'][a['logical_id']]['stage'],attempt=a['number'],
+                status=a['status'],send_confirmed=a['send_confirmed'],send_status=meta.get('send_status'),
+                http_status=meta.get('http_status'),failure_stage=meta.get('failure_stage'),
+                input_tokens=usage.get('input_tokens'),output_tokens=usage.get('output_tokens')))
+        table(d/'exports/API-physical-attempts.csv',attempts,
+              ['id','stage','attempt','status','send_confirmed','send_status','http_status','failure_stage','input_tokens','output_tokens'])
+        count=0;curve=[];best=None
+        for t in q['tasks'].values():
+            if t.get('valid'):best=t['J'] if best is None else min(best,t['J'])
+            if t.get('successful_evolution_response'):
+                count+=1
+                if best is not None:curve.append({'successful_evolution_responses':count,'best_J':best})
+        table(d/'exports/successful-response-curve.csv',curve,['successful_evolution_responses','best_J'])
+        plot(d/'exports/best-J-by-successful-response.svg',curve,'successful_evolution_responses',
+             'MOCK_ENGINEERING_ONLY' if p['config']['api_mode']=='mock' else 'TRAINING_SEARCH')
+        write(d/'exports/summary.json',out)
     if p['config']['problem']=='obp':
         import csv
         rows=[]

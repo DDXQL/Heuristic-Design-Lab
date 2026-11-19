@@ -10,8 +10,9 @@ HDL_ARGS=(--config "$HDL_CONFIG" --run-dir "$HDL_RUN" --shared-manifest "$HDL_SH
 HDL_MODE=$("$HDL_PY" -s -B -c 'import json,sys;print(json.load(open(sys.argv[1]))["mode"])' "$HDL_CONFIG")
 if [[ $HDL_MODE == mock ]]; then HDL_ARGS+=(--engineering); else HDL_ARGS+=(--allow-api --allow-solves --approve-budget "$HDL_CAP"); fi
 if [[ -n $HDL_PREFIX ]]; then HDL_ARGS+=(--pause-after-attempts "$HDL_PREFIX" --approve-segment-solves "$HDL_SOLVES"); fi
-hdl_pause() { "$HDL_PY" -s -B experiments/triad/entry.py pause --config "$HDL_CONFIG" --run-dir "$HDL_RUN" --shared-manifest "$HDL_SHARED" || true; }
-trap hdl_pause USR1 TERM INT
+hdl_pause() { "$HDL_PY" -s -B experiments/triad/entry.py pause --config "$HDL_CONFIG" --run-dir "$HDL_RUN" --shared-manifest "$HDL_SHARED" "$@" || true; }
+trap 'hdl_pause --slurm-drain' USR1
+trap hdl_pause TERM INT
 srun --ntasks=1 --cpus-per-task="${SLURM_CPUS_PER_TASK:?}" "$HDL_PY" -s -u -B experiments/triad/entry.py "$HDL_ACTION" "${HDL_ARGS[@]}" &
 HDL_PID=$!
 while true; do
