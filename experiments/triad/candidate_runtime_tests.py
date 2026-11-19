@@ -5,6 +5,7 @@ from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
+import shutil
 import socket
 import sys
 import tempfile
@@ -22,10 +23,11 @@ from experiments.triad.explore_tests import Inner, deny, fixture, refused
 POLICY = ROOT / "configurations/six-groups-20261116/candidate-policy.draft.json"
 
 
-def configure(folder, reference, target, *, failure_limit=5):
+def configure(folder, reference, target, *, failure_limit=5, evolution_attempt_cap=None):
     path, m, _ = fixture(folder)
     policy = read(POLICY)
-    policy["evolution_attempt_cap"] = target + max(10, target // 10)
+    policy["evolution_attempt_cap"] = (target + max(10, target // 10)
+                                       if evolution_attempt_cap is None else evolution_attempt_cap)
     policy["rate_limit_backoff_seconds"] = 1
     policy["failure_streak_limit"] = failure_limit
     m["candidate_policy"] = policy
@@ -150,7 +152,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target", type=int, default=1000)
     parser.add_argument("--fast-ledger", action="store_true", help="mock the workload's shared-ledger writes between segments")
+    parser.add_argument("--boundary", choices=("tsp-u", "tsp-eoh"),
+                        help="inject transport faults after 999 successful evolution responses")
     args = parser.parse_args()
+    if args.boundary:
+        boundary(args.boundary)
+        return
     target = args.target
     assert target >= 10
     policy = read(POLICY)
@@ -262,6 +269,142 @@ original_journal = candidate_policy.CandidateJournal.__init__
 def sync_journal_for_fixture(self, *args, **kwargs):
     original_journal(self, *args, **kwargs)
     self.sleep = lambda _: None
+
+
+def boundary(group):
+    """Use a real Mock checkpoint and the on-disk ledger for each fault at the boundary."""
+    # U exercises all faults with headroom. EoH independently checks a 524 on
+    # the last allowed reservation, where a replacement would exceed the cap.
+    cap = 1002 if group == "tsp-u" else 1000
+    cases = {
+        "HTTP520": (520, [1, 1], 2, "completed"),
+        "HTTP522": (522, [1, 1], 2, "completed"),
+        "HTTP524": (524, [1, 1], 2, "completed"),
+        "HTTP429": (429, [1, 1], 2, "completed"),
+        "queue_timeout_recovered": ("queue", [2], 1, "completed"),
+        "queue_timeout_both_attempts": ("queue_twice", [2, 1], 1, "completed"),
+        "not_sent_recovered": ("known_not_sent", [2], 1, "completed"),
+        "not_sent_both_attempts": ("known_not_sent_twice", [2, 1], 1, "completed"),
+        "unknown_send": ("unknown", [1], 0, "paused"),
+    } if group == "tsp-u" else {
+        "HTTP524_at_hard_cap": (524, [1], 1, "paused"),
+    }
+    processed = ROOT / "runs"
+    processed.mkdir(exist_ok=True)
+    with (tempfile.TemporaryDirectory(prefix="OFFLINE-candidate-boundary-", dir=processed) as td,
+          patch.object(socket.socket, "connect", deny), patch.object(socket, "create_connection", deny),
+          patch.object(JsonCandidateTransport, "__init__", deny), patch.object(problems, "solve_row", deny),
+          patch.object(evaluation, "evaluate", deny), patch.object(execution.sys, "platform", "linux"),
+          patch.object(runtime.Adapter, "on_commit")):
+        tmp = Path(td)
+        source = read(ROOT / "preparations/triad/tsp/train20.manifest.json")
+        reference = tmp / "mock-reference.json"
+        write(reference, {"kind": "mock-reference-v1", "engineering_only": True,
+                          "instances": [{"file": x["file"], "reference": 1.0} for x in source["instances"]]})
+        path, manifest = configure(tmp / "plan", reference, 1000, evolution_attempt_cap=cap)
+        row = next(r for r in manifest["members"] if r["group"] == group)
+        d = Path(row["run_dir"])
+        gate = path.parent / "gate"
+        with workload_storage(True) as flush:
+            _, checkpoint = run_member(path, row, pause_at=999)
+            flush(path)
+        assert checkpoint["phase"] == "paused" and checkpoint["pause_reason"] == candidate_policy.TIME_PAUSE, checkpoint["phase"]
+        assert checkpoint["successful_evolution_responses"] == 999
+        journal_path = d / "API_attempts.json"
+        previous = read(journal_path)
+        old_costs = candidate_policy.costs(previous)
+        assert old_costs["reservations_by_stage"]["evolution"] == 999
+        first = checkpoint["cursor"]
+        plan = read(d / "Tasks.json")
+        backup = tmp / "checkpoint-at-999"
+        shutil.copytree(d, backup)
+        initial_ledger = read(gate / "ledger.json")
+        print(json.dumps({"group": group, "baseline": 999, "evolution_reservations_cap": cap}), flush=True)
+
+        acquire = shared.Admission.acquire
+        for name, (fault, per_slot, sent, phase) in cases.items():
+            shutil.rmtree(d)
+            shutil.copytree(backup, d)
+            write(gate / "ledger.json", initial_ledger)
+            calls = {}
+            fault_count = 2 if str(fault).endswith("_twice") else 1
+            fault = fault.removesuffix("_twice") if isinstance(fault, str) else fault
+            first_slot = int(plan[first]["id"].removeprefix("SLOT-"))
+            response_plan = {(group, first_slot, n): fault for n in range(1, fault_count + 1)} if fault != "queue" else {}
+            queued_keys = {f"/{plan[first]['id']}/attempt/{n:02d}" for n in range(1, fault_count + 1)} if fault == "queue" else set()
+
+            def acquire_with_timeout(self, key):
+                if not any(key.endswith(ending) for ending in queued_keys):
+                    return acquire(self, key)
+                # Expire only this wait. The real gate still writes and settles its waiting ticket.
+                self.deadline = time.time() - 1
+                try:
+                    return acquire(self, key)
+                finally:
+                    self.deadline = None
+
+            with (patch.object(shared.Admission, "acquire", acquire_with_timeout),
+                  patch.object(runtime.MockTransport, "dispatch", inject(runtime.MockTransport.dispatch, response_plan, calls)),
+                  patch.object(candidate_policy.CandidateJournal, "__init__", sync_journal_for_fixture)):
+                _, final = run_member(path, row, resume=True)
+            j = read(journal_path)
+            costs = candidate_policy.costs(j)
+            ledger = read(gate / "ledger.json")
+            new_shared = [r for uid, r in ledger["requests"].items() if uid not in initial_ledger["requests"]]
+            new_tasks = [task["id"] for task in plan[first:final["cursor"]]]
+            expected_tasks = [task["id"] for task in plan[first:first + len(per_slot)]]
+            assert new_tasks == expected_tasks, (name, new_tasks, expected_tasks)
+            assert final["phase"] == phase, (name, final["phase"], final.get("pause_reason"))
+            assert final["successful_evolution_responses"] == (1000 if phase == "completed" else 999), name
+            assert all(j["api_attempts"][k] == v for k, v in previous["api_attempts"].items()), name
+            assert set(j["requests"]) - set(previous["requests"]) == set(new_tasks), name
+            assert [len(j["requests"][key]["attempt_ids"]) for key in new_tasks] == per_slot, name
+            attempts = [j["api_attempts"][key] for t in new_tasks for key in j["requests"][t]["attempt_ids"]]
+            assert costs["reservations_by_stage"] == {"initialization": old_costs["reservations_by_stage"]["initialization"],
+                                                       "evolution": 999 + sum(per_slot)}, name
+            assert costs["reservations_by_stage"]["evolution"] <= cap, name
+            assert sum(a["send_confirmed"] for a in attempts) == sent, name
+            assert costs["physical_sends_confirmed"] == old_costs["physical_sends_confirmed"] + sent, name
+            assert len(new_shared) == len(attempts), name
+            assert all(n == 1 for n in calls.values()), (name, calls)
+            assert (gate / "STOP.json").exists() == (fault == "unknown"), name
+            for i, attempt in enumerate(attempts):
+                should_count = phase == "completed" and i == len(attempts) - 1
+                assert attempt["status"] == ("completed" if should_count else "failed"), (name, attempt)
+                if not should_count:
+                    assert attempt["usage"] is None
+            if isinstance(fault, int):
+                assert attempts[0]["metadata"]["http_status"] == fault and attempts[0]["send_confirmed"]
+                assert not attempts[0]["retryable"] and new_shared[0]["state"] == "reconciled_failed"
+                if fault == 429:
+                    assert new_shared[-1]["sent_at"] >= ledger["rate_resume_at"]
+            if fault == "queue":
+                assert all(a["error_type"] == "TimeoutError" and a["metadata"]["failure_stage"] == "shared_admission"
+                           for a in attempts[:fault_count])
+                assert set(calls) == {(group, int(new_tasks[-1].removeprefix("SLOT-")), per_slot[-1])}
+            if fault in ("queue", "known_not_sent"):
+                assert all(not a["send_confirmed"] and a["metadata"]["send_status"] in ("not_sent", "not_started")
+                           for a in attempts[:fault_count])
+                assert all(r["state"] == "reconciled_failed" for r in new_shared[:fault_count])
+            if fault == "unknown":
+                assert final["pause_reason"] == "persistent API Stop: unresolved_send_or_worker"
+                assert costs["physical_sends_unknown"] == old_costs["physical_sends_unknown"] + 1
+                assert new_shared[0]["state"] == "failed_or_unknown"
+            elif phase == "paused":
+                assert final["pause_reason"] == candidate_policy.BUDGET_PAUSE
+                assert final["tasks"][new_tasks[-1]]["attempt_stage_exhausted"]
+            if fault != "unknown":
+                assert not ledger["active"] and not ledger["jobs"], name
+            print(json.dumps({"case": name, "group": group, "phase": final["phase"], "pause_reason": final.get("pause_reason"),
+                              "successful": final["successful_evolution_responses"], "new_slots": new_tasks,
+                              "attempts_per_slot": per_slot, "new_reservations": sum(per_slot), "new_confirmed_sends": sent,
+                              "evolution_reservations": costs["reservations_by_stage"]["evolution"],
+                              "evolution_confirmed_sends": sum(a["send_confirmed"] for a in j["api_attempts"].values()
+                                                               if j["requests"][a["logical_id"]]["stage"] == "evolution"),
+                              "first_failure_usage": attempts[0]["usage"],
+                              "shared_STOP": (gate / "STOP.json").exists()}), flush=True)
+        print(json.dumps({"passed": True, "group": group, "cases": len(cases), "real_api": 0,
+                          "real_solves": 0, "real_slurm": 0}), flush=True)
 
 
 def controller(path, m, accounting, *, resume):
