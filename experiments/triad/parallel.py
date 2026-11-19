@@ -24,7 +24,8 @@ def plan(spec,folder,hours=None,confirmed=False):
     if doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
     exclusion=None
     if hours is not None:
-        if not confirmed or not 48<=hours<=168:raise PermissionError('explicit all-device exclusion of 48..168 hours required')
+        allowed=doc['window_seconds']/3600<hours<=168 if policy else 48<=hours<=168
+        if not confirmed or not allowed:raise PermissionError('explicit all-device exclusion covering the authorized campaign required')
         exclusion={'scope':'all_devices_sharing_account','valid_until':time.time()+hours*3600,'confirmation':'operator confirms all other devices, generators and queued jobs stopped; only these two admitted members may generate'}
     rows=[];manifest=folder/'Shared.json';run_root=ROOT/'runs'/doc['batch_id']
     for index,item in enumerate(doc['members']):

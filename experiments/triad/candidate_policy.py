@@ -32,7 +32,7 @@ def validate(policy, target, *, real=False):
             or cap < target
             or not isinstance(backoff, list) or len(backoff) != per_slot - 1
             or any(type(s) is not int or not 1 <= s <= 60 for s in backoff)
-            or type(policy["failure_streak_limit"]) is not int or not 1 <= policy["failure_streak_limit"] <= 100
+            or type(policy["failure_streak_limit"]) is not int or not 0 <= policy["failure_streak_limit"] <= 100
             or type(policy["retry_explicit_429"]) is not bool
             or type(policy["rate_limit_backoff_seconds"]) is not int
             or not 1 <= policy["rate_limit_backoff_seconds"] <= 300

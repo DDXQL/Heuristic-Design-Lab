@@ -482,7 +482,7 @@ def adapter(b):
                 s.update(phase='completed',pause_reason=None)
             elif s['tasks'][next(reversed(s['tasks']))].get('attempt_stage_exhausted') and s['eoh']['stage']=='evolution':
                 s.update(phase='paused',pause_reason=candidate_policy.BUDGET_PAUSE)
-            elif s.get('transport_failure_streak',0)>=self.transport_streak_limit:
+            elif self.transport_streak_limit and s.get('transport_failure_streak',0)>=self.transport_streak_limit:
                 s.update(phase='paused',pause_reason=candidate_policy.STREAK_PAUSE)
             else:return False
             return True

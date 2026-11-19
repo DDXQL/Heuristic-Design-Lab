@@ -209,7 +209,8 @@ def work(directory,*,adapter):
             if journal and journal.data['halt_reason']:
                 s['phase']='paused';s['pause_reason']='persistent API Stop: '+journal.data['halt_reason'];break
             if getattr(o,'stop_after_task',None) and o.stop_after_task(s,p):break
-            if s.get('transport_failure_streak',0)>=getattr(o,'transport_streak_limit',3):
+            failure_limit=getattr(o,'transport_streak_limit',3)
+            if failure_limit and s.get('transport_failure_streak',0)>=failure_limit:
                 if getattr(o,'pause_on_transport_streak',False):
                     s['phase']='paused';s['pause_reason']='three consecutive failed transports; resume requires user action';break
                 raise ValueError('three consecutive failed logical transports; Stop without refill')

@@ -14,18 +14,19 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "code"), str(ROOT)]
 from fjsp_usage.research_real.real_transport import JsonCandidateTransport, TransportError
 from heuristic_design.core import execution
-from heuristic_design.core.storage import read, sha, write
+from heuristic_design.core.storage import digest, read, sha, write
 from experiments.triad import campaign, candidate_policy, entry, evaluation, problems, runtime, shared_admission as shared, six_ops, time_continuation
-from experiments.triad.explore_tests import deny, fixture, refused
+from experiments.triad.explore_tests import Inner, deny, fixture, refused
 
 POLICY = ROOT / "configurations/six-groups-20261116/candidate-policy.draft.json"
 
 
-def configure(folder, reference, target):
+def configure(folder, reference, target, *, failure_limit=5):
     path, m, _ = fixture(folder)
     policy = read(POLICY)
     policy["evolution_attempt_cap"] = target + max(10, target // 10)
     policy["rate_limit_backoff_seconds"] = 1
+    policy["failure_streak_limit"] = failure_limit
     m["candidate_policy"] = policy
     for row in m["members"]:
         c = six_ops.config(row["group"])
@@ -205,6 +206,9 @@ def main():
             assert final["scientific_complete"] and not final["eligible"] and not final["blockers"], final
         controller(path, manifest, accounting, resume=False)
         protections(tmp, ref)
+        optional_streak(tmp, ref)
+        delayed_controller_receipt(tmp)
+        failed_queue_head(tmp, ref)
         print(json.dumps({"passed": True, "searches": report, "real_api": 0, "real_solves": 0,
                           "real_slurm": 0, "tracked_attempts_are_not_model_results": True}, indent=2))
 
@@ -256,6 +260,60 @@ def protections(tmp, ref):
     assert current["phase"] in ("paused", "stopped")
     assert (path.parent / "gate/STOP.json").exists() and s["active"]
     assert len(s["requests"]) == 1 and calls == {("tsp-u", 0, 1): 1}
+
+
+def optional_streak(tmp, ref):
+    path, m = configure(tmp / "candidate-streak-off", ref, 10, failure_limit=0)
+    row = m["members"][0]
+    faults = {("tsp-u", slot, 1): 524 for slot in range(6)}
+    calls = {}
+    with (patch.object(socket.socket, "connect", deny), patch.object(execution.sys, "platform", "linux"),
+          patch.object(runtime.MockTransport, "dispatch", inject(runtime.MockTransport.dispatch, faults, calls))):
+        result, current = run_member(path, row)
+    assert result["phase"] == "completed" and current["successful_evolution_responses"] == 10
+    assert not (path.parent / "gate/STOP.json").exists()
+    assert all(calls["tsp-u", slot, 1] == 1 and ("tsp-u", slot, 2) not in calls for slot in range(6))
+
+
+def delayed_controller_receipt(tmp):
+    f = tmp / "review.json"
+    write(f, {"state": "submission_reserved"})
+    refused(campaign.controller_receipt, f, 0)
+    launched = {"state": "submitted", "job_id": "9302"}
+    with patch.object(campaign.time, "sleep", side_effect=lambda _: write(f, launched)):
+        assert campaign.controller_receipt(f) == launched
+
+
+def failed_queue_head(tmp, ref):
+    path, m = configure(tmp / "candidate-abandoned-waiter", ref, 10)
+    u, peer = m["members"]
+    a = shared.Admission(shared.binding(path, u["run_dir"], u["config"]))
+    b = shared.Admission(shared.binding(path, peer["run_dir"], peer["config"]))
+    failed = Inner()
+
+    def interrupted_acquire(key):
+        uid = digest({"member": a.member, "key": key})
+        with a.transaction() as s:
+            s["requests"][uid] = {"member": a.member, "key": key, "ticket": s["next_ticket"],
+                                  "state": "waiting", "reserved_at": time.time()}
+            s["next_ticket"] += 1
+        raise OSError("offline: failure after a waiting reservation was saved")
+
+    with patch.object(shared.Admission, "startup"):
+        with a.session(u["run_dir"]), patch.object(a, "acquire", side_effect=interrupted_acquire):
+            try:
+                shared.GuardedTransport(failed, a).dispatch("waiter", "offline", kind="u", on_sent=lambda: None)
+            except OSError as error:
+                assert error.metadata["send_status"] == "not_sent"
+            else:
+                raise AssertionError("queue failure not propagated")
+        with b.session(peer["run_dir"]):
+            reply = shared.GuardedTransport(Inner(), b).dispatch("peer", "offline", kind="h", on_sent=lambda: None)
+            assert reply["text"] == "SYNTHETIC"
+    data = read(path.parent / "gate/ledger.json")
+    assert failed.calls == 0 and not data["active"] and not data["jobs"]
+    assert [r["state"] for r in data["requests"].values()] == ["reconciled_failed", "completed"]
+    assert not (path.parent / "gate/STOP.json").exists()
 
 
 if __name__ == "__main__":

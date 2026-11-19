@@ -52,7 +52,7 @@ def start(args):
             and args.approve_requests == preview["original_aggregate_cap"]
             and args.max_segments is not None and 1 <= args.max_segments <= MAX_SEGMENTS
             and args.window_hours is not None and 1 <= args.window_hours <= 144
-            and args.exclusive_hours is not None and max(48, args.window_hours + 1) <= args.exclusive_hours <= 168
+            and args.exclusive_hours is not None and args.window_hours < args.exclusive_hours <= 168
             and args.wall_seconds is not None and 600 <= args.wall_seconds <= 604800):
         raise PermissionError("approve the full original reservation cap, campaign window, per-job walltime and segment count")
     if any(r["pending"] for r in preview["members"]):
@@ -134,6 +134,21 @@ def account_when_visible(m, workers):
             time.sleep(3)
 
 
+def controller_receipt(path, seconds=15):
+    # A fast worker exit can release afterany before sbatch's receipt is saved.
+    deadline = time.monotonic() + seconds
+    while True:
+        try:
+            record = read(path) if path.is_file() else None
+        except json.JSONDecodeError:
+            record = None
+        if record and record.get("state") != "submission_reserved":
+            return record
+        if time.monotonic() >= deadline:
+            raise PermissionError("controller submission receipt unavailable; no resubmit")
+        time.sleep(0.25)
+
+
 def finish(path, assessment, segment, reason):
     exports = {}
     for row in shared_admission.load(path)["members"]:
@@ -154,7 +169,7 @@ def advance(path, segment):
     m = shared_admission.load(path)
     auth = read(path.parent / "Campaign_authorization.json")
     control = path.parent / "campaign-control"
-    record = read(control / f"review-{segment:02d}.json")
+    record = controller_receipt(control / f"review-{segment:02d}.json")
     if not (m.get("candidate_policy") and record["state"] == "submitted"
             and record["job_id"] == os.environ.get("SLURM_JOB_ID")
             and record["manifest_sha256"] == auth["manifest_sha256"] == sha(path)
