@@ -297,15 +297,12 @@ class Admission:
             http_terminal=http_terminal and meta.get('failure_stage')=='http_receive'
         usage=getattr(error,'usage',None)
         usage_known=isinstance(usage,dict) and all(type(usage.get(k)) is int and usage[k]>=0 for k in ('input_tokens','output_tokens'))
-        # An HTTP error and a reaped local process do not establish provider
-        # usage. Unknown usage remains reserved; there is never an automatic resend.
+        # A terminal HTTP failure keeps its charge even without provider usage.
+        # The candidate policy may settle its permit without replaying the send.
         known=bool(meta.get('dispatch_children_settled') is True and
                    (not_sent or http_terminal and (usage_known or policy)))
         if account_error or not known:stop(self.folder,'account-level failure' if account_error else 'unknown send/worker/usage; reservation retained')
         turn=self.folder/'send-turn.lock';owned_turn=False
-        if turn.exists():
-            owned_turn=read(turn)=={'uid':uid,'member':self.member}
-            if not owned_turn:stop(self.folder,'foreign/unknown send turn retained')
         with self.transaction() as s:
             r=s['requests'].get(uid)
             if r is None:
@@ -318,6 +315,17 @@ class Admission:
             if r['member']!=self.member or r['state'] not in ('waiting','admitted','sent') or s['active'].get(uid) not in (None,self.member):
                 stop(self.folder,'request ownership/state mismatch; no cleanup')
                 raise RuntimeError('failure does not own an unsettled attempt')
+            if r['state']=='waiting' and uid in s['active']:
+                stop(self.folder,'waiting request unexpectedly owns a permit; retain evidence')
+                raise RuntimeError('waiting state conflicts with permit ownership')
+            # A proven unsent waiter never acquired the send turn. A peer can
+            # legitimately hold it while this waiter reaches its own deadline.
+            if not (policy and known and not_sent and r['state']=='waiting'):
+                try:owner=read(turn)
+                except FileNotFoundError:owner=None
+                if owner is not None:
+                    owned_turn=owner=={'uid':uid,'member':self.member}
+                    if not owned_turn:stop(self.folder,'foreign/unknown send turn retained')
             if not_sent and r['state']=='sent':
                 known=False;stop(self.folder,'wire/ledger send evidence differs; retain permit')
             if http_terminal and (r['state']!='sent' or s['active'].get(uid)!=self.member):
@@ -403,19 +411,23 @@ class Admission:
         if set(ledger['jobs'])-set(jobs):raise PermissionError('active peer outside this fresh allocation')
         role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
         folder=self.path.parent/'preflight'/allocation['identity'];folder.mkdir(parents=True,exist_ok=True)
-        claim(folder/f'participant-{role}.json',{'job_id':job,'pid':os.getpid(),'host':__import__('socket').gethostname(),'member':self.member})
-        if len(allocation['jobs'])==2:
-            filesystem_check(folder,role,end)
+        independent=self.m.get('candidate_policy') is not None
+        paired=not independent and len(jobs)==2
+        probe=folder/f'member-{role}' if independent else folder
+        claim(probe/f'participant-{role}.json',{'job_id':job,'pid':os.getpid(),'host':__import__('socket').gethostname(),'member':self.member})
+        if paired:
+            filesystem_check(probe,role,end)
         else:
-            # Only one paused member remains; exercise both roles locally, without API.
+            # Each candidate job validates its own allocation even when the
+            # scheduler has not started its peer. Cross-node checks are a site test.
             context=multiprocessing.get_context('fork')
-            child=context.Process(target=local_filesystem_probe,args=(folder,1-role,end));child.start()
+            child=context.Process(target=local_filesystem_probe,args=(probe,1-role,end));child.start()
             try:
-                filesystem_check(folder,role,end);child.join(max(0,end-time.time()))
+                filesystem_check(probe,role,end);child.join(max(0,end-time.time()))
                 if child.is_alive() or child.exitcode!=0:raise RuntimeError('local filesystem probe incomplete')
             finally:
                 if child.is_alive():child.terminate();child.join()
-        claim(folder/f'startup-pass-{role}.json',{'job_id':job,'pid':os.getpid(),'member':self.member,'API_requests':0,'scope':'two_jobs' if len(allocation['jobs'])==2 else 'one_job_local_probe'})
+        claim(folder/f'startup-pass-{role}.json',{'job_id':job,'pid':os.getpid(),'member':self.member,'API_requests':0,'scope':'two_jobs' if paired else 'one_job_local_probe'})
         self.verify()
 
 

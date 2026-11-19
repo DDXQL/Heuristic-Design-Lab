@@ -1,6 +1,7 @@
 """Offline failure injection and actual 1000-response executor simulations."""
 
 import argparse
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -115,9 +116,40 @@ def receipt(row, job):
     return {"state": "COMPLETED", "exit_code": "0:0"}
 
 
+@contextmanager
+def workload_storage(fast):
+    """Keep large synthetic ledgers in memory, flushing them at segment boundaries."""
+    if not fast:
+        yield lambda _: None
+        return
+    ledgers = {}
+    dumps = json.dumps
+
+    def compact(value, *args, **kwargs):
+        if kwargs.get("indent") is not None:
+            kwargs["indent"] = None
+        return dumps(value, *args, **kwargs)
+
+    @contextmanager
+    def transaction(a):
+        a.verify()
+        path = a.folder / "ledger.json"
+        if path not in ledgers:
+            ledgers[path] = read(path)
+        yield ledgers[path]
+
+    def flush(path):
+        p = path.parent / "gate/ledger.json"
+        write(p, ledgers[p])
+
+    with patch.object(json, "dumps", compact), patch.object(shared.Admission, "transaction", transaction):
+        yield flush
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target", type=int, default=1000)
+    parser.add_argument("--fast-ledger", action="store_true", help="mock the workload's shared-ledger writes between segments")
     args = parser.parse_args()
     target = args.target
     assert target >= 10
@@ -154,7 +186,8 @@ def main():
             ("tsp-u", 9, 1): 429, ("tsp-u", 10, 1): "empty", ("tsp-u", 11, 1): "truncated",
         }
         report = {}
-        with (patch.object(socket.socket, "connect", deny), patch.object(socket, "create_connection", deny),
+        with (workload_storage(args.fast_ledger) as flush,
+              patch.object(socket.socket, "connect", deny), patch.object(socket, "create_connection", deny),
               patch.object(JsonCandidateTransport, "__init__", deny), patch.object(problems, "solve_row", deny),
               patch.object(evaluation, "evaluate", deny), patch.object(execution.sys, "platform", "linux"),
               patch.object(runtime.MockTransport, "dispatch", inject(runtime.MockTransport.dispatch, injected, calls)),
@@ -164,6 +197,7 @@ def main():
             cap = min(500, target // 2)
             for row in (u, eoh):
                 result, s = run_member(path, row, pause_at=cap)
+                flush(path)
                 assert result["phase"] == "paused", result
                 assert s["pause_reason"] == candidate_policy.TIME_PAUSE and s.get("successful_evolution_responses") == cap, (
                     row["group"], s.get("pause_reason"), s.get("successful_evolution_responses"), s["cursor"],
@@ -177,6 +211,7 @@ def main():
                 d = Path(row["run_dir"])
                 earlier = read(d / "checkpoint.json")
                 result, s = run_member(path, row, resume=True)
+                flush(path)
                 assert result["phase"] == "completed", result
                 assert s["successful_evolution_responses"] == target
                 assert {k: s["tasks"][k] for k in earlier["tasks"]} == earlier["tasks"]
@@ -209,8 +244,16 @@ def main():
         optional_streak(tmp, ref)
         delayed_controller_receipt(tmp)
         failed_queue_head(tmp, ref)
+        timeout_with_live_peer(tmp, ref)
+        unknown_send_turn(tmp, ref)
+        staggered_start(tmp, ref)
+        rate_limited_peer(tmp, ref)
         print(json.dumps({"passed": True, "searches": report, "real_api": 0, "real_solves": 0,
-                          "real_slurm": 0, "tracked_attempts_are_not_model_results": True}, indent=2))
+                          "real_slurm": 0, "workload_uses_mock_ledger_storage": args.fast_ledger,
+                          "file_ledger_regressions": ["failed queue head", "real admission timeout with live peer",
+                                                      "unknown send-turn lock", "staggered startup",
+                                                      "shared 429 backoff", "unknown send"],
+                          "tracked_attempts_are_not_model_results": True}, indent=2))
 
 
 original_journal = candidate_policy.CandidateJournal.__init__
@@ -313,6 +356,92 @@ def failed_queue_head(tmp, ref):
     data = read(path.parent / "gate/ledger.json")
     assert failed.calls == 0 and not data["active"] and not data["jobs"]
     assert [r["state"] for r in data["requests"].values()] == ["reconciled_failed", "completed"]
+    assert not (path.parent / "gate/STOP.json").exists()
+
+
+def timeout_with_live_peer(tmp, ref):
+    path, m = configure(tmp / "candidate-timeout-active-peer", ref, 10)
+    u, peer = m["members"]
+    a = shared.Admission(shared.binding(path, u["run_dir"], u["config"]))
+    b = shared.Admission(shared.binding(path, peer["run_dir"], peer["config"]))
+    timed_out = Inner()
+    turn = path.parent / "gate/send-turn.lock"
+    ledger = path.parent / "gate/ledger.json"
+
+    class PeerHoldingTurn(Inner):
+        def dispatch(self, key, prompt, *, kind, on_sent):
+            holder = read(turn)
+            assert holder["member"] == b.member and read(ledger)["active"] == {holder["uid"]: b.member}
+            a.deadline = time.time() + 0.05
+            try:
+                shared.GuardedTransport(timed_out, a).dispatch("timeout", "offline", kind="u", on_sent=lambda: None)
+            except TimeoutError as error:
+                assert "request admission wait exceeded" in str(error) and error.metadata["send_status"] == "not_sent"
+            else:
+                raise AssertionError("request did not time out while queued")
+            assert read(turn) == holder
+            assert not (path.parent / "gate/STOP.json").exists()
+            return super().dispatch(key, prompt, kind=kind, on_sent=on_sent)
+
+    with patch.object(shared.Admission, "startup"), a.session(u["run_dir"]), b.session(peer["run_dir"]):
+        first = shared.GuardedTransport(PeerHoldingTurn(), b)
+        assert first.dispatch("peer-held", "offline", kind="h", on_sent=lambda: None)["text"] == "SYNTHETIC"
+        second = shared.GuardedTransport(Inner(), b)
+        assert second.dispatch("peer-next", "offline", kind="h", on_sent=lambda: None)["text"] == "SYNTHETIC"
+    s = read(ledger)
+    rejected = next(r for r in s["requests"].values() if r["key"] == "timeout")
+    assert rejected["state"] == "reconciled_failed" and rejected["send_state"] == "not_sent" and timed_out.calls == 0
+    assert len(s["requests"]) == 3 and s["peak"] == 1 and not s["active"] and not s["jobs"] and not turn.exists()
+
+
+def staggered_start(tmp, ref):
+    path, m = configure(tmp / "candidate-staggered-start", ref, 10)
+    identity = "offline-staggered-allocation"
+    jobs = {r["run_id"]: str(9400 + r["index"]) for r in m["members"]}
+    write(path.parent / "Current_allocation.json", {"state": "submitted", "identity": identity,
+                                                    "manifest_sha256": sha(path), "jobs": jobs})
+    preflight = path.parent / "preflight" / identity
+    for row in m["members"]:
+        role = row["index"]
+        if role == 0:
+            assert not (preflight / "startup-pass-1.json").exists()
+        b = shared.binding(path, row["run_dir"], row["config"])
+        with patch.dict(os.environ, {"SLURM_JOB_ID": jobs[row["run_id"]]}), shared.Admission(b).session(row["run_dir"]):
+            outcome = read(preflight / f"startup-pass-{role}.json")
+            assert outcome["job_id"] == jobs[row["run_id"]] and outcome["scope"] == "one_job_local_probe"
+            assert not (path.parent / "gate/STOP.json").exists()
+
+
+def unknown_send_turn(tmp, ref):
+    path, m = configure(tmp / "candidate-orphan-send-turn", ref, 10)
+    row = m["members"][0]
+    a = shared.Admission(shared.binding(path, row["run_dir"], row["config"]))
+    turn = path.parent / "gate/send-turn.lock"
+    unknown = {"member": "unknown", "uid": "unmatched"}
+    write(turn, unknown)
+    inner = Inner()
+    with patch.object(shared.Admission, "startup"), a.session(row["run_dir"]):
+        a.deadline = time.time() + 0.2
+        refused(shared.GuardedTransport(inner, a).dispatch, "cannot-send", "offline", kind="u", on_sent=lambda: None)
+        assert inner.calls == 0 and read(turn) == unknown
+        assert (path.parent / "gate/STOP.json").exists()
+
+
+def rate_limited_peer(tmp, ref):
+    path, m = configure(tmp / "candidate-rate-limit", ref, 10)
+    u, peer = m["members"]
+    a = shared.Admission(shared.binding(path, u["run_dir"], u["config"]))
+    b = shared.Admission(shared.binding(path, peer["run_dir"], peer["config"]))
+    r = Inner("http429")
+    good = Inner()
+    with patch.object(shared.Admission, "startup"), a.session(u["run_dir"]), b.session(peer["run_dir"]):
+        refused(shared.GuardedTransport(r, a).dispatch, "limited", "offline", kind="u", on_sent=lambda: None)
+        not_before = read(path.parent / "gate/ledger.json")["rate_resume_at"]
+        assert not_before > time.time()
+        shared.GuardedTransport(good, b).dispatch("peer-after-backoff", "offline", kind="h", on_sent=lambda: None)
+        assert time.time() >= not_before
+    data = read(path.parent / "gate/ledger.json")
+    assert r.calls == good.calls == 1 and len(data["requests"]) == 2
     assert not (path.parent / "gate/STOP.json").exists()
 
 
