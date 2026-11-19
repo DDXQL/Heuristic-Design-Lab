@@ -199,6 +199,8 @@ def main():
             if p['config']['api_mode']=='real':
                 if os.environ.get('SLURM_JOB_ID') and int(os.environ.get('SLURM_CPUS_PER_TASK','0'))<c['resources']['cpus']:raise ValueError('allocation below declared CPUs')
                 adapter.segment_deadline=allocation_deadline() if c.get('candidate_policy') else time.monotonic()+c['resources']['segment_seconds']
+            elif c.get('candidate_policy') and os.environ.get('SLURM_JOB_ID'):
+                adapter.segment_deadline=allocation_deadline()
             with owned_writer(c,d,s,shared), (d/'terminal.log').open('a') as log:
                 from contextlib import redirect_stdout,redirect_stderr
                 from experiments.common._single_run import _Tee

@@ -11,9 +11,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT.parent / "transfer-outbox"
 BASE = OUT / "triad-tsp-lkh-candidate-20261117-r13.zip"
-VERSION = "triad-candidate-runtime-20261119-r15"
-ENTRY = "docs/长实验自动续跑与结果导出.md"
-PREFIXES = ("code/", "experiments/triad/", "configurations/six-groups-20261116/", "docs/")
+VERSION = "triad-candidate-runtime-20261119-r15p3"
+ENTRY = "docs/研究人员实验操作手册.md"
+PREFIXES = ("code/", "experiments/triad/", "configurations/six-groups-20261116/", "configurations/experiments/", "docs/")
+CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experiment_fs_probe.sbatch")
 
 
 def sha(data):
@@ -46,10 +47,11 @@ def build(base, target):
         if not raw:
             continue
         name = raw.decode()
-        if name in ("README.md", "AGENTS.md") or name.startswith(PREFIXES):
+        if name in ("README.md", "AGENTS.md", *CLI_FILES) or name.startswith(PREFIXES):
             payload[name] = git("show", f"{commit}:{name}")
-    required = {ENTRY, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
-                "configurations/six-groups-20261116/candidate-policy.draft.json"}
+    required = {ENTRY, *CLI_FILES, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
+                "configurations/six-groups-20261116/candidate-policy.draft.json",
+                *("configurations/experiments/" + n + ".json" for n in ("tsp-502", "fjsp-503", "obp-501", "slurm-no-api-smoke"))}
     if not required.issubset(payload):
         raise ValueError("commit the complete campaign implementation before packaging")
     if any(Path(n).is_absolute() or ".." in Path(n).parts or n.startswith(("runs/", "logs/", ".venv/"))

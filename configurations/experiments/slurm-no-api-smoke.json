@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "slurm-no-api-smoke",
+  "research": {
+    "problem": "fjsp",
+    "runs": [
+      {
+        "method": "eoh",
+        "seed": 901,
+        "initialization_attempts": 20
+      }
+    ],
+    "training_manifest": "preparations/eoh-gap/train21.manifest.json",
+    "frozen_h": null,
+    "reference": null,
+    "state": "common-state-a-v3",
+    "evaluation": "train_J_min_T30",
+    "champion": "best_valid_training_J_then_id",
+    "holdout": "not_run",
+    "budget": {
+      "count": "successful_responses",
+      "target": 5,
+      "empty": "exclude",
+      "truncated": "exclude"
+    },
+    "decision": "仅供无 API 调度验收"
+  },
+  "execution": {
+    "mode": "mock",
+    "slurm": {
+      "partition": "128C_02",
+      "account": "wz",
+      "qos": "normal",
+      "cpus": 2,
+      "memory_mib": 2048,
+      "wall_seconds": 1800
+    },
+    "api": {
+      "global_concurrency": 1,
+      "min_interval_seconds": 20,
+      "queue_wait_seconds": 30,
+      "timeout_seconds": 30,
+      "evolution_reservation_cap": 8,
+      "retry_delays_seconds": [
+        5
+      ],
+      "consecutive_failed_slots": 5,
+      "retry_explicit_429": false,
+      "cooldown_429_seconds": 30
+    },
+    "window_hours": 2,
+    "exclusive_hours": 3,
+    "max_segments": 4,
+    "release_account_when_done": true
+  }
+}

@@ -40,7 +40,7 @@ def plan(spec,folder,hours=None,confirmed=False):
             if c['group']=='fjsp-u':raise PermissionError('frozen FJSP U needs a separate same-algorithm integration')
             c.update(candidate_policy=policy,api_attempt_cap=c['initialization_request_cap']+policy['evolution_attempt_cap'],
                      per_candidate_attempt_cap=policy['per_slot_attempt_cap'],window_seconds=doc['window_seconds'])
-            drain=policy['per_slot_attempt_cap']*(c['provider']['total_timeout']+doc['queue_wait_seconds'])+c['instance_count']*30+sum(policy['backoff_seconds'])+30
+            drain=configuration.candidate_drain(c,doc['queue_wait_seconds'])
             c['resources'].update(segment_seconds=doc['segment_seconds'],request_queue_seconds=doc['queue_wait_seconds'],
                                   drain_seconds=max(drain,c['resources']['drain_seconds']))
             if min(c['window_seconds'],c['resources']['segment_seconds'])<=c['resources']['drain_seconds']:
@@ -79,7 +79,7 @@ def inspect(path):
         if sha(row['config'])!=row['config_sha256']:raise ValueError('member config changed')
         cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
         names={'fjsp':'FJSP','tsp':'TSP','obp':'在线装箱'}
-        label=names[c['problem']]+('双层方法' if c['method']=='u' else '单规则EoH')+'：第'+str([501,502,503].index(row['seed'])+1)+'次独立搜索'
+        label=names[c['problem']]+('双层方法' if c['method']=='u' else '单规则EoH')+'，种子 '+str(row['seed'])
         item={'中文名称':label,'run_id':row['run_id'],'seed':row['seed'],'group':row['group'],'phase':cp.get('phase','not_started'),'pending':configuration.gaps(c),'original_request_cap':row['request_cap'],'resources':c['resources'],'run_dir':str(d)}
         if cp:
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
@@ -93,7 +93,7 @@ def inspect(path):
             item['reported_metrics']={k:progress.get(k) for k in ('best_J','champion_id','valid_candidates','failures','duplicates','confirmed_sends','unknown_sends','physical_passes')}
             if m.get('candidate_policy'):
                 item['reported_metrics'].update({k:progress.get(k) for k in
-                    ('reservations_by_stage','retry_reservations','retry_physical_sends_confirmed',
+                    ('reservations_by_stage','physical_sends_confirmed','physical_sends_unknown','retry_reservations','retry_physical_sends_confirmed',
                      'confirmed_sends_usage_unknown','known_tokens')})
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
@@ -138,14 +138,15 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         segment_cap=(0 if c['mode']=='mock' else 2*(bound-used)*c['instance_count']) if bound is not None else None
         new_solves+=segment_cap or 0
         # Reuse the existing resource and command builder; use the new thin shell.
-        if m['mode']=='real':
+        if m['mode']=='real' or m.get('candidate_policy'):
             if m.get('candidate_policy') and action=='resume':
                 remaining=int(read(d/'Run_clock.json')['deadline']-time.time())
                 if remaining<=c['resources']['drain_seconds']:raise PermissionError('remaining calendar cannot cover drain')
                 wall=min(remaining,c['resources']['segment_seconds'])
             else:wall=None
             wall_override={'wall_seconds':wall} if wall is not None else {}
-            cmd=slurm.command(row,action,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',bound,segment_cap,**wall_override)
+            python=sys.executable if m.get('candidate_policy') else '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python'
+            cmd=slurm.command(row,action,python,bound,segment_cap,**wall_override)
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
             certificate=path.parent/'Acceptance.json'
@@ -281,6 +282,19 @@ def decide_api2(path,width,approved):
     return value
 
 
+def close(path):
+    m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json')
+    if (info['STOP'] or any((path.parent/'gate'/p).exists() for p in ('metrics.lock','send-turn.lock'))
+        or s['active'] or s['jobs'] or any(v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values())
+        or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members'])):
+        raise PermissionError('unsafe/unknown batch retained; no close')
+    lease=Path(m['account_gate'])/'generation.lock'
+    if read(lease).get('protocol')!='SHARED:'+sha(path):raise PermissionError('not this batch lease')
+    claim(path.parent/'Closed.json',{'at':time.time(),'manifest_sha256':sha(path)})
+    lease.unlink()
+    return {'closed':True,'resume_prohibited':True}
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['plan','mock-plan','check-only','activate','submit','resume','certify','status','pause','close','authorize-api2','decide-api2']);ap.add_argument('--spec',type=Path);ap.add_argument('--directory',type=Path);ap.add_argument('--manifest',type=Path);ap.add_argument('--exclusive-hours',type=float);ap.add_argument('--confirm-exclusive-account',action='store_true');ap.add_argument('--submit',action='store_true');ap.add_argument('--approve-requests',type=int);ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--settled-prefix',type=int);ap.add_argument('--approve-segment-solves',type=int);ap.add_argument('--member',type=int,choices=[0,1]);ap.add_argument('--phase',type=int,choices=[1,2],default=1);ap.add_argument('--additional-requests',type=int);ap.add_argument('--width',type=int,choices=[1,2]);a=ap.parse_args()
     if a.action=='plan':value=plan(a.spec,a.directory,a.exclusive_hours,a.confirm_exclusive_account)
@@ -297,12 +311,7 @@ def main():
         m=shared.load(a.manifest);rows=m['members'] if a.member is None else [m['members'][a.member]]
         value={'pause_requested':[]}
         for row in rows:subprocess.run(argv(row,'pause',a.manifest),check=True);value['pause_requested'].append(row['run_id'])
-    else:
-        m=shared.load(a.manifest);info=inspect(a.manifest);s=read(a.manifest.parent/'gate/ledger.json')
-        if info['STOP'] or (a.manifest.parent/'gate/metrics.lock').exists() or s['active'] or s['jobs'] or any(v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values()) or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members']):raise PermissionError('unsafe/unknown batch retained; no close')
-        lease=Path(m['account_gate'])/'generation.lock'
-        if read(lease).get('protocol')!='SHARED:'+sha(a.manifest):raise PermissionError('not this batch lease')
-        claim(a.manifest.parent/'Closed.json',{'at':time.time(),'manifest_sha256':sha(a.manifest)});lease.unlink();value={'closed':True,'resume_prohibited':True}
+    else:value=close(a.manifest)
     print(json.dumps(value,ensure_ascii=False,indent=2));return 0
 
 if __name__=='__main__':

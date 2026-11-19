@@ -79,13 +79,21 @@ def start(args):
                  "segment_seconds": args.wall_seconds})
     result = parallel.plan(spec, folder, args.exclusive_hours, True)
     path = Path(result["manifest"])
-    claim(folder / "Campaign_authorization.json", {
-        "manifest_sha256": sha(path), "approve_requests": args.approve_requests,
-        "max_segments": args.max_segments, "release_account": args.release_account_on_completion,
-        "expires_at": read(path)["account_exclusion"]["valid_until"], "allow_api": True, "allow_solves": True,
+    return launch(path, args.max_segments, args.release_account_on_completion)
+
+
+def launch(path, max_segments, release_account):
+    m = shared_admission.load(path)
+    real = m["mode"] == "real"
+    if not m.get("candidate_policy") or not 1 <= max_segments <= MAX_SEGMENTS:
+        raise PermissionError("candidate protocol and bounded original segment count required")
+    claim(path.parent / "Campaign_authorization.json", {
+        "manifest_sha256": sha(path), "approve_requests": m["total_request_cap"],
+        "max_segments": max_segments, "release_account": release_account,
+        "expires_at": m["account_exclusion"]["valid_until"], "allow_api": real, "allow_solves": real,
     })
     shared_admission.activate(path)
-    launched = parallel.submit(path, "run", True, args.approve_requests, True, True)
+    launched = parallel.submit(path, "run", True, m["total_request_cap"], real, real)
     continuation = queue_followup(path, 1, launched)
     return {"initial": launched, "continuation": continuation}
 
@@ -105,7 +113,7 @@ def queue_followup(path, segment, receipt):
            "--output=" + str(ROOT / "logs" / (path.parent.name + "-review-%j.out")),
            "--error=" + str(ROOT / "logs" / (path.parent.name + "-review-%j.err"))]
     cmd.extend("--" + k + "=" + r[k] for k in ("account", "qos") if r[k])
-    cmd.extend(["--wrap", shlex.join([PYTHON, "-s", "-B", str(Path(__file__).resolve()),
+    cmd.extend(["--wrap", shlex.join([sys.executable, "-s", "-B", str(Path(__file__).resolve()),
                                     "advance", "--manifest", str(path), "--segment", str(segment)])])
     record = path.parent / "campaign-control" / f"review-{segment:02d}.json"
     payload = {"state": "submission_reserved", "workers": ids, "manifest_sha256": sha(path),
@@ -162,41 +170,85 @@ def finish(path, assessment, segment, reason):
     return result
 
 
+def authorization(path, m):
+    auth = read(path.parent / "Campaign_authorization.json")
+    real = m["mode"] == "real"
+    if not (m.get("candidate_policy") and auth["manifest_sha256"] == sha(path)
+            and 1 <= auth["max_segments"] <= MAX_SEGMENTS
+            and auth["allow_api"] == auth["allow_solves"] == real
+            and auth["approve_requests"] == m["total_request_cap"]):
+        raise PermissionError("original campaign authorization does not match")
+    return auth
+
+
+def submit_remaining(path, assessment, auth, segment):
+    chosen = assessment["selected"]
+    receipt = parallel.submit(path, "resume", True, auth["approve_requests"],
+                              auth["allow_api"], auth["allow_solves"],
+                              member=None if len(chosen) > 1 else chosen[0])
+    write(path.parent / "campaign-control" / f"workers-{segment:02d}.json", receipt)
+    return {"submitted": True, "next": queue_followup(path, segment, receipt)}
+
+
+def resume_operator(path):
+    m = shared_admission.load(path)
+    auth = authorization(path, m)
+    result = read(path.parent / "Campaign_result.json")
+    number = result["segments"]
+    if result["reason"] != "operator_paused" or number >= auth["max_segments"] or time.time() >= auth["expires_at"]:
+        raise PermissionError("a settled operator pause with remaining original segment/time budget is required")
+    control = path.parent / "campaign-control"
+    review = controller_receipt(control / f"review-{number:02d}.json")
+    if ((control / f"review-{number + 1:02d}.json").exists()
+        or review["manifest_sha256"] != sha(path)):
+        raise PermissionError("next review already submitted or original reviewer differs")
+    job = review["job_id"]
+    output = subprocess.run(["sacct", "-n", "-P", "-X", "-j", job, "--format=JobIDRaw,State,ExitCode"],
+                            check=True, text=True, capture_output=True, timeout=15)
+    if [line.strip() for line in output.stdout.splitlines() if line.split("|")[0] == job] != [job + "|COMPLETED|0:0"]:
+        raise PermissionError("wait for the previous reviewer to exit cleanly")
+    assessment = time_continuation.inspect(path, accounting=time_continuation.accounting_for(m), operator_resume=True)
+    if not assessment["eligible"]:
+        raise PermissionError("original checkpoint cannot resume: " + "; ".join(assessment["blockers"]))
+    claim(control / f"operator-resume-{number:02d}.json", {"manifest_sha256": sha(path), "at": time.time()})
+    return submit_remaining(path, assessment, auth, number + 1)
+
+
 def advance(path, segment):
     path = path.resolve()
     if not path.is_relative_to(ROOT / "plans") or not path.parent.name.startswith("candidate-"):
         raise PermissionError("only new candidate campaign plans can advance")
     m = shared_admission.load(path)
-    auth = read(path.parent / "Campaign_authorization.json")
+    auth = authorization(path, m)
     control = path.parent / "campaign-control"
     record = controller_receipt(control / f"review-{segment:02d}.json")
-    if not (m.get("candidate_policy") and record["state"] == "submitted"
+    if not (record["state"] == "submitted"
             and record["job_id"] == os.environ.get("SLURM_JOB_ID")
-            and record["manifest_sha256"] == auth["manifest_sha256"] == sha(path)
-            and record["segment"] == segment and 1 <= segment <= auth["max_segments"] <= MAX_SEGMENTS
-            and auth["allow_api"] and auth["allow_solves"] and auth["approve_requests"] == m["total_request_cap"]):
+            and record["manifest_sha256"] == auth["manifest_sha256"]
+            and record["segment"] == segment and 1 <= segment <= auth["max_segments"]):
         raise PermissionError("unmatched Slurm controller receipt or original campaign authorization")
     decision = control / f"decision-{segment:02d}.json"
     claim(decision, {"job_id": record["job_id"], "action": "inspection_reserved", "at": time.time()})
     try:
         accounting = account_when_visible(m, record["workers"])
         assessment = time_continuation.inspect(path, accounting=accounting)
-        if assessment["blockers"] or not assessment["eligible"] or segment >= auth["max_segments"] or time.time() >= auth["expires_at"]:
-            reason = ("scientific_complete" if assessment["scientific_complete"] and not assessment["blockers"]
-                      else "campaign_finished_without_1000_or_requires_review")
-            result = finish(path, assessment, segment, reason)
-            if (auth["release_account"] and reason == "scientific_complete"
-                    and all(r["summary_available"] for r in result["exports"].values())):
-                result["account_release"] = six_ops.invoke("parallel.py", ["close", "--manifest", path])
-                write(path.parent / "Campaign_result.json", result)
-            return result
-        chosen = assessment["selected"]
-        # A clean time pause can select either member, including the remaining
-        # seed after its paired worker stops at a documented local limit.
-        receipt = parallel.submit(path, "resume", True, auth["approve_requests"], True, True,
-                                  member=None if len(chosen) == len(m["members"]) else chosen[0])
-        write(control / f"workers-{segment + 1:02d}.json", receipt)
-        return {"submitted": True, "next": queue_followup(path, segment + 1, receipt)}
+        if assessment["blockers"]:
+            return finish(path, assessment, segment, "needs_review")
+        if assessment["scientific_complete"]:
+            reason = "scientific_complete"
+        elif segment >= auth["max_segments"] or time.time() >= auth["expires_at"]:
+            reason = "authorized_limits_reached"
+        elif any(r["pause_reason"] == "user_control" for r in assessment["members"]):
+            return finish(path, assessment, segment, "operator_paused")
+        elif assessment["eligible"]:
+            return submit_remaining(path, assessment, auth, segment + 1)
+        else:
+            reason = "ended_incomplete"
+        result = finish(path, assessment, segment, reason)
+        if auth["release_account"] and all(r["summary_available"] for r in result["exports"].values()):
+            result["account_release"] = parallel.close(path)
+            write(path.parent / "Campaign_result.json", result)
+        return result
     except Exception as exc:
         write(control / f"error-{segment:02d}.json", {"type": type(exc).__name__, "error": str(exc)})
         raise

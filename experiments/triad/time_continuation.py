@@ -75,7 +75,7 @@ def check_run(row,path,c):
     return s
 
 
-def inspect(path,*,accounting=None,now=None):
+def inspect(path,*,accounting=None,now=None,operator_resume=False):
     """Read-only assessment. Missing scheduler facts never become permission."""
     now=time.time() if now is None else now;path=Path(path).resolve();m=shared.load(path)
     if not shared.exploration(m):raise PermissionError('future exploration freeze only; never migrate R13/strict runs')
@@ -136,8 +136,11 @@ def inspect(path,*,accounting=None,now=None):
         if accounting is not None and (a.get('state')!=wanted_state or a.get('exit_code')!=wanted_exit):
             blockers.append(row['run_id']+': last Slurm segment not clean COMPLETED 0:0')
         if not complete and not local_terminal:
-            allowed_pause=candidate_policy.TIME_PAUSE if policy else TIME_PAUSE
-            if s['phase']!='paused' or reason!=allowed_pause or latest.get('finite_settled_prefix') is not None:
+            allowed_pauses={candidate_policy.TIME_PAUSE if policy else TIME_PAUSE}
+            if policy and operator_resume:allowed_pauses.add('user_control')
+            if policy and s['phase']=='paused' and reason=='user_control' and not operator_resume:
+                pass  # A user hold is settled but must not resume automatically.
+            elif s['phase']!='paused' or reason not in allowed_pauses or latest.get('finite_settled_prefix') is not None:
                 blockers.append(row['run_id']+': not an unrestricted clean time pause')
             elif progress>=c['evolution_request_cap'] or len(attempts)>=row['request_cap']:
                 blockers.append(row['run_id']+': original budget exhausted')

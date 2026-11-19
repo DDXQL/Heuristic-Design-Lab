@@ -80,7 +80,9 @@ def load(path):
     if len({r['run_dir'] for r in rows})!=len(rows) or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
         raise ValueError('distinct directories required; existing U501 is read-only')
     from experiments.triad.configuration import GROUPS
-    if any(r['group'] not in GROUPS or r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id'] for r in rows):raise ValueError('declared triad group and seed501/502/503 required')
+    if any(r['group'] not in GROUPS or type(r['seed']) is not int or not 0<=r['seed']<2**32
+           or not policy and r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id']
+           for r in rows):raise ValueError('declared triad group and allowed seed required')
     if m['mode']=='real' and any(r['group']=='fjsp-u' and r['seed'] in (501,502) for r in rows):raise PermissionError('completed FJSP U501/U502 are read-only; never rerun or migrate')
     if m['mode']=='real':
         expected=read(Path(__file__).resolve().parents[2]/'preparations/cluster-concurrency-20261114/phase1/Probe.pending.json')['account_gate']
@@ -459,7 +461,8 @@ class GuardedTransport:
             if (self.admission.folder/'STOP.json').exists():raise RuntimeError('shared STOP before wire dispatch')
             clock=Path(self.admission.row['run_dir'])/'Run_clock.json'
             c=read(self.admission.row['config'])
-            reserve=c['provider']['total_timeout']+c['instance_timeout_seconds']*c['instance_count']+5
+            from .configuration import request_timeout
+            reserve=request_timeout(c)+c['instance_timeout_seconds']*c['instance_count']+5
             if clock.exists() and time.time()+reserve>read(clock)['deadline']:
                 raise TimeoutError('original calendar window cannot cover dispatch and evaluation after waiting')
             def sent():

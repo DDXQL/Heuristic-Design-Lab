@@ -14,7 +14,7 @@ from experiments.triad import batch,runtime,configuration
 
 def command(row,action,python,prefix=None,solve_cap=None,*,wall_seconds=None):
     if row.get('protected_existing_501') or row.get('existing_registration'):raise PermissionError('existing 501 is read-only and cannot be submitted or resumed by this batch')
-    c=configuration.load(row['config']);r=c['resources'];todo=configuration.gaps(c)
+    c=configuration.load(row['config'],engineering=True);r=c['resources'];todo=configuration.gaps(c)
     if todo or r['partition'] is None:raise PermissionError('PROTOCOL_PENDING: '+', '.join(todo+(['resources.partition'] if r['partition'] is None else [])))
     if prefix is not None:
         cp=Path(row['run_dir'])/'checkpoint.json';state=read(cp) if cp.exists() else {}

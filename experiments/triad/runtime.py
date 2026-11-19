@@ -17,7 +17,7 @@ from heuristic_design.core.storage import read,write,sha,digest
 from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
 from . import problems,evaluation,candidate_policy
-from .configuration import load,gaps
+from .configuration import candidate_drain,load,gaps
 VERSION='triad-six-groups-operations-v5'
 
 
@@ -66,8 +66,8 @@ def preflight(path,engineering=False,run_kind=None):
         if [{'file':r['file'],'source_sha256':r['source_sha256']} for r in data]!=expected:raise ValueError('frozen train21 order/content differs')
     r=c['resources'];width=max(c['api_concurrency'],c['evaluation_concurrency'])
     drain=math.ceil(width/c['api_concurrency'])*c['provider']['total_timeout']+len(data)*30+width+7
-    if policy:=c.get('candidate_policy'):
-        drain=policy['per_slot_attempt_cap']*(c['provider']['total_timeout']+r.get('request_queue_seconds',600))+len(data)*30+sum(policy['backoff_seconds'])+30
+    if c.get('candidate_policy'):
+        drain=candidate_drain(c,r.get('request_queue_seconds',600))
     if r['drain_seconds']<drain or min(r['segment_seconds'],c['window_seconds'])<=r['drain_seconds']:raise ValueError('resource window/drain cannot cover bounded staged wave')
     if not (c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real') and c['evaluation_concurrency']!=1:raise ValueError('native EoH preserves serial evaluation/feedback')
     return c,data,refs,hs,[]
@@ -168,7 +168,7 @@ class Adapter(old.Adapter):
     def transport(self,p):
         c=p['config']
         if c['api_mode']=='mock':return MockTransport(self.client_config(p),p)
-        if c.get('candidate_policy'):return candidate_policy.CandidateTransport(self.client_config(p),c['candidate_policy'])
+        if c.get('candidate_policy'):return candidate_policy.CandidateTransport(candidate_policy.client_config(p),c['candidate_policy'])
         return StrictNonstreamTransport(self.client_config(p))
     def journal(self,d,s,p,deadline):
         if p['config'].get('candidate_policy'):

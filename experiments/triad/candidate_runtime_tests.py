@@ -409,7 +409,7 @@ def boundary(group):
 
 def controller(path, m, accounting, *, resume):
     # Exercise the actual durable controller claim/decision logic, with fake Slurm only.
-    auth = {"manifest_sha256": sha(path), "max_segments": 2, "allow_api": True, "allow_solves": True,
+    auth = {"manifest_sha256": sha(path), "max_segments": 2, "allow_api": False, "allow_solves": False,
             "approve_requests": m["total_request_cap"], "expires_at": time.time()+300, "release_account": False}
     write(path.parent / "Campaign_authorization.json", auth)
     worker_ids = {"receipts": [{"job_id": j} for j in accounting]}

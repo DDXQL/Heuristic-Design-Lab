@@ -46,8 +46,21 @@ def load(path,*,engineering=False):
     for k in ('cpus','memory_mib','segment_seconds','drain_seconds'):
         if r[k] is not None and (type(r[k]) is not int or r[k]<1):raise ValueError('invalid resource '+k)
     if r['numeric_threads']!=1:raise ValueError('numeric threads must remain 1')
+    if 'http_timeout_seconds' in r and (not policy or type(r['http_timeout_seconds']) is not int
+        or not c['provider']['connect_timeout']<=r['http_timeout_seconds']<=c['provider']['total_timeout']):
+        raise ValueError('HTTP timeout must be within the admitted V5 transport bounds')
     if r['cpus'] is not None and c['evaluation_concurrency'] is not None and r['cpus']<1+max(c['api_concurrency'],c['evaluation_concurrency']):raise ValueError('controller and staged workers must fit allocation')
     return c
+
+
+def request_timeout(c):
+    return c['resources'].get('http_timeout_seconds',c['provider']['total_timeout'])
+
+
+def candidate_drain(c,queue_seconds):
+    policy=c['candidate_policy']
+    return (policy['per_slot_attempt_cap']*(request_timeout(c)+queue_seconds)
+            +c['instance_count']*c['instance_timeout_seconds']+sum(policy['backoff_seconds'])+30)
 
 
 def gaps(c):

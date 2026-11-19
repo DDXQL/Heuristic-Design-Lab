@@ -1,11 +1,13 @@
 """Opt-in response counting and retries above the frozen V5 wire."""
 
 from collections import Counter
+from dataclasses import replace
 
 from fjsp_usage.research_real.attempt_budget import AttemptJournal, failure_policy
 from fjsp_usage.research_real.real_transport import JsonCandidateTransport, TransportError
 from heuristic_design.core.storage import digest
 from heuristic_design.llm.legacy import ClientConfig, DeadlineTransport, WireRecorder
+from .configuration import request_timeout
 
 VERSION = "successful-evolution-responses-v1"
 TIME_PAUSE = "slurm_walltime_drain"
@@ -127,10 +129,19 @@ class CandidateJournal(AttemptJournal):
         return failure(self.candidate_policy, message, metadata or {}, error_type)
 
 
+def client_config(protocol):
+    config = ClientConfig(protocol)
+    timeout = request_timeout(protocol['config'])
+    provider = config.provider
+    if timeout < provider.total_timeout:
+        config.provider = replace(provider, total_timeout=timeout, read_timeout=min(timeout, provider.read_timeout))
+    return config
+
+
 def journal(adapter, directory, state, protocol, deadline):
     c = protocol["config"]
     policy = c["candidate_policy"]
-    config = ClientConfig(protocol)
+    config = client_config(protocol)
     config.request_budget["retry_backoff_seconds"] = policy["backoff_seconds"]
     inner = adapter.transport(protocol)
     wire = WireRecorder(inner, directory / "wire_responses")
