@@ -270,8 +270,12 @@ class Admission:
         account_error=bool(meta.get('caller_hard_stop') or permanent or meta.get('http_status')==429 or meta.get('upstream_http_status')==429 or meta.get('failure_class') in ('protocol_incompatible','permanent'))
         not_sent=meta.get('send_status') in ('not_sent','not_started')
         http_terminal=type(meta.get('http_status')) is int and 400<=meta['http_status']<=599 and meta.get('send_status')=='confirmed'
-        known=bool(meta.get('dispatch_children_settled') is True and (not_sent or http_terminal))
-        if account_error or not known:stop(self.folder,'account-level failure' if account_error else 'unknown send/worker; reservation retained')
+        usage=getattr(error,'usage',None)
+        usage_known=isinstance(usage,dict) and all(type(usage.get(k)) is int and usage[k]>=0 for k in ('input_tokens','output_tokens'))
+        # An HTTP error and a reaped local process do not establish provider
+        # usage. Unknown usage remains reserved; there is never an automatic resend.
+        known=bool(meta.get('dispatch_children_settled') is True and (not_sent or (http_terminal and usage_known)))
+        if account_error or not known:stop(self.folder,'account-level failure' if account_error else 'unknown send/worker/usage; reservation retained')
         turn=self.folder/'send-turn.lock';owned_turn=False
         if turn.exists():
             owned_turn=read(turn)=={'uid':uid,'member':self.member}
@@ -290,6 +294,8 @@ class Admission:
                 raise RuntimeError('failure does not own an unsettled attempt')
             if not_sent and r['state']=='sent':
                 known=False;stop(self.folder,'wire/ledger send evidence differs; retain permit')
+            if http_terminal and (r['state']!='sent' or s['active'].get(uid)!=self.member):
+                known=False;stop(self.folder,'HTTP metadata without owned sent permit; retain evidence')
             r.update(state='reconciled_failed' if known else 'failed_or_unknown',error_type=type(error).__name__,
                 send_state=meta.get('send_status','unknown'),finished_at=time.time(),usage=getattr(error,'usage',None),
                 failure_category=category,account_stop=account_error,metadata={k:meta.get(k) for k in

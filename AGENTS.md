@@ -1,5 +1,11 @@
 # 实验运行与归档规则
 
+## 本轮公共离线维护（2026-11-19）
+
+本轮唯一写入树为`/Users/DDXQL/Developer/Heuristic-Design-Lab-independent-delivery-20261118`、分支`codex/independent-delivery-20261118`。按用户经总控交接的授权，核查冻结R13恢复边界，在本树实施最小时间门禁及有界续跑适配、针对性无API Mock。新工具仅适用于未来冻结的新轻量身份，不能导入或恢复R13旧检查点。保留原1000次演化尝试、初始化最多20、累计1020口径；不实施成功返回替补政策。未知发送、未知用量、未知提交均保留，不凭HTTP状态码重发。
+
+禁止修改/部署R13或其他冻结树、访问SSH/远端账户、改真实账本/锁/STOP、请求API、运行真实求解或Slurm。原生requeue仅核查官方契约，未现场验证不得宣称可用。公共`code/`、`experiments/common/run_frozen.py`与科学配置保持原字节。
+
 ## 当前公共轻量流程工程（2026-11-18）
 
 唯一新增公共工程树`/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118`、分支`codex/explore-runtime-20261118`，从963499d派生。用户通过总控明确批准已审查最小方案的代码实现及无API离线验证：新探索身份、两份sbatch/API总并发1、已知失败只结算自己的许可与预留且不退款不重试、自动现场自检、科研完成与安全关闭解耦、执行节点读密钥前核归属和资源。保留严格路径，缓存后置。

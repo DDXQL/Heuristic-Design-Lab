@@ -48,7 +48,7 @@ def fixture(folder,light=True):
 
 class Inner:
     config=None;identity='SYNTHETIC'
-    def __init__(self,kind='ok',counter=None):self.kind=kind;self.calls=0;self.counter=counter
+    def __init__(self,kind='ok',counter=None,usage_known=True):self.kind=kind;self.calls=0;self.counter=counter;self.usage_known=usage_known
     def dispatch(self,key,prompt,*,kind,on_sent):
         self.calls+=1
         if self.kind!='not_sent':on_sent()
@@ -58,7 +58,7 @@ class Inner:
             time.sleep(.02)
             with active.get_lock():active.value-=1
         if self.kind=='ok':return {'text':'SYNTHETIC','usage':None,'metadata':{}}
-        e=TimeoutError('SYNTHETIC failure');e.usage=None
+        e=TimeoutError('SYNTHETIC failure');e.usage={'input_tokens':5,'output_tokens':0} if self.usage_known else None
         e.metadata={'send_status':'not_started' if self.kind=='not_sent' else 'unknown' if self.kind=='unknown' else 'confirmed',
                     'failure_stage':'connect' if self.kind=='not_sent' else 'http_receive'}
         if self.kind.startswith('http'):e.metadata['http_status']=int(self.kind[4:])

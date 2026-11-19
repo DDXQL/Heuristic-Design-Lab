@@ -1,0 +1,98 @@
+{
+  "checked_at_plus08": "2026-11-19T10:52:06.550201+08:00",
+  "scope": "frozen source and local receipts only; no remote query",
+  "R13_archive": "/Users/DDXQL/Developer/transfer-outbox/triad-tsp-lkh-candidate-20261117-r13.zip",
+  "R13_archive_sha256": "a70649d666d04c554e105f10f440191def39acb952b87dfc3eafece96b8e695a",
+  "source_matches_archive": {
+    "experiments/triad/parallel.py": {
+      "frozen_sha256": "f70475c2331ac5b5a1f93515c37d8af778b940b24a7e57f72eede3c998a3358e",
+      "local_sha256": "f70475c2331ac5b5a1f93515c37d8af778b940b24a7e57f72eede3c998a3358e",
+      "byte_identical": true
+    },
+    "experiments/triad/entry.py": {
+      "frozen_sha256": "7647f810dc1ada6ffdc366afd48f121d9dee638d6f402c78672d037c445b4b36",
+      "local_sha256": "7647f810dc1ada6ffdc366afd48f121d9dee638d6f402c78672d037c445b4b36",
+      "byte_identical": true
+    },
+    "experiments/triad/runtime.py": {
+      "frozen_sha256": "32eda1633811e52e0092b33f44485c3cdeb1307e51f7779867e3407d475f84ce",
+      "local_sha256": "32eda1633811e52e0092b33f44485c3cdeb1307e51f7779867e3407d475f84ce",
+      "byte_identical": true
+    },
+    "experiments/triad/shared_admission.py": {
+      "frozen_sha256": "40dea81eb17d68e6981920f4fef243b79a7e9826cdbaee14d7f0ebfa6995f783",
+      "local_sha256": "40dea81eb17d68e6981920f4fef243b79a7e9826cdbaee14d7f0ebfa6995f783",
+      "byte_identical": true
+    },
+    "experiments/triad/parallel.sbatch": {
+      "frozen_sha256": "7dff41e0872af787fcf9aa696043606f2f15d524a8efe45fa53cb5e33b3b8105",
+      "local_sha256": "7dff41e0872af787fcf9aa696043606f2f15d524a8efe45fa53cb5e33b3b8105",
+      "byte_identical": true
+    },
+    "experiments/triad/slurm.py": {
+      "frozen_sha256": "c27ae23943de89dd40fc4edd697796a3f733715b265c79571b3e309bc9029965",
+      "local_sha256": "c27ae23943de89dd40fc4edd697796a3f733715b265c79571b3e309bc9029965",
+      "byte_identical": true
+    },
+    "code/heuristic_design/core/execution.py": {
+      "frozen_sha256": "02b72de73c23917b9358f5f3d8d8820845f5aa7305f968ad8129ad4e9b6b21af",
+      "local_sha256": "02b72de73c23917b9358f5f3d8d8820845f5aa7305f968ad8129ad4e9b6b21af",
+      "byte_identical": true
+    }
+  },
+  "actual_remote_manifest": "/public2/home/qiuqian/hdl-deploy/triad-tsp-lkh-candidate-20261117-r13/plans/six-tsp501/Shared.json",
+  "long_segment_job_ids": [
+    "627138",
+    "627139"
+  ],
+  "old_local_receipt": {
+    "path": "/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118/reports/r13-tsp-mac-20261118/status-1794996373510822000/status.json",
+    "sha256": "3b6a6f3144cb0c5c9104d124d3c59c65773e7cb5de076a82f0c58d9ee45b517d",
+    "mtime_plus08": "2026-11-18T18:06:23.904491+08:00",
+    "STOP": false,
+    "members": [
+      {
+        "run_id": "six-tsp501-tsp-u-seed-501",
+        "phase": "running",
+        "initialization_requests": 5,
+        "evolution_requests": 104,
+        "used_logical_attempts": 109
+      },
+      {
+        "run_id": "six-tsp501-tsp-eoh-seed-501",
+        "phase": "running",
+        "initialization_requests": 10,
+        "evolution_requests": 100,
+        "used_logical_attempts": 110
+      }
+    ]
+  },
+  "total_control_report_not_raw_snapshot": {
+    "Slurm_state": "COMPLETED",
+    "application_phase": "paused",
+    "evolution_attempts": [
+      272,
+      269
+    ],
+    "remaining_if_confirmed": [
+      728,
+      731
+    ]
+  },
+  "latest_raw_pause_reason": "unknown",
+  "latest_original_deadline": "unknown",
+  "latest_account_exclusion_until": "unknown",
+  "latest_STOP_and_ledger": "unknown",
+  "resume_entry": "original R13 parallel.py resume; no repeated prefix/certify/plan/activate",
+  "manual_approval_cap": 2040,
+  "individual_original_cap": 1020,
+  "evolution_counting": "1000 attempts; initialization separate <=20; no new successful-return policy",
+  "R13_modified": false,
+  "R13_deployed_or_resumed": false,
+  "new_tree_protected_sources_match_923781f": true,
+  "native_requeue_site_verified": false,
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submissions": 0,
+  "SSH_attempts": 0
+}

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "AST_files": [
+    "experiments/triad/time_continuation.py",
+    "experiments/triad/time_continuation_tests.py",
+    "experiments/triad/shared_admission.py",
+    "experiments/triad/entry.py",
+    "experiments/triad/explore_tests.py"
+  ],
+  "source_sha256": {
+    "experiments/triad/time_continuation.py": "9aa9336feb536f0840d5b763cd207427a2be1a1cdb69ea728ac2df38fa734a91",
+    "experiments/triad/time_continuation_tests.py": "9a2444aa0fa5a6e73735a5b79412dd514c1f0c08ea85b8022820d259eb6a911b",
+    "experiments/triad/shared_admission.py": "d8a9bb8a17167d229b95fa30ab7788227586f3022c63bd3e9af6d6d009640115",
+    "experiments/triad/entry.py": "6ec47a69a24ae0e3e6ed63017b01c836ff93bd27f6f9cd1d9e985e1629d8bcb2",
+    "experiments/triad/explore_tests.py": "5a0842adedaae5eddd5be160aaeeed6b08d262205efa21a83dc52cd89c660602"
+  },
+  "protected_source_diff_empty": true,
+  "new_package_built": false,
+  "uploaded": false,
+  "compute_node_verified": false,
+  "Slurm_script_changed": false,
+  "scientific_configuration_changed": false,
+  "API_requests": 0,
+  "actual_solves": 0
+}

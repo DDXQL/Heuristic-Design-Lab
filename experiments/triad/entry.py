@@ -157,6 +157,9 @@ def main():
         else:
             deadline=read(d/'Run_clock.json')['deadline'] if (d/'Run_clock.json').exists() else None
             approve(c,args,deadline);execution.ledger(d,s,p,adapter=adapter)
+            if c['mode']=='real' and deadline is not None:
+                from experiments.triad.time_continuation import check_calendar
+                check_calendar(c,read(d/'Run_clock.json'),time.time(),full_segment=False)
             prefix=args.pause_after_attempts
             expected_solves=0 if shared and c['mode']=='mock' else 2*(prefix-s['cursor'])*len(p['instances']) if prefix is not None else None
             if prefix is not None and (not s['cursor']<prefix<=c['api_attempt_cap'] or args.approve_segment_solves!=expected_solves):raise PermissionError('finite segment must declare exact inclusive first/recheck cap under original cumulative budget')
@@ -172,6 +175,8 @@ def main():
                 with redirect_stdout(_Tee(sys.stdout,log)),redirect_stderr(_Tee(sys.stderr,log)):
                     with shared_admission.Admission(shared).session(d) if shared else nullcontext():
                         if p['config']['api_mode']=='real':
+                            if deadline is not None:
+                                check_calendar(c,read(d/'Run_clock.json'),time.time(),full_segment=False)
                             if not shared:
                                 from experiments.triad.shared_admission import allocation_check
                                 allocation_check(c)

@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "scope": "synthetic local continuation and failure guards; no real Slurm/requeue acceptance",
+  "results": {
+    "readonly_no_scheduler_assumption": {
+      "eligible_only_with_exact_accounting": true,
+      "run_bytes_unchanged": true
+    },
+    "guard_refusals": [
+      "stop",
+      "writer",
+      "unknown_submission",
+      "unknown_wire",
+      "active_search",
+      "wrong_owner",
+      "manual_pause",
+      "API_pause",
+      "finite_prefix",
+      "scheduler_failed",
+      "scheduler_running",
+      "clock_changed",
+      "insufficient_full_segment",
+      "insufficient_precredential_drain",
+      "nonfinite_clock"
+    ],
+    "R13_strict_not_migrated": true,
+    "bounded_existing_submit_reused": {
+      "maximum_segments": 2,
+      "maximum_jobs": 4,
+      "no_budget_increase": true,
+      "same_authorization_not_replayed": true
+    },
+    "one_remaining_member_only": true,
+    "unknown_submit_not_replayed": true,
+    "HTTP_status_not_usage_proof": {
+      "statuses": [
+        520,
+        522,
+        524
+      ],
+      "unknown_usage_retained": true,
+      "known_usage_one_failed_charge_no_retry": true
+    },
+    "precredential_calendar_order": {
+      "AST_verified": true,
+      "real_credential_reads": 0
+    }
+  },
+  "API_requests": 0,
+  "actual_solves": 0,
+  "Slurm_submissions": 0,
+  "SSH_attempts": 0
+}
