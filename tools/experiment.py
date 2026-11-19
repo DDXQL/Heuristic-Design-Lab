@@ -72,7 +72,8 @@ def settings(doc):
     seen = set()
     for row in runs:
         fields(row, "method seed initialization_attempts", "research.runs")
-        require(row["method"] in ("u", "eoh"), "method 可选 u、eoh")
+        require(row["method"] in ("u", "eoh"),
+                "搜索入口支持 u、eoh。固定 H 参照使用 assets.py，其他基准的接入状态见 PROJECT_MAP.md")
         integer(row["seed"], 0, 2**32 - 1, "seed")
         integer(row["initialization_attempts"], 2, 1000, "initialization_attempts")
         identity = (row["method"], row["seed"])
@@ -89,7 +90,8 @@ def settings(doc):
     integer(execution["exclusive_hours"], execution["window_hours"] + 1, 168, "exclusive_hours")
     integer(execution["max_segments"], 1, campaign.MAX_SEGMENTS, "max_segments")
     require(type(execution["release_account_when_done"]) is bool, "release_account_when_done 需要布尔值")
-    integer(api["global_concurrency"], 1, 1, "API 总并发")
+    require(type(api["global_concurrency"]) is int and api["global_concurrency"] == 1,
+            "当前 R15 搜索只接入 API 总并发 1。并发 2、4、8 尚未接入或验收，见 DECISIONS.md")
     integer(api["min_interval_seconds"], 0, 60, "API 发送间隔")
     integer(api["queue_wait_seconds"], 1, 600, "API 排队等待")
     require(isinstance(api["retry_delays_seconds"], list), "retry_delays_seconds 需要数组")
@@ -323,7 +325,8 @@ def pause(path):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="从一份 JSON 预检、提交、查询和导出 R15 实验",
+                                     epilog="配置样例在 configurations/experiments/，参数说明和现场验收见 README.md")
     parser.add_argument("action", choices=("prepare", "run", "status", "pause", "resume", "export"))
     parser.add_argument("config", type=Path)
     parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价，并确认账户无其他生成者")

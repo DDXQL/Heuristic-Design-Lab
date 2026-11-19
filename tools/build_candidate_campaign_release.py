@@ -5,16 +5,18 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT.parent / "transfer-outbox"
 BASE = OUT / "triad-tsp-lkh-candidate-20261117-r13.zip"
-VERSION = "triad-candidate-runtime-20261119-r15p3"
-ENTRY = "docs/研究人员实验操作手册.md"
+PUBLISHED_VERSION = "triad-candidate-runtime-20261119-r15p3"
+ENTRY = "README.md"
 PREFIXES = ("code/", "experiments/triad/", "configurations/six-groups-20261116/", "configurations/experiments/", "docs/")
 CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experiment_fs_probe.sbatch")
+ROOT_DOCS = ("README.md", "PROJECT_MAP.md", "DECISIONS.md")
 
 
 def sha(data):
@@ -25,7 +27,9 @@ def git(*args):
     return subprocess.check_output(["git", "-C", str(ROOT), *args])
 
 
-def build(base, target):
+def build(base, target, version):
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]+", version) or version in ("r15p3", PUBLISHED_VERSION):
+        raise ValueError("use a new release name, or build r15p3 from its Git tag")
     sidecar = target.with_suffix(".zip.sha256")
     if target.exists() or sidecar.exists():
         raise FileExistsError("existing release or checksum; choose a new output path")
@@ -47,9 +51,9 @@ def build(base, target):
         if not raw:
             continue
         name = raw.decode()
-        if name in ("README.md", "AGENTS.md", *CLI_FILES) or name.startswith(PREFIXES):
+        if name in (*ROOT_DOCS, "AGENTS.md", *CLI_FILES) or name.startswith(PREFIXES):
             payload[name] = git("show", f"{commit}:{name}")
-    required = {ENTRY, *CLI_FILES, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
+    required = {ENTRY, *CLI_FILES, *ROOT_DOCS, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
                 "configurations/six-groups-20261116/candidate-policy.draft.json",
                 *("configurations/experiments/" + n + ".json" for n in ("tsp-502", "fjsp-503", "obp-501", "slurm-no-api-smoke"))}
     if not required.issubset(payload):
@@ -58,7 +62,7 @@ def build(base, target):
            or Path(n).suffix in (".key", ".pem") or Path(n).name in
            ("generation.lock", "API_attempts.json", "checkpoint.json", "STOP.json") for n in payload):
         raise ValueError("unsafe file in release")
-    release = {"version": VERSION, "engineering_commit": commit, "parent_commit": old["engineering_commit"],
+    release = {"version": version, "engineering_commit": commit, "parent_commit": old["engineering_commit"],
                "entry": ENTRY, "API_execution_authorized": False, "deployed": False,
                "actual_TSP_reference_included": False, "existing_runs_included": False,
                "files": {n: sha(raw) for n, raw in payload.items()}}
@@ -79,6 +83,8 @@ def build(base, target):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=Path, default=BASE)
-    parser.add_argument("--output", type=Path, default=OUT / (VERSION + ".zip"))
+    parser.add_argument("--version", required=True, help="new immutable release name")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    print(json.dumps(build(args.base, args.output), ensure_ascii=False, indent=2))
+    print(json.dumps(build(args.base, args.output or OUT / (args.version + ".zip"), args.version),
+                     ensure_ascii=False, indent=2))

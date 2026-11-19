@@ -1,5 +1,9 @@
 # 实验运行与归档规则
 
+## R15 主线任务入口
+
+开始 R15 工程任务前先读 [README.md](README.md)、[PROJECT_MAP.md](PROJECT_MAP.md) 和 [DECISIONS.md](DECISIONS.md)，再按需要查源码或实际回执。当前主线是 `codex/successful-candidate-runtime-20261119`。并发、时限、重试等参数的采用依据以 DECISIONS 的分类和对应证据为准。以下带日期的工作树段落按其明确工作树和版本适用。历史任务和待定状态仅供追溯。
+
 ## 成功返回候选协议的独立工程树（2026-11-19）
 
 独立树 `/Users/DDXQL/Developer/Heuristic-Design-Lab-successful-runtime-20261119`、分支 `codex/successful-candidate-runtime-20261119` 从 ad59509 起步。当前授权覆盖新协议的执行、请求计数、Slurm 续跑、离线故障注入、文档和本地 Git 提交。必要的公共执行改动只在此树生效。保留 V5 传输、搜索算子、提示、数据、评价器和历史运行身份。R11、R13、R14 原版本及远端状态均不在此树维护。草案参数需要研究采用记录才可编排真实作业。
