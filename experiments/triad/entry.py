@@ -51,14 +51,14 @@ def owned_writer(c,d,s,shared=None):
         safe=safe and all(e['status']=='completed' for e in state['evaluations'].values())
         journal=read(d/'API_attempts.json') if (d/'API_attempts.json').exists() else {'api_attempts':{}}
         safe=safe and all(a['status'] in ('completed','failed') for a in journal['api_attempts'].values())
-        if shared:
+        if shared and not c['resources'].get('independent_batch'):
             ledger=read(Path(shared['manifest']).parent/'gate/ledger.json')
             for a in journal['api_attempts'].values():
                 uid=admission.digest({'member':d.name,'key':a['id']})
                 safe=safe and ledger['requests'].get(uid,{}).get('state') in ('completed','reconciled_failed')
             safe=safe and d.name not in ledger['active'].values()
         if safe and lock.exists() and read(lock)==owner:lock.unlink()
-        elif shared and (not lock.exists() or read(lock)!=owner):
+        elif shared and not c['resources'].get('independent_batch') and (not lock.exists() or read(lock)!=owner):
             admission.stop(Path(shared['manifest']).parent/'gate','inner writer ownership changed; foreign/unknown state retained')
 
 
@@ -96,6 +96,7 @@ def approve(c,args,deadline=None):
         return
     if not args.allow_api or args.approve_budget!=cap:raise PermissionError('explicit original request cap required')
     if args.action in ('run','resume') and not args.allow_solves:raise PermissionError('explicit --allow-solves required')
+    if c['resources'].get('independent_batch'):return
     e=c['account_exclusion'];end=deadline or time.time()+c['window_seconds']
     if not e or e.get('scope')!='all_devices_sharing_account' or not e.get('confirmation') or e.get('valid_until',0)<end:raise PermissionError('all-device account exclusion must cover original run window')
 
@@ -214,7 +215,7 @@ def main():
                                 allocation_check(c)
                             try:key(c)
                             except BaseException:
-                                if shared:shared_admission.stop(Path(shared['manifest']).parent/'gate','credential admission failed; no new shared sends')
+                                if shared and not c['resources'].get('independent_batch'):shared_admission.stop(Path(shared['manifest']).parent/'gate','credential admission failed; no new shared sends')
                                 raise
                         value=execution.start(d,adapter=adapter,resume=args.action=='resume',allow_api=args.allow_api)
             runtime.export(d)

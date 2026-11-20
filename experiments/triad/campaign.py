@@ -90,7 +90,7 @@ def launch(path, max_segments, release_account):
     claim(path.parent / "Campaign_authorization.json", {
         "manifest_sha256": sha(path), "approve_requests": m["total_request_cap"],
         "max_segments": max_segments, "release_account": release_account,
-        "expires_at": m["account_exclusion"]["valid_until"], "allow_api": real, "allow_solves": real,
+        "expires_at": None if shared_admission.independent(m) else m["account_exclusion"]["valid_until"], "allow_api": real, "allow_solves": real,
     })
     shared_admission.activate(path)
     launched = parallel.submit(path, "run", True, m["total_request_cap"], real, real)
@@ -185,7 +185,7 @@ def submit_remaining(path, assessment, auth, segment):
     chosen = assessment["selected"]
     receipt = parallel.submit(path, "resume", True, auth["approve_requests"],
                               auth["allow_api"], auth["allow_solves"],
-                              member=None if len(chosen) > 1 else chosen[0])
+                              members=chosen)
     write(path.parent / "campaign-control" / f"workers-{segment:02d}.json", receipt)
     return {"submitted": True, "next": queue_followup(path, segment, receipt)}
 
@@ -195,7 +195,7 @@ def resume_operator(path):
     auth = authorization(path, m)
     result = read(path.parent / "Campaign_result.json")
     number = result["segments"]
-    if result["reason"] != "operator_paused" or number >= auth["max_segments"] or time.time() >= auth["expires_at"]:
+    if result["reason"] != "operator_paused" or number >= auth["max_segments"] or (auth["expires_at"] is not None and time.time() >= auth["expires_at"]):
         raise PermissionError("a settled operator pause with remaining original segment/time budget is required")
     control = path.parent / "campaign-control"
     review = controller_receipt(control / f"review-{number:02d}.json")
@@ -236,7 +236,7 @@ def advance(path, segment):
             return finish(path, assessment, segment, "needs_review")
         if assessment["scientific_complete"]:
             reason = "scientific_complete"
-        elif segment >= auth["max_segments"] or time.time() >= auth["expires_at"]:
+        elif segment >= auth["max_segments"] or (auth["expires_at"] is not None and time.time() >= auth["expires_at"]):
             reason = "authorized_limits_reached"
         elif any(r["pause_reason"] == "user_control" for r in assessment["members"]):
             return finish(path, assessment, segment, "operator_paused")
@@ -245,8 +245,9 @@ def advance(path, segment):
         else:
             reason = "ended_incomplete"
         result = finish(path, assessment, segment, reason)
-        if auth["release_account"] and all(r["summary_available"] for r in result["exports"].values()):
-            result["account_release"] = parallel.close(path)
+        if auth["release_account"] and (shared_admission.independent(m)
+                or all(r["summary_available"] for r in result["exports"].values())):
+            result["account_release"] = parallel.close(path, accounting=accounting)
             write(path.parent / "Campaign_result.json", result)
         return result
     except Exception as exc:

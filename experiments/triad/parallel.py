@@ -20,10 +20,11 @@ def plan(spec,folder,hours=None,confirmed=False):
     if not folder.is_relative_to(ROOT/'plans') or not doc['batch_id'] or any(v not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_' for v in doc['batch_id']):raise ValueError('safe new batch under this release plans/ required')
     if folder.exists():raise FileExistsError('new plan directory required; never replace a submitted plan')
     policy=doc.get('candidate_policy')
-    if len(doc['members']) not in ((1,2) if policy else (2,)):raise ValueError('select the supported number of independent runs')
+    independent=shared.independent(doc)
+    if len(doc['members']) not in ((1,2,3) if independent else (1,2) if policy else (2,)):raise ValueError('select the supported number of independent runs')
     if doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
     exclusion=None
-    if hours is not None:
+    if hours is not None and not independent:
         allowed=doc['window_seconds']/3600<hours<=168 if policy else 48<=hours<=168
         if not confirmed or not allowed:raise PermissionError('explicit all-device exclusion covering the authorized campaign required')
         exclusion={'scope':'all_devices_sharing_account','valid_until':time.time()+hours*3600,'confirmation':'operator confirms all other devices, generators and queued jobs stopped; only these two admitted members may generate'}
@@ -33,6 +34,7 @@ def plan(spec,folder,hours=None,confirmed=False):
         if item['group']!=c['group'] or item['seed'] not in c['search_seeds']:raise ValueError('seed/group outside declaration')
         run_id=doc['batch_id']+'-'+c['group']+'-seed-'+str(item['seed']);dest=folder/'configs'/(run_id+'.json')
         c.update(search_seed=item['seed'],account_gate=str(folder/'run-gates'/run_id),account_exclusion=exclusion,shared_manifest=str(manifest))
+        if independent:c['resources']['independent_batch']=True
         if c['mode']!=doc['mode']:raise ValueError('Mock and real cannot share an admission batch')
         if policy:
             from .candidate_policy import validate
@@ -51,14 +53,17 @@ def plan(spec,folder,hours=None,confirmed=False):
        'min_request_interval_seconds':doc['min_request_interval_seconds'],'queue_wait_seconds':doc['queue_wait_seconds'],'require_initial_preflight':True,
        'account_gate':doc['account_gate'],'account_exclusion':exclusion,'total_request_cap':sum(r['request_cap'] for r in rows),'members':rows,'real_requests_authorized':False}
     if doc.get('runtime_policy') is not None:
-        if doc['runtime_policy']!=shared.EXPLORE:raise ValueError('unknown new runtime policy')
-        m['runtime_policy']=shared.EXPLORE
+        if doc['runtime_policy'] not in (shared.EXPLORE,shared.INDEPENDENT):raise ValueError('unknown new runtime policy')
+        m['runtime_policy']=doc['runtime_policy']
+    if independent:
+        m.update(max_active_searches=3,global_API_width=doc['global_API_width'],requests_per_minute=doc.get('requests_per_minute'))
+        m.pop('API2')
     if policy:m['candidate_policy']=policy
     cs=[read(r['config']) for r in rows]
     m['aggregate_resources']={k:sum(c['resources'][k] for c in cs) if all(c['resources'][k] is not None for c in cs) else None for k in ('cpus','memory_mib')}
     m['native_solve_cap']=sum(configuration.budget(c)['native_solve_cap_per_seed'] for c in cs) if doc['mode']=='real' else 0
     write(manifest,m);shared.load(manifest)
-    write(folder/'Batch.json',{'version':'triad-shared-two-batch-plan-v1','campaign_id':doc['batch_id'],'rows':rows,'same_account_generation_tasks':2,'shared_manifest':str(manifest)})
+    write(folder/'Batch.json',{'version':'triad-shared-two-batch-plan-v1','campaign_id':doc['batch_id'],'rows':rows,'same_account_generation_tasks':len(rows),'shared_manifest':str(manifest)})
     return {'manifest':str(manifest),'members':rows,'total_original_request_cap':m['total_request_cap'],'CODE_READY':True,'RUN_READY':False,'API_requests':0,'actual_solves':0}
 
 
@@ -77,9 +82,14 @@ def inspect(path):
     for row in m['members']:
         d=Path(row['run_dir']);c=configuration.load(row['config'],engineering=m['mode']=='mock')
         if sha(row['config'])!=row['config_sha256']:raise ValueError('member config changed')
-        cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
         names={'fjsp':'FJSP','tsp':'TSP','obp':'在线装箱'}
         label=names[c['problem']]+('双层方法' if c['method']=='u' else '单规则EoH')+'，种子 '+str(row['seed'])
+        try:
+            cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
+        except (OSError,ValueError) as error:
+            if not shared.independent(m):raise
+            rows.append({'run_id':row['run_id'],'phase':'unavailable','pause_reason':str(error),'group':row['group']})
+            continue
         item={'中文名称':label,'run_id':row['run_id'],'seed':row['seed'],'group':row['group'],'phase':cp.get('phase','not_started'),'pending':configuration.gaps(c),'original_request_cap':row['request_cap'],'resources':c['resources'],'run_dir':str(d)}
         if cp:
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
@@ -93,11 +103,11 @@ def inspect(path):
             item['reported_metrics']={k:progress.get(k) for k in ('best_J','champion_id','valid_candidates','failures','duplicates','confirmed_sends','unknown_sends','physical_passes')}
             if m.get('candidate_policy'):
                 item['reported_metrics'].update({k:progress.get(k) for k in
-                    ('reservations_by_stage','physical_sends_confirmed','physical_sends_unknown','retry_reservations','retry_physical_sends_confirmed',
+                    ('reservations_by_stage','physical_sends_confirmed','physical_sends_unknown','unresolved_wire_outcomes','retry_reservations','retry_physical_sends_confirmed',
                      'confirmed_sends_usage_unknown','known_tokens')})
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
-    width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else 1
+    width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else m['global_API_width']
     return {'members':rows,'effective_global_API_width':width,'total_original_request_cap':m['total_request_cap'],'shared':None if state is None else {'reserved':len(state['requests']),'peak_permits':state['peak'],'confirmed_send_to_settlement_peak':sent_peak(state),'active':state['active'],'active_searches':state['jobs'],'states':{k:sum(r['state']==k for r in state['requests'].values()) for k in ('waiting','admitted','sent','completed','reconciled_failed','failed_or_unknown')},'API_wait_seconds':sum(r.get('wait_seconds',0) for r in state['requests'].values()),'wire_seconds':sum(r.get('wire_seconds',0) for r in state['requests'].values())},'STOP':(path.parent/'gate/STOP.json').exists(),'RUN_READY':False,'API_requests_by_inspection':0,'actual_solves_by_inspection':0}
 
 
@@ -121,9 +131,12 @@ def argv(row,action,path,prefix=None):
     return cmd
 
 
-def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=False,prefix=None,solve_cap=None,member=None):
+def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=False,prefix=None,solve_cap=None,member=None,*,members=None):
     path=Path(path).resolve();m=shared.load(path);commands=[];new_solves=0
-    selected=m['members'] if member is None else [m['members'][member]]
+    selected=( [m['members'][i] for i in members] if members is not None
+               else m['members'] if member is None else [m['members'][member]])
+    if not selected or len({r['index'] for r in selected})!=len(selected):
+        raise ValueError('nonempty distinct selection required')
     pf=lambda r: prefix[r['index']] if isinstance(prefix,dict) else prefix
     if isinstance(prefix,dict) and set(prefix)!={r['index'] for r in selected}:raise ValueError('one explicit finite boundary for every selected member')
     for row in selected:
@@ -209,9 +222,10 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
             shared.durable(path.parent/'allocations'/(allocation['identity']+'.json'),allocation)
             shared.durable(path.parent/'Current_allocation.json',allocation)
     except BaseException:
-        stop(path.parent/'gate','unknown/failed submission; all claims retained');raise
+        if not shared.independent(m):stop(path.parent/'gate','unknown/failed submission; all claims retained')
+        raise
     width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(None)[0]
-    return {'submitted':True,'receipts':receipts,'original_aggregate_cap':m['total_request_cap'],'finite_new_solve_cap':new_solves if prefix is not None else None,'global_API_width':width,'max_active_searches':2}
+    return {'submitted':True,'receipts':receipts,'original_aggregate_cap':m['total_request_cap'],'finite_new_solve_cap':new_solves if prefix is not None else None,'global_API_width':width,'max_active_searches':m['max_active_searches']}
 
 
 def certify(path,phase=1):
@@ -282,17 +296,31 @@ def decide_api2(path,width,approved):
     return value
 
 
-def close(path):
-    m=shared.load(path);info=inspect(path);s=read(path.parent/'gate/ledger.json')
-    if (info['STOP'] or any((path.parent/'gate'/p).exists() for p in ('metrics.lock','send-turn.lock'))
-        or s['active'] or s['jobs'] or any(v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values())
-        or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members'])):
-        raise PermissionError('unsafe/unknown batch retained; no close')
+def close(path, *, accounting=None):
+    m=shared.load(path)
+    if shared.independent(m):
+        from .time_continuation import TERMINAL
+        receipts=[read(p) for row in m['members']
+                  for p in (Path(row['run_dir'])/'submissions').glob('shared-*.json')]
+        if not receipts or accounting is None or any(
+            r.get('state')!='submitted' or accounting.get(r.get('job_id'),{}).get('state') not in TERMINAL
+            for r in receipts):
+            raise PermissionError('previous Slurm jobs must be terminal before releasing the batch owner')
+    else:
+        check_shared_close(path)
     lease=Path(m['account_gate'])/'generation.lock'
     if read(lease).get('protocol')!='SHARED:'+sha(path):raise PermissionError('not this batch lease')
     claim(path.parent/'Closed.json',{'at':time.time(),'manifest_sha256':sha(path)})
     lease.unlink()
     return {'closed':True,'resume_prohibited':True}
+
+
+def check_shared_close(path):
+    info=inspect(path);s=read(path.parent/'gate/ledger.json')
+    if (info['STOP'] or any((path.parent/'gate'/p).exists() for p in ('metrics.lock','send-turn.lock'))
+        or s['active'] or s['jobs'] or any(v['state'] not in ('completed','reconciled_failed') for v in s['requests'].values())
+        or any(r['phase'] not in ('completed','paused','initialization_incomplete','expired') or r.get('writer_lock') for r in info['members'])):
+        raise PermissionError('unsafe/unknown batch retained; no close')
 
 
 def main():

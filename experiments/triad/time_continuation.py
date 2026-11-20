@@ -39,6 +39,7 @@ def check_calendar(c,clock,now,*,full_segment):
         raise PermissionError('original segment/drain required')
     if now+(segment if full_segment else drain)>=clock['deadline']:
         raise PermissionError('original window cannot cover requested segment' if full_segment else 'original window cannot cover next drain')
+    if r.get('independent_batch'):return
     e=c.get('account_exclusion') or {}
     until=e.get('valid_until')
     if (e.get('scope')!='all_devices_sharing_account' or not e.get('confirmation') or
@@ -75,10 +76,55 @@ def check_run(row,path,c):
     return s
 
 
+def inspect_independent(path,m,accounting,now,operator_resume):
+    rows=[];selected=[];blockers=[]
+    owner=Path(m['account_gate'])/'generation.lock'
+    if (path.parent/'Closed.json').exists() or not owner.exists() or read(owner).get('protocol')!='SHARED:'+sha(path):
+        blockers.append('batch owner missing or already closed')
+    if accounting is None:blockers.append('Slurm terminal accounting is required')
+    for row in m['members']:
+        d=Path(row['run_dir']);config=read(row['config']);target=config['evolution_request_cap']
+        saved={};detail=None
+        try:
+            saved=read(d/'checkpoint.json')
+            latest=read(d/'latest-submission.json')
+            previous=(accounting or {}).get(latest.get('job_id'),{})
+            if previous.get('state') not in TERMINAL:
+                blockers.append(row['run_id']+': previous worker Slurm terminal state unknown')
+                raise ValueError('previous worker Slurm terminal state unknown')
+            saved=check_run(row,path,config)
+            if any((d/n).exists() for n in ('.execution.lock','.coordinator.lock','Stop.json','Clock_quarantine.json')) or (Path(config['account_gate'])/'generation.lock').exists():
+                raise ValueError('local worker state requires review')
+            phase=saved['phase'];reason=saved.get('pause_reason')
+            if phase=='paused' and (reason==candidate_policy.TIME_PAUSE or reason=='user_control' and operator_resume):
+                if previous!={'state':'COMPLETED','exit_code':'0:0'}:
+                    raise ValueError('last worker did not exit cleanly')
+                check_calendar(config,read(d/'Run_clock.json'),now,full_segment=False)
+                j=read(d/'API_attempts.json')
+                spent=candidate_policy.costs(j)['reservations_by_stage'].get('evolution',0)
+                if spent>=m['candidate_policy']['evolution_attempt_cap']:
+                    raise ValueError(candidate_policy.BUDGET_PAUSE)
+                if saved.get('successful_evolution_responses',0)!=sum(t.get('successful_evolution_response',False) for t in saved['tasks'].values()):
+                    raise ValueError('checkpoint counter mismatch')
+                selected.append(row['index'])
+            elif phase not in ('completed','initialization_incomplete','expired','paused'):
+                detail='worker ended without a resumable checkpoint'
+        except (OSError,ValueError,KeyError,TypeError) as error:
+            detail=str(error)
+        progress=saved.get('successful_evolution_responses',0)
+        rows.append({'index':row['index'],'run_id':row['run_id'],'phase':saved.get('phase','unavailable'),
+                     'pause_reason':saved.get('pause_reason'),'successful_evolution_responses':progress,
+                     'remaining_evolution':max(0,target-progress),'detail':detail})
+    return {'members':rows,'selected':selected,'eligible':bool(selected) and not blockers,'blockers':blockers,
+            'scientific_complete':not blockers and all(r['phase']=='completed' and r['remaining_evolution']==0
+                                                       and r['detail'] is None for r in rows)}
+
+
 def inspect(path,*,accounting=None,now=None,operator_resume=False):
     """Read-only assessment. Missing scheduler facts never become permission."""
     now=time.time() if now is None else now;path=Path(path).resolve();m=shared.load(path)
     if not shared.exploration(m):raise PermissionError('future exploration freeze only; never migrate R13/strict runs')
+    if shared.independent(m):return inspect_independent(path,m,accounting,now,operator_resume)
     policy=m.get('candidate_policy');blockers=[];members=[];selected=[]
     for f in ('Closed.json','gate/STOP.json','gate/metrics.lock','gate/send-turn.lock'):
         if (path.parent/f).exists():blockers.append('retained '+f)

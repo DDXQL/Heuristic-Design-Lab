@@ -75,7 +75,8 @@ def gaps(c):
         if c['resources'][k] is None:missing.append('resources.'+k)
     if c['problem']=='obp' and c['mode']=='real' and isinstance(c['state_delivery'],dict) and c['state_delivery'].get('adoption')!='adopted':missing.append('state_delivery.adoption')
     if c['mode']=='real':
-        for k in ('account_exclusion','account_gate','credential_file'):
+        account_fields=('account_gate','credential_file') if c['resources'].get('independent_batch') else ('account_exclusion','account_gate','credential_file')
+        for k in account_fields:
             if not c[k]:missing.append(k)
     return missing
 

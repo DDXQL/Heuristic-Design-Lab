@@ -14,13 +14,17 @@ import stat
 import math
 import subprocess
 from heuristic_design.core.storage import read, write, sha, digest
-from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check
+from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, filesystem_check, wait_file
 
 VERSION = 'two-searches-six-groups-api1-v4'
 EXPLORE = 'explore-light-v1'
+INDEPENDENT = 'independent-seeds-v1'
 
 
-def exploration(m):return m.get('runtime_policy') == EXPLORE
+def independent(m):return m.get('runtime_policy') == INDEPENDENT
+
+
+def exploration(m):return m.get('runtime_policy') in (EXPLORE, INDEPENDENT)
 
 
 def local_filesystem_probe(folder,role,deadline):
@@ -69,14 +73,22 @@ def durable(path,value):
 def load(path):
     path=Path(path).resolve(); m=read(path)
     if m['mode'] not in ('mock','real'):raise ValueError('explicit Mock/real admission identity required')
-    if m.get('runtime_policy') not in (None,EXPLORE):raise ValueError('unknown runtime policy')
+    if m.get('runtime_policy') not in (None,EXPLORE,INDEPENDENT):raise ValueError('unknown runtime policy')
     if exploration(m) and m.get('require_initial_preflight') is not True:raise ValueError('exploration requires fresh allocation selfcheck')
-    if m['version']!=VERSION or m['max_active_searches']!=2 or m['global_API_width']!=1:
+    if independent(m):
+        from .batch_admission import WIDTHS
+        rpm=m.get('requests_per_minute')
+        if (m['max_active_searches']!=3 or m['global_API_width'] not in WIDTHS
+                or not m.get('candidate_policy') or rpm is not None and (type(rpm) is not int or rpm<1)):
+            raise ValueError('invalid independent batch concurrency or request rate')
+    if m['version']!=VERSION or not independent(m) and (m['max_active_searches']!=2 or m['global_API_width']!=1):
         raise ValueError('this release supports at most two searches and global API1 only')
     rows=m['members']
     policy=m.get('candidate_policy')
-    if len(rows) not in ((1,2) if policy else (2,)) or len({r['run_id'] for r in rows})!=len(rows) or len({(r['group'],r['seed']) for r in rows})!=len(rows):
+    if len(rows) not in ((1,2,3) if independent(m) else (1,2) if policy else (2,)) or len({r['run_id'] for r in rows})!=len(rows) or len({(r['group'],r['seed']) for r in rows})!=len(rows):
         raise ValueError('explicit independent group/seed identities required')
+    if independent(m) and len({r['group'].split('-')[0] for r in rows})!=1:
+        raise ValueError('one problem per independent batch')
     if len({r['run_dir'] for r in rows})!=len(rows) or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
         raise ValueError('distinct directories required; existing U501 is read-only')
     from experiments.triad.configuration import GROUPS
@@ -140,12 +152,12 @@ def activate(path):
     """Explicit manual activation only; never take over a live/unknown old lease."""
     path=Path(path).resolve(); m=load(path); parent=Path(m['account_gate']); lease=parent/'generation.lock'
     if (path.parent/'Activation.json').exists():raise FileExistsError('already activated/reserved; inspect, never reactivate')
-    if m['mode']=='real' and (not m.get('account_exclusion') or m['account_exclusion'].get('valid_until',0)<=time.time()):
+    if m['mode']=='real' and not independent(m) and (not m.get('account_exclusion') or m['account_exclusion'].get('valid_until',0)<=time.time()):
         raise PermissionError('fresh all-device exclusion required')
     identity={'protocol':'SHARED:'+sha(path),'batch':str(path),'version':VERSION}
     claim(path.parent/'Activation.json',{'state':'reserved','account_lease':str(lease),'identity':identity})
     claim(lease,identity)
-    claim(path.parent/'gate/ledger.json',{'version':VERSION,'manifest_sha256':sha(path),'next_ticket':0,'requests':{},'active':{},'jobs':{},'events':[],'peak':0,'last_sent_at':0})
+    if not independent(m):claim(path.parent/'gate/ledger.json',{'version':VERSION,'manifest_sha256':sha(path),'next_ticket':0,'requests':{},'active':{},'jobs':{},'events':[],'peak':0,'last_sent_at':0})
     write(path.parent/'Activation.json',{'state':'active','account_lease':str(lease),'identity':identity})
 
 
@@ -159,9 +171,9 @@ class Admission:
         if sha(self.path)!=self.b['sha256']:raise ValueError('shared manifest identity changed')
         lease=Path(self.m['account_gate'])/'generation.lock'
         if not lease.is_file() or read(lease).get('protocol')!='SHARED:'+self.b['sha256']:
-            if self.m.get('candidate_policy'):stop(self.folder,'original whole-account lease missing or changed')
+            if self.m.get('candidate_policy') and not independent(self.m):stop(self.folder,'original whole-account lease missing or changed')
             raise PermissionError('original whole-account batch lease missing/different')
-        if self.m['mode']=='real' and self.m['account_exclusion']['valid_until']<time.time():
+        if self.m['mode']=='real' and not independent(self.m) and self.m['account_exclusion']['valid_until']<time.time():
             stop(self.folder,'account exclusion expired');raise PermissionError('account exclusion expired; no renewal')
 
     @contextmanager
@@ -220,7 +232,7 @@ class Admission:
             time.sleep(.1)
 
     def phase(self,s):
-        if exploration(self.m):return 1,None
+        if exploration(self.m):return self.m['global_API_width'],None
         path=self.path.parent/'API2.finite.json'
         if not path.exists():return 1,None
         r=read(path)
@@ -357,6 +369,21 @@ class Admission:
             if certificate.exists() and not exploration(self.m):
                 role=next(i for i,r in enumerate(self.m['members']) if r['run_id']==self.member)
                 if node!=read(certificate)['validated_nodes'][role]:raise PermissionError('new topology not accepted; do not migrate or bypass the validated node binding')
+        if independent(self.m):
+            self.verify()
+            if os.environ.get('SLURM_JOB_ID'):
+                job=os.environ['SLURM_JOB_ID']
+                allocation=wait_file(self.path.parent/'Current_allocation.json',time.time()+self.m['queue_wait_seconds'],self.path.parent)
+                end=time.monotonic()+self.m['queue_wait_seconds']
+                while allocation.get('state')=='reserved' and time.monotonic()<end:
+                    time.sleep(.05)
+                    allocation=read(self.path.parent/'Current_allocation.json')
+                if (allocation.get('manifest_sha256')!=self.b['sha256']
+                        or allocation.get('jobs',{}).get(self.member)!=job):
+                    raise PermissionError('original Slurm submission receipt does not match')
+                if self.m['mode']=='real':allocation_check(read(self.row['config']))
+            yield
+            return
         try:
             with self.transaction() as s:
                 if (self.folder/'STOP.json').exists():raise RuntimeError('shared STOP retained; no automatic recovery')
@@ -503,7 +530,12 @@ def adapter(b):
             return True
         def check_run(self,d):
             p=super().check_run(d);verify_attachment(d,b);return p
-        def transport(self,p):return GuardedTransport(super().transport(p),Admission(b))
+        def transport(self,p):
+            inner=super().transport(p);admission=Admission(b)
+            if independent(manifest):
+                from .batch_admission import Transport
+                return Transport(inner,admission,policy)
+            return GuardedTransport(inner,admission)
         def task_context(self,d,s,p,task,index):
             if (Path(b['manifest']).parent/'gate/STOP.json').exists():
                 s.update(phase='paused',pause_reason='shared STOP before candidate planning/reservation; manual audited recovery required');return None,[]

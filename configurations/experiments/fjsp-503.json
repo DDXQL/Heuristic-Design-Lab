@@ -33,7 +33,8 @@
       "qos": "normal",
       "cpus": 2,
       "memory_mib": 2048,
-      "wall_seconds": 43200
+      "wall_seconds": 43200,
+      "evaluation_concurrency": 1
     },
     "api": {
       "global_concurrency": 1,
@@ -44,13 +45,12 @@
       "retry_delays_seconds": [
         5
       ],
-      "consecutive_failed_slots": 5,
-      "retry_explicit_429": false,
-      "cooldown_429_seconds": 30
+      "consecutive_failed_slots": 0,
+      "cooldown_429_seconds": 30,
+      "model": "gpt-6.1-sol",
+      "requests_per_minute": null
     },
     "window_hours": 48,
-    "exclusive_hours": 72,
-    "max_segments": 4,
-    "release_account_when_done": true
+    "max_segments": 4
   }
 }

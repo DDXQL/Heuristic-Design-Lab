@@ -52,12 +52,15 @@ def failure(policy, message, meta, error_type):
     not_sent = sent in ("not_sent", "not_started")
     if permanent or meta.get("caller_hard_stop"):
         return False, category, True
+    if (meta.get("independent_batch") and meta.get("dispatch_children_settled") is True
+            and not (not_sent or terminal_http)):
+        return False, "wire_outcome_unknown_charged", False
     if meta.get("dispatch_children_settled") is not True or not (not_sent or terminal_http):
         return False, "unresolved_send_or_worker", True
     explicit_429 = (terminal_http and status == 429
                     and meta.get("error_code") == "rate_limit_exceeded")
     retry = (not_sent and temporary and not meta.get("shared_stop")
-             or explicit_429 and policy["retry_explicit_429"])
+             or explicit_429 and not meta.get("independent_batch") and policy["retry_explicit_429"])
     return retry, "terminal_http_" + str(status) if terminal_http else category, False
 
 
@@ -158,6 +161,7 @@ def costs(journal):
         "physical_sends_confirmed": sum(a["send_confirmed"] for a in attempts),
         "physical_sends_unknown": sum(a["status"] in ("pending", "interrupted_unknown")
                                       or (a.get("metadata") or {}).get("send_status") == "unknown" for a in attempts),
+        "unresolved_wire_outcomes": sum(a.get("retry_reason") == "wire_outcome_unknown_charged" for a in attempts),
         "retry_reservations": sum(a["number"] > 1 for a in attempts),
         "retry_physical_sends_confirmed": sum(a["number"] > 1 and a["send_confirmed"] for a in attempts),
         "confirmed_sends_usage_unknown": sum(a["send_confirmed"] and a.get("usage") is None for a in attempts),

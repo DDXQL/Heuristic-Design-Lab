@@ -1,51 +1,68 @@
 # Heuristic Design Lab
 
-R15 是新实验的主线候选。用 [tools/experiment.py](tools/experiment.py) 读取一份 JSON，就能预检、提交、查询和导出。查代码和日志用 [PROJECT_MAP.md](PROJECT_MAP.md)，查参数来源和采用状态用 [DECISIONS.md](DECISIONS.md)。
+[选问题和方法](docs/实验导航.md) · [查代码和结果](PROJECT_MAP.md) · [查协议和参数依据](DECISIONS.md)
 
-## 选配置
-
-| 样例 | 可以运行的内容 |
-| --- | --- |
-| [TSP U 和 EoH](configurations/experiments/tsp-502.json) | 种子 502。填入已核验的 D06 LKH train20 参照路径。现场验收包已生成 `configurations/experiments/tsp-502-site.json`，可直接预检 |
-| [FJSP EoH](configurations/experiments/fjsp-503.json) | 种子 503，使用 train21。FJSP U 已有历史冻结执行器，R15 尚未接入 |
-| [OBP U 和 EoH](configurations/experiments/obp-501.json) | EoH 资产预检通过。U 缺 H401 冻结的 10H。只跑 EoH 时，复制配置并在 `research.runs` 中保留 EoH |
-| [无 API 验收](configurations/experiments/slurm-no-api-smoke.json) | 合成候选和评价，用于检查实际 Slurm 分段接续 |
-
-复制 JSON 后更改 `name`。在 `research.runs` 填 1 到 2 个方法与种子组合，每一条是一次独立搜索。三次重复可分为多个配置，每批共享同一账户的使用权。训练清单在 `training_manifest`，冻结 H 在 `frozen_h`，TSP 参照在 `reference`。相对路径从项目根解析，`null` 使用该组默认绑定。真实 R15 搜索每种子目标为 1000 个成功返回的演化候选。
-
-在 `execution` 中编辑 Slurm 的 CPU、内存、单段时限，以及 API 超时、排队、请求预留上限和退避。终端会指出当前版本支持的并发及缺少的资产。提交后保留原 JSON，查询与恢复沿用它。
-
-## 在集群上运行
-
-用 UU 连接实验室电脑，从它的本地终端登录：
-
-```bash
-ssh -J custom@222.201.144.188:22 qiuqian@110.1.2.1
+```text
+JSON 或终端菜单 → tools/experiment.py → 每个种子一个 Slurm 作业
+                                        ├─ 同批 API 并发与节奏
+                                        └─ 独立检查点与结果 → status / export
 ```
 
-进入独立 R15 部署目录。下面以准备了 D06 参照的 TSP 现场配置为例：
+| 问题 | 常用配置与缺项 |
+| --- | --- |
+| [TSP](docs/实验导航.md#tsp) | [U／EoH](configurations/experiments/tsp-502.json)。需要已核验的 D06 train20 参照 |
+| [FJSP](docs/实验导航.md#fjsp) | [EoH](configurations/experiments/fjsp-503.json)。R15 尚未接入冻结版 U |
+| [OBP](docs/实验导航.md#obp) | [U／EoH](configurations/experiments/obp-501.json)。U 缺 H401 冻结集 |
+
+方法、固定 H 入口和待接入的传统 HH 见[能力矩阵](docs/实验导航.md#能力矩阵)。开发主线提供三种子独立执行。本页的新命令需要已包含该提交的新部署，现有 R15p3 仍按[原操作手册](docs/研究人员实验操作手册.md)运行。
+
+## 路线一 · Mac IDE 改 JSON，集群提交
+
+在 Mac 的项目根目录打开 VS Code 或 Cursor，复制一份模板并换 `name`。在 `research.runs` 写 1～3 个独立的方法／种子组合。设置训练清单、冻结 H 和参照路径。相对路径从项目根解析。API 并发、超时和请求上限在 `execution.api`，CPU 和时限在 `execution.slurm`。
+
+Mac 本地已有环境可直接预检。若需要新环境，在项目根运行 `python3.12 -m venv "$HOME/.venvs/hdl-r15"` 和 `"$HOME/.venvs/hdl-r15/bin/python" -m pip install -r requirements.txt`。
 
 ```bash
-cd /public2/home/qiuqian/hdl-deploy/triad-candidate-runtime-20261119-r15p3
-P=/public2/home/qiuqian/hdl-envs/portable-v2/bin/python
-CFG=configurations/experiments/tsp-502-site.json
-
+P=/Users/DDXQL/Developer/cluster-deployment/mac-portability-env-v2/bin/python
+CFG=configurations/experiments/tsp-502.json
 "$P" -s -B tools/experiment.py prepare "$CFG"
 ```
 
-每组显示 `pending: []` 表示配置和资产预检通过。正式启动需在现场验收、有限真实小试和相应授权后执行：
+本地可编辑、预检和运行离线 Mock。正式搜索交给集群计算节点。上校园网后用 SSH 登录，配置可用 `scp` 传到新发布目录。
+
+## 路线二 · 在家用 UU，进入实验室 Windows 的 CMD
+
+Windows 只用来登录和传文件，无需安装项目 Python。
+
+```cmd
+ssh -J custom@222.201.144.188:22 qiuqian@110.1.2.1
+```
+
+Mac 在校园网使用同一条登录命令。在出现 `[qiuqian@master ~]$` 后，进入已部署的发布根目录。以下命令在集群 Linux 终端执行。
 
 ```bash
+P=/public2/home/qiuqian/hdl-envs/portable-v2/bin/python
+"$P" -s -B tools/experiment.py configure --platform cluster
+```
+
+菜单只保存真实 JSON，显示资产、预算、源码和对应命令。也可以直接用已有 JSON。
+
+## 预检、启动、查询和取回
+
+```bash
+CFG=configurations/experiments/tsp-502.json
+"$P" -s -B tools/experiment.py prepare "$CFG"
 "$P" -s -B tools/experiment.py run "$CFG" --approve
-```
-
-收到 `submitted: true`、搜索作业号和首个审核作业号后，可以断开 UU。12 小时后按需执行：
-
-```bash
 "$P" -s -B tools/experiment.py status "$CFG"
-"$P" -s -B tools/experiment.py export "$CFG" --out "$PWD/tsp-502-results.zip"
+"$P" -s -B tools/experiment.py export "$CFG" --out "$HOME/tsp-502-results.zip"
 ```
 
-`status` 显示候选数、最优训练 J、请求统计和暂停原因。按时保存的批次由 Slurm 审核作业接续。主动暂停且已结算的批次显示 `operator_paused`，用同一 JSON 执行 `resume`。已导出的结果可在实验室电脑用 SCP 取回。共享 STOP 或未知结算详见 [DECISIONS.md](DECISIONS.md#共享-stop-触发与恢复)。
+`pending: []` 表示资产预检通过。真实运行使用已验收的发布版本和已授权的并发。提交收到作业号后可关闭电脑。申请暂停用 `pause`，等 `status` 显示 `operator_paused` 后用 `resume`。正常时限接续由 Slurm 自行处理。12 小时后看应用状态，候选还没达标时可查已完成数量及原因。
 
-目前无 API 现场检查已提交。用 `bash "$HOME/r15p3-site-20261120/site.sh" status` 查看，`site_ready: true` 才表示通过。具体部署、回执和恢复示例见 [R15 操作手册](docs/研究人员实验操作手册.md)。R13 旧批次使用 [原操作菜单](docs/R13旧TSP501-Mac独立菜单-20261118.md)。
+从实验室电脑 **本地 CMD** 取回 ZIP，再用 UU 传回 Mac。
+
+```cmd
+scp -J custom@222.201.144.188:22 qiuqian@110.1.2.1:/public2/home/qiuqian/tsp-502-results.zip "G:\Experiment\transfer-outbox\tsp-502-results.zip"
+```
+
+[现场验收与版本状态](DECISIONS.md#验收与回退) · [历史 R13、R15p3 入口](docs/实验导航.md#历史版本)

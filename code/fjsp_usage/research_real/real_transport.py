@@ -163,6 +163,10 @@ def network_failure_metadata(exc):
 def response_audit(response, secret=''):
     """Allowlisted gateway identifiers, never Authorization/cookies/whole headers."""
     result={'http_status':response.status}
+    if response.status == 429:
+        retry_after = response.getheader('Retry-After')
+        if isinstance(retry_after, str):
+            result['retry_after'] = redact_diagnostic(retry_after, secret)[:128]
     content_type = response.getheader('Content-Type')
     if isinstance(content_type, str):
         result['http_content_type'] = redact_diagnostic(content_type, secret)[:256]

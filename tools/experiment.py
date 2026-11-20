@@ -19,6 +19,7 @@ from heuristic_design.core import state_a_v3
 from heuristic_design.core.storage import digest, read, sha, write
 from experiments.triad import campaign, candidate_policy, configuration, parallel, shared_admission, six_ops
 from experiments.triad.concurrency_probe import claim
+from experiments.triad.batch_admission import WIDTHS
 
 
 def require(condition, message):
@@ -30,9 +31,9 @@ def integer(value, low, high, name):
     require(type(value) is int and low <= value <= high, f"{name} 需要 {low} 到 {high} 的整数")
 
 
-def fields(value, expected, name):
+def fields(value, expected, name, optional=""):
     require(isinstance(value, dict), f"{name} 需要 JSON 对象")
-    unknown = set(value) - set(expected.split())
+    unknown = set(value) - set(expected.split()) - set(optional.split())
     missing = set(expected.split()) - set(value)
     require(not unknown and not missing, f"{name} 缺少 {sorted(missing)}，额外字段 {sorted(unknown)}")
 
@@ -50,10 +51,10 @@ def load_document(path):
 def settings(doc):
     research, execution = doc["research"], doc["execution"]
     fields(research, "problem runs training_manifest frozen_h reference state evaluation champion holdout budget decision", "research")
-    fields(execution, "mode slurm api window_hours exclusive_hours max_segments release_account_when_done", "execution")
+    fields(execution, "mode slurm api window_hours max_segments", "execution", "exclusive_hours release_account_when_done")
     slurm, api, budget = execution["slurm"], execution["api"], research["budget"]
-    fields(slurm, "partition account qos cpus memory_mib wall_seconds", "execution.slurm")
-    fields(api, "global_concurrency min_interval_seconds queue_wait_seconds timeout_seconds evolution_reservation_cap retry_delays_seconds consecutive_failed_slots retry_explicit_429 cooldown_429_seconds", "execution.api")
+    fields(slurm, "partition account qos cpus memory_mib wall_seconds", "execution.slurm", "evaluation_concurrency")
+    fields(api, "global_concurrency min_interval_seconds queue_wait_seconds timeout_seconds evolution_reservation_cap retry_delays_seconds consecutive_failed_slots cooldown_429_seconds", "execution.api", "requests_per_minute model retry_explicit_429")
     fields(budget, "count target empty truncated", "research.budget")
     problem = research["problem"]
     require(problem in ("fjsp", "tsp", "obp"), "problem 可选 fjsp、tsp、obp")
@@ -68,7 +69,7 @@ def settings(doc):
     require(not real or isinstance(research["decision"], str) and research["decision"].strip(),
             "真实搜索需要填写 research.decision，记录本批采用的研究协议")
     runs = research["runs"]
-    require(isinstance(runs, list) and 1 <= len(runs) <= 2, "每批填写 1 到 2 个方法和种子的组合")
+    require(isinstance(runs, list) and 1 <= len(runs) <= 3, "每批填写 1 到 3 个方法和种子的组合")
     seen = set()
     for row in runs:
         fields(row, "method seed initialization_attempts", "research.runs")
@@ -87,11 +88,12 @@ def settings(doc):
     integer(slurm["memory_mib"], 128, 2**20, "Slurm memory_mib")
     integer(slurm["wall_seconds"], 60, 604800, "Slurm wall_seconds")
     integer(execution["window_hours"], 1, 144, "window_hours")
-    integer(execution["exclusive_hours"], execution["window_hours"] + 1, 168, "exclusive_hours")
     integer(execution["max_segments"], 1, campaign.MAX_SEGMENTS, "max_segments")
-    require(type(execution["release_account_when_done"]) is bool, "release_account_when_done 需要布尔值")
-    require(type(api["global_concurrency"]) is int and api["global_concurrency"] == 1,
-            "当前 R15 搜索只接入 API 总并发 1。并发 2、4、8 尚未接入或验收，见 DECISIONS.md")
+    require(type(api["global_concurrency"]) is int and api["global_concurrency"] in WIDTHS, "API 总并发可选 1、2、4、8")
+    if api.get("requests_per_minute") is not None:
+        integer(api["requests_per_minute"], 1, 100000, "requests_per_minute")
+    require(slurm.get("evaluation_concurrency", 1) == 1, "当前 R15 适配器保留每个种子串行 CPU 评价")
+    require(api.get("retry_explicit_429", False) is False, "新批次的 429 退避后开新槽，原槽不重试")
     integer(api["min_interval_seconds"], 0, 60, "API 发送间隔")
     integer(api["queue_wait_seconds"], 1, 600, "API 排队等待")
     require(isinstance(api["retry_delays_seconds"], list), "retry_delays_seconds 需要数组")
@@ -100,7 +102,7 @@ def settings(doc):
               "evolution_attempt_cap": api["evolution_reservation_cap"],
               "per_slot_attempt_cap": 1 + len(api["retry_delays_seconds"]),
               "backoff_seconds": api["retry_delays_seconds"], "failure_streak_limit": api["consecutive_failed_slots"],
-              "retry_explicit_429": api["retry_explicit_429"], "rate_limit_backoff_seconds": api["cooldown_429_seconds"]}
+              "retry_explicit_429": api.get("retry_explicit_429", False), "rate_limit_backoff_seconds": api["cooldown_429_seconds"]}
     candidate_policy.validate(policy, budget["target"], real=real)
     return policy
 
@@ -116,6 +118,8 @@ def member(doc, item, policy):
     research, rules = doc["research"], doc["execution"]
     group = research["problem"] + "-" + item["method"]
     c = six_ops.config(group)
+    require(rules["api"].get("model", c["provider"]["model"]) == c["provider"]["model"],
+            "模型身份与冻结配置不符。当前入口只使用资产绑定的模型")
     pending = []
     if group == "fjsp-u":
         pending.append("FJSP U 冻结执行器尚未接入 R15 成功返回口径")
@@ -179,7 +183,9 @@ def prepare(doc):
                      "execution": doc["execution"],
                      "ready_for_submission_checks": all(not row["pending"] for row in rows),
                      "total_request_reservation_cap": sum(row["budget"]["request_cap_per_seed"] for row in rows),
-                     "global_API_width": 1, "submitted": False, "API_requests": 0, "actual_solves": 0}
+                     "global_API_width": doc["execution"]["api"]["global_concurrency"],
+                     "effective_max_requests": min(len(rows), doc["execution"]["api"]["global_concurrency"]),
+                     "submitted": False, "API_requests": 0, "actual_solves": 0}
 
 
 def run(doc, folder, approve):
@@ -212,13 +218,15 @@ def run(doc, folder, approve):
         rows.append({"group": row["group"], "seed": row["seed"], "config": str(config_path)})
     spec = inputs / "spec.json"
     write(spec, {"batch_id": folder.name, "mode": rules["mode"], "members": rows,
-                 "runtime_policy": shared_admission.EXPLORE, "candidate_policy": first["candidate_policy"],
+                 "runtime_policy": shared_admission.INDEPENDENT, "candidate_policy": first["candidate_policy"],
+                 "global_API_width": rules["api"]["global_concurrency"],
+                 "requests_per_minute": rules["api"].get("requests_per_minute"),
                  "account_gate": str(gate), "min_request_interval_seconds": rules["api"]["min_interval_seconds"],
                  "queue_wait_seconds": rules["api"]["queue_wait_seconds"], "window_seconds": first["window_seconds"],
                  "segment_seconds": rules["slurm"]["wall_seconds"]})
-    plan = parallel.plan(spec, folder, rules["exclusive_hours"], True)
+    plan = parallel.plan(spec, folder)
     path = Path(plan["manifest"])
-    submitted = campaign.launch(path, rules["max_segments"], rules["release_account_when_done"])
+    submitted = campaign.launch(path, rules["max_segments"], True)
     return {"name": doc["name"], "mode": rules["mode"], "manifest": str(path), "submitted": True,
             "total_request_reservation_cap": preview["total_request_reservation_cap"],
             "jobs": [row["job_id"] for row in submitted["initial"]["receipts"]],
@@ -270,6 +278,7 @@ def status(path):
                         "request_reservations": metrics.get("reservations_by_stage"),
                         "confirmed_sends": metrics.get("physical_sends_confirmed"),
                         "unknown_sends": metrics.get("physical_sends_unknown"),
+                        "unresolved_wire_outcomes": metrics.get("unresolved_wire_outcomes"),
                         "reason": reason, "detail": REASONS.get(reason),
                         "summary_file": str(final) if final.is_file() else None})
     return {"batch": m["batch_id"], "mode": m["mode"], "message": message, "members": members,
@@ -277,6 +286,9 @@ def status(path):
             "total_request_reservation_cap": m["total_request_cap"], "STOP": stop,
             "shared_attempts": (raw["shared"] or {}).get("states"), "outcome": outcome.get("reason"),
             "account_closed": (path.parent / "Closed.json").is_file(),
+            "effective_max_requests": min(len(m["members"]), m["global_API_width"]),
+            "configured_API_width": m["global_API_width"],
+            "member_assessment": outcome.get("assessment", {}).get("members"),
             "review_error": read(error) if error.is_file() else None}
 
 
@@ -315,7 +327,7 @@ def pause(path):
         if checkpoint["phase"] == "running":
             rows.append(row)
         else:
-            require(checkpoint["phase"] in ("completed", "initialization_incomplete", "expired"),
+            require(checkpoint["phase"] in ("completed", "initialization_incomplete", "expired", "paused", "stopped"),
                     "请在所有尚未完成的作业开始运行后再请求暂停")
     require(rows, "当前没有运行中的作业")
     for row in rows:
@@ -324,16 +336,91 @@ def pause(path):
             "next": "等 status 显示 operator_paused 后用 resume 继续"}
 
 
+def configure(output, platform):
+    """Generate the same JSON consumed by prepare and run."""
+    import shlex
+
+    problem = input("问题 [tsp/fjsp/obp，默认 tsp] ").strip().lower() or "tsp"
+    templates = {"tsp": "tsp-502.json", "fjsp": "fjsp-503.json", "obp": "obp-501.json"}
+    require(problem in templates, "请选择 tsp、fjsp 或 obp")
+    path = ROOT / "configurations/experiments" / templates[problem]
+    doc = read(path)
+    initial_method = "eoh" if problem == "fjsp" else "u"
+    method = input(f"方法 [u/eoh/fixed-h/hh，默认 {initial_method}] ").strip().lower() or initial_method
+    if method in ("fixed-h", "hh"):
+        require(method != "hh", "传统 HH 尚未接入，参见 PROJECT_MAP.md")
+        template = six_ops.config_path(problem + "-u").relative_to(ROOT)
+        print("固定 H 使用独立参照入口。它需要同一冻结资产与已有结果，详见 PROJECT_MAP.md。")
+        print(f"python3 -s -B experiments/triad/assets.py fixed-plan --config {template}")
+        return
+    require(method in ("u", "eoh"), "请输入 u 或 eoh")
+    doc["name"] = input(f"批次名 [默认 {problem}-{method}-study] ").strip() or f"{problem}-{method}-study"
+    default_seeds = "502" if problem == "tsp" else "503" if problem == "fjsp" else "501"
+    seeds = input(f"逗号分隔的种子，例如 501,502,503 [默认 {default_seeds}] ").strip() or default_seeds
+    init = int(input("每种子初始化预留上限 [20] ").strip() or "20")
+    doc["research"]["runs"] = [{"method": method, "seed": int(seed.strip()), "initialization_attempts": init}
+                               for seed in seeds.split(",")]
+    prompt = "训练清单路径 [Enter 使用模板] "
+    if training := input(prompt).strip():
+        doc["research"]["training_manifest"] = training
+    if method == "u" and (h_file := input("冻结 H 路径 [Enter 使用模板] ").strip()):
+        doc["research"]["frozen_h"] = h_file
+    if problem == "tsp":
+        reference = input("D06 参照路径 [Enter 自动查找现场包] ").strip()
+        imported = ROOT / "preparations/operations/tsp-reference-r15.json"
+        if reference or imported.is_file():
+            doc["research"]["reference"] = reference or str(imported.relative_to(ROOT))
+    api, slurm = doc["execution"]["api"], doc["execution"]["slurm"]
+    api["global_concurrency"] = int(input("同批 API 并发上限 [1/2/4/8，默认 1] ").strip() or "1")
+    api["timeout_seconds"] = int(input(f"HTTP 超时秒数 [{api['timeout_seconds']}] ").strip() or api["timeout_seconds"])
+    api["evolution_reservation_cap"] = int(input("每种子演化请求预留上限 [1100] ").strip() or "1100")
+    if rpm := input("服务商已知的 RPM 上限 [Enter 留空] ").strip():
+        api["requests_per_minute"] = int(rpm)
+    slurm["cpus"] = int(input("每种子 Slurm CPU 数 [2] ").strip() or "2")
+    slurm["memory_mib"] = int(input("每种子内存 MiB [2048] ").strip() or "2048")
+    slurm["wall_seconds"] = int(input("单段 Slurm 小时 [12] ").strip() or "12") * 3600
+    members, preview = prepare(doc)
+    output = output or ROOT / "configurations/experiments" / (doc["name"] + ".json")
+    require(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,39}", doc["name"]), "批次名格式无效")
+    claim(output, doc)
+    print(json.dumps({"配置": str(output), "研究参数": doc["research"], "预检": preview,
+                      "模型": members[0][0]["provider"]["model"],
+                      "算法": "code/heuristic_design/core/evolution_v1.py" if method == "u"
+                      else "deploy/eoh-baseline/eoh_gap.py",
+                      "问题适配": f"code/heuristic_design/problems/{problem} · experiments/triad/problems.py",
+                      "入口": "tools/experiment.py"}, indent=2, ensure_ascii=False))
+    relative = output.resolve().relative_to(ROOT) if output.resolve().is_relative_to(ROOT) else output.resolve()
+    python = shlex.quote(sys.executable) if platform == "local" else '"/public2/home/qiuqian/hdl-envs/portable-v2/bin/python"'
+    quote = shlex.quote(str(relative))
+    print(f"{python} -s -B tools/experiment.py prepare {quote}")
+    if platform == "local":
+        print("本地可编辑及预检。通过 SSH 登录集群后，在对应发布目录生成 cluster 命令。")
+        return
+    if preview["ready_for_submission_checks"]:
+        if api["global_concurrency"] > 1:
+            print("这一并发需先获得对应账户的真实试验授权及验收。")
+        print(f"{python} -s -B tools/experiment.py run {quote} --approve")
+    else:
+        print("补齐 pending 后重新预检。")
+    for action in ("status", "pause", "resume", "export"):
+        print(f"{python} -s -B tools/experiment.py {action} {quote}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="从一份 JSON 预检、提交、查询和导出 R15 实验",
                                      epilog="配置样例在 configurations/experiments/，参数说明和现场验收见 README.md")
-    parser.add_argument("action", choices=("prepare", "run", "status", "pause", "resume", "export"))
-    parser.add_argument("config", type=Path)
+    parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "export"))
+    parser.add_argument("config", type=Path, nargs="?")
+    parser.add_argument("--platform", choices=("local", "cluster"), default="cluster" if ROOT.is_relative_to("/public2") else "local")
     parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价，并确认账户无其他生成者")
     parser.add_argument("--out", type=Path, help="export 的新 ZIP 路径")
     args = parser.parse_args(argv)
     require(not args.approve or args.action == "run", "--approve 仅用于启动新批次")
-    require(args.out is None or args.action == "export", "--out 仅用于 export")
+    require(args.out is None or args.action in ("export", "configure"), "--out 仅用于 export 或 configure")
+    if args.action == "configure":
+        require(args.config is None, "configure 用 --out 指定新配置")
+        return configure(args.out, args.platform)
+    require(args.config is not None, "本命令需要配置文件")
     doc, folder = load_document(args.config)
     path = folder / "Shared.json"
     request = folder.parent / (folder.name + "-inputs") / "request.json"
@@ -364,7 +451,7 @@ def main(argv=None):
 if __name__ == "__main__":
     try:
         main()
-    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
+    except (OSError, ValueError, KeyError, TypeError, EOFError, subprocess.SubprocessError) as error:
         info = getattr(error, "stderr", None)
         print(json.dumps({"error": str(error), "detail": info[:1000] if info else None}, ensure_ascii=False), file=sys.stderr)
         raise SystemExit(2)
