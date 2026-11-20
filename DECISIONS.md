@@ -27,6 +27,7 @@
 
 ## 验收与回退
 
+- 新版真实验收工具、FJSP U 接入和 H401 操作见 [R15 真实验收与六组](docs/R15真实验收与六组.md)。FJSP U 的 N5、冻结 10H、train21、LB_v5 和 U 交叉变异保留。每种子在统一执行器中串行评价；新批次用成功返回计数，旧批次保留各自口径和检查点。
 - 开发继续使用 `codex/successful-candidate-runtime-20261119`，主线更改涉及 [统一入口](tools/experiment.py)、[工作流与故障测试](tools/experiment_tests.py) 及 `experiments/triad/` 的准入、续跑。新版本在独立目录部署。R15p3 标签 `r15p3` 指向 `d32de99`，原发布包由该标签重建，518 个文件哈希均匹配。R13 和 R15p3 运行继续使用各自的发布目录、配置和检查点。回退新批次时选择原发布包和对应的原配置。
 - 离线复核用 `python3 -s -B tools/experiment_tests.py`。当前版本仍需在目标节点无 API 检查 Linux 文件锁、依赖作业及真实分段接续。双节点探针须同时确认 `fs-pass-*.json` 和 `permit-pass-*.json`。R15p3 既有现场验收继续用 `bash "$HOME/r15p3-site-20261120/site.sh" status`，该回执只覆盖已部署的旧版本。
 - R15p4 现场包的操作和通过条件见 [R15p4 现场验收](docs/R15p4现场验收.md)。现场包使用 `721e9ed`，三种子均走 Mock，另对 D06 参照做文件预检。目标节点的作业回执出来后再确认验收状态。

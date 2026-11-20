@@ -5,13 +5,18 @@
     "problem": "fjsp",
     "runs": [
       {
+        "method": "u",
+        "seed": 503,
+        "initialization_attempts": 20
+      },
+      {
         "method": "eoh",
         "seed": 503,
         "initialization_attempts": 20
       }
     ],
     "training_manifest": "preparations/eoh-gap/train21.manifest.json",
-    "frozen_h": null,
+    "frozen_h": "preparations/triad/fjsp/H_frozen.json",
     "reference": null,
     "state": "common-state-a-v3",
     "evaluation": "train_J_min_T30",

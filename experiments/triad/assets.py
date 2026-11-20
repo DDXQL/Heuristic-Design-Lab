@@ -3,15 +3,19 @@
 import argparse
 import copy
 from dataclasses import asdict
+import csv
 import json
 import math
 from pathlib import Path
+import re
 import subprocess
 import sys
 ROOT=Path(__file__).resolve().parents[2]
 sys.path[:0]=[str(ROOT/'code'),str(ROOT)]
 from heuristic_design.core.storage import read,write,sha,digest
 from experiments.triad import configuration,problems,runtime,evaluation
+
+FJSP_FIXED_HISTORY=ROOT/'reports/fjsp-execution-20261112/fixed-H-reuse-v3'
 
 
 def identity(c,data,refs):
@@ -26,14 +30,53 @@ def fixed_plan(c):
     data,refs,hs=problems.load_inputs(c);binding=identity(c,data,refs)
     if not hs:raise ValueError('declared frozen H pool needed')
     reused=None
-    if c.get('compatible_fixed_results'):
-        previous=read(c['compatible_fixed_results'])
+    source=c.get('compatible_fixed_results')
+    h401=ROOT/'reports/obp-H401/compatible-fixed-results.json'
+    if source is None and c['problem']=='obp' and h401.is_file():source=h401
+    if source:
+        previous=read(source)
         if previous['identity']!=binding or previous['H_keys']!=[r['key'] for r in hs]:raise ValueError('fixed-result compatibility differs; preserved, not reevaluated')
         costs=previous['costs']
         if len(costs)!=len(hs) or any(len(v)!=len(data) for v in costs):raise ValueError('complete H×train cost table required')
-        js=[sum(problems.state.score_final_cost(x,r['reference']) for x,r in zip(row,refs))/len(refs) for row in costs]
-        champion=min(range(len(hs)),key=lambda i:(js[i],i));reused={'H_index':champion,'J':js[champion],'costs':costs,'new_solves':0}
+        reused={**fixed_champion(costs,refs),'costs':costs,'new_solves':0}
+    elif c['problem']=='fjsp' and c['mode']=='real' and (FJSP_FIXED_HISTORY/'compatibility.json').is_file():
+        reused=fjsp_fixed_history(c,data,refs,hs)
     return dict(identity=binding,H_keys=[r['key'] for r in hs],max_native_solves=2*len(hs)*len(data),compatible_reuse=reused,API_requests=0,actual_solves=0)
+
+
+def fjsp_fixed_history(c,data,refs,hs):
+    proof=FJSP_FIXED_HISTORY/'compatibility.json';table=FJSP_FIXED_HISTORY/'fixed-H-train21-J.csv'
+    old=read(proof)
+    if (old['scope']!='STATIC_RECEIPT_REUSE_NOT_REEVALUATION' or (len(hs),len(data))!=(10,21)
+            or old['input_provenance']['H']['sha256']!=sha(Path(c['h_file']))
+            or old['input_provenance']['data']['sha256']!=sha(Path(c['data_manifest']))
+            or old['H_order']!=[h['key'] for h in hs]
+            or old['instances']!=[{'file':v['file'],'source_sha256':v['source_sha256'],'LB':r['reference']}
+                                  for v,r in zip(data,refs)]):
+        raise ValueError('FJSP fixed reference identity differs from the archived compatibility proof')
+    with table.open(newline='') as file:
+        rows=list(csv.DictReader(file))
+    if len(rows)!=210:raise ValueError('historical FJSP reference requires 210 complete rows')
+    costs=[]
+    for i,h in enumerate(hs):
+        selected=[]
+        for row,r in zip(rows[i*21:(i+1)*21],refs):
+            value=float(row['Cmax'])
+            if (row['H']!=f'H{i}' or row['H_key']!=h['key'] or row['file']!=r['file']
+                    or row['valid']!='True' or not re.fullmatch('[0-9a-f]{64}',row['native_recheck_sha256'])
+                    or value<=0 or not value.is_integer() or float(row['LB'])!=r['reference']
+                    or float(row['J'])!=problems.state.score_final_cost(value,r['reference'])):
+                raise ValueError('invalid archived FJSP cost, J or deterministic recheck receipt')
+            selected.append(int(value))
+        costs.append(selected)
+    return {**fixed_champion(costs,refs),'costs':costs,'new_solves':0,'evidence':'archived_static_quality_reference',
+            'historical_timing_reused':False,'compatibility_receipt_sha256':sha(proof),'cost_table_sha256':sha(table)}
+
+
+def fixed_champion(costs,refs):
+    js=[sum(problems.state.score_final_cost(x,r['reference']) for x,r in zip(row,refs))/len(refs) for row in costs]
+    index=min(range(len(js)),key=lambda i:(js[i],i))
+    return {'H_index':index,'J':js[index],'J_by_H':js}
 
 
 def import_fixed(c,source,review,output):
@@ -48,7 +91,7 @@ def import_fixed(c,source,review,output):
     return {'output':str(output),'sha256':sha(output),'new_solves':0,'API_requests':0}
 
 
-def freeze_h(directory,output):
+def selected_h(directory):
     p,s=runtime.protocol_state(directory)
     if p['run_kind']!='h-build' or s['phase']!='completed':raise ValueError('completed independent H-build required; old post-hoc candidates are not EoH-S')
     adapter=runtime.Adapter();adapter.check_run(directory)
@@ -58,6 +101,12 @@ def freeze_h(directory,output):
     vectors={t['id']:[r['score'] for r in read(Path(directory)/s['evaluations'][t['evaluation_key']]['path'])['instances']] for t in valid}
     from experiments.triad import h_selection
     selected,selection_trace=h_selection.select(valid,vectors,count,p['config']['h_build']['selection'])
+    return p,s,selected,selection_trace
+
+
+def freeze_h(directory,output):
+    p,s,selected,selection_trace=selected_h(directory)
+    count=p['config']['h_build']['target_count']
     output=Path(output)
     if output.exists():raise FileExistsError('frozen H output already exists; no overwrite')
     packet=dict(kind='H_frozen',engineering_only=p['config']['api_mode']=='mock',problem=p['config']['problem'],identity='bounded independent H construction + complete train J selection; NOT EoH-S',
@@ -65,6 +114,40 @@ def freeze_h(directory,output):
       selection_policy=p['config']['h_build']['selection'],selection_trace=selection_trace,source_protocol_sha256=s['identity'],data=p['instances'],references=p['references'],budget=p['budgets'],API_summary=runtime.Adapter().summary(directory))
     if p['config']['problem']=='obp':packet.update(obp_contract=p['obp_execution_contract'],obp_contract_sha256=p['obp_contract_sha256'],H_language=p['config']['obp_h_abi'])
     write(output,packet);write(output.with_suffix('.receipt.json'),{'sha256':sha(output),'source_protocol':s['identity']});return {'output':str(output),'sha256':sha(output),'H_count':count,'new_solves':0,'API_requests':0}
+
+
+def fixed_from_h401(c,directory,output):
+    """Reuse the certified training costs of the same frozen H401 members."""
+    d=Path(directory);output=Path(output)
+    if any((d/name).exists() for name in ('.execution.lock','.coordinator.lock','Stop.json')):
+        raise ValueError('settled H401 required; keep original locks and STOP')
+    p,s,chosen,trace=selected_h(d)
+    if (p['config']['api_mode']!='real' or p['config']['problem']!='obp' or s['cursor']!=40
+            or p['config']['h_build']['search_seed']!=401 or len(chosen)!=10
+            or p['config']['h_build']['selection']!='greedy-envelope-J-v1' or c['group']!='obp-u'):
+        raise ValueError('completed real OBP H401 with all 40 slots and 10 frozen rules required')
+    data,refs,hs=problems.load_inputs(c)
+    frozen=read(c['h_file'])
+    if (len(data)!=96 or p['instances']!=data or p['references']!=refs
+            or p['obp_contract_sha256']!=digest(problems.obp_contract(c))
+            or any(p['config'][k]!=c[k] for k in ('solve_seed','instance_timeout_seconds'))
+            or (frozen['source_protocol_sha256'],frozen['data'],frozen['references'],frozen['selection_trace'])!=(s['identity'],data,refs,trace)
+            or [(roll.get('semantic_id',roll['id']),roll['candidate']) for roll in chosen]
+               !=[(member['id'],member['candidate']) for member in frozen['members']]):
+        raise ValueError('bound OBP H, train96 or frozen selection identity differs from H401')
+    costs=[]
+    for task in chosen:
+        result=read(d/s['evaluations'][task['evaluation_key']]['path'])
+        # selected_h already checked each stored result against the loaded releases.
+        if result.get('mock') or not result['valid'] or not math.isclose(-result['fitness'],task['J'],rel_tol=1e-12,abs_tol=1e-12):
+            raise ValueError('H401 candidate training result not eligible for fixed-H reuse')
+        costs.append([row['raw_cost'] for row in result['instances']])
+    from experiments.triad.concurrency_probe import claim
+    value={'identity':identity(c,data,refs),'H_keys':[row['key'] for row in hs],'costs':costs,
+           'source_protocol_sha256':s['identity'],'source_frozen_H_sha256':sha(Path(c['h_file'])),
+           **fixed_champion(costs,refs),'new_solves':0,'API_requests':0}
+    claim(output,value)
+    return {k:v for k,v in {**value,'output':str(output),'rows':len(hs)*len(data)}.items() if k not in ('costs','identity')}
 
 
 def lkh_prepare(config,output,spec):
@@ -152,15 +235,26 @@ def job_submit(a):
     folder=a.run_dir.resolve();kind=a.asset
     if kind=='obp-H':
         c=configuration.load(a.config);cap=c['h_build']['request_cap']
-        if c['problem']!='obp' or cap!=40 or not a.allow_api or not a.allow_solves or a.approve_budget!=40 or a.approve_solves!=7680:raise PermissionError('OBP H401 requires explicit40 requests/<=7680 first+recheck solves')
-        if (Path(c['account_gate'])/'generation.lock').exists():raise PermissionError('shared account lease exists; do not overlap or clear it')
+        if (c['problem']!='obp' or c['mode']!='real' or c['instance_count']!=96 or cap!=40
+                or c['h_build']['target_count']!=10 or c['h_build']['search_seed']!=401
+                or c['h_build']['selection']!='greedy-envelope-J-v1' or not folder.is_relative_to(ROOT/'runs')):
+            raise ValueError('H401 requires the frozen OBP 96×40/10 plan under runs/')
+        if a.submit and (not a.allow_api or not a.allow_solves or a.approve_budget!=40 or a.approve_solves!=7680):
+            raise PermissionError('OBP H401 requires explicit40 requests/<=7680 first+recheck solves')
+        if a.submit and (Path(c['account_gate'])/'generation.lock').exists():raise PermissionError('shared account lease exists; do not overlap or clear it')
         action='resume' if a.resume else 'run';r=c['resources'];cpus=r['cpus'];memory=r['memory_mib'];seconds=r['segment_seconds']
-        if not (folder/'Protocol.json').exists():
+        if not (folder/'Protocol.json').exists() and a.submit:
             if a.resume:raise PermissionError('cannot resume uninitialized H build')
             subprocess.run([sys.executable,'-s','-B',str(ROOT/'experiments/triad/entry.py'),'prepare','--kind','h-build','--config',str(a.config.resolve()),'--run-dir',str(folder),'--allow-api','--approve-budget','40'],check=True)
-        cp=read(folder/'checkpoint.json')
-        if cp['phase']!=('paused' if a.resume else 'prepared') or any((folder/n).exists() for n in ('.execution.lock','Stop.json')):raise PermissionError('H build requires prepared or safely paused original state')
-        args=[kind,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',action,str(a.config.resolve()),str(folder),'40'];stamp=sha(folder/'checkpoint.json')
+        if (folder/'checkpoint.json').is_file():
+            cp=read(folder/'checkpoint.json')
+            if cp['phase']!=('paused' if a.resume else 'prepared') or any((folder/n).exists() for n in ('.execution.lock','Stop.json')):raise PermissionError('H build requires prepared or safely paused original state')
+            stamp=sha(folder/'checkpoint.json')
+        else:
+            if a.resume:raise PermissionError('cannot resume uninitialized H build')
+            _,_,_,_,pending=runtime.preflight(a.config,run_kind='h-build')
+            if pending:raise ValueError('H401 preflight pending: '+', '.join(pending))
+        args=[kind,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',action,str(a.config.resolve()),str(folder),'40']
     else:
         plan=read(folder/'reference-plan.json')
         if not a.allow_lkh or a.approve_lkh!=len(plan['commands']) or a.allow_api or a.allow_solves or a.resume:raise PermissionError('explicit exact LKH process count, no API, no automatic LKH resume/retry')
@@ -202,7 +296,7 @@ def lkh_import(folder,output):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['obp-import','check','fixed-plan','fixed-run','fixed-import','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run','lkh-source','lkh-candidate-import','lkh-bind','job-submit'])
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=['obp-import','check','fixed-plan','fixed-run','fixed-import','fixed-from-h401','build-check','build-prepare','build-run','freeze','lkh-prepare','lkh-import','lkh-run','lkh-source','lkh-candidate-import','lkh-bind','job-submit'])
     ap.add_argument('--source',type=Path);ap.add_argument('--config',type=Path);ap.add_argument('--run-dir',type=Path);ap.add_argument('--output',type=Path);ap.add_argument('--spec',type=Path)
     ap.add_argument('--allow-lkh',action='store_true');ap.add_argument('--approve-lkh',type=int)
     ap.add_argument('--download',action='store_true');ap.add_argument('--build',action='store_true');ap.add_argument('--accept-academic-license',action='store_true')
@@ -226,6 +320,7 @@ def main():
         if a.config is None:raise ValueError('explicit config required')
         c=configuration.load(a.config)
         if a.action=='fixed-import':value=import_fixed(c,a.source,a.spec,a.output)
+        elif a.action=='fixed-from-h401':value=fixed_from_h401(c,a.run_dir,a.output)
         elif a.action=='check':
             hs=[]
             if c.get('h_file'):
@@ -254,7 +349,10 @@ def main():
                     write(a.run_dir/f'H-{i:03d}.json',result)
                     if not result['valid']:raise RuntimeError('fixed H invalid; bounded stop without refill')
                     costs.append([r['raw_cost'] for r in result['instances']]);ledger['completed_H']+=1;write(a.run_dir/'fixed-ledger.json',ledger)
-                write(a.run_dir/'fixed-results.json',{'identity':value['identity'],'H_keys':value['H_keys'],'costs':costs});value['output']=str(a.run_dir/'fixed-results.json');ledger['phase']='completed';write(a.run_dir/'fixed-ledger.json',ledger);lock.unlink()
+                champion=fixed_champion(costs,refs)
+                write(a.run_dir/'fixed-results.json',{'identity':value['identity'],'H_keys':value['H_keys'],'costs':costs,**champion})
+                value.update(output=str(a.run_dir/'fixed-results.json'),actual_solves=value['max_native_solves'],champion=champion)
+                ledger['phase']='completed';write(a.run_dir/'fixed-ledger.json',ledger);lock.unlink()
     print(json.dumps(value,ensure_ascii=False,indent=2));return 0
 
 

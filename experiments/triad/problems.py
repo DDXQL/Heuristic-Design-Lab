@@ -244,6 +244,10 @@ def load_inputs(c):
     if c.get('h_file'):
         raw=read(c['h_file'])
         if c['mode']=='real' and isinstance(raw,dict) and raw.get('engineering_only'):raise ValueError('engineering H asset cannot enter real search')
+        if problem=='fjsp' and c['mode']=='real' and c.get('candidate_policy'):
+            provenance=Path(__file__).resolve().parents[2]/'preparations/triad/fjsp/provenance.json'
+            if sha(Path(c['h_file']))!=read(provenance)['H_sha256']:
+                raise ValueError('FJSP U requires the original frozen 10H bytes and order')
         members=raw['members'] if isinstance(raw,dict) else raw
         hs=[r.get('candidate',r) for r in members]
         if problem=='obp' and c['mode']=='real' and (not isinstance(raw,dict) or raw.get('obp_contract_sha256')!=digest(obp_contract(c))):raise ValueError('OBP H asset lacks current feasible-input/action/reference identity; no silent reuse')
@@ -253,6 +257,8 @@ def load_inputs(c):
                 actual='obp-vector-feasible-h-v2' if tuple(a.arg for a in ast.parse(row['code']).body[0].args.args)==('item_size','remaining_capacities') else 'obp-two-scalar-h-v1'
                 if actual!=c['obp_h_abi']:raise ValueError('frozen OBP H ABI differs from configured protocol')
         if len({r['key'] for r in hs})!=len(hs):raise ValueError('frozen H must be AST distinct')
+        if problem=='obp' and c['mode']=='real' and len(hs)!=10:
+            raise ValueError('real OBP routing and fixed-H require the frozen H401 set of 10 rules')
     return rows,refs,hs
 
 

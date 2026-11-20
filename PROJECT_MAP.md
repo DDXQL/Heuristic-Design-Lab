@@ -27,8 +27,9 @@ Heuristic-Design-Lab
 | --- | --- |
 | 三个问题如何读数据、绑定 H、评分 | [problems.py](experiments/triad/problems.py)、[evaluation.py](experiments/triad/evaluation.py) |
 | 方案 A、U 每步选 H、U 算子 | [state_a_v3.py](code/heuristic_design/core/state_a_v3.py)、[routing_state_a_v3.py](code/heuristic_design/core/routing_state_a_v3.py)、[evolution_v1.py](code/heuristic_design/core/evolution_v1.py) |
-| U 与 EoH 如何进入同一执行器 | [runtime.py](experiments/triad/runtime.py)、[eoh_gap.py](deploy/eoh-baseline/eoh_gap.py)。R15 支持 TSP U/EoH、OBP U/EoH 和 FJSP EoH。FJSP U 的独立冻结入口在 [run_frozen.py](experiments/common/run_frozen.py) |
-| 固定 H 或其他基准 | [assets.py](experiments/triad/assets.py) 的 `fixed-plan`、`fixed-run`、`fixed-import` 用于固定 H 参照。传统 HH 尚未接入统一入口 |
+| U 与 EoH 如何进入同一执行器 | [runtime.py](experiments/triad/runtime.py)、[eoh_gap.py](deploy/eoh-baseline/eoh_gap.py)。R15 主线接入三类问题的 U/EoH。[run_frozen.py](experiments/common/run_frozen.py)用于原 FJSP U 身份 |
+| 固定 H 或其他基准 | `tools/experiment.py fixed-plan` 解析工作台配置。[assets.py](experiments/triad/assets.py)负责评价或复用成本。传统 HH 尚未接入统一入口 |
+| API 并发和 TSP 有限真实验收 | [r15_acceptance.py](tools/r15_acceptance.py)，逐请求和结果 JSON 放在 `reports/acceptance-<name>/` |
 
 ## 出问题先看哪里
 

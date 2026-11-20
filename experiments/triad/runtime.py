@@ -249,7 +249,12 @@ class Adapter(old.Adapter):
         s['evaluations'][key]={'status':'reserved'};write(Path(d)/'checkpoint.json',s)
         tid=next(k for k,t in s['tasks'].items() if t['status']=='reserved')
         if p['config']['evaluation_mode']=='mock':
-            j=(int(key[:7],16)%5)/100;rows=[dict(file=r['file'],score=j,raw_cost=None,reference=None) for r in p['instances']]
+            raw=int(key[:7],16)
+            # Strict EoH penalizes equal fitness. Its Mock N10 must have
+            # enough distinct scores to exercise the finite-parent gate.
+            strict=p['run_kind']=='eoh' and p['config']['initialization_policy']=='native_N_finite_or_fail'
+            j=raw/0xfffffff/100 if strict else (raw%5)/100
+            rows=[dict(file=r['file'],score=j,raw_cost=None,reference=None) for r in p['instances']]
             valid=not ('1/0' in candidate.code or '1 / 0' in candidate.code)
             result=dict(valid=valid,fitness=-sum(r['score'] for r in rows)/len(rows) if valid else None,instances=rows if valid else [],mock=True,engineering_only=True)
             path=Path(d)/'evaluations'/key/'result.json';write(path,result)

@@ -22,7 +22,7 @@ def plan(spec,folder,hours=None,confirmed=False):
     policy=doc.get('candidate_policy')
     independent=shared.independent(doc)
     if len(doc['members']) not in ((1,2,3) if independent else (1,2) if policy else (2,)):raise ValueError('select the supported number of independent runs')
-    if doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
+    if not independent and doc['mode']=='real' and any(v['group']=='fjsp-u' and v['seed'] in (501,502) for v in doc['members']):raise PermissionError('completed FJSP U501/U502 are read-only, never scheduled')
     exclusion=None
     if hours is not None and not independent:
         allowed=doc['window_seconds']/3600<hours<=168 if policy else 48<=hours<=168
@@ -39,7 +39,7 @@ def plan(spec,folder,hours=None,confirmed=False):
         if policy:
             from .candidate_policy import validate
             validate(policy,c['evolution_request_cap'],real=c['mode']=='real')
-            if c['group']=='fjsp-u':raise PermissionError('frozen FJSP U needs a separate same-algorithm integration')
+            if c['group']=='fjsp-u' and not independent:raise PermissionError('FJSP U response counting requires an independent new batch')
             c.update(candidate_policy=policy,api_attempt_cap=c['initialization_request_cap']+policy['evolution_attempt_cap'],
                      per_candidate_attempt_cap=policy['per_slot_attempt_cap'],window_seconds=doc['window_seconds'])
             drain=configuration.candidate_drain(c,doc['queue_wait_seconds'])

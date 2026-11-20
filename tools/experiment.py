@@ -121,8 +121,6 @@ def member(doc, item, policy):
     require(rules["api"].get("model", c["provider"]["model"]) == c["provider"]["model"],
             "模型身份与冻结配置不符。当前入口只使用资产绑定的模型")
     pending = []
-    if group == "fjsp-u":
-        pending.append("FJSP U 冻结执行器尚未接入 R15 成功返回口径")
     if c["freeze_status"] == "pending":
         pending.append("缺少该组已采用的原始研究配置")
     c.update(mode=rules["mode"], repeat_count=1, search_seed=item["seed"], search_seeds=[item["seed"]],
@@ -135,8 +133,13 @@ def member(doc, item, policy):
     for key, name in (("data_manifest", "training_manifest"), ("reference_file", "reference"), ("h_file", "frozen_h")):
         if research[name] is not None:
             c[key] = asset(research[name])
+    if c["problem"] == "tsp" and c["reference_file"] is None:
+        reference = ROOT / "preparations/operations/tsp-reference-r15.json"
+        if reference.is_file():
+            c["reference_file"] = str(reference)
     if c["method"] != "u":
         c["h_file"] = None
+    c["evaluation_concurrency"] = 1
     if c["data_manifest"] and Path(c["data_manifest"]).is_file():
         c["instance_count"] = len(read(c["data_manifest"])["instances"])
     r, slurm, api = c["resources"], rules["slurm"], rules["api"]
@@ -173,6 +176,26 @@ def member(doc, item, policy):
                     "TSP 参照版本或参数与 D06 不符")
     return c, {"group": group, "seed": item["seed"], "pending": sorted(set(pending)),
                "budget": configuration.budget(c), "drain_seconds": r["drain_seconds"], "assets": assets}
+
+
+def fixed_plan(doc, output):
+    from experiments.triad import assets
+
+    require(doc["execution"]["mode"] == "real", "正式固定 H 需要核验后冻结的资产")
+    policy = settings(doc)
+    c, info = member(doc, {"method": "u", "seed": doc["research"]["runs"][0]["seed"],
+                           "initialization_attempts": 20}, policy)
+    if info["pending"]:
+        return {"problem": c["problem"], "pending": info["pending"], "API_requests": 0, "actual_solves": 0}
+    result = assets.fixed_plan(c)
+    if c["problem"] == "fjsp" and result["compatible_reuse"] is None:
+        result["pending"] = ["需要已核验的 FJSP 10H×train21 固定 H 原始成本及兼容回执"]
+    else:
+        result["pending"] = []
+    if output is not None:
+        claim(output, c)
+        result["asset_config"] = str(output.resolve())
+    return result
 
 
 def prepare(doc):
@@ -349,9 +372,10 @@ def configure(output, platform):
     method = input(f"方法 [u/eoh/fixed-h/hh，默认 {initial_method}] ").strip().lower() or initial_method
     if method in ("fixed-h", "hh"):
         require(method != "hh", "传统 HH 尚未接入，参见 PROJECT_MAP.md")
-        template = six_ops.config_path(problem + "-u").relative_to(ROOT)
-        print("固定 H 使用独立参照入口。它需要同一冻结资产与已有结果，详见 PROJECT_MAP.md。")
-        print(f"python3 -s -B experiments/triad/assets.py fixed-plan --config {template}")
+        template = path.relative_to(ROOT)
+        python = shlex.quote(sys.executable) if platform == "local" else '"/public2/home/qiuqian/hdl-envs/portable-v2/bin/python"'
+        print("固定 H 复用同一训练集、参照和冻结 H。先检查资产及求解上限。")
+        print(f"{python} -s -B tools/experiment.py fixed-plan {template}")
         return
     require(method in ("u", "eoh"), "请输入 u 或 eoh")
     doc["name"] = input(f"批次名 [默认 {problem}-{method}-study] ").strip() or f"{problem}-{method}-study"
@@ -409,14 +433,14 @@ def configure(output, platform):
 def main(argv=None):
     parser = argparse.ArgumentParser(description="从一份 JSON 预检、提交、查询和导出 R15 实验",
                                      epilog="配置样例在 configurations/experiments/，参数说明和现场验收见 README.md")
-    parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "export"))
+    parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "export", "fixed-plan"))
     parser.add_argument("config", type=Path, nargs="?")
     parser.add_argument("--platform", choices=("local", "cluster"), default="cluster" if ROOT.is_relative_to("/public2") else "local")
     parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价，并确认账户无其他生成者")
     parser.add_argument("--out", type=Path, help="export 的新 ZIP 路径")
     args = parser.parse_args(argv)
     require(not args.approve or args.action == "run", "--approve 仅用于启动新批次")
-    require(args.out is None or args.action in ("export", "configure"), "--out 仅用于 export 或 configure")
+    require(args.out is None or args.action in ("export", "configure", "fixed-plan"), "--out 仅用于 export、configure 或 fixed-plan")
     if args.action == "configure":
         require(args.config is None, "configure 用 --out 指定新配置")
         return configure(args.out, args.platform)
@@ -426,6 +450,8 @@ def main(argv=None):
     request = folder.parent / (folder.name + "-inputs") / "request.json"
     if args.action == "prepare":
         result = prepare(doc)[1]
+    elif args.action == "fixed-plan":
+        result = fixed_plan(doc, args.out)
     elif args.action == "run":
         result = run(doc, folder, args.approve)
     elif args.action == "status" and not path.is_file():

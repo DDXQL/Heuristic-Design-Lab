@@ -28,9 +28,11 @@ def load(path,*,engineering=False):
     if policy is not None:
         from .candidate_policy import validate
         validate(policy,evolution_cap,real=c['mode']=='real')
-        if c['group']=='fjsp-u':
-            raise ValueError('new counter is not admitted to the frozen FJSP U coordinator')
         evolution_cap=policy['evolution_attempt_cap'];per_slot=policy['per_slot_attempt_cap']
+    if policy and c['group']=='fjsp-u' and c['mode']=='real' and (
+            c['population_size'],c['initialization_request_cap'],c['initialization_policy'],c['solve_seed']) != (
+            5,20,'bounded_initialization_until_population',501):
+        raise ValueError('FJSP U requires its original N5, bounded initialization 20 and solve seed 501')
     if c['api_attempt_cap'] is not None and c['initialization_request_cap'] is not None and c['api_attempt_cap']!=c['initialization_request_cap']+evolution_cap:raise ValueError('cumulative cap must equal the two phase reservation caps')
     if c['api_concurrency']!=1 or c['per_candidate_attempt_cap']!=per_slot:raise ValueError('model worker or per-slot cap differs from the frozen policy')
     if c['evaluation_concurrency'] is not None and (type(c['evaluation_concurrency']) is not int or c['evaluation_concurrency']<1):raise ValueError('invalid evaluation width')

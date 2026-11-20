@@ -89,13 +89,13 @@ def load(path):
         raise ValueError('explicit independent group/seed identities required')
     if independent(m) and len({r['group'].split('-')[0] for r in rows})!=1:
         raise ValueError('one problem per independent batch')
-    if len({r['run_dir'] for r in rows})!=len(rows) or any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
+    if len({r['run_dir'] for r in rows})!=len(rows) or not independent(m) and any(r['group']=='fjsp-u' and r['seed']==501 for r in rows):
         raise ValueError('distinct directories required; existing U501 is read-only')
     from experiments.triad.configuration import GROUPS
     if any(r['group'] not in GROUPS or type(r['seed']) is not int or not 0<=r['seed']<2**32
            or not policy and r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id']
            for r in rows):raise ValueError('declared triad group and allowed seed required')
-    if m['mode']=='real' and any(r['group']=='fjsp-u' and r['seed'] in (501,502) for r in rows):raise PermissionError('completed FJSP U501/U502 are read-only; never rerun or migrate')
+    if not independent(m) and m['mode']=='real' and any(r['group']=='fjsp-u' and r['seed'] in (501,502) for r in rows):raise PermissionError('completed FJSP U501/U502 are read-only; never rerun or migrate')
     if m['mode']=='real':
         expected=read(Path(__file__).resolve().parents[2]/'preparations/cluster-concurrency-20261114/phase1/Probe.pending.json')['account_gate']
         if m['account_gate']!=expected:raise ValueError('retain the original common account gate; no independent account locks')
@@ -103,7 +103,7 @@ def load(path):
     for row in rows:
         c=read(row['config'])
         if sha(row['config'])!=row['config_sha256'] or c['mode']!=m['mode'] or c['api_attempt_cap']!=row['request_cap'] or c['search_seed']!=row['seed'] or c.get('shared_manifest')!=str(path):raise ValueError('member configuration/mode/cap/seed binding changed')
-        if c.get('candidate_policy')!=policy or policy and (not exploration(m) or row['group']=='fjsp-u'):
+        if c.get('candidate_policy')!=policy or policy and (not exploration(m) or row['group']=='fjsp-u' and not independent(m)):
             raise ValueError('shared candidate policy differs or needs the native exploration adapter')
         if policy:
             from experiments.triad.candidate_policy import validate

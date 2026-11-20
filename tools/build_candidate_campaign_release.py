@@ -15,7 +15,10 @@ BASE = OUT / "triad-tsp-lkh-candidate-20261117-r13.zip"
 PUBLISHED_VERSION = "triad-candidate-runtime-20261119-r15p3"
 ENTRY = "README.md"
 PREFIXES = ("code/", "experiments/triad/", "configurations/six-groups-20261116/", "configurations/experiments/", "docs/")
-CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experiment_fs_probe.sbatch")
+CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experiment_fs_probe.sbatch",
+             "tools/r15_acceptance.py", "tools/r15_acceptance_tests.py")
+HISTORY_FILES = tuple("reports/fjsp-execution-20261112/fixed-H-reuse-v3/" + name
+                      for name in ("compatibility.json", "fixed-H-train21-J.csv"))
 ROOT_DOCS = ("README.md", "PROJECT_MAP.md", "DECISIONS.md")
 
 
@@ -53,6 +56,8 @@ def build(base, target, version):
         name = raw.decode()
         if name in (*ROOT_DOCS, "AGENTS.md", *CLI_FILES) or name.startswith(PREFIXES):
             payload[name] = git("show", f"{commit}:{name}")
+    for name in HISTORY_FILES:
+        payload[name] = git("show", f"{commit}:{name}")
     required = {ENTRY, *CLI_FILES, *ROOT_DOCS, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
                 "configurations/six-groups-20261116/candidate-policy.draft.json",
                 *("configurations/experiments/" + n + ".json" for n in ("tsp-502", "fjsp-503", "obp-501", "slurm-no-api-smoke"))}

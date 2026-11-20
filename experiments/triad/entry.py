@@ -128,8 +128,9 @@ def main():
         raise PermissionError('candidate protocol is only admitted through its original shared plan')
     if args.slurm_drain and args.action!='pause':
         raise PermissionError('Slurm drain is only a pause action')
-    if args.kind!='h-build' and c['mode']=='real' and c['group']=='fjsp-u' and c['search_seed'] in (501,502) and args.action in ('prepare','run','resume'):raise PermissionError('completed frozen U501/U502 are protected read-only; never rerun/take over')
-    if args.kind!='h-build' and c['problem']=='fjsp' and c['method']=='u' and (c['mode']=='real' or shared):
+    legacy_fjsp_u=args.kind!='h-build' and c['group']=='fjsp-u' and not c.get('candidate_policy')
+    if legacy_fjsp_u and c['mode']=='real' and c['search_seed'] in (501,502) and args.action in ('prepare','run','resume'):raise PermissionError('completed frozen U501/U502 are protected read-only; never rerun/take over')
+    if legacy_fjsp_u and (c['mode']=='real' or shared):
         launch=d.parent/(d.name+'.launch.json')
         if args.action in ('prepare','run') and not d.exists():
             if shared and c['mode']=='mock':todo=configuration.gaps(c)

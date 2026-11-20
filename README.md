@@ -10,9 +10,9 @@ JSON 或终端菜单 → tools/experiment.py → 每个种子一个 Slurm 作业
 
 | 问题 | 常用配置与缺项 |
 | --- | --- |
-| [TSP](docs/实验导航.md#tsp) | [U／EoH](configurations/experiments/tsp-502.json)。需要已核验的 D06 train20 参照 |
-| [FJSP](docs/实验导航.md#fjsp) | [EoH](configurations/experiments/fjsp-503.json)。R15 尚未接入冻结版 U |
-| [OBP](docs/实验导航.md#obp) | [U／EoH](configurations/experiments/obp-501.json)。U 缺 H401 冻结集 |
+| [TSP](docs/实验导航.md#tsp) | [U／EoH](configurations/experiments/tsp-502.json)可用已核验的 D06 train20 参照，真实小试已构建 |
+| [FJSP](docs/实验导航.md#fjsp) | [U／EoH](configurations/experiments/fjsp-503.json)离线验证通过。固定 H 可复用历史成本 |
+| [OBP](docs/实验导航.md#obp) | [EoH](configurations/experiments/obp-eoh-501.json)可单独预检。 [U／EoH 联合模板](configurations/experiments/obp-501.json)的 U 需要 H401 |
 
 方法、固定 H 入口和待接入的传统 HH 见[能力矩阵](docs/实验导航.md#能力矩阵)。开发主线提供三种子独立执行。本页的新命令需要已包含该提交的新部署，现有 R15p3 仍按[原操作手册](docs/研究人员实验操作手册.md)运行。
 
@@ -65,4 +65,4 @@ CFG=configurations/experiments/tsp-502.json
 scp -J custom@222.201.144.188:22 qiuqian@110.1.2.1:/public2/home/qiuqian/tsp-502-results.zip "G:\Experiment\transfer-outbox\tsp-502-results.zip"
 ```
 
-[现场验收与版本状态](DECISIONS.md#验收与回退) · [历史 R13、R15p3 入口](docs/实验导航.md#历史版本)
+[真实验收、固定 H 和 H401 命令](docs/R15真实验收与六组.md) · [现场验收与版本状态](DECISIONS.md#验收与回退) · [历史发布入口](docs/实验导航.md#历史版本)

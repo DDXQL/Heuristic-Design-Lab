@@ -50,7 +50,7 @@ class LocalSlurm:
             ids = command[command.index("-j") + 1].split(",")
             return SimpleNamespace(stdout="".join(f"{j}|COMPLETED|0:0\n" for j in ids if j in self.accounting))
         if command[0] == "squeue":
-            return SimpleNamespace(stdout="00:45:00\n")
+            return SimpleNamespace(stdout="02:00:00\n")
         if str(cli.ROOT / "experiments/triad/entry.py") in command:
             index = command.index(str(cli.ROOT / "experiments/triad/entry.py"))
             with patch.object(sys, "argv", command[index:]), redirect_stdout(io.StringIO()) as output:
@@ -75,12 +75,25 @@ class LocalSlurm:
 
 def run_case(kind, temporary):
     label = f"offline-{uuid4().hex[:12]}"
-    fixture = "tsp-502" if kind in ("automatic", "parallel8", "serial_control") else "slurm-no-api-smoke"
+    fixture = {"fjsp": "fjsp-503", "obp": "obp-501"}.get(kind,
+        "tsp-502" if kind in ("automatic", "parallel8", "serial_control") else "slurm-no-api-smoke")
     doc = cli.read(cli.ROOT / f"configurations/experiments/{fixture}.json")
     doc["name"] = label
     doc["execution"]["mode"] = "mock"
     doc["execution"]["api"]["min_interval_seconds"] = 0
     doc["research"]["budget"]["target"] = 5
+    if kind == "fjsp":
+        assert cli.prepare(cli.read(cli.ROOT / "configurations/experiments/fjsp-503.json"))[1]["ready_for_submission_checks"]
+    if kind == "obp":
+        members, preview = cli.prepare(cli.read(cli.ROOT / "configurations/experiments/obp-501.json"))
+        assert preview["members"][0]["pending"] and not preview["members"][1]["pending"]
+        from dataclasses import asdict
+        h_file = temporary / (label + "-synthetic-H.json")
+        hs = [asdict(problems.validate_h("obp", "def priority(item_size, remaining_capacities):\n"
+                                       f"    return [{i} + cap for cap in remaining_capacities]\n"))
+              for i in range(10)]
+        cli.write(h_file, {"engineering_only": True, "members": hs})
+        doc["research"]["frozen_h"] = str(h_file)
     if kind in ("automatic", "parallel8", "serial_control"):
         doc["execution"]["api"]["timeout_seconds"] = 45
         source = cli.read(cli.ROOT / doc["research"]["training_manifest"])
@@ -188,6 +201,12 @@ def run_case(kind, temporary):
                     p, _ = runtime.protocol_state(row["run_dir"])
                     assert candidate_policy.client_config(p).provider.total_timeout == 45
                     assert p["config"]["client_binding"]["provider"]["total_timeout"] == 300
+                if kind == "fjsp" and row["group"] == "fjsp-u":
+                    p, _ = runtime.protocol_state(row["run_dir"])
+                    saved = cli.read(Path(row["run_dir"]) / "plans/G0001.json")
+                    assert p["state_schema"] == "common-state-a-v3-fjsp" and len(p["members"]) == 10
+                    assert {r["rule"] for r in p["references"]} == {"LB_v5"}
+                    assert len(saved["parents"]) == 5 and [t["operator"] for t in saved["tasks"]] == ["CROSS", "MUTATE"] * 5
             result = fake.review(manifest, 2, next_segment["next"]["job_id"])
             assert result["reason"] == "scientific_complete" and result["account_release"]["closed"]
             zipped = invoke("export", config, "--out", str(temporary / (label + ".zip")))
@@ -368,7 +387,7 @@ if __name__ == "__main__":
           patch.object(JsonCandidateTransport, "__init__", deny), patch.object(cli.subprocess, "run", deny),
           patch.object(problems, "solve_row", deny), patch.object(evaluation, "evaluate", deny),
           patch.object(execution, "sys", SimpleNamespace(platform="linux"))):
-        report = {kind: run_case(kind, Path(directory)) for kind in ("automatic", "operator", "budget", "parallel8")}
+        report = {kind: run_case(kind, Path(directory)) for kind in ("automatic", "operator", "budget", "parallel8", "fjsp", "obp")}
         assert report["parallel8"].pop("healthy") == run_case("serial_control", Path(directory))
         report["parallel8"]["healthy_seed_matches_serial_population_and_rng"] = True
         report["permit_probe_peak"] = permits8(Path(directory) / "permits8")
