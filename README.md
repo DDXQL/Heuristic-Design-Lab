@@ -1,6 +1,6 @@
 # Heuristic Design Lab
 
-[选问题和方法](docs/实验导航.md) · [查代码和结果](PROJECT_MAP.md) · [查协议和参数依据](DECISIONS.md)
+[六组长实验与启动命令](docs/R15真实验收与六组.md#六组正式长实验) · [选问题和方法](docs/实验导航.md) · [查代码和结果](PROJECT_MAP.md) · [查协议和参数依据](DECISIONS.md)
 
 ```text
 JSON 或终端菜单 → tools/experiment.py → 每个种子一个 Slurm 作业

@@ -20,6 +20,8 @@ CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experime
 HISTORY_FILES = tuple("reports/fjsp-execution-20261112/fixed-H-reuse-v3/" + name
                       for name in ("compatibility.json", "fixed-H-train21-J.csv"))
 ROOT_DOCS = ("README.md", "PROJECT_MAP.md", "DECISIONS.md")
+TSP_REFERENCE = "preparations/operations/tsp-reference-r15.json"
+D06_SHA256 = "694fb50220664430d8a018640a411782bdb8d5b96cb70424e17209b41d2b360a"
 
 
 def sha(data):
@@ -30,7 +32,7 @@ def git(*args):
     return subprocess.check_output(["git", "-C", str(ROOT), *args])
 
 
-def build(base, target, version):
+def build(base, target, version, tsp_reference=None):
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]+", version) or version in ("r15p3", PUBLISHED_VERSION):
         raise ValueError("use a new release name, or build r15p3 from its Git tag")
     sidecar = target.with_suffix(".zip.sha256")
@@ -58,6 +60,11 @@ def build(base, target, version):
             payload[name] = git("show", f"{commit}:{name}")
     for name in HISTORY_FILES:
         payload[name] = git("show", f"{commit}:{name}")
+    if tsp_reference is not None:
+        reference = tsp_reference.read_bytes()
+        if sha(reference) != D06_SHA256:
+            raise ValueError("TSP reference does not match the verified D06 train20 asset")
+        payload[TSP_REFERENCE] = reference
     required = {ENTRY, *CLI_FILES, *ROOT_DOCS, "experiments/triad/campaign.py", "experiments/triad/candidate_policy.py",
                 "configurations/six-groups-20261116/candidate-policy.draft.json",
                 *("configurations/experiments/" + n + ".json" for n in ("tsp-502", "fjsp-503", "obp-501", "slurm-no-api-smoke"))}
@@ -69,7 +76,7 @@ def build(base, target, version):
         raise ValueError("unsafe file in release")
     release = {"version": version, "engineering_commit": commit, "parent_commit": old["engineering_commit"],
                "entry": ENTRY, "API_execution_authorized": False, "deployed": False,
-               "actual_TSP_reference_included": False, "existing_runs_included": False,
+               "actual_TSP_reference_included": TSP_REFERENCE in payload, "existing_runs_included": False,
                "files": {n: sha(raw) for n, raw in payload.items()}}
     with zipfile.ZipFile(target, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, raw in payload.items():
@@ -90,6 +97,8 @@ if __name__ == "__main__":
     parser.add_argument("--base", type=Path, default=BASE)
     parser.add_argument("--version", required=True, help="new immutable release name")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--tsp-reference", type=Path, help="include the verified D06 train20 reference JSON")
     args = parser.parse_args()
-    print(json.dumps(build(args.base, args.output or OUT / (args.version + ".zip"), args.version),
+    print(json.dumps(build(args.base, args.output or OUT / (args.version + ".zip"), args.version,
+                           tsp_reference=args.tsp_reference),
                      ensure_ascii=False, indent=2))

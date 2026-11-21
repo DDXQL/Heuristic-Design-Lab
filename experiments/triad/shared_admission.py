@@ -44,7 +44,7 @@ def allocation_check(c):
         return float(text)*factor
     memory=mib(os.environ.get('SLURM_MEM_PER_NODE'))
     if memory is None and os.environ.get('SLURM_MEM_PER_CPU'):memory=mib(os.environ['SLURM_MEM_PER_CPU'])*cpus
-    if memory is None and c.get('candidate_policy'):
+    if memory is None:
         job=os.environ['SLURM_JOB_ID']
         result=subprocess.run(['scontrol','-o','show','job',job],check=True,capture_output=True,text=True,timeout=15)
         fields=dict(word.split('=',1) for word in result.stdout.split() if '=' in word)

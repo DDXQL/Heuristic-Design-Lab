@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "name": "r15-fjsp-eoh-long",
+  "research": {
+    "problem": "fjsp",
+    "runs": [
+      {
+        "method": "eoh",
+        "seed": 501,
+        "initialization_attempts": 20
+      },
+      {
+        "method": "eoh",
+        "seed": 502,
+        "initialization_attempts": 20
+      },
+      {
+        "method": "eoh",
+        "seed": 503,
+        "initialization_attempts": 20
+      }
+    ],
+    "training_manifest": "preparations/eoh-gap/train21.manifest.json",
+    "frozen_h": null,
+    "reference": null,
+    "state": "common-state-a-v3",
+    "evaluation": "train_J_min_T30",
+    "champion": "best_valid_training_J_then_id",
+    "holdout": "not_run",
+    "budget": {
+      "count": "successful_responses",
+      "target": 1000,
+      "empty": "exclude",
+      "truncated": "exclude"
+    },
+    "decision": "用户采用做法 B，每种子以成功返回的演化候选为目标。空响应与仅有截断片段按本批配置处理。"
+  },
+  "execution": {
+    "mode": "real",
+    "slurm": {
+      "partition": "128C_02",
+      "account": "wz",
+      "qos": "normal",
+      "cpus": 2,
+      "memory_mib": 2048,
+      "wall_seconds": 43200,
+      "evaluation_concurrency": 1
+    },
+    "api": {
+      "global_concurrency": 1,
+      "min_interval_seconds": 1,
+      "queue_wait_seconds": 600,
+      "timeout_seconds": 300,
+      "evolution_reservation_cap": 1100,
+      "retry_delays_seconds": [
+        5
+      ],
+      "consecutive_failed_slots": 0,
+      "cooldown_429_seconds": 30,
+      "model": "gpt-6.1-sol",
+      "requests_per_minute": null
+    },
+    "window_hours": 48,
+    "max_segments": 4
+  }
+}

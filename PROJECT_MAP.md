@@ -30,6 +30,7 @@ Heuristic-Design-Lab
 | U 与 EoH 如何进入同一执行器 | [runtime.py](experiments/triad/runtime.py)、[eoh_gap.py](deploy/eoh-baseline/eoh_gap.py)。R15 主线接入三类问题的 U/EoH。[run_frozen.py](experiments/common/run_frozen.py)用于原 FJSP U 身份 |
 | 固定 H 或其他基准 | `tools/experiment.py fixed-plan` 解析工作台配置。[assets.py](experiments/triad/assets.py)负责评价或复用成本。传统 HH 尚未接入统一入口 |
 | API 并发和 TSP 有限真实验收 | [r15_acceptance.py](tools/r15_acceptance.py)，逐请求和结果 JSON 放在 `reports/acceptance-<name>/` |
+| 六组三种子长实验 | [正式配置与命令](docs/R15真实验收与六组.md#六组正式长实验)，每组一份 JSON，OBP U 共用 H401 的正式冻结资产 |
 
 ## 出问题先看哪里
 

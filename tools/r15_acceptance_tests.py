@@ -13,7 +13,7 @@ from unittest.mock import patch
 from uuid import uuid4
 
 import r15_acceptance as a
-from experiments.triad import assets, problems, runtime, six_ops
+from experiments.triad import assets, problems, runtime, shared_admission, six_ops
 from fjsp_usage.research_real.real_transport import TransportError
 from heuristic_design.core import execution
 from heuristic_design.core.storage import read, write
@@ -114,6 +114,27 @@ def tsp_pilot(temp, reference):
 
 def obp_build(temp):
     c=six_ops.config('obp-u')
+    credential = temp/'allocation-metadata-fixture'
+    credential.touch(mode=0o600)
+    c.update(search_seed=401, credential_file=str(credential), account_gate=str(temp/'H401-mock-gate'),
+             account_exclusion={'scope':'all_devices_sharing_account','valid_until':time.time()+72*3600,
+                                'confirmation':'offline fixture'})
+    real_config = temp/'H401-preview.json'
+    write(real_config,c)
+    plan = assets.job_submit(SimpleNamespace(config=real_config, run_dir=a.ROOT/'runs'/'obp-H401',
+                                            asset='obp-H', submit=False, resume=False))
+    assert not plan['submitted'] and plan['command'][-1] == '40'
+    live = ('JobId=23 JobState=RUNNING NumNodes=1 NumCPUs=2 '
+            'MinMemoryNode=2G')
+    with patch.dict(os.environ,{'SLURM_JOB_ID':'23','SLURM_CPUS_PER_TASK':'2'},clear=True):
+        with patch.object(shared_admission.subprocess,'run',return_value=SimpleNamespace(stdout=live)) as query:
+            shared_admission.allocation_check(c)
+            assert query.call_args.args[0] == ['scontrol','-o','show','job','23']
+        for unrelated in (live.replace('JobId=23','JobId=24'), live.replace('2G','1G')):
+            with patch.object(shared_admission.subprocess,'run',return_value=SimpleNamespace(stdout=unrelated)):
+                try:shared_admission.allocation_check(c)
+                except PermissionError:pass
+                else:raise AssertionError('wrong Slurm allocation accepted for H401')
     c.update(mode='mock',freeze_status='engineering_only',credential_file=None)
     path=temp/'H401-mock.json';write(path,c)
     directory=a.ROOT/'runs'/('offline-h401-'+uuid4().hex)
@@ -134,7 +155,8 @@ def obp_build(temp):
         except ValueError as error:assert 'completed real OBP H401' in str(error)
         else:raise AssertionError('Mock H-build results passed real fixed-H reuse')
         assert not (temp/'invalid-fixed.json').exists()
-        return {'attempts':40,'selected':report['H_count'],'mock_cannot_be_real':True}
+        return {'attempts':40,'selected':report['H_count'],'mock_cannot_be_real':True,
+                'formal_submission_preview':True,'allocation_memory_fallback':True}
     finally:
         if directory.is_dir():shutil.rmtree(directory)
 
