@@ -19,6 +19,7 @@ from experiments.triad.concurrency_probe import Gate as ProbeGate, claim, stop, 
 VERSION = 'two-searches-six-groups-api1-v4'
 EXPLORE = 'explore-light-v1'
 INDEPENDENT = 'independent-seeds-v1'
+BATCH_GATE_DIR = 'batch-gate'
 
 
 def independent(m):return m.get('runtime_policy') == INDEPENDENT
@@ -96,7 +97,8 @@ def load(path):
            or not policy and r['seed'] not in (501,502,503) or Path(r['run_dir']).name!=r['run_id']
            for r in rows):raise ValueError('declared triad group and allowed seed required')
     if not independent(m) and m['mode']=='real' and any(r['group']=='fjsp-u' and r['seed'] in (501,502) for r in rows):raise PermissionError('completed FJSP U501/U502 are read-only; never rerun or migrate')
-    if m['mode']=='real':
+    batch_local = independent(m) and Path(m['account_gate']) == path.parent / BATCH_GATE_DIR
+    if m['mode']=='real' and not batch_local:
         expected=read(Path(__file__).resolve().parents[2]/'preparations/cluster-concurrency-20261114/phase1/Probe.pending.json')['account_gate']
         if m['account_gate']!=expected:raise ValueError('retain the original common account gate; no independent account locks')
     if m['total_request_cap']!=sum(r['request_cap'] for r in rows):raise ValueError('aggregate original cap differs')
@@ -172,7 +174,7 @@ class Admission:
         lease=Path(self.m['account_gate'])/'generation.lock'
         if not lease.is_file() or read(lease).get('protocol')!='SHARED:'+self.b['sha256']:
             if self.m.get('candidate_policy') and not independent(self.m):stop(self.folder,'original whole-account lease missing or changed')
-            raise PermissionError('original whole-account batch lease missing/different')
+            raise PermissionError('original batch ownership lock missing/different')
         if self.m['mode']=='real' and not independent(self.m) and self.m['account_exclusion']['valid_until']<time.time():
             stop(self.folder,'account exclusion expired');raise PermissionError('account exclusion expired; no renewal')
 

@@ -220,9 +220,7 @@ def run(doc, folder, approve):
             "请在 Slurm 集群终端启动。Mac 可编辑配置和执行 prepare")
     require(not folder.exists(), "批次名称已使用，请运行 status。新批次使用新的 name")
     rules = doc["execution"]
-    gate = (Path(members[0][0]["account_gate"]) if rules["mode"] == "real"
-            else folder / "mock-account")
-    require(not (gate / "generation.lock").exists(), "共享账户仍有占用，请先查看原批次状态")
+    gate = folder / shared_admission.BATCH_GATE_DIR
     first = members[0][0]
     if rules["mode"] == "real":
         credential = Path(first["credential_file"])
@@ -436,7 +434,7 @@ def main(argv=None):
     parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "export", "fixed-plan"))
     parser.add_argument("config", type=Path, nargs="?")
     parser.add_argument("--platform", choices=("local", "cluster"), default="cluster" if ROOT.is_relative_to("/public2") else "local")
-    parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价，并确认账户无其他生成者")
+    parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价")
     parser.add_argument("--out", type=Path, help="export 的新 ZIP 路径")
     args = parser.parse_args(argv)
     require(not args.approve or args.action == "run", "--approve 仅用于启动新批次")

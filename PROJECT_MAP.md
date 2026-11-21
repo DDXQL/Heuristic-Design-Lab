@@ -41,6 +41,6 @@ Heuristic-Design-Lab
 | Slurm 提交、接续或暂停 | `logs/<实验ID>-<作业ID>.*`、`plans/<批次>/campaign-control/` 与 `Campaign_result.json`。[提交](experiments/triad/parallel.py) · [依赖作业](experiments/triad/campaign.py) · [续跑判断](experiments/triad/time_continuation.py) |
 | 每种子的历史、图表或冠军 | `runs/<批次>/<实验ID>/` 下的 `Protocol.json`、`checkpoint.json`、`exports/` 和 `worker-receipts/`。[执行循环](code/heuristic_design/core/execution.py) · [导出](code/heuristic_design/core/execution_export.py) |
 
-默认批次目录名为 `candidate-lab-<name>`，实验 ID 另含组别和种子。账户租约位于共享账户目录，搜索日志和结果按发布目录、批次与种子独立保存。历史研究和模型传输证据在 `docs/`、`reports/`、`archives/` 及 Git 历史。旧首页导航可用 `git show r15p3:README.md` 查看。
+默认批次目录名为 `candidate-lab-<name>`，实验 ID 另含组别和种子。新 R15 正式批次的激活锁位于该批次的 `batch-gate/`，种子写入锁继续使用 `run-gates/` 和各自的检查点目录。搜索日志和结果按发布目录、批次与种子独立保存。历史研究和模型传输证据在 `docs/`、`reports/`、`archives/` 及 Git 历史。旧首页导航可用 `git show r15p3:README.md` 查看。
 
 开发主线的 `api-pacing/` 只保存并发许可与发送间隔状态。单种子的实际请求记录以该种子 `API_attempts.json` 为准。R15p3 的历史共享账本与 STOP 排查见该标签或 DECISIONS 所列历史提交。选择问题与终端命令见 [实验导航](docs/实验导航.md)。

@@ -223,6 +223,141 @@ def population_trace(checkpoint):
             "u_rng": checkpoint["u_rng"]}
 
 
+def cross_batch(temporary, mode):
+    """Exercise two batch starts under one account and overlapping Mock resumes."""
+    owner = temporary / f"{mode}-old-account" / "generation.lock"
+    old_owner = {"protocol": "existing R13 batch"}
+    cli.write(owner, old_owner)
+    credential = temporary / f"{mode}-credential-metadata"
+    credential.touch(mode=0o600)
+    original_config = cli.six_ops.config
+
+    def same_account(group):
+        config = original_config(group)
+        return {**config, "account_gate": str(owner.parent), "credential_file": str(credential)}
+
+    configs, folders = [], []
+    fake = LocalSlurm()
+    try:
+        for problem in ("fjsp", "obp"):
+            doc = cli.read(cli.ROOT / f"configurations/experiments/r15-{problem}-eoh-long.json")
+            doc["name"] = f"offline-cross-{mode}-{problem}-{uuid4().hex[:8]}"
+            doc["research"]["runs"] = doc["research"]["runs"][:1]
+            doc["execution"]["mode"] = mode
+            if mode == "mock":
+                doc["research"]["budget"]["target"] = 5
+                doc["execution"]["api"].update(min_interval_seconds=0, evolution_reservation_cap=5)
+            config_path = temporary / (doc["name"] + ".json")
+            cli.write(config_path, doc)
+            configs.append(config_path)
+            folders.append(cli.load_document(config_path)[1])
+
+        with (patch.object(cli.six_ops, "config", side_effect=same_account),
+              patch.object(cli.shutil, "which", return_value="/offline/scheduler"),
+              patch.object(cli.subprocess, "run", side_effect=fake.run)):
+            launches = [invoke("run", config, "--approve") for config in configs]
+            manifests = [Path(launch["manifest"]) for launch in launches]
+            plans = [shared_admission.load(manifest) for manifest in manifests]
+            rows = [plan["members"][0] for plan in plans]
+            owners = [Path(plan["account_gate"]) / "generation.lock" for plan in plans]
+            dirs = [Path(row["run_dir"]) for row in rows]
+            assert len(set(owners)) == len(set(dirs)) == 2
+            for manifest, lock in zip(manifests, owners):
+                assert lock == manifest.parent / shared_admission.BATCH_GATE_DIR / "generation.lock"
+                assert lock.is_file()
+            assert cli.read(owner) == old_owner and [row["seed"] for row in rows] == [501, 501]
+            assert plans[0]["total_request_cap"] == plans[1]["total_request_cap"] == (25 if mode == "mock" else 1120)
+            try:
+                invoke("run", configs[0], "--approve")
+            except ValueError as error:
+                assert "批次名称已使用" in str(error)
+            else:
+                raise AssertionError("duplicate batch submission was accepted")
+            assert len(fake.commands) == 4
+            if mode == "real":
+                assert all(cli.read(d / "checkpoint.json")["phase"] == "prepared" for d in dirs)
+                assert not any((d / "API_attempts.json").exists() for d in dirs)
+                return {"planned_batches": 2, "old_account_lock_preserved": True}
+
+            ctx = multiprocessing.get_context("fork")
+            barrier = ctx.Barrier(2, timeout=15)
+            transport = runtime.MockTransport.dispatch
+            task_context = runtime.Adapter.task_context
+
+            def drain(adapter, directory, state, protocol, task, index):
+                if state.get("successful_evolution_responses") == 2:
+                    adapter.segment_deadline = time.monotonic()
+                return task_context(adapter, directory, state, protocol, task, index)
+
+            def worker(manifest, row, action):
+                first = True
+
+                def dispatch(obj, *args, **kwargs):
+                    nonlocal first
+                    if first:
+                        first = False
+                        barrier.wait()
+                    return transport(obj, *args, **kwargs)
+
+                with patch.object(runtime.MockTransport, "dispatch", dispatch):
+                    fake.worker(manifest, row, action)
+
+            def run_workers(action, jobs):
+                workers = [ctx.Process(target=worker, args=(manifest, row, action))
+                           for manifest, row in zip(manifests, rows)]
+                for process in workers:
+                    process.start()
+                try:
+                    for process, job in zip(workers, jobs):
+                        process.join(35)
+                        assert process.exitcode == 0, (action, job, process.exitcode)
+                        fake.accounting[job] = True
+                finally:
+                    for process in workers:
+                        if process.is_alive():
+                            process.terminate()
+                            process.join()
+
+            with patch.object(runtime.Adapter, "task_context", drain):
+                run_workers("run", [launch["jobs"][0] for launch in launches])
+            checkpoints = [cli.read(d / "checkpoint.json") for d in dirs]
+            assert all(cp["phase"] == "paused" and cp["pause_reason"] == candidate_policy.TIME_PAUSE
+                       and cp["successful_evolution_responses"] == 2 for cp in checkpoints)
+            attempts = [cli.read(d / "API_attempts.json")["api_attempts"] for d in dirs]
+            resumed = [fake.review(manifest, 1, launch["first_review_job"])["next"]
+                       for manifest, launch in zip(manifests, launches)]
+            assert all(lock.is_file() for lock in owners)
+            run_workers("resume", [result["workers"][0] for result in resumed])
+            logs = [next(flag for flag in cmd if flag.startswith("--output=")).replace("%j", job)
+                    for job, cmd in fake.commands.items()]
+            assert len(logs) == len(set(logs)) == 8
+            for index, (manifest, d, config, row, result, prior) in enumerate(
+                    zip(manifests, dirs, configs, rows, resumed, attempts)):
+                closed = fake.review(manifest, 2, result["job_id"])
+                assert closed["reason"] == "scientific_complete" and not owners[index].exists()
+                if index == 0:
+                    assert owners[1].is_file(), "closing one batch removed the other batch's lock"
+                checkpoint = cli.read(d / "checkpoint.json")
+                assert checkpoint["phase"] == "completed" and checkpoint["successful_evolution_responses"] == 5
+                assert cli.read(d / "Protocol.json")["config"]["search_seed"] == 501
+                journal = cli.read(d / "API_attempts.json")
+                assert all(journal["api_attempts"][key] == value for key, value in prior.items())
+                assert candidate_policy.costs(journal)["reservations_by_stage"]["evolution"] == 5
+                output = invoke("export", config, "--out", str(temporary / f"cross-batch-{index}.zip"))
+                assert output["members_exported"] == [row["run_id"]]
+                with zipfile.ZipFile(output["archive"]) as archive:
+                    assert archive.testzip() is None
+                    assert {n.split("/")[0] for n in archive.namelist() if "/" in n} == {row["run_id"]}
+            assert cli.read(owner) == old_owner
+            return {"overlapping_batches": 2, "successful_per_batch": [5, 5], "segments_each": 2,
+                    "isolated_checkpoints_logs_budgets_exports": True, "old_account_lock_preserved": True}
+    finally:
+        for folder in folders:
+            for directory in (folder, folder.with_name(folder.name + "-inputs"), cli.ROOT / "runs" / folder.name):
+                if directory.is_dir():
+                    shutil.rmtree(directory)
+
+
 def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
     ctx = multiprocessing.get_context("fork")
     barrier = ctx.Barrier(3, timeout=20)
@@ -419,5 +554,6 @@ if __name__ == "__main__":
         assert report["parallel8"].pop("healthy") == run_case("serial_control", Path(directory))
         report["parallel8"]["healthy_seed_matches_serial_population_and_rng"] = True
         report["permit_probe_peak"] = permits8(Path(directory) / "permits8")
+        report["cross_batch"] = {mode: cross_batch(Path(directory), mode) for mode in ("real", "mock")}
         report["wizard"] = wizard_cases(Path(directory))
         print(json.dumps({**report, "real_api": 0, "real_solves": 0, "slurm_submissions": 0}, indent=2))
