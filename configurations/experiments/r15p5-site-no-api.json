@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "name": "r15p5-site-no-api",
+  "research": {
+    "problem": "tsp",
+    "runs": [
+      {"method": "u", "seed": 901, "initialization_attempts": 20},
+      {"method": "u", "seed": 902, "initialization_attempts": 20},
+      {"method": "u", "seed": 903, "initialization_attempts": 20}
+    ],
+    "training_manifest": "preparations/triad/tsp/train20.manifest.json",
+    "frozen_h": "preparations/triad/tsp/H_frozen.json",
+    "reference": "preparations/operations/tsp-reference-r15.json",
+    "state": "common-state-a-v3",
+    "evaluation": "train_J_min_T30",
+    "champion": "best_valid_training_J_then_id",
+    "holdout": "not_run",
+    "budget": {"count": "successful_responses", "target": 20, "empty": "exclude", "truncated": "exclude"},
+    "decision": "单节点 Slurm 验收。每个种子目标 20 个 Mock 演化返回，最多 24 个演化请求预留。"
+  },
+  "execution": {
+    "mode": "mock",
+    "slurm": {
+      "partition": "128C_02", "account": "wz", "qos": "normal", "cpus": 2,
+      "memory_mib": 2048, "wall_seconds": 1800, "evaluation_concurrency": 1
+    },
+    "api": {
+      "global_concurrency": 8, "min_interval_seconds": 10, "queue_wait_seconds": 60,
+      "timeout_seconds": 45, "evolution_reservation_cap": 24, "retry_delays_seconds": [],
+      "consecutive_failed_slots": 0, "cooldown_429_seconds": 30,
+      "model": "gpt-6.1-sol", "requests_per_minute": null
+    },
+    "window_hours": 4,
+    "max_segments": 12
+  }
+}

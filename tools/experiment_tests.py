@@ -75,13 +75,14 @@ class LocalSlurm:
 
 def run_case(kind, temporary):
     label = f"offline-{uuid4().hex[:12]}"
-    fixture = {"fjsp": "fjsp-503", "obp": "obp-501"}.get(kind,
-        "tsp-502" if kind in ("automatic", "parallel8", "serial_control") else "slurm-no-api-smoke")
+    fixture = {"fjsp": "fjsp-503", "obp": "obp-501", "automatic": "tsp-502",
+               "parallel8": "r15p5-site-no-api", "serial_control": "r15p5-site-no-api"}.get(kind, "slurm-no-api-smoke")
     doc = cli.read(cli.ROOT / f"configurations/experiments/{fixture}.json")
     doc["name"] = label
     doc["execution"]["mode"] = "mock"
     doc["execution"]["api"]["min_interval_seconds"] = 0
-    doc["research"]["budget"]["target"] = 5
+    if kind not in ("parallel8", "serial_control"):
+        doc["research"]["budget"]["target"] = 5
     if kind == "fjsp":
         assert cli.prepare(cli.read(cli.ROOT / "configurations/experiments/fjsp-503.json"))[1]["ready_for_submission_checks"]
     if kind == "obp":
@@ -101,17 +102,11 @@ def run_case(kind, temporary):
         cli.write(reference, {"kind": "mock-reference-v1", "engineering_only": True,
                               "instances": [{"file": row["file"], "reference": 1.0} for row in source["instances"]]})
         doc["research"]["reference"] = str(reference)
+    if kind == "automatic":
         doc["research"]["runs"][0]["seed"] = 800
         doc["research"]["runs"][1]["seed"] = 801
-
-    if kind == "parallel8":
-        doc["research"]["runs"] = [{"method": "u", "seed": seed, "initialization_attempts": 20}
-                                   for seed in (501, 502, 503)]
-        doc["execution"]["api"]["global_concurrency"] = 8
     if kind == "serial_control":
-        doc["research"]["runs"] = [{"method": "u", "seed": 503, "initialization_attempts": 20}]
-    if kind in ("parallel8", "serial_control"):
-        doc["research"]["budget"]["target"] = 20
+        doc["research"]["runs"] = doc["research"]["runs"][-1:]
     if kind == "budget":
         doc["execution"]["api"]["evolution_reservation_cap"] = 5
     config = temporary / (label + ".json")
@@ -233,6 +228,7 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
     barrier = ctx.Barrier(3, timeout=20)
     peak, active = ctx.Value("i", 0), ctx.Value("i", 0)
     transport = runtime.MockTransport.dispatch
+    pace = Permits.pace
 
     def dispatch(self, key, prompt, *, kind, on_sent):
         seed = self.p["config"]["search_seed"]
@@ -243,10 +239,10 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
             if key.endswith("SLOT-0000000/attempt/01"):
                 barrier.wait()
             if key.endswith("SLOT-0000005/attempt/01"):
-                if seed == 501:
+                if seed == 901:
                     on_sent()
                     raise transport_fault(524, "confirmed", "http_receive")
-                if seed == 502:
+                if seed == 902:
                     raise transport_fault(None, "unknown", "http_send")
             return transport(self, key, prompt, kind=kind, on_sent=on_sent)
         finally:
@@ -254,8 +250,18 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
                 active.value -= 1
 
     def worker(row, action):
+        pacing_calls = 0
+
+        def pace_with_failures(self, deadline, cooldown=None):
+            nonlocal pacing_calls
+            pacing_calls += 1
+            if row["seed"] == 902 and action == "run" and pacing_calls in (7, 8):
+                raise TimeoutError("local API pacing queue timeout")
+            return pace(self, deadline, cooldown)
+
         try:
-            fake.worker(manifest, row, action)
+            with patch.object(Permits, "pace", pace_with_failures):
+                fake.worker(manifest, row, action)
         except Exception:
             import traceback
             traceback.print_exc()
@@ -299,18 +305,20 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
     ending = fake.review(manifest, 2, followup["next"]["job_id"])
     assert ending["reason"] == "scientific_complete"
     results = {}
+    expected_failures = {901: 1, 902: 3, 903: 0}
     for row in rows:
         d = Path(row["run_dir"])
         checkpoint = cli.read(d / "checkpoint.json")
         assert checkpoint["successful_evolution_responses"] == 20 and checkpoint["generation"] >= 1
         journal = cli.read(d / "API_attempts.json")
         costs = candidate_policy.costs(journal)
-        assert costs["reservations_by_stage"]["evolution"] == (20 if row["seed"] == 503 else 21)
-        assert costs["physical_sends_unknown"] == int(row["seed"] == 502)
+        seed = row["seed"]
+        assert costs["reservations_by_stage"]["evolution"] == 20 + expected_failures[seed]
+        assert costs["physical_sends_unknown"] == int(seed == 902)
         failed = [a for a in journal["api_attempts"].values() if a["status"] == "failed"]
-        assert len(failed) == int(row["seed"] != 503)
-        if failed:
-            assert failed[0]["number"] == 1 and failed[0]["usage"] is None and not failed[0]["retryable"]
+        assert len(failed) == expected_failures[seed]
+        assert all(a["number"] == 1 and a["usage"] is None for a in failed)
+        assert sum(a["metadata"]["send_status"] == "not_sent" for a in failed) == (2 if seed == 902 else 0)
         assert journal["halt_reason"] is None
         for generation in (d / "plans").glob("G*.json"):
             frozen = cli.read(generation)
@@ -319,7 +327,7 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
                 if task.get("original_generation") == frozen["generation"]:
                     assert set(task["parents"]).issubset(ids)
         results[str(row["seed"])] = {"successful": 20, **costs}
-        if row["seed"] == 503:
+        if seed == 903:
             healthy = population_trace(checkpoint)
     assert not (manifest.parent / "gate/ledger.json").exists()
     assert not (manifest.parent / "gate/STOP.json").exists()
