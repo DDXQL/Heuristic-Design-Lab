@@ -111,7 +111,7 @@ def run_case(kind, temporary):
     if kind == "serial_control":
         doc["research"]["runs"] = [{"method": "u", "seed": 503, "initialization_attempts": 20}]
     if kind in ("parallel8", "serial_control"):
-        doc["research"]["budget"]["target"] = 12
+        doc["research"]["budget"]["target"] = 20
     if kind == "budget":
         doc["execution"]["api"]["evolution_reservation_cap"] = 5
     config = temporary / (label + ".json")
@@ -135,7 +135,7 @@ def run_case(kind, temporary):
                 return concurrent_fixture(fake, manifest, rows, launch, config, temporary)
             if kind == "serial_control":
                 final = fake.worker(manifest, rows[0], "run")
-                assert final["phase"] == "completed" and final["successful_evolution_responses"] == 12
+                assert final["phase"] == "completed" and final["successful_evolution_responses"] == 20
                 return population_trace(final)
             if kind == "budget":
                 dispatch = runtime.MockTransport.dispatch
@@ -253,16 +253,16 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
             with active.get_lock():
                 active.value -= 1
 
-    def worker(row):
+    def worker(row, action):
         try:
-            fake.worker(manifest, row, "run")
+            fake.worker(manifest, row, action)
         except Exception:
             import traceback
             traceback.print_exc()
             raise
 
-    with patch.object(runtime.MockTransport, "dispatch", dispatch):
-        processes = [ctx.Process(target=worker, args=(row,)) for row in rows]
+    def workers(action):
+        processes = [ctx.Process(target=worker, args=(row, action)) for row in rows]
         for process in processes:
             process.start()
         try:
@@ -274,19 +274,38 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
                 if process.is_alive():
                     process.terminate()
                     process.join()
-    assert peak.value == 3, peak.value
-    for job in launch["jobs"]:
+
+    task_context = runtime.Adapter.task_context
+
+    def drain_first_segment(self, directory, state, protocol, task, index):
+        if state.get("successful_evolution_responses") == 3:
+            self.segment_deadline = time.monotonic()
+        return task_context(self, directory, state, protocol, task, index)
+
+    with patch.object(runtime.MockTransport, "dispatch", dispatch):
+        with patch.object(runtime.Adapter, "task_context", drain_first_segment):
+            workers("run")
+        for row, job in zip(rows, launch["jobs"]):
+            saved = cli.read(Path(row["run_dir"]) / "checkpoint.json")
+            assert saved["phase"] == "paused" and saved["pause_reason"] == candidate_policy.TIME_PAUSE
+            assert saved["successful_evolution_responses"] == 3
+            fake.accounting[job] = True
+        followup = fake.review(manifest, 1, launch["first_review_job"])
+        assert followup["submitted"] and len(followup["next"]["workers"]) == 3
+        workers("resume")
+    for job in followup["next"]["workers"]:
         fake.accounting[job] = True
-    ending = fake.review(manifest, 1, launch["first_review_job"])
+    assert peak.value == 3, peak.value
+    ending = fake.review(manifest, 2, followup["next"]["job_id"])
     assert ending["reason"] == "scientific_complete"
     results = {}
     for row in rows:
         d = Path(row["run_dir"])
         checkpoint = cli.read(d / "checkpoint.json")
-        assert checkpoint["successful_evolution_responses"] == 12 and checkpoint["generation"] >= 1
+        assert checkpoint["successful_evolution_responses"] == 20 and checkpoint["generation"] >= 1
         journal = cli.read(d / "API_attempts.json")
         costs = candidate_policy.costs(journal)
-        assert costs["reservations_by_stage"]["evolution"] == (12 if row["seed"] == 503 else 13)
+        assert costs["reservations_by_stage"]["evolution"] == (20 if row["seed"] == 503 else 21)
         assert costs["physical_sends_unknown"] == int(row["seed"] == 502)
         failed = [a for a in journal["api_attempts"].values() if a["status"] == "failed"]
         assert len(failed) == int(row["seed"] != 503)
@@ -299,14 +318,15 @@ def concurrent_fixture(fake, manifest, rows, launch, config, temporary):
             for task in checkpoint["tasks"].values():
                 if task.get("original_generation") == frozen["generation"]:
                     assert set(task["parents"]).issubset(ids)
-        results[str(row["seed"])] = {"successful": 12, **costs}
+        results[str(row["seed"])] = {"successful": 20, **costs}
         if row["seed"] == 503:
             healthy = population_trace(checkpoint)
     assert not (manifest.parent / "gate/ledger.json").exists()
     assert not (manifest.parent / "gate/STOP.json").exists()
     assert (manifest.parent / "Closed.json").exists()
     invoke("export", config, "--out", str(temporary / "parallel8.zip"))
-    return {"configured": 8, "observed_peak": peak.value, "members": results, "healthy": healthy}
+    return {"configured": 8, "observed_peak": peak.value, "segments": ending["segments"],
+            "members": results, "healthy": healthy}
 
 
 def permits8(folder):
