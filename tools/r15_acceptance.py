@@ -33,8 +33,12 @@ def setup_tsp(config):
     need(config is not None, "TSP requires --config pointing to a D06-bound workbench JSON")
     doc, _ = experiment.load_document(config)
     rows, preview = experiment.prepare(doc)
-    need(preview['ready_for_submission_checks'] and doc['execution']['mode']=='real'
-         and [(c['group']) for c,_ in rows]==['tsp-u','tsp-eoh'], 'require exactly TSP U and EoH in that order with ready D06 assets')
+    need(doc['execution']['mode']=='real' and [c['group'] for c,_ in rows]==['tsp-u','tsp-eoh'],
+         'require a real-mode configuration with exactly TSP U and EoH, in that order')
+    if not preview['ready_for_submission_checks']:
+        missing = [f"{member['group']} seed {member['seed']}: {item}"
+                   for member in preview['members'] for item in member['pending']]
+        raise ValueError('TSP preflight pending: ' + '; '.join(missing))
     planned=[]
     for c,_ in rows:
         data, refs, hs = problems.load_inputs(c)

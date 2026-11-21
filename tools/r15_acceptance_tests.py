@@ -80,8 +80,15 @@ def probes(temp):
 
 def tsp_pilot(temp, reference):
     cfg=a.ROOT/'configurations/experiments/tsp-502.json'
-    doc=read(cfg);doc['research']['reference']=str(reference)
-    config=temp/'tsp-pilot-input.json';write(config,doc)
+    doc=read(cfg)
+    config=temp/'tsp-pilot-input.json'
+    missing = temp/'missing-d06.json'
+    doc['research']['reference']=str(missing);write(config,doc)
+    try:a.setup_tsp(config)
+    except ValueError as error:
+        assert str(missing) in str(error) and all(group in str(error) for group in ('tsp-u','tsp-eoh'))
+    else:raise AssertionError('missing D06 accepted')
+    doc['research']['reference']=str(reference);write(config,doc)
     planned=a.setup_tsp(config)
     assert len(planned)==2 and all(len(p['instances'])==20 for p,_ in planned)
     assert len(planned[0][0]['members'])==10 and not planned[1][0]['members']
