@@ -85,13 +85,18 @@ def inspect(path):
         names={'fjsp':'FJSP','tsp':'TSP','obp':'在线装箱'}
         label=names[c['problem']]+('双层方法' if c['method']=='u' else '单规则EoH')+'，种子 '+str(row['seed'])
         try:
-            cp=read(d/'checkpoint.json') if (d/'checkpoint.json').exists() else {}
+            with (d/'checkpoint.json').open() as handle:
+                cp=json.load(handle)
+                checkpoint_mtime=os.fstat(handle.fileno()).st_mtime
+        except FileNotFoundError:
+            cp={}
         except (OSError,ValueError) as error:
             if not shared.independent(m):raise
             rows.append({'run_id':row['run_id'],'phase':'unavailable','pause_reason':str(error),'group':row['group']})
             continue
         item={'中文名称':label,'run_id':row['run_id'],'seed':row['seed'],'group':row['group'],'phase':cp.get('phase','not_started'),'pending':configuration.gaps(c),'original_request_cap':row['request_cap'],'resources':c['resources'],'run_dir':str(d)}
         if cp:
+            item['checkpoint_updated_at']=checkpoint_mtime
             item['used_logical_attempts']=cp.get('completed_tasks',cp.get('cursor'))
             item['initialization_requests']=cp.get('initialization_requests',cp.get('eoh',{}).get('initialization_requests'))
             item['evolution_requests']=cp.get('generation_requests',cp.get('eoh',{}).get('operator_cursor'))
@@ -104,7 +109,7 @@ def inspect(path):
             if m.get('candidate_policy'):
                 item['reported_metrics'].update({k:progress.get(k) for k in
                     ('reservations_by_stage','physical_sends_confirmed','physical_sends_unknown','unresolved_wire_outcomes','retry_reservations','retry_physical_sends_confirmed',
-                     'confirmed_sends_usage_unknown','known_tokens')})
+                     'confirmed_sends_usage_unknown','known_tokens','api_failed_attempts')})
         item['submissions']=[read(f) for f in (d/'submissions').glob('shared-*.json')];rows.append(item)
     state=read(path.parent/'gate/ledger.json') if (path.parent/'gate/ledger.json').exists() else None
     width=shared.Admission({'manifest':str(path),'sha256':sha(path),'run_id':m['members'][0]['run_id']}).phase(state)[0] if state is not None else m['global_API_width']

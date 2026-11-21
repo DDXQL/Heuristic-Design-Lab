@@ -325,6 +325,7 @@ class Adapter(old.Adapter):
             costs=candidate_policy.costs(j)
             out.update(candidate_policy_version=policy['version'],successful_evolution_responses=s.get('successful_evolution_responses',0),
                        successful_evolution_target=p['config']['evolution_request_cap'],
+                       api_failed_attempts=sum(a['status']=='failed' for a in attempts),
                        automatic_retries=costs['retry_reservations'],**costs)
         out['resources']={'declared_model_concurrency':p['config']['api_concurrency'],'declared_evaluation_concurrency':p['config']['evaluation_concurrency'],'CPUs':p['config']['resources']['cpus'],'memory_mib':p['config']['resources']['memory_mib'],'numeric_threads':1,'generation_tasks_across_devices':1,'real_throughput_verified':False}
         if p['config'].get('shared_manifest'):

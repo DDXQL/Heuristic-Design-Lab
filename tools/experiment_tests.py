@@ -116,6 +116,11 @@ def run_case(kind, temporary):
     try:
         preview = invoke("prepare", config)
         assert preview["ready_for_submission_checks"] and not folder.exists(), preview
+        unstarted = invoke("status", config)["members"]
+        assert [m["seed"] for m in unstarted] == [r["seed"] for r in doc["research"]["runs"]]
+        assert all(m["phase"] == "not_started" and m["successful_evolution"] == 0
+                   and m["target"] == doc["research"]["budget"]["target"] for m in unstarted)
+        assert not folder.exists()
         assert not invoke("run", config)["submitted"] and not fake.commands
         with (patch.object(cli.shutil, "which", return_value="/offline/scheduler"),
               patch.object(cli.subprocess, "run", side_effect=fake.run)):
@@ -125,6 +130,11 @@ def run_case(kind, temporary):
             assert cli.read(folder / "Campaign_authorization.json")["allow_api"] is False
             receipt = invoke("status", config)
             assert [r["job"] for r in receipt["members"]] == launch["jobs"]
+            assert receipt["review_job"] == launch["first_review_job"] and receipt["review_state"] == "submitted"
+            for row, status in zip(rows, receipt["members"]):
+                checkpoint = Path(row["run_dir"]) / "checkpoint.json"
+                assert status["checkpoint_updated_at"] == checkpoint.stat().st_mtime
+                assert Path(status["logs"]["out"]).name == f'{row["run_id"]}-{status["job"]}.out'
             assert "--dependency=afterany:" + ":".join(launch["jobs"]) in fake.commands[launch["first_review_job"]]
             if kind == "parallel8":
                 return concurrent_fixture(fake, manifest, rows, launch, config, temporary)
@@ -147,7 +157,14 @@ def run_case(kind, temporary):
                 assert stopped["pause_reason"] == candidate_policy.BUDGET_PAUSE
                 result = fake.review(manifest, 1, launch["first_review_job"])
                 assert result["reason"] == "ended_incomplete" and result["account_release"]["closed"]
-                assert invoke("status", config)["account_closed"]
+                receipt = invoke("status", config)
+                assert receipt["account_closed"]
+                failed_status = receipt["members"][0]
+                checkpoint = Path(rows[0]["run_dir"]) / "checkpoint.json"
+                assert failed_status["checkpoint_updated_at"] == checkpoint.stat().st_mtime
+                assert failed_status["api_failed_attempts"] == 5 and failed_status["confirmed_sends"] == 0
+                assert failed_status["mock_sends"] >= 5 and failed_status["valid_candidates"] > 0
+                assert failed_status["candidate_failures"] >= 5
                 incomplete = invoke("export", config, "--out", str(temporary / (label + ".zip")))
                 assert incomplete["members_exported"] == [rows[0]["run_id"]]
                 return {"outcome": result["reason"], "account_closed": True}

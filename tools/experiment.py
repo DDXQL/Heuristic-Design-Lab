@@ -290,20 +290,28 @@ def status(path):
         d = Path(row["run_dir"])
         final = d / "exports/summary.json"
         latest_job = d / "latest-submission.json"
+        job = read(latest_job).get("job_id") if latest_job.is_file() else None
         reason = info.get("pause_reason")
-        members.append({"group": row["group"], "seed": row["seed"], "phase": info["phase"],
-                        "job": read(latest_job)["job_id"] if latest_job.exists() else None,
+        group = row["group"]
+        run_id = row["run_id"]
+        members.append({"group": group, "seed": row["seed"], "phase": info["phase"], "run_id": run_id,
+                        "job": job, "checkpoint_updated_at": info.get("checkpoint_updated_at"),
+                        "logs": {ext: str(ROOT / "logs" / f"{run_id}-{job}.{ext}") for ext in ("out", "err")} if job else None,
                         "successful_evolution": info.get("successful_evolution_responses", 0),
                         "target": read(row["config"])["evolution_request_cap"],
                         "initialization": info.get("initialization_requests", 0), "best_training_J": metrics.get("best_J"),
                         "request_reservations": metrics.get("reservations_by_stage"),
-                        "confirmed_sends": metrics.get("physical_sends_confirmed"),
+                        "confirmed_sends": metrics.get("confirmed_sends"),
+                        "mock_sends": metrics.get("physical_sends_confirmed") if m["mode"] == "mock" else None,
+                        "api_failed_attempts": metrics.get("api_failed_attempts"),
+                        "valid_candidates": metrics.get("valid_candidates"),
+                        "candidate_failures": metrics.get("failures"),
                         "unknown_sends": metrics.get("physical_sends_unknown"),
                         "unresolved_wire_outcomes": metrics.get("unresolved_wire_outcomes"),
                         "reason": reason, "detail": REASONS.get(reason),
                         "summary_file": str(final) if final.is_file() else None})
     return {"batch": m["batch_id"], "mode": m["mode"], "message": message, "members": members,
-            "review_job": review.get("job_id"), "segments": review.get("segment", 0),
+            "review_job": review.get("job_id"), "review_state": review.get("state"), "segments": review.get("segment", 0),
             "total_request_reservation_cap": m["total_request_cap"], "STOP": stop,
             "shared_attempts": (raw["shared"] or {}).get("states"), "outcome": outcome.get("reason"),
             "account_closed": (path.parent / "Closed.json").is_file(),
@@ -453,7 +461,12 @@ def main(argv=None):
     elif args.action == "run":
         result = run(doc, folder, args.approve)
     elif args.action == "status" and not path.is_file():
-        result = {"name": doc["name"], "state": "pending_plan" if request.exists() else "not_started",
+        state = "pending_plan" if request.exists() else "not_started"
+        research = doc["research"]
+        result = {"name": doc["name"], "state": state,
+                  "members": [{"group": research["problem"] + "-" + item["method"], "seed": item["seed"],
+                               "phase": state, "successful_evolution": 0, "target": research["budget"]["target"]}
+                              for item in research["runs"]],
                   "request_receipt": str(request) if request.exists() else None,
                   "next": "启动中断留下计划回执，请保留记录并核对原启动输出" if request.exists()
                   else "运行 prepare 核对资产，然后在集群用 run --approve 启动"}
