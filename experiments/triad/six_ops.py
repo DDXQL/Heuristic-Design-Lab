@@ -15,7 +15,7 @@ from heuristic_design.core.storage import read,write,sha,digest
 from experiments.triad import configuration,runtime,parallel,shared_admission as shared,assets
 from experiments.triad.concurrency_probe import claim
 CONFIGS=ROOT/'configurations/six-groups-20261116'
-R11=Path('/public2/home/qiuqian/hdl-deploy/triad-fjsp-stop-recovery-20261116-r11')
+R11=(Path.home() / 'hdl-deploy/triad-fjsp-stop-recovery-20261116-r11')
 R11_PLAN=R11/'plans/stop-recovery-501-502/Shared.json'
 PAIRS={'fjsp503':[('fjsp-u',503),('fjsp-eoh',503)],
        **{p+str(s):[(p+'-u',s),(p+'-eoh',s)] for p in ('tsp','obp') for s in (501,502,503)}}
@@ -113,7 +113,7 @@ def prepare(name,hours,confirmed,explore=False):
 
 
 def scheduler(rows):
-    q=subprocess.run(['squeue','-h','-u','qiuqian','-o','%i|%T'],check=True,text=True,capture_output=True,timeout=30).stdout
+    q=subprocess.run(['squeue','-h','-u',Path.home().name,'-o','%i|%T'],check=True,text=True,capture_output=True,timeout=30).stdout
     out=[]
     for row in rows:
         d=Path(row['run_dir']);r=read(d/'latest-submission.json');j=r.get('job_id','')
@@ -196,7 +196,7 @@ def explore_submit(name,hours,confirmed,approved,allow_api,allow_solves,send):
     if not send:return view
     need(allow_api and allow_solves and approved==view['total_request_cap'],'explicit original aggregate API/solve budget approval required')
     need(all(not r['pending'] for r in view['members']),'protocol/asset missing; do not rebuild validated references')
-    prior=Path('/public2/home/qiuqian/hdl-deploy/triad-tsp-lkh-candidate-20261117-r13')
+    prior=(Path.home() / 'hdl-deploy/triad-tsp-lkh-candidate-20261117-r13')
     need((prior/'release.json').is_file(),'prior R13 registry not readable; local absence is not evidence of an unstarted batch')
     need(not (prior/'plans'/('six-'+name)).exists(),'R13 batch already planned/started; retain its original identity, never migrate or recreate in R14')
     prepare(name,hours,confirmed,True)
@@ -307,11 +307,16 @@ def adopt_tsp(values):
     return {'TSP_parameters_adopted':True,'API_requests':0,'solves':0}
 
 
-def h_prepare(hours,confirmed):
+def h_prepare(hours,confirmed,*,complementary=False):
     need(confirmed and hours is not None and 48<=hours<=168,'fresh all-device agreement48..168h required')
     c=config('obp-u');folder=ROOT/'preparations/operations/obp-H401';cp=folder/'config.json'
     need(not folder.exists(),'original H plan retained; use status/resume')
     c.update(search_seed=401,account_exclusion={'scope':'all_devices_sharing_account','valid_until':time.time()+hours*3600,'confirmation':'operator confirms only OBP H401 will request on all devices'})
+    if complementary:
+        from experiments.triad import obp_h_search
+        c['h_build']['generation_policy']=obp_h_search.POLICY
+        c['resources']['partition']='64C_phi'
+        obp_h_search.check(c)
     write(cp,c)
     return invoke('entry.py',['check-only','--kind','h-build','--config',cp])
 
@@ -335,6 +340,7 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('action',choices=['check-only','prepare','explore-preview','explore-submit','activate','prefix-submit','certify','status','continue','pause','close','settle-known','r11-status','r11-export','r11-close','bind-tsp','bind-obp','adopt-tsp','obp-h-prepare','summary'])
     ap.add_argument('--batch',choices=tuple(PAIRS));ap.add_argument('--exclusive-hours',type=float);ap.add_argument('--confirm-exclusive-account',action='store_true');ap.add_argument('--confirm-retrieved',action='store_true')
+    ap.add_argument('--h-complementary',action='store_true',help='OBP H401: themed pilot plus complementary search')
     ap.add_argument('--submit',action='store_true');ap.add_argument('--allow-api',action='store_true');ap.add_argument('--allow-solves',action='store_true');ap.add_argument('--approve-requests',type=int);ap.add_argument('--acknowledge-charged-failures',action='store_true');ap.add_argument('--asset',type=Path);ap.add_argument('--values',nargs=6,type=int)
     a=ap.parse_args()
     if a.action=='check-only':v=check_only()
@@ -351,7 +357,7 @@ def main():
     elif a.action=='settle-known':v=settle_known(a.batch,a.acknowledge_charged_failures)
     elif a.action.startswith('bind-'):v=bind_asset('tsp' if a.action=='bind-tsp' else 'obp',a.asset)
     elif a.action=='adopt-tsp':v=adopt_tsp(a.values)
-    elif a.action=='obp-h-prepare':v=h_prepare(a.exclusive_hours,a.confirm_exclusive_account)
+    elif a.action=='obp-h-prepare':v=h_prepare(a.exclusive_hours,a.confirm_exclusive_account,complementary=a.h_complementary)
     else:v=summarize()
     print(json.dumps(v,ensure_ascii=False,indent=2))
 

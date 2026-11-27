@@ -45,7 +45,8 @@ def plan(spec,folder,hours=None,confirmed=False):
             drain=configuration.candidate_drain(c,doc['queue_wait_seconds'])
             c['resources'].update(segment_seconds=doc['segment_seconds'],request_queue_seconds=doc['queue_wait_seconds'],
                                   drain_seconds=max(drain,c['resources']['drain_seconds']))
-            if min(c['window_seconds'],c['resources']['segment_seconds'])<=c['resources']['drain_seconds']:
+            if (c['resources']['segment_seconds']<=c['resources']['drain_seconds']
+                    or c['window_seconds'] is not None and c['window_seconds']<=c['resources']['drain_seconds']):
                 raise ValueError('requested window/walltime does not cover drain')
         if c['api_attempt_cap'] is None:raise PermissionError('explicit member cap required even for a pending plan')
         write(dest,c); rows.append({'group':c['group'],'seed':item['seed'],'index':index,'run_id':run_id,'run_dir':str(run_root/run_id),'config':str(dest),'config_sha256':sha(dest),'child_config_sha256':sha(dest),'request_cap':c['api_attempt_cap'],'pending':configuration.gaps(c)})
@@ -158,12 +159,15 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
         # Reuse the existing resource and command builder; use the new thin shell.
         if m['mode']=='real' or m.get('candidate_policy'):
             if m.get('candidate_policy') and action=='resume':
-                remaining=int(read(d/'Run_clock.json')['deadline']-time.time())
-                if remaining<=c['resources']['drain_seconds']:raise PermissionError('remaining calendar cannot cover drain')
-                wall=min(remaining,c['resources']['segment_seconds'])
+                deadline=read(d/'Run_clock.json')['deadline']
+                wall=c['resources']['segment_seconds']
+                if deadline is not None:
+                    remaining=int(deadline-time.time())
+                    if remaining<=c['resources']['drain_seconds']:raise PermissionError('remaining calendar cannot cover drain')
+                    wall=min(remaining,wall)
             else:wall=None
             wall_override={'wall_seconds':wall} if wall is not None else {}
-            python=sys.executable if m.get('candidate_policy') else '/public2/home/qiuqian/hdl-envs/portable-v2/bin/python'
+            python=sys.executable if m.get('candidate_policy') else str(Path.home() / 'hdl-envs/portable-v2/bin/python')
             cmd=slurm.command(row,action,python,bound,segment_cap,**wall_override)
             cmd[-(8 if prefix is not None else 6)]=str(ROOT/'experiments/triad/parallel.sbatch')
             cmd+=(['',''] if prefix is None else [])+[str(path)]
@@ -173,7 +177,7 @@ def submit(path,action,send=False,approved=None,allow_api=False,allow_solves=Fal
                 if accepted.get('manifest_sha256')!=sha(path) or accepted.get('adapter_sha256')!=sha(shared.__file__):raise PermissionError('original bounded acceptance changed')
                 cmd.insert(cmd.index(str(ROOT/'experiments/triad/parallel.sbatch')),'--nodelist='+accepted['validated_nodes'][row['index']])
         else:
-            r=c['resources'];cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time=00:30:00','--partition='+r['partition'],'--account='+str(r['account'] or ''),'--qos='+str(r['qos'] or ''),'--chdir='+str(ROOT),'--job-name='+row['run_id'],'--output='+str(ROOT/'logs'/(row['run_id']+'-%j.out')),str(ROOT/'experiments/triad/parallel.sbatch'),action,row['config'],row['run_dir'],'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',str(row['request_cap']),str(bound) if bound is not None else '',str(segment_cap) if segment_cap is not None else '',str(path)]
+            r=c['resources'];cmd=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(r['cpus']),'--mem='+str(r['memory_mib'])+'M','--time=00:30:00','--partition='+r['partition'],'--account='+str(r['account'] or ''),'--qos='+str(r['qos'] or ''),'--chdir='+str(ROOT),'--job-name='+row['run_id'],'--output='+str(ROOT/'logs'/(row['run_id']+'-%j.out')),str(ROOT/'experiments/triad/parallel.sbatch'),action,row['config'],row['run_dir'],str(Path.home() / 'hdl-envs/portable-v2/bin/python'),str(row['request_cap']),str(bound) if bound is not None else '',str(segment_cap) if segment_cap is not None else '',str(path)]
         commands.append(cmd)
     if not send:return {'submitted':False,'commands':commands,'original_total_request_cap':m['total_request_cap'],'finite_segment_solve_cap':new_solves if prefix is not None else None}
     if m['mode']=='real' and (approved!=m['total_request_cap'] or not allow_api or not allow_solves):raise PermissionError('explicit original aggregate cap/API/solve approval required')

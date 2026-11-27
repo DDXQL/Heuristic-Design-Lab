@@ -140,11 +140,16 @@ def legal_obp_actions(item,used,capacity,policy):
 
 
 def obp_choose_action(item,used,capacity,actions,selected_callback,abi,policy):
-    # Shared by U, single-rule EoH and fixed-H through solve_row -> solve_obp.
-    # This pure single-arrival boundary is also checked with recording callbacks.
     actions=tuple(actions);expected=legal_obp_actions(item,used,capacity,policy)
     if actions!=expected or not actions:raise ValueError('all feasible actions in permanent-ID order required before H')
     capacities=tuple(capacity-used[b] if b<len(used) else capacity for b in actions)
+    return _score_obp_actions(item, actions, capacities, selected_callback, abi)
+
+
+def _score_obp_actions(item, actions, capacities, selected_callback, abi):
+    """Score the host's ordered feasible actions using the unchanged H ABI."""
+    if not actions:
+        raise ValueError('all feasible actions in permanent-ID order required before H')
     if abi=='obp-vector-feasible-h-v2':
         scores=selected_callback(item,capacities);calls=1
         if not isinstance(scores,(tuple,list)) or len(scores)!=len(actions):raise ValueError('vector H output must match feasible input length')
@@ -162,12 +167,11 @@ def validate_obp_solution(instance,solution,action_policy):
     if set(solution)!={'placements','used','bin_count'} or len(solution['placements'])!=len(items):raise ValueError('one OBP placement per arrival required')
     for item,b in zip(items,solution['placements']):
         if type(b) is not int or not 0<=b<=(len(used)-1 if action_policy=='preallocated_empty_bins' else len(used)):raise ValueError('invalid / noncanonical OBP bin')
-        fitting=[i for i,x in enumerate(used) if cap-x-item>=0]
         if b==len(used):
-            if action_policy=='fit_only_else_new' and fitting:raise ValueError('new bin forbidden while an old bin fits')
+            if action_policy=='fit_only_else_new' and any(cap-x-item>=0 for x in used):raise ValueError('new bin forbidden while an old bin fits')
             used.append(item)
         else:
-            if b not in fitting:raise ValueError('capacity violation')
+            if cap-used[b]-item<0:raise ValueError('capacity violation')
             used[b]+=item
     if used!=solution['used'] or sum(x>0 for x in used)!=solution['bin_count']:raise ValueError('bin count/load mismatch')
 
@@ -186,28 +190,79 @@ def state_provider(c):
     return provider
 
 
-def solve_obp(instance,hs,u,c):
-    # Only this host owns the full stream. H and U see one arrival/current state.
-    validate_obp_instance(instance);provider=state_provider(c);history=state.History(len(instance['items']),len(hs));used=[0]*len(instance['items']) if c['obp_actions']=='preallocated_empty_bins' else [];placements=[];sequence=[];calls=[0]*len(hs)
-    for item in instance['items']:
-        packet,actions=provider.extract(item,tuple(used),instance['capacity'],history)
-        state.validate_packet(packet,len(hs))
-        policy=c['obp_actions']
-        if tuple(actions)!=legal_obp_actions(item,used,instance['capacity'],policy):raise ValueError('delivered state/action domain differs from frozen protocol')
-        member=u_language.language.route_token(u(packet),len(hs))
-        selected=obp_choose_action(item,used,instance['capacity'],actions,hs[member],c['obp_h_abi'],policy)
-        calls[member]+=selected['H_calls'];b=selected['bin_index'];delta=int(b==len(used) or used[b]==0)
-        if b==len(used):used.append(item)
-        else:used[b]+=item
-        placements.append(b);sequence.append(member);history.commit(member,delta)
-    result={'placements':placements,'used':used,'bin_count':sum(x>0 for x in used)}
-    validate_obp_solution(instance,result,c['obp_actions'])
-    return result,sequence,calls
+def solve_obp(instance, hs, u, c):
+    """Place each arrival in order. A missing selector means a single fixed H."""
+    validate_obp_instance(instance)
+    provider = state_provider(c)
+    items, capacity = instance['items'], instance['capacity']
+    policy = c['obp_actions']
+    preset = policy == 'preallocated_empty_bins'
+    use_fixed_h = u is None
+    if use_fixed_h and len(hs) != 1:
+        raise ValueError('fixed OBP evaluation requires exactly one H')
+    # Inside the int64 domain, both residual subtraction and feasible load
+    # updates are exact. Other inputs retain Python arithmetic.
+    provider_checks_actions = preset and provider.__name__ == f'{__package__}.obp_state_preset'
+    integer_bins = (preset and type(capacity) is int and capacity <= 2**63 - 1
+                    and all(type(item) is int for item in items))
+    fast_u = integer_bins and provider_checks_actions and not use_fixed_h and capacity <= 1024
+    if fast_u:
+        from . import obp_fast_state
+    vectorized = integer_bins and (use_fixed_h or fast_u)
+    if vectorized:
+        import numpy as np
+        used = np.zeros(len(items), dtype=np.int64)
+    else:
+        used = [0] * len(items) if preset else []
+    history = None if use_fixed_h else state.History(len(items), len(hs))
+    placements, sequence, calls = [], [], [0] * len(hs)
+    for item in items:
+        if fast_u:
+            packet, actions, capacities = obp_fast_state.extract(item, used, capacity, history)
+        elif history is not None:
+            packet, actions = provider.extract(item, tuple(used), capacity, history)
+            actions = tuple(actions)
+            # The bound D08 provider calls legal_obp_actions itself. Retain the
+            # independent check for other delivered state providers.
+            if not provider_checks_actions and actions != legal_obp_actions(item, used, capacity, policy):
+                raise ValueError('delivered state/action domain differs from frozen protocol')
+            capacities = tuple(capacity - used[b] if b < len(used) else capacity for b in actions)
+        elif vectorized:
+            remaining = capacity - used
+            fitting = np.flatnonzero(remaining - item >= 0)
+            actions = tuple(fitting.tolist())
+            capacities = tuple(remaining[fitting].tolist())
+        else:
+            actions = legal_obp_actions(item, used, capacity, policy)
+            capacities = tuple(capacity - used[b] if b < len(used) else capacity for b in actions)
+        if history is None:
+            member = 0
+        else:
+            state.validate_packet(packet, len(hs))
+            member = u_language.language.route_token(u(packet), len(hs))
+        selected = _score_obp_actions(item, actions, capacities, hs[member], c['obp_h_abi'])
+        calls[member] += selected['H_calls']
+        b = selected['bin_index']
+        delta = int(b == len(used) or used[b] == 0)
+        if b == len(used):
+            used.append(item)
+        else:
+            used[b] += item
+        placements.append(b)
+        sequence.append(member)
+        if history is not None:
+            history.commit(member, delta)
+    if vectorized:
+        used = used.tolist()
+    result = {'placements': placements, 'used': used, 'bin_count': sum(x > 0 for x in used)}
+    validate_obp_solution(instance, result, policy)
+    return result, sequence, calls
 
 
-def load_inputs(c):
-    problem=c['problem'];manifest=read(c['data_manifest'])
-    if manifest['problem']!=problem or manifest['split']!='train':raise ValueError('only explicit training manifest is allowed')
+def load_inputs(c, *, allowed_splits=('train',), manifest=None):
+    problem=c['problem'];manifest=read(c['data_manifest']) if manifest is None else manifest
+    split=manifest['split']
+    if manifest['problem']!=problem or split not in allowed_splits:raise ValueError('explicit allowed split manifest required')
     rows=[]
     for item in manifest['instances']:
         source=(Path(c['data_manifest']).parent/item['path']).resolve()
@@ -219,9 +274,19 @@ def load_inputs(c):
         if problem=='obp':
             validate_obp_instance(value)
             if c['mode']=='real' and 'N' not in value:raise ValueError('formal OBP instance must bind explicit public N')
-        rows.append({'file':item.get('file',source.name),'split':'train','value':value,'sha256':digest(value),'source_sha256':item['sha256']})
+        rows.append({'file':item.get('file',source.name),'split':split,'value':value,'sha256':digest(value),'source_sha256':item['sha256']})
     if not rows or c['instance_count']!=len(rows):raise ValueError('declared instance count differs')
-    if problem=='fjsp':refs=fixtures.precheck_instances(problem,rows)
+    if problem=='fjsp':
+        if split=='train':
+            refs=fixtures.precheck_instances(problem,rows)
+        else:
+            from heuristic_design.problems.fjsp.common_state import precheck
+            from fjsp_usage.offline_v2 import lower_bound_v5
+            refs=[]
+            for row in rows:
+                instance=decode_fjsp(row, split)
+                precheck(instance)
+                refs.append({'file':row['file'],'reference':lower_bound_v5(instance),'rule':'LB_v5'})
     elif problem=='obp':
         if c['mode']=='real' and not isinstance(c['obp_bound'],dict):raise ValueError('real OBP requires an explicitly versioned reference; old alias is engineering-only')
         refs=[{'file':r['file'],**obp_reference_details(r['value'],c['obp_bound'])} for r in rows];state_provider(c)
@@ -262,12 +327,26 @@ def load_inputs(c):
     return rows,refs,hs
 
 
+def decode_fjsp(row, holdout_split=None):
+    if holdout_split is None:
+        return fixtures.decode_instance('fjsp',row)
+    if row['split']!=holdout_split or holdout_split not in ('validation','test','prospective-confirmation'):
+        raise ValueError('FJSP evaluation requires the bound holdout split')
+    # Adapt only the decoder's private argument. The evidence retains the original split.
+    return fixtures.decode_instance('fjsp',{**row,'split':'train'})
+
+
 def solve_row(spec,members,candidate,c,reference):
     problem=c['problem'];hs=[compile_h(problem,h) for h in members]
-    u=u_language.compile_candidate(u_language.checked(candidate,len(hs)),len(hs))
+    if isinstance(candidate, dict) and candidate.get('kind') == 'evolutionary-prototype-router-v1':
+        from experiments.prototype_hh.model import compile_selector
+        u = compile_selector(candidate, len(hs))
+    else:
+        u = None if problem == 'obp' and candidate is None else u_language.compile_candidate(
+            u_language.checked(candidate, len(hs)), len(hs))
     if problem=='fjsp':
         from heuristic_design.problems.fjsp.routing import construct_state_a_v3
-        result=construct_state_a_v3(fixtures.decode_instance(problem,spec),hs,u,trace=False)
+        result=construct_state_a_v3(decode_fjsp(spec,c.get('holdout_split')),hs,u,trace=False)
         solution=asdict(result.schedule);raw=result.schedule.makespan;seq=list(result.member_sequence);calls=list(result.h_calls)
     elif problem=='tsp':
         from heuristic_design.problems.tsp.solver import distances

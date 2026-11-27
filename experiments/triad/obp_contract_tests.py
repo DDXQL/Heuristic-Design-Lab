@@ -81,11 +81,12 @@ def main():
         assert [r['id'] for r in selected]==['C','A','D','B']
         individual,_=h_selection.select(records,vectors,2,'individual-J-v1');assert [r['id'] for r in individual]==['C','B']
         assert trace[-1]['envelope_J']==trace[-2]['envelope_J']==0 # still fills K at no improvement
-        # All three methods use the same evaluation-to-solver and one-arrival path.
+        # All three methods share the solver and the ordered scoring boundary.
         tree=ast.parse(Path(problems.__file__).read_text());row=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='solve_row')
         assert len([n for n in ast.walk(row) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='solve_obp'])==1
-        stream=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='solve_obp')
-        assert len([n for n in ast.walk(stream) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='obp_choose_action'])==1
+        for name in ('solve_obp','obp_choose_action'):
+            function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name==name)
+            assert len([n for n in ast.walk(function) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='_score_obp_actions'])==1
         result={'passed':True,'kind':'MANUAL_SINGLE_ARRIVAL_CALLBACK_AND_ARITHMETIC_ONLY','contract_version':problems.OBP_CONTRACT_VERSION,
           'H_ABI':obp_h.ABI,'actual_input_record':seen,'correct_selection':choice,'old_all_bins_counterexample':{'input':list(wrong_input),'mean':wrong_mean,'selected_permanent_bin':wrong_bin},
           'tie_selected_bin':ties['bin_index'],'active_open_selected_bin':opens['bin_index'],'rejected_output_cases':rejected,

@@ -39,7 +39,7 @@
     "mode": "real",
     "slurm": {
       "partition": "128C_02",
-      "account": "wz",
+      "account": "YOUR_SLURM_ACCOUNT",
       "qos": "normal",
       "cpus": 2,
       "memory_mib": 2048,

@@ -542,7 +542,8 @@ def adapter(b):
             if (Path(b['manifest']).parent/'gate/STOP.json').exists():
                 s.update(phase='paused',pause_reason='shared STOP before candidate planning/reservation; manual audited recovery required');return None,[]
             clock=Path(d)/'Run_clock.json'
-            if clock.exists() and time.time()+p['config']['resources']['drain_seconds']>=read(clock)['deadline']:
+            deadline=read(clock)['deadline'] if clock.exists() else None
+            if deadline is not None and time.time()+p['config']['resources']['drain_seconds']>=deadline:
                 s.update(phase='expired',pause_reason='shared queue/evaluation drain before original deadline');return None,[]
             return super().task_context(d,s,p,task,index)
     return AdmittedAdapter()

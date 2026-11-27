@@ -65,7 +65,7 @@ def start(directory,*,adapter,resume=False,allow_api=False,background=False):
         if key_env and not os.environ.get(key_env):raise ValueError('credential environment variable is absent; key not printed')
     if (directory/'Run_clock.json').exists():
         clock=o.read(directory/'Run_clock.json')
-        if time.time()>=clock['deadline']:raise ValueError('original window expired; never reset/extend on resume')
+        if clock['deadline'] is not None and time.time()>=clock['deadline']:raise ValueError('original window expired; never reset/extend on resume')
     # Durable exclusive launch reservation closes the detach/start race.
     fd=os.open(directory/'.execution.lock',os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f:json.dump({'state':'launch_reserved','pid':os.getpid()},f)
@@ -94,11 +94,12 @@ def work(directory,*,adapter):
     signal.signal(signal.SIGINT,lambda *a:requested.__setitem__(0,True))
     signal.signal(signal.SIGTERM,lambda *a:requested.__setitem__(0,True))
     try:
+        window=p['config']['window_seconds']
         if not (directory/'Run_clock.json').exists():
-            t=time.time();o.write(directory/'Run_clock.json',{'start':t,'deadline':t+p['config']['window_seconds']})
+            t=time.time();o.write(directory/'Run_clock.json',{'start':t,'deadline':None if window is None else t+window})
             s['clock_sha256']=o.sha(directory/'Run_clock.json');o.write(directory/'checkpoint.json',s)
         clock=o.read(directory/'Run_clock.json')
-        if clock['deadline']!=clock['start']+p['config']['window_seconds']:raise ValueError('deadline changed')
+        if clock['deadline']!=(None if window is None else clock['start']+window):raise ValueError('deadline changed')
         if sys.platform=='darwin':keep=subprocess.Popen(['/usr/bin/caffeinate','-i','-w',str(os.getpid())],stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         o.write(directory/'Run_identity.json',{'pid':os.getpid(),'ppid':os.getppid(),'sid':os.getsid(0),'at':time.time()})
         journal=None
@@ -124,7 +125,7 @@ def work(directory,*,adapter):
                 s['phase']='paused';s['pause_reason']=reason;break
             reserve=30*len(p['instances'])+5
             if plan[index]['stage']=='new':reserve+=p['config']['per_candidate_attempt_cap']*p['config']['provider']['total_timeout']+2
-            if time.time()+reserve>clock['deadline']:s['phase']='expired';break
+            if clock['deadline'] is not None and time.time()+reserve>clock['deadline']:s['phase']='expired';break
             task=plan[index];parents=None
             if hasattr(o,'task_context'):
                 task,parents=o.task_context(directory,s,p,task,index)

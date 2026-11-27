@@ -16,7 +16,7 @@ from heuristic_design.core import execution,evolution_v1,routing_state_a_v3 as l
 from heuristic_design.core.storage import read,write,sha,digest
 from heuristic_design.core.search import ranked,survive,_tuple_tree
 from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
-from . import problems,evaluation,candidate_policy
+from . import problems,evaluation,candidate_policy,obp_h_search
 from .configuration import candidate_drain,load,gaps
 VERSION='triad-six-groups-operations-v5'
 
@@ -37,6 +37,8 @@ def protocol_state(directory):
 
 def h_build_config(c):
     c=copy.deepcopy(c);h=c['h_build'];engineering=c['mode']=='mock'
+    if 'generation_policy' in h:
+        obp_h_search.check(c)
     c.update(search_seed=h.get('search_seed',c['search_seed'] if engineering else None),
       window_seconds=h.get('window_seconds',c['window_seconds'] if engineering else None),
       api_attempt_cap=h.get('request_cap'),initialization_request_cap=h.get('request_cap'),evolution_request_cap=0,
@@ -76,8 +78,14 @@ def preflight(path,engineering=False,run_kind=None):
     drain=math.ceil(width/c['api_concurrency'])*c['provider']['total_timeout']+len(data)*30+width+7
     if c.get('candidate_policy'):
         drain=candidate_drain(c,r.get('request_queue_seconds',600))
-    if r['drain_seconds']<drain or min(r['segment_seconds'],c['window_seconds'])<=r['drain_seconds']:raise ValueError('resource window/drain cannot cover bounded staged wave')
-    if not (c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real') and c['evaluation_concurrency']!=1:raise ValueError('native EoH preserves serial evaluation/feedback')
+    if (r['drain_seconds']<drain or r['segment_seconds']<=r['drain_seconds']
+            or (c['window_seconds'] is not None and c['window_seconds']<=r['drain_seconds'])):
+        raise ValueError('resource window/drain cannot cover bounded staged wave')
+    if c['problem'] == 'obp' and (run_kind or c['method']) == 'eoh':
+        if c['evaluation_concurrency'] not in evaluation.OBP_EOH_EVALUATION_WIDTHS:
+            raise ValueError('unsupported OBP-EoH evaluation width')
+    elif not (c['problem']=='fjsp' and c['method']=='u' and c['mode']=='real') and c['evaluation_concurrency']!=1:
+        raise ValueError('this method requires serial evaluation/feedback')
     return c,data,refs,hs,[]
 
 
@@ -126,6 +134,15 @@ def obp_u_prompt(c,task,parents,members):
     from heuristic_design.core import state_a
     for row in parents:language.checked(row['candidate'],len(members))
     instruction={'INIT':'Design one new pure H selector.','CROSS':CROSS,'MUTATE':MUTATE}[task['operator']]
+    missing_state = [
+        'At the first arrival, resource commitment statistics, recent delta statistics and previous_h_token are absent. '
+        'Later, each never-used H can still lack a last-use gap or a recent mean.',
+        'Guard each optional numeric read before comparing it or doing arithmetic, using short-circuit and: '
+        'state["availability"]["resource_commitment_mean"] and state["resource_commitment_mean"] > 0.5.',
+        'Use the corresponding per-item mask for an H vector: '
+        'state["availability"]["h_recent_delta_mean"][0] and state["h_recent_delta_mean"][0] < 0.1.',
+        'Provide a valid H-index fallback when a mask is false. An available value of zero is real data.',
+    ]
     return '\n'.join(['Problem obp; '+language.ABI+'; public state '+state_a_v3.SPEC_SHA256,
        instruction,'Return a description and one fenced Python def use_heuristics(state). Return one built-in int H index in 0..'+str(len(members)-1)+'.',
        'Read only literal scalar/per-H-array state paths and availability masks. No imports, loops, mutation, H calls, previews, lookahead or online model requests.',
@@ -134,6 +151,7 @@ def obp_u_prompt(c,task,parents,members):
        'The 14 information items are the ten numerical definitions plus four committed-history H arrays; auxiliary fields do not count as information items.',
        json.dumps(state_a.DEFINITIONS,sort_keys=True),json.dumps(state_a_v3.H_DEFINITIONS,sort_keys=True),
        'Guard missing entries using the matching availability mask. Minimize complete train J; ties use stable candidate ID.',
+       *missing_state,
        'Frozen H records in immutable order: '+json.dumps(members,sort_keys=True),
        'Original frozen parents: '+json.dumps([{'id':r['id'],'candidate':r['candidate']} for r in parents],sort_keys=True)])
 
@@ -171,6 +189,12 @@ class Adapter(old.Adapter):
         elif 'continuation' in p:
             from .native_continuation import verify
             verify(d,p)
+        elif 'obp_init_continuation' in p:
+            from .obp_init_continuation import verify_import
+            verify_import(Path(d),p)
+        elif 'api_continuation' in p:
+            from .api_continuation import verify_import
+            verify_import(Path(d),p)
         self.p=p;self._engineering_mode=p['config']['api_mode']=='mock';return p
     def members(self,d):return read(Path(d)/'Protocol.json')['members']
     def transport(self,p):
@@ -206,9 +230,15 @@ class Adapter(old.Adapter):
             return language.build_prompt(c['problem'],semantic,parents,members)
         args=problems.h_args(c['problem'],c.get('obp_h_abi'));template=old.old.Converter.text_to_function('def priority('+', '.join(args)+'):\n    return 0.0\n')
         description=h_contract.description(c['problem'],c.get('obp_h_abi'),problems.obp_contract(c) if c['problem']=='obp' else None)
-        op=task['operator'];funcs=[old.old.native.make_function(r['candidate'],r['id'],r['fitness']) for r in parents]
+        op=task['operator']
         fn=getattr(old.old.EoHPrompt,'get_prompt_'+op.lower())
-        text=fn(description,template) if op=='I1' else fn(description,funcs if op in ('E1','E2') else funcs[0],template)
+        if op=='I1':
+            text=fn(description,template)
+        else:
+            funcs=[old.old.native.make_function(r['candidate'],r['id'],r['fitness']) for r in parents]
+            text=fn(description,funcs if op in ('E1','E2') else funcs[0],template)
+        if self.p['run_kind']=='h-build' and obp_h_search.enabled(c):
+            text += '\n' + obp_h_search.prompt_context(task, parents)
         return text+'\nHere boxed {} means literal ASCII braces, NOT LaTeX. Return only {description} and one complete python fence as specified above.\n'
     def task_context(self,d,s,p,task,index):
         c=p['config'];v=s['eoh']
@@ -221,7 +251,15 @@ class Adapter(old.Adapter):
         if getattr(self,'segment_deadline',None) and time.monotonic()+c['resources']['drain_seconds']>self.segment_deadline:
             reason=candidate_policy.TIME_PAUSE if c.get('candidate_policy') else 'segment drain before next reservation'
             s.update(phase='paused',pause_reason=reason);return None,[]
-        if p['run_kind']=='h-build':return {**task,'operator':'I1','semantic_id':f'H-{index:05d}','phase':'initialization'},[]
+        if p['run_kind']=='h-build':
+            task={**task,'operator':'I1','semantic_id':f'H-{index:05d}','phase':'initialization'}
+            if obp_h_search.enabled(c):
+                if index == len(obp_h_search.THEMES) and not obp_h_search.has_pilot_diversity(Path(d), s):
+                    s.update(phase='initialization_incomplete',
+                             pause_reason='H401 pilot found fewer than two distinct train96 score vectors')
+                    return None,[]
+                return obp_h_search.task_context(Path(d),s,c,task,index)
+            return task,[]
         if p['run_kind']=='eoh':
             row,parents=super().task_context(d,s,p,task,index)
             if row is not None and c['initialization_policy']=='native_N_finite_or_fail' and s['eoh']['stage']=='evolution' and len(s['population'])!=c['population_size']:
@@ -260,7 +298,12 @@ class Adapter(old.Adapter):
             path=Path(d)/'evaluations'/key/'result.json';write(path,result)
         else:
             members=p['members'] if p['run_kind']=='u' else [asdict(candidate)]
-            selector=asdict(candidate) if p['run_kind']=='u' else asdict(language.validate('def use_heuristics(state):\n    return 0\n','singleton H host',1))
+            if p['run_kind']=='u':
+                selector=asdict(candidate)
+            elif p['config']['problem']=='obp':
+                selector=None
+            else:
+                selector=asdict(language.validate('def use_heuristics(state):\n    return 0\n','singleton H host',1))
             result=evaluation.evaluate({'id':tid,'candidate':selector},{**p,'run_directory':str(d),'members':members})
             path=Path(d)/'worker-receipts'/tid/'result.json'
         self.validate_result(result,p['instances']);s['evaluations'][key]={'status':'completed','path':str(path.relative_to(d)),'sha256':sha(path)};write(Path(d)/'checkpoint.json',s)
@@ -313,6 +356,9 @@ class Adapter(old.Adapter):
           automatic_retries=0,API_stop=j.get('halt_reason'),requires_investigation=bool(j.get('halt_reason')) or s['phase']=='stopped',budgets=p['budgets'],best_J=best['J'] if best else None,champion_id=best.get('semantic_id',best['id']) if best else None,
           actual_cost=None,known_usage_subtotal={k:sum((a.get('usage') or {}).get(k,0) for a in attempts) for k in ('input_tokens','output_tokens')},unknown_usage_attempts=sum(a.get('usage') is None for a in attempts),writer_lock=(Path(d)/'.execution.lock').exists(),pause_reason=s.get('pause_reason'))
         out['phase_request_reservations']={phase:sum((s['tasks'].get(a['logical_id'],{}).get('operator') in ('INIT','I1'))==(phase=='initialization') for a in attempts) for phase in ('initialization','evolution')}
+        if p['run_kind']=='h-build' and obp_h_search.enabled(p['config']):
+            out['h_generation_policy']=p['config']['h_build']['generation_policy']
+            out['h_distinct_valid']=len({t['candidate']['key'] for t in valid})
         if not live:
             import json
             physical=[]
@@ -388,4 +434,10 @@ def export(directory):
             frozen={'champion':champion,'protocol_sha256':s['identity'],'metrics':p['metrics'],'holdout':'not_run'}
             if target.exists() and read(target)!=frozen:raise ValueError('frozen champion changed')
             write(target,frozen)
+            if p['config'].get('candidate_policy'):
+                from .post_evaluation import champion_identity
+                identity=d/'exports/champion_identity.json'
+                receipt=champion_identity(p,champion,d,target)
+                if identity.exists() and read(identity)!=receipt:raise ValueError('frozen champion identity changed')
+                write(identity,receipt)
     return out

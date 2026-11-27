@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "tsp-eoh-confirm60-example",
+  "research": {
+    "problem": "tsp",
+    "runs": [
+      {"method": "eoh", "seed": 501, "initialization_attempts": 20},
+      {"method": "eoh", "seed": 502, "initialization_attempts": 20},
+      {"method": "eoh", "seed": 503, "initialization_attempts": 20}
+    ],
+    "training_manifest": "preparations/triad/tsp/train20.manifest.json",
+    "frozen_h": null,
+    "reference": "preparations/operations/tsp-reference-r15.json",
+    "state": "common-state-a-v3",
+    "evaluation": "train_J_min_T30",
+    "champion": "best_valid_training_J_then_id",
+    "holdout": {
+      "mode": "auto",
+      "split": "prospective-confirmation",
+      "manifest": "../../preparations/operations/experiments/tsp_state_ab/inputs/confirm.manifest.json",
+      "reference": "../../preparations/operations/tsp-confirm60/confirm60-reference.json"
+    },
+    "budget": {"count": "successful_responses", "target": 1000, "empty": "exclude", "truncated": "exclude"},
+    "decision": "沿用 R15 TSP EoH 成功返回候选口径，训练冠军冻结后用同一 confirm60 和 D06 参照外评。"
+  },
+  "execution": {
+    "mode": "real",
+    "slurm": {"partition": "64C_phi", "account": "YOUR_SLURM_ACCOUNT", "qos": "normal", "cpus": 2, "memory_mib": 2048,
+      "wall_seconds": 43200, "review_wall_seconds": 3600, "evaluation_concurrency": 1},
+    "api": {
+      "global_concurrency": 1, "min_interval_seconds": 1, "queue_wait_seconds": 600,
+      "timeout_seconds": 300, "evolution_reservation_cap": 1100, "retry_delays_seconds": [5],
+      "consecutive_failed_slots": 0, "cooldown_429_seconds": 30, "model": "gpt-6.1-sol",
+      "requests_per_minute": null
+    },
+    "window_hours": 48,
+    "max_segments": 4
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "prototype-hh-search-v1",
+  "problem": "obp",
+  "seeds": [501, 502, 503],
+  "source_u_protocol": null,
+  "source_u_protocol_sha256": null,
+  "search": {
+    "population_size": 40,
+    "iterations": 500,
+    "initial_prototypes": 16,
+    "max_prototypes": 32,
+    "initial_coordinate_std": 0.25,
+    "coordinate_mutation_std": 0.1,
+    "child_mutation_probability": 0.1,
+    "block_exchange_probability": 0.1
+  }
+}

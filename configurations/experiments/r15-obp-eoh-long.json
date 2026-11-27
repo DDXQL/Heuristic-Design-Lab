@@ -1,8 +1,9 @@
 {
   "version": 1,
-  "name": "r15-obp-eoh-long",
+  "name": "r15-obp-eoh-native",
   "research": {
     "problem": "obp",
+    "initialization_policy": "native_EoH",
     "runs": [
       {
         "method": "eoh",
@@ -38,13 +39,13 @@
   "execution": {
     "mode": "real",
     "slurm": {
-      "partition": "128C_02",
-      "account": "wz",
+      "partition": "128C_01",
+      "account": "YOUR_SLURM_ACCOUNT",
       "qos": "normal",
-      "cpus": 2,
-      "memory_mib": 2048,
+      "cpus": 5,
+      "memory_mib": 4096,
       "wall_seconds": 43200,
-      "evaluation_concurrency": 1
+      "evaluation_concurrency": 4
     },
     "api": {
       "global_concurrency": 1,

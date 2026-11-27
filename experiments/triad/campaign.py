@@ -13,12 +13,13 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "code"), str(ROOT)]
 from heuristic_design.core.storage import read, sha, write
-from experiments.triad import candidate_policy, configuration, parallel, shared_admission, six_ops, time_continuation
+from experiments.triad import candidate_policy, configuration, parallel, post_evaluation, shared_admission, six_ops, time_continuation
 from experiments.triad.concurrency_probe import claim
 
-PYTHON = "/public2/home/qiuqian/hdl-envs/portable-v2/bin/python"
-R13 = Path("/public2/home/qiuqian/hdl-deploy/triad-tsp-lkh-candidate-20261117-r13")
+PYTHON = str(Path.home() / 'hdl-envs/portable-v2/bin/python')
+R13 = (Path.home() / 'hdl-deploy/triad-tsp-lkh-candidate-20261117-r13')
 MAX_SEGMENTS = 12
+DEFAULT_REVIEW_WALL_SECONDS = 3600
 
 
 def view(batch, groups, policy):
@@ -82,18 +83,24 @@ def start(args):
     return launch(path, args.max_segments, args.release_account_on_completion)
 
 
-def launch(path, max_segments, release_account):
+def launch(path, max_segments, release_account, *, action="run",
+           review_wall_seconds=DEFAULT_REVIEW_WALL_SECONDS):
     m = shared_admission.load(path)
     real = m["mode"] == "real"
-    if not m.get("candidate_policy") or not 1 <= max_segments <= MAX_SEGMENTS:
-        raise PermissionError("candidate protocol and bounded original segment count required")
+    if not m.get("candidate_policy") or not valid_segment_limit(m, max_segments):
+        raise PermissionError("candidate protocol and valid segment limit required")
+    if not valid_review_wall_seconds(review_wall_seconds):
+        raise ValueError("review walltime must be a whole number of minutes, from 1 to 10080")
+    holdout = path.parent / post_evaluation.PLAN
     claim(path.parent / "Campaign_authorization.json", {
         "manifest_sha256": sha(path), "approve_requests": m["total_request_cap"],
         "max_segments": max_segments, "release_account": release_account,
+        "review_wall_seconds": review_wall_seconds,
+        **({"holdout_plan_sha256": sha(holdout)} if holdout.is_file() else {}),
         "expires_at": None if shared_admission.independent(m) else m["account_exclusion"]["valid_until"], "allow_api": real, "allow_solves": real,
     })
     shared_admission.activate(path)
-    launched = parallel.submit(path, "run", True, m["total_request_cap"], real, real)
+    launched = parallel.submit(path, action, True, m["total_request_cap"], real, real)
     continuation = queue_followup(path, 1, launched)
     return {"initial": launched, "continuation": continuation}
 
@@ -106,8 +113,11 @@ def queue_followup(path, segment, receipt):
     m = shared_admission.load(path)
     c = configuration.load(m["members"][0]["config"], engineering=m["mode"]=="mock")
     r = c["resources"]
+    auth_path = path.parent / "Campaign_authorization.json"
+    auth = authorization(path, m) if auth_path.is_file() else {}
+    review_seconds = auth.get("review_wall_seconds", DEFAULT_REVIEW_WALL_SECONDS)
     cmd = ["sbatch", "--parsable", "--no-requeue", "--nodes=1", "--ntasks=1",
-           "--cpus-per-task=1", "--mem=1024M", "--time=00:05:00",
+           "--cpus-per-task=1", "--mem=1024M", f"--time={review_seconds // 60}",
            "--dependency=afterany:" + ":".join(ids), "--partition=" + r["partition"],
            "--chdir=" + str(ROOT), "--job-name=" + path.parent.name + "-review",
            "--output=" + str(ROOT / "logs" / (path.parent.name + "-review-%j.out")),
@@ -117,7 +127,7 @@ def queue_followup(path, segment, receipt):
                                     "advance", "--manifest", str(path), "--segment", str(segment)])])
     record = path.parent / "campaign-control" / f"review-{segment:02d}.json"
     payload = {"state": "submission_reserved", "workers": ids, "manifest_sha256": sha(path),
-               "command": cmd, "segment": segment}
+               "command": cmd, "segment": segment, "wall_seconds": review_seconds}
     claim(record, payload)
     p = subprocess.run(cmd, check=True, text=True, capture_output=True, timeout=30)
     job = p.stdout.strip().split(";")[0]
@@ -174,11 +184,28 @@ def authorization(path, m):
     auth = read(path.parent / "Campaign_authorization.json")
     real = m["mode"] == "real"
     if not (m.get("candidate_policy") and auth["manifest_sha256"] == sha(path)
-            and 1 <= auth["max_segments"] <= MAX_SEGMENTS
+            and valid_segment_limit(m, auth["max_segments"])
+            and valid_review_wall_seconds(auth.get("review_wall_seconds", DEFAULT_REVIEW_WALL_SECONDS))
             and auth["allow_api"] == auth["allow_solves"] == real
             and auth["approve_requests"] == m["total_request_cap"]):
         raise PermissionError("original campaign authorization does not match")
     return auth
+
+
+def valid_review_wall_seconds(value):
+    return type(value) is int and 60 <= value <= 604800 and value % 60 == 0
+
+
+def valid_segment_limit(manifest, limit):
+    if limit is None:
+        return (shared_admission.independent(manifest)
+                and all(read(row["config"])["window_seconds"] is None for row in manifest["members"]))
+    return type(limit) is int and 1 <= limit <= MAX_SEGMENTS
+
+
+def limit_reached(auth, segment):
+    return ((auth["max_segments"] is not None and segment >= auth["max_segments"])
+            or (auth["expires_at"] is not None and time.time() >= auth["expires_at"]))
 
 
 def submit_remaining(path, assessment, auth, segment):
@@ -195,7 +222,7 @@ def resume_operator(path):
     auth = authorization(path, m)
     result = read(path.parent / "Campaign_result.json")
     number = result["segments"]
-    if result["reason"] != "operator_paused" or number >= auth["max_segments"] or (auth["expires_at"] is not None and time.time() >= auth["expires_at"]):
+    if result["reason"] != "operator_paused" or limit_reached(auth, number):
         raise PermissionError("a settled operator pause with remaining original segment/time budget is required")
     control = path.parent / "campaign-control"
     review = controller_receipt(control / f"review-{number:02d}.json")
@@ -225,7 +252,8 @@ def advance(path, segment):
     if not (record["state"] == "submitted"
             and record["job_id"] == os.environ.get("SLURM_JOB_ID")
             and record["manifest_sha256"] == auth["manifest_sha256"]
-            and record["segment"] == segment and 1 <= segment <= auth["max_segments"]):
+            and record["segment"] == segment and segment >= 1
+            and (auth["max_segments"] is None or segment <= auth["max_segments"])):
         raise PermissionError("unmatched Slurm controller receipt or original campaign authorization")
     decision = control / f"decision-{segment:02d}.json"
     claim(decision, {"job_id": record["job_id"], "action": "inspection_reserved", "at": time.time()})
@@ -234,9 +262,19 @@ def advance(path, segment):
         assessment = time_continuation.inspect(path, accounting=accounting)
         if assessment["blockers"]:
             return finish(path, assessment, segment, "needs_review")
+        if auth.get("holdout_plan_sha256"):
+            try:
+                holdout = post_evaluation.plan(path)
+                if holdout["mode"] == "auto":
+                    completed = {r["run_id"] for r in assessment["members"]
+                                 if r["phase"] == "completed" and not r["remaining_evolution"] and not r["detail"]}
+                    queued = post_evaluation.queue(path, [row for row in m["members"] if row["run_id"] in completed])
+                    write(control / f"holdout-{segment:02d}.json", {"jobs": queued})
+            except (OSError, ValueError, KeyError) as exc:
+                write(control / f"holdout-{segment:02d}.json", {"error": str(exc)})
         if assessment["scientific_complete"]:
             reason = "scientific_complete"
-        elif segment >= auth["max_segments"] or (auth["expires_at"] is not None and time.time() >= auth["expires_at"]):
+        elif limit_reached(auth, segment):
             reason = "authorized_limits_reached"
         elif any(r["pause_reason"] == "user_control" for r in assessment["members"]):
             return finish(path, assessment, segment, "operator_paused")

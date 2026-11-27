@@ -50,6 +50,12 @@ def failure(policy, message, meta, error_type):
     terminal_http = (sent == "confirmed" and meta.get("failure_stage") == "http_receive"
                      and type(status) is int and 400 <= status <= 599)
     not_sent = sent in ("not_sent", "not_started")
+    if (not permanent and status == 200 and sent == "confirmed"
+            and meta.get("independent_batch") and meta.get("dispatch_children_settled") is True
+            and meta.get("failure_stage") == "json_decode"
+            and meta.get("failure_subtype") == "invalid_json_response" and meta.get("model") is None
+            and meta.get("failure_class") not in ("protocol_incompatible", "permanent")):
+        return False, "invalid_json_response_charged", False
     if permanent or meta.get("caller_hard_stop"):
         return False, category, True
     if (meta.get("independent_batch") and meta.get("dispatch_children_settled") is True
@@ -141,15 +147,21 @@ def client_config(protocol):
     return config
 
 
-def journal(adapter, directory, state, protocol, deadline):
+def journal(adapter, directory, state, protocol, deadline, *, identity_only=None):
     c = protocol["config"]
     policy = c["candidate_policy"]
     config = client_config(protocol)
     config.request_budget["retry_backoff_seconds"] = policy["backoff_seconds"]
-    inner = adapter.transport(protocol)
-    wire = WireRecorder(inner, directory / "wire_responses")
+    namespace = protocol.get("api_continuation", protocol.get("obp_init_continuation", {})).get(
+        "parent_protocol_sha256", state["identity"])
+    if identity_only is None:
+        inner = adapter.transport(protocol)
+        wire = WireRecorder(inner, directory / "wire_responses")
+        transport = wire if deadline is None else DeadlineTransport(wire, deadline)
+    else:
+        transport = identity_only
     return CandidateJournal(directory / "API_attempts.json", config=config, context=state["identity"],
-                            phase="operations/" + state["identity"], transport=DeadlineTransport(wire, deadline),
+                            phase="operations/" + namespace, transport=transport,
                             candidate_policy=policy, initialization_cap=c["initialization_request_cap"])
 
 

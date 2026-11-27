@@ -26,9 +26,10 @@ def deny(*args, **kwargs):
 class Reply:
     redact = staticmethod(str)
 
-    def __init__(self, barrier=None, fault=None):
+    def __init__(self, barrier=None, fault=None, omit_usage=False):
         self.barrier=barrier
         self.fault=fault
+        self.omit_usage=omit_usage
 
     def dispatch(self, key, prompt, *, kind, on_sent):
         on_sent()
@@ -41,7 +42,8 @@ class Reply:
         text='OK'
         if kind=='U':text='Choose H0.\n```python\ndef use_heuristics(state):\n    return 0\n```'
         elif kind=='H':text='{Prefer lower distance}\n```python\ndef priority('+', '.join(problems.h_args('tsp'))+'):\n    return 0.0\n```'
-        return {'text':text,'usage':{'input_tokens':7,'output_tokens':1},'metadata':{'http_status':200}}
+        usage=None if self.omit_usage else {'input_tokens':7,'output_tokens':1}
+        return {'text':text,'usage':usage,'metadata':{'http_status':200}}
 
 
 def probes(temp):
@@ -58,13 +60,18 @@ def probes(temp):
         report=a.probe(d,2,lambda:Reply(Barrier(1),code),wait=deny)
         assert not report['passed'] and report['confirmed_sends']==2 and report['usage_unknown']==2
         assert all(r['http_status']==code for r in report['errors'])
+    missing_usage=temp/'api-missing-usage';missing_usage.mkdir()
+    barrier=Barrier(2)
+    replies=iter(Reply(barrier,omit_usage=i>=2) for i in range(4))
+    report=a.probe(missing_usage,2,lambda:next(replies),wait=lambda _:None)
+    assert report['successful_responses']==4 and report['usage_unknown']==2 and not report['passed']
     args=SimpleNamespace(kind='api',width=2,approve_requests=3,approve_solves=0,confirm_exclusive_account=True)
     try:a.execute(args,temp/'no-approval',[],4)
     except ValueError as error:assert 'exact request/solve caps' in str(error)
     else:raise AssertionError('invalid approval passed')
     args=SimpleNamespace(kind='api',width=4,approve_requests=8,approve_solves=0,
-                         confirm_exclusive_account=True,rpm=20,tpm=8192)
-    with (patch.dict(os.environ,{'SLURM_JOB_ID':'1','SLURM_STEP_ID':'0','SLURM_CPUS_PER_TASK':'9'}),
+                         confirm_exclusive_account=True,rpm=20,tpm=8192,unknown_rate_limits=False)
+    with (patch.dict(os.environ,{'SLURM_JOB_ID':'1','SLURM_STEP_ID':'0','SLURM_CPUS_PER_TASK':'10'}),
           patch.object(a.entry,'allocation_deadline',return_value=time.monotonic()+900)):
         try:a.execute(args,temp/'api-4',[],8)
         except ValueError as error:assert 'preceding concurrency stage' in str(error)
@@ -75,6 +82,32 @@ def probes(temp):
             try:a.execute(args,temp/'fresh-api-2',[],4)
             except ValueError as error:assert 'account occupied' in str(error)
             else:raise AssertionError('probe interrupted an occupied account')
+        unknown=temp/'unknown-rate-probe';unknown.mkdir()
+        config={**six_ops.config('tsp-eoh'),'account_gate':str(unknown)}
+        args.rpm=args.tpm=None
+        with patch.object(a.six_ops,'config',return_value=config):
+            try:a.execute(args,unknown/'api-2',[],4)
+            except ValueError as error:assert 'provider-confirmed RPM and TPM' in str(error)
+            else:raise AssertionError('missing rate limits accepted without explicit opt-in')
+            args.unknown_rate_limits=True
+            args.width=9;args.approve_requests=18
+            try:a.execute(args,unknown/'api-9',[],18)
+            except ValueError as error:assert 'preceding concurrency stage' in str(error)
+            else:raise AssertionError('nine-way probe skipped the eight-way stage')
+            probe=a.probe
+            for width in a.WIDTHS:
+                args.width=width;args.approve_requests=width*2
+                barrier=Barrier(width)
+                folder=unknown/f'api-{width}'
+                with (patch.object(a.entry,'key',return_value=None),
+                      patch.object(a,'StrictNonstreamTransport',side_effect=lambda _:Reply(barrier)),
+                      patch.object(a,'probe',side_effect=lambda d,n,f:probe(d,n,f,wait=lambda _:None))):
+                    report=a.execute(args,folder,[],args.approve_requests)
+                assert report['passed'] and report['unknown_rate_limits'] and report['confirmed_sends']==width*2
+                receipt=read(folder/'authorization.json')
+                assert receipt['unknown_rate_limits'] and receipt['required_rpm'] is receipt['required_tpm'] is None
+                assert not (unknown/'generation.lock').exists()
+    observed['unknown_limits_stages_2_4_8_9']=True
     return observed
 
 

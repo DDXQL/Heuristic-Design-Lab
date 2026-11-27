@@ -195,7 +195,10 @@ class Adapter(old.Adapter):
         text=fn(task_description(),template) if task['operator']=='I1' else fn(task_description(),funcs if task['operator'] in ('E1','E2') else funcs[0],template)
         return text+'\nUse literal ASCII {description}, NOT LaTeX, followed by exactly one complete fenced python function, as specified above.\n'
     def task_context(self,directory,state,p,task,index):
-        if state['eoh']['stage']=='evolution' and state['eoh']['operator_cursor']>=p['config']['evolution_request_cap']:
+        config = p['config']
+        # R15 completion and reservation limits are enforced by the candidate-policy runner.
+        if (not config.get('candidate_policy') and state['eoh']['stage']=='evolution'
+                and state['eoh']['operator_cursor']>=config['evolution_request_cap']):
             state['phase']='completed';return None,[]
         segment=getattr(self,'segment_deadline',None)
         reserve=30*len(p['instances'])+p['config']['provider']['total_timeout']+7+120

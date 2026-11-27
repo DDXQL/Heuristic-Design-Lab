@@ -25,7 +25,7 @@ from heuristic_design.llm.strict_nonstream import StrictNonstreamTransport
 
 
 need = experiment.require
-WIDTHS = (2, 4, 8)
+WIDTHS = (2, 4, 8, 9)
 PROMPT = "Reply with exactly the word OK."
 
 
@@ -137,7 +137,8 @@ def probe(folder, width, factory, wait=time.sleep):
             break
         if wave==0:wait(61)
     report=summarize(folder)
-    report['passed']=report['successful_responses']==2*width and report['peak_confirmed_in_flight']==width
+    report['passed']=(report['successful_responses']==report['confirmed_sends']==2*width
+                      and report['peak_confirmed_in_flight']==width and report['usage_unknown']==0)
     return {**report,'requested_width':width,'waves':waves,'actual_solves':0}
 
 
@@ -195,8 +196,9 @@ def execute(args, folder, planned, cap):
          and deadline-time.monotonic() > (2100 if args.kind=='tsp' else 700), 'use srun on a sufficiently sized Slurm compute allocation')
     c=planned[0][0]['config'] if planned else six_ops.config('tsp-eoh')
     if args.kind=='api':
-        need(args.rpm is not None and args.tpm is not None and args.rpm>=width and args.tpm>=512*width,
-             'explicit provider-confirmed RPM and TPM must cover the planned burst')
+        if not args.unknown_rate_limits:
+            need(args.rpm is not None and args.tpm is not None and args.rpm>=width and args.tpm>=512*width,
+                 'provider-confirmed RPM and TPM or explicit bounded unknown-limit probe required')
         if width!=WIDTHS[0]:
             previous=folder.parent/f'api-{WIDTHS[WIDTHS.index(width)-1]}'/'result.json'
             need(previous.is_file() and read(previous).get('passed') is True, 'preceding concurrency stage has not passed')
@@ -208,13 +210,15 @@ def execute(args, folder, planned, cap):
            'batch':str(folder),'job_id':job}
     claim(lease,owner)
     claim(folder/'authorization.json',{**owner,'request_cap':cap,'solve_cap':max_solves,'model':config.provider.model,
-                                       'required_rpm':args.rpm,'required_tpm':args.tpm})
+                                       'required_rpm':args.rpm,'required_tpm':args.tpm,
+                                       'unknown_rate_limits':args.unknown_rate_limits})
     started=time.monotonic()
     try:
         entry.key(c)
         if args.kind=='api':result=probe(folder,width,lambda:StrictNonstreamTransport(config))
         else:result=tsp(folder,planned,lambda member:StrictNonstreamTransport(client(member,short=False)))
         need(result['requests_reserved']<=cap and result['actual_solves']<=max_solves,'acceptance budget exceeded')
+        if args.kind=='api':result['unknown_rate_limits']=args.unknown_rate_limits
         result.update(total_wall_seconds=time.monotonic()-started,job_id=job,report_file=str(folder/'result.json'))
         write(folder/'result.json',result)
         return result
@@ -230,11 +234,16 @@ def main():
     cli.add_argument('kind',choices=('api','tsp'));cli.add_argument('action',choices=('plan','run','status'))
     cli.add_argument('--name',required=True);cli.add_argument('--width',type=int,choices=WIDTHS)
     cli.add_argument('--config',type=Path);cli.add_argument('--rpm',type=int);cli.add_argument('--tpm',type=int)
+    cli.add_argument('--unknown-rate-limits',action='store_true',
+                     help='run the bounded probe with unknown RPM/TPM; still require the preceding stage to pass')
     cli.add_argument('--approve-requests',type=int);cli.add_argument('--approve-solves',type=int)
     cli.add_argument('--confirm-exclusive-account',action='store_true')
     args=cli.parse_args()
     need(bool(re.fullmatch(r'[a-z0-9][a-z0-9-]{0,39}',args.name)), 'invalid acceptance name')
     need((args.width is not None)==(args.kind=='api'), '--width applies only to the API probe')
+    need(not args.unknown_rate_limits or (args.kind=='api' and args.action in ('plan','run')
+         and args.rpm is None and args.tpm is None),
+         '--unknown-rate-limits requires api plan/run and no RPM/TPM values')
     need(args.action=='run' or not any((args.approve_requests,args.approve_solves,args.confirm_exclusive_account)),
          'approvals are only accepted for run')
     cap=2*args.width if args.width else 2
@@ -246,6 +255,7 @@ def main():
         result=execute(args,folder,planned,cap) if args.action=='run' else {
             'output':str(folder),'request_cap':cap,'solve_cap':80 if planned else 0,'ready_for_user_approval':True,
             'real_requests_by_plan':0,'actual_solves_by_plan':0}
+        if args.kind=='api' and args.action=='plan':result['unknown_rate_limits']=args.unknown_rate_limits
     print(json.dumps(result,ensure_ascii=False,indent=2))
 
 

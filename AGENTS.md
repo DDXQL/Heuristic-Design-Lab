@@ -1,30 +1,40 @@
 # 实验运行与归档规则
 
+## 科研优先的沟通和交接
+
+- 面向师兄、导师和论文讨论的实验结果汇报，从[科研实验进展汇报](reports/RESEARCH_PROGRESS.md)开始。默认按研究目标与对照、整体进度、正式比较、发现与限制、缺项、最多三项后续工作组织。冻结、作业、故障、预算和复现证据通过[实验状态矩阵](reports/EXPERIMENT_STATUS.md)及[工程详细记录](PROJECT_MAP.md)追溯。运行中的中途成绩不得进入正式比较。
+- 科研图注先讲怎么读图，再给出图中数据支持的具体观察。只在某项限制会改变当前结论时说明它，删去与当前论证无关的防御性提醒。
+- 默认用通俗中文，先说实验结论和影响，再给技术原因。说明受影响的问题、方法、种子和进度，训练、冻结、外评各完成到哪一步，已有结果是否可用，能否从原断点继续，以及研究人员需要做什么。请求重试、状态字段、日志、路径、提交号和错误码放在后面。首次使用必要术语时给一句解释，如 checkpoint 是断点保存文件，JSON 解码失败是 API 返回内容无法按预期格式读取，Mock 是模拟测试，Slurm 是集群作业调度。
+- 日常回执按「目前情况 → 本次发现 → 对论文结果的影响 → 已经处理 → 还需要做什么」组织。下一步只列最重要的 1–3 项，技术细节按需附上。1000/1000 只确认候选预算达标，论文完成还要核对冻结冠军、预定留出集外评和研究统计。
+- 涉及新实验、API 故障、续跑、并发、冠军冻结、外评或导出时，先查 [状态矩阵](reports/EXPERIMENT_STATUS.md)、[减负原则和历史限制](DECISIONS.md)、[问题与方法导航](docs/实验导航.md)、[源码和资产地图](PROJECT_MAP.md)，再核对相关冻结配置和 `Protocol.json`。此阅读顺序用于交接，无需人工批准，也不作为停跑条件。
+- **[DECISIONS.md](DECISIONS.md) 是研究人员维护的长期原则指南，日常任务默认只读。** 只有研究人员明确要求修改这份长期原则文档时，才可编辑。发现过时或冲突时报告证据和建议，由研究人员决定。不得另建同类原则页绕开约束。可正常刷新 `reports/EXPERIMENT_STATUS.md` 和状态快照，保留事实来源及最后核实时间。
+- 对普通故障先修具体缺陷，保留原检查点、请求记录、预算、冻结 H、方案 A、种子、评价和冠军选择。遇到旧代码与采用的规则冲突，先核实其适用版本和真实依赖。已经废弃的账户独占、共享 STOP 或 48 小时批次硬门槛禁止作为新运行器的默认规则。旧冻结部署和历史证据按其原版本保存。
+
 ## R15 主线任务入口
 
-开始 R15 工程任务前先读 [README.md](README.md)、[PROJECT_MAP.md](PROJECT_MAP.md) 和 [DECISIONS.md](DECISIONS.md)，再按需要查源码或实际回执。当前主线是 `codex/successful-candidate-runtime-20261119`。并发、时限、重试等参数的采用依据以 DECISIONS 的分类和对应证据为准。以下带日期的工作树段落按其明确工作树和版本适用。历史任务和待定状态仅供追溯。
+从 [README.md](README.md) 进入。Mac 统一主项目位于 `~/Developer/Heuristic-Design-Lab-successful-runtime-20261119`，发布到现有 GitHub 分支 `codex/successful-candidate-runtime-20261119`。以下带日期的工作树段落只适用于各自明确列出的工作树和版本，历史任务和待定状态供追溯。
 
-新增问题、方法、配置或入口时同步更新项目地图和能力表。记录受影响模块、可改参数、测试、回退和受保护的研究参数。
+新增问题、方法、配置或入口时同步更新项目地图和能力表。记录受影响模块、可改参数、测试、回退和受保护的研究参数。长期原则的维护权限遵循上一节。
 
 ## 成功返回候选协议的独立工程树（2026-11-19）
 
-独立树 `/Users/DDXQL/Developer/Heuristic-Design-Lab-successful-runtime-20261119`、分支 `codex/successful-candidate-runtime-20261119` 从 ad59509 起步。当前授权覆盖新协议的执行、请求计数、Slurm 续跑、离线故障注入、文档和本地 Git 提交。必要的公共执行改动只在此树生效。保留 V5 传输、搜索算子、提示、数据、评价器和历史运行身份。R11、R13、R14 原版本及远端状态均不在此树维护。草案参数需要研究采用记录才可编排真实作业。
+独立树 `~/Developer/Heuristic-Design-Lab-successful-runtime-20261119`、分支 `codex/successful-candidate-runtime-20261119` 从 ad59509 起步。当前授权覆盖新协议的执行、请求计数、Slurm 续跑、离线故障注入、文档和本地 Git 提交。必要的公共执行改动只在此树生效。保留 V5 传输、搜索算子、提示、数据、评价器和历史运行身份。R11、R13、R14 原版本及远端状态均不在此树维护。草案参数需要研究采用记录才可编排真实作业。
 
 ## 本轮公共离线维护（2026-11-19）
 
-本轮唯一写入树为`/Users/DDXQL/Developer/Heuristic-Design-Lab-independent-delivery-20261118`、分支`codex/independent-delivery-20261118`。按用户经总控交接的授权，核查冻结R13恢复边界，在本树实施最小时间门禁及有界续跑适配、针对性无API Mock。新工具仅适用于未来冻结的新轻量身份，不能导入或恢复R13旧检查点。保留原1000次演化尝试、初始化最多20、累计1020口径；不实施成功返回替补政策。未知发送、未知用量、未知提交均保留，不凭HTTP状态码重发。
+本轮唯一写入树为`~/Developer/Heuristic-Design-Lab-independent-delivery-20261118`、分支`codex/independent-delivery-20261118`。按用户经总控交接的授权，核查冻结R13恢复边界，在本树实施最小时间门禁及有界续跑适配、针对性无API Mock。新工具仅适用于未来冻结的新轻量身份，不能导入或恢复R13旧检查点。保留原1000次演化尝试、初始化最多20、累计1020口径；不实施成功返回替补政策。未知发送、未知用量、未知提交均保留，不凭HTTP状态码重发。
 
 禁止修改/部署R13或其他冻结树、访问SSH/远端账户、改真实账本/锁/STOP、请求API、运行真实求解或Slurm。原生requeue仅核查官方契约，未现场验证不得宣称可用。公共`code/`、`experiments/common/run_frozen.py`与科学配置保持原字节。
 
 ## 当前公共轻量流程工程（2026-11-18）
 
-唯一新增公共工程树`/Users/DDXQL/Developer/Heuristic-Design-Lab-explore-runtime-20261118`、分支`codex/explore-runtime-20261118`，从963499d派生。用户通过总控明确批准已审查最小方案的代码实现及无API离线验证：新探索身份、两份sbatch/API总并发1、已知失败只结算自己的许可与预留且不退款不重试、自动现场自检、科研完成与安全关闭解耦、执行节点读密钥前核归属和资源。保留严格路径，缓存后置。
+唯一新增公共工程树`~/Developer/Heuristic-Design-Lab-explore-runtime-20261118`、分支`codex/explore-runtime-20261118`，从963499d派生。用户通过总控明确批准已审查最小方案的代码实现及无API离线验证：新探索身份、两份sbatch/API总并发1、已知失败只结算自己的许可与预留且不退款不重试、自动现场自检、科研完成与安全关闭解耦、执行节点读密钥前核归属和资源。保留严格路径，缓存后置。
 
-本轮不授权部署、SSH、真实API/求解/Slurm、R11账本/lease/STOP处理。旧R13、TSP/OBP专用成果、Mac503未完成树及所有旧运行保持原样；公共code/、run_frozen.py、演化/评价/V5/状态/研究参数不得修改。后续新部署根为`/public2/home/qiuqian/hdl-deploy/triad-explore-runtime-20261118-r14`；冻结交付不代表已部署或已现场验证。
+本轮不授权部署、SSH、真实API/求解/Slurm、R11账本/lease/STOP处理。旧R13、TSP/OBP专用成果、Mac503未完成树及所有旧运行保持原样；公共code/、run_frozen.py、演化/评价/V5/状态/研究参数不得修改。后续新部署根为`$HOME/hdl-deploy/triad-explore-runtime-20261118-r14`；冻结交付不代表已部署或已现场验证。
 
 ## 当前唯一维护来源（2026-11-17）
 
-本轮从R12p2源码冻结提交`e17fef9d444d540b9fec875a260fa4ac1c104a32`派生到`/Users/DDXQL/Developer/Heuristic-Design-Lab-tsp-lkh-candidate-20261117`、分支`codex/tsp-lkh-candidate-20261117`，交付身份R13。以下旧工作树说明保留为历史。用户通过总控明确采用TSP U5/init20/policy1、EoH10/init20/policy3，各1000演化/累计1020、种子501/502/503，以及指定SHA的第三方LKH候选作为待工程验收来源；官方同一性未验证，D06求解参数不变。OBP继续严格有限父代政策。
+本轮从R12p2源码冻结提交`e17fef9d444d540b9fec875a260fa4ac1c104a32`派生到`~/Developer/Heuristic-Design-Lab-tsp-lkh-candidate-20261117`、分支`codex/tsp-lkh-candidate-20261117`，交付身份R13。以下旧工作树说明保留为历史。用户通过总控明确采用TSP U5/init20/policy1、EoH10/init20/policy3，各1000演化/累计1020、种子501/502/503，以及指定SHA的第三方LKH候选作为待工程验收来源；官方同一性未验证，D06求解参数不变。OBP继续严格有限父代政策。
 
 本轮授权必要实现、本地候选源码导入和纯离线Mock。禁止make、LKH/H/U真实求解、模型请求、Slurm、上传切换或操作R11；不修改主项目总控文档、旧树dirty文档、旧包及任何运行/锁/预算。公共`code/`与`experiments/common/run_frozen.py`保持923781f。采用记录见`configurations/tsp-lkh-candidate-20261117/Adoption.json`；不从历史批准推导运行授权。
 
@@ -33,7 +43,7 @@
 本文件适用于本项目及其子目录中的后续Codex任务。
 
 - Mac用于本地开发和运行实验；实验室Windows电脑保存历史实验归档，通过UU由用户手动传输。
-- 待传输包统一放在`/Users/DDXQL/Developer/transfer-outbox`，不得放在Documents或iCloud目录。
+- 待传输包统一放在`~/Developer/transfer-outbox`，不得放在Documents或iCloud目录。
 - 实验完成且确认不再写入，或准备清理历史结果释放空间时，提醒用户传输；不必每次调试都打包。
 - 使用Windows可解压的ZIP，附文件清单、SHA-256和简短核验说明。不得包含密钥、凭据文件或虚拟环境。
 - 打包前检查恢复、导出和基线比较依赖。仍被当前实验引用的文件保留在Mac，不得因归档破坏读取路径。
@@ -53,7 +63,7 @@
 
 ## 本工作树：FJSP实验工程与公共Python执行层
 
-- 唯一工程工作树为 `/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-execution-20261112`，分支 `codex/fjsp-execution-20261112`。TSP与集群复用同一冻结交付，不复制公共执行层。
+- 唯一工程工作树为 `~/Developer/Heuristic-Design-Lab-fjsp-execution-20261112`，分支 `codex/fjsp-execution-20261112`。TSP与集群复用同一冻结交付，不复制公共执行层。
 - 状态唯一维护来源为 `Heuristic-Design-Lab-state-a-v2` 的 `codex/state-a-v2`；本树接入 `common-state-a-v3`，不自行定义另一套状态。定义和接入见 `docs/state-a-v3/接口与FJSP接入.md`。旧v2及历史协议保持原身份。
 - 实验代码先读 `/Users/DDXQL/.codex/skills/ahd-experiment-copilot/SKILL.md`。用户明确授权本树实现与无真实API的Mock/离线检查；可运行合成回执，不可请求模型、运行H/构造求解、重评train21或提交Slurm。
 - V5与有限完整流程的历史证据保留；已关闭的API2/累计求解12预算不得复用。旧实验不恢复、不删锁、不重置预算。
@@ -62,7 +72,7 @@
 
 ## 本部署工作树：无API集群验收
 
-- 本树 `/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-cluster-mock-20261113` 从923781f创建，只维护部署叠加文件和本轮离线证据。`code/`和公共入口逐字节复用923781f，不在此修改执行器。
+- 本树 `~/Developer/Heuristic-Design-Lab-fjsp-cluster-mock-20261113` 从923781f创建，只维护部署叠加文件和本轮离线证据。`code/`和公共入口逐字节复用923781f，不在此修改执行器。
 - Mac源树正在运行。不得改动该树、其账户门禁、配置、检查点、锁或实验进程。
 - 用户授权文件部署、远端只读检查和本地纯离线Mock；真实Slurm提交由用户手动执行。无API任务无需取得生成型作业排他许可。
 - 本轮不读取凭据、不请求模型、不运行H或正式训练求解。`research.pending.json`保持原样和未授权；预期协议拒绝与环境失败分开记录。
@@ -75,7 +85,7 @@
 
 ## 新版FJSP单规则EoH准备（2026-11-13）
 
-- 本工作树为 `/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113`，只新增 `deploy/eoh-baseline` 的问题适配与部署叠加、新入口和train21快照。公共 `code/` 逐字节复用923781f，仍由原唯一工程来源维护，不新建执行循环、客户端、种群或求解器。
+- 本工作树为 `~/Developer/Heuristic-Design-Lab-fjsp-eoh-gap-20261113`，只新增 `deploy/eoh-baseline` 的问题适配与部署叠加、新入口和train21快照。公共 `code/` 逐字节复用923781f，仍由原唯一工程来源维护，不新建执行循环、客户端、种群或求解器。
 - 614258、614474的验收已关闭；原树保留全部证据，本轮不追加同类真实验收。
 - 本轮用户只授权实现、check-only和纯离线Mock。不得请求模型、运行真实训练求解、提交Slurm、恢复旧EoH或改动正在运行的Mac U实验。
 - 新协议 `fjsp-eoh-single-J-min-v1`，J最小化，原生最大化种群仅接收内部桥接值−J；旧负Fitness身份及历史文件不改。待定正式参数保持null并阻止启动。
@@ -86,7 +96,7 @@
 
 ## 两个独立搜索的请求级并发（2026-11-14）
 
-- 本树为`/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114`，分支`codex/fjsp-two-searches-20261114`，从R5p1源码7edeeb9建立。用户／总规划授权最小实现和本地双进程无API Mock，不只交方案。
+- 本树为`~/Developer/Heuristic-Design-Lab-fjsp-two-searches-20261114`，分支`codex/fjsp-two-searches-20261114`，从R5p1源码7edeeb9建立。用户／总规划授权最小实现和本地双进程无API Mock，不只交方案。
 - 不修改原R5p1包、原工程树、616362、旧U501及其配置、Prompt、种群、检查点、锁、预算或账户门禁。公共`code/`和冻结U入口逐字节复用923781f。不得联网、上传切换、真实API、真实求解或提交Slurm。
 - 新版最多两个独立搜索，共享API总并发1；每搜索模型并发仍1，CPU评价并发和资源分别声明。每种子独立初始化、随机状态、目录、预算、日志和回执；不把EoH改为异步反馈，也不改变U同批原父代及结算顺序。
 - 批次占用原账户门禁，内部请求级准入实际接入U/EoH；不得仅移除串行锁或把每种子锁冒充共享账户限流。未知发送／提交留存并停止新发送，不过期抢锁、重提、退款或补预算。
@@ -94,7 +104,7 @@
 
 ## 当前统一整合树（2026-11-15）
 
-- 唯一最新工程来源为`/Users/DDXQL/Developer/Heuristic-Design-Lab-triad-concurrent-20261115`、`codex/triad-concurrent-prompt-v2-20261115`。复用R6p2共享准入，接入cb6add9的实际H提示契约，不另造搜索或客户端。`code/`和公共冻结U入口保持923781f原字节；旧R5p1、R6p2、r7交付和原运行不改。
+- 唯一最新工程来源为`~/Developer/Heuristic-Design-Lab-triad-concurrent-20261115`、`codex/triad-concurrent-prompt-v2-20261115`。复用R6p2共享准入，接入cb6add9的实际H提示契约，不另造搜索或客户端。`code/`和公共冻结U入口保持923781f原字节；旧R5p1、R6p2、r7交付和原运行不改。
 - U501和U502（617156）已完成1000次，只读登记；旧EoH616362仍是20次发送/84次含复核求解的初始化失败，不能接回新版本。新首批为EoH501/502两个独立原初始化前缀，共2请求、最多84次含复核求解，真实提交用户手动；通过后同源同目录恢复原1020，不重开初始化。
 - 已采用TSP历史10H/train20和D06全部参照规格；已采用OBP预设N箱、合法向量、R_code、96/32切分、冻结后30Weibull、H40选10/seed401、U5/EoH10/init20/evolution1000/cap1020。采用配置不代表自动请求或求解授权。TSP额外搜索N/init/cap如缺明确采用证据，只列该具体缺项，不把数据/LKH重新列待定。
 - 可进行必要实现、纯数据导入和纯离线检查；API、真实构造、LKH、上传、Slurm均用户手动。初始两个活跃搜索/API总并发1；API2仅预先实现和离线验证，必须已有实际API1证明及另一次2请求/84次含复核求解的手动验证，未测不宣称可用。未知请求、未知提交、未知writer保留，不过期抢锁，不补预算。
@@ -102,14 +112,14 @@
 
 ## FJSP原生门槛承接（2026-11-15）
 
-- 本轮唯一新增工程来源为`/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115`、`codex/fjsp-native-continuation-20261115`，从15d7a80继续；旧R8树、包和原运行保持原身份。公共`code/`及`run_frozen.py`仍逐字节为923781f。
+- 本轮唯一新增工程来源为`~/Developer/Heuristic-Design-Lab-fjsp-native-continuation-20261115`、`codex/fjsp-native-continuation-20261115`，从15d7a80继续；旧R8树、包和原运行保持原身份。公共`code/`及`run_frozen.py`仍逐字节为923781f。
 - 用户明确采用FJSP EoH全部501/502/503的原生准入，目标N10、原生重复/同分惩罚不变。501/502从各自8/9个有限父代承接，不补初始化；503未来从空种群独立初始化，同一政策。
 - 只实现新协议的显式结算承接，不改旧失败phase。保留原20请求/798次含复核求解、原1020上限、1000演化目标、原Run_clock和排他期限；恢复保存的首次E1抽样前状态，核对旧终态恰好多耗两次未发送抽样。
 - 允许纯离线检查和合成Mock，禁止代发API、执行H/求解、上传、Slurm提交、清锁或扩大预算。真实继续由用户手动；正常旧批次close及新批次activate复用原账户门禁，持久承接登记阻止同一父批次重复导入。
 
 ## R11已知失败恢复（2026-11-16）
 
-本轮工程来源`/Users/DDXQL/Developer/Heuristic-Design-Lab-fjsp-stop-recovery-20261116`，分支`codex/fjsp-stop-recovery-20261116`。用户／总规划明确授权实现已知失败审计结清和纯离线验证；只新增恢复工具并修改必要的三处triad适配，公共code/和run_frozen.py继续逐字节923781f。不修改远端R9或旧证据，不代上传、占用交接、模型请求、求解或Slurm提交。
+本轮工程来源`~/Developer/Heuristic-Design-Lab-fjsp-stop-recovery-20261116`，分支`codex/fjsp-stop-recovery-20261116`。用户／总规划明确授权实现已知失败审计结清和纯离线验证；只新增恢复工具并修改必要的三处triad适配，公共code/和run_frozen.py继续逐字节923781f。不修改远端R9或旧证据，不代上传、占用交接、模型请求、求解或Slurm提交。
 
 只接纳取回后哈希固定的619459/619460暂停状态，以及619593已失败未启子运行：1次确认发送HTTP522＋5次确认not_sent，原1167尝试保留；原账本缺少的4个本地拒绝槽纳入新账本。旧STOP/ledger/失败/检查点原字节不动，失败不能改成成功。真正未知仍拒绝，不能自动清锁、重放、退款或增预算。当前RNG、部分下一代、570/577演化游标原样继承，不回退P000、不重初始化；原1020、1000、原deadline及所有科学设置不变。
 

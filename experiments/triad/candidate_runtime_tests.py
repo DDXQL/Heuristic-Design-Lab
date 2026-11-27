@@ -191,6 +191,7 @@ def main():
             ("tsp-u", 5, 1): "known_not_sent",
             ("tsp-u", 6, 1): 520, ("tsp-u", 7, 1): 522, ("tsp-u", 8, 1): 524,
             ("tsp-u", 9, 1): 429, ("tsp-u", 10, 1): "empty", ("tsp-u", 11, 1): "truncated",
+            ("tsp-eoh", 11, 1): "empty", ("tsp-eoh", 12, 1): "truncated",
         }
         report = {}
         with (workload_storage(args.fast_ledger) as flush,
@@ -227,6 +228,10 @@ def main():
                     assert s["tasks"]["SLOT-0000005"]["successful_evolution_response"] is True
                     assert any(t.get("AST_duplicate") and t.get("successful_evolution_response")
                                for t in s["tasks"].values())
+                else:
+                    assert s["eoh"]["operator_cursor"] == target + 2
+                    excluded = [t["response_class"] for t in s["tasks"].values() if t["excluded_response"]]
+                    assert excluded == ["empty", "truncated"]
                 out = runtime.export(d)
                 assert (d / "exports/API-physical-attempts.csv").is_file()
                 assert (d / "exports/best-J-by-successful-response.svg").is_file()

@@ -17,7 +17,7 @@ sys.path[:0] = [str(ROOT / "code"), str(ROOT)]
 
 from heuristic_design.core import state_a_v3
 from heuristic_design.core.storage import digest, read, sha, write
-from experiments.triad import campaign, candidate_policy, configuration, parallel, shared_admission, six_ops
+from experiments.triad import campaign, candidate_policy, configuration, evaluation, parallel, post_evaluation, shared_admission, six_ops
 from experiments.triad.concurrency_probe import claim
 from experiments.triad.batch_admission import WIDTHS
 
@@ -50,10 +50,13 @@ def load_document(path):
 
 def settings(doc):
     research, execution = doc["research"], doc["execution"]
-    fields(research, "problem runs training_manifest frozen_h reference state evaluation champion holdout budget decision", "research")
-    fields(execution, "mode slurm api window_hours max_segments", "execution", "exclusive_hours release_account_when_done")
+    fields(research, "problem runs training_manifest frozen_h reference state evaluation champion holdout budget decision",
+           "research", "initialization_policy")
+    fields(execution, "mode slurm api max_segments", "execution",
+           "window_hours exclusive_hours release_account_when_done")
     slurm, api, budget = execution["slurm"], execution["api"], research["budget"]
-    fields(slurm, "partition account qos cpus memory_mib wall_seconds", "execution.slurm", "evaluation_concurrency")
+    fields(slurm, "partition account qos cpus memory_mib wall_seconds", "execution.slurm",
+           "evaluation_concurrency review_wall_seconds")
     fields(api, "global_concurrency min_interval_seconds queue_wait_seconds timeout_seconds evolution_reservation_cap retry_delays_seconds consecutive_failed_slots cooldown_429_seconds", "execution.api", "requests_per_minute model retry_explicit_429")
     fields(budget, "count target empty truncated", "research.budget")
     problem = research["problem"]
@@ -64,8 +67,9 @@ def settings(doc):
             "R15 使用成功返回口径。历史尝试口径请使用对应冻结版本")
     integer(budget["target"], 1000 if real else 1, 1000, "research.budget.target")
     require(research["state"] == state_a_v3.VERSION and research["evaluation"] == "train_J_min_T30"
-            and research["champion"] == "best_valid_training_J_then_id" and research["holdout"] == "not_run",
+            and research["champion"] == "best_valid_training_J_then_id",
             "研究入口目前支持共同状态 A v3、训练 J/T30、有效候选按 J 与 ID 选优，训练外评价独立进行")
+    post_evaluation.specification(research["holdout"], ROOT)
     require(not real or isinstance(research["decision"], str) and research["decision"].strip(),
             "真实搜索需要填写 research.decision，记录本批采用的研究协议")
     runs = research["runs"]
@@ -87,12 +91,25 @@ def settings(doc):
     integer(slurm["cpus"], 2, 128, "Slurm cpus")
     integer(slurm["memory_mib"], 128, 2**20, "Slurm memory_mib")
     integer(slurm["wall_seconds"], 60, 604800, "Slurm wall_seconds")
-    integer(execution["window_hours"], 1, 144, "window_hours")
-    integer(execution["max_segments"], 1, campaign.MAX_SEGMENTS, "max_segments")
+    require(campaign.valid_review_wall_seconds(
+                slurm.get("review_wall_seconds", campaign.DEFAULT_REVIEW_WALL_SECONDS)),
+            "Slurm review_wall_seconds 须以整分钟计，范围 60 至 604800 秒")
+    # Persisted workbench JSON can still carry the old field. It no longer
+    # configures a calendar deadline for a new batch.
+    if execution["max_segments"] is not None:
+        integer(execution["max_segments"], 1, campaign.MAX_SEGMENTS, "max_segments")
     require(type(api["global_concurrency"]) is int and api["global_concurrency"] in WIDTHS, "API 总并发可选 1、2、4、8")
     if api.get("requests_per_minute") is not None:
         integer(api["requests_per_minute"], 1, 100000, "requests_per_minute")
-    require(slurm.get("evaluation_concurrency", 1) == 1, "当前 R15 适配器保留每个种子串行 CPU 评价")
+    width = slurm.get("evaluation_concurrency", 1)
+    obp_eoh = research["problem"] == "obp" and all(row["method"] == "eoh" for row in runs)
+    if "initialization_policy" in research:
+        require(obp_eoh and research["initialization_policy"] == "native_EoH",
+                "此配置项仅用于已采用原生准入的 OBP-EoH 批次")
+    allowed_widths = evaluation.OBP_EOH_EVALUATION_WIDTHS if obp_eoh else (1,)
+    require(type(width) is int and width in allowed_widths,
+            "OBP-EoH 批次的实例评价并发可选 1、2、4，其他批次使用 1")
+    require(slurm["cpus"] >= width + 1, "Slurm CPU 需容纳实例评价进程和 1 个控制核")
     require(api.get("retry_explicit_429", False) is False, "新批次的 429 退避后开新槽，原槽不重试")
     integer(api["min_interval_seconds"], 0, 60, "API 发送间隔")
     integer(api["queue_wait_seconds"], 1, 600, "API 排队等待")
@@ -127,7 +144,9 @@ def member(doc, item, policy):
              candidate_policy=policy, initialization_request_cap=item["initialization_attempts"],
              evolution_request_cap=research["budget"]["target"],
              api_attempt_cap=item["initialization_attempts"] + policy["evolution_attempt_cap"],
-             per_candidate_attempt_cap=policy["per_slot_attempt_cap"], window_seconds=rules["window_hours"] * 3600)
+             per_candidate_attempt_cap=policy["per_slot_attempt_cap"], window_seconds=None)
+    if group == "obp-eoh" and "initialization_policy" in research:
+        c["initialization_policy"] = research["initialization_policy"]
     if c["mode"] == "mock":
         c.update(freeze_status="engineering_only", credential_file=None)
     for key, name in (("data_manifest", "training_manifest"), ("reference_file", "reference"), ("h_file", "frozen_h")):
@@ -139,16 +158,16 @@ def member(doc, item, policy):
             c["reference_file"] = str(reference)
     if c["method"] != "u":
         c["h_file"] = None
-    c["evaluation_concurrency"] = 1
+    c["evaluation_concurrency"] = rules["slurm"].get("evaluation_concurrency", 1) if group == "obp-eoh" else 1
     if c["data_manifest"] and Path(c["data_manifest"]).is_file():
         c["instance_count"] = len(read(c["data_manifest"])["instances"])
     r, slurm, api = c["resources"], rules["slurm"], rules["api"]
     r.update({k: slurm[k] for k in ("partition", "account", "qos", "cpus", "memory_mib")})
     integer(api["timeout_seconds"], c["provider"]["connect_timeout"], c["provider"]["total_timeout"], "API timeout_seconds")
     r.update(segment_seconds=slurm["wall_seconds"], http_timeout_seconds=api["timeout_seconds"],
-             request_queue_seconds=api["queue_wait_seconds"])
+             request_queue_seconds=api["queue_wait_seconds"], independent_batch=True)
     r["drain_seconds"] = max(r["drain_seconds"], configuration.candidate_drain(c, api["queue_wait_seconds"]))
-    require(min(c["window_seconds"], r["segment_seconds"]) > r["drain_seconds"],
+    require(r["segment_seconds"] > r["drain_seconds"],
             f"{group} 时限必须大于 {r['drain_seconds']} 秒的安全收尾时间")
     require(c["population_size"] is None or item["initialization_attempts"] >= c["population_size"],
             f"{group} 初始化上限小于种群大小 {c['population_size']}")
@@ -198,13 +217,23 @@ def fixed_plan(doc, output):
     return result
 
 
-def prepare(doc):
+def prepare(doc, *, inherited_window=None):
     policy = settings(doc)
     members = [member(doc, item, policy) for item in doc["research"]["runs"]]
+    if inherited_window is not None:
+        for config, _ in members:
+            require(inherited_window > config["resources"]["drain_seconds"], "原批次窗口不足以收尾")
+            config["window_seconds"] = inherited_window
     rows = [row for _, row in members]
+    training_ready = all(not row["pending"] for row in rows)
+    holdout = post_evaluation.preflight(post_evaluation.specification(doc["research"]["holdout"], ROOT),
+                                       members[0][0], training_ready)
     return members, {"name": doc["name"], "mode": doc["execution"]["mode"], "members": rows,
                      "execution": doc["execution"],
-                     "ready_for_submission_checks": all(not row["pending"] for row in rows),
+                     "calendar_window_seconds": inherited_window,
+                     "review_wall_seconds": doc["execution"]["slurm"].get(
+                         "review_wall_seconds", campaign.DEFAULT_REVIEW_WALL_SECONDS),
+                     "ready_for_submission_checks": training_ready and not holdout["pending"], "holdout": holdout,
                      "total_request_reservation_cap": sum(row["budget"]["request_cap_per_seed"] for row in rows),
                      "global_API_width": doc["execution"]["api"]["global_concurrency"],
                      "effective_max_requests": min(len(rows), doc["execution"]["api"]["global_concurrency"]),
@@ -216,18 +245,32 @@ def run(doc, folder, approve):
     if not approve:
         return {**preview, "next": "核对配置及上限后在集群上运行 run --approve"}
     require(preview["ready_for_submission_checks"], "还有未满足的研究配置或资产，请先查看 prepare")
+    require(not folder.exists(), "批次名称已使用，请运行 status。新批次使用新的 name")
+    check_launch_environment(members[0][0])
+    path = create_plan(doc, folder, members, preview)
+    submitted = campaign.launch(path, doc["execution"]["max_segments"], True,
+                                review_wall_seconds=preview["review_wall_seconds"])
+    return {"name": doc["name"], "mode": doc["execution"]["mode"], "manifest": str(path), "submitted": True,
+            "total_request_reservation_cap": preview["total_request_reservation_cap"],
+            "jobs": [row["job_id"] for row in submitted["initial"]["receipts"]],
+            "first_review_job": submitted["continuation"]["job_id"]}
+
+
+def check_launch_environment(first):
     require(all(shutil.which(command) for command in ("sbatch", "sacct", "squeue", "srun", "scontrol")),
             "请在 Slurm 集群终端启动。Mac 可编辑配置和执行 prepare")
-    require(not folder.exists(), "批次名称已使用，请运行 status。新批次使用新的 name")
-    rules = doc["execution"]
-    gate = folder / shared_admission.BATCH_GATE_DIR
-    first = members[0][0]
-    if rules["mode"] == "real":
+    if first["mode"] == "real":
         credential = Path(first["credential_file"])
         require(credential.is_file(), "集群凭据文件缺失，请先配置已有账户的本地凭据")
         meta = credential.lstat()
         require(stat.S_ISREG(meta.st_mode) and stat.S_IMODE(meta.st_mode) == 0o600 and meta.st_uid == os.getuid(),
                 "已有凭据须由当前用户拥有、权限 0600，且为普通文件")
+
+
+def create_plan(doc, folder, members, preview):
+    rules = doc["execution"]
+    first = members[0][0]
+    gate = folder / shared_admission.BATCH_GATE_DIR
     inputs = folder.parent / (folder.name + "-inputs")
     # Exclusive batch-name claim before writing any plan inputs. Failed/unknown
     # submissions keep their original identity and receipts for status.
@@ -246,12 +289,11 @@ def run(doc, folder, approve):
                  "queue_wait_seconds": rules["api"]["queue_wait_seconds"], "window_seconds": first["window_seconds"],
                  "segment_seconds": rules["slurm"]["wall_seconds"]})
     plan = parallel.plan(spec, folder)
-    path = Path(plan["manifest"])
-    submitted = campaign.launch(path, rules["max_segments"], True)
-    return {"name": doc["name"], "mode": rules["mode"], "manifest": str(path), "submitted": True,
-            "total_request_reservation_cap": preview["total_request_reservation_cap"],
-            "jobs": [row["job_id"] for row in submitted["initial"]["receipts"]],
-            "first_review_job": submitted["continuation"]["job_id"]}
+    manifest = Path(plan["manifest"])
+    holdout = preview["holdout"]
+    if holdout["mode"] != "not_run":
+        claim(manifest.parent / post_evaluation.PLAN, {**holdout, "manifest_sha256": sha(manifest)})
+    return manifest
 
 
 REASONS = {
@@ -270,7 +312,8 @@ def status(path):
     m = shared_admission.load(path)
     raw = parallel.inspect(path)
     control = path.parent / "campaign-control"
-    latest = sorted(control.glob("review-*.json"))
+    reviews = ((p.stem.removeprefix("review-"), p) for p in control.glob("review-*.json"))
+    latest = [p for _, p in sorted((int(n), p) for n, p in reviews if n.isdigit())]
     review = read(latest[-1]) if latest else {}
     result = path.parent / "Campaign_result.json"
     outcome = read(result) if result.is_file() else {}
@@ -310,8 +353,19 @@ def status(path):
                         "unresolved_wire_outcomes": metrics.get("unresolved_wire_outcomes"),
                         "reason": reason, "detail": REASONS.get(reason),
                         "summary_file": str(final) if final.is_file() else None})
+    lifecycle = post_evaluation.overview(path, m["members"], members)
+    if outcome.get("reason") == "scientific_complete":
+        if lifecycle["experiment_complete"]:
+            message = "训练、冻结和训练外评价均已完成"
+        elif lifecycle["mode"] != "not_run":
+            message = "训练已完成，训练外评价进度见 holdout"
+        else:
+            message = "训练已完成，本批配置为仅训练"
+    holdout_reviews = sorted(control.glob("holdout-*.json"))
     return {"batch": m["batch_id"], "mode": m["mode"], "message": message, "members": members,
+            "lifecycle": lifecycle, "holdout_review": read(holdout_reviews[-1]) if holdout_reviews else None,
             "review_job": review.get("job_id"), "review_state": review.get("state"), "segments": review.get("segment", 0),
+            "review_wall_seconds_at_submission": review.get("wall_seconds"),
             "total_request_reservation_cap": m["total_request_cap"], "STOP": stop,
             "shared_attempts": (raw["shared"] or {}).get("states"), "outcome": outcome.get("reason"),
             "account_closed": (path.parent / "Closed.json").is_file(),
@@ -341,8 +395,9 @@ def export(path, output):
         archive.writestr("batch-status.json", json.dumps(info, ensure_ascii=False, indent=2) + "\n")
         for name, folder in ready:
             for file in sorted(folder.iterdir()):
-                if file.is_file() and not file.is_symlink() and file.suffix in (".csv", ".json", ".svg", ".md"):
+                if file.is_file() and not file.is_symlink() and file.suffix in (".csv", ".json", ".svg", ".md", ".py"):
                     archive.write(file, name + "/" + file.name)
+        post_evaluation.export(archive, path, info["members"])
     return {"archive": str(output), "members_exported": [name for name, _ in ready],
             "sha256": sha(output), "status": info["message"]}
 
@@ -377,9 +432,12 @@ def configure(output, platform):
     initial_method = "eoh" if problem == "fjsp" else "u"
     method = input(f"方法 [u/eoh/fixed-h/hh，默认 {initial_method}] ").strip().lower() or initial_method
     if method in ("fixed-h", "hh"):
-        require(method != "hh", "传统 HH 尚未接入，参见 PROJECT_MAP.md")
+        if method == "hh":
+            print(f"Ross-style 使用 tools/prototype_hh.py check configurations/prototype-hh/{problem}.json")
+            print("绑定同一冻结 U 协议后训练。参见 docs/传统状态路由基线.md。")
+            return
         template = path.relative_to(ROOT)
-        python = shlex.quote(sys.executable) if platform == "local" else '"/public2/home/qiuqian/hdl-envs/portable-v2/bin/python"'
+        python = shlex.quote(sys.executable) if platform == "local" else '"$HOME/hdl-envs/portable-v2/bin/python"'
         print("固定 H 复用同一训练集、参照和冻结 H。先检查资产及求解上限。")
         print(f"{python} -s -B tools/experiment.py fixed-plan {template}")
         return
@@ -409,6 +467,15 @@ def configure(output, platform):
     slurm["cpus"] = int(input("每种子 Slurm CPU 数 [2] ").strip() or "2")
     slurm["memory_mib"] = int(input("每种子内存 MiB [2048] ").strip() or "2048")
     slurm["wall_seconds"] = int(input("单段 Slurm 小时 [12] ").strip() or "12") * 3600
+    if minutes := input("审核作业时限分钟 [60] ").strip():
+        slurm["review_wall_seconds"] = int(minutes) * 60
+    holdout_mode = input("训练外评价 [auto/manual，Enter 只训练] ").strip()
+    if holdout_mode:
+        split = input("留出集类型 [validation/test/prospective-confirmation，默认 test] ").strip() or "test"
+        manifest = input("预先指定的留出清单路径 ").strip()
+        reference = input("留出参照文件路径 [非 TSP 可留空使用冻结规则] ").strip() or None
+        doc["research"]["holdout"] = {"mode": holdout_mode, "split": split,
+                                      "manifest": manifest, "reference": reference}
     members, preview = prepare(doc)
     output = output or ROOT / "configurations/experiments" / (doc["name"] + ".json")
     require(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,39}", doc["name"]), "批次名格式无效")
@@ -420,7 +487,7 @@ def configure(output, platform):
                       "问题适配": f"code/heuristic_design/problems/{problem} · experiments/triad/problems.py",
                       "入口": "tools/experiment.py"}, indent=2, ensure_ascii=False))
     relative = output.resolve().relative_to(ROOT) if output.resolve().is_relative_to(ROOT) else output.resolve()
-    python = shlex.quote(sys.executable) if platform == "local" else '"/public2/home/qiuqian/hdl-envs/portable-v2/bin/python"'
+    python = shlex.quote(sys.executable) if platform == "local" else '"$HOME/hdl-envs/portable-v2/bin/python"'
     quote = shlex.quote(str(relative))
     print(f"{python} -s -B tools/experiment.py prepare {quote}")
     if platform == "local":
@@ -434,12 +501,21 @@ def configure(output, platform):
         print("补齐 pending 后重新预检。")
     for action in ("status", "pause", "resume", "export"):
         print(f"{python} -s -B tools/experiment.py {action} {quote}")
+    if holdout_mode:
+        print(f"{python} -s -B tools/experiment.py evaluate {quote}")
 
 
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["dashboard"]:
+        from tools import experiment_dashboard
+        return experiment_dashboard.main(ROOT, argv[1:])
+    if argv[:1] == ["recover-fjsp-eoh"]:
+        from experiments.triad import api_continuation
+        return api_continuation.main(sys.modules[__name__], argv[1:])
     parser = argparse.ArgumentParser(description="从一份 JSON 预检、提交、查询和导出 R15 实验",
-                                     epilog="配置样例在 configurations/experiments/，参数说明和现场验收见 README.md")
-    parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "export", "fixed-plan"))
+                                     epilog="实验状态矩阵用 dashboard --help。配置样例及现场验收见 README.md")
+    parser.add_argument("action", choices=("configure", "prepare", "run", "status", "pause", "resume", "evaluate", "export", "fixed-plan"))
     parser.add_argument("config", type=Path, nargs="?")
     parser.add_argument("--platform", choices=("local", "cluster"), default="cluster" if ROOT.is_relative_to("/public2") else "local")
     parser.add_argument("--approve", action="store_true", help="run 提交本批，在原预算内允许 API 与训练评价")
@@ -464,6 +540,8 @@ def main(argv=None):
         state = "pending_plan" if request.exists() else "not_started"
         research = doc["research"]
         result = {"name": doc["name"], "state": state,
+                  "lifecycle": {"training_complete": False, "champions_frozen": False,
+                                "holdout_complete": False, "experiment_complete": False},
                   "members": [{"group": research["problem"] + "-" + item["method"], "seed": item["seed"],
                                "phase": state, "successful_evolution": 0, "target": research["budget"]["target"]}
                               for item in research["runs"]],
@@ -480,6 +558,12 @@ def main(argv=None):
             result = pause(path)
         elif args.action == "resume":
             result = campaign.resume_operator(path)
+        elif args.action == "evaluate":
+            require(post_evaluation.plan(path) is not None, "本批启动时未冻结训练外评价计划")
+            m = shared_admission.load(path)
+            info = status(path)
+            rows = [row for row, stage in zip(m["members"], info["members"]) if stage["champion_frozen"]]
+            result = {"holdout_jobs": post_evaluation.queue(path, rows, retry=True), "API_requests": 0}
         else:
             result = export(path, (args.out or Path(doc["name"] + "-results.zip")).resolve())
     print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -29,14 +29,20 @@ class AccountingPending(PermissionError):
 
 
 def check_calendar(c,clock,now,*,full_segment):
+    r=c['resources'];segment=r['segment_seconds'];drain=r['drain_seconds']
+    if type(segment) is not int or type(drain) is not int or not 0<drain<segment:
+        raise PermissionError('original segment/drain required')
+    if c.get('window_seconds') is None:
+        start=clock.get('start')
+        if (not c.get('candidate_policy') or not r.get('independent_batch') or clock['deadline'] is not None
+                or type(start) not in (int,float) or not math.isfinite(start) or start>now):
+            raise PermissionError('invalid independent run clock')
+        return
     values=[now,clock.get('start'),clock.get('deadline'),c.get('window_seconds')]
     if any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
         raise PermissionError('finite original clock required')
     if clock['deadline']!=clock['start']+c['window_seconds'] or clock['start']>now:
         raise PermissionError('original clock changed or local clock moved backwards')
-    r=c['resources'];segment=r['segment_seconds'];drain=r['drain_seconds']
-    if type(segment) is not int or type(drain) is not int or not 0<drain<segment:
-        raise PermissionError('original segment/drain required')
     if now+(segment if full_segment else drain)>=clock['deadline']:
         raise PermissionError('original window cannot cover requested segment' if full_segment else 'original window cannot cover next drain')
     if r.get('independent_batch'):return

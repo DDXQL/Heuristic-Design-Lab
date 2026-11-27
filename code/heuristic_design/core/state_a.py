@@ -113,12 +113,16 @@ def observe(problem, *, history, demands, commitments, action_deltas):
     commitments = _units(commitments, allow_empty=(problem == 'obp'))
     deltas = _units(action_deltas)
     recent = tuple(d for _, d in history.recent)
-    values = dict(zip(NUMERIC_FIELDS, (
+    return _assemble_packet(problem, schema, history, (
         history.count / history.decisions, len(deltas),
         *_pair(demands), *_pair(commitments), *_pair(deltas), *_pair(recent),
-    )))
+    ))
+
+
+def _assemble_packet(problem, schema, history, numeric_values):
+    values = dict(zip(NUMERIC_FIELDS, numeric_values))
     values.update(previous_h_token=history.previous, has_history=history.count > 0,
-                  history_count=history.count, recent_history_count=len(recent))
+                  history_count=history.count, recent_history_count=len(history.recent))
     missing = {k: ('no_opened_bins' if k.startswith('resource_commitment_') else 'no_history')
                for k, v in values.items() if v is None}
     packet = freeze({**values, 'availability': {k: v is not None for k, v in values.items()},

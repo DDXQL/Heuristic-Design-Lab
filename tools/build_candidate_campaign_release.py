@@ -16,12 +16,14 @@ PUBLISHED_VERSION = "triad-candidate-runtime-20261119-r15p3"
 ENTRY = "README.md"
 PREFIXES = ("code/", "experiments/triad/", "configurations/six-groups-20261116/", "configurations/experiments/", "docs/")
 CLI_FILES = ("tools/experiment.py", "tools/experiment_tests.py", "tools/experiment_fs_probe.sbatch",
+             "tools/experiment_dashboard.py", "tools/r15_results.py",
              "tools/r15_acceptance.py", "tools/r15_acceptance_tests.py")
-HISTORY_FILES = tuple("reports/fjsp-execution-20261112/fixed-H-reuse-v3/" + name
+HISTORY_FILES = ("data/fjsp_manifest.json", "deploy/eoh-baseline/eoh_gap.py") + tuple("reports/fjsp-execution-20261112/fixed-H-reuse-v3/" + name
                       for name in ("compatibility.json", "fixed-H-train21-J.csv"))
 ROOT_DOCS = ("README.md", "PROJECT_MAP.md", "DECISIONS.md")
 TSP_REFERENCE = "preparations/operations/tsp-reference-r15.json"
 D06_SHA256 = "694fb50220664430d8a018640a411782bdb8d5b96cb70424e17209b41d2b360a"
+OBP_VALIDATION = Path("preparations/triad/obp-official-20261115/validation.manifest.json")
 
 
 def sha(data):
@@ -60,6 +62,14 @@ def build(base, target, version, tsp_reference=None):
             payload[name] = git("show", f"{commit}:{name}")
     for name in HISTORY_FILES:
         payload[name] = git("show", f"{commit}:{name}")
+    obp_manifest = git("show", f"{commit}:{OBP_VALIDATION.as_posix()}")
+    payload[OBP_VALIDATION.as_posix()] = obp_manifest
+    for row in json.loads(obp_manifest)["instances"]:
+        name = (OBP_VALIDATION.parent / row["path"]).as_posix()
+        raw = git("show", f"{commit}:{name}")
+        if sha(raw) != row["sha256"]:
+            raise ValueError("OBP validation instance checksum mismatch: " + name)
+        payload[name] = raw
     if tsp_reference is not None:
         reference = tsp_reference.read_bytes()
         if sha(reference) != D06_SHA256:

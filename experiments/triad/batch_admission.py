@@ -123,7 +123,8 @@ class Transport:
             with self.permits.slot(deadline) as index:
                 self.permits.pace(deadline)
                 self.admission.verify()
-                if time.time() + self.minimum_remaining >= read(self.run_clock)['deadline']:
+                run_deadline = read(self.run_clock)['deadline']
+                if run_deadline is not None and time.time() + self.minimum_remaining >= run_deadline:
                     raise TimeoutError('local batch window cannot cover dispatch and evaluation')
                 started = True
                 try:

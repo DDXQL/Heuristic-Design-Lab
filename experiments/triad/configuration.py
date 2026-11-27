@@ -71,6 +71,8 @@ def gaps(c):
     if c['problem']=='tsp':required+=['reference_file','data_usage_receipt']
     if c['problem']=='obp':required+=['obp_actions','obp_h_abi','obp_bound','state_delivery','data_usage_receipt']
     missing=[k for k in required if c.get(k) is None]
+    if c.get('candidate_policy') and c['resources'].get('independent_batch') and 'window_seconds' in missing:
+        missing.remove('window_seconds')
     if c['freeze_status']!='frozen' and not (c['mode']=='mock' and c['freeze_status']=='engineering_only'):missing.append('freeze_status')
     if c['problem']=='fjsp' and c['method']=='u' and not c['frozen_u_template']:missing.append('frozen_u_template')
     for k in ('cpus','memory_mib','segment_seconds','drain_seconds'):

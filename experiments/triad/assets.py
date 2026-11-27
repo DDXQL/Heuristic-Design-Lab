@@ -254,13 +254,13 @@ def job_submit(a):
             if a.resume:raise PermissionError('cannot resume uninitialized H build')
             _,_,_,_,pending=runtime.preflight(a.config,run_kind='h-build')
             if pending:raise ValueError('H401 preflight pending: '+', '.join(pending))
-        args=[kind,'/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',action,str(a.config.resolve()),str(folder),'40']
+        args=[kind,str(Path.home() / 'hdl-envs/portable-v2/bin/python'),action,str(a.config.resolve()),str(folder),'40']
     else:
         plan=read(folder/'reference-plan.json')
         if not a.allow_lkh or a.approve_lkh!=len(plan['commands']) or a.allow_api or a.allow_solves or a.resume:raise PermissionError('explicit exact LKH process count, no API, no automatic LKH resume/retry')
         if (folder/'LKH-run-receipt.json').exists():raise PermissionError('prior LKH execution exists; preserve budget/receipt')
-        cpus=1;memory=1024;seconds=len(plan['commands'])*150+900;r={'partition':'128C_02','account':'wz','qos':'normal'}
-        args=['lkh','/public2/home/qiuqian/hdl-envs/portable-v2/bin/python',str(folder),str(a.approve_lkh)];stamp=sha(folder/'reference-plan.json')
+        cpus=1;memory=1024;seconds=len(plan['commands'])*150+900;r={'partition':'128C_02','account':os.environ.get('HDL_SLURM_ACCOUNT',''),'qos':'normal'}
+        args=['lkh',str(Path.home() / 'hdl-envs/portable-v2/bin/python'),str(folder),str(a.approve_lkh)];stamp=sha(folder/'reference-plan.json')
     h,left=divmod(seconds,3600);m,s=divmod(left,60);job_name='asset-'+kind+'-'+folder.name
     command=['sbatch','--parsable','--no-requeue','--nodes=1','--ntasks=1','--cpus-per-task='+str(cpus),'--mem='+str(memory)+'M','--time='+f'{h:02d}:{m:02d}:{s:02d}','--partition='+r['partition'],'--account='+r['account'],'--qos='+r['qos'],'--chdir='+str(ROOT),'--job-name='+job_name,'--output='+str(ROOT/'logs'/(job_name+'-%j.out')),str(ROOT/'experiments/triad/assets.sbatch'),*args]
     if kind=='obp-H':command.insert(command.index(str(ROOT/'experiments/triad/assets.sbatch')),'--signal=B:USR1@'+str(r['drain_seconds']))
@@ -344,7 +344,7 @@ def main():
                 lock=a.run_dir/'.fixed.lock';lock.touch(exist_ok=False)
                 ledger={'reserved_native_solves':value['max_native_solves'],'completed_H':0,'phase':'running','automatic_retry':False};write(a.run_dir/'fixed-ledger.json',ledger)
                 for i,h in enumerate(hs):
-                    selector=asdict(problems.u_language.validate('def use_heuristics(state):\n    return 0\n','fixed H host',1))
+                    selector=None if c['problem']=='obp' else asdict(problems.u_language.validate('def use_heuristics(state):\n    return 0\n','fixed H host',1))
                     result=evaluation.evaluate({'id':f'H-{i:03d}','candidate':selector},{'config':c,'members':[h],'instances':data,'references':refs,'source_files':sources,'run_directory':str(a.run_dir)})
                     write(a.run_dir/f'H-{i:03d}.json',result)
                     if not result['valid']:raise RuntimeError('fixed H invalid; bounded stop without refill')
